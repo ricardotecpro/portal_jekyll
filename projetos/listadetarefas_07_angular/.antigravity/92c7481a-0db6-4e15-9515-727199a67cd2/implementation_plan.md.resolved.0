@@ -1,0 +1,73 @@
+# Implementation Plan - Lista de Tarefas 07 Refactoring
+
+## Goal Description
+Refactor the existing "Lista de Tarefas 07" project to meet modern software engineering standards. This includes cleaning up the Spring Boot backend (SOLID, MVC, Profiles) and completely migrating the frontend from Vue.js to a modern Angular Standalone application. The documentation will also be updated to serve as a comprehensive guide.
+
+## User Review Required
+> [!IMPORTANT]
+> **Frontend Migration**: The existing frontend is written in **Vue.js**. The requirement is **Angular 20+** (interpreted as latest stable Angular 18/19). The plan involves **deleting** the existing `frontend` directory and generating a new Angular application.
+> **Backend Breaking Changes**: Refactoring the Controller to use DTOs instead of [Map](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/config/WebConfig.java#10-18) for updates might slightly change the API contract if strict validation is added, but we will aim to keep the JSON structure compatible.
+
+## Proposed Changes
+
+### Backend (`backend`)
+
+#### [MODIFY] Configuration
+- Split [application.properties](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/resources/application.properties) into:
+    - [application.properties](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/resources/application.properties) (common)
+    - `application-dev.properties` (H2, debug)
+    - `application-prod.properties` (PostgreSQL, optimized)
+    - `application-test.properties` (H2 for tests)
+- Remove accents from comments and properties.
+
+#### [MODIFY] Source Code (`br.com.tarefas.api`)
+- **Main Class**: Rename [ListatarefasSpringVueCorsApplication](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/ListatarefasSpringVueCorsApplication.java#6-14) to `ListaTarefasApplication`.
+- **Controller**: Refactor [TarefaController](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/controller/TarefaController.java#12-49) to use DTOs (`TarefaStatusDTO`, `TarefaTituloDTO`) instead of [Map](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/config/WebConfig.java#10-18).
+- **Service**: Ensure business logic is isolated in `TarefaService`.
+- **General**: Remove all accents and special characters (e.g., 'ç') from variable names, method names, and comments.
+
+### Frontend (`frontend`)
+
+#### [DELETE] Existing Vue App
+- Remove all files in `frontend/`.
+
+#### [NEW] Angular App
+- Generate a new Angular application using `@angular/cli`.
+- **Tech Stack**: Angular 18+, Standalone Components, Angular Material.
+- **Structure**:
+    - `src/app/components/tarefa-list`: Main list component.
+    - `src/app/components/tarefa-item`: Individual task item.
+    - `src/app/services/tarefa.service`: HTTP client service.
+    - `src/app/models/tarefa.model.ts`: Interface.
+- **Features**:
+    - List tasks.
+    - Add task.
+    - Update status (checkbox).
+    - Update title (edit mode).
+    - Delete task.
+
+### Documentation
+
+#### [MODIFY] [README.md](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/README.md)
+- Rewrite completely to provide a step-by-step guide for students.
+- Explain the architecture (Spring Boot + Angular).
+- Instructions for running backend (profiles) and frontend.
+
+## Verification Plan
+
+### Automated Tests
+- **Backend**: Run `mvn test` to verify existing tests pass (after refactoring).
+- **Frontend**: Run `ng test` (if generated) or build check `ng build`.
+
+### Manual Verification
+1.  **Backend Startup**: Run `mvn spring-boot:run -Dspring.profiles.active=dev` and check logs.
+2.  **API Check**: Use `curl` or Postman to:
+    - GET `/tarefas`
+    - POST `/tarefas`
+    - PUT `/tarefas/{id}/status`
+    - PATCH `/tarefas/{id}/titulo`
+    - DELETE `/tarefas/{id}`
+3.  **Frontend Integration**:
+    - Open Angular app in browser (`http://localhost:4200`).
+    - Verify tasks load from backend.
+    - Verify Create/Update/Delete actions reflect in backend.

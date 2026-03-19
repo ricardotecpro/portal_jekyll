@@ -1,0 +1,33 @@
+# Project Discovery Analysis Plan
+
+## Goal Description
+Refine the analysis to associate Antigravity conversations with projects in `C:\Temp\repos` by adding keyword mapping and better heuristics. Also, calculate and report the total number of conversations.
+
+## Proposed Changes
+### Analysis Script (`discover_projects.py`)
+- Add a `KEYWORD_MAPPING` dictionary to map phrases like "Lista de Tarefas 08" to specific project folders.
+- Implement a counter for total conversations scanned.
+- Improve matching logic to use the mapping.
+- **New**: Create a directory `C:\Temp\repos\antigravity_recovered` if it doesn't exist.
+- **New**: Map any remaining unassociated conversations to this new directory.
+- Print the total number of conversations found.
+
+### Migration Script (`migrate_artifacts.py`)
+- Read `migration_map.json`.
+- For each conversation ID:
+    - **Source**: `C:\Users\rlp\.gemini\antigravity\brain\<ID>`
+    - **Destination**: `<Project_Path>\.antigravity\<ID>`
+    - **Action**:
+        1. Move the folder from **Source** to **Destination**.
+        2. Create a **Directory Junction** (Symlink) at **Source** pointing to **Destination**.
+    - This ensures Antigravity continues to work (accessing the central path) while the data physically resides in the project folder.
+- Handle potential collisions.
+
+### Reporting
+- Update `unassociated_report.md` with the new total and any new associations.
+- Update `migration_map.json`.
+
+## Verification Plan
+### Manual Verification
+- Run the script and check the output for the total count.
+- Verify if previously unassociated conversations (like the "Lista de Tarefas" ones) are now associated.

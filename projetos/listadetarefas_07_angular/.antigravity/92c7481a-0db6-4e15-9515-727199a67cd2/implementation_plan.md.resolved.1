@@ -1,0 +1,73 @@
+# Plano de Implementação - Refatoração Lista de Tarefas 07
+
+## Descrição do Objetivo
+Refatorar o projeto existente "Lista de Tarefas 07" para atender aos padrões modernos de engenharia de software. Isso inclui limpar o backend Spring Boot (SOLID, MVC, Perfis) e migrar completamente o frontend de Vue.js para uma aplicação Angular Standalone moderna. A documentação também será atualizada para servir como um guia completo.
+
+## Revisão do Usuário Necessária
+> [!IMPORTANT]
+> **Migração do Frontend**: O frontend existente foi escrito em **Vue.js**. O requisito é **Angular 20+** (interpretado como o Angular estável mais recente, 18/19). O plano envolve **deletar** o diretório `frontend` existente e gerar uma nova aplicação Angular.
+> **Mudanças Quebrantes no Backend**: Refatorar o Controller para usar DTOs (`TarefaStatusDTO`, `TarefaTituloDTO`) em vez de [Map](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/config/WebConfig.java#10-18) para atualizações pode mudar levemente o contrato da API se validação estrita for adicionada, mas visaremos manter a estrutura JSON compatível.
+
+## Alterações Propostas
+
+### Backend (`backend`)
+
+#### [MODIFICAR] Configuração
+- Dividir [application.properties](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/resources/application.properties) em:
+    - [application.properties](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/resources/application.properties) (comum)
+    - `application-dev.properties` (H2, debug)
+    - `application-prod.properties` (PostgreSQL, otimizado)
+    - `application-test.properties` (H2 para testes)
+- Remover acentos de comentários e propriedades.
+
+#### [MODIFICAR] Código Fonte (`br.com.tarefas.api`)
+- **Classe Principal**: Renomear [ListatarefasSpringVueCorsApplication](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/ListatarefasSpringVueCorsApplication.java#6-14) para `ListaTarefasApplication`.
+- **Controller**: Refatorar [TarefaController](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/controller/TarefaController.java#12-49) para usar DTOs (`TarefaStatusDTO`, `TarefaTituloDTO`) em vez de [Map](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/backend/src/main/java/br/com/tarefas/api/config/WebConfig.java#10-18).
+- **Service**: Garantir que a lógica de negócios esteja isolada em `TarefaService`.
+- **Geral**: Remover todos os acentos e caracteres especiais (ex: 'ç') de nomes de variáveis, nomes de métodos e comentários.
+
+### Frontend (`frontend`)
+
+#### [DELETAR] App Vue Existente
+- Remover todos os arquivos em `frontend/`.
+
+#### [NOVO] App Angular
+- Gerar uma nova aplicação Angular usando `@angular/cli`.
+- **Stack Tecnológica**: Angular 18+, Componentes Standalone, Angular Material.
+- **Estrutura**:
+    - `src/app/components/tarefa-list`: Componente principal de lista.
+    - `src/app/components/tarefa-item`: Item de tarefa individual.
+    - `src/app/services/tarefa.service`: Serviço cliente HTTP.
+    - `src/app/models/tarefa.model.ts`: Interface.
+- **Funcionalidades**:
+    - Listar tarefas.
+    - Adicionar tarefa.
+    - Atualizar status (checkbox).
+    - Atualizar título (modo edição).
+    - Deletar tarefa.
+
+### Documentação
+
+#### [MODIFICAR] [README.md](file:///c:/Dropbox/Crossover/github.io/ads_proj_aplicacao_full_stack/projetos/listadetarefas_07_angular/README.md)
+- Reescrever completamente para fornecer um guia passo a passo para estudantes.
+- Explicar a arquitetura (Spring Boot + Angular).
+- Instruções para rodar backend (perfis) e frontend.
+
+## Plano de Verificação
+
+### Testes Automatizados
+- **Backend**: Rodar `mvn test` para verificar se os testes existentes passam (após refatoração).
+- **Frontend**: Rodar `ng test` (se gerado) ou checagem de build `ng build`.
+
+### Verificação Manual
+1.  **Inicialização do Backend**: Rodar `mvn spring-boot:run -Dspring.profiles.active=dev` e checar logs.
+2.  **Checagem da API**: Usar `curl` ou Postman para:
+    - GET `/tarefas`
+    - POST `/tarefas`
+    - PUT `/tarefas/{id}/status`
+    - PATCH `/tarefas/{id}/titulo`
+    - DELETE `/tarefas/{id}`
+3.  **Integração do Frontend**:
+    - Abrir app Angular no navegador (`http://localhost:4200`).
+    - Verificar se tarefas carregam do backend.
+    - Verificar se ações de Criar/Atualizar/Deletar refletem no backend.
