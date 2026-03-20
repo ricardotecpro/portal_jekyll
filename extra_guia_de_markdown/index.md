@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ✍️ Markdown: A Linguagem de Marcação Simples
+title: "✍️ Markdown: A Linguagem de Marcação Simples"
 ---
 
 # ✍️ Markdown: A Linguagem de Marcação Simples

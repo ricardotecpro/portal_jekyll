@@ -1,0 +1,28 @@
+@startuml
+
+package "entities" {
+    class Quadrado {
+        - double lado
+        + Quadrado(double lado)
+        + double calcularArea()
+        + double calcularPerimetro()
+        + double calcularDiagonal()
+        + double getLado()
+        + void setLado(double lado)
+    }
+}
+
+package "application" {
+    class Program {
+        + main(String[] args)
+    }
+}
+
+class Main {
+    + main(String[] args)
+}
+
+Quadrado -- Program : "Usa"
+Program -- Main : "Executa"
+
+@enduml

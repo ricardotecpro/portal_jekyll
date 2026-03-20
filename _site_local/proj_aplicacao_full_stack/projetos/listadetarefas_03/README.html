@@ -1,0 +1,1681 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/listadetarefas_03/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Projeto Lista de Tarefas” (To-Do List) | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Projeto Lista de Tarefas” (To-Do List)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_03/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_03/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Projeto Lista de Tarefas” (To-Do List)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Projeto Lista de Tarefas” (To-Do List)","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_03/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_03/" style="margin-left: 0.5rem;">Listadetarefas 03</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 projeto lista de tarefas" (to do list)</span>
+          
+        
+      </nav>
+
+      <h1 id="-projeto-lista-de-tarefas-to-do-list">🚀 Projeto Lista de Tarefas” (To-Do List)</h1>
+<p>v3.9</p>
+
+<h2 id="️-visão-geral-da-arquitetura">🗺️ Visão Geral da Arquitetura</h2>
+
+<p>Neste projeto, construiremos um sistema completo de <strong>“Lista de Tarefas” (To-Do List)</strong>, demonstrando como diferentes aplicações cliente podem consumir uma única fonte de dados central (API). A arquitetura final será:</p>
+
+<ul>
+  <li><strong>Um Backend (API REST):</strong> O cérebro do sistema, desenvolvido em Java com Spring Boot.</li>
+  <li><strong>Dois Clientes:</strong>
+    <ol>
+      <li>Uma aplicação <strong>Web</strong> com Angular.</li>
+      <li>Uma aplicação <strong>Desktop</strong> nativa com JavaFX.</li>
+    </ol>
+  </li>
+  <li><strong>Um Painel de Controle:</strong> Um script PowerShell para automação e gerenciamento do ambiente.</li>
+</ul>
+
+<p><strong>Objetivo do Projeto:</strong> Construir um ecossistema de software completo para uma Lista de Tarefas. Este guia é a versão definitiva do projeto, contendo a arquitetura, estrutura de pastas, descrição de arquivos e o código completo para o backend, frontend web e frontend desktop, com foco em uma experiência de usuário consistente e com a sincronização de estado corrigida entre as plataformas.</p>
+
+<h4 id="arquitetura-da-aplicação"><strong>Arquitetura da Aplicação</strong></h4>
+
+<p>O sistema é composto por um Backend (API) que centraliza os dados e a lógica, e dois Frontends (Web e Desktop) que consomem esses dados para apresentar a interface ao usuário.</p>
+
+<pre><code class="language-mermaid">graph TD
+    subgraph "Clientes"
+        A["🌐 Frontend Web&lt;br&gt;(Angular)"]
+        B["💻 Frontend Desktop&lt;br&gt;(JavaFX)"]
+    end
+
+    subgraph "Servidor"
+        C["🚀 Backend API&lt;br&gt;(Spring Boot)"]
+    end
+
+    subgraph "Persistência"
+        D[(🗄️ Banco de Dados H2)]
+    end
+
+    A -- HTTP Requests (JSON) --&gt; C
+    B -- HTTP Requests (JSON) --&gt; C
+    C -- JPA/Hibernate --&gt; D
+</code></pre>
+
+<hr />
+
+<h3 id="parte-0-configuração-inicial-do-projeto">Parte 0: Configuração Inicial do Projeto</h3>
+
+<p>Nesta primeira etapa, vamos criar a estrutura base do <strong>backend</strong> utilizando o <strong>Spring Initializr</strong>.<br />
+Esse gerador oficial do Spring Boot nos ajuda a configurar dependências essenciais de forma rápida e segura.</p>
+
+<hr />
+
+<h4 id="passo-1-acessar-o-spring-initializr">Passo 1: Acessar o Spring Initializr</h4>
+
+<p><strong>Objetivo:</strong> Criar o serviço central que irá gerenciar os dados das tarefas, servindo como a única fonte de verdade para todos os clientes.</p>
+
+<h3 id="️-ferramentas-necessárias">🛠️ Ferramentas Necessárias</h3>
+
+<ul>
+  <li><strong>Java Development Kit (JDK):</strong> Versão LTS 17 ou 21.</li>
+  <li><strong>Apache Maven:</strong> Ferramenta de automação de build.</li>
+  <li><strong>IDE (Ambiente de Desenvolvimento):</strong> IntelliJ IDEA ou vsCode.</li>
+  <li><strong>Cliente REST:</strong> Postman Insomnia ou extensão YARC para navegador (para testes).</li>
+</ul>
+
+<h3 id="ferramentas-para-testar-apis">Ferramentas para Testar APIs</h3>
+
+<ul>
+  <li><a href="https://www.postman.com/downloads/">Postman</a></li>
+  <li><a href="https://insomnia.rest/download">Insomnia</a></li>
+  <li><a href="https://chromewebstore.google.com/detail/yet-another-rest-client/ehafadccdcdedbhcbddihehiodgcddpl">Yet Another Rest Client (YARC)</a>
+<img src="https://ricardotecpro.github.io/ads_proj_aplicacao_full_stack/projetos/assets\extension-yarc.png" alt="Visual Studio Code" /></li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack">VS Code Java Pack</a>
+<img src="https://ricardotecpro.github.io/ads_proj_aplicacao_full_stack/projetos/assets\extension-pack-for-java.png" alt="Visual Studio Code" /></li>
+</ul>
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack">VS Code Spring Boot Pack</a></p>
+
+<p><img src="https://ricardotecpro.github.io/ads_proj_aplicacao_full_stack/projetos/assets\extension-spring-boot.png" alt="Visual Studio Code" /></p>
+
+<h4 id="estrutura-de-pastas">Estrutura de Pastas</h4>
+
+<pre><code class="language-mermaid">graph TD
+    A[listadetarefas-projeto]
+    A --&gt; B[listadetarefas-api]
+    A --&gt; C[listadetarefas-web]
+    A --&gt; D[listadetarefas-desktop]
+    A --&gt; E[listadetarefas-mobile]    
+</code></pre>
+
+<hr />
+
+<p>Após criar o projeto, sua estrutura de pastas principal será:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas-projeto/
+├── listadetarefas-api/ &lt;-- Backend Spring Boot 
+├── listadetarefas-web/ &lt;-- Frontend Angular
+├── listadetarefas-desktop/ &lt;-- Frontend Java FX
+├── listadetarefas-android/&lt;-- Frontend Mobile Android Kotlin
+└── listadetarefas-painel.ps1 &lt;-- Script para executar via terminal
+</code></pre></div></div>
+
+<p>Acesse o site: 👉 <a href="https://start.spring.io">https://start.spring.io</a></p>
+
+<hr />
+
+<h4 id="passo-2-preencher-os-campos">Passo 2: Preencher os campos</h4>
+
+<ul>
+  <li><strong>Project</strong>: Maven</li>
+  <li><strong>Language</strong>: Java</li>
+  <li><strong>Spring Boot</strong>: Versão estável mais recente (exemplo: <code class="language-plaintext highlighter-rouge">3.x.x</code>)</li>
+</ul>
+
+<h5 id="project-metadata">Project Metadata</h5>
+<ul>
+  <li><strong>Group</strong>: <code class="language-plaintext highlighter-rouge">br.com.curso</code></li>
+  <li><strong>Artifact</strong>: <code class="language-plaintext highlighter-rouge">listadetarefas-api</code></li>
+  <li><strong>Name</strong>: <code class="language-plaintext highlighter-rouge">listadetarefas-api</code></li>
+  <li><strong>Description</strong>: <code class="language-plaintext highlighter-rouge">API para gerenciamento de tarefas</code></li>
+  <li><strong>Package name</strong>: <code class="language-plaintext highlighter-rouge">br.com.curso.listadetarefas.api</code></li>
+  <li><strong>Packaging</strong>: Jar</li>
+  <li><strong>Java</strong>: <code class="language-plaintext highlighter-rouge">21</code> (ou a versão que você instalou em seu computador)</li>
+</ul>
+
+<hr />
+
+<h4 id="passo-3-adicionar-dependências">Passo 3: Adicionar dependências</h4>
+
+<p>Clique em <strong>“ADD DEPENDENCIES”</strong> e adicione as seguintes:</p>
+
+<ul>
+  <li><strong>Spring Web</strong> → Essencial para criar aplicações web e APIs REST.</li>
+  <li><strong>Spring Data JPA</strong> → Facilita a comunicação com o banco de dados.</li>
+  <li><strong>H2 Database</strong> → Banco de dados em memória, ideal para desenvolvimento e testes.</li>
+  <li><strong>Lombok</strong> → Reduz código repetitivo (getters, setters, construtores, etc).</li>
+</ul>
+
+<hr />
+
+<h4 id="passo-4-gerar-o-projeto">Passo 4: Gerar o projeto</h4>
+
+<ul>
+  <li>Clique em <strong>GENERATE</strong>.</li>
+  <li>Um arquivo <code class="language-plaintext highlighter-rouge">.zip</code> será baixado no seu computador.</li>
+</ul>
+
+<hr />
+
+<h4 id="passo-5-abrir-o-projeto-na-ide">Passo 5: Abrir o projeto na IDE</h4>
+
+<ol>
+  <li><strong>Descompacte</strong> o arquivo <code class="language-plaintext highlighter-rouge">.zip</code>.</li>
+  <li>Abra a pasta gerada na sua IDE favorita:
+    <ul>
+      <li><strong>IntelliJ IDEA</strong> (recomendado)</li>
+      <li>ou <strong>VS Code</strong> (com extensões de Java instaladas).</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="parte-1-o-backend---a-api-com-spring-boot"><strong>Parte 1: O Backend - A API com Spring Boot</strong></h3>
+
+<p>O cérebro da nossa aplicação, responsável por gerenciar e fornecer os dados das tarefas.</p>
+
+<h3 id="-passo-3-modelagem-dos-dados">📝 Passo 3: Modelagem dos Dados</h3>
+
+<p>Vamos definir a estrutura da nossa tabela de tarefas.</p>
+
+<h4 id="diagrama-entidade-relacionamento-er">Diagrama Entidade-Relacionamento (ER)</h4>
+
+<pre><code class="language-mermaid">erDiagram
+    TB_TAREFAS {
+        BIGINT id PK "Auto-incremento"
+        VARCHAR descricao
+        BOOLEAN concluida
+    }
+</code></pre>
+
+<hr />
+
+<ol>
+  <li>Dentro de <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/listadetarefas/api</code>, crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">tarefa</code>.</li>
+  <li>Dentro do pacote <code class="language-plaintext highlighter-rouge">tarefa</code>, crie a classe <code class="language-plaintext highlighter-rouge">Tarefa.java</code>.</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/curso/listadetarefas/api/tarefa/Tarefa.java</span>
+<span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+
+<span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tb_tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tarefa</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="estrutura-de-pastas-após-a-criação-do-modelo">Estrutura de Pastas Após a Criação do Modelo</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>api/
+└── src/main/java/br/com/curso/listadetarefas/api/
+    ├── tarefa/
+    │   └── Tarefa.java  # &lt;- Arquivo criado
+    └── ListadetarefasApiApplication.java
+</code></pre></div></div>
+
+<h3 id="️-passo-4-construção-das-camadas-de-serviço">🏗️ Passo 4: Construção das Camadas de Serviço</h3>
+
+<p>Agora, criaremos as classes que formam a arquitetura da nossa API: <code class="language-plaintext highlighter-rouge">Repository</code> (acesso a dados), <code class="language-plaintext highlighter-rouge">Service</code> (regras de negócio) e <code class="language-plaintext highlighter-rouge">Controller</code> (endpoints HTTP).</p>
+
+<h4 id="diagrama-de-classes">Diagrama de Classes</h4>
+
+<pre><code class="language-mermaid">classDiagram
+    TarefaController ..&gt; TarefaService : Usa
+    TarefaService ..&gt; TarefaRepository : Usa
+    TarefaRepository ..&gt; Tarefa : Gerencia
+    class TarefaController {
+        +List~Tarefa~ listarTarefas()
+        +Tarefa criarTarefa(Tarefa)
+        +ResponseEntity~Tarefa~ atualizarTarefa(Long, Tarefa)
+        +ResponseEntity~Void~ deletarTarefa(Long)
+    }
+    class TarefaService {
+        +List~Tarefa~ listarTodas()
+        +Tarefa criar(Tarefa)
+        +Tarefa atualizar(Long, Tarefa)
+        +void deletar(Long)
+    }
+    class TarefaRepository {
+        &lt;&lt;Interface&gt;&gt;
+    }
+    class Tarefa {
+        -Long id
+        -String descricao
+        -boolean concluida
+    }
+</code></pre>
+
+<ol>
+  <li>Dentro do pacote <code class="language-plaintext highlighter-rouge">tarefa</code>, crie as seguintes classes e interfaces:</li>
+</ol>
+
+<p><strong><code class="language-plaintext highlighter-rouge">TarefaRepository.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TarefaRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">TarefaService.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTodas</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criar</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">atualizar</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Tarefa</span> <span class="n">tarefaAtualizada</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefaExistente</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">());</span>
+                <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">.</span><span class="na">isConcluida</span><span class="o">());</span>
+                <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefaExistente</span><span class="o">);</span>
+            <span class="o">}).</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada com o id: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deletar</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">tarefaRepository</span><span class="o">.</span><span class="na">existsById</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada com o id: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">TarefaController.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tarefas"</span><span class="o">)</span>
+<span class="nd">@CrossOrigin</span><span class="o">(</span><span class="n">origins</span> <span class="o">=</span> <span class="s">"*"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTarefas</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">();</span> <span class="o">}</span>
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">criar</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span> <span class="o">}</span>
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">atualizarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">Tarefa</span> <span class="n">atualizada</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizar</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">tarefa</span><span class="o">);</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">atualizada</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletar</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="estrutura-de-pastas-backend"><strong>Estrutura de Pastas (Backend)</strong></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas-api/
+├── pom.xml
+└── src/
+    └── main/
+        ├── java/
+        │   └── br/com/curso/listadetarefas/api/
+        │       ├── ListadetarefasApiApplication.java
+        │       └── tarefa/
+        │           ├── Tarefa.java
+        │           ├── TarefaRepository.java
+        │           ├── TarefaService.java
+        │           └── TarefaController.java
+        └── resources/
+            └── application.properties
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="descrição-dos-arquivos-backend"><strong>Descrição dos Arquivos (Backend)</strong></h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pom.xml</code>: Arquivo de configuração do Maven. Define as dependências e como o projeto deve ser construído.</li>
+  <li><code class="language-plaintext highlighter-rouge">application.properties</code>: Arquivo de configuração do Spring Boot, usado para habilitar o console web do banco de dados H2.</li>
+  <li><code class="language-plaintext highlighter-rouge">ListadetarefasApiApplication.java</code>: Ponto de entrada da aplicação Spring Boot.</li>
+  <li><code class="language-plaintext highlighter-rouge">Tarefa.java</code>: Entidade JPA que modela uma tarefa.</li>
+  <li><code class="language-plaintext highlighter-rouge">TarefaRepository.java</code>: Interface do Spring Data JPA que fornece métodos CRUD.</li>
+  <li><code class="language-plaintext highlighter-rouge">TarefaService.java</code>: Camada de serviço que contém a lógica de negócio.</li>
+  <li><code class="language-plaintext highlighter-rouge">TarefaController.java</code>: Camada de API que expõe os endpoints REST.</li>
+</ul>
+
+<h4 id="código-completo-backend"><strong>Código Completo (Backend)</strong></h4>
+
+<p><strong>1. <code class="language-plaintext highlighter-rouge">pom.xml</code></strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.3.3<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;relativePath/&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>br.com.curso<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>listadetarefas-api<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;name&gt;</span>listadetarefas-api<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>API para gerenciamento de tarefas<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;java.version&gt;</span>17<span class="nt">&lt;/java.version&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-test<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;excludes&gt;</span>
+                        <span class="nt">&lt;exclude&gt;</span>
+                            <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+                            <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+                        <span class="nt">&lt;/exclude&gt;</span>
+                    <span class="nt">&lt;/excludes&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p><strong>2. <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Habilita o console web do banco de dados H2
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Define o caminho para acessar o console (ex: http://localhost:8080/h2-console)
+</span><span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+
+<span class="c"># Configurações da fonte de dados (DataSource)
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+
+<span class="c"># Configurações do JPA/Hibernate
+</span><span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.defer-datasource-initialization</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<p><strong>3. <code class="language-plaintext highlighter-rouge">ListadetarefasApiApplication.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListadetarefasApiApplication</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">ListadetarefasApiApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>4. <code class="language-plaintext highlighter-rouge">tarefa/Tarefa.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+
+<span class="nd">@Data</span>
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tb_tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tarefa</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>5. <code class="language-plaintext highlighter-rouge">tarefa/TarefaRepository.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TarefaRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>6. <code class="language-plaintext highlighter-rouge">tarefa/TarefaService.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTodas</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criar</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">atualizar</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Tarefa</span> <span class="n">tarefaAtualizada</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefaExistente</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">());</span>
+                    <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">.</span><span class="na">isConcluida</span><span class="o">());</span>
+                    <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefaExistente</span><span class="o">);</span>
+                <span class="o">}).</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deletar</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">tarefaRepository</span><span class="o">.</span><span class="na">existsById</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>7. <code class="language-plaintext highlighter-rouge">tarefa/TarefaController.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tarefas"</span><span class="o">)</span>
+<span class="nd">@CrossOrigin</span><span class="o">(</span><span class="n">origins</span> <span class="o">=</span> <span class="s">"*"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTarefas</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">();</span> <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">criar</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span> <span class="o">}</span>
+
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">atualizarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizar</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">tarefa</span><span class="o">));</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletar</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-passo-5-execução-e-teste-da-api">✅ Passo 5: Execução e Teste da API</h3>
+
+<h4 id="diagrama-de-casos-de-uso-da-api">Diagrama de Casos de Uso da API</h4>
+
+<pre><code class="language-mermaid">graph TD
+    subgraph "Sistema de Tarefas API"
+        UC1[Listar todas as tarefas]
+        UC2[Adicionar nova tarefa]
+        UC3[Atualizar uma tarefa]
+        UC4[Deletar uma tarefa]
+    end
+
+    Usuario["Usuário (via Cliente)"] --&gt; UC1
+    Usuario --&gt; UC2
+    Usuario --&gt; UC3
+    Usuario --&gt; UC4
+</code></pre>
+
+<hr />
+
+<ol>
+  <li>
+    <p><strong>Execute a Aplicação:</strong></p>
+
+    <ul>
+      <li>Na sua IDE, execute a classe <code class="language-plaintext highlighter-rouge">ListadetarefasApiApplication.java</code>.</li>
+      <li>Ou, via terminal na raiz do projeto: <code class="language-plaintext highlighter-rouge">./mvnw spring-boot:run</code></li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./mvnw spring-boot:run
+</code></pre></div></div>
+
+<hr />
+
+<ol>
+  <li>
+    <p><strong>Teste com Cliente REST (ex: YARC):</strong></p>
+
+    <ul>
+      <li>Use um cliente REST para fazer requisições para <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/tarefas</code> e verifique todas as operações de CRUD (GET, POST, PUT, DELETE) como detalhado no guia anterior.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Teste com o Console H2:</strong></p>
+
+    <ul>
+      <li>Com a API rodando, acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code> no navegador.</li>
+      <li>Use as seguintes credenciais para logar:
+        <ul>
+          <li><strong>JDBC URL:</strong> <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:testdb</code></li>
+          <li><strong>User Name:</strong> <code class="language-plaintext highlighter-rouge">sa</code></li>
+          <li><strong>Password:</strong> (em branco)</li>
+        </ul>
+      </li>
+      <li>Após criar tarefas via API, execute o comando SQL <code class="language-plaintext highlighter-rouge">SELECT * FROM TB_TAREFAS;</code> para ver os dados diretamente no banco.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://ricardotecpro.github.io/ads_proj_aplicacao_full_stack/projetos/assets\h2-console.png" alt="H2 Console" /></p>
+
+<hr />
+
+<h3 id="parte-2-o-frontend-web-com-angular"><strong>Parte 2: O Frontend Web com Angular</strong></h3>
+
+<p>(<code class="language-plaintext highlighter-rouge">listadetarefas-web</code>)</p>
+
+<p>A interface web, com layout de tabela e funcionalidades consistentes.</p>
+
+<h3 id="️-ferramentas-necessárias-1">🛠️ Ferramentas Necessárias</h3>
+
+<ul>
+  <li>
+    <p><strong>Node.js LTS 20.x ou 22.x e npm:</strong> Ambiente de execução e gerenciador de pacotes.</p>
+  </li>
+  <li>
+    <p><strong>Angular CLI:</strong></p>
+    <ol>
+      <li>No terminal, execute:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  npm <span class="nb">install</span> <span class="nt">-g</span> @angular/cli
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="-passo-1-criação-do-projeto">📂 Passo 1: Criação do Projeto</h3>
+
+<ol>
+  <li>No terminal, crie o projeto:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng new listadetarefas-web <span class="nt">--standalone</span> <span class="nt">--style</span><span class="o">=</span>css
+</code></pre></div>    </div>
+  </li>
+  <li>Navegue até a pasta <code class="language-plaintext highlighter-rouge">cd listadetarefas-web</code>.</li>
+  <li>Gere os arquivos necessários:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng generate interface models/tarefa
+ng generate service services/tarefa
+ng generate component components/task-list
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="estrutura-de-pastas-web"><strong>Estrutura de Pastas (Web)</strong></h4>
+
+<p>Renomear os arquivos criados pelo nodejs, e criar os demais para refletir essa estrutura.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas-web/
+└── src/
+    └── app/
+        ├── components/
+        │   └── task-list/
+        │       ├── task-list.component.css &lt;-- renomeado
+        │       ├── task-list.component.html &lt;-- renomeado
+        │       └── task-list.component.ts &lt;-- renomeado
+        ├── models/
+        │   └── tarefa.ts
+        ├── services/
+        │   └── tarefa.service.ts
+        ├── app.component.ts &lt;-- criado
+        └── app.config.ts
+</code></pre></div></div>
+
+<h4 id="descrição-dos-arquivos-web"><strong>Descrição dos Arquivos (Web)</strong></h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app.config.ts</code>: Arquivo de configuração principal da aplicação <code class="language-plaintext highlighter-rouge">standalone</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">app.component.ts</code>: Componente raiz da aplicação.</li>
+  <li><code class="language-plaintext highlighter-rouge">tarefa.service.ts</code>: Serviço responsável pela comunicação com a API.</li>
+  <li><code class="language-plaintext highlighter-rouge">tarefa.ts</code>: Interface TypeScript que define a estrutura de dados de uma tarefa.</li>
+  <li><code class="language-plaintext highlighter-rouge">task-list.component.html</code>: Template HTML com estrutura de tabela para exibir a lista.</li>
+  <li><code class="language-plaintext highlighter-rouge">task-list.component.css</code>: Folha de estilos para o layout de tabela.</li>
+  <li><code class="language-plaintext highlighter-rouge">task-list.component.ts</code>: Lógica do componente, com todas as funcionalidades.</li>
+</ul>
+
+<h4 id="código-completo-web"><strong>Código Completo (Web)</strong></h4>
+
+<p><strong>1. <code class="language-plaintext highlighter-rouge">app.config.ts</code></strong></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ApplicationConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">provideRouter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/router</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">routes</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./app.routes</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">provideHttpClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">appConfig</span><span class="p">:</span> <span class="nx">ApplicationConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nf">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">),</span>
+    <span class="nf">provideHttpClient</span><span class="p">()</span>
+  <span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><strong>2. <code class="language-plaintext highlighter-rouge">app.component.ts</code></strong></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TaskListComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/task-list/task-list.component</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">TaskListComponent</span><span class="p">],</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;app-task-list&gt;&lt;/app-task-list&gt;`</span><span class="p">,</span>
+  <span class="na">styleUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.css</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">AppComponent</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p><strong>3. <code class="language-plaintext highlighter-rouge">services/tarefa.service.ts</code></strong></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Observable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Tarefa</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../models/tarefa</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">({</span> <span class="na">providedIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span> <span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">apiUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">http://localhost:8080/api/tarefas</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">http</span><span class="p">:</span> <span class="nx">HttpClient</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nf">getTarefas</span><span class="p">():</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="kd">get</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">);</span> <span class="p">}</span>
+  <span class="nf">addTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span> <span class="p">}</span>
+  <span class="nf">updateTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">put</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">tarefa</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span> <span class="p">}</span>
+  <span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="k">delete</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>4. <code class="language-plaintext highlighter-rouge">models/tarefa.ts</code></strong></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">Tarefa</span> <span class="p">{</span>
+  <span class="nl">id</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">descricao</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">concluida</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
+  <span class="nl">selecionada</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>5. <code class="language-plaintext highlighter-rouge">components/task-list/task-list.component.html</code></strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Minha Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header-actions"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-refresh"</span> <span class="na">(click)=</span><span class="s">"carregarTarefas()"</span><span class="nt">&gt;</span>🔄 Atualizar<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">*ngIf=</span><span class="s">"existemTarefasSelecionadas()"</span> <span class="na">class=</span><span class="s">"btn-delete"</span> <span class="na">(click)=</span><span class="s">"deletarTarefasSelecionadas()"</span><span class="nt">&gt;</span>
+        ❌ Excluir Selecionadas
+      <span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+
+  <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"form-add"</span> <span class="na">(ngSubmit)=</span><span class="s">"adicionarTarefa()"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">placeholder=</span><span class="s">"O que precisa ser feito?"</span> <span class="na">[(ngModel)]=</span><span class="s">"novaTarefa.descricao"</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">required</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn-create"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/form&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"task-list-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"task-list-header"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-select"</span><span class="nt">&gt;</span>Sel.<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-status"</span><span class="nt">&gt;</span>Status<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-desc"</span><span class="nt">&gt;</span>Descrição<span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-actions"</span><span class="nt">&gt;</span>Ações<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"task-list-body"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">*ngFor=</span><span class="s">"let tarefa of tarefas"</span> <span class="na">class=</span><span class="s">"task-row"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-select"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"selection-checkbox"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">[(ngModel)]=</span><span class="s">"tarefa.selecionada"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-status"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"status-checkbox"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">[(ngModel)]=</span><span class="s">"tarefa.concluida"</span> <span class="na">(ngModelChange)=</span><span class="s">"atualizarStatus(tarefa)"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-desc"</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;span</span> <span class="na">*ngIf=</span><span class="s">"!tarefaEmEdicao || tarefaEmEdicao.id !== tarefa.id"</span> <span class="na">[ngClass]=</span><span class="s">"{'completed': tarefa.concluida}"</span><span class="nt">&gt;&lt;/span&gt;</span>
+           <span class="nt">&lt;input</span> <span class="na">*ngIf=</span><span class="s">"tarefaEmEdicao &amp;&amp; tarefaEmEdicao.id === tarefa.id"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">[(ngModel)]=</span><span class="s">"tarefaEmEdicao.descricao"</span> <span class="na">(keyup.enter)=</span><span class="s">"salvarEdicao()"</span> <span class="na">(keyup.escape)=</span><span class="s">"cancelarEdicao()"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-actions"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"actions"</span> <span class="na">*ngIf=</span><span class="s">"!tarefaEmEdicao || tarefaEmEdicao.id !== tarefa.id"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-update"</span> <span class="na">(click)=</span><span class="s">"iniciarEdicao(tarefa)"</span><span class="nt">&gt;</span>✏️<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-delete"</span> <span class="na">(click)=</span><span class="s">"deletarTarefa(tarefa.id)"</span><span class="nt">&gt;</span>❌<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+           <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"actions"</span> <span class="na">*ngIf=</span><span class="s">"tarefaEmEdicao &amp;&amp; tarefaEmEdicao.id === tarefa.id"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-create"</span> <span class="na">(click)=</span><span class="s">"salvarEdicao()"</span><span class="nt">&gt;</span>✔️<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-cancel"</span> <span class="na">(click)=</span><span class="s">"cancelarEdicao()"</span><span class="nt">&gt;</span>✖️<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><strong>6. <code class="language-plaintext highlighter-rouge">components/task-list/task-list.component.css</code></strong></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span> <span class="nl">max-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">2rem</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.header</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">space-between</span><span class="p">;</span> <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.header-actions</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.form-add</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.form-add</span> <span class="nt">input</span> <span class="p">{</span> <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ccc</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">button</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span> <span class="m">12px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span> <span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.btn-create</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#4CAF50</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.btn-update</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#FFC107</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.btn-delete</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#F44336</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.btn-cancel</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#9E9E9E</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.btn-refresh</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#2196F3</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.task-list-container</span> <span class="p">{</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#eee</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span> <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.task-list-header</span><span class="o">,</span> <span class="nc">.task-row</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.task-list-header</span> <span class="p">{</span> <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f8f9fa</span><span class="p">;</span> <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="nx">#dee2e6</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.task-row</span> <span class="p">{</span> <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#eee</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.task-row</span><span class="nd">:last-child</span> <span class="p">{</span> <span class="nl">border-bottom</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.col-select</span> <span class="p">{</span> <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">40px</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.col-status</span> <span class="p">{</span> <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">60px</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.col-desc</span> <span class="p">{</span> <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.col-desc</span> <span class="nt">input</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.col-actions</span> <span class="p">{</span> <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">100px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.actions</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">flex-end</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.completed</span> <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">line-through</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#888</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>7. <code class="language-plaintext highlighter-rouge">components/task-list/task-list.component.ts</code></strong></p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TarefaService</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../services/tarefa.service</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Tarefa</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../models/tarefa</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">CommonModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">forkJoin</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-task-list</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">CommonModule</span><span class="p">,</span> <span class="nx">FormsModule</span><span class="p">],</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./task-list.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./task-list.component.css</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">TaskListComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="nl">tarefas</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nl">novaTarefa</span><span class="p">:</span> <span class="nx">Tarefa</span> <span class="o">=</span> <span class="p">{</span> <span class="na">descricao</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+  <span class="nl">tarefaEmEdicao</span><span class="p">:</span> <span class="nx">Tarefa</span> <span class="o">|</span> <span class="kc">null</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">tarefaService</span><span class="p">:</span> <span class="nx">TarefaService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nf">ngOnInit</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nf">carregarTarefas</span><span class="p">();</span> <span class="p">}</span>
+
+  <span class="nf">carregarTarefas</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">getTarefas</span><span class="p">().</span><span class="nf">subscribe</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">t</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="p">...</span><span class="nx">t</span><span class="p">,</span> <span class="na">selecionada</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}));</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nf">adicionarTarefa</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">novaTarefa</span><span class="p">.</span><span class="nx">descricao</span><span class="p">.</span><span class="nf">trim</span><span class="p">()</span> <span class="o">===</span> <span class="dl">''</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">addTarefa</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">novaTarefa</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">novaTarefa</span> <span class="o">=</span> <span class="p">{</span> <span class="na">descricao</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+        <span class="k">this</span><span class="p">.</span><span class="nf">carregarTarefas</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nf">iniciarEdicao</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">tarefa</span> <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nf">salvarEdicao</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">updateTarefa</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nf">carregarTarefas</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nf">cancelarEdicao</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">atualizarStatus</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">updateTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nf">deletarTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">:</span> <span class="kr">number</span> <span class="o">|</span> <span class="kc">undefined</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">id</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">carregarTarefas</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="nf">existemTarefasSelecionadas</span><span class="p">():</span> <span class="nx">boolean</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span><span class="p">.</span><span class="nf">some</span><span class="p">(</span><span class="nx">t</span> <span class="o">=&gt;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">selecionada</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nf">deletarTarefasSelecionadas</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">tarefasParaExcluir</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">t</span> <span class="o">=&gt;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">selecionada</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">tarefasParaExcluir</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">chamadasDeExclusao</span> <span class="o">=</span> <span class="nx">tarefasParaExcluir</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">tarefa</span> <span class="o">=&gt;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">.</span><span class="nx">id</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">);</span>
+
+    <span class="nf">forkJoin</span><span class="p">(</span><span class="nx">chamadasDeExclusao</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nf">carregarTarefas</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-execução-e-teste">✅ Execução e Teste</h3>
+
+<ol>
+  <li><strong>Pré-requisito:</strong> A API backend deve estar rodando ✅.</li>
+  <li><strong>Execute:</strong> No terminal (na pasta <code class="language-plaintext highlighter-rouge">listadetarefas-web</code>),</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng serve <span class="nt">--open</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>Teste:</strong> Abra as ferramentas de desenvolvedor do navegador (F12) e teste todas as funcionalidades: adicionar, editar com duplo clique, marcar como concluída e deletar.</li>
+</ol>
+
+<p><img src="https://ricardotecpro.github.io/ads_proj_aplicacao_full_stack/projetos/assets\listadetarefas-web.png" alt="H2 Console" /></p>
+
+<hr />
+
+<h3 id="parte-3-o-frontend-desktop-com-javafx"><strong>Parte 3: O Frontend Desktop com JavaFX</strong></h3>
+
+<p>A aplicação nativa, com layout e funcionalidades consistentes com a versão web.</p>
+
+<hr />
+<p>(<code class="language-plaintext highlighter-rouge">listadetarefas-desktop</code>)</p>
+
+<p><strong>Objetivo:</strong> Criar uma aplicação desktop nativa e funcional que consome a API backend.</p>
+
+<h3 id="️-ferramentas-necessárias-2">🛠️ Ferramentas Necessárias</h3>
+
+<ul>
+  <li><strong>Java Development Kit (JDK):</strong> Versão 17 ou superior.</li>
+  <li><strong>IDE:</strong> IntelliJ IDEA ou VS Code com o “Extension Pack for Java”.</li>
+</ul>
+
+<h3 id="--passo-1-criação-e-configuração-do-projeto">### 📂 Passo 1: Criação e Configuração do Projeto</h3>
+
+<ol>
+  <li><strong>Crie um projeto Maven</strong> na sua IDE para <code class="language-plaintext highlighter-rouge">listadetarefas-desktop</code> (siga as instruções detalhadas do guia anterior para IntelliJ ou VS Code).</li>
+  <li><strong>Substitua o <code class="language-plaintext highlighter-rouge">pom.xml</code></strong> pelo código completo fornecido no guia anterior, que inclui JavaFX, Jackson e o <code class="language-plaintext highlighter-rouge">maven-shade-plugin</code>.</li>
+  <li><strong>Crie o arquivo <code class="language-plaintext highlighter-rouge">module-info.java</code></strong> em <code class="language-plaintext highlighter-rouge">src/main/java</code> com a versão final e corrigida, contendo todos os <code class="language-plaintext highlighter-rouge">requires</code>, <code class="language-plaintext highlighter-rouge">opens</code> e <code class="language-plaintext highlighter-rouge">exports</code> necessários.</li>
+</ol>
+
+<h3 id="-️-passo-2-estrutura-de-código-e-ui">### 🏗️ Passo 2: Estrutura de Código e UI</h3>
+
+<p>Siga os passos e use os códigos completos e detalhados do guia anterior para criar a estrutura final.</p>
+
+<h4 id="diagrama-de-classes-do-cliente-desktop">Diagrama de Classes do Cliente Desktop</h4>
+
+<pre><code class="language-mermaid">classDiagram
+    MainApp --|&gt; Application
+    MainApp ..&gt; MainViewController : Carrega
+    MainViewController ..&gt; TarefaApiService : Usa
+    TarefaApiService ..&gt; Tarefa : Manipula
+    class MainApp {
+        +start(Stage)
+    }
+    class MainViewController {
+        -TableView~Tarefa~ tabelaTarefas
+        +initialize()
+        +adicionarTarefa()
+        +atualizarListaDeTarefas()
+    }
+    class TarefaApiService {
+        +List~Tarefa~ listarTarefas()
+    }
+    class Tarefa {
+        -Long id
+        -String descricao
+        -boolean concluida
+    }
+</code></pre>
+
+<hr />
+
+<h4 id="estrutura-de-pastas-desktop"><strong>Estrutura de Pastas (Desktop)</strong></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas-desktop/
+├── pom.xml
+└── src/
+    └── main/
+        ├── java/
+        │   ├── br/com/curso/listadetarefas/desktop/
+        │   │   ├── Launcher.java
+        │   │   ├── MainApp.java
+        │   │   ├── MainViewController.java
+        │   │   ├── Tarefa.java
+        │   │   └── TarefaApiService.java
+        │   └── module-info.java
+        └── resources/
+            └── br/com/curso/listadetarefas/desktop/
+                └── MainView.fxml
+</code></pre></div></div>
+
+<h4 id="descrição-dos-arquivos-desktop"><strong>Descrição dos Arquivos (Desktop)</strong></h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pom.xml</code>: Arquivo de configuração do Maven.</li>
+  <li><code class="language-plaintext highlighter-rouge">module-info.java</code>: Arquivo do Sistema de Módulos do Java.</li>
+  <li><code class="language-plaintext highlighter-rouge">MainView.fxml</code>: Arquivo XML que define a estrutura visual da aplicação.</li>
+  <li><code class="language-plaintext highlighter-rouge">Launcher.java</code>: Ponto de entrada para o JAR executável.</li>
+  <li><code class="language-plaintext highlighter-rouge">MainApp.java</code>: Classe principal que inicia a aplicação JavaFX.</li>
+  <li><code class="language-plaintext highlighter-rouge">Tarefa.java</code>: Modelo de dados (POJO) para uma tarefa.</li>
+  <li><code class="language-plaintext highlighter-rouge">TarefaApiService.java</code>: Serviço que realiza a comunicação com a API.</li>
+  <li><code class="language-plaintext highlighter-rouge">MainViewController.java</code>: Controlador da interface, com todas as funcionalidades e correções.</li>
+</ul>
+
+<h4 id="código-completo-desktop"><strong>Código Completo (Desktop)</strong></h4>
+
+<p><strong>1. <code class="language-plaintext highlighter-rouge">pom.xml</code></strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span>
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>br.com.curso<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>listadetarefas-desktop<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+        <span class="nt">&lt;maven.compiler.source&gt;</span>17<span class="nt">&lt;/maven.compiler.source&gt;</span>
+        <span class="nt">&lt;maven.compiler.target&gt;</span>17<span class="nt">&lt;/maven.compiler.target&gt;</span>
+        <span class="nt">&lt;javafx.version&gt;</span>17.0.6<span class="nt">&lt;/javafx.version&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javafx-controls<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${javafx.version}<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javafx-fxml<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${javafx.version}<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>2.17.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>3.11.0<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-shade-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>3.5.1<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;executions&gt;</span>
+                    <span class="nt">&lt;execution&gt;</span>
+                        <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+                        <span class="nt">&lt;goals&gt;</span>
+                            <span class="nt">&lt;goal&gt;</span>shade<span class="nt">&lt;/goal&gt;</span>
+                        <span class="nt">&lt;/goals&gt;</span>
+                        <span class="nt">&lt;configuration&gt;</span>
+                            <span class="nt">&lt;transformers&gt;</span>
+                                <span class="nt">&lt;transformer</span> <span class="na">implementation=</span><span class="s">"org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"</span><span class="nt">&gt;</span>
+                                    <span class="nt">&lt;mainClass&gt;</span>br.com.curso.listadetarefas.desktop.Launcher<span class="nt">&lt;/mainClass&gt;</span>
+                                <span class="nt">&lt;/transformer&gt;</span>
+                            <span class="nt">&lt;/transformers&gt;</span>
+                        <span class="nt">&lt;/configuration&gt;</span>
+                    <span class="nt">&lt;/execution&gt;</span>
+                <span class="nt">&lt;/executions&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p><strong>2. <code class="language-plaintext highlighter-rouge">module-info.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">module</span> <span class="n">br</span><span class="o">.</span><span class="na">com</span><span class="o">.</span><span class="na">curso</span><span class="o">.</span><span class="na">listadetarefas</span><span class="o">.</span><span class="na">desktop</span> <span class="o">{</span>
+    <span class="n">requires</span> <span class="n">javafx</span><span class="o">.</span><span class="na">controls</span><span class="o">;</span>
+    <span class="n">requires</span> <span class="n">javafx</span><span class="o">.</span><span class="na">fxml</span><span class="o">;</span>
+    <span class="n">requires</span> <span class="n">com</span><span class="o">.</span><span class="na">fasterxml</span><span class="o">.</span><span class="na">jackson</span><span class="o">.</span><span class="na">databind</span><span class="o">;</span>
+    <span class="n">requires</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">http</span><span class="o">;</span>
+
+    <span class="n">opens</span> <span class="n">br</span><span class="o">.</span><span class="na">com</span><span class="o">.</span><span class="na">curso</span><span class="o">.</span><span class="na">listadetarefas</span><span class="o">.</span><span class="na">desktop</span> <span class="n">to</span> <span class="n">javafx</span><span class="o">.</span><span class="na">fxml</span><span class="o">,</span> <span class="n">com</span><span class="o">.</span><span class="na">fasterxml</span><span class="o">.</span><span class="na">jackson</span><span class="o">.</span><span class="na">databind</span><span class="o">;</span>
+    <span class="n">exports</span> <span class="n">br</span><span class="o">.</span><span class="na">com</span><span class="o">.</span><span class="na">curso</span><span class="o">.</span><span class="na">listadetarefas</span><span class="o">.</span><span class="na">desktop</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>3. <code class="language-plaintext highlighter-rouge">resources/br/com/curso/listadetarefas/desktop/MainView.fxml</code></strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="cp">&lt;?import javafx.geometry.Insets?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.control.Button?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.control.Label?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.control.TableColumn?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.control.TableView?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.control.TextField?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.layout.BorderPane?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.layout.HBox?&gt;</span>
+<span class="cp">&lt;?import javafx.scene.text.Font?&gt;</span>
+
+<span class="nt">&lt;BorderPane</span> <span class="na">maxHeight=</span><span class="s">"-Infinity"</span> <span class="na">maxWidth=</span><span class="s">"-Infinity"</span> <span class="na">minHeight=</span><span class="s">"-Infinity"</span> <span class="na">minWidth=</span><span class="s">"-Infinity"</span> <span class="na">prefHeight=</span><span class="s">"600.0"</span> <span class="na">prefWidth=</span><span class="s">"800.0"</span> <span class="na">xmlns=</span><span class="s">"http://javafx.com/javafx/17"</span> <span class="na">xmlns:fx=</span><span class="s">"http://javafx.com/fxml/1"</span> <span class="na">fx:controller=</span><span class="s">"br.com.curso.listadetarefas.desktop.MainViewController"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;top&gt;</span>
+      <span class="nt">&lt;HBox</span> <span class="na">alignment=</span><span class="s">"CENTER_LEFT"</span> <span class="na">prefHeight=</span><span class="s">"70.0"</span> <span class="na">spacing=</span><span class="s">"10.0"</span> <span class="na">BorderPane.alignment=</span><span class="s">"CENTER"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;padding&gt;</span>
+            <span class="nt">&lt;Insets</span> <span class="na">bottom=</span><span class="s">"10.0"</span> <span class="na">left=</span><span class="s">"10.0"</span> <span class="na">right=</span><span class="s">"10.0"</span> <span class="na">top=</span><span class="s">"10.0"</span> <span class="nt">/&gt;</span>
+         <span class="nt">&lt;/padding&gt;</span>
+         <span class="nt">&lt;children&gt;</span>
+            <span class="nt">&lt;Label</span> <span class="na">text=</span><span class="s">"Nova Tarefa:"</span><span class="nt">&gt;</span>
+               <span class="nt">&lt;font&gt;</span>
+                  <span class="nt">&lt;Font</span> <span class="na">name=</span><span class="s">"System Bold"</span> <span class="na">size=</span><span class="s">"14.0"</span> <span class="nt">/&gt;</span>
+               <span class="nt">&lt;/font&gt;</span>
+            <span class="nt">&lt;/Label&gt;</span>
+            <span class="nt">&lt;TextField</span> <span class="na">fx:id=</span><span class="s">"novaTarefaTextField"</span> <span class="na">HBox.hgrow=</span><span class="s">"ALWAYS"</span> <span class="na">onAction=</span><span class="s">"#adicionarTarefa"</span> <span class="na">promptText=</span><span class="s">"O que precisa ser feito?"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;Button</span> <span class="na">onAction=</span><span class="s">"#adicionarTarefa"</span> <span class="na">style=</span><span class="s">"-fx-base: #4CAF50;"</span> <span class="na">text=</span><span class="s">"Adicionar"</span> <span class="na">textFill=</span><span class="s">"WHITE"</span><span class="nt">&gt;</span>
+               <span class="nt">&lt;font&gt;</span>
+                  <span class="nt">&lt;Font</span> <span class="na">name=</span><span class="s">"System Bold"</span> <span class="na">size=</span><span class="s">"12.0"</span> <span class="nt">/&gt;</span>
+               <span class="nt">&lt;/font&gt;</span>
+            <span class="nt">&lt;/Button&gt;</span>
+            <span class="nt">&lt;Button</span> <span class="na">fx:id=</span><span class="s">"atualizarButton"</span> <span class="na">onAction=</span><span class="s">"#carregarTarefas"</span> <span class="na">style=</span><span class="s">"-fx-base: #2196F3;"</span> <span class="na">text=</span><span class="s">"🔄"</span> <span class="na">textFill=</span><span class="s">"WHITE"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;Button</span> <span class="na">fx:id=</span><span class="s">"excluirSelecionadosButton"</span> <span class="na">onAction=</span><span class="s">"#deletarTarefasSelecionadas"</span> <span class="na">style=</span><span class="s">"-fx-base: #F44336;"</span> <span class="na">text=</span><span class="s">"Excluir Selecionadas"</span> <span class="na">textFill=</span><span class="s">"WHITE"</span> <span class="nt">/&gt;</span>
+         <span class="nt">&lt;/children&gt;</span>
+      <span class="nt">&lt;/HBox&gt;</span>
+   <span class="nt">&lt;/top&gt;</span>
+   <span class="nt">&lt;center&gt;</span>
+      <span class="nt">&lt;TableView</span> <span class="na">fx:id=</span><span class="s">"tabelaTarefas"</span> <span class="na">editable=</span><span class="s">"true"</span> <span class="na">prefHeight=</span><span class="s">"200.0"</span> <span class="na">prefWidth=</span><span class="s">"200.0"</span> <span class="na">BorderPane.alignment=</span><span class="s">"CENTER"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;columns&gt;</span>
+            <span class="nt">&lt;TableColumn</span> <span class="na">fx:id=</span><span class="s">"colunaSelecao"</span> <span class="na">prefWidth=</span><span class="s">"50.0"</span> <span class="na">text=</span><span class="s">"Sel."</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;TableColumn</span> <span class="na">fx:id=</span><span class="s">"colunaConcluida"</span> <span class="na">prefWidth=</span><span class="s">"75.0"</span> <span class="na">text=</span><span class="s">"Status"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;TableColumn</span> <span class="na">fx:id=</span><span class="s">"colunaDescricao"</span> <span class="na">prefWidth=</span><span class="s">"450.0"</span> <span class="na">text=</span><span class="s">"Descrição"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;TableColumn</span> <span class="na">fx:id=</span><span class="s">"colunaAcoes"</span> <span class="na">prefWidth=</span><span class="s">"150.0"</span> <span class="na">text=</span><span class="s">"Ações"</span> <span class="nt">/&gt;</span>
+         <span class="nt">&lt;/columns&gt;</span>
+         <span class="nt">&lt;columnResizePolicy&gt;</span>
+            <span class="nt">&lt;TableView</span> <span class="na">fx:constant=</span><span class="s">"CONSTRAINED_RESIZE_POLICY"</span> <span class="nt">/&gt;</span>
+         <span class="nt">&lt;/columnResizePolicy&gt;</span>
+      <span class="nt">&lt;/TableView&gt;</span>
+   <span class="nt">&lt;/center&gt;</span>
+<span class="nt">&lt;/BorderPane&gt;</span>
+</code></pre></div></div>
+
+<p><strong>4. <code class="language-plaintext highlighter-rouge">Launcher.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.desktop</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Launcher</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">MainApp</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>5. <code class="language-plaintext highlighter-rouge">MainApp.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.desktop</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.FXMLLoader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainApp</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">stage</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">FXMLLoader</span> <span class="n">fxmlLoader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FXMLLoader</span><span class="o">(</span><span class="nc">MainApp</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="s">"MainView.fxml"</span><span class="o">));</span>
+        <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">fxmlLoader</span><span class="o">.</span><span class="na">load</span><span class="o">(),</span> <span class="mi">800</span><span class="o">,</span> <span class="mi">600</span><span class="o">);</span>
+        <span class="n">stage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Minha Lista de Tarefas (Desktop)"</span><span class="o">);</span>
+        <span class="n">stage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+        <span class="n">stage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>6. <code class="language-plaintext highlighter-rouge">Tarefa.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.desktop</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonIgnore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonIgnoreProperties</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.beans.property.BooleanProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.beans.property.SimpleBooleanProperty</span><span class="o">;</span>
+
+<span class="nd">@JsonIgnoreProperties</span><span class="o">(</span><span class="n">ignoreUnknown</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tarefa</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">;</span>
+
+    <span class="nd">@JsonIgnore</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">BooleanProperty</span> <span class="n">selecionada</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleBooleanProperty</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescricao</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDescricao</span><span class="o">(</span><span class="nc">String</span> <span class="n">descricao</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">descricao</span> <span class="o">=</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isConcluida</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">concluida</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setConcluida</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">concluida</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">concluida</span> <span class="o">=</span> <span class="n">concluida</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSelecionada</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">selecionada</span><span class="o">.</span><span class="na">get</span><span class="o">();</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">BooleanProperty</span> <span class="nf">selecionadaProperty</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">selecionada</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSelecionada</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">selecionada</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">selecionada</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">selecionada</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>7. <code class="language-plaintext highlighter-rouge">TarefaApiService.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.desktop</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.core.type.TypeReference</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.http.HttpResponse</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaApiService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">HttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="nc">HttpClient</span><span class="o">.</span><span class="na">newHttpClient</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">API_URL</span> <span class="o">=</span> <span class="s">"http://localhost:8080/api/tarefas"</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTarefas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">().</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="no">API_URL</span><span class="o">)).</span><span class="na">GET</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">statusCode</span><span class="o">()</span> <span class="o">==</span> <span class="mi">200</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">(),</span> <span class="k">new</span> <span class="nc">TypeReference</span><span class="o">&lt;&gt;()</span> <span class="o">{});</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">emptyList</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarTarefa</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">novaTarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">jsonBody</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">novaTarefa</span><span class="o">);</span>
+            <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="no">API_URL</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">POST</span><span class="o">(</span><span class="nc">HttpRequest</span><span class="o">.</span><span class="na">BodyPublishers</span><span class="o">.</span><span class="na">ofString</span><span class="o">(</span><span class="n">jsonBody</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">atualizarTarefa</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">jsonBody</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+            <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="no">API_URL</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">tarefa</span><span class="o">.</span><span class="na">getId</span><span class="o">()))</span>
+                    <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">PUT</span><span class="o">(</span><span class="nc">HttpRequest</span><span class="o">.</span><span class="na">BodyPublishers</span><span class="o">.</span><span class="na">ofString</span><span class="o">(</span><span class="n">jsonBody</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="no">API_URL</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">id</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">DELETE</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+            <span class="n">client</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="nc">HttpResponse</span><span class="o">.</span><span class="na">BodyHandlers</span><span class="o">.</span><span class="na">ofString</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>8. <code class="language-plaintext highlighter-rouge">MainViewController.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.desktop</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.application.Platform</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.collections.FXCollections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.concurrent.Task</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.FXML</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.Initializable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.geometry.Pos</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.cell.CheckBoxTableCell</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.cell.PropertyValueFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.HBox</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ResourceBundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainViewController</span> <span class="kd">implements</span> <span class="nc">Initializable</span> <span class="o">{</span>
+
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableView</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="n">tabelaTarefas</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableColumn</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">&gt;</span> <span class="n">colunaSelecao</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableColumn</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">&gt;</span> <span class="n">colunaConcluida</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableColumn</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">colunaDescricao</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableColumn</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Void</span><span class="o">&gt;</span> <span class="n">colunaAcoes</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TextField</span> <span class="n">novaTarefaTextField</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaApiService</span> <span class="n">tarefaService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TarefaApiService</span><span class="o">();</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="no">URL</span> <span class="n">url</span><span class="o">,</span> <span class="nc">ResourceBundle</span> <span class="n">resourceBundle</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">configurarTabela</span><span class="o">();</span>
+        <span class="n">carregarTarefas</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">configurarTabela</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Coluna de Seleção</span>
+        <span class="n">colunaSelecao</span><span class="o">.</span><span class="na">setCellValueFactory</span><span class="o">(</span><span class="n">cellData</span> <span class="o">-&gt;</span> <span class="n">cellData</span><span class="o">.</span><span class="na">getValue</span><span class="o">().</span><span class="na">selecionadaProperty</span><span class="o">());</span>
+        <span class="n">colunaSelecao</span><span class="o">.</span><span class="na">setCellFactory</span><span class="o">(</span><span class="nc">CheckBoxTableCell</span><span class="o">.</span><span class="na">forTableColumn</span><span class="o">(</span><span class="n">colunaSelecao</span><span class="o">));</span>
+        <span class="n">colunaSelecao</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="c1">// Coluna de Status (com correção de sincronização)</span>
+        <span class="n">colunaConcluida</span><span class="o">.</span><span class="na">setCellValueFactory</span><span class="o">(</span><span class="k">new</span> <span class="nc">PropertyValueFactory</span><span class="o">&lt;&gt;(</span><span class="s">"concluida"</span><span class="o">));</span>
+        <span class="n">colunaConcluida</span><span class="o">.</span><span class="na">setCellFactory</span><span class="o">(</span><span class="nc">CheckBoxTableCell</span><span class="o">.</span><span class="na">forTableColumn</span><span class="o">(</span><span class="n">colunaConcluida</span><span class="o">));</span>
+        <span class="n">colunaConcluida</span><span class="o">.</span><span class="na">setOnEditCommit</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">Tarefa</span> <span class="n">tarefa</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getRowValue</span><span class="o">();</span>
+            <span class="n">tarefa</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getNewValue</span><span class="o">());</span>
+            <span class="n">atualizarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+        <span class="o">});</span>
+        
+        <span class="c1">// Coluna de Descrição</span>
+        <span class="n">colunaDescricao</span><span class="o">.</span><span class="na">setCellValueFactory</span><span class="o">(</span><span class="k">new</span> <span class="nc">PropertyValueFactory</span><span class="o">&lt;&gt;(</span><span class="s">"descricao"</span><span class="o">));</span>
+
+        <span class="c1">// Coluna de Ações</span>
+        <span class="n">colunaAcoes</span><span class="o">.</span><span class="na">setCellFactory</span><span class="o">(</span><span class="n">param</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">TableCell</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+            <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">btnEditar</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"Editar"</span><span class="o">);</span>
+            <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">btnExcluir</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"Excluir"</span><span class="o">);</span>
+            <span class="kd">private</span> <span class="kd">final</span> <span class="nc">HBox</span> <span class="n">pane</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HBox</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="n">btnEditar</span><span class="o">,</span> <span class="n">btnExcluir</span><span class="o">);</span>
+            <span class="o">{</span>
+                <span class="n">pane</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+                <span class="n">btnEditar</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="s">"-fx-base: #FFC107;"</span><span class="o">);</span>
+                <span class="n">btnExcluir</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="s">"-fx-base: #F44336; -fx-text-fill: white;"</span><span class="o">);</span>
+                <span class="n">btnEditar</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="n">abrirDialogoEdicao</span><span class="o">(</span><span class="n">getTableView</span><span class="o">().</span><span class="na">getItems</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">getIndex</span><span class="o">())));</span>
+                <span class="n">btnExcluir</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="n">confirmarExclusao</span><span class="o">(</span><span class="n">getTableView</span><span class="o">().</span><span class="na">getItems</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">getIndex</span><span class="o">())));</span>
+            <span class="o">}</span>
+            <span class="nd">@Override</span>
+            <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">updateItem</span><span class="o">(</span><span class="nc">Void</span> <span class="n">item</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">empty</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">.</span><span class="na">updateItem</span><span class="o">(</span><span class="n">item</span><span class="o">,</span> <span class="n">empty</span><span class="o">);</span>
+                <span class="n">setGraphic</span><span class="o">(</span><span class="n">empty</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="n">pane</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">tabelaTarefas</span><span class="o">.</span><span class="na">setEditable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">carregarTarefas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Task</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Task</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">protected</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTarefas</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setOnSucceeded</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">tabelaTarefas</span><span class="o">.</span><span class="na">setItems</span><span class="o">(</span><span class="nc">FXCollections</span><span class="o">.</span><span class="na">observableArrayList</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">getValue</span><span class="o">())));</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setOnFailed</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">exibirAlerta</span><span class="o">(</span><span class="s">"Erro"</span><span class="o">,</span> <span class="s">"Não foi possível carregar as tarefas."</span><span class="o">));</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">adicionarTarefa</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">descricao</span> <span class="o">=</span> <span class="n">novaTarefaTextField</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">trim</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">descricao</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">exibirAlerta</span><span class="o">(</span><span class="s">"Campo Vazio"</span><span class="o">,</span> <span class="s">"A descrição não pode ser vazia."</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nc">Tarefa</span> <span class="n">novaTarefa</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="n">descricao</span><span class="o">);</span>
+        <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+        <span class="nc">Task</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Task</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">protected</span> <span class="nc">Void</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">tarefaService</span><span class="o">.</span><span class="na">adicionarTarefa</span><span class="o">(</span><span class="n">novaTarefa</span><span class="o">);</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setOnSucceeded</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">novaTarefaTextField</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+            <span class="n">carregarTarefas</span><span class="o">();</span>
+        <span class="o">});</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setOnFailed</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">exibirAlerta</span><span class="o">(</span><span class="s">"Erro"</span><span class="o">,</span> <span class="s">"Não foi possível criar a tarefa."</span><span class="o">));</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">atualizarTarefa</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Task</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Task</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">protected</span> <span class="nc">Void</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setOnFailed</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">exibirAlerta</span><span class="o">(</span><span class="s">"Erro"</span><span class="o">,</span> <span class="s">"Não foi possível sincronizar a tarefa. Recarregando..."</span><span class="o">);</span>
+            <span class="n">carregarTarefas</span><span class="o">();</span>
+        <span class="o">});</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">abrirDialogoEdicao</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">TextInputDialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TextInputDialog</span><span class="o">(</span><span class="n">tarefa</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">());</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Editar Tarefa"</span><span class="o">);</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="na">setHeaderText</span><span class="o">(</span><span class="s">"Editando a tarefa: "</span> <span class="o">+</span> <span class="n">tarefa</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">());</span>
+        <span class="n">dialog</span><span class="o">.</span><span class="na">setContentText</span><span class="o">(</span><span class="s">"Nova descrição:"</span><span class="o">);</span>
+
+        <span class="n">dialog</span><span class="o">.</span><span class="na">showAndWait</span><span class="o">().</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">novaDescricao</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">novaDescricao</span><span class="o">.</span><span class="na">trim</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">tarefa</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="n">novaDescricao</span><span class="o">.</span><span class="na">trim</span><span class="o">());</span>
+                <span class="n">atualizarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+                <span class="n">tabelaTarefas</span><span class="o">.</span><span class="na">refresh</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">confirmarExclusao</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Alert</span> <span class="n">alert</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Alert</span><span class="o">(</span><span class="nc">Alert</span><span class="o">.</span><span class="na">AlertType</span><span class="o">.</span><span class="na">CONFIRMATION</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Confirmar Exclusão"</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setHeaderText</span><span class="o">(</span><span class="s">"Excluir tarefa: "</span> <span class="o">+</span> <span class="n">tarefa</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">());</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setContentText</span><span class="o">(</span><span class="s">"Você tem certeza?"</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">showAndWait</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span> <span class="o">==</span> <span class="nc">ButtonType</span><span class="o">.</span><span class="na">OK</span><span class="o">).</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">r</span> <span class="o">-&gt;</span> <span class="n">deletarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Task</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Task</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">protected</span> <span class="nc">Void</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setOnSucceeded</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">carregarTarefas</span><span class="o">());</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setOnFailed</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">exibirAlerta</span><span class="o">(</span><span class="s">"Erro"</span><span class="o">,</span> <span class="s">"Não foi possível excluir a tarefa."</span><span class="o">));</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">deletarTarefasSelecionadas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="n">tarefasParaExcluir</span> <span class="o">=</span> <span class="n">tabelaTarefas</span><span class="o">.</span><span class="na">getItems</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="nl">Tarefa:</span><span class="o">:</span><span class="n">isSelecionada</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">tarefasParaExcluir</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">exibirAlerta</span><span class="o">(</span><span class="s">"Nenhuma Seleção"</span><span class="o">,</span> <span class="s">"Nenhuma tarefa foi selecionada."</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">Alert</span> <span class="n">alert</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Alert</span><span class="o">(</span><span class="nc">Alert</span><span class="o">.</span><span class="na">AlertType</span><span class="o">.</span><span class="na">CONFIRMATION</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Confirmar Exclusão em Massa"</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setHeaderText</span><span class="o">(</span><span class="s">"Excluir "</span> <span class="o">+</span> <span class="n">tarefasParaExcluir</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">+</span> <span class="s">" tarefa(s)"</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setContentText</span><span class="o">(</span><span class="s">"Você tem certeza?"</span><span class="o">);</span>
+
+        <span class="n">alert</span><span class="o">.</span><span class="na">showAndWait</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span> <span class="o">==</span> <span class="nc">ButtonType</span><span class="o">.</span><span class="na">OK</span><span class="o">).</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">r</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">Task</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Task</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">protected</span> <span class="nc">Void</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="k">for</span> <span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span> <span class="o">:</span> <span class="n">tarefasParaExcluir</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+                    <span class="o">}</span>
+                    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">};</span>
+            <span class="n">task</span><span class="o">.</span><span class="na">setOnSucceeded</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">carregarTarefas</span><span class="o">());</span>
+            <span class="n">task</span><span class="o">.</span><span class="na">setOnFailed</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">exibirAlerta</span><span class="o">(</span><span class="s">"Erro"</span><span class="o">,</span> <span class="s">"Ocorreu um erro ao excluir as tarefas."</span><span class="o">));</span>
+            <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">task</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">exibirAlerta</span><span class="o">(</span><span class="nc">String</span> <span class="n">titulo</span><span class="o">,</span> <span class="nc">String</span> <span class="n">mensagem</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Platform</span><span class="o">.</span><span class="na">runLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">Alert</span> <span class="n">alert</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Alert</span><span class="o">(</span><span class="nc">Alert</span><span class="o">.</span><span class="na">AlertType</span><span class="o">.</span><span class="na">WARNING</span><span class="o">);</span>
+            <span class="n">alert</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="n">titulo</span><span class="o">);</span>
+            <span class="n">alert</span><span class="o">.</span><span class="na">setHeaderText</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+            <span class="n">alert</span><span class="o">.</span><span class="na">setContentText</span><span class="o">(</span><span class="n">mensagem</span><span class="o">);</span>
+            <span class="n">alert</span><span class="o">.</span><span class="na">showAndWait</span><span class="o">();</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<hr />
+
+<h4 id="estrutura-de-pastas-e-arquivos-final-do-desktop">Estrutura de Pastas e Arquivos Final do Desktop</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas-desktop/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   ├── br/com/curso/listadetarefas/desktop/
+│       │   │   ├── Launcher.java
+│       │   │   ├── MainApp.java
+│       │   │   ├── MainViewController.java
+│       │   │   ├── Tarefa.java
+│       │   │   └── TarefaApiService.java
+│       │   └── module-info.java
+│       └── resources/
+│           └── br/com/curso/listadetarefas/desktop/
+│               └── MainView.fxml
+└── pom.xml
+</code></pre></div></div>
+
+<h3 id="--passo-3-construção-e-teste">### ✅ Passo 3: Construção e Teste</h3>
+
+<ol>
+  <li><strong>Pré-requisito:</strong> A API backend deve estar rodando.</li>
+  <li><strong>Construa:</strong> No terminal, na raiz do projeto, rode <code class="language-plaintext highlighter-rouge">mvn clean package</code>.</li>
+  <li><strong>Execute:</strong> Rode o JAR gerado: <code class="language-plaintext highlighter-rouge">java -jar target/listadetarefas-desktop-1.0-SNAPSHOT.jar</code>.</li>
+  <li><strong>Teste:</strong> Verifique todas as funcionalidades: adicionar, deletar, atualizar a lista, e editar a descrição com duplo clique.</li>
+</ol>
+
+<hr />
+
+<p><strong>Construa:</strong> No terminal, na raiz do projeto</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean package
+</code></pre></div></div>
+<p><strong>Execute:</strong> Rode o JAR gerado</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-jar</span> target/listadetarefas-desktop-1.0-SNAPSHOT.jar
+</code></pre></div></div>
+
+<p><img src="https://ricardotecpro.github.io/ads_proj_aplicacao_full_stack/projetos/assets\listadetarefas-desktop.png" alt="Lista de Tarefas Desktop" /></p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

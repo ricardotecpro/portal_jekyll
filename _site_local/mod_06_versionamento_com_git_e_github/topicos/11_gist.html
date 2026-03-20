@@ -1,0 +1,200 @@
+<h1 id="gist-do-github-como-usar-e-onde-funciona">Gist do GitHub: Como Usar e Onde Funciona</h1>
+
+<p>Códigos do <strong>Gist do GitHub</strong> podem ser incluídos em diversos locais, desde que suportem <strong>HTML e JavaScript</strong>. Aqui estão algumas opções comuns:</p>
+
+<h3 id="-locais-onde-podem-ser-incluídos">✅ <strong>Locais onde podem ser incluídos</strong></h3>
+
+<ol>
+  <li>
+    <p><strong>Páginas HTML (Sites e Blogs)</strong></p>
+
+    <ul>
+      <li>Basta inserir a tag <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> dentro do corpo (<code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>) ou em qualquer seção HTML.</li>
+      <li>
+        <p>Exemplo:</p>
+
+        <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+      <span class="nt">&lt;h3&gt;</span>Exemplo de Código Gist<span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://gist.github.com/ricardotecpro/cba17ff3ac5bdf5d9fa33d8f45d121b4.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/html&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>WordPress (Modo Clássico ou Gutenberg)</strong></p>
+
+    <ul>
+      <li><strong>Modo Clássico</strong>: Insira a tag <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> na aba “Texto” (Editor HTML).</li>
+      <li><strong>Gutenberg</strong>: Use um bloco “Custom HTML” e cole o <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> do Gist.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Markdown com suporte a HTML</strong></p>
+
+    <ul>
+      <li>Algumas plataformas (como Jekyll e GitHub Pages) permitem HTML dentro do Markdown.</li>
+      <li>
+        <p>Exemplo:</p>
+
+        <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ## Código do Gist
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://gist.github.com/ricardotecpro/cba17ff3ac5bdf5d9fa33d8f45d121b4.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aplicações React/Vue (com uso de <code class="language-plaintext highlighter-rouge">dangerouslySetInnerHTML</code>)</strong></p>
+
+    <ul>
+      <li>
+        <p>No <strong>React</strong>, insira a tag como HTML dinâmico:</p>
+
+        <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+        
+  <span class="kd">function</span> <span class="nf">GistEmbed</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return </span><span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">dangerouslySetInnerHTML</span><span class="p">=</span> <span class="p">/&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+        
+  <span class="k">export</span> <span class="k">default</span> <span class="nx">GistEmbed</span><span class="p">;</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>No <strong>Vue.js</strong>, use <code class="language-plaintext highlighter-rouge">v-html</code>:</p>
+
+        <div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">v-html=</span><span class="s">"gistCode"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+        
+  <span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+  <span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nf">data</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="na">gistCode</span><span class="p">:</span> <span class="s2">`&lt;script src="https://gist.github.com/ricardotecpro/cba17ff3ac5bdf5d9fa33d8f45d121b4.js"&gt;</span><span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>`
+      };
+    }
+  };
+  <span class="nt">&lt;/script&gt;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-onde-não-funcionam-nativamente">❌ <strong>Onde não funcionam nativamente</strong></h3>
+
+<ol>
+  <li>
+    <p><strong>Markdown puro (sem suporte a HTML)</strong></p>
+
+    <ul>
+      <li>Markdown puro <strong>não processa JavaScript</strong>, então o <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> do Gist não será executado.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Plataformas bloqueadas por segurança</strong></p>
+
+    <ul>
+      <li>Algumas plataformas como <strong>Medium, LinkedIn Articles, Notion, Google Docs</strong> não permitem <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Emails (HTML/CSS inline apenas)</strong></p>
+
+    <ul>
+      <li>Clientes de e-mail bloqueiam <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>, então Gists não funcionam.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Se precisar exibir códigos do Gist em plataformas que bloqueiam scripts, uma alternativa é <strong>inserir um link direto</strong> para o Gist:</p>
+
+<p>🔗 <strong><a href="https://gist.github.com/ricardotecpro/cba17ff3ac5bdf5d9fa33d8f45d121b4">Veja o código no Gist</a></strong>.</p>
+
+<h3 id="-uso-de-gist-no-google-sites-e-microsoft-teams">📌 <strong>Uso de Gist no Google Sites e Microsoft Teams</strong></h3>
+
+<h4 id="-google-sites">✅ <strong>Google Sites</strong></h4>
+
+<p>O <strong>Google Sites</strong> <strong>não permite</strong> o uso de <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> diretamente, pois bloqueia códigos JavaScript externos por motivos de segurança. No entanto, existem algumas alternativas:</p>
+
+<ol>
+  <li>
+    <p><strong>Usar um “Incorporar” via URL:</strong></p>
+
+    <ul>
+      <li>Vá até o <strong>Google Sites</strong> → Clique em <strong>“Inserir” → “Incorporar”</strong></li>
+      <li>Escolha a aba <strong>“Por URL”</strong></li>
+      <li>
+        <p>Insira o link do Gist:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  https://gist.github.com/ricardotecpro/cba17ff3ac5bdf5d9fa33d8f45d121b4
+</code></pre></div>        </div>
+      </li>
+      <li>Isso criará um iframe exibindo o código.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Copiar e colar o código diretamente no site</strong></p>
+
+    <ul>
+      <li>Se quiser apenas exibir o código, copie o conteúdo do Gist e cole como <strong>bloco de código formatado</strong>.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="-microsoft-teams">❌ <strong>Microsoft Teams</strong></h4>
+
+<p>O <strong>Microsoft Teams</strong> não permite <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> em mensagens, postagens ou guias padrão. Porém, há algumas alternativas:</p>
+
+<ol>
+  <li>
+    <p><strong>Postar o link direto do Gist</strong></p>
+
+    <ul>
+      <li>Envie apenas o link para que os usuários possam abrir no navegador.</li>
+      <li>
+        <p>Exemplo:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  https://gist.github.com/ricardotecpro/cba17ff3ac5bdf5d9fa33d8f45d121b4
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Criar um guia com uma página da Web</strong></p>
+
+    <ul>
+      <li>No <strong>Teams</strong>, vá até um canal → Clique em <strong>”+” (Adicionar guia)</strong> → Escolha <strong>“Site”</strong></li>
+      <li>Cole o link do Gist e salve.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Usar o OneNote no Teams</strong></p>
+
+    <ul>
+      <li>Se seu time usa <strong>OneNote</strong>, você pode colar o código formatado dentro de uma página do OneNote e compartilhar no Teams.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-conclusão">📌 <strong>Conclusão</strong></h3>
+
+<ul>
+  <li><strong>Google Sites:</strong> ❌ Não suporta <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>, mas permite incorporar via URL.</li>
+  <li><strong>Microsoft Teams:</strong> ❌ Não suporta <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>, mas você pode compartilhar o link ou adicionar um guia com a página do Gist.</li>
+</ul>
+
+<p>Se precisar incorporar códigos em sites sem suporte a <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>, o ideal é usar serviços como <strong>JSFiddle, CodePen ou compartilhar o Gist como link.</strong> 🚀</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

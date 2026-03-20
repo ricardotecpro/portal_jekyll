@@ -1,0 +1,901 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/controledegastos_01/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Controle de Gastos com Spring Boot e HTMX | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Controle de Gastos com Spring Boot e HTMX" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Controle de Gastos com Spring Boot e HTMX" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Controle de Gastos com Spring Boot e HTMX","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/" style="margin-left: 0.5rem;">Controledegastos 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 controle de gastos com spring boot e htmx</span>
+          
+        
+      </nav>
+
+      <h1 id="-controle-de-gastos-com-spring-boot-e-htmx">🚀 Controle de Gastos com Spring Boot e HTMX</h1>
+<p>v1.1</p>
+
+<p>Neste guia, vamos construir juntos uma aplicação web moderna e robusta chamada <strong>Controle de Gastos</strong>. O objetivo é criar um gerenciador financeiro simples, mas com uma experiência de usuário fluida, similar a uma <strong>Single Page Application (SPA)</strong>, sem a complexidade de frameworks JavaScript.</p>
+
+<p>Ao final, você terá uma aplicação funcional implantada na nuvem, pronta para ser usada e compartilhada.</p>
+
+<p><strong>O que você vai aprender:</strong></p>
+
+<ul>
+  <li>Estruturar um projeto <strong>Spring Boot</strong> do zero.</li>
+  <li>Modelar dados e usar o <strong>Spring Data JPA</strong>.</li>
+  <li>Criar uma interface reativa com <strong>Thymeleaf</strong> e <strong>HTMX</strong>.</li>
+  <li>Gerenciar diferentes ambientes (desenvolvimento e produção) com <strong>Spring Profiles</strong>.</li>
+  <li>Fazer o deploy de um banco de dados <strong>PostgreSQL</strong> no <strong>Neon</strong>.</li>
+  <li>Fazer o deploy de uma aplicação Java no <strong>Render</strong>.</li>
+</ul>
+
+<hr />
+
+<h3 id="️-fase-1-preparação-do-ambiente-e-controle-de-versão">🗂️ Fase 1: Preparação do Ambiente e Controle de Versão</h3>
+
+<p>Todo projeto profissional começa com um bom controle de versão. Vamos usar Git e hospedá-lo no GitHub.</p>
+
+<h2 id="github-desktop">GitHub Desktop</h2>
+<p>Se não estiver habituado a usar o Git por linha de comando, utilize o GitHub Desktop
+https://desktop.github.com/download/</p>
+
+<hr />
+
+<ol>
+  <li>
+    <p><strong>Crie a Pasta do Projeto:</strong>
+Abra seu terminal e crie uma pasta para o projeto.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>controle-de-gastos
+<span class="nb">cd </span>controle-de-gastos
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Inicialize o Repositório Git:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie o Repositório no GitHub:</strong></p>
+
+    <ul>
+      <li>Vá para o <a href="https://github.com">GitHub</a> e crie um novo repositório (pode ser público ou privado).</li>
+      <li><strong>NÃO</strong> inicialize com <code class="language-plaintext highlighter-rouge">README</code>, <code class="language-plaintext highlighter-rouge">.gitignore</code> ou licença. Queremos um repositório limpo.</li>
+      <li>Após criar, o GitHub lhe dará os comandos para conectar seu repositório local. Copie-os e execute no seu terminal. Serão parecidos com isto:</li>
+    </ul>
+
+    <!-- end list -->
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/seu-usuario/controle-de-gastos.git
+git branch <span class="nt">-M</span> main
+<span class="c"># Faremos o primeiro push após criar o projeto na próxima fase.</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="️-fase-2-criação-do-esqueleto-do-projeto">🏗️ Fase 2: Criação do Esqueleto do Projeto</h3>
+
+<h2 id="-spring-initializr">🔹 Spring Initializr</h2>
+
+<p>Usaremos o <strong>Spring Initializr</strong> para gerar a base da nossa aplicação com todas as dependências necessárias.</p>
+
+<ol>
+  <li>
+    <p>Acesse o <a href="https://start.spring.io/">Spring Initializr</a>.</p>
+  </li>
+  <li>
+    <p>Preencha os campos da seguinte forma:</p>
+
+    <ul>
+      <li><strong>Project:</strong> Maven</li>
+      <li><strong>Language:</strong> Java</li>
+      <li><strong>Spring Boot:</strong> A versão mais recente (ex: 3.x.x)</li>
+      <li><strong>Project Metadata:</strong>
+        <ul>
+          <li><strong>Group:</strong> <code class="language-plaintext highlighter-rouge">br.com.controledegastos</code></li>
+          <li><strong>Artifact:</strong> <code class="language-plaintext highlighter-rouge">controle-de-gastos</code></li>
+          <li><strong>Name:</strong> <code class="language-plaintext highlighter-rouge">controle-de-gastos</code></li>
+          <li><strong>Description:</strong> <code class="language-plaintext highlighter-rouge">Aplicação para controle de gastos pessoais</code></li>
+          <li><strong>Package name:</strong> <code class="language-plaintext highlighter-rouge">br.com.controledegastos</code> &lt;— Fazer exatamente igual, remover excesso</li>
+        </ul>
+      </li>
+      <li><strong>Packaging:</strong> Jar</li>
+      <li><strong>Java:</strong> 21</li>
+    </ul>
+  </li>
+  <li>
+    <p>No campo <strong>Dependencies</strong>, clique em “ADD DEPENDENCIES” e adicione as seguintes:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code>: Para criar controllers e APIs REST.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Data JPA</code>: Para persistência de dados de forma simples.</li>
+      <li><code class="language-plaintext highlighter-rouge">Thymeleaf</code>: Nosso motor de templates para renderizar o HTML.</li>
+      <li><code class="language-plaintext highlighter-rouge">H2 Database</code>: Banco de dados em memória para o ambiente de desenvolvimento.</li>
+      <li><code class="language-plaintext highlighter-rouge">PostgreSQL Driver</code>: Para conectar com nosso banco de produção.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Boot DevTools</code>: Para live reload durante o desenvolvimento.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Clique em <strong>GENERATE</strong>. Um arquivo <code class="language-plaintext highlighter-rouge">.zip</code> será baixado.</p>
+  </li>
+  <li>
+    <p><strong>Descompacte</strong> o conteúdo do <code class="language-plaintext highlighter-rouge">.zip</code> dentro da pasta <code class="language-plaintext highlighter-rouge">controle-de-gastos</code> que criamos na Fase 1. A estrutura de arquivos deve ficar assim:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>controle-de-gastos/
+├── .git/
+├── .mvn/
+├── src/
+├── mvnw
+├── mvnw.cmd
+└── pom.xml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Faça o primeiro commit:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"🚀 Feat: Initial project structure from Spring Initializr"</span>
+git push <span class="nt">-u</span> origin main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-fase-3-modelagem-de-dados">💾 Fase 3: Modelagem de Dados</h3>
+
+<p>Vamos definir a estrutura do nosso “Lançamento” financeiro e o repositório para acessá-lo no banco de dados.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie o Enum <code class="language-plaintext highlighter-rouge">TipoLancamento</code>:</strong>
+Dentro de <code class="language-plaintext highlighter-rouge">src/main/java/br/com/controledegastos/</code>, crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">model</code>. Dentro dele, crie um Enum <code class="language-plaintext highlighter-rouge">TipoLancamento.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/model/TipoLancamento.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.model</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">TipoLancamento</span> <span class="o">{</span>
+    <span class="no">RECEITA</span><span class="o">,</span>
+    <span class="no">DESPESA</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie a Entidade <code class="language-plaintext highlighter-rouge">Lancamento</code>:</strong>
+No mesmo pacote <code class="language-plaintext highlighter-rouge">model</code>, crie a classe <code class="language-plaintext highlighter-rouge">Lancamento.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/model/Lancamento.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.LocalDate</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lancamento</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">BigDecimal</span> <span class="n">valor</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">LocalDate</span> <span class="n">data</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+
+    <span class="nd">@Enumerated</span><span class="o">(</span><span class="nc">EnumType</span><span class="o">.</span><span class="na">STRING</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">TipoLancamento</span> <span class="n">tipo</span><span class="o">;</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescricao</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDescricao</span><span class="o">(</span><span class="nc">String</span> <span class="n">descricao</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">descricao</span> <span class="o">=</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">BigDecimal</span> <span class="nf">getValor</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">valor</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValor</span><span class="o">(</span><span class="nc">BigDecimal</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">valor</span> <span class="o">=</span> <span class="n">valor</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">LocalDate</span> <span class="nf">getData</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">data</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="nc">LocalDate</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">TipoLancamento</span> <span class="nf">getTipo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tipo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTipo</span><span class="o">(</span><span class="nc">TipoLancamento</span> <span class="n">tipo</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">tipo</span> <span class="o">=</span> <span class="n">tipo</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie o Repositório <code class="language-plaintext highlighter-rouge">LancamentoRepository</code>:</strong>
+Crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">repository</code>. Dentro dele, crie a interface <code class="language-plaintext highlighter-rouge">LancamentoRepository.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/repository/LancamentoRepository.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.Lancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">LancamentoRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>O <code class="language-plaintext highlighter-rouge">JpaRepository</code> já nos fornece todos os métodos de CRUD (<code class="language-plaintext highlighter-rouge">save</code>, <code class="language-plaintext highlighter-rouge">findById</code>, <code class="language-plaintext highlighter-rouge">findAll</code>, <code class="language-plaintext highlighter-rouge">deleteById</code>, etc.) magicamente!</p>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="️-fase-4-lógica-de-backend-controller">⚙️ Fase 4: Lógica de Backend (Controller)</h3>
+
+<p>O <code class="language-plaintext highlighter-rouge">Controller</code> irá receber as requisições do navegador, processá-las e devolver o HTML.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie o <code class="language-plaintext highlighter-rouge">LancamentoController</code>:</strong>
+Crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">controller</code>. Dentro dele, crie a classe <code class="language-plaintext highlighter-rouge">LancamentoController.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/controller/LancamentoController.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.Lancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.TipoLancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.repository.LancamentoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LancamentoController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">LancamentoRepository</span> <span class="n">lancamentoRepository</span><span class="o">;</span>
+
+    <span class="c1">// Método para carregar a página principal</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">index</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentos</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">lancamentos</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Lancamento:</span><span class="o">:</span><span class="n">getData</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentos"</span><span class="o">,</span> <span class="n">lancamentos</span><span class="o">);</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"novoLancamento"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Lancamento</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tipos"</span><span class="o">,</span> <span class="nc">TipoLancamento</span><span class="o">.</span><span class="na">values</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"index"</span><span class="o">;</span> <span class="c1">// Retorna o arquivo templates/index.html</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para adicionar um novo lançamento (via htmx)</span>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/lancamentos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">addLancamento</span><span class="o">(</span><span class="nd">@ModelAttribute</span> <span class="nc">Lancamento</span> <span class="n">novoLancamento</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">novoLancamento</span><span class="o">);</span>
+            
+        <span class="c1">// Após salvar, recarregamos a lista e a retornamos como um fragmento</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentos</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">lancamentos</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Lancamento:</span><span class="o">:</span><span class="n">getData</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentos"</span><span class="o">,</span> <span class="n">lancamentos</span><span class="o">);</span>
+            
+        <span class="c1">// Retorna apenas o fragmento da tabela, não a página inteira</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span> 
+    <span class="o">}</span>
+
+    <span class="c1">// Método para excluir um lançamento (via htmx)</span>
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/lancamentos/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">deleteLancamento</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+            
+        <span class="c1">// Após deletar, recarregamos a lista e a retornamos como um fragmento</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentos</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">lancamentos</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Lancamento:</span><span class="o">:</span><span class="n">getData</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentos"</span><span class="o">,</span> <span class="n">lancamentos</span><span class="o">);</span>
+            
+        <span class="c1">// Retorna apenas o fragmento da tabela</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p><strong>Ponto Chave:</strong> Note que os métodos <code class="language-plaintext highlighter-rouge">addLancamento</code> e <code class="language-plaintext highlighter-rouge">deleteLancamento</code> retornam <code class="language-plaintext highlighter-rouge">"index :: lista-lancamentos"</code>. Isso é uma instrução para o Thymeleaf renderizar apenas o pedaço (fragmento) do HTML chamado <code class="language-plaintext highlighter-rouge">lista-lancamentos</code> dentro do arquivo <code class="language-plaintext highlighter-rouge">index.html</code>. É essa a mágica que o htmx usará para atualizar a página dinamicamente.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-fase-5-construção-da-interface-com-thymeleaf-e-htmx">🎨 Fase 5: Construção da Interface com Thymeleaf e htmx</h3>
+
+<p>Agora vamos criar a interface que o usuário verá. Ela será um único arquivo HTML que será atualizado dinamicamente pelo htmx.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie o arquivo <code class="language-plaintext highlighter-rouge">index.html</code>:</strong>
+Dentro de <code class="language-plaintext highlighter-rouge">src/main/resources/templates/</code>, crie o arquivo <code class="language-plaintext highlighter-rouge">index.html</code>.</p>
+  </li>
+  <li>
+    <p><strong>Adicione o conteúdo HTML:</strong>
+Este código inclui um formulário para adicionar lançamentos e uma tabela para listá-los. Observe os atributos <code class="language-plaintext highlighter-rouge">hx-*</code>, que são os comandos do htmx.</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Controle de Gastos<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="o">-</span><span class="n">apple-system</span><span class="p">,</span> <span class="n">BlinkMacSystemFont</span><span class="p">,</span> <span class="s1">"Segoe UI"</span><span class="p">,</span> <span class="n">Roboto</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f4f4f9</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.container</span> <span class="p">{</span> <span class="nl">max-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">background</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span> <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">2px</span> <span class="m">4px</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0.1</span><span class="p">);</span> <span class="p">}</span>
+        <span class="nt">form</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">flex-wrap</span><span class="p">:</span> <span class="nb">wrap</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">input</span><span class="o">,</span> <span class="nt">select</span><span class="o">,</span> <span class="nt">button</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#007bff</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#0056b3</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">table</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">border-collapse</span><span class="p">:</span> <span class="nb">collapse</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.despesa</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#d9534f</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.receita</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#5cb85c</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.delete-btn</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#d9534f</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.delete-btn</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#c9302c</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/htmx.org@1.9.12"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Meu Controle de Gastos 💰<span class="nt">&lt;/h1&gt;</span>
+
+        <span class="nt">&lt;form</span> <span class="na">hx-post=</span><span class="s">"/lancamentos"</span>      
+              <span class="na">hx-target=</span><span class="s">"#lista-lancamentos"</span> 
+              <span class="na">hx-swap=</span><span class="s">"outerHTML"</span>            
+              <span class="na">hx-on::after-request=</span><span class="s">"this.reset()"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">placeholder=</span><span class="s">"Descrição"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">step=</span><span class="s">"0.01"</span> <span class="na">name=</span><span class="s">"valor"</span> <span class="na">placeholder=</span><span class="s">"Valor"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"tipo"</span> <span class="na">required</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;option</span> <span class="na">th:each=</span><span class="s">"tipoOpt : ${tipos}"</span> <span class="na">th:value=</span><span class="s">"${tipoOpt}"</span> <span class="na">th:text=</span><span class="s">"${tipoOpt}"</span><span class="nt">&gt;&lt;/option&gt;</span>
+            <span class="nt">&lt;/select&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"lista-lancamentos"</span> <span class="na">th:fragment=</span><span class="s">"lista-lancamentos"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;table&gt;</span>
+                <span class="nt">&lt;thead&gt;</span>
+                    <span class="nt">&lt;tr&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Descrição<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Valor<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Data<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Tipo<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Ação<span class="nt">&lt;/th&gt;</span>
+                    <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;/thead&gt;</span>
+                <span class="nt">&lt;tbody&gt;</span>
+                    <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"lancamento : ${lancamentos}"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${lancamento.descricao}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"|R$ ${#numbers.formatDecimal(lancamento.valor, 1, 'POINT', 2, 'COMMA')}|"</span>
+                            <span class="na">th:class=</span><span class="s">"${lancamento.tipo.name() == 'DESPESA' ? 'despesa' : 'receita'}"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${#temporals.format(lancamento.data, 'dd/MM/yyyy')}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${lancamento.tipo.name()}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td&gt;</span>
+                            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"delete-btn"</span>
+                                    <span class="na">hx-delete=</span><span class="s">"@{/lancamentos/{id}(id=${lancamento.id})}"</span>
+                                    <span class="na">hx-target=</span><span class="s">"#lista-lancamentos"</span>
+                                    <span class="na">hx-swap=</span><span class="s">"outerHTML"</span>
+                                    <span class="na">hx-confirm=</span><span class="s">"Tem certeza que deseja excluir?"</span><span class="nt">&gt;</span>
+                                Excluir
+                            <span class="nt">&lt;/button&gt;</span>
+                        <span class="nt">&lt;/td&gt;</span>
+                    <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;/tbody&gt;</span>
+            <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+
+    <p><strong>Como o htmx funciona aqui:</strong></p>
+
+    <ul>
+      <li><strong>Adicionar:</strong> O <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code> tem <code class="language-plaintext highlighter-rouge">hx-post="/lancamentos"</code>. Ao submeter, ele envia um POST para essa URL. <code class="language-plaintext highlighter-rouge">hx-target="#lista-lancamentos"</code> e <code class="language-plaintext highlighter-rouge">hx-swap="outerHTML"</code> dizem para pegar a resposta (que é o fragmento da tabela atualizada) e substituir todo o elemento <code class="language-plaintext highlighter-rouge">&lt;div id="lista-lancamentos"&gt;</code>.</li>
+      <li><strong>Excluir:</strong> O <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> de exclusão tem <code class="language-plaintext highlighter-rouge">hx-delete="/lancamentos/..."</code>. Ao clicar, ele envia uma requisição DELETE. A resposta (a tabela atualizada) também substitui o <code class="language-plaintext highlighter-rouge">&lt;div id="lista-lancamentos"&gt;</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="obs-crud-completo-será-implementado-posteriormente">Obs. Crud completo será implementado posteriormente.</h3>
+
+<hr />
+
+<h3 id="-fase-6-configuração-de-ambientes">🌍 Fase 6: Configuração de Ambientes</h3>
+
+<p>Vamos configurar a aplicação para usar o H2 em desenvolvimento e o PostgreSQL em produção.</p>
+
+<ol>
+  <li>
+    <p><strong>Arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> (Desenvolvimento):</strong>
+Este arquivo, localizado em <code class="language-plaintext highlighter-rouge">src/main/resources/</code>, já é o perfil padrão. Vamos configurá-lo para o H2.</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configuracoes do H2 Database (perfil 'default') &lt;-- 'Nao usar acentos por conta do Render'
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># JPA
+#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect &lt;-- 'Comentar por conta do Render'
+</span><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div>    </div>
+
+    <p>Agora você pode rodar sua aplicação localmente. Abra a classe <code class="language-plaintext highlighter-rouge">ControleDeGastosApplication.java</code> na sua IDE e execute-a. Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> e <code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code> (URL do JDBC: <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:testdb</code>) para testar.</p>
+  </li>
+  <li>
+    <p><strong>Arquivo <code class="language-plaintext highlighter-rouge">application-prod.properties</code> (Produção):</strong>
+Na mesma pasta, crie um novo arquivo chamado <code class="language-plaintext highlighter-rouge">application-prod.properties</code>. Este arquivo será ativado quando o perfil <code class="language-plaintext highlighter-rouge">prod</code> estiver ativo.</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configuracoes do PostgreSQL (perfil 'prod') &lt;-- 'Nao usar acentos por conta do Render'
+# Usaremos variáveis de ambiente no Render para preencher estes valores
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">${DB_URL}</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">${DB_USERNAME}</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">${DB_PASSWORD}</span>
+
+<span class="c"># JPA
+</span><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+<span class="c">#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect &lt;-- 'Comentar por conta do Render'
+</span></code></pre></div>    </div>
+
+    <p>Os valores <code class="language-plaintext highlighter-rouge">${...}</code> serão substituídos por variáveis de ambiente que configuraremos na plataforma de deploy.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="-caminho-1--usando-docker-mais-flexível">🔹 Caminho 1 — Usando Docker (mais flexível)</h2>
+
+<p>Se quiser controlar melhor, crie um arquivo <strong><code class="language-plaintext highlighter-rouge">Dockerfile</code></strong> na raiz do projeto:</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Estágio 1: Build da Aplicação com Eclipse Temurin JDK</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">eclipse-temurin:21-jdk-jammy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s">builder</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> .mvn/ .mvn</span>
+<span class="k">COPY</span><span class="s"> mvnw .</span>
+<span class="k">COPY</span><span class="s"> pom.xml .</span>
+
+<span class="k">RUN </span><span class="nb">chmod</span> +x mvnw <span class="c"># &lt;-- ADICIONE ESTA LINHA</span>
+
+<span class="k">RUN </span>./mvnw dependency:go-offline
+<span class="k">COPY</span><span class="s"> src ./src</span>
+<span class="k">RUN </span>./mvnw clean package <span class="nt">-DskipTests</span>
+
+<span class="c"># Estágio 2: Imagem Final de Execução com Eclipse Temurin JRE</span>
+<span class="k">FROM</span><span class="s"> eclipse-temurin:21-jre-jammy</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> --from=builder /app/target/*.jar app.jar</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="preparando-docker-para-o-render">Preparando Docker para o Render:</h2>
+
+<ul>
+  <li><strong>Runtime</strong>: Docker</li>
+  <li>Ele vai detectar o <code class="language-plaintext highlighter-rouge">Dockerfile</code> automaticamente e construir sua imagem.</li>
+</ul>
+
+<hr />
+
+<h2 id="-conferindo-variáveis-de-ambiente">🔹 Conferindo variáveis de ambiente</h2>
+
+<p>No painel do Render → <strong>Environment</strong>:</p>
+
+<ul>
+  <li>Configure variáveis como <code class="language-plaintext highlighter-rouge">SPRING_PROFILES_ACTIVE=prod</code> ou credenciais do banco (<code class="language-plaintext highlighter-rouge">DATABASE_URL</code>, <code class="language-plaintext highlighter-rouge">JDBC_URL</code>, etc).</li>
+  <li>Se estiver usando PostgreSQL do Render, ele te dá os dados prontos (host, user, password).</li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong>Commit das mudanças:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git add <span class="nb">.</span>
+ git commit <span class="nt">-m</span> <span class="s2">"✨ Feat: Implement CRUD and SPA interface with htmx"</span>
+ git push origin main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="️-fase-7-deploy-em-produção">☁️ Fase 7: Deploy em Produção</h3>
+
+<p>É hora de colocar nossa aplicação no ar!</p>
+
+<h2 id="-neon">🔹 Neon</h2>
+
+<h4 id="71-criando-o-banco-de-dados-no-neon">7.1. Criando o Banco de Dados no Neon</h4>
+
+<ol>
+  <li>Vá para <a href="https://neon.tech">Neon</a> e faça login (pode usar sua conta do GitHub).</li>
+  <li>Crie um novo projeto. Dê um nome, como <code class="language-plaintext highlighter-rouge">controle-de-gastos-db</code>.</li>
+  <li>Após a criação, Clique no botão superior direito <strong>Connect</strong>, você será levado a um painel. Na seção <strong>Connection Details</strong>, você encontrará as informações que precisamos.</li>
+  <li>O Neon fornece uma URL de conexão completa. Guarde as seguintes partes:
+    <ul>
+      <li><strong>Host:</strong> (ex: <code class="language-plaintext highlighter-rouge">ep-plain-snow-123456.us-east-2.aws.neon.tech</code>)</li>
+      <li><strong>Database:</strong> (o nome do seu banco)</li>
+      <li><strong>User:</strong> (o nome do seu usuário)</li>
+      <li><strong>Password:</strong> (a senha que foi gerada)</li>
+    </ul>
+  </li>
+  <li>Ou mais simples clique onde está <strong>psql</strong>, e mude para <strong>Connection string</strong>, depois clique em <strong>Copy snippet</strong> e salve no bloco de notas, para ser usado posteriormente no Render.</li>
+</ol>
+
+<h2 id="-render">🔹 Render</h2>
+
+<h4 id="72-fazendo-o-deploy-da-aplicação-no-render">7.2. Fazendo o Deploy da Aplicação no Render</h4>
+
+<ol>
+  <li>
+    <p>Vá para <a href="https://render.com">Render</a> e faça login (também pode usar sua conta do GitHub).</p>
+  </li>
+  <li>
+    <p>No painel, clique em <strong>New +</strong> &gt; <strong>Web Service</strong>.</p>
+  </li>
+  <li>
+    <p>Conecte seu repositório do GitHub e selecione o repositório <code class="language-plaintext highlighter-rouge">controle-de-gastos</code>.</p>
+  </li>
+  <li>
+    <p>Na tela de configuração, preencha:</p>
+
+    <ul>
+      <li><strong>Name:</strong> <code class="language-plaintext highlighter-rouge">controle-de-gastos[NomeSobrenome]</code> (ou o que preferir).</li>
+      <li><strong>Language:</strong> <code class="language-plaintext highlighter-rouge">Docker</code>.</li>
+      <li><strong>Branch:</strong> <code class="language-plaintext highlighter-rouge">main</code>. &lt;– ou <strong>master</strong> conferir no seu GitHub</li>
+      <li><strong>Region:</strong> Escolha a mais próxima de você. Ohio (US East)</li>
+      <li><strong>Instance Type:</strong> <strong>Free</strong>. 512 (RAM) 0.1 CPU</li>
+    </ul>
+  </li>
+  <li>
+    <p>Agora, a parte mais importante: as <strong>Variáveis de Ambiente</strong>. Clique em <strong>Advanced</strong>.</p>
+
+    <ul>
+      <li>Clique em <strong>Add Environment Variable</strong> e adicione as seguintes chaves e valores:</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">Chave</th>
+          <th style="text-align: left">Valor</th>
+          <th> </th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SPRING_PROFILES_ACTIVE</code></td>
+          <td style="text-align: left"><code class="language-plaintext highlighter-rouge">prod</code></td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DB_USERNAME</code></td>
+          <td style="text-align: left">O usuário do seu banco de dados Neon.</td>
+          <td><code class="language-plaintext highlighter-rouge">neondb_owner</code></td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DB_PASSWORD</code></td>
+          <td style="text-align: left">A senha do seu banco de dados Neon.</td>
+          <td><code class="language-plaintext highlighter-rouge">:*********@</code></td>
+          <td>fica entre os dois pontos e o arroba.</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DB_URL</code></td>
+          <td style="text-align: left">Exemplo: <code class="language-plaintext highlighter-rouge">postgresql://neondb_owner:*****@----?sslmode=require&amp;channel_binding=require</code></td>
+          <td> </td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Atenção:</strong> Substitua <code class="language-plaintext highlighter-rouge">&lt;HOST_DO_NEON&gt;</code> e <code class="language-plaintext highlighter-rouge">&lt;DB_NAME_DO_NEON&gt;</code> pelos valores que você pegou do painel do Neon. A parte <code class="language-plaintext highlighter-rouge">?sslmode=require</code> é <strong>essencial</strong> para a conexão funcionar.</p>
+  </li>
+</ol>
+
+<hr />
+
+<ol>
+  <li>Role para baixo e clique em <strong>Create Web Service</strong>.</li>
+</ol>
+
+<p>O Render irá buscar seu código do GitHub, construir a aplicação e iniciá-la. O primeiro deploy pode levar alguns minutos. Você pode acompanhar o progresso nos logs.</p>
+
+<p>Quando terminar, o Render fornecerá uma URL pública:</p>
+
+<h3 id="exemplo-httpscontrole-de-gastosnomesobrenomeonrendercom">Exemplo: <code class="language-plaintext highlighter-rouge">https://controle-de-gastosNomeSobrenome.onrender.com</code></h3>
+
+<p>Agora sua aplicação estará <strong>Online</strong> e pronta para ser usada de forma remota! 🎉</p>
+
+<hr />
+
+<h2 id="-caminho-2--sem-docker">🔹 Caminho 2 — Sem Docker</h2>
+<p>Mais simples para deploy com outras linguagens, como Elixir, Go, Node, Python, Ruby, Rust.</p>
+
+<ol>
+  <li>Vá em <strong>New Web Service</strong> → <strong>Connect Repo</strong> → selecione o repositório <code class="language-plaintext highlighter-rouge">controle-de-gastos</code>.</li>
+  <li>Quando Render pedir a configuração, escolha <strong>Runtime: Docker (ou  sua linguagem de preferência)</strong>.</li>
+  <li>
+    <p>Preencha manualmente:</p>
+
+    <ul>
+      <li><strong>Name</strong>: <code class="language-plaintext highlighter-rouge">controle-de-gastos</code></li>
+      <li><strong>Region</strong>: (ex. Ohio se você está no Brasil)</li>
+      <li><strong>Branch</strong>: <code class="language-plaintext highlighter-rouge">main</code></li>
+      <li>
+        <p><strong>Build Command</strong>:</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./mvnw clean <span class="nb">install</span> <span class="nt">-DskipTests</span>
+</code></pre></div>        </div>
+
+        <p>ou, se não tiver wrapper (<code class="language-plaintext highlighter-rouge">mvnw</code>):</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean <span class="nb">install</span> <span class="nt">-DskipTests</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><strong>Start Command</strong>:</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-jar</span> target/<span class="k">*</span>.jar
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Certifique-se de que o seu projeto <strong>gera o JAR executável</strong> (padrão do Spring Boot). No <code class="language-plaintext highlighter-rouge">pom.xml</code>, deve ter:</p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>    </div>
+
+    <p>Isso garante que o JAR gerado seja “fat jar” (<code class="language-plaintext highlighter-rouge">target/controle-de-gastos-0.0.1-SNAPSHOT.jar</code>).</p>
+  </li>
+</ol>
+
+<p>./mvnw clean package -DskipTests</p>
+
+<h3 id="-conclusão">✅ Conclusão</h3>
+
+<p>Parabéns! Você construiu do zero e implantou uma aplicação web completa com uma stack moderna. Você aprendeu a combinar o poder do Spring Boot no backend com a simplicidade e reatividade do htmx no frontend, criando uma experiência de usuário ágil sem escrever JavaScript complexo.</p>
+
+<p><strong>Próximos Passos Sugeridos:</strong></p>
+
+<ul>
+  <li>Adicionar validação nos campos do formulário.</li>
+  <li>Implementar a funcionalidade de <strong>edição</strong> de um lançamento.</li>
+  <li>Melhorar o CSS e a aparência geral da aplicação.</li>
+  <li>Adicionar um sistema de usuários e autenticação com Spring Security.</li>
+</ul>
+
+<hr />
+
+<h2 id="obs-1">Obs 1.</h2>
+<p>Seu build falhou novamente devido ao erro <strong><code class="language-plaintext highlighter-rouge">Permission denied</code></strong>. Isso significa que o arquivo <code class="language-plaintext highlighter-rouge">mvnw</code> dentro do seu repositório Git não tem a permissão necessária para ser executado no ambiente de build do Docker.</p>
+
+<h3 id="a-causa">A Causa</h3>
+
+<p>O Git armazena as permissões dos arquivos. Se o arquivo <code class="language-plaintext highlighter-rouge">mvnw</code> foi enviado (commitado) a partir de um sistema que não marcou a permissão de execução, o ambiente de build do Docker herda essa restrição e não consegue rodar o script.</p>
+
+<hr />
+
+<h3 id="como-corrigir">Como Corrigir</h3>
+
+<p>Você tem duas maneiras de resolver isso. A primeira é a mais recomendada.</p>
+
+<h4 id="solução-1-recomendada-corrigir-a-permissão-no-git">Solução 1 (Recomendada): Corrigir a Permissão no Git</h4>
+
+<p>Esta é a solução permanente e correta, pois conserta o problema na origem.</p>
+
+<ol>
+  <li><strong>Abra o terminal</strong> na pasta do seu projeto local.</li>
+  <li>Execute o seguinte comando para dar a permissão de execução ao arquivo no Git:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git update-index <span class="nt">--chmod</span><span class="o">=</span>+x mvnw
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Faça o commit e o push</strong> desta alteração de permissão:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"fix: Adiciona permissão de execução ao mvnw"</span>
+git push origin main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="solução-2-alternativa-rápida-corrigir-no-dockerfile">Solução 2 (Alternativa Rápida): Corrigir no Dockerfile</h4>
+
+<p>Você pode adicionar um comando no seu <code class="language-plaintext highlighter-rouge">Dockerfile</code> para dar a permissão durante cada build.</p>
+
+<ol>
+  <li>
+    <p><strong>Abra seu <code class="language-plaintext highlighter-rouge">Dockerfile</code></strong>.</p>
+  </li>
+  <li>
+    <p>Adicione a linha <code class="language-plaintext highlighter-rouge">RUN chmod +x mvnw</code> logo após as linhas <code class="language-plaintext highlighter-rouge">COPY</code>.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="obs-2">Obs 2.</h2>
+
+<p>O seu build no Render está falhando por um erro de codificação de caracteres (<strong><code class="language-plaintext highlighter-rouge">MalformedInputException</code></strong>) dentro do seu arquivo <code class="language-plaintext highlighter-rouge">application.properties</code>.</p>
+
+<p>Este é o mesmo tipo de erro que encontramos anteriormente, mas agora no outro arquivo de propriedades. Isso acontece quando o Maven, durante o processo de build dentro do Docker, tenta ler o arquivo e encontra um caractere inválido ou uma codificação que ele não espera (o padrão é UTF-8).</p>
+
+<hr />
+
+<h3 id="como-corrigir-3-passos">Como Corrigir (3 Passos)</h3>
+
+<p>Para resolver isso, você precisa garantir que o arquivo esteja “limpo” e que o Maven esteja configurado para ler em UTF-8.</p>
+
+<h4 id="passo-1-corrija-o-arquivo-localmente">Passo 1: Corrija o Arquivo Localmente</h4>
+
+<ol>
+  <li>
+    <p>Abra o arquivo <strong><code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code></strong> na sua IDE.</p>
+  </li>
+  <li>
+    <p>Apague <strong>todo</strong> o conteúdo dele.</p>
+  </li>
+  <li>
+    <p>Copie e cole o conteúdo limpo abaixo:</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do H2 Database (perfil 'default')
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Salve o arquivo. Garanta que sua IDE está salvando os arquivos com a codificação <strong>UTF-8</strong>.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="passo-2-verifique-o-pomxml">Passo 2: Verifique o <code class="language-plaintext highlighter-rouge">pom.xml</code></h4>
+
+<p>Confirme que a seguinte propriedade ainda está presente no seu arquivo <code class="language-plaintext highlighter-rouge">pom.xml</code>. Ela é essencial para instruir o Maven a usar a codificação correta.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;java.version&gt;</span>21<span class="nt">&lt;/java.version&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="passo-3-envie-a-correção-para-o-github">Passo 3: Envie a Correção para o GitHub</h4>
+
+<p>Para que o Render use o arquivo corrigido, você precisa enviar a nova versão para o seu repositório.</p>
+
+<p>Execute os seguintes comandos no seu terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Adiciona todas as alterações (incluindo o arquivo corrigido)</span>
+git add <span class="nb">.</span>
+
+<span class="c"># Cria um commit com uma mensagem clara</span>
+git commit <span class="nt">-m</span> <span class="s2">"fix: Corrige codificação do application.properties"</span>
+
+<span class="c"># Envia o commit para o GitHub</span>
+git push origin main
+</code></pre></div></div>
+
+<p>Após fazer o <code class="language-plaintext highlighter-rouge">push</code>, o Render irá automaticamente iniciar um novo build com o arquivo corrigido, e o erro de <code class="language-plaintext highlighter-rouge">MalformedInputException</code> será resolvido.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

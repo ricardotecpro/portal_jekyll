@@ -1,0 +1,424 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_07_backend_e_apis/topicos/springboot/spring_mvc.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Spring MVC com Angular | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Spring MVC com Angular" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/spring_mvc.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/spring_mvc.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Spring MVC com Angular" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Spring MVC com Angular","url":"https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/spring_mvc.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/" style="margin-left: 0.5rem;">Mod 07 backend e apis</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/" style="margin-left: 0.5rem;">Springboot</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Spring mvc com angular</span>
+          
+        
+      </nav>
+
+      <h1 id="spring-mvc-com-angular">Spring MVC com Angular</h1>
+
+<p>Tutorial sobre <strong>MVC (Model-View-Controller)</strong>, que é um padrão de arquitetura muito popular usado em diversas aplicações, incluindo aplicações web. Vamos explicar o conceito de MVC, sua estrutura e como implementá-lo com Spring Boot (back-end) e Angular (front-end).</p>
+
+<hr />
+
+<h1 id="tutorial-entendendo-e-implementando-o-padrão-mvc"><strong>Tutorial: Entendendo e Implementando o Padrão MVC</strong></h1>
+
+<h2 id="1-o-que-é-o-padrão-mvc"><strong>1. O que é o Padrão MVC?</strong></h2>
+
+<p>O <strong>MVC (Model-View-Controller)</strong> é um padrão de design de software que divide uma aplicação em três componentes principais, com o objetivo de separar a lógica de negócios, a interface do usuário e o controle das interações:</p>
+
+<ul>
+  <li><strong>Model</strong>: Representa a camada de dados e a lógica de negócios da aplicação. O model lida com a manipulação dos dados (como bancos de dados, objetos, etc.).</li>
+  <li><strong>View</strong>: Representa a interface do usuário. A view é responsável por exibir os dados fornecidos pelo model.</li>
+  <li><strong>Controller</strong>: Gerencia as interações do usuário. O controller lida com as entradas do usuário, processa as ações e, em seguida, atualiza a view e o model de acordo.</li>
+</ul>
+
+<p>A principal vantagem do padrão MVC é a <strong>separação de preocupações</strong>, que permite um desenvolvimento mais modular, facilitando manutenção e escalabilidade.</p>
+
+<hr />
+
+<h2 id="2-como-o-mvc-funciona"><strong>2. Como o MVC Funciona?</strong></h2>
+
+<p>O fluxo de execução em uma aplicação MVC é geralmente o seguinte:</p>
+
+<ol>
+  <li><strong>O usuário interage com a View</strong> (por exemplo, clicando em um botão ou preenchendo um formulário).</li>
+  <li><strong>O Controller recebe a entrada do usuário</strong> e chama os métodos apropriados no Model para processar os dados.</li>
+  <li><strong>O Model processa a lógica de negócios e retorna os dados</strong> ao Controller.</li>
+  <li><strong>O Controller atualiza a View</strong> com os dados retornados do Model.</li>
+  <li><strong>A View exibe os dados atualizados</strong> para o usuário.</li>
+</ol>
+
+<hr />
+
+<h2 id="3-implementando-o-mvc-com-spring-boot-back-end"><strong>3. Implementando o MVC com Spring Boot (Back-end)</strong></h2>
+
+<h3 id="31-criando-um-projeto-spring-boot"><strong>3.1. Criando um Projeto Spring Boot</strong></h3>
+
+<p>Vamos criar um projeto Spring Boot que utiliza o padrão MVC.</p>
+
+<ol>
+  <li><strong>Usando o Spring Initializr</strong>, gere um novo projeto Spring Boot com as seguintes dependências:
+    <ul>
+      <li><strong>Spring Web</strong> (para criar o back-end da API).</li>
+      <li><strong>Spring Data JPA</strong> (para interagir com o banco de dados).</li>
+      <li><strong>H2 Database</strong> (como banco de dados em memória para testes).</li>
+    </ul>
+  </li>
+  <li><strong>Baixe o projeto</strong> e extraia os arquivos. Abra o projeto na sua IDE preferida.</li>
+</ol>
+
+<h3 id="32-criando-o-model"><strong>3.2. Criando o Model</strong></h3>
+
+<p>O <strong>Model</strong> é a camada responsável por representar os dados da aplicação. Vamos criar uma classe de <strong>Produto</strong> que será nossa entidade.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.mvc.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="c1">// Construtores, getters e setters</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">()</span> <span class="o">{}</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="33-criando-o-repositório"><strong>3.3. Criando o Repositório</strong></h3>
+
+<p>Agora, crie um repositório para manipular os dados no banco de dados usando Spring Data JPA.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.mvc.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.exemplo.mvc.model.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProdutoRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="34-criando-o-controller"><strong>3.4. Criando o Controller</strong></h3>
+
+<p>O <strong>Controller</strong> vai manipular as requisições HTTP e interagir com o Model para fornecer os dados para a View. Vamos criar um controller que retorna os produtos em formato JSON (que será consumido pelo front-end).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.mvc.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.exemplo.mvc.model.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.exemplo.mvc.repository.ProdutoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">ProdutoRepository</span> <span class="n">produtoRepository</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/produtos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="nf">obterProdutos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">produtoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="35-configurando-o-banco-de-dados-h2"><strong>3.5. Configurando o Banco de Dados (H2)</strong></h3>
+
+<p>Adicione a configuração do banco de dados H2 no arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> para usar o banco em memória:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">password</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-implementando-o-mvc-com-angular-front-end"><strong>4. Implementando o MVC com Angular (Front-end)</strong></h2>
+
+<p>Agora, vamos criar a parte do <strong>View</strong> no Angular para exibir os produtos.</p>
+
+<h3 id="41-criando-o-projeto-angular"><strong>4.1. Criando o Projeto Angular</strong></h3>
+
+<p>Se você ainda não tem o Angular CLI, instale-o globalmente com:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> @angular/cli
+</code></pre></div></div>
+
+<p>Crie um novo projeto Angular:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng new frontend
+</code></pre></div></div>
+
+<h3 id="42-instalando-o-httpclientmodule"><strong>4.2. Instalando o HttpClientModule</strong></h3>
+
+<p>No Angular, você precisa importar o <code class="language-plaintext highlighter-rouge">HttpClientModule</code> para fazer requisições HTTP. No arquivo <code class="language-plaintext highlighter-rouge">src/app/app.module.ts</code>, adicione a seguinte importação:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClientModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>E inclua <code class="language-plaintext highlighter-rouge">HttpClientModule</code> na lista de <strong>imports</strong> no <code class="language-plaintext highlighter-rouge">@NgModule</code>:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">AppComponent</span>
+  <span class="p">],</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">BrowserModule</span><span class="p">,</span>
+    <span class="nx">HttpClientModule</span>
+  <span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="43-criando-o-serviço-angular"><strong>4.3. Criando o Serviço Angular</strong></h3>
+
+<p>Crie um serviço para consumir a API REST que criamos no Spring Boot.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng generate service produto
+</code></pre></div></div>
+
+<p>Modifique o arquivo <code class="language-plaintext highlighter-rouge">produto.service.ts</code> para usar o <strong>HttpClient</strong> e obter os produtos da API Spring Boot:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Observable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">Produto</span> <span class="p">{</span>
+  <span class="nl">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">nome</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">preco</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">({</span>
+  <span class="na">providedIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">ProdutoService</span> <span class="p">{</span>
+
+  <span class="k">private</span> <span class="nx">apiUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">http://localhost:8080/produtos</span><span class="dl">'</span><span class="p">;</span>  <span class="c1">// URL da API do Spring Boot</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">http</span><span class="p">:</span> <span class="nx">HttpClient</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nf">getProdutos</span><span class="p">():</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Produto</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="kd">get</span><span class="o">&lt;</span><span class="nx">Produto</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="44-exibindo-os-produtos-no-componente-principal"><strong>4.4. Exibindo os Produtos no Componente Principal</strong></h3>
+
+<p>Agora, no componente principal (<code class="language-plaintext highlighter-rouge">app.component.ts</code>), injete o serviço e obtenha os produtos:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ProdutoService</span><span class="p">,</span> <span class="nx">Produto</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./produto.service</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./app.component.css</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">AppComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="nl">produtos</span><span class="p">:</span> <span class="nx">Produto</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">produtoService</span><span class="p">:</span> <span class="nx">ProdutoService</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="nf">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">produtoService</span><span class="p">.</span><span class="nf">getProdutos</span><span class="p">().</span><span class="nf">subscribe</span><span class="p">(</span><span class="nx">produtos</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">produtos</span> <span class="o">=</span> <span class="nx">produtos</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>No arquivo <code class="language-plaintext highlighter-rouge">app.component.html</code>, exiba a lista de produtos:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"text-align:center"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Lista de Produtos<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let produto of produtos"</span><span class="nt">&gt;</span>
+       - R$ 
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-rodando-as-aplicações"><strong>5. Rodando as Aplicações</strong></h2>
+
+<h3 id="51-rodando-o-back-end-spring-boot"><strong>5.1. Rodando o Back-end (Spring Boot)</strong></h3>
+
+<p>Execute o Spring Boot da sua IDE ou via terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<p>Isso irá iniciar o servidor Spring Boot na porta <code class="language-plaintext highlighter-rouge">8080</code>.</p>
+
+<h3 id="52-rodando-o-front-end-angular"><strong>5.2. Rodando o Front-end (Angular)</strong></h3>
+
+<p>No terminal, dentro do diretório do projeto Angular, execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng serve
+</code></pre></div></div>
+
+<p>Isso iniciará o servidor Angular na porta <code class="language-plaintext highlighter-rouge">4200</code>.</p>
+
+<h3 id="53-testando-a-aplicação"><strong>5.3. Testando a Aplicação</strong></h3>
+
+<p>Agora, se você abrir <code class="language-plaintext highlighter-rouge">http://localhost:4200</code> no seu navegador, a aplicação Angular irá se comunicar com o Spring Boot e exibir a lista de produtos.</p>
+
+<hr />
+
+<h2 id="6-conclusão"><strong>6. Conclusão</strong></h2>
+
+<p>Neste tutorial, você aprendeu o padrão <strong>MVC (Model-View-Controller)</strong> e como implementá-lo em uma aplicação usando <strong>Spring Boot</strong> para o back-end e <strong>Angular</strong> para o front-end. Ao aplicar o padrão MVC, conseguimos separar claramente as responsabilidades em três componentes distintos:</p>
+
+<ul>
+  <li><strong>Model</strong>: Dados e lógica de negócios.</li>
+  <li><strong>View</strong>: Interface do usuário (UI).</li>
+  <li><strong>Controller</strong>: Gerencia as interações entre a View e o Model.</li>
+</ul>
+
+<p>Com isso, sua aplicação fica mais modular, fácil de manter e escalável. Você pode expandir essa arquitetura com mais funcionalidades como autenticação, validação, criação, edição e exclusão de produtos, entre outras!</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

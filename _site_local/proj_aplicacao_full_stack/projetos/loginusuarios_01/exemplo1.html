@@ -1,0 +1,488 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/loginusuarios_01/exemplo1.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CRUD - Login de Usuários | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="CRUD - Login de Usuários" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/exemplo1.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/exemplo1.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CRUD - Login de Usuários" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"CRUD - Login de Usuários","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/exemplo1.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/" style="margin-left: 0.5rem;">Loginusuarios 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Crud   login de usuários</span>
+          
+        
+      </nav>
+
+      <h1 id="crud---login-de-usuários">CRUD - Login de Usuários</h1>
+
+<hr />
+
+<h2 id="️-arquitetura">🏛️ Arquitetura</h2>
+
+<p>A aplicação seguirá o padrão <strong>Monolítico Servidor-Cliente</strong>, onde o Spring Boot atua como o centro de tudo:</p>
+
+<ol>
+  <li><strong>Modelo (Model)</strong>: Classes Java que representam os dados (ex: a entidade <code class="language-plaintext highlighter-rouge">User</code>).</li>
+  <li><strong>Visão (View)</strong>: Ficheiros HTML com Thymeleaf que renderizam a interface para o utilizador.</li>
+  <li><strong>Controlador (Controller)</strong>: Classes Java que recebem os pedidos do utilizador, processam a lógica de negócio e devolvem a visão apropriada.</li>
+  <li><strong>Segurança (Security)</strong>: O Spring Security irá proteger as páginas e gerir o fluxo de autenticação.</li>
+</ol>
+
+<hr />
+
+<h2 id="-fase-1-criação-e-configuração-do-projeto">🚀 Fase 1: Criação e Configuração do Projeto</h2>
+
+<h3 id="1-gerar-o-projeto-no-spring-initializr">1. Gerar o Projeto no Spring Initializr</h3>
+
+<p>Aceda a <a href="https://start.spring.io">start.spring.io</a> e preencha:</p>
+
+<ul>
+  <li><strong>Project</strong>: <code class="language-plaintext highlighter-rouge">Maven</code></li>
+  <li><strong>Language</strong>: <code class="language-plaintext highlighter-rouge">Java</code></li>
+  <li><strong>Spring Boot</strong>: Última versão (ex: 3.3.1)</li>
+  <li><strong>Project Metadata</strong>:
+    <ul>
+      <li><strong>Group</strong>: <code class="language-plaintext highlighter-rouge">br.com.curso</code></li>
+      <li><strong>Artifact</strong>: <code class="language-plaintext highlighter-rouge">loginusuarios</code></li>
+      <li><strong>Java</strong>: <code class="language-plaintext highlighter-rouge">21</code></li>
+    </ul>
+  </li>
+  <li><strong>Dependencies</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Thymeleaf</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Data JPA</code></li>
+      <li><code class="language-plaintext highlighter-rouge">H2 Database</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Security</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-configurar-a-base-de-dados-applicationproperties">2. Configurar a Base de Dados (<code class="language-plaintext highlighter-rouge">application.properties</code>)</h3>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+<span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-fase-2-modelagem-dos-dados">🧩 Fase 2: Modelagem dos Dados</h2>
+
+<h3 id="entidade-user">Entidade <code class="language-plaintext highlighter-rouge">User</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">senha</span><span class="o">;</span>
+    <span class="c1">// getters e setters</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="repositório-userrepository">Repositório <code class="language-plaintext highlighter-rouge">UserRepository</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-fase-3-configuração-da-segurança">🔐 Fase 3: Configuração da Segurança</h2>
+
+<h3 id="classe-securityconfig">Classe <code class="language-plaintext highlighter-rouge">SecurityConfig</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">PasswordEncoder</span> <span class="nf">passwordEncoder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">BCryptPasswordEncoder</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">http</span><span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">auth</span> <span class="o">-&gt;</span> <span class="n">auth</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="s">"/registar"</span><span class="o">,</span> <span class="s">"/css/**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">formLogin</span><span class="o">(</span><span class="n">form</span> <span class="o">-&gt;</span> <span class="n">form</span>
+                <span class="o">.</span><span class="na">loginPage</span><span class="o">(</span><span class="s">"/login"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">"/usuarios"</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">logout</span> <span class="o">-&gt;</span> <span class="n">logout</span><span class="o">.</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">"/login?logout"</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="serviço-customuserdetailsservice">Serviço <code class="language-plaintext highlighter-rouge">CustomUserDetailsService</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomUserDetailsService</span> <span class="kd">implements</span> <span class="nc">UserDetailsService</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span> <span class="kd">private</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+    <span class="nd">@Autowired</span> <span class="kd">private</span> <span class="nc">PasswordEncoder</span> <span class="n">passwordEncoder</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UsernameNotFoundException</span> <span class="o">{</span>
+        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findByEmail</span><span class="o">(</span><span class="n">email</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">UsernameNotFoundException</span><span class="o">(</span><span class="s">"Utilizador não encontrado: "</span> <span class="o">+</span> <span class="n">email</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">userdetails</span><span class="o">.</span><span class="na">User</span>
+            <span class="o">.</span><span class="na">withUsername</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getEmail</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">password</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getSenha</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">authorities</span><span class="o">(</span><span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;())</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setSenha</span><span class="o">(</span><span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getSenha</span><span class="o">()));</span>
+        <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-fase-4-controladores">🖥️ Fase 4: Controladores</h2>
+
+<h3 id="authcontrollerjava"><code class="language-plaintext highlighter-rouge">AuthController.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span> <span class="kd">private</span> <span class="nc">CustomUserDetailsService</span> <span class="n">userService</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/login"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">showLoginPage</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="s">"login"</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/registar"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">showRegistrationForm</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"user"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">User</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"registar"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/registar"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">processRegistration</span><span class="o">(</span><span class="nd">@ModelAttribute</span> <span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">userService</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"redirect:/login?success"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="usercontrollerjava"><code class="language-plaintext highlighter-rouge">UserController.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span> <span class="kd">private</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/usuarios"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">listUsers</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"users"</span><span class="o">,</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"usuarios"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-fase-5-páginas-thymeleaf">🎨 Fase 5: Páginas Thymeleaf</h2>
+
+<h3 id="loginhtml"><code class="language-plaintext highlighter-rouge">login.html</code></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/login}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">required</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">required</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Entrar<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/registar}"</span><span class="nt">&gt;</span>Registe-se aqui<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<h3 id="registarhtml"><code class="language-plaintext highlighter-rouge">registar.html</code></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/registar}"</span> <span class="na">th:object=</span><span class="s">"${user}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">th:field=</span><span class="s">"*{nome}"</span> <span class="na">required</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">th:field=</span><span class="s">"*{email}"</span> <span class="na">required</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">th:field=</span><span class="s">"*{senha}"</span> <span class="na">required</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Registar<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/login}"</span><span class="nt">&gt;</span>Já tem conta? Login<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<h3 id="usuarioshtml"><code class="language-plaintext highlighter-rouge">usuarios.html</code></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;table&gt;</span>
+  <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"user : ${users}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.id}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.nome}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.email}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/logout}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Sair<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-fase-6-executar-e-testar">🏃 Fase 6: Executar e Testar</h2>
+
+<ol>
+  <li>Execute <code class="language-plaintext highlighter-rouge">LoginusuariosApplication.java</code>.</li>
+  <li>Registe em <a href="http://localhost:8080/registar">http://localhost:8080/registar</a>.</li>
+  <li>Faça login em <a href="http://localhost:8080/login">http://localhost:8080/login</a>.</li>
+  <li>Veja utilizadores em <a href="http://localhost:8080/usuarios">http://localhost:8080/usuarios</a>.</li>
+  <li>(Opcional) Explore <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a>.</li>
+</ol>
+
+<hr />
+
+<p><strong>Atualizar as páginas Thymeleaf</strong> (<code class="language-plaintext highlighter-rouge">login.html</code>, <code class="language-plaintext highlighter-rouge">registar.html</code> e <code class="language-plaintext highlighter-rouge">usuarios.html</code>) para ficarem prontas com <strong>Bootstrap 5</strong>, mantendo a estrutura bonita e responsiva.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## 🎨 Fase 5: Páginas Thymeleaf com Bootstrap</span>
+
+<span class="gu">### `login.html`</span>
+
+<span class="p">```</span><span class="nl">html
+</span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Login<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"bg-light"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row justify-content-center align-items-center"</span> <span class="na">style=</span><span class="s">"height:100vh;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-5"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"card-title text-center mb-4"</span><span class="nt">&gt;</span>Aceder ao Sistema<span class="nt">&lt;/h3&gt;</span>
+
+          <span class="c">&lt;!-- Mensagens --&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${param.error}"</span> <span class="na">class=</span><span class="s">"alert alert-danger"</span><span class="nt">&gt;</span>Email ou senha inválidos.<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${param.logout}"</span> <span class="na">class=</span><span class="s">"alert alert-info"</span><span class="nt">&gt;</span>Sessão terminada com sucesso.<span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${param.success}"</span> <span class="na">class=</span><span class="s">"alert alert-success"</span><span class="nt">&gt;</span>Registo efetuado com sucesso!<span class="nt">&lt;/div&gt;</span>
+
+          <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/login}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"username"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"username"</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span> <span class="na">autofocus</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Senha<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"password"</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-grid"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>Entrar<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/form&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"text-center mt-3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/registar}"</span><span class="nt">&gt;</span>Não tem conta? Registe-se aqui<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="registarhtml-1"><code class="language-plaintext highlighter-rouge">registar.html</code></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Registar<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"bg-light"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row justify-content-center align-items-center"</span> <span class="na">style=</span><span class="s">"height:100vh;"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-5"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"card-title text-center mb-4"</span><span class="nt">&gt;</span>Criar Conta<span class="nt">&lt;/h3&gt;</span>
+
+          <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/registar}"</span> <span class="na">th:object=</span><span class="s">"${user}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"nome"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Nome<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"nome"</span> <span class="na">th:field=</span><span class="s">"*{nome}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="na">th:field=</span><span class="s">"*{email}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"senha"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Senha<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"senha"</span> <span class="na">th:field=</span><span class="s">"*{senha}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-grid"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-success"</span><span class="nt">&gt;</span>Registar<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/form&gt;</span>
+
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"text-center mt-3"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/login}"</span><span class="nt">&gt;</span>Já tem conta? Faça login<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="usuarioshtml-1"><code class="language-plaintext highlighter-rouge">usuarios.html</code></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Lista de Utilizadores<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-expand-lg navbar-dark bg-dark"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Painel<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"d-flex"</span> <span class="na">th:action=</span><span class="s">"@{/logout}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-outline-light"</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Sair<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container mt-4"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"mb-4"</span><span class="nt">&gt;</span>Utilizadores Registados<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-striped table-hover"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead</span> <span class="na">class=</span><span class="s">"table-dark"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;th&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span>Nome<span class="nt">&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;</span>Email<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+    <span class="nt">&lt;tbody&gt;</span>
+      <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"user : ${users}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.id}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.nome}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.email}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/tbody&gt;</span>
+  <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>```</p>
+
+<p>👉 Agora todos os HTMLs estão com <strong>Bootstrap 5 integrado</strong>, com <strong>layout responsivo, cartões, alertas e tabelas estilizadas</strong>.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

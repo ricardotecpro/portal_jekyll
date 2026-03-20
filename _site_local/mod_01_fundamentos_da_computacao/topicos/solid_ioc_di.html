@@ -1,0 +1,374 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_01_fundamentos_da_computacao/topicos/solid_ioc_di.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SOLID, Inversão de Controle e Injeção de Dependência | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="SOLID, Inversão de Controle e Injeção de Dependência" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_01_fundamentos_da_computacao/topicos/solid_ioc_di.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_01_fundamentos_da_computacao/topicos/solid_ioc_di.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SOLID, Inversão de Controle e Injeção de Dependência" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"SOLID, Inversão de Controle e Injeção de Dependência","url":"https://ricardotecpro.github.io/portal_jekyll/mod_01_fundamentos_da_computacao/topicos/solid_ioc_di.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_01_fundamentos_da_computacao/" style="margin-left: 0.5rem;">Mod 01 fundamentos da computacao</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_01_fundamentos_da_computacao/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Solid, inversão de controle e injeção de dependência</span>
+          
+        
+      </nav>
+
+      <h1 id="solid-inversão-de-controle-e-injeção-de-dependência">SOLID, Inversão de Controle e Injeção de Dependência</h1>
+
+<p>A inversão de controle, a injeção de dependência e os princípios SOLID são conceitos fundamentais na engenharia de software, especialmente em aplicações bem estruturadas e escaláveis.</p>
+
+<hr />
+
+<p>✅ 𝗟𝗜𝗡𝗞𝗦 𝗖𝗜𝗧𝗔𝗗𝗢𝗦 𝗡𝗢 𝗩𝗜𝗗𝗘𝗢 ▸ The S.O.L.I.D Principles in Pictures:   <a href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqazhUWi12RU52SzUzeUxXeHNpS2QyWUh4aGp1UXxBQ3Jtc0tuamdWUm80dC1IMGRDd2JweUh3QjZVWmVIcFBndzN0RXVITEU2UFRhZklPRDNSWDQzWGJ1d1QyZDRQUEs4c3R4ekJfUkl6RzFoYVhZOTYyclFZUWVGM3VkSUN4VWhISHlXcF9McmJIU3FKOTdRRVhVcw&amp;q=https%3A%2F%2Fmedium.com%2Fbackticks-tildes%2Fthe-s-o-l-i-d-principles-in-pictures-b34ce2f1e898&amp;v=6SfrO3D4dHM"><img src="https://www.gstatic.com/youtube/img/watch/social_media/medium_1x.png" alt="" /> / the-s-o-l-i-d-principles-in-pictures</a></p>
+
+<p>https://youtu.be/6SfrO3D4dHM?si=6qC9_C0yzf37SRZM</p>
+
+<p>https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898</p>
+
+<h2 id="inversão-de-controle-ioc"><strong>Inversão de Controle (IoC)</strong></h2>
+
+<p>A <strong>Inversão de Controle</strong> (IoC - <em>Inversion of Control</em>) é um princípio de design de software que altera o fluxo tradicional do controle do programa. Em vez do código principal instanciar e gerenciar diretamente os componentes, esse controle é delegado a um framework ou contêiner.</p>
+
+<h3 id="exemplo-sem-ioc"><strong>Exemplo sem IoC</strong></h3>
+
+<p>No código abaixo, a classe <code class="language-plaintext highlighter-rouge">PedidoService</code> cria diretamente uma instância de <code class="language-plaintext highlighter-rouge">EmailNotificador</code>, gerando um forte acoplamento.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">EmailNotificador</span> <span class="n">notificador</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">PedidoService</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">notificador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EmailNotificador</span><span class="o">();</span> <span class="c1">// Acoplamento direto</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processarPedido</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Lógica do pedido</span>
+        <span class="n">notificador</span><span class="o">.</span><span class="na">enviar</span><span class="o">(</span><span class="s">"Pedido processado!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-com-ioc"><strong>Exemplo com IoC</strong></h3>
+
+<p>Aqui, a instância do notificador é passada de fora, reduzindo o acoplamento:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">PedidoService</span><span class="o">(</span><span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">notificador</span> <span class="o">=</span> <span class="n">notificador</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processarPedido</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Lógica do pedido</span>
+        <span class="n">notificador</span><span class="o">.</span><span class="na">enviar</span><span class="o">(</span><span class="s">"Pedido processado!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Agora, a classe <code class="language-plaintext highlighter-rouge">PedidoService</code> não precisa saber qual implementação do notificador será usada. Isso permite maior flexibilidade.</p>
+
+<hr />
+
+<h2 id="injeção-de-dependência-di---dependency-injection"><strong>Injeção de Dependência (DI - Dependency Injection)</strong></h2>
+
+<p>A <strong>Injeção de Dependência</strong> é uma forma de aplicar a inversão de controle. Em vez de a própria classe instanciar suas dependências, elas são fornecidas externamente (por um framework ou via construtor, método ou atributo).</p>
+
+<h3 id="formas-de-injeção-de-dependência"><strong>Formas de Injeção de Dependência</strong></h3>
+
+<ol>
+  <li>
+    <p><strong>Por Construtor (recomendada)</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">;</span>
+    
+     <span class="kd">public</span> <span class="nf">PedidoService</span><span class="o">(</span><span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">this</span><span class="o">.</span><span class="na">notificador</span> <span class="o">=</span> <span class="n">notificador</span><span class="o">;</span>
+     <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Por Método Setter</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">;</span>
+    
+     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNotificador</span><span class="o">(</span><span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">this</span><span class="o">.</span><span class="na">notificador</span> <span class="o">=</span> <span class="n">notificador</span><span class="o">;</span>
+     <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Por Injeção Direta com Frameworks (Spring, CDI, etc.)</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nd">@Service</span>
+ <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+     <span class="nd">@Autowired</span>
+     <span class="kd">private</span> <span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">;</span>
+ <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Com a DI, podemos trocar facilmente implementações sem modificar a classe <code class="language-plaintext highlighter-rouge">PedidoService</code>.</p>
+
+<hr />
+
+<h2 id="princípios-solid"><strong>Princípios SOLID</strong></h2>
+
+<p>Os princípios <strong>SOLID</strong> são um conjunto de boas práticas para tornar o código mais modular, reutilizável e fácil de manter.</p>
+
+<h3 id="1-s---single-responsibility-principle-srp---princípio-da-responsabilidade-única"><strong>1. S - Single Responsibility Principle (SRP) - Princípio da Responsabilidade Única</strong></h3>
+
+<p>Uma classe deve ter <strong>apenas um motivo para mudar</strong>, ou seja, apenas uma responsabilidade.<br />
+✅ <strong>Correto:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RelatorioService</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">gerarRelatorio</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* lógica */</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EnvioEmailService</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enviarEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">mensagem</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* lógica */</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>❌ <strong>Errado (classe faz mais de uma coisa)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RelatorioService</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">gerarRelatorio</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* lógica */</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enviarEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">mensagem</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* lógica */</span> <span class="o">}</span> <span class="c1">// Violação do SRP</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2-o---openclosed-principle-ocp---princípio-abertofechado"><strong>2. O - Open/Closed Principle (OCP) - Princípio Aberto/Fechado</strong></h3>
+
+<p>Uma classe deve estar <strong>aberta para extensão, mas fechada para modificação</strong>.</p>
+
+<p>✅ <strong>Uso de abstração para permitir extensão sem alterar código existente:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Desconto</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">calcular</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DescontoNatal</span> <span class="kd">implements</span> <span class="nc">Desconto</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcular</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">valor</span> <span class="o">*</span> <span class="mf">0.90</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>❌ <strong>Errado (método precisa ser alterado sempre que adicionamos um novo desconto)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularDesconto</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">,</span> <span class="nc">String</span> <span class="n">tipo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tipo</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"Natal"</span><span class="o">))</span> <span class="k">return</span> <span class="n">valor</span> <span class="o">*</span> <span class="mf">0.90</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tipo</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"Aniversário"</span><span class="o">))</span> <span class="k">return</span> <span class="n">valor</span> <span class="o">*</span> <span class="mf">0.85</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">valor</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-l---liskov-substitution-principle-lsp---princípio-da-substituição-de-liskov"><strong>3. L - Liskov Substitution Principle (LSP) - Princípio da Substituição de Liskov</strong></h3>
+
+<p>Uma subclasse deve poder substituir a superclasse <strong>sem alterar o comportamento esperado</strong>.</p>
+
+<p>✅ <strong>Exemplo correto:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">calcularArea</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Quadrado</span> <span class="kd">implements</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">lado</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularArea</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">lado</span> <span class="o">*</span> <span class="n">lado</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Circulo</span> <span class="kd">implements</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">raio</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularArea</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">raio</span> <span class="o">*</span> <span class="n">raio</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Agora podemos usar qualquer <code class="language-plaintext highlighter-rouge">Forma</code> sem quebrar o código.</p>
+
+<hr />
+
+<h3 id="4-i---interface-segregation-principle-isp---princípio-da-segregação-de-interfaces"><strong>4. I - Interface Segregation Principle (ISP) - Princípio da Segregação de Interfaces</strong></h3>
+
+<p>Interfaces grandes devem ser divididas em <strong>múltiplas interfaces específicas</strong>.</p>
+
+<p>❌ <strong>Errado (uma interface obriga classes a implementar métodos desnecessários)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Trabalhador</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">trabalhar</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">comer</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Robo</span> <span class="kd">implements</span> <span class="nc">Trabalhador</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">trabalhar</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ok */</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">comer</span><span class="o">()</span> <span class="o">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">UnsupportedOperationException</span><span class="o">();</span> <span class="o">}</span> <span class="c1">// Violação do ISP</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>✅ <strong>Correto (interfaces específicas para cada comportamento)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Trabalhador</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">trabalhar</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Alimentacao</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">comer</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Humano</span> <span class="kd">implements</span> <span class="nc">Trabalhador</span><span class="o">,</span> <span class="nc">Alimentacao</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">trabalhar</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ok */</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">comer</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ok */</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Robo</span> <span class="kd">implements</span> <span class="nc">Trabalhador</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">trabalhar</span><span class="o">()</span> <span class="o">{</span> <span class="cm">/* ok */</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-d---dependency-inversion-principle-dip---princípio-da-inversão-de-dependência"><strong>5. D - Dependency Inversion Principle (DIP) - Princípio da Inversão de Dependência</strong></h3>
+
+<p>Módulos de alto nível <strong>não devem depender</strong> de módulos de baixo nível, ambos devem depender de <strong>abstrações</strong>.</p>
+
+<p>❌ <strong>Errado (acoplamento forte entre classes)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">EmailNotificador</span> <span class="n">notificador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EmailNotificador</span><span class="o">();</span> <span class="c1">// Violação do DIP</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>✅ <strong>Correto (uso de abstração para reduzir acoplamento)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">PedidoService</span><span class="o">(</span><span class="nc">Notificador</span> <span class="n">notificador</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">notificador</span> <span class="o">=</span> <span class="n">notificador</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Agora podemos trocar <code class="language-plaintext highlighter-rouge">EmailNotificador</code> por <code class="language-plaintext highlighter-rouge">SMSNotificador</code> sem alterar <code class="language-plaintext highlighter-rouge">PedidoService</code>.</p>
+
+<hr />
+
+<h2 id="conclusão"><strong>Conclusão</strong></h2>
+
+<ul>
+  <li><strong>IoC</strong> muda o fluxo de controle, permitindo maior flexibilidade.</li>
+  <li><strong>DI</strong> permite injetar dependências externas, reduzindo o acoplamento.</li>
+  <li><strong>SOLID</strong> melhora a modularidade, manutenibilidade e reutilização do código.</li>
+</ul>
+
+<p>Esses conceitos são essenciais para criar <strong>aplicações escaláveis, flexíveis e fáceis de manter</strong>! 🚀</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

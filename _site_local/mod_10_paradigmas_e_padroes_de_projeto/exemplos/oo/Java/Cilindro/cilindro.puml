@@ -1,0 +1,30 @@
+@startuml
+
+package "entidades" {
+    class Cilindro {
+        - double raio
+        - double altura
+        + Cilindro(double diametro, double altura)
+        + double calcularVolume()
+        + double calcularAreaSuperficial()
+        + void mostrarDados()
+    }
+}
+
+package "aplicacao" {
+    class Programa {
+        + static Cilindro capturarDadosCilindro(Scanner sc)
+        + static void main(String[] args)
+    }
+}
+
+package "principal" {
+    class Main {
+        + static void main(String[] args)
+    }
+}
+
+Programa --> Cilindro
+Main --> Programa
+
+@enduml

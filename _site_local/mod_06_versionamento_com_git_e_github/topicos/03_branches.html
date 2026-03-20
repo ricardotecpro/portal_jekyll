@@ -1,0 +1,531 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_06_versionamento_com_git_e_github/topicos/03_branches.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🌳 Branches e Trabalho em Equipe com Git e GitHub | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🌳 Branches e Trabalho em Equipe com Git e GitHub" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/03_branches.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/03_branches.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🌳 Branches e Trabalho em Equipe com Git e GitHub" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🌳 Branches e Trabalho em Equipe com Git e GitHub","url":"https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/03_branches.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/" style="margin-left: 0.5rem;">Mod 06 versionamento com git e github</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🌳 branches e trabalho em equipe com git e github</span>
+          
+        
+      </nav>
+
+      <h1 id="-branches-e-trabalho-em-equipe-com-git-e-github">🌳 Branches e Trabalho em Equipe com Git e GitHub</h1>
+
+<p>Este guia aborda o uso de branches no Git para desenvolvimento colaborativo e gerenciamento de projetos, além de fluxos de trabalho comuns utilizando o GitHub.</p>
+
+<h2 id="-convidando-colaboradores-para-o-projeto-no-github">🤝 Convidando Colaboradores para o Projeto no GitHub</h2>
+
+<p>Projetos públicos no GitHub podem ser lidos, baixados, clonados ou “forkados” por qualquer pessoa. Um <strong>fork</strong> é uma cópia pessoal de um repositório que fica na sua conta do GitHub, permitindo que você experimente livremente sem afetar o projeto original.</p>
+
+<p>Por padrão, outros usuários não têm <strong>permissão de escrita</strong> (ou seja, não podem fazer <code class="language-plaintext highlighter-rouge">push</code> de alterações diretamente) no seu repositório remoto.</p>
+
+<p><strong>Como liberar permissão de escrita a um repositório remoto?</strong>
+Para permitir que outros usuários enviem alterações diretamente para o seu repositório:</p>
+<ol>
+  <li>No GitHub, navegue até o seu repositório.</li>
+  <li>Vá em <code class="language-plaintext highlighter-rouge">Settings</code> (Configurações).</li>
+  <li>No menu lateral, clique em <code class="language-plaintext highlighter-rouge">Collaborators</code> (Colaboradores).</li>
+  <li>Adicione os usuários desejados pelo nome de usuário, email ou nome completo.</li>
+</ol>
+
+<h2 id="-introdução-aos-branches">🌿 Introdução aos Branches</h2>
+
+<p><strong>Branches</strong> (ramificações) são linhas de desenvolvimento independentes dentro de um repositório Git. Eles permitem que você trabalhe em diferentes funcionalidades, correções de bugs ou experimentos isoladamente, sem afetar a linha principal de desenvolvimento (comumente chamada de <code class="language-plaintext highlighter-rouge">main</code> ou <code class="language-plaintext highlighter-rouge">master</code>).</p>
+
+<p><em>Imagine os branches como universos paralelos do seu projeto. Você pode criar um novo branch (<code class="language-plaintext highlighter-rouge">ft-login</code>) a partir do <code class="language-plaintext highlighter-rouge">main</code>, trabalhar nele e, quando estiver pronto, mesclar essas alterações de volta ao <code class="language-plaintext highlighter-rouge">main</code>.</em></p>
+
+<h3 id="-manipulando-branches-localmente">🔧 Manipulando Branches Localmente</h3>
+
+<p>Aqui estão os comandos básicos para gerenciar branches no seu repositório local:</p>
+
+<ul>
+  <li><strong>Listar branches:</strong>
+Mostra todos os branches locais. O branch ativo (aquele em que você está trabalhando) será destacado, geralmente com um asterisco (<code class="language-plaintext highlighter-rouge">*</code>) e em cor diferente.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Criar um novo branch:</strong>
+Cria um novo branch a partir do commit atual do branch em que você está, mas <strong>não</strong> muda para o novo branch.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch nome-do-branch
+</code></pre></div>    </div>
+    <p>Exemplo:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch ft-nova-funcionalidade
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Mudar para um branch (checkout):</strong>
+Para começar a trabalhar em um branch existente ou recém-criado, você precisa “fazer checkout” dele.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout nome-do-branch
+</code></pre></div>    </div>
+    <p>Exemplo:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout ft-nova-funcionalidade
+</code></pre></div>    </div>
+    <p><strong>Dica:</strong> Você pode criar e mudar para um novo branch em um único comando:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> nome-do-novo-branch
+<span class="c"># Exemplo: git checkout -b ft-correcao-urgente</span>
+</code></pre></div>    </div>
+    <p>A partir do Git 2.23+, você também pode usar o comando <code class="language-plaintext highlighter-rouge">git switch</code>:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Para criar e mudar</span>
+git switch <span class="nt">-c</span> nome-do-novo-branch
+<span class="c"># Para mudar para um branch existente</span>
+git switch nome-do-branch
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Deletar um branch (ação destrutiva):</strong>
+Deleta o branch especificado. Por segurança, o Git não permite deletar um branch que contenha trabalho (commits) que ainda não foi mesclado (merged) em outro branch.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-d</span> nome-do-branch-a-deletar
+</code></pre></div>    </div>
+    <p>Exemplo:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-d</span> ft-funcionalidade-concluida
+</code></pre></div>    </div>
+    <p>Você não pode deletar o branch em que está atualmente. Mude para outro branch primeiro.</p>
+  </li>
+  <li><strong>Forçar a deleção de um branch (ação destrutiva):</strong>
+Deleta o branch especificado <strong>mesmo que ele não tenha sido mesclado</strong>. Use com extrema cautela, pois você pode perder trabalho permanentemente.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-D</span> nome-do-branch-a-deletar-com-forca
+</code></pre></div>    </div>
+    <p>Exemplo:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-D</span> ft-experimento-falho
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="-merge-integrando-alterações-entre-branches">⏩ Merge: Integrando Alterações entre Branches</h2>
+
+<p>A operação de <code class="language-plaintext highlighter-rouge">merge</code> (mesclagem) serve para integrar o histórico de commits de um branch de origem (por exemplo, <code class="language-plaintext highlighter-rouge">ft-login</code>) em um branch de destino (por exemplo, <code class="language-plaintext highlighter-rouge">main</code>).</p>
+
+<p><strong>Importante:</strong> O comando <code class="language-plaintext highlighter-rouge">merge</code> deve ser executado <strong>a partir do branch de DESTINO</strong>. Ou seja, se você quer trazer as alterações de <code class="language-plaintext highlighter-rouge">ft-login</code> para <code class="language-plaintext highlighter-rouge">main</code>, primeiro você deve estar no branch <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<h3 id="merge-fast-forward">Merge Fast-Forward</h3>
+
+<p>Um merge “fast-forward” (avanço rápido) é o tipo mais simples de merge. Ele ocorre quando o branch de destino (<code class="language-plaintext highlighter-rouge">main</code>) não teve nenhum commit novo desde que o branch de feature (<code class="language-plaintext highlighter-rouge">ft-login</code>) foi criado a partir dele. Nesse caso, o Git simplesmente move o ponteiro do <code class="language-plaintext highlighter-rouge">main</code> para frente, para apontar para o mesmo commit que o <code class="language-plaintext highlighter-rouge">ft-login</code>. Não é criado um novo commit de merge.</p>
+
+<p><strong>Passo a passo (exemplo de merge fast-forward):</strong></p>
+
+<ol>
+  <li>Suponha que <code class="language-plaintext highlighter-rouge">ft-login</code> foi criado a partir de <code class="language-plaintext highlighter-rouge">main</code> e teve alguns commits. <code class="language-plaintext highlighter-rouge">main</code> não teve novos commits.</li>
+  <li>Mude para o branch de destino:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># (Estando em qualquer branch)</span>
+git checkout main
+</code></pre></div>    </div>
+  </li>
+  <li>Execute o merge com o branch de origem:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># (Estando no branch main)</span>
+git merge ft-login
+</code></pre></div>    </div>
+    <p>O <code class="language-plaintext highlighter-rouge">main</code> agora aponta para o último commit de <code class="language-plaintext highlighter-rouge">ft-login</code>.</p>
+  </li>
+</ol>
+
+<p><strong>Relação com <code class="language-plaintext highlighter-rouge">git pull</code>:</strong>
+O comando <code class="language-plaintext highlighter-rouge">git pull</code> é uma conveniência que combina dois outros comandos:</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">git fetch</code>: Baixa as alterações do repositório remoto (mas não as aplica ao seu diretório de trabalho local).</li>
+  <li><code class="language-plaintext highlighter-rouge">git merge</code>: Mescla o branch remoto correspondente (por exemplo, <code class="language-plaintext highlighter-rouge">origin/main</code>) no seu branch local atual (por exemplo, <code class="language-plaintext highlighter-rouge">main</code>).</li>
+</ol>
+
+<p><strong>Procedimento Recomendado: Atualizar Branch de Feature ANTES do Merge Final</strong></p>
+
+<p>Uma prática comum e recomendada é atualizar seu branch de feature com as últimas alterações do <code class="language-plaintext highlighter-rouge">main</code> <em>antes</em> de propor a integração final do feature branch no <code class="language-plaintext highlighter-rouge">main</code> (geralmente via Pull Request). Isso ajuda a resolver conflitos localmente no branch de feature.</p>
+
+<p>Fluxo:</p>
+<ol>
+  <li>No seu branch de feature (ex: <code class="language-plaintext highlighter-rouge">ft-login</code>), traga as últimas alterações do <code class="language-plaintext highlighter-rouge">main</code> remoto:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Estando no branch ft-login</span>
+git checkout ft-login
+
+<span class="c"># Garanta que seu main local está atualizado (opcional, mas bom)</span>
+<span class="c"># git checkout main</span>
+<span class="c"># git pull origin main</span>
+<span class="c"># git checkout ft-login</span>
+
+<span class="c"># Mescle as alterações do main no seu branch de feature</span>
+git merge main
+</code></pre></div>    </div>
+  </li>
+  <li>Resolva quaisquer conflitos que surjam.</li>
+  <li>Continue seu trabalho, faça commits.</li>
+  <li>Quando a feature estiver pronta, aí sim ela é mesclada no <code class="language-plaintext highlighter-rouge">main</code> (via <code class="language-plaintext highlighter-rouge">git merge main</code> localmente, ou, mais comumente, via Pull Request no GitHub).</li>
+</ol>
+
+<h2 id="-fluxo-de-trabalho-atualizando-e-enviando-features-com-repositórios-remotos">🔄 Fluxo de Trabalho: Atualizando e Enviando Features com Repositórios Remotos</h2>
+
+<p>Ao trabalhar em equipe ou com repositórios remotos (como no GitHub), o fluxo se expande:</p>
+
+<ol>
+  <li><strong>Sincronize seu <code class="language-plaintext highlighter-rouge">main</code> local e mescle-o no seu branch de feature:</strong>
+    <ul>
+      <li>Garanta que seu branch <code class="language-plaintext highlighter-rouge">main</code> local está atualizado com o <code class="language-plaintext highlighter-rouge">main</code> do repositório remoto (<code class="language-plaintext highlighter-rouge">origin</code>):
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># Mude para o branch main</span>
+  git checkout main
+
+  <span class="c"># Baixe e mescle as alterações do main remoto</span>
+  git pull origin main
+</code></pre></div>        </div>
+      </li>
+      <li>Volte para o seu branch de feature e mescle o <code class="language-plaintext highlighter-rouge">main</code> nele:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># Mude para o seu branch de feature (ex: ft-login)</span>
+  git checkout ft-login
+
+  <span class="c"># Mescle o branch main no seu branch de feature</span>
+  git merge main
+</code></pre></div>        </div>
+        <p>Resolva quaisquer conflitos, se houver.</p>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Envie (push) seu branch de feature para o repositório remoto:</strong>
+Após commitar suas alterações locais no branch de feature, envie-o para o repositório remoto. A flag <code class="language-plaintext highlighter-rouge">-u</code> (ou <code class="language-plaintext highlighter-rouge">--set-upstream</code>) é usada na primeira vez para vincular seu branch local ao branch remoto com o mesmo nome.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Estando no seu branch de feature (ex: ft-login)</span>
+git push <span class="nt">-u</span> origin ft-login
+</code></pre></div>    </div>
+    <p>Para pushes subsequentes no mesmo branch, <code class="language-plaintext highlighter-rouge">git push</code> geralmente é suficiente.</p>
+  </li>
+  <li><strong>Abra um Pull Request (PR) no GitHub:</strong>
+    <ul>
+      <li>No GitHub, vá para a página do repositório.</li>
+      <li>O GitHub frequentemente detecta branches recém-enviados e oferece um botão para “Compare &amp; pull request”.</li>
+      <li>Crie o Pull Request, escolhendo o branch de base (ex: <code class="language-plaintext highlighter-rouge">main</code>) e o branch de comparação (ex: <code class="language-plaintext highlighter-rouge">ft-login</code>). Descreva suas alterações.</li>
+      <li>O PR inicia um processo de revisão, discussão e testes.</li>
+    </ul>
+  </li>
+  <li><strong>Processo de Homologação e Aprovação:</strong>
+    <ul>
+      <li>O PR é revisado pela equipe. Testes automatizados (CI/CD) podem rodar.</li>
+      <li>Após aprovação, o PR é mesclado ao branch <code class="language-plaintext highlighter-rouge">main</code> no repositório remoto.</li>
+    </ul>
+  </li>
+  <li><strong>Opcional: Delete o Branch de Feature:</strong>
+    <ul>
+      <li>No GitHub, após o merge do PR, geralmente há uma opção para deletar o branch de feature remoto.</li>
+      <li>Delete também o branch localmente:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># Mude para o main (ou outro branch que não seja o que você quer deletar)</span>
+  git checkout main
+
+  <span class="c"># Delete o branch de feature localmente</span>
+  git branch <span class="nt">-d</span> ft-login
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="-merge-de-três-vias-3-way-merge">🔀 Merge de Três Vias (3-Way Merge)</h2>
+
+<p>Quando você mescla dois branches que divergiram (ambos têm commits que o outro não tem desde o ponto em que se separaram) e o Git não pode fazer um fast-forward, ele realiza um “merge de três vias” (3-way merge).</p>
+
+<p><em>Isso acontece quando, por exemplo, tanto o <code class="language-plaintext highlighter-rouge">main</code> quanto o <code class="language-plaintext highlighter-rouge">ft-login</code> tiveram novos commits desde que <code class="language-plaintext highlighter-rouge">ft-login</code> foi criado.</em></p>
+
+<p>O Git analisa três pontos (commits) para realizar a mesclagem:</p>
+<ol>
+  <li>O commit mais recente no branch de destino (ex: <code class="language-plaintext highlighter-rouge">main</code>).</li>
+  <li>O commit mais recente no branch de origem (ex: <code class="language-plaintext highlighter-rouge">ft-login</code>).</li>
+  <li>O ancestral comum mais recente de ambos os branches (o “ponto de divergência”).</li>
+</ol>
+
+<p>Um <strong>novo commit de merge</strong> é criado no branch de destino. Este commit é especial porque tem <em>dois pais</em>: o último commit do <code class="language-plaintext highlighter-rouge">main</code> (antes do merge) e o último commit do <code class="language-plaintext highlighter-rouge">ft-login</code>. Ele representa a consolidação das duas linhas de trabalho.</p>
+
+<h3 id="️-resolução-de-conflitos-de-merge">⚠️ Resolução de Conflitos de Merge</h3>
+
+<p>Um <strong>conflito de merge</strong> ocorre quando o Git não consegue decidir automaticamente como combinar as alterações de dois branches. Isso geralmente acontece quando:</p>
+<ul>
+  <li>A mesma linha (ou linhas próximas) de um arquivo foi alterada de formas diferentes nos dois branches.</li>
+  <li>Um branch deletou um arquivo que foi modificado no outro branch.</li>
+</ul>
+
+<p><strong>A resolução de conflitos é uma operação manual que exige atenção e, por vezes, discussão com a equipe.</strong></p>
+
+<p><strong>Passos para resolver um conflito:</strong></p>
+
+<ol>
+  <li><strong>Identifique os Arquivos Conflitantes:</strong>
+Quando um merge resulta em conflitos, o Git informará. O comando <code class="language-plaintext highlighter-rouge">git status</code> também mostrará os arquivos em estado de “unmerged paths” (caminhos não mesclados).
+O Git insere marcadores de conflito diretamente nos arquivos problemáticos:
+    <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">Algum código sem conflito...
+</span><span class="gd">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+</span><span class="p">Esta é a alteração vinda do seu branch atual (HEAD, ex: main).
+</span><span class="gh">=======
+</span><span class="p">Esta é a alteração vinda do branch que você está tentando mesclar (ex: ft-login).
+</span><span class="gi">&gt;&gt;&gt;&gt;&gt;&gt;&gt; ft-login
+</span><span class="p">Mais código sem conflito...
+</span></code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>: Marca o início da seção conflitante do seu branch atual.</li>
+      <li><code class="language-plaintext highlighter-rouge">=======</code>: Separa as duas versões conflitantes.</li>
+      <li><code class="language-plaintext highlighter-rouge">&gt;&gt;&gt;&gt;&gt;&gt;&gt; nome-do-outro-branch</code>: Marca o fim da seção conflitante do outro branch.</li>
+    </ul>
+  </li>
+  <li><strong>Edite o Código Fonte:</strong>
+Abra cada arquivo conflitante em seu editor de texto ou IDE.
+    <ul>
+      <li>Decida qual versão manter: a do <code class="language-plaintext highlighter-rouge">HEAD</code>, a do outro branch, uma combinação de ambas, ou até mesmo algo completamente novo.</li>
+      <li><strong>Remova manualmente os marcadores de conflito</strong> (<code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code class="language-plaintext highlighter-rouge">=======</code>, <code class="language-plaintext highlighter-rouge">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>).</li>
+      <li>Certifique-se de que o resultado final é o código funcional e desejado.</li>
+    </ul>
+
+    <p><strong>Dica sobre IDEs para Resolução de Conflitos:</strong></p>
+    <ul>
+      <li><strong>VS Code:</strong> Oferece uma interface visual integrada para resolver conflitos. Ele destaca as seções conflitantes e permite escolher “Aceitar Mudança Atual”, “Aceitar Mudança Recebida”, “Aceitar Ambas as Mudanças”, ou editar manualmente o resultado combinado.</li>
+      <li><strong>IntelliJ IDEA (e outras IDEs da JetBrains):</strong> Possuem uma ferramenta de merge visual de três painéis muito poderosa. Ela mostra sua versão, a versão do outro branch e o resultado (que você edita) lado a lado, facilitando a visualização e a combinação das alterações.</li>
+    </ul>
+  </li>
+  <li><strong>Adicione (Stage) os Arquivos Resolvidos:</strong>
+Depois de editar e salvar cada arquivo, informando ao Git que você resolveu o conflito nele:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add nome-do-arquivo-resolvido.txt
+<span class="c"># Ou, se resolveu múltiplos arquivos:</span>
+git add <span class="nb">.</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Complete o Merge com um Commit:</strong>
+Uma vez que todos os conflitos foram resolvidos e os arquivos marcados como resolvidos (com <code class="language-plaintext highlighter-rouge">git add</code>), finalize o processo de merge criando o commit de merge:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit
+</code></pre></div>    </div>
+    <p>O Git geralmente sugere uma mensagem de commit padrão para o merge (ex: “Merge branch ‘ft-login’ into main”). Você pode usar essa mensagem ou editá-la.</p>
+  </li>
+</ol>
+
+<h2 id="-procedimento-fork--pull-request-contribuindo-para-projetos-externos">🍴 Procedimento Fork + Pull Request: Contribuindo para Projetos Externos</h2>
+
+<p>Quando você quer contribuir para um projeto no GitHub no qual você <strong>não tem permissão de escrita direta</strong> (o que é o caso da maioria dos projetos de código aberto ou projetos de outras equipes/empresas), o fluxo de trabalho padrão é o “Fork + Pull Request”.</p>
+
+<ol>
+  <li><strong>Faça um “Fork” do Repositório Original:</strong>
+    <ul>
+      <li>No GitHub, navegue até a página do repositório que você quer contribuir (ex: <code class="language-plaintext highlighter-rouge">usuario-original/projeto-incrivel</code>).</li>
+      <li>Clique no botão “Fork” no canto superior direito. Isso cria uma cópia completa do repositório na sua própria conta do GitHub (ex: <code class="language-plaintext highlighter-rouge">seu-username/projeto-incrivel</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Clone o Seu Repositório “Forkado” para o Seu Computador:</strong>
+Trabalhe na sua cópia local do fork.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="o">[</span>https://github.com/seu-username/projeto-incrivel.git]<span class="o">(</span>https://github.com/seu-username/projeto-incrivel.git<span class="o">)</span>
+<span class="nb">cd </span>projeto-incrivel
+</code></pre></div>    </div>
+  </li>
+  <li><strong>(Recomendado) Configure um “Remote” para o Repositório Original (Upstream):</strong>
+Isso permite que você mantenha seu fork sincronizado com as últimas alterações do projeto original.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream <span class="o">[</span>https://github.com/usuario-original/projeto-incrivel.git]<span class="o">(</span>https://github.com/usuario-original/projeto-incrivel.git<span class="o">)</span>
+</code></pre></div>    </div>
+    <p>Você pode verificar seus remotes com <code class="language-plaintext highlighter-rouge">git remote -v</code>. Você deverá ver <code class="language-plaintext highlighter-rouge">origin</code> (seu fork) e <code class="language-plaintext highlighter-rouge">upstream</code> (o projeto original).</p>
+  </li>
+  <li><strong>Crie um Novo Branch para Suas Alterações (no seu clone local):</strong>
+Sempre crie um branch específico para sua contribuição. Não trabalhe diretamente no <code class="language-plaintext highlighter-rouge">main</code> do seu fork para isso.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> minha-nova-feature
+<span class="c"># Exemplo: git checkout -b corrige-bug-123</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Faça Suas Alterações e Commits:</strong>
+Desenvolva sua feature ou correção, fazendo commits locais normalmente.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ... edite arquivos ...</span>
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Adiciona nova feature X"</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>(Importante) Mantenha Seu Branch Sincronizado com o Repositório Original (Upstream):</strong>
+Antes de enviar suas alterações, especialmente se você demorou um tempo, é bom buscar as últimas atualizações do <code class="language-plaintext highlighter-rouge">upstream</code> e mesclá-las no seu branch de feature para evitar conflitos no Pull Request.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Busque as alterações do upstream (não mescla automaticamente)</span>
+git fetch upstream
+
+<span class="c"># Uma forma comum é mesclar o main do upstream no seu branch de feature:</span>
+<span class="c"># (Estando no seu branch minha-nova-feature)</span>
+git merge upstream/main
+<span class="c"># Resolva conflitos se houver, e faça commit do merge.</span>
+
+<span class="c"># Alternativamente, você pode usar rebase (mais avançado, mantém o histórico linear):</span>
+<span class="c"># git rebase upstream/main</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Envie (Push) Seu Branch de Feature para o <em>Seu Fork</em> no GitHub:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin minha-nova-feature
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Abra um Pull Request (PR) do Seu Fork para o Repositório Original:</strong>
+    <ul>
+      <li>Vá para a página do <em>seu fork</em> no GitHub (<code class="language-plaintext highlighter-rouge">https://github.com/seu-username/projeto-incrivel</code>).</li>
+      <li>O GitHub geralmente mostrará uma notificação “Your recently pushed branches: minha-nova-feature” com um botão “Compare &amp; pull request”. Clique nele.</li>
+      <li>Ou, vá na aba “Pull requests” e clique em “New pull request”.</li>
+      <li><strong>Configure o PR:</strong>
+        <ul>
+          <li><strong>Base repository:</strong> <code class="language-plaintext highlighter-rouge">usuario-original/projeto-incrivel</code> (o projeto original).</li>
+          <li><strong>Base branch:</strong> <code class="language-plaintext highlighter-rouge">main</code> (ou o branch de desenvolvimento principal do projeto original).</li>
+          <li><strong>Head repository:</strong> <code class="language-plaintext highlighter-rouge">seu-username/projeto-incrivel</code> (seu fork).</li>
+          <li><strong>Compare branch:</strong> <code class="language-plaintext highlighter-rouge">minha-nova-feature</code> (o branch com suas alterações).</li>
+        </ul>
+      </li>
+      <li>Escreva um título e uma descrição claros para o seu PR, explicando o que você fez e por quê.</li>
+      <li>Clique em “Create pull request”.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Discussão e Revisão:</strong>
+Os mantenedores do projeto original revisarão seu PR. Eles podem fazer comentários, pedir alterações ou aprovar. Se pedirem alterações, faça novos commits no seu branch <code class="language-plaintext highlighter-rouge">minha-nova-feature</code> local e faça <code class="language-plaintext highlighter-rouge">git push origin minha-nova-feature</code> novamente. O PR será atualizado automaticamente.</p>
+  </li>
+  <li>
+    <p><strong>Merge do Pull Request:</strong>
+Se aprovado, um mantenedor do projeto original fará o “Merge pull request”. Suas contribuições agora fazem parte do projeto original!</p>
+  </li>
+  <li><strong>(Opcional) Limpeza Pós-Merge:</strong>
+    <ul>
+      <li>Você pode deletar seu branch de feature no seu fork (o GitHub geralmente oferece um botão para isso após o merge do PR).</li>
+      <li>Delete também o branch local:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git checkout main  <span class="c"># ou o branch principal do seu fork</span>
+  git branch <span class="nt">-d</span> minha-nova-feature
+</code></pre></div>        </div>
+      </li>
+      <li>Para manter seu fork atualizado com o <code class="language-plaintext highlighter-rouge">upstream</code>, você pode periodicamente fazer:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git checkout main
+  git fetch upstream
+  git merge upstream/main
+  git push origin main
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Este é o ciclo fundamental de contribuição em muitos projetos de software colaborativos.</p>
+
+<h2 id="️-resumo-dos-comandos-principais">🛠️ Resumo dos Comandos Principais</h2>
+<p>| Comando | Descrição |
+| — | — |
+| <code class="language-plaintext highlighter-rouge">git branch</code> | Lista branches locais. |
+| <code class="language-plaintext highlighter-rouge">git branch nome-do-branch</code> | Cria um novo branch. |
+| <code class="language-plaintext highlighter-rouge">git checkout nome-do-branch</code> | Muda para o branch especificado. |
+| <code class="language-plaintext highlighter-rouge">git checkout -b nome-do-branch</code> | Cria e muda para um novo branch. |
+| <code class="language-plaintext highlighter-rouge">git branch -d nome-do-branch</code> | Deleta um branch localmente. |
+| <code class="language-plaintext highlighter-rouge">git branch -D nome-do-branch</code> | Força a deleção de um branch localmente. |
+| <code class="language-plaintext highlighter-rouge">git merge nome-do-branch</code> | Mescla o branch especificado no branch atual. |
+| <code class="language-plaintext highlighter-rouge">git pull</code> | Baixa e mescla alterações do repositório remoto. |
+| <code class="language-plaintext highlighter-rouge">git push -u origin nome-do-branch</code> | Envia o branch local para o repositório remoto e vincula-o. |
+| <code class="language-plaintext highlighter-rouge">git fetch upstream</code> | Baixa alterações do repositório original (upstream). |
+| <code class="language-plaintext highlighter-rouge">git merge upstream/main</code> | Mescla o branch <code class="language-plaintext highlighter-rouge">main</code> do repositório original no branch atual. |
+| <code class="language-plaintext highlighter-rouge">git rebase upstream/main</code> | Reaplica commits do branch atual sobre o <code class="language-plaintext highlighter-rouge">main</code> do repositório original. |
+| <code class="language-plaintext highlighter-rouge">git status</code> | Mostra o estado atual do repositório, incluindo arquivos modificados e conflitos. |
+| <code class="language-plaintext highlighter-rouge">git add .</code> | Adiciona todas as alterações ao staging area. |
+| <code class="language-plaintext highlighter-rouge">git commit -m "mensagem"</code> | Cria um novo commit com a mensagem especificada. |
+| <code class="language-plaintext highlighter-rouge">git push origin nome-do-branch</code> | Envia o branch local para o repositório remoto. |
+| <code class="language-plaintext highlighter-rouge">git remote add upstream url</code> | Adiciona um repositório remoto como upstream. |
+| <code class="language-plaintext highlighter-rouge">git remote -v</code> | Lista os repositórios remotos configurados. |
+| <code class="language-plaintext highlighter-rouge">git switch -c nome-do-branch</code> | Cria e muda para um novo branch (alternativa ao checkout). |
+| <code class="language-plaintext highlighter-rouge">git switch nome-do-branch</code> | Muda para um branch existente (alternativa ao checkout). |</p>
+
+<h2 id="-recursos-adicionais">📚 Recursos Adicionais</h2>
+<ul>
+  <li><a href="https://git-scm.com/doc">Documentação Oficial do Git</a></li>
+  <li><a href="https://guides.github.com/">GitHub Guides</a></li>
+  <li><a href="https://git-scm.com/book/en/v2">Pro Git Book</a> - Livro gratuito sobre Git</li>
+  <li><a href="https://lab.github.com/">GitHub Learning Lab</a> - Cursos interativos sobre Git e GitHub</li>
+  <li><a href="https://www.atlassian.com/git/tutorials">Atlassian Git Tutorials</a> - Tutoriais abrangentes sobre Git e fluxos de trabalho</li>
+  <li><a href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">Git Branching and Merging</a> - Capítulo do Pro Git Book sobre branches e merges</li>
+  <li><a href="https://guides.github.com/introduction/flow/">GitHub Flow</a> - Guia sobre o fluxo de trabalho do GitHub</li>
+  <li><a href="https://docs.github.com/en/pull-requests">GitHub Pull Requests</a> - Documentação oficial sobre Pull Requests no GitHub</li>
+  <li><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">GitHub Forking Workflow</a> - Guia sobre o fluxo de trabalho de fork no GitHub</li>
+  <li><a href="https://docs.github.com/en/issues">GitHub Issues</a> - Documentação sobre como usar Issues para rastreamento de bugs e gerenciamento de tarefas</li>
+  <li><a href="https://docs.github.com/en/projects">GitHub Projects</a> - Documentação sobre como usar GitHub Projects para gerenciamento de projetos</li>
+  <li><a href="https://docs.github.com/en/actions">GitHub Actions</a> - Documentação sobre automação de fluxos de trabalho com GitHub Actions</li>
+  <li><a href="https://docs.github.com/en/discussions">GitHub Discussions</a> - Documentação sobre como usar Discussions para discussões e perguntas</li>
+  <li><a href="https://docs.github.com/en/codespaces">GitHub Codespaces</a> - Documentação sobre ambientes de desenvolvimento na nuvem com GitHub Codespaces</li>
+  <li><a href="https://cli.github.com/">GitHub CLI</a> - Ferramenta de linha de comando para interagir com o GitHub</li>
+  <li><a href="https://docs.github.com/en/rest">GitHub API</a> - Documentação da API do GitHub para automação e integração</li>
+  <li><a href="https://docs.github.com/en/code-security">GitHub Security</a> - Documentação sobre segurança no GitHub, incluindo Dependabot e alertas de segurança</li>
+  <li><a href="https://github.community/">GitHub Community Forum</a> - Fórum para discutir e obter ajuda sobre GitHub</li>
+  <li><a href="https://lab.github.com/">GitHub Learning Lab</a> - Cursos interativos para aprender Git e GitHub</li>
+  <li><a href="https://education.github.com/">GitHub Education</a> - Recursos educacionais e programas para estudantes e professores</li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

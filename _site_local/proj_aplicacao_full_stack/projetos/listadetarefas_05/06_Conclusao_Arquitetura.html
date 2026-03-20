@@ -1,0 +1,45 @@
+<h1 id="️-módulo-6-análise-arquitetural-e-próximos-passos">🏛️ Módulo 6: Análise Arquitetural e Próximos Passos</h1>
+
+<h3 id="--o-que-foi-melhorado">### 📈 O Que Foi Melhorado?</h3>
+<ul>
+  <li><strong>Backend (SOLID):</strong> Desacoplamos a API da persistência com <strong>DTOs</strong>, centralizamos o tratamento de erros com <strong><code class="language-plaintext highlighter-rouge">@RestControllerAdvice</code></strong> e adicionamos <strong>validação</strong>, tornando a API mais segura e manutenível.</li>
+  <li><strong>Frontend (Clean Code):</strong> Melhoramos a gestão de estado no Angular, separando o estado da UI do modelo de dados. A UX foi aprimorada em todas as plataformas para seguir convenções específicas de cada ambiente (botões explícitos, menu de contexto, swipe).</li>
+  <li><strong>Padrões de Arquitetura:</strong> O backend segue uma arquitetura em camadas clara (MVC). O cliente Android adota estritamente o <strong>MVVM</strong>, separando a UI (View), do estado e lógica (ViewModel), e dos dados (Model/Repository).</li>
+</ul>
+
+<h3 id="--sugestões-para-o-futuro">### 🔭 Sugestões para o Futuro</h3>
+<ol>
+  <li><strong>Testes Automatizados:</strong> Esta é a melhoria mais impactante a ser feita.
+    <ul>
+      <li><strong>Backend:</strong> Adicionar testes unitários para a camada de serviço (com JUnit/Mockito) para validar a lógica de negócio sem precisar subir a aplicação. Adicionar testes de integração (com <code class="language-plaintext highlighter-rouge">@SpringBootTest</code>) para validar os endpoints do controlador.</li>
+      <li><strong>Frontend:</strong> Implementar testes de componentes no Angular (com Jest ou Karma/Jasmine) para garantir que a UI se comporta como esperado.</li>
+    </ul>
+  </li>
+  <li><strong>Containerização (Docker):</strong>
+    <ul>
+      <li>Criar um <code class="language-plaintext highlighter-rouge">Dockerfile</code> para a API Spring Boot.</li>
+      <li>Criar um arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> para orquestrar a subida da API e, futuramente, de um banco de dados persistente como PostgreSQL. Isso garante um ambiente de desenvolvimento e produção consistente e isolado.</li>
+    </ul>
+  </li>
+  <li><strong>CI/CD (Integração e Entrega Contínua):</strong>
+    <ul>
+      <li>Configurar um pipeline em ferramentas como GitHub Actions para, a cada <code class="language-plaintext highlighter-rouge">push</code> no repositório:
+        <ol>
+          <li>Executar os testes automatizados.</li>
+          <li>Construir os artefatos (JAR da API, build do Angular).</li>
+          <li>Publicar a imagem Docker da API em um registro (como o Docker Hub).</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Segurança:</strong>
+    <ul>
+      <li>A API está totalmente aberta. Implementar segurança com Spring Security e JWT (JSON Web Tokens) para proteger os endpoints, exigindo autenticação para realizar operações de escrita (POST, PUT, DELETE). Os clientes precisariam ser adaptados para armazenar o token e enviá-lo a cada requisição.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,0 +1,480 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/14_linguagem_javascript.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linguagem JavaScript 📜 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Linguagem JavaScript 📜" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/14_linguagem_javascript.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/14_linguagem_javascript.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linguagem JavaScript 📜" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Linguagem JavaScript 📜","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/14_linguagem_javascript.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Linguagem javascript 📜</span>
+          
+        
+      </nav>
+
+      <h1 id="linguagem-javascript-">Linguagem JavaScript 📜</h1>
+
+<p>Bem-vindo ao guia de JavaScript (JS), a linguagem de programação que impulsiona a web. Originalmente criada para adicionar interatividade às páginas da internet, hoje o JavaScript é uma linguagem multifuncional que roda em navegadores, servidores (com Node.js), aplicativos mobile e muito mais, sendo uma das tecnologias mais importantes e demandadas do mercado.</p>
+
+<h2 id="️-instalação-e-configuração-do-ambiente">🛠️ Instalação e Configuração do Ambiente</h2>
+
+<p>Uma das grandes vantagens do JavaScript é que ele não exige uma instalação complexa para começar. Ele possui dois ambientes de execução principais:</p>
+
+<ol>
+  <li>
+    <p><strong>Navegador Web (Browser)</strong>:</p>
+
+    <ul>
+      <li><strong>Instalação</strong>: Nenhuma! Todo navegador moderno (Chrome, Firefox, Edge) já possui um motor JavaScript integrado.</li>
+      <li><strong>Como usar</strong>: Pressione a tecla <code class="language-plaintext highlighter-rouge">F12</code> em qualquer página da web para abrir as <strong>Ferramentas de Desenvolvedor</strong> e vá para a aba <strong>“Console”</strong>. Você pode escrever e executar código JavaScript diretamente ali.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Node.js (Fora do Navegador)</strong>:</p>
+
+    <ul>
+      <li><strong>Instalação</strong>: Para rodar JavaScript no seu computador (para criar servidores, scripts de automação, etc.), você precisa do <strong>Node.js</strong>. Baixe a versão LTS do <a href="https://nodejs.org/">site oficial</a>. O instalador já inclui o <code class="language-plaintext highlighter-rouge">npm</code> (Node Package Manager), que é usado para gerenciar bibliotecas.</li>
+      <li><strong>Como usar</strong>: Após instalar, você pode criar um arquivo (ex: <code class="language-plaintext highlighter-rouge">meu_programa.js</code>) e executá-lo no terminal com o comando: <code class="language-plaintext highlighter-rouge">node meu_programa.js</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="ide-ambiente-de-desenvolvimento-integrado">IDE (Ambiente de Desenvolvimento Integrado)</h3>
+
+<ul>
+  <li><strong>Visual Studio Code (Recomendado)</strong>: O VS Code é a escolha principal para desenvolvimento JavaScript. Ele oferece suporte nativo excelente, além de extensões poderosas como “Prettier” para formatação de código e “ESLint” para encontrar erros e forçar boas práticas.</li>
+</ul>
+
+<h3 id="-seu-primeiro-programa-em-javascript">🚀 Seu Primeiro Programa em JavaScript</h3>
+
+<p>Vamos ver como executar um “Olá, Mundo!” nos dois ambientes.</p>
+
+<p><strong>No Console do Navegador ou em um arquivo com Node.js:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Ola, Universo JavaScript!</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">console.log()</code> é a função universal para imprimir informações no console, seja no navegador ou no terminal do Node.js.</p>
+
+<h2 id="-tipos-de-dados-e-variáveis">📊 Tipos de Dados e Variáveis</h2>
+
+<p>JavaScript é uma linguagem de <strong>tipagem dinâmica</strong>, assim como Python. O tipo de uma variável é determinado pelo valor que ela recebe. Para declarar variáveis, usamos as palavras-chave <code class="language-plaintext highlighter-rouge">let</code> (para valores que podem mudar) e <code class="language-plaintext highlighter-rouge">const</code> (para valores constantes).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Significado</th>
+      <th style="text-align: left">Tipo em JavaScript</th>
+      <th style="text-align: left">Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Número</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">number</code></td>
+      <td style="text-align: left">Usado tanto para inteiros quanto para números de ponto flutuante. Não há distinção entre <code class="language-plaintext highlighter-rouge">int</code> e <code class="language-plaintext highlighter-rouge">float</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Texto</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td style="text-align: left">Para sequências de caracteres. Pode ser declarado com aspas simples (<code class="language-plaintext highlighter-rouge">'...'</code>), duplas (<code class="language-plaintext highlighter-rouge">"..."</code>) ou crases (<code class="language-plaintext highlighter-rouge">`...`</code>).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Valor Lógico</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td style="text-align: left">Aceita apenas os valores <code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Nulo Intencional</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">null</code></td>
+      <td style="text-align: left">Representa a ausência intencional de um valor de objeto.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Não Definido</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">undefined</code></td>
+      <td style="text-align: left">Uma variável que foi declarada, mas ainda não teve um valor atribuído.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Objeto</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">object</code></td>
+      <td style="text-align: left">Usado para coleções de dados mais complexas e é a base para quase tudo em JS.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-declaração-e-formatação-de-saída">📝 Declaração e Formatação de Saída</h2>
+
+<p>Para construir strings com variáveis, a forma mais moderna e legível é usar <strong>Template Literals</strong>, que são strings declaradas entre crases (<code class="language-plaintext highlighter-rouge">`</code>) e permitem a interpolação de variáveis com <code class="language-plaintext highlighter-rouge">${...}</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Usamos 'let' para variáveis que podem ser alteradas e 'const' para constantes.</span>
+<span class="kd">const</span> <span class="nx">nome</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Gabriel Lima</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//</span>
+<span class="kd">let</span> <span class="nx">idade</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span> <span class="c1">//</span>
+<span class="kd">let</span> <span class="nx">salario</span> <span class="o">=</span> <span class="mf">5500.99</span><span class="p">;</span> <span class="c1">//</span>
+<span class="kd">let</span> <span class="nx">isEstudante</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">//</span>
+
+<span class="c1">// Usando Template Literals para uma saída limpa e formatada.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`NOME = </span><span class="p">${</span><span class="nx">nome</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> <span class="c1">//</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`IDADE = </span><span class="p">${</span><span class="nx">idade</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> <span class="c1">//</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SALARIO = </span><span class="p">${</span><span class="nx">salario</span><span class="p">.</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span> <span class="c1">// O método .toFixed(2) formata o número para 2 casas decimais.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`É ESTUDANTE? = </span><span class="p">${</span><span class="nx">isEstudante</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> <span class="c1">//</span>
+</code></pre></div></div>
+
+<h2 id="-operadores">🔢 Operadores</h2>
+
+<h3 id="aritméticos">Aritméticos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Resto da divisão (módulo)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">**</code></td>
+      <td style="text-align: left">Exponenciação</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="comparativos">Comparativos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left">Igual (compara apenas o valor, pode converter o tipo)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">===</code></td>
+      <td style="text-align: left">Estritamente igual (compara o valor E o tipo)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!==</code></td>
+      <td style="text-align: left">Estritamente diferente</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual a</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Importante</strong>: Em JavaScript, prefira <strong>sempre</strong> usar a comparação estrita (<code class="language-plaintext highlighter-rouge">===</code> e <code class="language-plaintext highlighter-rouge">!==</code>). Isso evita bugs inesperados causados pela conversão automática de tipos que o <code class="language-plaintext highlighter-rouge">==</code> faz (por exemplo, <code class="language-plaintext highlighter-rouge">7 == "7"</code> é <code class="language-plaintext highlighter-rouge">true</code>, mas <code class="language-plaintext highlighter-rouge">7 === "7"</code> é <code class="language-plaintext highlighter-rouge">false</code>).</p>
+
+<h3 id="lógicos">Lógicos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left">E</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left">OU</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left">NÃO</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-entrada-de-dados">📥 Entrada de Dados</h2>
+
+<p>A forma de receber dados do usuário varia conforme o ambiente de execução.</p>
+
+<h3 id="no-navegador">No Navegador</h3>
+
+<p>No navegador, a maneira mais simples de pedir uma informação ao usuário é com a função <code class="language-plaintext highlighter-rouge">prompt()</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// prompt() exibe uma caixa de diálogo e sempre retorna uma string.</span>
+<span class="kd">let</span> <span class="nx">nome</span> <span class="o">=</span> <span class="nf">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite seu nome:</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">idade</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nf">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite sua idade:</span><span class="dl">"</span><span class="p">));</span> <span class="c1">// parseInt() converte a string para um número inteiro.</span>
+<span class="kd">let</span> <span class="nx">altura</span> <span class="o">=</span> <span class="nf">parseFloat</span><span class="p">(</span><span class="nf">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite sua altura:</span><span class="dl">"</span><span class="p">));</span> <span class="c1">// parseFloat() converte para número com decimais.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Olá, </span><span class="p">${</span><span class="nx">nome</span><span class="p">}</span><span class="s2">! Você tem </span><span class="p">${</span><span class="nx">idade</span><span class="p">}</span><span class="s2"> anos e </span><span class="p">${</span><span class="nx">altura</span><span class="p">}</span><span class="s2">m de altura.`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="no-nodejs">No Node.js</h3>
+
+<p>Para ler dados de forma síncrona no terminal com Node.js (semelhante a outras linguagens), podemos usar uma biblioteca externa. Uma opção simples para iniciantes é a <code class="language-plaintext highlighter-rouge">readline-sync</code>.</p>
+
+<ol>
+  <li><strong>Instale a biblioteca</strong>: No seu terminal, execute <code class="language-plaintext highlighter-rouge">npm install readline-sync</code>.</li>
+  <li><strong>Use no seu código</strong>:</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Importa a biblioteca instalada.</span>
+<span class="kd">const</span> <span class="nx">readline</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Usa os métodos para fazer perguntas e ler as respostas.</span>
+<span class="kd">const</span> <span class="nx">nome</span> <span class="o">=</span> <span class="nx">readline</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite seu nome: </span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">idade</span> <span class="o">=</span> <span class="nx">readline</span><span class="p">.</span><span class="nf">questionInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite sua idade: </span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">salario</span> <span class="o">=</span> <span class="nx">readline</span><span class="p">.</span><span class="nf">questionFloat</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite seu salario: </span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">
+--- DADOS REGISTRADOS ---</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Nome: </span><span class="p">${</span><span class="nx">nome</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Idade: </span><span class="p">${</span><span class="nx">idade</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Salario: </span><span class="p">${</span><span class="nx">salario</span><span class="p">.</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="-estruturas-de-controle">🔀 Estruturas de Controle</h2>
+
+<p>JavaScript usa chaves <code class="language-plaintext highlighter-rouge">{}</code> para delimitar blocos de código, de forma similar a C, Java e C#.</p>
+
+<h3 id="estrutura-condicional-ifelse-ifelse">Estrutura Condicional (<code class="language-plaintext highlighter-rouge">if/else if/else</code>)</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">hora</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">getHours</span><span class="p">();</span> <span class="c1">// Pega a hora atual do sistema.</span>
+
+<span class="k">if </span><span class="p">(</span><span class="nx">hora</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Bom dia!</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">hora</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Boa tarde!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Boa noite!</span><span class="dl">"</span><span class="p">);</span> <span class="c1">//</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="estrutura-de-repetição-while">Estrutura de Repetição <code class="language-plaintext highlighter-rouge">while</code></h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">// No Node.js com readline-sync</span>
+<span class="kd">let</span> <span class="nx">numero</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite um numero (0 para sair): </span><span class="dl">"</span><span class="p">);</span>
+
+<span class="k">while </span><span class="p">(</span><span class="nx">numero</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">soma</span> <span class="o">=</span> <span class="nx">soma</span> <span class="o">+</span> <span class="nx">numero</span><span class="p">;</span>
+    <span class="nx">numero</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite outro numero (0 para sair): </span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SOMA FINAL = </span><span class="p">${</span><span class="nx">soma</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="estrutura-de-repetição-for">Estrutura de Repetição <code class="language-plaintext highlighter-rouge">for</code></h3>
+
+<p>O laço <code class="language-plaintext highlighter-rouge">for</code> clássico é idêntico ao de C/Java/C#.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Quantos numeros voce quer somar? </span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">valor</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="s2">`Digite o valor #</span><span class="p">${</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">: `</span><span class="p">);</span>
+    <span class="nx">soma</span> <span class="o">+=</span> <span class="nx">valor</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`SOMA = </span><span class="p">${</span><span class="nx">soma</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="-vetores-e-matrizes-arrays">📏 Vetores e Matrizes (Arrays)</h2>
+
+<p>O <code class="language-plaintext highlighter-rouge">Array</code> em JavaScript é uma estrutura de dados extremamente versátil e dinâmica, que pode crescer e diminuir de tamanho.</p>
+
+<h3 id="vetores-arrays">Vetores (Arrays)</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Quantos numeros voce vai digitar? </span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">vetor</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// Declara um array vazio.</span>
+
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">numero</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionFloat</span><span class="p">(</span><span class="s2">`Digite o numero #</span><span class="p">${</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">: `</span><span class="p">);</span>
+    <span class="nx">vetor</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">numero</span><span class="p">);</span> <span class="c1">// .push() adiciona um elemento ao final do array.</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">
+NUMEROS DIGITADOS:</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">vetor</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">vetor</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="matrizes-arrays-de-arrays">Matrizes (Arrays de Arrays)</h3>
+
+<p>Uma matriz em JavaScript é um array cujos elementos são outros arrays.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">m</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Quantas linhas tera a matriz? </span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Quantas colunas tera a matriz? </span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">matriz</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">m</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">matriz</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// Cria uma linha (um array vazio)</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matriz</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">readline-sync</span><span class="dl">'</span><span class="p">).</span><span class="nf">questionInt</span><span class="p">(</span><span class="s2">`Elemento [</span><span class="p">${</span><span class="nx">i</span><span class="p">}</span><span class="s2">,</span><span class="p">${</span><span class="nx">j</span><span class="p">}</span><span class="s2">]: `</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">
+MATRIZ DIGITADA:</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">m</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">matriz</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nf">join</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">));</span> <span class="c1">// .join(' ') une os elementos da linha com um espaço.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-depuração-debugging-em-javascript">🐞 Depuração (Debugging) em JavaScript</h2>
+
+<h3 id="debugging-no-navegador">Debugging no Navegador</h3>
+
+<ol>
+  <li>Abra a página e pressione <code class="language-plaintext highlighter-rouge">F12</code> para abrir as Ferramentas de Desenvolvedor.</li>
+  <li>Vá para a aba <strong>Sources</strong> (Fontes).</li>
+  <li>Encontre seu arquivo <code class="language-plaintext highlighter-rouge">.js</code> na lista de arquivos.</li>
+  <li>Clique na margem esquerda, ao lado do número da linha, para adicionar um <strong>breakpoint</strong> (ponto de parada).</li>
+  <li>Atualize a página ou execute a ação que dispara o código. A execução pausará no seu breakpoint, permitindo que você inspecione variáveis.</li>
+</ol>
+
+<h3 id="debugging-no-vs-code-com-nodejs">Debugging no VS Code (com Node.js)</h3>
+
+<ol>
+  <li>Abra seu arquivo <code class="language-plaintext highlighter-rouge">.js</code>.</li>
+  <li>Clique na margem à esquerda de uma linha para adicionar um <strong>breakpoint</strong>.</li>
+  <li>Pressione <code class="language-plaintext highlighter-rouge">F5</code> para iniciar o depurador. Se for a primeira vez, o VS Code pode pedir para você selecionar o ambiente (escolha <strong>Node.js</strong>).</li>
+  <li>A execução pausará no breakpoint, e você poderá inspecionar variáveis, controlar a execução (com <code class="language-plaintext highlighter-rouge">F10</code> para passar por cima) e ver a pilha de chamadas no painel esquerdo.</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

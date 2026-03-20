@@ -1,0 +1,578 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.api.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Projeto Lista de Tarefas” (To-Do List) | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Projeto Lista de Tarefas” (To-Do List)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.api.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.api.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Projeto Lista de Tarefas” (To-Do List)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Projeto Lista de Tarefas” (To-Do List)","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.api.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/" style="margin-left: 0.5rem;">Listadetarefas 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 projeto lista de tarefas" (to do list)</span>
+          
+        
+      </nav>
+
+      <h1 id="-projeto-lista-de-tarefas-to-do-list">🚀 Projeto Lista de Tarefas” (To-Do List)</h1>
+<p>v1.1</p>
+
+<p>Este guia é uma sequência didática projetada para ensinar, passo a passo, como construir uma API RESTful robusta e moderna utilizando Spring Boot. Vamos abordar desde a configuração inicial até práticas avançadas de engenharia de software.</p>
+
+<h2 id="-objetivo">🎯 Objetivo</h2>
+
+<p>Ao final deste tutorial, você terá construído uma API completa para um sistema de “Lista de Tarefas” (To-Do List), capaz de realizar as operações de <strong>Criar, Ler, Atualizar e Deletar</strong> (CRUD).</p>
+
+<h2 id="️-módulo-1-preparando-o-terreno">🛠️ Módulo 1: Preparando o Terreno</h2>
+
+<h3 id="11---configurando-o-projeto">1.1 - Configurando o Projeto</h3>
+
+<p>Vamos começar criando nosso projeto com o <strong>Spring Initializr</strong>, a ferramenta oficial para iniciar projetos Spring.</p>
+
+<ol>
+  <li>Acesse <a href="https://start.spring.io">start.spring.io</a>.</li>
+  <li>Preencha os metadados do projeto:
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Project</strong>: <code class="language-plaintext highlighter-rouge">Maven</code> 📌</td>
+              <td>⚠️ Atenção não usar Gradle</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li><strong>Language</strong>: <code class="language-plaintext highlighter-rouge">Java</code></li>
+      <li><strong>Spring Boot</strong>: Use a versão estável mais recente (ex: 3.x.x).</li>
+      <li><strong>Group</strong>: <code class="language-plaintext highlighter-rouge">br.com.curso</code></li>
+      <li><strong>Artifact</strong>: <code class="language-plaintext highlighter-rouge">listadetarefas.api</code></li>
+      <li><strong>Description</strong>: <code class="language-plaintext highlighter-rouge">Projeto Lista de Tarefas" (To-Do List)</code></li>
+      <li><strong>Package name</strong>: <code class="language-plaintext highlighter-rouge">br.com.curso.listadetarefas.api</code></li>
+      <li><strong>Packaging</strong>: <code class="language-plaintext highlighter-rouge">Jar</code></li>
+      <li><strong>Java</strong>: <code class="language-plaintext highlighter-rouge">21</code> (ou a versão que você tiver instalada)</li>
+    </ul>
+  </li>
+  <li>Adicione as seguintes dependências (<code class="language-plaintext highlighter-rouge">Dependencies</code>):
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code>: Para criar APIs REST.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Data JPA</code>: Para facilitar o acesso a dados.</li>
+      <li><code class="language-plaintext highlighter-rouge">H2 Database</code>: Um banco de dados em memória, ótimo para desenvolvimento.</li>
+      <li><code class="language-plaintext highlighter-rouge">Lombok</code>: Para reduzir código repetitivo (getters, setters, etc.).</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Boot DevTools</code>: Para reinicializações automáticas durante o desenvolvimento.</li>
+    </ul>
+  </li>
+  <li>Clique em <strong>GENERATE</strong> e extraia o arquivo <code class="language-plaintext highlighter-rouge">.zip</code> em seu computador.</li>
+</ol>
+
+<h3 id="12---estrutura-inicial-do-projeto">1.2 - Estrutura Inicial do Projeto</h3>
+
+<p>Após abrir o projeto em sua IDE (IntelliJ, VS Code, Eclipse), a estrutura de pastas será a seguinte:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas.api/
+├── pom.xml                # Arquivo de configuração do Maven com nossas dependências
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── br/com/curso/listadetarefasapi/
+    │   │       └── listadetarefasApiApplication.java  # Ponto de entrada da aplicação
+    │   └── resources/
+    │       └── application.properties         # Configurações da aplicação
+    └── test/
+        └── ...
+</code></pre></div></div>
+
+<h3 id="13---configurando-o-banco-de-dados">1.3 - Configurando o Banco de Dados</h3>
+
+<p>Abra o arquivo <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code> e adicione as seguintes linhas para configurar nosso banco de dados H2 em memória:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Nome da aplicação
+</span><span class="py">spring.application.name</span><span class="p">=</span><span class="s">listadetarefas.api</span>
+
+<span class="c"># Habilita o console web do H2 para visualizarmos o banco
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+
+<span class="c"># Configurações de conexão com o banco
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+
+<span class="c"># Informa ao Hibernate qual "dialeto" SQL usar
+</span><span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+
+<span class="c"># Garante que as tabelas sejam criadas antes de tentar inserir dados
+</span><span class="py">spring.jpa.defer-datasource-initialization</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<h2 id="-módulo-2-a-camada-de-dados">📦 Módulo 2: A Camada de Dados</h2>
+
+<p>Nesta etapa, vamos modelar como os dados de uma “Tarefa” serão armazenados.</p>
+
+<h3 id="21---criando-a-entidade-tarefa">2.1 - Criando a Entidade <code class="language-plaintext highlighter-rouge">Tarefa</code></h3>
+
+<p>Uma <strong>Entidade</strong> é uma classe Java que representa uma tabela no banco de dados.</p>
+
+<ol>
+  <li>Crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">tarefa</code> dentro de <code class="language-plaintext highlighter-rouge">br.com.curso.listadetarefas.api</code>.</li>
+  <li>Dentro deste pacote, crie a classe <code class="language-plaintext highlighter-rouge">Tarefa.java</code>.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+
+<span class="nd">@Data</span> <span class="c1">// Lombok: gera getters, setters, etc.</span>
+<span class="nd">@Entity</span> <span class="c1">// JPA: Marca como uma entidade</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tb_tarefas"</span><span class="o">)</span> <span class="c1">// JPA: Define o nome da tabela</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tarefa</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span> <span class="c1">// JPA: Marca como chave primária</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span> <span class="c1">// JPA: Define a geração automática do ID</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="22---diagrama-entidade-relacionamento-er">2.2 - Diagrama Entidade-Relacionamento (ER)</h3>
+
+<p>A classe acima será mapeada para a seguinte estrutura no banco de dados:</p>
+
+<pre><code class="language-mermaid">erDiagram
+    TB_TAREFAS {
+        Long id PK "Chave Primária, Auto-incremento"
+        String titulo "Título da tarefa"
+        String descricao "Descrição detalhada"
+        boolean concluida "Indica se a tarefa foi finalizada"
+    }
+</code></pre>
+
+<h3 id="23---criando-o-repositório-tarefarepository">2.3 - Criando o Repositório <code class="language-plaintext highlighter-rouge">TarefaRepository</code></h3>
+
+<p>Um <strong>Repositório</strong> é uma interface que abstrai o acesso aos dados. O Spring Data JPA implementará os métodos para nós!</p>
+
+<ol>
+  <li>No mesmo pacote <code class="language-plaintext highlighter-rouge">tarefa</code>, crie a interface <code class="language-plaintext highlighter-rouge">TarefaRepository.java</code>.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TarefaRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>E é só isso! Agora já temos métodos como <code class="language-plaintext highlighter-rouge">save()</code>, <code class="language-plaintext highlighter-rouge">findById()</code>, <code class="language-plaintext highlighter-rouge">findAll()</code> e <code class="language-plaintext highlighter-rouge">deleteById()</code> prontos para usar.</p>
+
+<h2 id="-módulo-3-a-camada-de-lógica-de-negócios">🧠 Módulo 3: A Camada de Lógica de Negócios</h2>
+
+<p>A camada de <strong>Serviço</strong> orquestra as operações e contém as regras de negócio da nossa aplicação.</p>
+
+<ol>
+  <li>No pacote <code class="language-plaintext highlighter-rouge">tarefa</code>, crie a classe <code class="language-plaintext highlighter-rouge">TarefaService.java</code>.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Service</span> <span class="c1">// Spring: Marca como um componente de serviço</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+
+    <span class="c1">// Injeção de dependência via construtor (prática recomendada)</span>
+    <span class="kd">public</span> <span class="nf">TarefaService</span><span class="o">(</span><span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tarefaRepository</span> <span class="o">=</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTodas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Outros métodos (criar, atualizar, etc.) virão aqui...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-módulo-4-expondo-a-api-com-o-controller">🔌 Módulo 4: Expondo a API com o Controller</h2>
+
+<p>O <strong>Controller</strong> é a porta de entrada da nossa API. Ele recebe as requisições HTTP e as direciona para a camada de serviço.</p>
+
+<ol>
+  <li>No pacote <code class="language-plaintext highlighter-rouge">tarefa</code>, crie a classe <code class="language-plaintext highlighter-rouge">TarefaController.java</code>.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span> <span class="c1">// Spring: Define que esta classe é um controller REST</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span> <span class="c1">// Define a URL base para todos os métodos: http://localhost:8080/tarefas</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TarefaController</span><span class="o">(</span><span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tarefaService</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span> <span class="c1">// Mapeia requisições HTTP GET para este método</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTarefas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="41---testando-o-primeiro-endpoint">4.1 - Testando o Primeiro Endpoint</h3>
+
+<ol>
+  <li><strong>Execute a aplicação</strong>: Rode a classe <code class="language-plaintext highlighter-rouge">listadetarefasApiApplication.java</code>.</li>
+  <li><strong>Acesse no navegador</strong>: Abra a URL <code class="language-plaintext highlighter-rouge">http://localhost:8080/tarefas</code>.</li>
+</ol>
+
+<p>Você deverá ver uma lista vazia <code class="language-plaintext highlighter-rouge">[]</code>, pois ainda não temos dados. Vamos adicionar alguns dados de exemplo! Crie o arquivo <code class="language-plaintext highlighter-rouge">src/main/resources/data.sql</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TB_TAREFAS</span> <span class="p">(</span><span class="n">TITULO</span><span class="p">,</span> <span class="n">DESCRICAO</span><span class="p">,</span> <span class="n">CONCLUIDA</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'Configurar o Backend'</span><span class="p">,</span> <span class="s1">'Criar a entidade e o repositório da Tarefa.'</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TB_TAREFAS</span> <span class="p">(</span><span class="n">TITULO</span><span class="p">,</span> <span class="n">DESCRICAO</span><span class="p">,</span> <span class="n">CONCLUIDA</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'Criar a API REST'</span><span class="p">,</span> <span class="s1">'Desenvolver o endpoint para listar as tarefas.'</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Reinicie a aplicação e acesse a URL novamente. Agora você verá os dados em formato JSON!</p>
+
+<hr />
+
+<p>O tutorial cobre de forma exemplar a configuração do projeto e a implementação da funcionalidade de <strong>Leitura (Read)</strong> do CRUD.</p>
+
+<p>Para dar continuidade e atingir o objetivo de ter um CRUD completo, podemos agora implementar as operações de <strong>Criar (Create), Atualizar (Update) e Deletar (Delete)</strong>. Abaixo, apresento a continuação do seu projeto, seguindo o mesmo formato e didática.</p>
+
+<hr />
+
+<h2 id="módulo-5-implementando-as-operações-de-escrita-create--update">Módulo 5: Implementando as Operações de Escrita (Create &amp; Update)</h2>
+
+<p>Agora que já conseguimos listar nossas tarefas, vamos adicionar a capacidade de criar novas e modificar as existentes.</p>
+
+<h3 id="51---adicionando-o-método-de-criação-no-tarefaservice">5.1 - Adicionando o Método de Criação no <code class="language-plaintext highlighter-rouge">TarefaService</code></h3>
+
+<p>Vamos adicionar a lógica para salvar uma nova tarefa no banco de dados.</p>
+
+<ol>
+  <li>Abra a classe <code class="language-plaintext highlighter-rouge">TarefaService.java</code>.</li>
+  <li>Adicione o método <code class="language-plaintext highlighter-rouge">criarTarefa</code>.</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro da classe TarefaService)</span>
+
+    <span class="c1">// ... (método listarTodas existente)</span>
+
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Aqui poderíamos adicionar regras de negócio,</span>
+        <span class="c1">// como validações, antes de salvar.</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="52---criando-o-endpoint-de-criação-no-tarefacontroller">5.2 - Criando o Endpoint de Criação no <code class="language-plaintext highlighter-rouge">TarefaController</code></h3>
+
+<p>Agora, vamos expor o método do serviço através de um novo endpoint na API. Usaremos o método HTTP <code class="language-plaintext highlighter-rouge">POST</code>.</p>
+
+<ol>
+  <li>Abra a classe <code class="language-plaintext highlighter-rouge">TarefaController.java</code>.</li>
+  <li>Adicione as importações necessárias e o novo método.</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="c1">// Novas importações</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestBody</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ResponseStatus</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TarefaController</span><span class="o">(</span><span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tarefaService</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTarefas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// NOVO MÉTODO</span>
+    <span class="nd">@PostMapping</span> <span class="c1">// Mapeia requisições HTTP POST</span>
+    <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span> <span class="c1">// Retorna o status 201 Created em caso de sucesso</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// @RequestBody indica que os dados da tarefa virão no corpo da requisição</span>
+        <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">criarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Para testar:</strong> Use uma ferramenta como o Y.A.R.C, Postman ou Insomnia para enviar uma requisição <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">http://localhost:8080/tarefas</code> com o seguinte corpo (JSON):</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"titulo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Estudar Spring Boot"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Implementar o restante do CRUD."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"concluida"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="53---adicionando-os-métodos-de-atualização">5.3 - Adicionando os Métodos de Atualização</h3>
+
+<p>A atualização seguirá uma lógica parecida, mas precisamos identificar <em>qual</em> tarefa será atualizada.</p>
+
+<ol>
+  <li><strong>No <code class="language-plaintext highlighter-rouge">TarefaService.java</code></strong>:</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro da classe TarefaService)</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span> <span class="c1">// Importe esta classe</span>
+
+<span class="c1">// ... (outros métodos)</span>
+
+    <span class="kd">public</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">atualizarTarefa</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Tarefa</span> <span class="n">tarefaAtualizada</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Busca a tarefa pelo ID para garantir que ela existe</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefaExistente</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">.</span><span class="na">getTitulo</span><span class="o">());</span>
+                <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">());</span>
+                <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">.</span><span class="na">isConcluida</span><span class="o">());</span>
+                <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefaExistente</span><span class="o">);</span>
+            <span class="o">});</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>No <code class="language-plaintext highlighter-rouge">TarefaController.java</code></strong>:</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro da classe TarefaController)</span>
+
+<span class="c1">// Novas importações</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PathVariable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PutMapping</span><span class="o">;</span>
+
+<span class="c1">// ...</span>
+
+    <span class="c1">// NOVO MÉTODO</span>
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span> <span class="c1">// Mapeia requisições HTTP PUT para /tarefas/{id}</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">atualizarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// @PathVariable extrai o 'id' da URL</span>
+        <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizarTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">tarefa</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefaAtualizada</span> <span class="o">-&gt;</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">());</span> <span class="c1">// Retorna 404 se não encontrar</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Para testar:</strong> Envie uma requisição <code class="language-plaintext highlighter-rouge">PUT</code> para <code class="language-plaintext highlighter-rouge">http://localhost:8080/tarefas/3</code> (assumindo que o ID 3 foi criado) com um corpo JSON contendo os dados atualizados.</p>
+
+<h2 id="️-módulo-6-implementando-a-operação-de-deleção-delete">🗑️ Módulo 6: Implementando a Operação de Deleção (Delete)</h2>
+
+<p>Finalmente, vamos permitir que uma tarefa seja removida.</p>
+
+<h3 id="61---adicionando-o-método-de-deleção-no-tarefaservice">6.1 - Adicionando o Método de Deleção no <code class="language-plaintext highlighter-rouge">TarefaService</code></h3>
+
+<p>Este método verificará se a tarefa existe antes de deletá-la.</p>
+
+<ol>
+  <li><strong>No <code class="language-plaintext highlighter-rouge">TarefaService.java</code></strong>:</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro da classe TarefaService)</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tarefaRepository</span><span class="o">.</span><span class="na">existsById</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="c1">// Deletado com sucesso</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// Tarefa não encontrada</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="62---criando-o-endpoint-de-deleção-no-tarefacontroller">6.2 - Criando o Endpoint de Deleção no <code class="language-plaintext highlighter-rouge">TarefaController</code></h3>
+
+<p>Este endpoint receberá o ID da tarefa a ser deletada pela URL.</p>
+
+<ol>
+  <li><strong>No <code class="language-plaintext highlighter-rouge">TarefaController.java</code></strong>:</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro da classe TarefaController)</span>
+
+<span class="c1">// Nova importação</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.DeleteMapping</span><span class="o">;</span>
+
+<span class="c1">// ...</span>
+
+    <span class="c1">// NOVO MÉTODO</span>
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tarefaService</span><span class="o">.</span><span class="na">deletarTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span> <span class="c1">// Retorna 204 No Content (sucesso, sem corpo)</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">();</span> <span class="c1">// Retorna 404 Not Found</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Para testar:</strong> Envie uma requisição <code class="language-plaintext highlighter-rouge">DELETE</code> para <code class="language-plaintext highlighter-rouge">http://localhost:8080/tarefas/3</code>. Se a operação for bem-sucedida, você receberá o status <code class="language-plaintext highlighter-rouge">204 No Content</code>.</p>
+
+<h2 id="-resumo-final">✅ Resumo Final</h2>
+
+<p>Com esses novos módulos, sua <code class="language-plaintext highlighter-rouge">TarefaController</code> e <code class="language-plaintext highlighter-rouge">TarefaService</code> estarão completas com todas as operações CRUD. Você construiu uma API RESTful robusta e funcional, pronta para ser consumida por qualquer aplicação front-end.</p>
+
+<p><strong>Próximos Passos Sugeridos:</strong></p>
+
+<ol>
+  <li><strong>Validações</strong>: Adicionar validações nos dados de entrada (ex: o título não pode ser vazio).</li>
+  <li><strong>Tratamento de Exceções</strong>: Criar um handler global para tratar erros de forma mais elegante.</li>
+  <li><strong>Paginação</strong>: Implementar paginação no endpoint de listagem para lidar com grandes volumes de dados.</li>
+  <li><strong>Banco de Dados Real</strong>: Trocar o H2 por um banco de dados como PostgreSQL ou MySQL.</li>
+</ol>
+
+<hr />
+
+<h3 id="3-parte-1-executando-a-api-e-o-app-web-spring-boot">3. Parte 1: Executando a API e o App Web (Spring Boot)</h3>
+
+<p>Há duas formas fáceis de fazer isso no VS Code:</p>
+
+<h4 id="método-linha-de-comando">Método: Linha de Comando</h4>
+
+<ol>
+  <li>No explorador de arquivos, navegue até o seu projeto <code class="language-plaintext highlighter-rouge">listadetarefas.api</code>.</li>
+  <li>Encontre o arquivo da sua aplicação principal:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

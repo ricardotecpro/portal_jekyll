@@ -1,0 +1,251 @@
+<h1 id="expressões-regulares-regex-em-diversas-linguagens-de-programação"><strong>Expressões Regulares (Regex) em Diversas Linguagens de Programação</strong></h1>
+
+<p>Lista incluindo <strong>expressões regulares (Regex)</strong>, um recurso poderoso usado em várias linguagens para busca e manipulação de texto.</p>
+
+<hr />
+
+<h1 id="classificação-das-linguagens-de-programação-com-expressões-regulares-regex"><strong>Classificação das Linguagens de Programação com Expressões Regulares (Regex)</strong></h1>
+
+<p>As expressões regulares (Regex) são padrões utilizados para encontrar e manipular strings. Elas são amplamente suportadas em diversas linguagens. Abaixo estão exemplos de como utilizar Regex em diferentes linguagens.</p>
+
+<hr />
+
+<h2 id="1️⃣-linguagens-baseadas-na-sintaxe"><strong>1️⃣ Linguagens Baseadas na Sintaxe</strong></h2>
+
+<h3 id="11---linguagens-que-usam--e--estilo-c-like"><strong>1.1 - Linguagens que usam <code class="language-plaintext highlighter-rouge">{}</code> e <code class="language-plaintext highlighter-rouge">;</code> (Estilo C-like)</strong></h3>
+<p>Essas linguagens delimitam blocos de código com <code class="language-plaintext highlighter-rouge">{}</code> e geralmente finalizam comandos com <code class="language-plaintext highlighter-rouge">;</code>.</p>
+
+<h4 id="exemplos-e-código"><strong>Exemplos e Código</strong></h4>
+
+<p>✔ <strong>C</strong> <em>(usando POSIX Regex)</em></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;regex.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">regex_t</span> <span class="n">regex</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">reti</span> <span class="o">=</span> <span class="n">regcomp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">regex</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">reti</span> <span class="o">=</span> <span class="n">regexec</span><span class="p">(</span><span class="o">&amp;</span><span class="n">regex</span><span class="p">,</span> <span class="s">"hello world"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">reti</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">"Match found!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">else</span> <span class="n">printf</span><span class="p">(</span><span class="s">"No match!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    
+    <span class="n">regfree</span><span class="p">(</span><span class="o">&amp;</span><span class="n">regex</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>C++</strong> <em>(usando <code class="language-plaintext highlighter-rouge">&lt;regex&gt;</code> do C++11+)</em></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;regex&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">regex</span> <span class="n">pattern</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"hello world"</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">regex_search</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">pattern</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Match found!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Java</strong> <em>(usando <code class="language-plaintext highlighter-rouge">Pattern</code> e <code class="language-plaintext highlighter-rouge">Matcher</code>)</em></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.regex.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Pattern</span> <span class="n">pattern</span> <span class="o">=</span> <span class="nc">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">"\\d+"</span><span class="o">);</span>
+        <span class="nc">Matcher</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="s">"ID 12345"</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">find</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Match found: "</span> <span class="o">+</span> <span class="n">matcher</span><span class="o">.</span><span class="na">group</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>C#</strong> <em>(usando <code class="language-plaintext highlighter-rouge">System.Text.RegularExpressions</code>)</em></p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Text.RegularExpressions</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Program</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">string</span> <span class="n">input</span> <span class="p">=</span> <span class="s">"ID 12345"</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">pattern</span> <span class="p">=</span> <span class="s">@"\d+"</span><span class="p">;</span>
+        <span class="n">Match</span> <span class="n">match</span> <span class="p">=</span> <span class="n">Regex</span><span class="p">.</span><span class="nf">Match</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">pattern</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">match</span><span class="p">.</span><span class="n">Success</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Match found: "</span> <span class="p">+</span> <span class="n">match</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>JavaScript</strong> <em>(usando <code class="language-plaintext highlighter-rouge">RegExp</code>)</em></p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ID 12345</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d</span><span class="sr">+/</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="nx">regex</span><span class="p">);</span>
+
+<span class="k">if </span><span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Match found:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>TypeScript</strong></p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">text</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ID 12345</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">regex</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\d</span><span class="sr">+/</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="nx">regex</span><span class="p">);</span>
+
+<span class="k">if </span><span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Match found:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Go</strong> <em>(usando <code class="language-plaintext highlighter-rouge">regexp</code> package)</em></p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+    <span class="s">"fmt"</span>
+    <span class="s">"regexp"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">re</span> <span class="o">:=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">MustCompile</span><span class="p">(</span><span class="s">`\d+`</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">:=</span> <span class="n">re</span><span class="o">.</span><span class="n">FindString</span><span class="p">(</span><span class="s">"ID 12345"</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Match found:"</span><span class="p">,</span> <span class="n">match</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Rust</strong> <em>(usando <code class="language-plaintext highlighter-rouge">regex</code> crate)</em></p>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nn">regex</span><span class="p">::</span><span class="n">Regex</span><span class="p">;</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">re</span> <span class="o">=</span> <span class="nn">Regex</span><span class="p">::</span><span class="nf">new</span><span class="p">(</span><span class="s">r"\d+"</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+    <span class="k">let</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"ID 12345"</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="k">let</span> <span class="nf">Some</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span> <span class="o">=</span> <span class="n">re</span><span class="nf">.find</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"Match found: {}"</span><span class="p">,</span> <span class="n">mat</span><span class="nf">.as_str</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>PHP</strong> <em>(usando <code class="language-plaintext highlighter-rouge">preg_match</code>)</em></p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$text</span> <span class="o">=</span> <span class="s2">"ID 12345"</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s2">"/\d+/"</span><span class="p">,</span> <span class="nv">$text</span><span class="p">,</span> <span class="nv">$match</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Match found: "</span> <span class="mf">.</span> <span class="nv">$match</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Perl</strong> <em>(Regex é nativo na sintaxe de Perl!)</em></p>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">my</span> <span class="nv">$text</span> <span class="o">=</span> <span class="p">"</span><span class="s2">ID 12345</span><span class="p">";</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$text</span> <span class="o">=~</span> <span class="sr">/\d+/</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">print</span> <span class="p">"</span><span class="s2">Match found!
+</span><span class="p">";</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Crystal</strong></p>
+<div class="language-crystal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="s2">"ID 12345"</span>
+<span class="k">if</span> <span class="n">match</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="sr">/\d+/</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"Match found: </span><span class="si">#{</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="12---linguagens-que-usam-indentação-em-vez-de-"><strong>1.2 - Linguagens que usam indentação em vez de <code class="language-plaintext highlighter-rouge">{}</code></strong></h3>
+<p>Essas linguagens utilizam indentação para definir blocos de código.</p>
+
+<h4 id="exemplos-e-código-1"><strong>Exemplos e Código</strong></h4>
+
+<p>✔ <strong>Python</strong> <em>(usando <code class="language-plaintext highlighter-rouge">re</code>)</em></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">re</span>
+<span class="n">text</span> <span class="o">=</span> <span class="sh">"</span><span class="s">ID 12345</span><span class="sh">"</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">"</span><span class="s">\d+</span><span class="sh">"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Match found:</span><span class="sh">"</span><span class="p">,</span> <span class="k">match</span><span class="p">.</span><span class="nf">group</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Ruby</strong> <em>(Regex embutido na linguagem!)</em></p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="s2">"ID 12345"</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="sr">/\d+/</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="s2">"Match found: </span><span class="si">#{</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">match</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Elixir</strong> <em>(usando <code class="language-plaintext highlighter-rouge">Regex</code> módulo)</em></p>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="s2">"ID 12345"</span>
+<span class="k">case</span> <span class="no">Regex</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sr">~r/\d+/</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">[</span><span class="n">match</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">"Match found: </span><span class="si">#{</span><span class="n">match</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+  <span class="n">_</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">"No match"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Haskell</strong> <em>(usando <code class="language-plaintext highlighter-rouge">Text.Regex</code> package)</em></p>
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">import</span> <span class="nn">Text.Regex.Posix</span>
+
+<span class="n">main</span> <span class="o">=</span> <span class="kr">do</span>
+    <span class="kr">let</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"ID 12345"</span>
+    <span class="n">print</span> <span class="p">(</span><span class="n">text</span> <span class="o">=~</span> <span class="s">"</span><span class="se">\\</span><span class="s">d+"</span> <span class="o">::</span> <span class="kt">String</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>✔ <strong>Lua</strong> <em>(usando <code class="language-plaintext highlighter-rouge">string.match</code>)</em></p>
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="s2">"ID 12345"</span>
+<span class="n">match</span> <span class="o">=</span> <span class="nb">string.match</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s2">"%d+"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">match</span> <span class="k">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Match found: "</span> <span class="o">..</span> <span class="n">match</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>✔ <strong>PowerShell</strong></p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ID 12345"</span><span class="w">
+</span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nv">$text</span><span class="w"> </span><span class="o">-match</span><span class="w"> </span><span class="s2">"\d+"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">Write-Output</span><span class="w"> </span><span class="s2">"Match found: </span><span class="nv">$matches</span><span class="s2">[0]"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>✔ <strong>Shell Script (Bash)</strong></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">text</span><span class="o">=</span><span class="s2">"ID 12345"</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$text</span> <span class="o">=</span>~ <span class="o">[</span>0-9]+ <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Match found: </span><span class="k">${</span><span class="nv">BASH_REMATCH</span><span class="p">[0]</span><span class="k">}</span><span class="s2">"</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2️⃣-expressões-regulares-em-xml-sql-e-outras-tecnologias"><strong>2️⃣ Expressões Regulares em XML, SQL e Outras Tecnologias</strong></h2>
+
+<p>✔ <strong>SQL (usando <code class="language-plaintext highlighter-rouge">REGEXP</code> em MySQL e PostgreSQL)</strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="s1">'Match found'</span> <span class="k">WHERE</span> <span class="s1">'ID 12345'</span> <span class="n">REGEXP</span> <span class="s1">'[0-9]+'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>✔ <strong>XML (XSLT com Regex em XPath 2.0)</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;xsl:variable</span> <span class="na">name=</span><span class="s">"text"</span> <span class="na">select=</span><span class="s">"'ID 12345'"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;xsl:if</span> <span class="na">test=</span><span class="s">"matches($text, '\d+')"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xsl:text&gt;</span>Match found!<span class="nt">&lt;/xsl:text&gt;</span>
+<span class="nt">&lt;/xsl:if&gt;</span>
+</code></pre></div></div>
+
+<p>✔ <strong>COBOL (usando <code class="language-plaintext highlighter-rouge">INSPECT</code> para busca simples)</strong></p>
+<div class="language-cobol highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">IDENTIFICATION</span><span class="w"> </span><span class="kd">DIVISION</span><span class="p">.</span><span class="w">
+</span><span class="k">PROGRAM-ID</span><span class="p">.</span><span class="w"> </span><span class="n">RegexExample</span><span class="p">.</span><span class="w">
+</span><span class="kd">DATA</span><span class="w"> </span><span class="kd">DIVISION</span><span class="p">.</span><span class="w">
+</span><span class="kn">WORKING-STORAGE</span><span class="w"> </span><span class="kn">SECTION</span><span class="p">.</span><span class="w">
+</span><span class="m">01</span><span class="w"> </span><span class="k">TEXT</span><span class="w"> </span><span class="k">PIC</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="k">VALUE</span><span class="w"> </span><span class="s2">"</span><span class="s">ID 12345</span><span class="s2">"</span><span class="p">.</span><span class="w">
+</span><span class="m">01</span><span class="w"> </span><span class="n">DIGITS</span><span class="w"> </span><span class="k">PIC</span><span class="w"> </span><span class="m">9</span><span class="p">(</span><span class="m">5</span><span class="p">).</span><span class="w">
+</span><span class="kd">PROCEDURE</span><span class="w"> </span><span class="kd">DIVISION</span><span class="p">.</span><span class="w">
+    </span><span class="k">INSPECT</span><span class="w"> </span><span class="k">TEXT</span><span class="w"> </span><span class="k">TALLYING</span><span class="w"> </span><span class="n">DIGITS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="s2">"</span><span class="s">0123456789</span><span class="s2">"</span><span class="p">.</span><span class="w">
+    </span><span class="k">DISPLAY</span><span class="w"> </span><span class="s2">"</span><span class="s">Match found: </span><span class="s2">"</span><span class="w"> </span><span class="n">DIGITS</span><span class="p">.</span><span class="w">
+</span><span class="k">STOP</span><span class="w"> </span><span class="k">RUN</span><span class="p">.</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="conclusão"><strong>Conclusão</strong></h2>
+<p>A lista inclui <strong>Regex em várias linguagens</strong>, mostrando como diferentes tecnologias lidam com padrões de busca e manipulação de strings.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

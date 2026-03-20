@@ -1,0 +1,183 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Retangulo/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Rectangle Area Comparison | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Rectangle Area Comparison" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Retangulo/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Retangulo/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Rectangle Area Comparison" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Rectangle Area Comparison","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Retangulo/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/" style="margin-left: 0.5rem;">Oo</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/" style="margin-left: 0.5rem;">Python</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Retangulo/" style="margin-left: 0.5rem;">Retangulo</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Rectangle area comparison</span>
+          
+        
+      </nav>
+
+      <h1 id="rectangle-area-comparison">Rectangle Area Comparison</h1>
+
+<p>This project is a Python application that compares the areas of two rectangles. The user inputs the dimensions of the rectangles, and the program calculates and displays their areas, indicating which rectangle has the larger area.</p>
+
+<h2 id="project-structure">Project Structure</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">main.py</code>: Entry point of the application.</li>
+  <li><code class="language-plaintext highlighter-rouge">application/program.py</code>: Contains the <code class="language-plaintext highlighter-rouge">Program</code> class with the main logic.</li>
+  <li><code class="language-plaintext highlighter-rouge">entities/retangulo.py</code>: Contains the <code class="language-plaintext highlighter-rouge">Retangulo</code> class which represents a rectangle and includes methods to calculate its area.</li>
+  <li><code class="language-plaintext highlighter-rouge">cilindro.puml</code>: UML diagram representing the relationships between classes.</li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<ol>
+  <li>Clone the repository:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://github.com/ricardotecpro/rectangle-area-comparison.git
+ <span class="nb">cd </span>rectangle-area-comparison
+</code></pre></div>    </div>
+  </li>
+  <li>Ensure you have Python installed (version 3.6 or higher).</li>
+</ol>
+
+<h2 id="usage">Usage</h2>
+
+<ol>
+  <li>Run the application:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python main.py
+</code></pre></div>    </div>
+  </li>
+  <li>Follow the prompts to enter the dimensions of the rectangles.</li>
+</ol>
+
+<h2 id="classes">Classes</h2>
+
+<h3 id="retangulo">Retangulo</h3>
+
+<p>Represents a rectangle with a width and height.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">__init__(largura: float, altura: float)</code>: Initializes a rectangle with the given width and height.</li>
+  <li><code class="language-plaintext highlighter-rouge">calcular_area() -&gt; float</code>: Calculates and returns the area of the rectangle.</li>
+</ul>
+
+<h3 id="program">Program</h3>
+
+<p>Handles the main logic of the application.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">run()</code>: Prompts the user for rectangle dimensions, calculates their areas, and compares them.</li>
+</ul>
+
+<h2 id="uml-diagram">UML Diagram</h2>
+
+<p>The UML diagram (<code class="language-plaintext highlighter-rouge">cilindro.puml</code>) illustrates the relationships between the classes in the project.</p>
+
+<h2 id="license">License</h2>
+
+<p>This project is licensed under the MIT License.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

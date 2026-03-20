@@ -1,0 +1,159 @@
+<h2 id="o-que-são-linguagens-de-template"><strong>O que são Linguagens de Template?</strong></h2>
+
+<p>As <strong>linguagens de template</strong> são ferramentas que facilitam a geração dinâmica de HTML (ou outros tipos de arquivos) combinando <strong>código dinâmico</strong> com <strong>estruturas estáticas</strong>. Elas são amplamente usadas em <strong>desenvolvimento web backend e frontend</strong>, permitindo separar a <strong>lógica de programação</strong> da <strong>apresentação</strong>.</p>
+
+<hr />
+
+<h2 id="1-como-funcionam"><strong>1. Como Funcionam?</strong></h2>
+
+<p>Uma linguagem de template utiliza <strong>variáveis, loops e condicionais</strong> dentro de um arquivo de modelo (template), que depois é processado para gerar o HTML final.</p>
+
+<p>📌 <strong>Exemplo de funcionamento básico:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. O template contém **marcadores dinâmicos** (`{{ }}` ou `{% %}`).
+2. Um **motor de template** substitui esses marcadores por valores reais.
+3. O resultado final é um **arquivo HTML renderizado** no navegador.
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-exemplos-de-linguagens-de-template"><strong>2. Exemplos de Linguagens de Template</strong></h2>
+
+<h3 id="21-ejs-nodejs"><strong>2.1 EJS (Node.js)</strong></h3>
+
+<p>O <strong>EJS (Embedded JavaScript Templates)</strong> é um motor de templates para <strong>Node.js</strong>, muito usado com <strong>Express.js</strong>.</p>
+
+<p>📌 <strong>Exemplo de Template EJS (<code class="language-plaintext highlighter-rouge">index.ejs</code>)</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Bem-vindo<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Olá, <span class="nt">&lt;</span><span class="err">%=</span> <span class="na">nome</span> <span class="err">%</span><span class="nt">&gt;</span>!<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Código Node.js para renderizar o template</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ejs</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">index</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">nome</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Carlos</span><span class="dl">'</span> <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Servidor rodando em http://localhost:3000</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>🔹 <strong>O que acontece?</strong><br />
+O <strong><code class="language-plaintext highlighter-rouge">&lt;%= nome %&gt;</code></strong> será substituído por <code class="language-plaintext highlighter-rouge">"Carlos"</code>, gerando a página final.</p>
+
+<hr />
+
+<h3 id="22-handlebars-nodejs-javascript"><strong>2.2 Handlebars (Node.js, JavaScript)</strong></h3>
+
+<p>O <strong>Handlebars</strong> é outra linguagem de template muito usada, com uma sintaxe mais estruturada.</p>
+
+<p>📌 <strong>Exemplo de Template Handlebars (<code class="language-plaintext highlighter-rouge">index.hbs</code>)</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Olá, {{nome}}!<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Código Node.js com Express e Handlebars</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">exphbs</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express-handlebars</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">engine</span><span class="p">(</span><span class="dl">'</span><span class="s1">handlebars</span><span class="dl">'</span><span class="p">,</span> <span class="nf">exphbs</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="dl">'</span><span class="s1">view engine</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">handlebars</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span><span class="dl">'</span><span class="s1">index</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">nome</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Ana</span><span class="dl">'</span> <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Servidor rodando na porta 3000</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>🔹 O <strong>``</strong> será substituído por <code class="language-plaintext highlighter-rouge">"Ana"</code>.</p>
+
+<hr />
+
+<h3 id="23-thymeleaf-java-com-spring-boot"><strong>2.3 Thymeleaf (Java com Spring Boot)</strong></h3>
+
+<p>No <strong>Java (Spring Boot)</strong>, a linguagem de template mais comum é <strong>Thymeleaf</strong>.</p>
+
+<p>📌 <strong>Exemplo de Template Thymeleaf (<code class="language-plaintext highlighter-rouge">index.html</code>)</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Olá, <span class="nt">&lt;span</span> <span class="na">th:text=</span><span class="s">"${nome}"</span><span class="nt">&gt;&lt;/span&gt;</span>!<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Código Java com Spring Boot</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeController</span> <span class="o">{</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">home</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"nome"</span><span class="o">,</span> <span class="s">"Mariana"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"index"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>🔹 O <strong><code class="language-plaintext highlighter-rouge">th:text="${nome}"</code></strong> será substituído por <code class="language-plaintext highlighter-rouge">"Mariana"</code>.</p>
+
+<hr />
+
+<h3 id="24-jinja2-python-com-flask"><strong>2.4 Jinja2 (Python com Flask)</strong></h3>
+
+<p>No <strong>Python (Flask, Django)</strong>, a linguagem de template mais usada é <strong>Jinja2</strong>.</p>
+
+<p>📌 <strong>Exemplo de Template Jinja2 (<code class="language-plaintext highlighter-rouge">index.html</code>)</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Olá, {{ nome }}!<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Código Python com Flask</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="sh">'</span><span class="s">/</span><span class="sh">'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nf">render_template</span><span class="p">(</span><span class="sh">'</span><span class="s">index.html</span><span class="sh">'</span><span class="p">,</span> <span class="n">nome</span><span class="o">=</span><span class="sh">'</span><span class="s">Lucas</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>🔹 O <strong>``</strong> será substituído por <code class="language-plaintext highlighter-rouge">"Lucas"</code>.</p>
+
+<hr />
+
+<h2 id="3-benefícios-das-linguagens-de-template"><strong>3. Benefícios das Linguagens de Template</strong></h2>
+
+<p>✔ <strong>Separam a lógica do backend da interface do usuário</strong>.<br />
+✔ <strong>Evitam repetição de código</strong> com herança de templates.<br />
+✔ <strong>Facilitam a manutenção e escalabilidade do código</strong>.<br />
+✔ <strong>Podem ser combinadas com frameworks populares</strong> como Express, Flask e Spring Boot.</p>
+
+<hr />
+
+<h2 id="4-quando-usar"><strong>4. Quando Usar?</strong></h2>
+
+<ul>
+  <li><strong>Se o projeto é backend renderizado no servidor</strong>, como <strong>Spring Boot, Django, Flask, Express.js</strong>.</li>
+  <li><strong>Se há necessidade de reutilizar componentes de UI</strong>, como em <strong>Handlebars, EJS ou Jinja2</strong>.</li>
+  <li><strong>Se precisa renderizar HTML dinamicamente no servidor</strong>, sem precisar de um frontend SPA.</li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

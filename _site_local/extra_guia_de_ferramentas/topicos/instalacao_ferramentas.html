@@ -1,0 +1,585 @@
+<h2 id="capítulo-instalação-das-ferramentas-de-linguagens-️">Capítulo: Instalação das Ferramentas de Linguagens 🛠️</h2>
+
+<h3 id="compilador-gcc-mingw-para-windows-️">Compilador GCC (MinGW para Windows) ⚙️</h3>
+<p>Para programar em C e C++, é comum utilizarmos o compilador GCC. No Windows, uma opção popular é o MinGW (Minimalist GNU for Windows), que oferece um conjunto de ferramentas de compilação GNU, incluindo o GCC.</p>
+
+<p><strong>Instalação:</strong></p>
+<ol>
+  <li>Acesse o site oficial do MinGW para baixar o instalador.</li>
+  <li>Durante a instalação, certifique-se de selecionar os compiladores C e C++.</li>
+  <li>Após a instalação, é crucial adicionar o diretório <code class="language-plaintext highlighter-rouge">bin</code> do MinGW (geralmente <code class="language-plaintext highlighter-rouge">C:\MinGW\bin</code>) à variável de ambiente <code class="language-plaintext highlighter-rouge">Path</code> do sistema. Isso permite que o compilador seja acessado de qualquer local no terminal.</li>
+</ol>
+
+<p><strong>Variável de ambiente Path:</strong>
+Adicionar <code class="language-plaintext highlighter-rouge">C:\MinGW\bin</code> ao Path do sistema permite que você execute comandos GCC (como <code class="language-plaintext highlighter-rouge">gcc</code> ou <code class="language-plaintext highlighter-rouge">g++</code>) diretamente do prompt de comando ou terminal.</p>
+
+<p><strong>Conceito Complementar: Compilador</strong>
+Um compilador é um programa de computador que traduz o código-fonte escrito em uma linguagem de programação de alto nível (como C, C++, Java) em uma linguagem de máquina ou em um código intermediário que pode ser executado pelo processador. O GCC (GNU Compiler Collection) é um sistema de compiladores que suporta várias linguagens de programação.</p>
+
+<h3 id="ide-codeblocks-">IDE: Code::Blocks 🧱</h3>
+<p>Code::Blocks é um Ambiente de Desenvolvimento Integrado (IDE) gratuito, de código aberto e multiplataforma que suporta múltiplos compiladores, incluindo o GCC.</p>
+
+<p><strong>Download e Instalação:</strong></p>
+<ol>
+  <li>Acesse a seção de downloads do site oficial do Code::Blocks.</li>
+  <li>Recomenda-se baixar a versão que inclui o MinGW (por exemplo, <code class="language-plaintext highlighter-rouge">codeblocks-xx.xxmingw-setup.exe</code>), especialmente se você ainda não configurou um compilador. Caso contrário, a versão <code class="language-plaintext highlighter-rouge">codeblocks-xx.xx-setup.exe</code> é suficiente se o GCC/MinGW já estiver instalado e configurado no <code class="language-plaintext highlighter-rouge">Path</code>.</li>
+</ol>
+
+<h3 id="primeiro-programa-em-c">Primeiro Programa em C</h3>
+<p>O primeiro programa em C é tradicionalmente um “Olá, mundo!”, que demonstra a estrutura básica de um programa C e como exibir texto no console.</p>
+
+<p><strong>Estrutura do Código:</strong>
+O código VisualG correspondente seria:</p>
+<pre><code class="language-visualg">Algoritmo "primeiro"
+Var
+Inicio
+  escreval("Ola mundo!")
+Fimalgoritmo
+</code></pre>
+
+<p><strong>Código em C:</strong></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="c1"> // Biblioteca padrão de entrada/saída</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// Função principal onde a execução do programa começa</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Ola mundo!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span> <span class="c1">// Função para imprimir texto no console. </span>
+ <span class="err">é</span> <span class="n">um</span> <span class="n">caractere</span> <span class="n">de</span> <span class="n">nova</span> <span class="n">linha</span><span class="p">.</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Indica que o programa terminou com sucesso</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><strong>Explicação:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;stdio.h&gt;</code>: Inclui a biblioteca padrão de entrada e saída, que contém funções como <code class="language-plaintext highlighter-rouge">printf</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">int main()</code>: É a função principal onde a execução do programa começa. Todo programa C deve ter uma função <code class="language-plaintext highlighter-rouge">main</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">printf("Ola mundo!
+");</code>: Chama a função <code class="language-plaintext highlighter-rouge">printf</code> para exibir a string “Ola mundo!” seguida por uma nova linha (<code class="language-plaintext highlighter-rouge">
+</code>) no console.</li>
+  <li><code class="language-plaintext highlighter-rouge">return 0;</code>: Indica ao sistema operacional que o programa foi concluído com sucesso.</li>
+</ul>
+
+<h3 id="primeiro-programa-em-c-1">Primeiro Programa em C++</h3>
+<p>Similar ao C, o primeiro programa em C++ também costuma ser um “Olá, mundo!”. A sintaxe é um pouco diferente, utilizando a biblioteca <code class="language-plaintext highlighter-rouge">iostream</code>.</p>
+
+<p><strong>Estrutura do Código:</strong>
+O código VisualG correspondente seria:</p>
+<pre><code class="language-visualg">Algoritmo "primeiro"
+Var
+Inicio
+  escreval("Ola mundo!")
+Fimalgoritmo
+</code></pre>
+
+<p><strong>Código em C++:</strong></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="c1"> // Biblioteca de entrada/saída para C++</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// Função principal</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Ola mundo!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// Objeto para saída padrão (console). std::endl insere uma nova linha e descarrega o buffer.</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Indica que o programa terminou com sucesso</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><strong>Explicação:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;iostream&gt;</code>: Inclui a biblioteca iostream, que permite operações de entrada e saída em C++, como a escrita no console usando <code class="language-plaintext highlighter-rouge">std::cout</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">int main()</code>: A função principal.</li>
+  <li><code class="language-plaintext highlighter-rouge">std::cout &lt;&lt; "Ola mundo!" &lt;&lt; std::endl;</code>: Utiliza <code class="language-plaintext highlighter-rouge">std::cout</code> para enviar a string “Ola mundo!” para a saída padrão (geralmente o console). <code class="language-plaintext highlighter-rouge">std::endl</code> insere uma nova linha e força a descarga do buffer de saída.</li>
+  <li><code class="language-plaintext highlighter-rouge">return 0;</code>: Sinaliza a terminação bem-sucedida do programa.</li>
+</ul>
+
+<p><strong>Conceito Complementar: IDE (Ambiente de Desenvolvimento Integrado)</strong>
+Uma IDE é um aplicativo de software que fornece facilidades abrangentes para programadores de computador para o desenvolvimento de software. Uma IDE normalmente consiste em pelo menos um editor de código-fonte, ferramentas de automação de compilação e um depurador. O Code::Blocks é um exemplo, assim como o Visual Studio, Eclipse, IntelliJ IDEA e PyCharm.</p>
+
+<hr />
+
+<h2 id="instalação-do-python-e-pycharm-community-">Instalação do Python e PyCharm Community 🐍</h2>
+
+<h3 id="python">Python</h3>
+<p>Python é uma linguagem de programação de alto nível, interpretada, interativa e orientada a objetos. É conhecida por sua sintaxe clara e legibilidade.</p>
+
+<p><strong>Download e Instalação:</strong></p>
+<ol>
+  <li>Acesse a seção de downloads do site oficial do Python.</li>
+  <li>Baixe o instalador para o seu sistema operacional.</li>
+  <li>Durante a instalação no Windows, é <strong>altamente recomendável</strong> marcar a opção “Add Python to PATH” para facilitar a execução de scripts Python pelo terminal.</li>
+</ol>
+
+<p><strong>Teste no Terminal:</strong>
+Após a instalação, abra o terminal (prompt de comando no Windows, terminal no Linux/macOS) e digite:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">--version</span>
+</code></pre></div></div>
+<p>Ou para iniciar o interpretador interativo:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python
+</code></pre></div></div>
+<p>Para sair do interpretador interativo, digite:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">exit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="ide-pycharm-community">IDE: PyCharm Community</h3>
+<p>PyCharm é uma IDE popular para desenvolvimento em Python, desenvolvida pela JetBrains. A edição Community é gratuita e de código aberto.</p>
+
+<p><strong>Download e Instalação:</strong></p>
+<ol>
+  <li>Acesse a página de download do PyCharm no site da JetBrains.</li>
+  <li>Baixe o instalador da edição Community.</li>
+  <li>Siga as instruções de instalação.</li>
+</ol>
+
+<p><strong>Dicas do PyCharm:</strong></p>
+<ul>
+  <li><strong>Alterar Fonte do Editor:</strong> <code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Editor</code> -&gt; <code class="language-plaintext highlighter-rouge">Font</code>.</li>
+  <li><strong>Verificação Ortográfica:</strong> <code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Editor</code> -&gt; <code class="language-plaintext highlighter-rouge">Inspections</code> -&gt; <code class="language-plaintext highlighter-rouge">Spelling</code> -&gt; <code class="language-plaintext highlighter-rouge">Typo</code> (para desabilitar ou configurar).</li>
+  <li><strong>Tamanho da Tabulação e Indentação:</strong> <code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Editor</code> -&gt; <code class="language-plaintext highlighter-rouge">Code Style</code> -&gt; <code class="language-plaintext highlighter-rouge">Python</code> -&gt; <code class="language-plaintext highlighter-rouge">Tab size</code> e <code class="language-plaintext highlighter-rouge">Indent</code>.</li>
+  <li><strong>Indentação Automática (Reformatar Código):</strong> <code class="language-plaintext highlighter-rouge">Ctrl + Alt + L</code> (Windows/Linux) ou <code class="language-plaintext highlighter-rouge">Cmd + Option + L</code> (macOS).</li>
+</ul>
+
+<h3 id="primeiro-programa-em-python">Primeiro Programa em Python</h3>
+<p>Python é conhecido por sua simplicidade, e o “Olá, mundo!” é um ótimo exemplo disso.</p>
+
+<p><strong>Estrutura do Código:</strong>
+O código VisualG correspondente seria:</p>
+<pre><code class="language-visualg">Algoritmo "primeiro"
+Var
+Inicio
+  escreval("Ola mundo!")
+Fimalgoritmo
+</code></pre>
+
+<p><strong>Código em Python:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Ola mundo!</span><span class="sh">"</span><span class="p">)</span> <span class="c1"># Função para imprimir texto no console
+</span></code></pre></div></div>
+<p><strong>Explicação:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">print("Ola mundo!")</code>: A função <code class="language-plaintext highlighter-rouge">print()</code> é usada para exibir a string “Ola mundo!” no console. Em Python 3, <code class="language-plaintext highlighter-rouge">print</code> é uma função e requer parênteses.</li>
+</ul>
+
+<p><strong>Exemplo Prático: Soma de dois números em Python</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Solicita ao usuário para inserir dois números
+</span><span class="n">numero1</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite o primeiro número: </span><span class="sh">"</span><span class="p">))</span>
+<span class="n">numero2</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite o segundo número: </span><span class="sh">"</span><span class="p">))</span>
+
+<span class="c1"># Calcula a soma
+</span><span class="n">soma</span> <span class="o">=</span> <span class="n">numero1</span> <span class="o">+</span> <span class="n">numero2</span>
+
+<span class="c1"># Exibe o resultado
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">A soma de </span><span class="si">{</span><span class="n">numero1</span><span class="si">}</span><span class="s"> e </span><span class="si">{</span><span class="n">numero2</span><span class="si">}</span><span class="s"> é: </span><span class="si">{</span><span class="n">soma</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Este exemplo demonstra a entrada de dados com <code class="language-plaintext highlighter-rouge">input()</code>, conversão para <code class="language-plaintext highlighter-rouge">float</code> para permitir números decimais, e a formatação de strings (f-strings) para exibir a saída.</p>
+
+<hr />
+
+<h2 id="instalação-do-java-jdk-e-ides-vs-code-intellij-idea-">Instalação do Java JDK e IDEs (VS Code, IntelliJ IDEA) ☕</h2>
+
+<h3 id="java-jdk-java-development-kit">Java JDK (Java Development Kit)</h3>
+<p>O JDK é um ambiente de desenvolvimento de software usado para desenvolver aplicações e applets Java. Ele inclui o JRE (Java Runtime Environment), um interpretador/loader (java), um compilador (javac), um arquivador (jar), um gerador de documentação (javadoc) e outras ferramentas necessárias no desenvolvimento Java.</p>
+
+<p><strong>Download e Instalação:</strong></p>
+<ol>
+  <li>A Oracle agora requer login para baixar versões mais antigas do JDK. Uma alternativa é utilizar JDKs de outros provedores como AdoptOpenJDK (agora Eclipse Temurin), Amazon Corretto, ou Azul Zulu. Para este exemplo, usaremos a referência ao JDK 11 da Oracle.</li>
+  <li>Baixe o Java JDK apropriado para o seu sistema operacional (por exemplo, JDK 11 ou uma versão LTS mais recente).</li>
+  <li>Siga as instruções de instalação.</li>
+</ol>
+
+<p><strong>Configurar Variáveis de Ambiente do Sistema:</strong>
+É essencial configurar as variáveis de ambiente para que o sistema operacional possa localizar as ferramentas do JDK.</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">JAVA_HOME</code></strong>:
+    <ul>
+      <li>Crie uma nova variável de sistema chamada <code class="language-plaintext highlighter-rouge">JAVA_HOME</code>.</li>
+      <li>O valor deve ser o caminho para o diretório de instalação do JDK (ex: <code class="language-plaintext highlighter-rouge">C:\Program Files\Java\jdk-11.0.4</code> ou o caminho correspondente da sua instalação).</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Path</code></strong>:
+    <ul>
+      <li>Edite a variável de sistema <code class="language-plaintext highlighter-rouge">Path</code>.</li>
+      <li>Adicione uma nova entrada: <code class="language-plaintext highlighter-rouge">%JAVA_HOME%\bin</code> (ou o caminho direto <code class="language-plaintext highlighter-rouge">C:\Program Files\Java\jdk-11.0.4\bin</code>). Isso permite executar comandos Java como <code class="language-plaintext highlighter-rouge">java</code> e <code class="language-plaintext highlighter-rouge">javac</code> de qualquer diretório no terminal.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Testar no Terminal de Comando:</strong>
+Abra um novo terminal e digite:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-version</span>
+javac <span class="nt">-version</span>
+</code></pre></div></div>
+<p>Se as variáveis estiverem configuradas corretamente, esses comandos exibirão as versões instaladas do Java Runtime e do Java Compiler.</p>
+
+<h3 id="ides-para-java-vs-code-e-intellij-idea">IDEs para Java: VS Code e IntelliJ IDEA</h3>
+
+<h4 id="intellij-idea">IntelliJ IDEA</h4>
+<p>IntelliJ IDEA é uma IDE robusta para Java, desenvolvida pela JetBrains. A edição Community é gratuita.</p>
+
+<p><strong>Download e Instalação:</strong></p>
+<ol>
+  <li>Acesse o site da JetBrains e baixe o IntelliJ IDEA Community Edition.</li>
+  <li>Siga as instruções de instalação.</li>
+  <li>Ao iniciar, você pode ser solicitado a escolher um “workspace” ou diretório onde seus projetos serão salvos.</li>
+</ol>
+
+<h4 id="visual-studio-code-vs-code-com-extensões-java">Visual Studio Code (VS Code) com Extensões Java</h4>
+<p>VS Code é um editor de código leve, mas poderoso, que pode ser estendido para suportar o desenvolvimento Java através de extensões.</p>
+
+<p><strong>Configuração para Java no VS Code:</strong></p>
+<ol>
+  <li><strong>Instale o VS Code:</strong> Baixe do site oficial.</li>
+  <li><strong>Instale o “Extension Pack for Java” da Microsoft:</strong> Abra o VS Code, vá para a aba de Extensões (Ctrl+Shift+X) e procure por “Extension Pack for Java”. Este pacote inclui extensões essenciais como:
+    <ul>
+      <li>Language Support for Java™ by Red Hat</li>
+      <li>Debugger for Java</li>
+      <li>Java Test Runner</li>
+      <li>Maven for Java</li>
+      <li>Project Manager for Java</li>
+    </ul>
+  </li>
+  <li><strong>Configure o JDK:</strong> A extensão geralmente detecta automaticamente o JDK instalado se <code class="language-plaintext highlighter-rouge">JAVA_HOME</code> estiver configurado. Caso contrário, você pode configurar manualmente o caminho do JDK nas configurações do VS Code (<code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Preferences</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code>, procure por <code class="language-plaintext highlighter-rouge">java.home</code>).</li>
+</ol>
+
+<h3 id="primeiro-programa-em-java">Primeiro Programa em Java</h3>
+<p>O “Olá, mundo!” em Java introduz conceitos como classes e o método <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p><strong>Estrutura do Código:</strong>
+O código VisualG correspondente seria:</p>
+<pre><code class="language-visualg">Algoritmo "primeiro"
+Var
+Inicio
+  escreval("Ola mundo!")
+Fimalgoritmo
+</code></pre>
+
+<p><strong>Código em Java:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Define o pacote (opcional para arquivos simples, mas boa prática para projetos)</span>
+<span class="c1">// package curso; // Exemplo de nome de pacote traduzido</span>
+
+<span class="c1">// Nome da classe traduzido de "Main" para "ProgramaPrincipal"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaPrincipal</span> <span class="o">{</span>
+
+  <span class="c1">// Método principal - ponto de entrada da aplicação Java</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Imprime a mensagem no console</span>
+    <span class="c1">// String literal traduzida</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Olá mundo!"</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Explicação:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">public class ProgramaPrincipal</code>: Declara uma classe pública chamada <code class="language-plaintext highlighter-rouge">ProgramaPrincipal</code>. Em Java, todo código reside dentro de classes. O nome do arquivo Java deve ser o mesmo que o nome da classe pública (neste caso, <code class="language-plaintext highlighter-rouge">ProgramaPrincipal.java</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">public static void main(String[] args)</code>: Este é o método principal. A JVM (Java Virtual Machine) inicia a execução de um programa Java chamando este método.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">public</code>: Modificador de acesso que significa que o método é visível de qualquer classe.</li>
+      <li><code class="language-plaintext highlighter-rouge">static</code>: Significa que o método pertence à classe <code class="language-plaintext highlighter-rouge">ProgramaPrincipal</code> e não a uma instância específica da classe. Pode ser chamado sem criar um objeto da classe.</li>
+      <li><code class="language-plaintext highlighter-rouge">void</code>: Indica que o método não retorna nenhum valor.</li>
+      <li><code class="language-plaintext highlighter-rouge">main</code>: É o nome padrão para o ponto de entrada de uma aplicação Java.</li>
+      <li><code class="language-plaintext highlighter-rouge">String[] args</code>: É um array de strings que pode ser usado para passar argumentos de linha de comando para o programa.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">System.out.println("Olá mundo!");</code>: Imprime a string “Olá mundo!” no console.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">System</code>: É uma classe final no pacote <code class="language-plaintext highlighter-rouge">java.lang</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">out</code>: É um membro estático da classe <code class="language-plaintext highlighter-rouge">System</code> e é uma instância da classe <code class="language-plaintext highlighter-rouge">PrintStream</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">println()</code>: É um método da classe <code class="language-plaintext highlighter-rouge">PrintStream</code> que imprime o argumento passado para ele seguido por uma nova linha.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="utilização-básica-de-ides-para-java">Utilização Básica de IDEs para Java</h3>
+
+<h4 id="intellij-idea-1">IntelliJ IDEA:</h4>
+<ol>
+  <li><strong>Workspace/Projetos:</strong> O IntelliJ organiza o código em projetos. Ao criar um novo projeto (<code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">New</code> -&gt; <code class="language-plaintext highlighter-rouge">Project...</code>), você especificará o nome do projeto, o local e o SDK Java a ser usado.</li>
+  <li><strong>Criar Classe:</strong>
+    <ul>
+      <li>No painel “Project”, clique com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code> (source).</li>
+      <li>Selecione <code class="language-plaintext highlighter-rouge">New</code> -&gt; <code class="language-plaintext highlighter-rouge">Java Class</code>.</li>
+      <li>Digite o nome da classe (ex: <code class="language-plaintext highlighter-rouge">ProgramaPrincipal</code>).</li>
+      <li>O IntelliJ pode gerar automaticamente o método <code class="language-plaintext highlighter-rouge">main</code> se você digitar <code class="language-plaintext highlighter-rouge">psvm</code> e pressionar Tab dentro da classe.</li>
+    </ul>
+  </li>
+  <li><strong>Executar Programa:</strong>
+    <ul>
+      <li>Clique com o botão direito no arquivo com o método <code class="language-plaintext highlighter-rouge">main</code> ou na própria classe no editor.</li>
+      <li>Selecione <code class="language-plaintext highlighter-rouge">Run 'NomeDaClasse.main()'</code>.</li>
+      <li>A saída aparecerá na janela “Run” ou “Console”.</li>
+    </ul>
+  </li>
+  <li><strong>Mudar Tamanho da Fonte:</strong>
+    <ul>
+      <li>Editor: <code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Editor</code> -&gt; <code class="language-plaintext highlighter-rouge">Font</code>.</li>
+      <li>Interface Geral: <code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Appearance &amp; Behavior</code> -&gt; <code class="language-plaintext highlighter-rouge">Appearance</code> -&gt; <code class="language-plaintext highlighter-rouge">Use custom font</code>.</li>
+      <li>Zoom com scroll do mouse: <code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Editor</code> -&gt; <code class="language-plaintext highlighter-rouge">General</code> -&gt; marque “Change font size with Ctrl+Mouse Wheel”.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="vs-code-com-extensões-java">VS Code com Extensões Java:</h4>
+<ol>
+  <li><strong>Criar Projeto Java:</strong>
+    <ul>
+      <li>Abra a paleta de comandos (<code class="language-plaintext highlighter-rouge">Ctrl+Shift+P</code> ou <code class="language-plaintext highlighter-rouge">Cmd+Shift+P</code>).</li>
+      <li>Digite <code class="language-plaintext highlighter-rouge">Java: Create Java Project</code>.</li>
+      <li>Selecione “No build tools”.</li>
+      <li>Escolha um local para o projeto e forneça um nome.</li>
+    </ul>
+  </li>
+  <li><strong>Criar Classe:</strong>
+    <ul>
+      <li>No Explorer do VS Code (<code class="language-plaintext highlighter-rouge">Ctrl+Shift+E</code>), clique com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code>.</li>
+      <li>Selecione <code class="language-plaintext highlighter-rouge">New Java Class</code>.</li>
+      <li>Digite o nome da classe (ex: <code class="language-plaintext highlighter-rouge">ProgramaPrincipal</code>).</li>
+      <li>O VS Code pode oferecer snippets para criar o método <code class="language-plaintext highlighter-rouge">main</code> (digite <code class="language-plaintext highlighter-rouge">main</code> e selecione a sugestão).</li>
+    </ul>
+  </li>
+  <li><strong>Executar Programa:</strong>
+    <ul>
+      <li>Abra o arquivo Java que contém o método <code class="language-plaintext highlighter-rouge">main</code>.</li>
+      <li>Você verá links <code class="language-plaintext highlighter-rouge">Run</code> e <code class="language-plaintext highlighter-rouge">Debug</code> acima do método <code class="language-plaintext highlighter-rouge">main</code>. Clique em <code class="language-plaintext highlighter-rouge">Run</code>.</li>
+      <li>Alternativamente, clique com o botão direito no editor e selecione <code class="language-plaintext highlighter-rouge">Run Java</code>.</li>
+      <li>A saída aparecerá no painel “TERMINAL” ou “DEBUG CONSOLE”.</li>
+    </ul>
+  </li>
+  <li><strong>Mudar Tamanho da Fonte:</strong>
+    <ul>
+      <li>Editor: <code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">Preferences</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> (ou <code class="language-plaintext highlighter-rouge">Ctrl+,</code>). Procure por <code class="language-plaintext highlighter-rouge">Editor: Font Size</code>.</li>
+      <li>Zoom com scroll do mouse: Procure por <code class="language-plaintext highlighter-rouge">Mouse Wheel Zoom</code> e marque a opção.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo Prático: Classe <code class="language-plaintext highlighter-rouge">Pessoa</code> em Java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.exemplo; // Exemplo de nome de pacote</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pessoa</span> <span class="o">{</span>
+    <span class="c1">// Atributos</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">;</span>
+
+    <span class="c1">// Construtor</span>
+    <span class="kd">public</span> <span class="nf">Pessoa</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">idade</span> <span class="o">=</span> <span class="n">idade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para obter o nome</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para definir o nome</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para obter a idade</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getIdade</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">idade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para definir a idade</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIdade</span><span class="o">(</span><span class="kt">int</span> <span class="n">idade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">idade</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Pequena validação</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">idade</span> <span class="o">=</span> <span class="n">idade</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Idade deve ser positiva."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para exibir informações da pessoa</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">exibirInformacoes</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome: "</span> <span class="o">+</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", Idade: "</span> <span class="o">+</span> <span class="n">idade</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método main para testar a classe Pessoa</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Criando um objeto (instância) da classe Pessoa</span>
+        <span class="nc">Pessoa</span> <span class="n">pessoa1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Pessoa</span><span class="o">(</span><span class="s">"Maria Silva"</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+        <span class="nc">Pessoa</span> <span class="n">pessoa2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Pessoa</span><span class="o">(</span><span class="s">"João Santos"</span><span class="o">,</span> <span class="mi">25</span><span class="o">);</span>
+
+        <span class="c1">// Usando os métodos do objeto</span>
+        <span class="n">pessoa1</span><span class="o">.</span><span class="na">exibirInformacoes</span><span class="o">();</span> <span class="c1">// Saída: Nome: Maria Silva, Idade: 30</span>
+        <span class="n">pessoa2</span><span class="o">.</span><span class="na">exibirInformacoes</span><span class="o">();</span> <span class="c1">// Saída: Nome: João Santos, Idade: 25</span>
+
+        <span class="n">pessoa1</span><span class="o">.</span><span class="na">setIdade</span><span class="o">(</span><span class="mi">31</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nova idade de "</span> <span class="o">+</span> <span class="n">pessoa1</span><span class="o">.</span><span class="na">getNome</span><span class="o">()</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">pessoa1</span><span class="o">.</span><span class="na">getIdade</span><span class="o">());</span>
+        <span class="c1">// Saída: Nova idade de Maria Silva: 31</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Este exemplo demonstra uma classe <code class="language-plaintext highlighter-rouge">Pessoa</code> com atributos (nome, idade), construtor, métodos getters/setters e um método para exibir informações. O método <code class="language-plaintext highlighter-rouge">main</code> dentro da classe <code class="language-plaintext highlighter-rouge">Pessoa</code> é usado aqui para testar a funcionalidade da classe. Em aplicações maiores, a classe com o método <code class="language-plaintext highlighter-rouge">main</code> (ponto de entrada da aplicação) é frequentemente separada das classes de modelo (como <code class="language-plaintext highlighter-rouge">Pessoa</code>).</p>
+
+<hr />
+
+<h2 id="instalação-do-visual-studio-community-2019-e-versões-mais-recentes-">Instalação do Visual Studio Community 2019 (e versões mais recentes) 💻</h2>
+
+<p>Visual Studio é uma IDE da Microsoft usada para desenvolver programas de computador, sites, aplicativos web, serviços web e aplicativos móveis. O Visual Studio Community é uma edição gratuita e completa para desenvolvedores individuais, projetos de código aberto, pesquisa acadêmica, educação e pequenas equipes profissionais.</p>
+
+<p><strong>Documentação e Download:</strong></p>
+<ol>
+  <li>A documentação oficial da Microsoft fornece guias detalhados para instalação.</li>
+  <li>Para baixar, acesse a página de downloads do Visual Studio no site da Microsoft. Você encontrará o “bootstrapper” do Visual Studio Installer.</li>
+  <li>Ao executar o Visual Studio Installer, você poderá escolher as “cargas de trabalho” (workloads) que deseja instalar. Para desenvolvimento C#, a carga de trabalho “.NET desktop development” ou “ASP.NET and web development” são comuns.</li>
+</ol>
+
+<h3 id="primeiro-programa-em-c-2">Primeiro Programa em C#</h3>
+<p>C# (pronuncia-se “C Sharp”) é uma linguagem de programação moderna, orientada a objetos e desenvolvida pela Microsoft como parte de sua iniciativa .NET.</p>
+
+<p><strong>Estrutura do Código:</strong>
+O código VisualG correspondente seria:</p>
+<pre><code class="language-visualg">Algoritmo "primeiro"
+Var
+Inicio
+  escreval("Ola mundo!")
+Fimalgoritmo
+</code></pre>
+
+<p><strong>Código em C#:</strong></p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span> <span class="c1">// Importa o namespace System, que contém classes fundamentais e tipos base.</span>
+
+<span class="c1">// Define um namespace para organizar o código</span>
+<span class="k">namespace</span> <span class="nn">PrimeiroPrograma</span> <span class="c1">// Namespace traduzido de "Primeiro"</span>
+<span class="p">{</span>
+    <span class="c1">// Define a classe principal do programa</span>
+    <span class="k">class</span> <span class="nc">Programa</span> <span class="c1">// Classe traduzida de "Program"</span>
+    <span class="p">{</span>
+        <span class="c1">// Método Main: ponto de entrada da aplicação C#</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Escreve "Olá mundo!" no console</span>
+            <span class="c1">// String literal traduzida</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Olá mundo!"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><strong>Explicação:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">using System;</code>: Permite o uso de classes do namespace <code class="language-plaintext highlighter-rouge">System</code> sem precisar prefixá-las com <code class="language-plaintext highlighter-rouge">System.</code>. A classe <code class="language-plaintext highlighter-rouge">Console</code> está neste namespace.</li>
+  <li><code class="language-plaintext highlighter-rouge">namespace PrimeiroPrograma</code>: Namespaces são usados para organizar o código e evitar conflitos de nomes.</li>
+  <li><code class="language-plaintext highlighter-rouge">class Programa</code>: Declara uma classe chamada <code class="language-plaintext highlighter-rouge">Programa</code>. Em C#, assim como em Java, todo código executável reside dentro de uma classe.</li>
+  <li><code class="language-plaintext highlighter-rouge">static void Main(string[] args)</code>: Este é o método principal, o ponto de entrada para qualquer aplicação C#.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">static</code>: O método <code class="language-plaintext highlighter-rouge">Main</code> deve ser estático para que possa ser chamado sem criar uma instância da classe.</li>
+      <li><code class="language-plaintext highlighter-rouge">void</code>: Indica que o método <code class="language-plaintext highlighter-rouge">Main</code> não retorna um valor.</li>
+      <li><code class="language-plaintext highlighter-rouge">string[] args</code>: Permite que o programa receba argumentos de linha de comando.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Console.WriteLine("Olá mundo!");</code>: Usa o método <code class="language-plaintext highlighter-rouge">WriteLine</code> da classe <code class="language-plaintext highlighter-rouge">Console</code> para exibir a string “Olá mundo!” no console, seguida por uma nova linha.</li>
+</ul>
+
+<p><strong>Dicas do Visual Studio:</strong></p>
+<ul>
+  <li><strong>Indentação Automática:</strong> <code class="language-plaintext highlighter-rouge">CTRL + K, CTRL + D</code> (pressione Ctrl+K, solte e depois pressione Ctrl+D).</li>
+  <li><strong>Rodar o Projeto (sem depuração):</strong> <code class="language-plaintext highlighter-rouge">CTRL + F5</code>. (Para rodar com depuração, use <code class="language-plaintext highlighter-rouge">F5</code>).</li>
+  <li><strong>Alterar Fonte (Zoom):</strong> Mantenha <code class="language-plaintext highlighter-rouge">CTRL</code> pressionado e use o <em>scroll</em> do mouse para aumentar ou diminuir o tamanho da fonte no editor.</li>
+</ul>
+
+<p><strong>Exemplo Prático: Calculadora Simples em C#</strong></p>
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CalculadoraApp</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Calculadora</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Calculadora Simples em C#"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"-------------------------"</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite o primeiro número: "</span><span class="p">);</span>
+            <span class="c1">// TryParse é mais seguro que Parse direto, pois não lança exceção se a conversão falhar</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="kt">double</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">(),</span> <span class="k">out</span> <span class="kt">double</span> <span class="n">numero1</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Entrada inválida para o primeiro número."</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span> <span class="c1">// Encerra o programa se a entrada for inválida</span>
+            <span class="p">}</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite o segundo número: "</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="kt">double</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">(),</span> <span class="k">out</span> <span class="kt">double</span> <span class="n">numero2</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Entrada inválida para o segundo número."</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Escolha a operação (+, -, *, /): "</span><span class="p">);</span>
+            <span class="kt">string</span> <span class="n">operacao</span> <span class="p">=</span> <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+
+            <span class="kt">double</span> <span class="n">resultado</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+            <span class="kt">bool</span> <span class="n">operacaoValida</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+            <span class="k">switch</span> <span class="p">(</span><span class="n">operacao</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">case</span> <span class="s">"+"</span><span class="p">:</span>
+                    <span class="n">resultado</span> <span class="p">=</span> <span class="n">numero1</span> <span class="p">+</span> <span class="n">numero2</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">"-"</span><span class="p">:</span>
+                    <span class="n">resultado</span> <span class="p">=</span> <span class="n">numero1</span> <span class="p">-</span> <span class="n">numero2</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">"*"</span><span class="p">:</span>
+                    <span class="n">resultado</span> <span class="p">=</span> <span class="n">numero1</span> <span class="p">*</span> <span class="n">numero2</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">"/"</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">numero2</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">resultado</span> <span class="p">=</span> <span class="n">numero1</span> <span class="p">/</span> <span class="n">numero2</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span>
+                    <span class="p">{</span>
+                        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Erro: Divisão por zero não é permitida."</span><span class="p">);</span>
+                        <span class="n">operacaoValida</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">default</span><span class="p">:</span>
+                    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Operação inválida."</span><span class="p">);</span>
+                    <span class="n">operacaoValida</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">operacaoValida</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// Usando string interpolada para formatar a saída</span>
+                <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"O resultado de </span><span class="p">{</span><span class="n">numero1</span><span class="p">}</span><span class="s"> </span><span class="p">{</span><span class="n">operacao</span><span class="p">}</span><span class="s"> </span><span class="p">{</span><span class="n">numero2</span><span class="p">}</span><span class="s"> é: </span><span class="p">{</span><span class="n">resultado</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Este exemplo demonstra:</p>
+<ul>
+  <li>Leitura de entrada do usuário com <code class="language-plaintext highlighter-rouge">Console.ReadLine()</code>.</li>
+  <li>Conversão segura de string para <code class="language-plaintext highlighter-rouge">double</code> usando <code class="language-plaintext highlighter-rouge">double.TryParse()</code>.</li>
+  <li>Uso da estrutura <code class="language-plaintext highlighter-rouge">switch</code> para lidar com diferentes operações.</li>
+  <li>Tratamento de erro para divisão por zero.</li>
+  <li>Uso de strings interpoladas (<code class="language-plaintext highlighter-rouge">$"{variavel}"</code>) para uma formatação de saída mais limpa.</li>
+</ul>
+
+<h3 id="conclusão">Conclusão</h3>
+<p>A instalação e configuração das ferramentas de desenvolvimento são passos fundamentais para iniciar a programação em diferentes linguagens. Cada linguagem tem suas particularidades, mas o processo de instalação do compilador, IDE e criação do primeiro programa é semelhante. Com as ferramentas instaladas, você estará pronto para explorar mais profundamente cada linguagem e desenvolver projetos interessantes. Boa codificação! 🚀</p>
+<h2 id="referências">Referências</h2>
+<ul>
+  <li><a href="http://www.mingw.org/">Documentação do MinGW</a></li>
+  <li><a href="https://gcc.gnu.org/">Documentação do GCC</a></li>
+  <li><a href="http://www.codeblocks.org/">Documentação do Code::Blocks</a></li>
+  <li><a href="https://docs.python.org/3/">Documentação do Python</a></li>
+  <li><a href="https://www.jetbrains.com/pycharm/documentation/">Documentação do PyCharm</a></li>
+  <li><a href="https://docs.oracle.com/en/java/">Documentação do Java</a></li>
+  <li><a href="https://www.jetbrains.com/idea/documentation/">Documentação do IntelliJ IDEA</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/visualstudio/">Documentação do Visual Studio</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/dotnet/csharp/">Documentação do C#</a></li>
+  <li><a href="https://code.visualstudio.com/docs">Documentação do Visual Studio Code</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/visualstudio/get-started/">Documentação do Visual Studio Community</a></li>
+  <li><a href="https://docs.oracle.com/en/java/javase/11/">Documentação do JDK</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/dotnet/">Documentação do .NET</a></li>
+  <li><a href="https://en.cppreference.com/w/">Documentação do C++</a></li>
+  <li><a href="https://en.cppreference.com/w/c">Documentação do C</a></li>
+  <li><a href="https://www.markdownguide.org/">Documentação do Markdown</a></li>
+  <li><a href="https://visualg3.com.br/">Documentação do VisualG</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/visualstudio/install/advanced-build-tools-container?view=vs-2019">Documentação do Visual Studio Installer</a></li>
+  <li><a href="https://code.visualstudio.com/docs/java/java-tutorial">Documentação do Visual Studio Code Java</a></li>
+  <li><a href="https://www.jetbrains.com/pycharm/documentation/">Documentação do PyCharm Community Edition</a></li>
+  <li><a href="https://www.jetbrains.com/idea/documentation/">Documentação do IntelliJ IDEA Community Edition</a></li>
+  <li><a href="http://www.codeblocks.org/documentation">Documentação do Code::Blocks</a></li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

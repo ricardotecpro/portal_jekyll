@@ -1,0 +1,190 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/topicos/api_rest_websockets/rest_websockets.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>WebSockets e REST | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="WebSockets e REST" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/rest_websockets.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/rest_websockets.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="WebSockets e REST" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"WebSockets e REST","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/rest_websockets.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/" style="margin-left: 0.5rem;">Api rest websockets</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Websockets e rest</span>
+          
+        
+      </nav>
+
+      <h1 id="websockets-e-rest">WebSockets e REST</h1>
+
+<h2 id="são-duas-abordagens-diferentes-para-comunicação-entre-cliente-e-servidor-na-web-aqui-estão-as-principais-diferenças-entre-eles">São duas abordagens diferentes para comunicação entre cliente e servidor na web. Aqui estão as principais diferenças entre eles:</h2>
+
+<h3 id="1-modelo-de-comunicação">1. <strong>Modelo de Comunicação</strong></h3>
+
+<ul>
+  <li><strong>WebSocket</strong>: O WebSocket é uma tecnologia que oferece comunicação bidirecional e contínua entre o cliente e o servidor. Uma vez estabelecida a conexão, ela permanece aberta, permitindo a troca de dados em tempo real. Ou seja, o servidor pode enviar dados para o cliente a qualquer momento, sem que o cliente precise fazer uma nova solicitação.</li>
+  <li><strong>REST</strong>: O REST (Representational State Transfer) é baseado no modelo de requisição-resposta. Ou seja, o cliente faz uma solicitação HTTP para o servidor e espera por uma resposta. Cada interação é independente, e não há uma conexão constante entre cliente e servidor.</li>
+</ul>
+
+<h3 id="2-protocolo">2. <strong>Protocolo</strong></h3>
+
+<ul>
+  <li><strong>WebSocket</strong>: Usa o protocolo WebSocket (ws:// ou wss://) para estabelecer uma conexão persistente. Ele inicia como uma requisição HTTP, mas depois é “promovido” para uma conexão WebSocket.</li>
+  <li><strong>REST</strong>: Usa o protocolo HTTP/HTTPS, que segue um modelo de requisição-resposta e é stateless (sem estado).</li>
+</ul>
+
+<h3 id="3-latência-e-eficiência">3. <strong>Latência e Eficiência</strong></h3>
+
+<ul>
+  <li><strong>WebSocket</strong>: Devido à comunicação contínua, o WebSocket é ideal para aplicações em tempo real, como chats, jogos online ou monitoramento de dados, onde a latência deve ser baixa e a comunicação é frequente.</li>
+  <li><strong>REST</strong>: O REST pode ter mais latência, pois cada interação exige uma nova solicitação HTTP. Isso é adequado para casos onde a comunicação não precisa ser constante ou em tempo real.</li>
+</ul>
+
+<h3 id="4-escalabilidade">4. <strong>Escalabilidade</strong></h3>
+
+<ul>
+  <li><strong>WebSocket</strong>: A escalabilidade pode ser mais desafiadora com WebSockets, pois cada cliente mantém uma conexão aberta com o servidor, o que pode sobrecarregar servidores se o número de clientes for muito alto.</li>
+  <li><strong>REST</strong>: O REST pode ser mais escalável, já que a comunicação é baseada em requisições e respostas independentes. No entanto, se a aplicação exigir alta interação em tempo real, o REST pode não ser tão eficiente quanto o WebSocket.</li>
+</ul>
+
+<h3 id="5-aplicações">5. <strong>Aplicações</strong></h3>
+
+<ul>
+  <li><strong>WebSocket</strong>: Ideal para aplicações em tempo real, como:
+    <ul>
+      <li>Chats em tempo real</li>
+      <li>Jogos online</li>
+      <li>Atualizações de mercado financeiro</li>
+      <li>Monitoramento de dados ao vivo</li>
+    </ul>
+  </li>
+  <li><strong>REST</strong>: Ideal para aplicações que não exigem comunicação em tempo real ou que funcionam com um modelo de requisição-resposta, como:
+    <ul>
+      <li>APIs de CRUD (Create, Read, Update, Delete)</li>
+      <li>Consultas em sistemas onde os dados não mudam com frequência</li>
+      <li>Integrações entre sistemas</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="6-manutenção-de-conexão">6. <strong>Manutenção de Conexão</strong></h3>
+
+<ul>
+  <li><strong>WebSocket</strong>: Após a conexão ser estabelecida, ela permanece aberta até que o cliente ou servidor decida fechá-la.</li>
+  <li><strong>REST</strong>: Cada requisição é independente, não há uma “conexão persistente”. O cliente realiza uma nova solicitação a cada interação.</li>
+</ul>
+
+<h3 id="7-exemplo-de-uso">7. <strong>Exemplo de Uso</strong></h3>
+
+<ul>
+  <li><strong>WebSocket</strong>: Imagine um chat onde os usuários enviam mensagens e as recebem em tempo real. O WebSocket é ideal aqui, pois, assim que a conexão é estabelecida, as mensagens podem ser enviadas e recebidas instantaneamente.</li>
+  <li><strong>REST</strong>: Uma aplicação de gerenciamento de tarefas, onde você cria, lê, atualiza ou apaga tarefas. O cliente faz uma requisição para o servidor toda vez que o estado da tarefa muda.</li>
+</ul>
+
+<h3 id="resumo">Resumo:</h3>
+
+<ul>
+  <li><strong>WebSocket</strong> é ideal para comunicação em tempo real e bidirecional, com uma conexão persistente.</li>
+  <li><strong>REST</strong> é mais adequado para aplicações baseadas em requisições independentes e estado sem persistência.</li>
+</ul>
+
+<p>Cada um tem seu lugar dependendo do caso de uso.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

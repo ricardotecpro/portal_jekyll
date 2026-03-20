@@ -1,0 +1,183 @@
+<h1 id="python-do-básico-ao-avançado-">Python: Do Básico ao Avançado 🐍</h1>
+
+<p>Esta trilha foi desenhada para guiar você desde a instalação do Python até as boas práticas de desenvolvimento usadas por profissionais, cobrindo o gerenciamento de ambientes, dependências e o uso de ferramentas interativas.</p>
+
+<hr />
+
+<h3 id="seção-1-fundamentos-e-instalação-️"><strong>Seção 1: Fundamentos e Instalação 🛠️</strong></h3>
+
+<p>O primeiro passo é garantir que o Python esteja instalado em seu sistema. Você pode baixá-lo diretamente do <a href="https://www.python.org/downloads/">site oficial python.org</a>. Durante a instalação no Windows, é <strong>altamente recomendado</strong> marcar a opção “Add Python to PATH” para facilitar o uso do terminal.</p>
+
+<hr />
+
+<h3 id="seção-2-ambientes-virtuais-virtualenv-"><strong>Seção 2: Ambientes Virtuais (<code class="language-plaintext highlighter-rouge">virtualenv</code>) 🌳</strong></h3>
+
+<p><img src="../assets/images/virtual_env.png" alt="Ambientes Virtuais" /></p>
+
+<p>Ambientes virtuais são pastas isoladas que contêm uma instalação específica do Python e todas as bibliotecas necessárias para um único projeto. Usá-los é uma prática essencial para evitar conflitos de versão entre projetos.</p>
+
+<p><strong>🤔 Por que usar?</strong>
+Imagine que o Projeto A precisa da biblioteca <code class="language-plaintext highlighter-rouge">pandas</code> versão 1.5, mas o Projeto B precisa da versão 2.0. Sem um ambiente virtual, você teria um conflito. Com ambientes virtuais, cada projeto tem seu próprio “mundo” de bibliotecas.</p>
+
+<h4 id="1-instalação-do-virtualenv"><strong>1. Instalação do <code class="language-plaintext highlighter-rouge">virtualenv</code></strong></h4>
+
+<p>Abra seu terminal (CMD ou PowerShell no Windows, Terminal no Linux/macOS) e execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>virtualenv
+</code></pre></div></div>
+
+<h4 id="2-criação-de-um-ambiente-virtual"><strong>2. Criação de um Ambiente Virtual</strong></h4>
+
+<p>Navegue até a pasta do seu projeto e crie o ambiente. O nome <code class="language-plaintext highlighter-rouge">venv</code> é uma convenção comum.</p>
+
+<ul>
+  <li>
+    <p><strong>Para Windows 💻 (CMD / PowerShell):</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Dentro da pasta do seu projeto</span>
+virtualenv venv
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Para Linux e macOS 🐧 (Bash / Zsh):</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Dentro da pasta do seu projeto</span>
+virtualenv venv
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Isso criará uma pasta chamada <code class="language-plaintext highlighter-rouge">venv</code> dentro do diretório do seu projeto.</p>
+
+<h4 id="3-ativação-do-ambiente-virtual-️"><strong>3. Ativação do Ambiente Virtual ▶️</strong></h4>
+
+<p>Para começar a usar o ambiente, você precisa “ativá-lo”.</p>
+
+<ul>
+  <li>
+    <p><strong>Para Windows 💻 (CMD / PowerShell):</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Executar o script de ativação</span>
+.<span class="se">\v</span><span class="nb">env</span><span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+</code></pre></div>    </div>
+
+    <p>Seu prompt do terminal mudará, mostrando <code class="language-plaintext highlighter-rouge">(venv)</code> no início.</p>
+  </li>
+  <li>
+    <p><strong>Para Linux e macOS 🐧 (Bash / Zsh):</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Executar o script de ativação</span>
+<span class="nb">source </span>venv/bin/activate
+</code></pre></div>    </div>
+
+    <p>Seu prompt do terminal também mudará para indicar <code class="language-plaintext highlighter-rouge">(venv)</code>.</p>
+  </li>
+</ul>
+
+<h4 id="4-desativação-do-ambiente-️"><strong>4. Desativação do Ambiente ⏹️</strong></h4>
+
+<p>Quando terminar de trabalhar no projeto, basta digitar no terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div></div>
+
+<p><strong>💡 Dica Profissional:</strong> Sempre adicione a pasta do seu ambiente virtual (ex: <code class="language-plaintext highlighter-rouge">venv/</code>) ao seu arquivo <code class="language-plaintext highlighter-rouge">.gitignore</code> para não versionar as bibliotecas baixadas.</p>
+
+<hr />
+
+<h3 id="seção-3-gerenciamento-de-dependências-requirementstxt-"><strong>Seção 3: Gerenciamento de Dependências (<code class="language-plaintext highlighter-rouge">requirements.txt</code>) 📦</strong></h3>
+
+<p>À medida que você instala bibliotecas em seu projeto (com o ambiente virtual ativado), é crucial registrar essas “dependências” para que outros desenvolvedores (ou você mesmo, em outro computador) possam recriar o ambiente facilmente.</p>
+
+<h4 id="1-instalando-pacotes-"><strong>1. Instalando Pacotes ➕</strong></h4>
+
+<p>Com o ambiente ativado, use o <code class="language-plaintext highlighter-rouge">pip</code> para instalar pacotes.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Exemplo: instalando a biblioteca pandas</span>
+pip <span class="nb">install </span>pandas
+</code></pre></div></div>
+
+<h4 id="2-criando-o-requirementstxt-️"><strong>2. Criando o <code class="language-plaintext highlighter-rouge">requirements.txt</code> ✍️</strong></h4>
+
+<p>Este arquivo é uma “lista de compras” de todas as bibliotecas que seu projeto utiliza. Para gerá-lo automaticamente, execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze <span class="o">&gt;</span> requirements.txt
+</code></pre></div></div>
+
+<p>Isso criará um arquivo <code class="language-plaintext highlighter-rouge">requirements.txt</code> na pasta do seu projeto com o conteúdo similar a:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pandas==2.2.0
+numpy==1.26.4
+...
+</code></pre></div></div>
+
+<h4 id="3-instalando-a-partir-de-um-requirementstxt-"><strong>3. Instalando a partir de um <code class="language-plaintext highlighter-rouge">requirements.txt</code> 📥</strong></h4>
+
+<p>Quando outra pessoa (ou você) clona o projeto, basta criar e ativar um novo ambiente virtual e executar o seguinte comando para instalar todas as dependências de uma vez:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="seção-4-desenvolvimento-interativo-jupyter-notebook-"><strong>Seção 4: Desenvolvimento Interativo (Jupyter Notebook) 📓</strong></h3>
+
+<p>Jupyter Notebooks são ideais para ciência de dados, análise, prototipagem e aprendizado, pois permitem executar blocos de código de forma interativa e visualizar os resultados imediatamente.</p>
+
+<h4 id="1-instalação-do-jupyter-"><strong>1. Instalação do Jupyter 🚀</strong></h4>
+
+<p>Com seu ambiente virtual ativado, instale o Jupyter:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>jupyterlab
+</code></pre></div></div>
+
+<p><em><code class="language-plaintext highlighter-rouge">jupyterlab</code> é a versão mais moderna e recomendada, mas você também pode usar <code class="language-plaintext highlighter-rouge">pip install notebook</code> para a versão clássica.</em></p>
+
+<h4 id="2-iniciando-o-jupyterlab"><strong>2. Iniciando o JupyterLab</strong></h4>
+
+<p>No terminal, com o ambiente ativado e na pasta do seu projeto, execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter lab
+</code></pre></div></div>
+
+<p>Isso abrirá uma nova aba em seu navegador com a interface do JupyterLab.</p>
+
+<h4 id="3-usando-o-jupyter-notebook-️"><strong>3. Usando o Jupyter Notebook 🖱️</strong></h4>
+
+<ul>
+  <li>Na interface do JupyterLab, você pode criar um novo “Notebook” (.ipynb).</li>
+  <li>Um notebook é composto por <strong>células</strong>. Você pode escrever código Python em uma célula.</li>
+  <li>Para executar o código em uma célula, pressione <strong><code class="language-plaintext highlighter-rouge">Shift + Enter</code></strong>. O resultado será exibido logo abaixo da célula.</li>
+  <li>Você também pode criar células de texto usando a formatação <strong>Markdown</strong> para documentar seu trabalho.</li>
+</ul>
+
+<p>É uma ferramenta poderosa para testar ideias e apresentar análises de forma clara e organizada. Boa exploração! 🎉</p>
+
+<hr />
+
+<h2 id="-teste-seus-conhecimentos">🎯 Teste Seus Conhecimentos</h2>
+
+<p>Agora que você domina os conceitos avançados, que tal testar seus conhecimentos?</p>
+
+<div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #FFD43B 0%, #FFA500 100%); border-radius: 10px; margin: 2rem 0;">
+  <h3 style="color: white; margin-bottom: 1rem;">🧠 Quiz de Fixação</h3>
+  <p style="color: white; margin-bottom: 1.5rem;">
+    Teste seus conhecimentos sobre Python Avançado com questões interativas!
+  </p>
+  <a href="/ads_spec_backend_com_python/quiz/python_avancado/" style="display: inline-block; background: white; color: #306998; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: transform 0.2s;">
+    Fazer Quiz Agora →
+  </a>
+</div>
+
+<hr />
+
+<h2 id="-próximos-passos">📚 Próximos Passos</h2>
+
+<p>Parabéns por completar a aula de Python Avançado! Continue sua jornada:</p>
+
+<ul>
+  <li>💪 <strong>Praticar</strong>: <a href="../exercicios/index.html">Exercícios</a></li>
+  <li>🎯 <strong>Aplicar</strong>: <a href="../projetos/index.html">Projetos</a></li>
+  <li>📖 <strong>Revisar</strong>: <a href="python_basico.html">Python Básico</a></li>
+</ul>
+

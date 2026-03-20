@@ -1,0 +1,161 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /extra_guia_de_modelagem_uml/uml.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Modelagem UML | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Modelagem UML" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_modelagem_uml/uml.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_modelagem_uml/uml.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Modelagem UML" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Modelagem UML","url":"https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_modelagem_uml/uml.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/extra_guia_de_modelagem_uml/" style="margin-left: 0.5rem;">Extra guia de modelagem uml</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Modelagem uml</span>
+          
+        
+      </nav>
+
+      <h1 id="modelagem-uml">Modelagem UML</h1>
+
+<p>O <strong>domínio</strong> 🎯 de um sistema é a área de negócio que está sendo observada. A <strong>modelagem de domínio</strong> é o processo de criar um modelo que descreve as entidades desse domínio e as inter-relações entre elas.</p>
+
+<p>A modelagem de domínio ocorre principalmente durante as fases de 
+<strong>Modelagem de Negócio (Business Modelling)</strong>, 
+<strong>Requisitos (Requirements)</strong> e 
+<strong>Análise e Design (Analysis &amp; Design)</strong> do desenvolvimento de software.</p>
+
+<h3 id="níveis-de-abstração-do-modelo-de-domínio-">Níveis de Abstração do Modelo de Domínio 🪜</h3>
+
+<p>A modelagem pode ser dividida em diferentes níveis de abstração, cada um com um objetivo e um responsável específico:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Nível</th>
+      <th style="text-align: left">Responsável</th>
+      <th style="text-align: left">Objetivo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Conceitual ou de Análise (de negócio)</strong> 👔</td>
+      <td style="text-align: left">Analista de negócio</td>
+      <td style="text-align: left">Descrever as entidades do negócio e suas relações, <strong>independentemente de sistema</strong>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Conceitual ou de Análise (de sistema)</strong> 💻</td>
+      <td style="text-align: left">Analista de sistemas</td>
+      <td style="text-align: left">Descrever as entidades do sistema e suas relações, <strong>independentemente de paradigma e tecnologia</strong>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Lógico ou de Design</strong> 🏗️</td>
+      <td style="text-align: left">Projetista</td>
+      <td style="text-align: left">Descrever as entidades do sistema, mas já <strong>preso a um paradigma</strong> (como relacional ou orientado a objetos), porém ainda independente de tecnologia.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Físico ou de Implementação</strong> ⌨️</td>
+      <td style="text-align: left">Implementador</td>
+      <td style="text-align: left">Descrever as entidades do sistema, <strong>preso a um paradigma e a uma tecnologia específica</strong> (como Java, C#, MySQL, etc.).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="análise-vs-design--vs-">Análise vs. Design 🤔 vs. 💡</h3>
+
+<p>Existe uma distinção importante, embora por vezes sutil, entre análise e design:</p>
+
+<ul>
+  <li><strong>Análise:</strong> Foca em descrever o <strong>PROBLEMA</strong>. É um nível de abstração mais alto, que busca entender “o quê” o sistema deve fazer, sem se preocupar com “como” será feito. O resultado é independente de paradigma e tecnologia.</li>
+  <li><strong>Design:</strong> Foca em descrever a <strong>SOLUÇÃO</strong>. Neste nível, as decisões de implementação começam a ser tomadas, prendendo o modelo a um paradigma específico (por exemplo, definindo chaves estrangeiras para um modelo relacional ou incluindo métodos para um modelo orientado a objetos).</li>
+</ul>
+
+<h3 id="o-foco-da-modelagem-conceitual-">O Foco da Modelagem Conceitual 🎯</h3>
+
+<p>A <strong>Modelagem Conceitual</strong> que é objeto de estudo se situa no <strong>nível de Análise</strong>. No entanto, na prática, ela frequentemente “invade” alguns aspectos do nível de Design, como a especificação de tipos de dados e preocupações com normalização, para facilitar a transição para a implementação.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

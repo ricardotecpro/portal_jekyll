@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🔧 C: A Linguagem Fundamental da Programação
+title: "🔧 C: A Linguagem Fundamental da Programação"
 ---
 
 # 🔧 C: A Linguagem Fundamental da Programação

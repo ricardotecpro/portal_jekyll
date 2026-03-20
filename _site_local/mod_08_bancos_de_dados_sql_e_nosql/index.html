@@ -1,0 +1,256 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>💾 Bancos de Dados: SQL e NoSQL | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="💾 Bancos de Dados: SQL e NoSQL" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="💾 Bancos de Dados: SQL e NoSQL" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"💾 Bancos de Dados: SQL e NoSQL","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 💾 bancos de dados: sql e nosql</span>
+          
+        
+      </nav>
+
+      <h1 id="-bancos-de-dados-sql-e-nosql">💾 Bancos de Dados: SQL e NoSQL</h1>
+
+<p>Um <strong>banco de dados</strong> é um sistema organizado para armazenar, gerenciar e recuperar informações (dados) de forma eficiente e segura. Ele é o “cérebro” da maioria das aplicações, responsável por persistir os dados para que não se percam quando a aplicação é desligada.</p>
+
+<p>No mundo do desenvolvimento de software, existem duas grandes categorias ou filosofias de bancos de dados: <strong>SQL</strong> (relacional) e <strong>NoSQL</strong> (não relacional). A escolha entre eles é uma das decisões de arquitetura mais importantes em um projeto.</p>
+
+<hr />
+
+<h2 id="️-sql-relacional-a-abordagem-estruturada">🏛️ SQL (Relacional): A Abordagem Estruturada</h2>
+
+<p><strong>SQL (Structured Query Language)</strong>, ou banco de dados relacional, é o modelo mais tradicional e difundido. Ele organiza os dados em <strong>tabelas</strong>, que são compostas por <strong>linhas</strong> (registros) e <strong>colunas</strong> (atributos). A relação entre as diferentes tabelas é estabelecida através de chaves (chaves primárias e estrangeiras).</p>
+
+<p>Pense em uma planilha do Excel: cada aba é uma tabela, cada linha é um item único e cada coluna é uma característica desse item.</p>
+
+<h3 id="características-principais">Características Principais</h3>
+
+<ul>
+  <li><strong>Esquema Rígido (Schema-on-Write)</strong>: A estrutura das tabelas (suas colunas e tipos de dados) deve ser definida <strong>antes</strong> de se inserir qualquer dado. Isso garante consistência e integridade.</li>
+  <li><strong>Linguagem SQL</strong>: Utiliza a linguagem SQL, um padrão poderoso e universal para consultar e manipular os dados. Comandos como <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">INSERT</code>, <code class="language-plaintext highlighter-rouge">UPDATE</code> e <code class="language-plaintext highlighter-rouge">DELETE</code> são a base da interação.</li>
+  <li><strong>Atomicidade, Consistência, Isolamento e Durabilidade (ACID)</strong>: Bancos de dados SQL são transacionais e seguem o modelo <strong>ACID</strong>, que é um conjunto de propriedades que garantem a validade dos dados mesmo em caso de erros, falhas de energia ou outros problemas. Isso os torna extremamente confiáveis para operações críticas.</li>
+  <li><strong>Escalabilidade Vertical</strong>: Para lidar com mais carga, a abordagem tradicional é aumentar os recursos do servidor (CPU, RAM, SSD), o que é conhecido como escalar verticalmente.</li>
+</ul>
+
+<p><strong>Exemplo de Tabelas Relacionadas:</strong></p>
+
+<ul>
+  <li><strong>Tabela <code class="language-plaintext highlighter-rouge">Clientes</code></strong>: <code class="language-plaintext highlighter-rouge">id</code> (chave primária), <code class="language-plaintext highlighter-rouge">nome</code>, <code class="language-plaintext highlighter-rouge">email</code></li>
+  <li><strong>Tabela <code class="language-plaintext highlighter-rouge">Pedidos</code></strong>: <code class="language-plaintext highlighter-rouge">id</code> (chave primária), <code class="language-plaintext highlighter-rouge">cliente_id</code> (chave estrangeira que aponta para <code class="language-plaintext highlighter-rouge">Clientes</code>), <code class="language-plaintext highlighter-rouge">data</code></li>
+</ul>
+
+<h3 id="-quando-usar-sql">🎯 Quando Usar SQL?</h3>
+
+<ul>
+  <li>Aplicações que exigem alta consistência e integridade dos dados (sistemas financeiros, transações de e-commerce).</li>
+  <li>Quando os dados são bem estruturados e o esquema não muda com frequência.</li>
+  <li>Quando são necessárias consultas complexas que envolvem a junção (<code class="language-plaintext highlighter-rouge">JOIN</code>) de múltiplas tabelas.</li>
+</ul>
+
+<p><strong>Exemplos de Bancos de Dados SQL</strong>: <strong>MySQL</strong>, <strong>PostgreSQL</strong>, <strong>Microsoft SQL Server</strong>, <strong>Oracle Database</strong>.</p>
+
+<hr />
+
+<h2 id="-nosql-não-relacional-a-abordagem-flexível">🧩 NoSQL (Não Relacional): A Abordagem Flexível</h2>
+
+<p><strong>NoSQL (“Not Only SQL”)</strong> surgiu da necessidade de lidar com o grande volume, a variedade e a velocidade dos dados da internet moderna (Big Data). Em vez de um modelo único de tabelas, o NoSQL abrange uma variedade de modelos de dados, cada um otimizado para um tipo específico de problema.</p>
+
+<h3 id="características-principais-1">Características Principais</h3>
+
+<ul>
+  <li><strong>Esquema Flexível (Schema-on-Read)</strong>: A estrutura dos dados não precisa ser predefinida. Você pode armazenar dados com diferentes formatos no mesmo lugar. A estrutura é inferida no momento da leitura.</li>
+  <li><strong>Modelos de Dados Variados</strong>: Existem vários tipos de bancos de dados NoSQL:
+    <ol>
+      <li><strong>Documentos</strong>: Armazenam dados em documentos, geralmente no formato JSON ou BSON. Cada documento pode ter sua própria estrutura. (Ex: <strong>MongoDB</strong>)</li>
+      <li><strong>Chave-Valor</strong>: O modelo mais simples. Armazena dados como um dicionário, com uma chave única e um valor. Extremamente rápido para escritas e leituras simples. (Ex: <strong>Redis</strong>, <strong>Amazon DynamoDB</strong>)</li>
+      <li><strong>Colunares (Wide-Column)</strong>: Armazenam dados em colunas em vez de linhas, o que é otimizado para consultas rápidas em grandes volumes de dados. (Ex: <strong>Apache Cassandra</strong>, <strong>Apache HBase</strong>)</li>
+      <li><strong>Grafos</strong>: Projetados para armazenar e navegar em relacionamentos complexos. Os dados são nós, e as conexões entre eles são arestas. (Ex: <strong>Neo4j</strong>)</li>
+    </ol>
+  </li>
+  <li><strong>Disponibilidade, Estado Flexível e Consistência Eventual (BASE)</strong>: Em vez de ACID, muitos sistemas NoSQL seguem o modelo <strong>BASE</strong>. Eles priorizam a alta disponibilidade e a escalabilidade, aceitando que os dados podem ficar temporariamente inconsistentes entre as réplicas (consistência eventual).</li>
+  <li><strong>Escalabilidade Horizontal</strong>: São projetados para escalar horizontalmente, ou seja, distribuindo a carga de trabalho entre múltiplos servidores. Isso os torna ideais para aplicações em nuvem e de grande escala.</li>
+</ul>
+
+<h3 id="-quando-usar-nosql">🎯 Quando Usar NoSQL?</h3>
+
+<ul>
+  <li>Aplicações que precisam lidar com grandes volumes de dados não estruturados ou semiestruturados (conteúdo de mídias sociais, dados de sensores de IoT).</li>
+  <li>Quando a flexibilidade do esquema é importante e os requisitos de dados mudam rapidamente.</li>
+  <li>Aplicações que exigem altíssima performance de leitura e escrita e alta disponibilidade.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-quadro-comparativo-sql-vs-nosql">⚖️ Quadro Comparativo: SQL vs. NoSQL</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Característica</th>
+      <th style="text-align: left">SQL (Relacional)</th>
+      <th style="text-align: left">NoSQL (Não Relacional)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Modelo de Dados</strong></td>
+      <td style="text-align: left">Tabelas com linhas e colunas</td>
+      <td style="text-align: left">Documentos, Chave-Valor, Colunares, Grafos</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Esquema (Schema)</strong></td>
+      <td style="text-align: left">Rígido e predefinido</td>
+      <td style="text-align: left">Flexível e dinâmico</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Escalabilidade</strong></td>
+      <td style="text-align: left"><strong>Vertical</strong> (aumentar o poder de um único servidor)</td>
+      <td style="text-align: left"><strong>Horizontal</strong> (adicionar mais servidores)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Consistência</strong></td>
+      <td style="text-align: left">Modelo <strong>ACID</strong> (forte consistência)</td>
+      <td style="text-align: left">Modelo <strong>BASE</strong> (foco na disponibilidade, consistência eventual)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Linguagem de Consulta</strong></td>
+      <td style="text-align: left">SQL (padronizada e poderosa)</td>
+      <td style="text-align: left">Varia (MQL para MongoDB, CQL para Cassandra, etc.)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Casos de Uso Típicos</strong></td>
+      <td style="text-align: left">E-commerce, sistemas bancários, aplicações empresariais</td>
+      <td style="text-align: left">Mídias sociais, Big Data, IoT, catálogos de produtos</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Exemplos Populares</strong></td>
+      <td style="text-align: left">PostgreSQL, MySQL</td>
+      <td style="text-align: left">MongoDB, Redis, Cassandra, Neo4j</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-visualizando-os-modelos">🗺️ Visualizando os Modelos</h2>
+
+<pre><code class="language-mermaid">graph TD;
+    subgraph "Modelo SQL (Relacional)"
+        A[Tabela: Clientes]
+        B[Tabela: Pedidos]
+        
+        A --- "id_cliente (Chave Estrangeira)" --&gt; B
+        
+        subgraph "Linhas e Colunas"
+            direction LR
+            C[id]
+            D[nome]
+            E[email]
+        end
+
+        A --&gt; C &amp; D &amp; E
+    end
+
+    subgraph "Modelo NoSQL (Documento - Ex: MongoDB)"
+        F[Coleção: Usuários]
+        
+        subgraph "Documento JSON"
+            G["{&lt;br&gt;  _id: 1,&lt;br&gt;  nome: 'Ana',&lt;br&gt;  email: 'ana@email.com',&lt;br&gt;  pedidos: [&lt;br&gt;    { id_pedido: 101, data: '...', ... },&lt;br&gt;    { id_pedido: 102, data: '...', ... }&lt;br&gt;  ]&lt;br&gt;}"]
+        end
+        
+        F --&gt; G
+    end
+</code></pre>
+
+<p><em>O diagrama mostra como, no modelo SQL, os dados de cliente e pedido estão em tabelas separadas e relacionadas. No modelo de documento NoSQL, os pedidos de um cliente podem ser aninhados dentro do próprio documento do cliente, o que pode simplificar as consultas.</em></p>
+
+<h3 id="conclusão-não-é-uma-guerra-é-uma-escolha">Conclusão: Não é uma Guerra, é uma Escolha</h3>
+
+<p>Não existe um “vencedor” entre SQL e NoSQL. A escolha correta depende inteiramente dos requisitos do seu projeto. Muitas aplicações modernas adotam uma abordagem <strong>híbrida</strong>, usando um banco de dados SQL para dados transacionais críticos e um banco de dados NoSQL para dados que exigem grande escala e flexibilidade.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🔗 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

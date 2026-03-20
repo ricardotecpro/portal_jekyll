@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 📡 Backend e APIs: A Comunicação no Coração do Software
+title: "📡 Backend e APIs: A Comunicação no Coração do Software"
 ---
 
 # 📡 Backend e APIs: A Comunicação no Coração do Software

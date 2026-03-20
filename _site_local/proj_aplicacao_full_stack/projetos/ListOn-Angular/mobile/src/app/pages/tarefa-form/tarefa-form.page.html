@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ isEditMode ? 'Editar Tarefa' : 'Nova Tarefa' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fecharModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+    <ion-item fill="outline" shape="round" class="ion-margin-bottom">
+      <ion-label position="floating">Título</ion-label>
+      <ion-input formControlName="titulo" type="text"></ion-input>
+    </ion-item>
+
+    <div *ngIf="form.get('titulo')?.invalid && form.get('titulo')?.touched" class="error-message">
+      <ion-icon name="alert-circle-outline" color="danger"></ion-icon>
+      <span class="ion-padding-start">O título é obrigatório (mín. 3 caracteres).</span>
+    </div>
+
+    <ion-button expand="block" type="submit" [disabled]="form.invalid" class="ion-margin-top" shape="round">
+      Salvar Tarefa
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🧠 Inteligência Artificial e Redes Neurais
+title: "🧠 Inteligência Artificial e Redes Neurais"
 ---
 
 # 🧠 Inteligência Artificial e Redes Neurais

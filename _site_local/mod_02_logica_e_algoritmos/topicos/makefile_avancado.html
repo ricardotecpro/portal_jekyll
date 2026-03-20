@@ -1,0 +1,269 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/makefile_avancado.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Makefile Profissional em C | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Makefile Profissional em C" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/makefile_avancado.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/makefile_avancado.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Makefile Profissional em C" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Makefile Profissional em C","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/makefile_avancado.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Makefile profissional em c</span>
+          
+        
+      </nav>
+
+      <h1 id="makefile-profissional-em-c">Makefile Profissional em C</h1>
+
+<h2 id="ordem">Ordem</h2>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Estrutura</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Exemplo</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Comandos</li>
+</ul>
+
+<p>Caminho dos profissionais de C.<br />
+Padrão de projeto em C com <code class="language-plaintext highlighter-rouge">Makefile</code> mais organizado — separando os arquivos <code class="language-plaintext highlighter-rouge">.c</code> e <code class="language-plaintext highlighter-rouge">.h</code> em pastas.</p>
+
+<hr />
+
+<h2 id="estrutura-típica-de-um-projeto-em-c">Estrutura típica de um projeto em C:</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>meu_projeto/
+├── Makefile
+├── src/
+│   ├── main.c
+│   ├── funcoes.c
+│
+├── include/
+│   └── funcoes.h
+│
+└── bin/
+</code></pre></div></div>
+
+<blockquote>
+  <p>Onde:</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">src/</code> → Arquivos fonte <code class="language-plaintext highlighter-rouge">.c</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">include/</code> → Arquivos de cabeçalho <code class="language-plaintext highlighter-rouge">.h</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">bin/</code> → Onde fica o executável final</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="exemplo-dos-arquivos">Exemplo dos arquivos</h2>
+
+<h3 id="srcmainc">src/main.c</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">"funcoes.h"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ola</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="srcfuncoesc">src/funcoes.c</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">"funcoes.h"</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">ola</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Olá, Ricardo!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="includefuncoesh">include/funcoes.h</h3>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef FUNCOES_H
+#define FUNCOES_H
+</span>
+<span class="kt">void</span> <span class="nf">ola</span><span class="p">();</span>
+
+<span class="cp">#endif
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="makefile-profissional">Makefile profissional:</h2>
+
+<pre><code class="language-Makefile"># Nome do programa
+PROG = bin/programa
+
+# Compilador
+CC = gcc
+
+# Diretórios
+SRC_DIR = src
+INC_DIR = include
+BIN_DIR = bin
+
+# Flags de compilação
+CFLAGS = -Wall -Wextra -I$(INC_DIR)
+
+# Arquivos fonte
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+
+# Objetos gerados
+OBJS = $(SRCS:.c=.o)
+
+# Alvo padrão
+all: $(BIN_DIR) $(PROG)
+
+# Como compilar
+$(PROG): $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(PROG)
+
+# Cria a pasta bin se não existir
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+# Limpar arquivos gerados
+clean:
+	rm -f $(PROG)
+
+</code></pre>
+
+<hr />
+
+<h2 id="comandos-pra-usar">Comandos pra usar:</h2>
+
+<h3 id="compilar">Compilar:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+</code></pre></div></div>
+
+<h3 id="executar">Executar:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/programa
+</code></pre></div></div>
+
+<h3 id="limpar">Limpar:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make clean
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="melhorando-no-vim">Melhorando no Vim:</h2>
+
+<p>Dentro do Vim:</p>
+
+<p>Compila e executa:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">:!</span><span class="k">make</span> &amp;&amp; <span class="p">.</span><span class="sr">/bin/</span>programa
+</code></pre></div></div>
+
+<p>Atalho no <code class="language-plaintext highlighter-rouge">~/.vimrc</code>:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nnoremap <span class="p">&lt;</span>F5<span class="p">&gt;</span> <span class="p">:</span><span class="k">w</span><span class="p">&lt;</span>CR<span class="p">&gt;:!</span><span class="k">make</span> &amp;&amp; <span class="p">.</span><span class="sr">/bin/</span>programa<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>😎</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

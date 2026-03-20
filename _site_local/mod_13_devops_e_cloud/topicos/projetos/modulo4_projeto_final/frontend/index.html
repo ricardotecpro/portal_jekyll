@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    <input id="tarefa" type="text" placeholder="Digite uma tarefa">
+    <button onclick="adicionar()">Adicionar</button>
+    <ul id="lista"></ul>
+
+    <script>
+    async function carregar() {
+        const resp = await fetch('http://localhost:5000/tarefas');
+        const dados = await resp.json();
+        document.getElementById('lista').innerHTML =
+            dados.map(t => `<li>${t}</li>`).join('');
+    }
+
+    async function adicionar() {
+        const tarefa = document.getElementById('tarefa').value;
+        await fetch('http://localhost:5000/tarefas', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({tarefa})
+        });
+        document.getElementById('tarefa').value = '';
+        carregar();
+    }
+
+    carregar();
+    </script>
+</body>
+</html>

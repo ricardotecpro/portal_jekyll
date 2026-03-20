@@ -1,0 +1,192 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/07_consultas_sql.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/07_consultas_sql.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/07_consultas_sql.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/07_consultas_sql.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍</span>
+          
+        
+      </nav>
+
+      <h2 id="a-extração-de-informações-de-um-banco-de-dados-para-responder-a-questões-de-negócio-é-realizada-por-meio-de-consultas-">A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍</h2>
+
+<p>Em SQL, o subconjunto de comandos dedicado a esta tarefa é o <code class="language-plaintext highlighter-rouge">SELECT</code>, que alguns autores classificam como parte da DQL (Data Query Language).</p>
+
+<h3 id="álgebra-relacional-a-base-teórica-️">Álgebra Relacional: A Base Teórica 🏛️</h3>
+
+<p>As consultas em bancos de dados relacionais são fundamentadas na <strong>Álgebra Relacional</strong>, uma base teórica que define um conjunto de operações sobre tabelas (relações). Assim como a aritmética opera sobre números, a álgebra relacional opera sobre tabelas para produzir novas tabelas como resultado.</p>
+
+<p>As operações fundamentais são:</p>
+
+<ul>
+  <li><strong>Projeção (π)</strong> 📽️: Filtra as <strong>colunas</strong> de uma tabela. Em SQL, corresponde à lista de colunas especificadas na cláusula <code class="language-plaintext highlighter-rouge">SELECT</code>.</li>
+  <li><strong>Restrição (σ)</strong> 📜: Também chamada de <strong>Seleção</strong>, filtra as <strong>linhas</strong> de uma tabela com base em uma condição. Em SQL, corresponde à cláusula <code class="language-plaintext highlighter-rouge">WHERE</code>.</li>
+  <li><strong>Produto Cartesiano (X)</strong> ✖️: Realiza o “cruzamento” de todos os registros entre duas tabelas. Em SQL, é o resultado de listar duas tabelas na cláusula <code class="language-plaintext highlighter-rouge">FROM</code> sem uma condição de junção.</li>
+  <li><strong>Junção (⨝)</strong> 🔗: É a operação mais comum, que combina registros correspondentes de duas tabelas. Essencialmente, é um Produto Cartesiano seguido por uma Restrição para manter apenas as linhas que satisfazem a condição de junção.</li>
+</ul>
+
+<h3 id="construindo-consultas-com-select-️">Construindo Consultas com <code class="language-plaintext highlighter-rouge">SELECT</code> 🏗️</h3>
+
+<p>A estrutura básica de uma consulta SQL envolve as cláusulas <code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">FROM</code> e <code class="language-plaintext highlighter-rouge">WHERE</code>.</p>
+
+<h4 id="junções-joins-">Junções (JOINs) 🔗</h4>
+
+<p>Para combinar dados de múltiplas tabelas, utilizam-se as junções. As principais formas de realizar uma junção são:</p>
+
+<ol>
+  <li><strong>INNER JOIN (Junção Interna)</strong> 🤝: Retorna apenas os registros que possuem valores correspondentes em ambas as tabelas.</li>
+  <li><strong>LEFT JOIN (Junção à Esquerda)</strong> ⬅️: Retorna todos os registros da tabela à esquerda e os registros correspondentes da tabela à direita. Se não houver correspondência, os campos da tabela direita terão valor nulo.</li>
+  <li><strong>RIGHT JOIN (Junção à Direita)</strong> ➡️: O inverso do <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>. Retorna todos os registros da tabela à direita e os correspondentes da tabela à esquerda.</li>
+  <li><strong>FULL JOIN (Junção Completa)</strong> ↔️: Retorna todos os registros quando há uma correspondência em qualquer uma das tabelas.</li>
+</ol>
+
+<p><strong>Renomeação (AS)</strong> 🏷️: O comando <code class="language-plaintext highlighter-rouge">AS</code> é usado para dar apelidos a colunas e tabelas, o que é útil para remover ambiguidades e nomear campos calculados.</p>
+
+<h4 id="operadores-de-filtragem-">Operadores de Filtragem 🔎</h4>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">LIKE</code></strong>: Usado na cláusula <code class="language-plaintext highlighter-rouge">WHERE</code> para buscar um padrão específico em uma coluna de texto.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">IN</code></strong>: Permite especificar múltiplos valores em uma cláusula <code class="language-plaintext highlighter-rouge">WHERE</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">BETWEEN</code></strong>: Seleciona valores dentro de um intervalo determinado.</li>
+</ul>
+
+<h3 id="funções-em-sql-">Funções em SQL 🔢</h3>
+
+<p>SQL oferece uma vasta gama de funções, que podem variar um pouco entre diferentes SGBDs.</p>
+
+<ul>
+  <li><strong>Funções Comuns</strong>:
+    <ul>
+      <li>Manipulação de texto: <code class="language-plaintext highlighter-rouge">UPPER</code>, <code class="language-plaintext highlighter-rouge">LOWER</code>, <code class="language-plaintext highlighter-rouge">CONCAT</code>, <code class="language-plaintext highlighter-rouge">REPLACE</code>, <code class="language-plaintext highlighter-rouge">CHAR_LENGTH</code>.</li>
+      <li>Conversão e arredondamento: <code class="language-plaintext highlighter-rouge">CAST</code>, <code class="language-plaintext highlighter-rouge">ROUND</code>.</li>
+      <li>Data e hora: <code class="language-plaintext highlighter-rouge">DAY</code>, <code class="language-plaintext highlighter-rouge">MONTH</code>, <code class="language-plaintext highlighter-rouge">YEAR</code>, <code class="language-plaintext highlighter-rouge">EXTRACT</code>.</li>
+      <li>Lógica condicional: <code class="language-plaintext highlighter-rouge">CASE</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Funções de Agregação</strong>: Calculam um valor a partir de um conjunto de registros:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">COUNT</code>: Conta o número de linhas.</li>
+      <li><code class="language-plaintext highlighter-rouge">SUM</code>: Soma os valores.</li>
+      <li><code class="language-plaintext highlighter-rouge">AVG</code>: Calcula a média.</li>
+      <li><code class="language-plaintext highlighter-rouge">MIN</code>: Retorna o menor valor.</li>
+      <li><code class="language-plaintext highlighter-rouge">MAX</code>: Retorna o maior valor.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="cláusulas-adicionais-de-consulta-">Cláusulas Adicionais de Consulta 📋</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">DISTINCT</code></strong>: Retorna apenas valores distintos (únicos), removendo duplicatas.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ORDER BY</code></strong>: Ordena o conjunto de resultados com base em uma ou mais colunas.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">LIMIT</code> / <code class="language-plaintext highlighter-rouge">TOP</code></strong>: Restringe o número de linhas retornadas pela consulta.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">GROUP BY</code></strong>: Agrupa linhas que têm os mesmos valores em colunas especificadas em um registro de resumo. É frequentemente usado com funções de agregação para realizar cálculos em cada grupo.</li>
+</ul>
+
+<h3 id="tópicos-avançados-">Tópicos Avançados 🚀</h3>
+
+<ul>
+  <li><strong>Subconsultas</strong>: Uma consulta aninhada dentro de outra. Como o resultado de uma consulta é sempre uma tabela, ele pode ser usado como argumento em cláusulas como <code class="language-plaintext highlighter-rouge">FROM</code> ou <code class="language-plaintext highlighter-rouge">WHERE</code>, permitindo a resolução de problemas complexos.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">UNION</code> (União)</strong>: Combina o resultado de duas ou mais consultas <code class="language-plaintext highlighter-rouge">SELECT</code> em um único conjunto de resultados.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">DIFERENÇA</code></strong>: Embora não haja um operador de diferença direto, a lógica de encontrar registros que estão em um conjunto mas não em outro é geralmente implementada usando subconsultas com operadores como <code class="language-plaintext highlighter-rouge">IN</code> ou <code class="language-plaintext highlighter-rouge">JOINs</code>.</li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

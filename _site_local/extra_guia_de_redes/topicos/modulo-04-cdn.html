@@ -1,0 +1,126 @@
+<h3 id="arquivo-4-modulo-04-cdnmd"><strong>Arquivo 4: <code class="language-plaintext highlighter-rouge">modulo-04-cdn.md</code></strong></h3>
+
+<h1 id="-módulo-4-entregando-conteúdo-em-escala-global---cdns">🌍 Módulo 4: Entregando Conteúdo em Escala Global - CDNs</h1>
+
+<p>Sua aplicação está no ar, mas usuários do outro lado do mundo reclamam de lentidão. Como resolver? A resposta é uma CDN (Content Delivery Network).</p>
+
+<h2 id="-aula-1-o-que-é-uma-cdn">🤔 Aula 1: O Que é uma CDN?</h2>
+
+<p>Uma <strong>CDN</strong> é uma rede de servidores distribuídos geograficamente que trabalham juntos para entregar conteúdo da internet de forma mais rápida e eficiente.</p>
+
+<h3 id="o-problema-da-latência">O Problema da Latência</h3>
+<p>A latência é o tempo que um pacote de dados leva para ir do ponto A ao ponto B. Ela é limitada pela velocidade da luz e pela distância física. Um usuário no Japão acessando um servidor no Brasil terá uma latência muito maior do que um usuário em São Paulo.</p>
+
+<h3 id="a-solução-distribuição-geográfica">A Solução: Distribuição Geográfica</h3>
+<p>A CDN resolve isso armazenando uma cópia do seu conteúdo (caching) em múltiplos servidores ao redor do mundo, chamados de <strong>Pontos de Presença</strong> (PoPs - Points of Presence).</p>
+
+<pre><code class="language-mermaid">graph TD
+    %% 1. Unificação: Declare os nós que se repetem apenas uma vez.
+    Usuario("Usuário (Japão)")
+    ServidorOrigem{Servidor de Origem (Brasil")}
+    CDN["PoP da CDN (Tóquio)"]
+
+    %% 2. Use os nós declarados para montar os cenários.
+    %% Mantive a sua sintaxe de subgraph com ID, pois é uma boa prática.
+    subgraph semcdn["Sem CDN"]
+        Usuario -- "Latência Alta" --&gt; ServidorOrigem
+    end
+
+    subgraph comcdn["Com CDN"]
+        Usuario -- "Latência Baixa" --&gt; CDN
+        CDN -- "Conteúdo em Cache" --&gt; Usuario
+        CDN -- "Se não houver cache" --&gt; ServidorOrigem
+    end
+
+    %% 3. Aplique os estilos aos nós unificados.
+    style ServidorOrigem fill:#ff9999
+    style CDN fill:#99ff99
+</code></pre>
+
+<p>Quando um usuário acessa seu site, a CDN o direciona para o PoP mais próximo, entregando o conteúdo a partir dali e reduzindo drasticamente a latência.</p>
+
+<h2 id="-aula-2-benefícios-e-funcionamento">📈 Aula 2: Benefícios e Funcionamento</h2>
+
+<p>Usar uma CDN traz várias vantagens:</p>
+
+<ol>
+  <li>
+    <p><strong>Melhora na Velocidade de Carregamento:</strong></p>
+
+    <ul>
+      <li>Menor latência para os usuários.</li>
+      <li>Otimizações automáticas de imagem, minificação de arquivos, etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Redução da Carga no Servidor de Origem:</strong></p>
+
+    <ul>
+      <li>A maioria das requisições (especialmente para conteúdo estático como imagens, CSS e JS) é respondida pela CDN.</li>
+      <li>Seu servidor principal fica livre para processar apenas as requisições dinâmicas.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aumento da Disponibilidade e Escalabilidade:</strong></p>
+
+    <ul>
+      <li>Se o seu servidor de origem ficar offline, a CDN pode continuar a servir o conteúdo em cache (dependendo da configuração).</li>
+      <li>A rede da CDN é massiva e consegue absorver picos de tráfego.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aumento da Segurança:</strong></p>
+
+    <ul>
+      <li>Muitas CDNs oferecem proteção contra <strong>ataques DDoS</strong> (Distributed Denial of Service), absorvendo o tráfego malicioso antes que ele chegue ao seu servidor.</li>
+      <li>Oferecem WAF (Web Application Firewall) para filtrar requisições maliciosas.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="️-aula-3-na-prática-com-uma-cdn">🛠️ Aula 3: Na Prática com uma CDN</h2>
+
+<p>Vamos ver os passos conceituais para configurar uma CDN. Provedores populares incluem <strong>Cloudflare</strong>, <strong>AWS CloudFront</strong> e <strong>Akamai</strong>.</p>
+
+<h3 id="configurando-a-cloudflare-plano-gratuito">Configurando a Cloudflare (Plano Gratuito)</h3>
+
+<p>A Cloudflare é uma das mais fáceis para começar.</p>
+
+<ol>
+  <li>
+    <p><strong>Criar uma conta:</strong> Cadastre-se no site da Cloudflare.</p>
+  </li>
+  <li>
+    <p><strong>Adicionar seu site:</strong> Informe o seu nome de domínio (ex: <code class="language-plaintext highlighter-rouge">meusite.com</code>).</p>
+  </li>
+  <li>
+    <p><strong>Alterar os Nameservers (DNS):</strong></p>
+
+    <ul>
+      <li>A Cloudflare fornecerá dois ou mais endereços de nameservers.</li>
+      <li>Você deve ir ao painel do seu registrador de domínio (onde você comprou o <code class="language-plaintext highlighter-rouge">.com</code>) e substituir os nameservers atuais pelos da Cloudflare.</li>
+      <li><strong>O que isso faz?</strong> Ao fazer isso, você está dizendo à internet que a Cloudflare agora é a autoridade DNS para o seu domínio. Todo o tráfego passará primeiro pelos servidores da Cloudflare antes de chegar ao seu servidor de origem.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Configurar o Caching:</strong></p>
+
+    <ul>
+      <li>No painel da Cloudflare, você pode definir as regras de cache. Por padrão, ela já armazena em cache os arquivos estáticos mais comuns.</li>
+      <li>Você pode criar regras personalizadas para cachear outros tipos de conteúdo.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Habilitar Segurança:</strong></p>
+
+    <ul>
+      <li>Ative o modo “I’m Under Attack” para mitigação instantânea de DDoS.</li>
+      <li>Configure regras de firewall para bloquear tráfego de países ou IPs específicos.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>E pronto! Em poucos minutos, seu site estará mais rápido e seguro, com uma infraestrutura global à sua disposição.</p>
+
+<p>````</p>
+

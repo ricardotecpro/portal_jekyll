@@ -1,0 +1,321 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/06_vetores.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>➡️ Vetores (Arrays Unidimensionais) em Programação | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="➡️ Vetores (Arrays Unidimensionais) em Programação" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/06_vetores.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/06_vetores.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="➡️ Vetores (Arrays Unidimensionais) em Programação" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"➡️ Vetores (Arrays Unidimensionais) em Programação","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/06_vetores.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / ➡️ vetores (arrays unidimensionais) em programação</span>
+          
+        
+      </nav>
+
+      <h1 id="️-vetores-arrays-unidimensionais-em-programação">➡️ Vetores (Arrays Unidimensionais) em Programação</h1>
+
+<p>Vetores, também conhecidos como <strong>arrays unidimensionais</strong>, são uma das estruturas de dados mais fundamentais na programação. Eles nos permitem armazenar múltiplos valores em uma única variável, de forma organizada e eficiente.</p>
+
+<h2 id="-o-que-são-vetores">🤔 O que são Vetores?</h2>
+
+<p>Um vetor é uma coleção de dados que possui quatro características principais:</p>
+
+<ul>
+  <li><strong>Indexada</strong>: Cada elemento no vetor possui uma posição única, chamada de índice, que é usada para acessá-lo. Os índices são sempre números inteiros, começando em zero.</li>
+  <li><strong>Unidimensional</strong>: É uma estrutura de dados linear, como uma lista ou uma fila, possuindo apenas uma dimensão (comprimento).</li>
+  <li><strong>Homogênea</strong>: Todos os elementos armazenados em um vetor devem ser, obrigatoriamente, do mesmo tipo de dado (todos <code class="language-plaintext highlighter-rouge">int</code>, todos <code class="language-plaintext highlighter-rouge">double</code>, todos <code class="language-plaintext highlighter-rouge">String</code>, etc.).</li>
+  <li><strong>Tamanho Fixo</strong>: Uma vez que um vetor é criado na memória, seu tamanho (a quantidade de elementos que ele pode conter) é fixo e não pode ser alterado.</li>
+</ul>
+
+<h2 id="️-trabalhando-com-vetores-em-java">🛠️ Trabalhando com Vetores em Java</h2>
+
+<p>Vamos ver como declarar, instanciar (criar) e manipular vetores na linguagem Java.</p>
+
+<h3 id="declaração-e-instanciação">Declaração e Instanciação</h3>
+
+<p>Para usar um vetor, você primeiro o declara e depois o instancia, especificando seu tipo e tamanho.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Sintaxe: tipo[] nomeDoVetor = new tipo[tamanho];</span>
+
+<span class="c1">// Exemplo: Criando um vetor de 10 posições para números de ponto flutuante.</span>
+<span class="c1">// Isso corresponde a "vet: vetor [0..9] de real" do pseudocódigo.</span>
+<span class="kt">double</span><span class="o">[]</span> <span class="n">numeros</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
+
+<span class="c1">// Exemplo: Criando um vetor de 5 posições para armazenar nomes.</span>
+<span class="nc">String</span><span class="o">[]</span> <span class="n">nomes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[</span><span class="mi">5</span><span class="o">];</span>
+</code></pre></div></div>
+
+<h3 id="acessando-elementos">Acessando Elementos</h3>
+
+<p>O acesso aos elementos é feito através de seus índices. Lembre-se sempre que <strong>o primeiro elemento está no índice 0</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Atribuindo o valor 25.4 à primeira posição (índice 0) do vetor.</span>
+<span class="n">numeros</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mf">25.4</span><span class="o">;</span>
+
+<span class="c1">// Atribuindo o valor "Ana" à terceira posição (índice 2) do vetor.</span>
+<span class="n">nomes</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="s">"Ana"</span><span class="o">;</span>
+
+<span class="c1">// Lendo e imprimindo o valor da terceira posição de 'nomes'.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nomes</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span> <span class="c1">// Saída: Ana</span>
+</code></pre></div></div>
+
+<p>Frequentemente, usamos laços de repetição, como o <code class="language-plaintext highlighter-rouge">for</code>, para percorrer e manipular todos os elementos de um vetor de forma eficiente.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Exemplo: Preenchendo um vetor com os números de 10 a 14.</span>
+<span class="c1">// Equivalente à lógica B[i] &lt;- i + 10.</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">vetorB</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">];</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vetorB</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">vetorB</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Posição "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">" recebeu o valor "</span> <span class="o">+</span> <span class="n">vetorB</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="️-exemplo-prático-lendo-e-imprimindo-um-vetor">✍️ Exemplo Prático: Lendo e Imprimindo um Vetor</h2>
+
+<p><strong>Problema:</strong> Fazer um programa para ler um número inteiro <code class="language-plaintext highlighter-rouge">N</code>, depois ler <code class="language-plaintext highlighter-rouge">N</code> números <code class="language-plaintext highlighter-rouge">double</code> e armazená-los em um vetor. Em seguida, mostrar na tela todos os elementos do vetor.</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LerVetor</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos números você vai digitar? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="c1">// Instanciando o vetor com o tamanho N informado pelo usuário</span>
+        <span class="kt">double</span><span class="o">[]</span> <span class="n">vet</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="no">N</span><span class="o">];</span>
+
+        <span class="c1">// Laço para ler e armazenar cada número no vetor</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite um número: "</span><span class="o">);</span>
+            <span class="n">vet</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Laço para imprimir os elementos do vetor</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+NÚMEROS DIGITADOS:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%.1f
+"</span><span class="o">,</span> <span class="n">vet</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplo de Execução:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos números você vai digitar? 4
+Digite um número: 10.5
+Digite um número: 4.2
+Digite um número: -7.1
+Digite um número: 15.0
+
+NÚMEROS DIGITADOS:
+10.5
+4.2
+-7.1
+15.0
+</code></pre></div></div>
+
+<h2 id="-exercício-completo-análise-de-alturas">📈 Exercício Completo: Análise de Alturas</h2>
+
+<p>Vamos resolver um problema mais elaborado que utiliza <strong>vetores paralelos</strong> (vários vetores cujos índices se correspondem).</p>
+
+<p><strong>Problema:</strong> Fazer um programa para ler nome, idade e altura de <code class="language-plaintext highlighter-rouge">N</code> pessoas. Depois, o programa deve mostrar a altura média das pessoas e a porcentagem de pessoas com menos de 16 anos, listando o nome delas.</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AnaliseAlturas</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantas pessoas serão digitadas? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="c1">// Declarando os vetores paralelos</span>
+        <span class="nc">String</span><span class="o">[]</span> <span class="n">nomes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[</span><span class="no">N</span><span class="o">];</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">idades</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">];</span>
+        <span class="kt">double</span><span class="o">[]</span> <span class="n">alturas</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="no">N</span><span class="o">];</span>
+
+        <span class="c1">// Lendo os dados de cada pessoa</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados da "</span> <span class="o">+</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"ª pessoa:"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+            <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consome a quebra de linha pendente</span>
+            <span class="n">nomes</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Idade: "</span><span class="o">);</span>
+            <span class="n">idades</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Altura: "</span><span class="o">);</span>
+            <span class="n">alturas</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Processando os dados: calculando a soma das alturas e contando menores de 16</span>
+        <span class="kt">double</span> <span class="n">somaAlturas</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">contMenores</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">somaAlturas</span> <span class="o">+=</span> <span class="n">alturas</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">idades</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">contMenores</span><span class="o">++;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Calculando a média de altura</span>
+        <span class="kt">double</span> <span class="n">alturaMedia</span> <span class="o">=</span> <span class="n">somaAlturas</span> <span class="o">/</span> <span class="no">N</span><span class="o">;</span>
+
+        <span class="c1">// Calculando o percentual de menores de 16 anos</span>
+        <span class="c1">// A fórmula é x = cont * 100 / N</span>
+        <span class="kt">double</span> <span class="n">percentualMenores</span> <span class="o">=</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">contMenores</span> <span class="o">*</span> <span class="mf">100.0</span><span class="o">)</span> <span class="o">/</span> <span class="no">N</span><span class="o">;</span>
+
+        <span class="c1">// Apresentando os resultados</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"
+Altura média: %.2f
+"</span><span class="o">,</span> <span class="n">alturaMedia</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Pessoas com menos de 16 anos: %.1f%%
+"</span><span class="o">,</span> <span class="n">percentualMenores</span><span class="o">);</span>
+
+        <span class="c1">// Imprimindo o nome dos menores de 16</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">idades</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nomes</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="️-como-executar-no-vs-code-e-intellij-idea">🛠️ Como Executar no VS Code e IntelliJ IDEA</h3>
+
+<p>Você pode compilar e executar todos os exemplos de código acima em qualquer uma das IDEs modernas.</p>
+
+<h4 id="no-visual-studio-code">No Visual Studio Code</h4>
+
+<ol>
+  <li><strong>Instale o Pacote de Extensões para Java</strong>: Na aba de Extensões (<code class="language-plaintext highlighter-rouge">Ctrl+Shift+X</code>), procure por <code class="language-plaintext highlighter-rouge">Extension Pack for Java</code> da Microsoft e instale-o.</li>
+  <li><strong>Crie o Arquivo</strong>: Crie um novo arquivo com a extensão <code class="language-plaintext highlighter-rouge">.java</code> (ex: <code class="language-plaintext highlighter-rouge">LerVetor.java</code>).</li>
+  <li><strong>Cole o Código</strong>: Copie e cole um dos exemplos no arquivo.</li>
+  <li><strong>Execute</strong>: Um botão <strong>“Run”</strong> aparecerá acima do método <code class="language-plaintext highlighter-rouge">main</code>. Clique nele para compilar e executar o código. A saída aparecerá no terminal integrado.</li>
+</ol>
+
+<h4 id="na-intellij-idea">Na IntelliJ IDEA</h4>
+
+<ol>
+  <li><strong>Crie um Novo Projeto</strong>: Vá em <code class="language-plaintext highlighter-rouge">File &gt; New &gt; Project</code>. Escolha <code class="language-plaintext highlighter-rouge">Java</code> e a versão do JDK.</li>
+  <li><strong>Crie uma Nova Classe</strong>: Na janela de projeto, clique com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code>, vá em <code class="language-plaintext highlighter-rouge">New &gt; Java Class</code> e dê um nome à classe (ex: <code class="language-plaintext highlighter-rouge">AnaliseAlturas</code>).</li>
+  <li><strong>Cole o Código</strong>: Copie e cole o código correspondente na classe criada.</li>
+  <li><strong>Execute</strong>: Clique com o botão direito do mouse em qualquer lugar dentro do editor de código e selecione <strong>Run ‘NomeDaClasse.main()’</strong>. A saída aparecerá na aba “Run” na parte inferior da IDE.</li>
+</ol>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

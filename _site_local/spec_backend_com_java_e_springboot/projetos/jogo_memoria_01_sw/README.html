@@ -1,0 +1,909 @@
+<h1 id="primeiro-jogo-gráfico-em-java-o-jogo-da-memória">Primeiro jogo gráfico em Java: o <strong>Jogo da Memória</strong>.</h1>
+
+<p>Vamos arregaçar as mangas e construir juntos, passo a passo, o seu primeiro jogo gráfico em Java: o <strong>Jogo da Memória</strong>.</p>
+
+<p>Meu objetivo aqui é focar 100% na <strong>lógica</strong> e em como “conversar” com a interface gráfica usando o <strong>Swing</strong>. Não vamos nos preocupar com arquiteturas complexas ou bibliotecas externas. Apenas Java puro (JDK) e Swing.</p>
+
+<hr />
+
+<h3 id="-etapa-1-e-2-criando-o-projeto-e-a-janela-jframe">✅ Etapa 1 e 2: Criando o Projeto e a Janela (JFrame)</h3>
+
+<p>Qualquer aplicação gráfica em Swing começa com uma “janela”. Em Java, essa janela principal é chamada de <code class="language-plaintext highlighter-rouge">JFrame</code>. Pense nela como a moldura de um quadro.</p>
+
+<p><strong>O que vamos fazer:</strong></p>
+
+<ol>
+  <li>Criar um novo projeto Java na sua IDE (Eclipse, IntelliJ, NetBeans).</li>
+  <li>Criar uma classe chamada <code class="language-plaintext highlighter-rouge">JogoDaMemoria</code>.</li>
+  <li>Fazer essa classe “ser” uma janela (usando <code class="language-plaintext highlighter-rouge">extends JFrame</code>).</li>
+  <li>Configurar o básico: título, tamanho e o que fazer ao clicar no “X” (fechar).</li>
+</ol>
+
+<p><strong>Código (JogoDaMemoria.java):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span> <span class="c1">// Importa a classe da janela</span>
+
+<span class="c1">// Nossa classe AGORA É UMA Janela, pois "herda" tudo de JFrame</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDaMemoria</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="c1">// Este é o "construtor". É o código que executa quando </span>
+    <span class="c1">// criamos um "new JogoDaMemoria()"</span>
+    <span class="kd">public</span> <span class="nf">JogoDaMemoria</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1. Configurações básicas da janela</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Jogo da Memória"</span><span class="o">);</span> <span class="c1">// Define o título</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span> <span class="mi">400</span><span class="o">);</span> <span class="c1">// Define o tamanho (largura, altura)</span>
+        
+        <span class="c1">// Isso é MUITO importante: define que o programa fecha ao clicar no "X"</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span> 
+        
+        <span class="c1">// Centraliza a janela na tela</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span> 
+        
+        <span class="c1">// Torna a janela visível</span>
+        <span class="n">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> 
+    <span class="o">}</span>
+
+    <span class="c1">// O método "main" é o ponto de partida de qualquer programa Java</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Cria uma nova instância do nosso jogo</span>
+        <span class="k">new</span> <span class="nf">JogoDaMemoria</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Para testar:</strong> Rode esse código. Você verá uma janela vazia de 400x400 pixels no centro da tela.</p>
+
+<hr />
+
+<h3 id="-etapa-3-criando-o-tabuleiro-jpanel-e-gridlayout">✅ Etapa 3: Criando o Tabuleiro (JPanel e GridLayout)</h3>
+
+<p>Agora que temos a “moldura” (<code class="language-plaintext highlighter-rouge">JFrame</code>), precisamos do “quadro” ou “tabuleiro” onde as cartas ficarão. Para isso, usamos o <code class="language-plaintext highlighter-rouge">JPanel</code>.</p>
+
+<p><strong>O que vamos fazer:</strong></p>
+
+<ol>
+  <li>Criar um <code class="language-plaintext highlighter-rouge">JPanel</code>, que será nosso tabuleiro.</li>
+  <li>Definir como as cartas serão organizadas. Queremos uma grade (linhas e colunas), certo? Para isso, usamos o <code class="language-plaintext highlighter-rouge">GridLayout</code>.</li>
+  <li>Adicionar o painel (tabuleiro) dentro da janela (moldura).</li>
+</ol>
+
+<p><strong>Código (Atualizando JogoDaMemoria.java):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="o">;</span> <span class="c1">// Importa o painel</span>
+<span class="kn">import</span> <span class="nn">java.awt.GridLayout</span><span class="o">;</span> <span class="c1">// Importa o layout de grade</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDaMemoria</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="c1">// Precisamos de uma referência ao painel para adicionar botões depois</span>
+    <span class="kd">private</span> <span class="nc">JPanel</span> <span class="n">painelPrincipal</span><span class="o">;</span> 
+
+    <span class="kd">public</span> <span class="nf">JogoDaMemoria</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Jogo da Memória"</span><span class="o">);</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span> <span class="mi">400</span><span class="o">);</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+
+        <span class="c1">// --- Novidades Aqui ---</span>
+        
+        <span class="c1">// 1. Cria o painel (tabuleiro)</span>
+        <span class="n">painelPrincipal</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
+
+        <span class="c1">// 2. Define o layout como uma grade 4x4</span>
+        <span class="c1">// Isso significa 4 linhas e 4 colunas, para um total de 16 cartas.</span>
+        <span class="n">painelPrincipal</span><span class="o">.</span><span class="na">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">4</span><span class="o">));</span> 
+
+        <span class="c1">// 3. Adiciona o painel (tabuleiro) à janela (moldura)</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">painelPrincipal</span><span class="o">);</span> 
+
+        <span class="c1">// (O setVisible(true) agora vai para o final, </span>
+        <span class="c1">//  depois que adicionarmos tudo)</span>
+        <span class="c1">// setVisible(true); // &lt;&lt;-- Movido para o final do construtor</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// ... (método main continua igual) ...</span>
+    
+    <span class="c1">// (Vamos mover o setVisible(true) para o main, </span>
+    <span class="c1">//  é uma prática melhor para evitar problemas de "renderização")</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Boa prática: Garante que a interface rode na thread correta</span>
+        <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">JogoDaMemoria</span> <span class="n">jogo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JogoDaMemoria</span><span class="o">();</span>
+            <span class="n">jogo</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Torna visível DEPOIS de criar</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Para testar:</strong> Rode de novo. A janela parecerá a mesma, mas agora ela contém um painel invisível pronto para receber nossas cartas (botões).</p>
+
+<hr />
+
+<h3 id="-etapa-4-adicionando-e-embaralhando-as-cartas">✅ Etapa 4: Adicionando e Embaralhando as Cartas</h3>
+
+<p>As “cartas” serão botões (<code class="language-plaintext highlighter-rouge">JButton</code>). Para um jogo 4x4 (16 cartas), precisamos de 8 pares de valores (ex: 1, 1, 2, 2, … 8, 8).</p>
+
+<p><strong>O que vamos fazer:</strong></p>
+
+<ol>
+  <li>Criar uma lista (<code class="language-plaintext highlighter-rouge">ArrayList</code>) com os valores das cartas (os 8 pares).</li>
+  <li>Embaralhar essa lista usando <code class="language-plaintext highlighter-rouge">Collections.shuffle()</code>.</li>
+  <li>Criar os 16 botões (<code class="language-plaintext highlighter-rouge">JButton</code>).</li>
+  <li>Associar cada botão a um valor da lista embaralhada (mas sem mostrar o valor ainda!).</li>
+  <li>Adicionar os botões ao <code class="language-plaintext highlighter-rouge">painelPrincipal</code>.</li>
+</ol>
+
+<p><strong>Código (Atualizando JogoDaMemoria.java):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (imports) ...</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JButton</span><span class="o">;</span> <span class="c1">// Importa o botão</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span> <span class="c1">// Importa a lista</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span> <span class="c1">// Importa o "embaralhador"</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDaMemoria</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">JPanel</span> <span class="n">painelPrincipal</span><span class="o">;</span>
+    <span class="c1">// Lista para guardar os 16 botões</span>
+    <span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">JButton</span><span class="o">&gt;</span> <span class="n">botoes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> 
+    <span class="c1">// Lista para guardar os 8 pares de valores (ex: "1", "1", "2", "2"...)</span>
+    <span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">JogoDaMemoria</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ... (configuração da janela e painel) ...</span>
+        
+        <span class="c1">// --- Novidades Aqui ---</span>
+        
+        <span class="c1">// 1. Criar os valores das cartas (8 pares)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> <span class="c1">// Adiciona o número</span>
+            <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> <span class="c1">// Adiciona seu par</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 2. Embaralhar os valores</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">valores</span><span class="o">);</span>
+
+        <span class="c1">// 3. Criar e adicionar os botões</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// Cria um novo botão</span>
+            <span class="nc">JButton</span> <span class="n">botao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">();</span>
+            
+            <span class="c1">// Definimos um "nome" (ID) para o botão, que é o valor</span>
+            <span class="c1">// que ele esconde. O usuário não vê isso.</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> 
+            
+            <span class="c1">// Texto inicial (carta virada para baixo)</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span> 
+            
+            <span class="c1">// Adiciona o botão ao array de botões</span>
+            <span class="n">botoes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span> 
+            
+            <span class="c1">// Adiciona o botão ao painel (tabuleiro)</span>
+            <span class="n">painelPrincipal</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span> 
+        <span class="o">}</span>
+
+        <span class="n">add</span><span class="o">(</span><span class="n">painelPrincipal</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... (método main) ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Para testar:</strong> Rode agora. Você verá uma grade 4x4 de botões, todos com um “?”!</p>
+
+<hr />
+
+<h3 id="-etapa-5-a-lógica-do-jogo-o-clique-e-a-verificação">✅ Etapa 5: A Lógica do Jogo (O Clique e a Verificação)</h3>
+
+<p>Esta é a parte mais importante! Precisamos “ouvir” quando o jogador clica em um botão. Em Java, isso se chama <code class="language-plaintext highlighter-rouge">ActionListener</code>.</p>
+
+<p><strong>O que vamos fazer:</strong></p>
+
+<ol>
+  <li>Adicionar um “ouvinte de clique” (<code class="language-plaintext highlighter-rouge">ActionListener</code>) a CADA botão.</li>
+  <li>Controlar a lógica da jogada. Precisamos saber qual foi a 1ª carta e qual foi a 2ª.</li>
+  <li><strong>Variáveis de estado:</strong> Vamos precisar de variáveis para guardar o <code class="language-plaintext highlighter-rouge">primeiroBotao</code> clicado e o <code class="language-plaintext highlighter-rouge">segundoBotao</code> clicado.</li>
+  <li><strong>A Lógica do Clique:</strong>
+    <ul>
+      <li>Se for o 1º clique: “Vira” a carta (mostra o valor) e armazena qual botão foi.</li>
+      <li>Se for o 2º clique: “Vira” a carta e compara com a 1ª.</li>
+      <li><strong>Se combinam:</strong> Deixa as cartas abertas (desabilitando os botões).</li>
+      <li><strong>Se não combinam:</strong> Espera 1 segundo e “vira” as duas de volta.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>O Desafio do “Esperar 1 Segundo”:</strong>
+Não podemos simplesmente pausar o programa, pois isso congelaria a interface. Temos que usar um <code class="language-plaintext highlighter-rouge">Timer</code> do próprio Swing, que agenda uma tarefa para rodar <em>depois</em> de um tempo, sem travar o jogo.</p>
+
+<p><strong>Código (Atualizando JogoDaMemoria.java):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (imports) ...</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span> <span class="c1">// Para "ouvir" o evento de clique</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span> <span class="c1">// A interface do "ouvinte"</span>
+<span class="kn">import</span> <span class="nn">javax.swing.Timer</span><span class="o">;</span> <span class="c1">// O Timer para o atraso!</span>
+
+<span class="c1">// Nossa classe agora "implementa" um ouvinte</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDaMemoria</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
+
+    <span class="c1">// ... (variáveis painelPrincipal, botoes, valores) ...</span>
+
+    <span class="c1">// --- Variáveis de Controle do Jogo ---</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">segundoBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">paresEncontrados</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">JogoDaMemoria</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ... (configuração da janela, painel, criação dos valores) ...</span>
+        
+        <span class="c1">// ... (loop de criação dos botões) ...</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">JButton</span> <span class="n">botao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">();</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> <span class="c1">// O valor escondido</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+            
+            <span class="c1">// *** NOVIDADE: Adiciona o "ouvinte" ao botão ***</span>
+            <span class="c1">// "this" significa que o método "actionPerformed"</span>
+            <span class="c1">// DESTA PRÓPRIA CLASSE será chamado quando o botão for clicado.</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span> 
+            
+            <span class="n">botoes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span>
+            <span class="n">painelPrincipal</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">add</span><span class="o">(</span><span class="n">painelPrincipal</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Este é o "Cérebro" do Jogo ---</span>
+    <span class="c1">// Este método é chamado AUTOMATICAMENTE sempre que </span>
+    <span class="c1">// QUALQUER botão (que registramos) for clicado.</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 1. Descobre qual botão foi clicado</span>
+        <span class="nc">JButton</span> <span class="n">botaoClicado</span> <span class="o">=</span> <span class="o">(</span><span class="nc">JButton</span><span class="o">)</span> <span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">();</span>
+
+        <span class="c1">// Regra 1: Não fazer nada se já for o 1º ou 2º botão</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">botaoClicado</span> <span class="o">==</span> <span class="n">primeiroBotao</span> <span class="o">||</span> <span class="n">botaoClicado</span> <span class="o">==</span> <span class="n">segundoBotao</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span> 
+        <span class="o">}</span>
+
+        <span class="c1">// Regra 2: Não fazer nada se o botão já foi encontrado (desabilitado)</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">botaoClicado</span><span class="o">.</span><span class="na">isEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 2. Revela o valor do botão (pega do "name" que definimos)</span>
+        <span class="n">botaoClicado</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">botaoClicado</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+
+        <span class="c1">// 3. Lógica da Jogada</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">primeiroBotao</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Se for o PRIMEIRO clique da rodada</span>
+            <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="n">botaoClicado</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// Se for o SEGUNDO clique da rodada</span>
+            <span class="n">segundoBotao</span> <span class="o">=</span> <span class="n">botaoClicado</span><span class="o">;</span>
+            
+            <span class="c1">// Inicia a verificação</span>
+            <span class="n">verificarPares</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método auxiliar para verificar se as duas cartas são iguais</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">verificarPares</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Pega o valor (texto) dos dois botões</span>
+        <span class="nc">String</span> <span class="n">valor1</span> <span class="o">=</span> <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">valor2</span> <span class="o">=</span> <span class="n">segundoBotao</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">valor2</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// --- ACERTOU ---</span>
+            <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// Desabilita o 1º</span>
+            <span class="n">segundoBotao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// Desabilita o 2º</span>
+            
+            <span class="n">paresEncontrados</span><span class="o">++;</span> <span class="c1">// Incrementa o contador de pares</span>
+
+            <span class="c1">// Limpa os botões da rodada</span>
+            <span class="n">resetarSelecao</span><span class="o">();</span>
+            
+            <span class="c1">// Verifica se o jogo acabou</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">paresEncontrados</span> <span class="o">==</span> <span class="mi">8</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">finalizarJogo</span><span class="o">();</span>
+            <span class="o">}</span>
+            
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// --- ERROU ---</span>
+            <span class="c1">// Aqui usamos o Timer para dar 1 segundo (1000 ms) </span>
+            <span class="c1">// antes de virar as cartas de volta.</span>
+            <span class="nc">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Timer</span><span class="o">(</span><span class="mi">1000</span><span class="o">,</span> <span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+                    <span class="n">segundoBotao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+                    
+                    <span class="c1">// Limpa os botões da rodada</span>
+                    <span class="n">resetarSelecao</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+            <span class="n">timer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// Para o timer rodar só uma vez</span>
+            <span class="n">timer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// Método auxiliar para "limpar" a jogada</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resetarSelecao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">segundoBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... (método main) ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Para testar:</strong> Rode o jogo! Você já pode clicar. Tente acertar e errar. Veja o <em>delay</em> de 1 segundo funcionando quando você erra.</p>
+
+<hr />
+
+<h3 id="-etapa-6-finalizar-e-reiniciar-o-jogo">✅ Etapa 6: Finalizar e Reiniciar o Jogo</h3>
+
+<p>O jogo precisa avisar que acabou e, idealmente, permitir um reinício.</p>
+
+<p><strong>O que vamos fazer:</strong></p>
+
+<ol>
+  <li>Mostrar uma mensagem de “Parabéns!” quando <code class="language-plaintext highlighter-rouge">paresEncontrados</code> chegar a 8 (já estamos chamando <code class="language-plaintext highlighter-rouge">finalizarJogo()</code> no código acima).</li>
+  <li>Usar um <code class="language-plaintext highlighter-rouge">JOptionPane</code> (uma caixa de diálogo) para isso.</li>
+  <li>Perguntar se o jogador quer reiniciar.</li>
+  <li>Se sim, vamos “resetar” o estado do jogo.</li>
+</ol>
+
+<p><strong>Código (Atualizando JogoDaMemoria.java):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (imports) ...</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JOptionPane</span><span class="o">;</span> <span class="c1">// Importa a caixa de diálogo</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDaMemoria</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
+    
+    <span class="c1">// ... (todas as variáveis e métodos anteriores) ...</span>
+
+    <span class="c1">// Método chamado quando paresEncontrados == 8</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">finalizarJogo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Mostra uma caixa de diálogo</span>
+        <span class="kt">int</span> <span class="n">resposta</span> <span class="o">=</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showConfirmDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> 
+                <span class="s">"Parabéns! Você encontrou todos os pares!
+Deseja jogar novamente?"</span><span class="o">,</span> 
+                <span class="s">"Fim de Jogo"</span><span class="o">,</span> 
+                <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_NO_OPTION</span><span class="o">);</span> <span class="c1">// Botões de Sim ou Não</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">resposta</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_OPTION</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">reiniciarJogo</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">// Fecha o programa</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para reiniciar o jogo</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">reiniciarJogo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1. Resetar contadores</span>
+        <span class="n">paresEncontrados</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">resetarSelecao</span><span class="o">();</span>
+
+        <span class="c1">// 2. Re-embaralhar os valores</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">valores</span><span class="o">);</span>
+
+        <span class="c1">// 3. Resetar todos os botões (texto e valor)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">JButton</span> <span class="n">botao</span> <span class="o">=</span> <span class="n">botoes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> <span class="c1">// Atribui o novo valor embaralhado</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Re-habilita o botão</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// ... (método main) ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-etapa-7-o-código-completo-e-como-testar">✅ Etapa 7: O Código Completo e Como Testar</h3>
+
+<p>Aqui está o código-fonte completo em um único arquivo <code class="language-plaintext highlighter-rouge">JogoDaMemoria.java</code>.</p>
+
+<p><strong>Como Executar:</strong></p>
+
+<ol>
+  <li>Salve este código como <code class="language-plaintext highlighter-rouge">JogoDaMemoria.java</code>.</li>
+  <li>Compile-o (se estiver usando a linha de comando: <code class="language-plaintext highlighter-rouge">javac JogoDaMemoria.java</code>).</li>
+  <li>Execute-o (se estiver usando a linha de comando: <code class="language-plaintext highlighter-rouge">java JogoDaMemoria</code>).</li>
+  <li>Se estiver em uma IDE (IntelliJ, Eclipse, NetBeans), apenas clique no botão “Run” (▶).</li>
+</ol>
+
+<p><strong>Código-Fonte Completo e Comentado:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Jogo da Memória Simples em Java Swing
+ * Foco: Lógica de Programação, Swing Básico, Eventos (ActionListener) e Timer.
+ * Professor: (Seu Professor Experiente de Java)
+ */</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JButton</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JOptionPane</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.Timer</span><span class="o">;</span> <span class="c1">// Importante: use o timer do SWING</span>
+<span class="kn">import</span> <span class="nn">java.awt.GridLayout</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Nossa classe principal do Jogo.
+ * Ela é (extends) uma Janela (JFrame) e
+ * ela "ouve" (implements) os cliques (ActionListener).
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDaMemoria</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
+
+    <span class="c1">// Componentes Gráficos</span>
+    <span class="kd">private</span> <span class="nc">JPanel</span> <span class="n">painelPrincipal</span><span class="o">;</span> <span class="c1">// O "tabuleiro" onde os botões ficam</span>
+    
+    <span class="c1">// Lista dos botões (que são nossas "cartas")</span>
+    <span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">JButton</span><span class="o">&gt;</span> <span class="n">botoes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> 
+    
+    <span class="c1">// Lista dos valores (os números "1" a "8", duplicados)</span>
+    <span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="c1">// --- Variáveis de Controle da Lógica do Jogo ---</span>
+    
+    <span class="c1">// Guarda o primeiro botão clicado na rodada</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+    <span class="c1">// Guarda o segundo botão clicado na rodada</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">segundoBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+    
+    <span class="c1">// Contador de quantos pares já foram encontrados</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">paresEncontrados</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Construtor: Onde o jogo é montado.
+     */</span>
+    <span class="kd">public</span> <span class="nf">JogoDaMemoria</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1. Configuração da Janela (JFrame)</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Jogo da Memória"</span><span class="o">);</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span> <span class="c1">// Um pouco maior</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span> <span class="c1">// Fecha ao clicar no "X"</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span> <span class="c1">// Centraliza na tela</span>
+
+        <span class="c1">// 2. Configuração do Painel (JPanel) e Layout</span>
+        <span class="n">painelPrincipal</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
+        <span class="c1">// Define o layout como uma grade 4x4</span>
+        <span class="n">painelPrincipal</span><span class="o">.</span><span class="na">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// (4, 4, hgap, vgap)</span>
+
+        <span class="c1">// 3. Preparação das Cartas (Lógica)</span>
+        <span class="c1">// Adiciona 8 pares de números (de "1" a "8")</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+            <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Embaralha a lista de valores</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">valores</span><span class="o">);</span>
+
+        <span class="c1">// 4. Criação dos Botões (Cartas)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">JButton</span> <span class="n">botao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">();</span>
+            
+            <span class="c1">// O "name" guarda o valor real (escondido) da carta</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> 
+            
+            <span class="c1">// O "text" é o que o usuário vê (a carta "virada")</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span> 
+            
+            <span class="c1">// Adiciona o "ouvinte de clique" (ActionListener)</span>
+            <span class="c1">// "this" significa que o método "actionPerformed" DESTA CLASSE</span>
+            <span class="c1">// será chamado quando o botão for clicado.</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+            
+            <span class="n">botoes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span> <span class="c1">// Guarda o botão na lista</span>
+            <span class="n">painelPrincipal</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span> <span class="c1">// Adiciona o botão ao tabuleiro</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 5. Adiciona o painel principal (tabuleiro) à janela</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">painelPrincipal</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * O "Cérebro" do Jogo.
+     * Este método é chamado automaticamente sempre que um botão é clicado.
+     * @param e O evento (contém informação sobre o que foi clicado)
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Pega o botão exato que foi clicado</span>
+        <span class="nc">JButton</span> <span class="n">botaoClicado</span> <span class="o">=</span> <span class="o">(</span><span class="nc">JButton</span><span class="o">)</span> <span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">();</span>
+
+        <span class="c1">// --- Regras de "Não-Ação" ---</span>
+        <span class="c1">// Se o jogador clicar no primeiro OU no segundo botão já selecionado, ignora</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">botaoClicado</span> <span class="o">==</span> <span class="n">primeiroBotao</span> <span class="o">||</span> <span class="n">botaoClicado</span> <span class="o">==</span> <span class="n">segundoBotao</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span> 
+        <span class="o">}</span>
+        <span class="c1">// Se o botão clicado já for um par encontrado (desabilitado), ignora</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">botaoClicado</span><span class="o">.</span><span class="na">isEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Revela a carta (mostra o valor que estava no "name")</span>
+        <span class="n">botaoClicado</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">botaoClicado</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+
+        <span class="c1">// --- Lógica da Jogada ---</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">primeiroBotao</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Se foi o PRIMEIRO clique da rodada</span>
+            <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="n">botaoClicado</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// Se foi o SEGUNDO clique da rodada</span>
+            <span class="n">segundoBotao</span> <span class="o">=</span> <span class="n">botaoClicado</span><span class="o">;</span>
+            
+            <span class="c1">// Trava os cliques enquanto verifica (opcional, mas bom)</span>
+            <span class="c1">// (Poderíamos desabilitar todos os outros botões aqui)</span>
+
+            <span class="c1">// Chama o método que verifica se os pares são iguais</span>
+            <span class="n">verificarPares</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Método auxiliar que compara os dois botões clicados.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">verificarPares</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Usamos o "name" (valor real) para comparar</span>
+        <span class="nc">String</span> <span class="n">valor1</span> <span class="o">=</span> <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">valor2</span> <span class="o">=</span> <span class="n">segundoBotao</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">valor2</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// --- ACERTOU ---</span>
+            <span class="c1">// Desabilita os botões para não poderem ser clicados novamente</span>
+            <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">segundoBotao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+            <span class="n">paresEncontrados</span><span class="o">++;</span> <span class="c1">// Incrementa o contador</span>
+
+            <span class="c1">// "Limpa" as variáveis da rodada</span>
+            <span class="n">resetarSelecao</span><span class="o">();</span>
+
+            <span class="c1">// Verifica se o jogo acabou</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">paresEncontrados</span> <span class="o">==</span> <span class="mi">8</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">finalizarJogo</span><span class="o">();</span>
+            <span class="o">}</span>
+            
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// --- ERROU ---</span>
+            <span class="c1">// Precisamos "virar de volta", mas só depois de um tempo.</span>
+            <span class="c1">// Usamos um Timer do Swing para isso.</span>
+            
+            <span class="c1">// Cria um Timer que vai rodar daqui a 1000ms (1 segundo)</span>
+            <span class="nc">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Timer</span><span class="o">(</span><span class="mi">1000</span><span class="o">,</span> <span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// Este código SÓ RODA depois de 1 segundo</span>
+                    <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+                    <span class="n">segundoBotao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+                    
+                    <span class="c1">// "Limpa" as variáveis da rodada</span>
+                    <span class="n">resetarSelecao</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+            <span class="n">timer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// Garante que o timer rode só uma vez</span>
+            <span class="n">timer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> <span class="c1">// Inicia o timer</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Método auxiliar para "limpar" as variáveis de controle da rodada.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resetarSelecao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">segundoBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Chamado quando todos os 8 pares são encontrados.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">finalizarJogo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Mostra uma caixa de diálogo (JOptionPane)</span>
+        <span class="kt">int</span> <span class="n">resposta</span> <span class="o">=</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showConfirmDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> 
+                <span class="s">"Parabéns! Você encontrou todos os pares!
+Deseja jogar novamente?"</span><span class="o">,</span> 
+                <span class="s">"Fim de Jogo"</span><span class="o">,</span> 
+                <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_NO_OPTION</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">resposta</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_OPTION</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">reiniciarJogo</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">// Fecha o programa</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Reseta o tabuleiro para um novo jogo.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">reiniciarJogo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1. Reseta os contadores</span>
+        <span class="n">paresEncontrados</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">resetarSelecao</span><span class="o">();</span>
+
+        <span class="c1">// 2. Re-embaralha os valores</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">valores</span><span class="o">);</span>
+
+        <span class="c1">// 3. Reseta todos os botões</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">JButton</span> <span class="n">botao</span> <span class="o">=</span> <span class="n">botoes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span> <span class="c1">// Esconde o valor</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> <span class="c1">// Atribui o novo valor embaralhado</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Re-habilita o botão</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Método Main: O ponto de entrada do programa.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// É uma boa prática iniciar a interface gráfica Swing</span>
+        <span class="c1">// dentro desta "thread" especial (Event Dispatch Thread).</span>
+        <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">JogoDaMemoria</span> <span class="n">jogo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JogoDaMemoria</span><span class="o">();</span>
+            <span class="n">jogo</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Só torna visível DEPOIS de montar tudo.</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>Código-Fonte Completo e Comentado:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cm">/**
+ * Jogo da Memória Simples em Java Swing
+ * Foco: Lógica de Programação, Swing Básico, Eventos (ActionListener) e Timer.
+ *
+ * VERSÃO COM FONTES ALTERADAS (Maiores e em Negrito)
+ */</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JButton</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JOptionPane</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.Timer</span><span class="o">;</span> <span class="c1">// Importante: use o timer do SWING</span>
+<span class="kn">import</span> <span class="nn">java.awt.GridLayout</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Font</span><span class="o">;</span> <span class="c1">// &lt;-- IMPORT NECESSÁRIO PARA MUDAR A FONTE</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Nossa classe principal do Jogo.
+ * Ela é (extends) uma Janela (JFrame) e
+ * ela "ouve" (implements) os cliques (ActionListener).
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDaMemoria</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
+
+    <span class="c1">// Componentes Gráficos</span>
+    <span class="kd">private</span> <span class="nc">JPanel</span> <span class="n">painelPrincipal</span><span class="o">;</span> <span class="c1">// O "tabuleiro" onde os botões ficam</span>
+
+    <span class="c1">// Lista dos botões (que são nossas "cartas")</span>
+    <span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">JButton</span><span class="o">&gt;</span> <span class="n">botoes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="c1">// Lista dos valores (os números "1" a "8", duplicados)</span>
+    <span class="kd">private</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="c1">// --- Variáveis de Controle da Lógica do Jogo ---</span>
+
+    <span class="c1">// Guarda o primeiro botão clicado na rodada</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="c1">// Guarda o segundo botão clicado na rodada</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">segundoBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="c1">// Contador de quantos pares já foram encontrados</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">paresEncontrados</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Construtor: Onde o jogo é montado.
+     */</span>
+    <span class="kd">public</span> <span class="nf">JogoDaMemoria</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1. Configuração da Janela (JFrame)</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Jogo da Memória"</span><span class="o">);</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span> <span class="c1">// Um pouco maior</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span> <span class="c1">// Fecha ao clicar no "X"</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span> <span class="c1">// Centraliza na tela</span>
+
+        <span class="c1">// 2. Configuração do Painel (JPanel) e Layout</span>
+        <span class="n">painelPrincipal</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">();</span>
+        <span class="c1">// Define o layout como uma grade 4x4</span>
+        <span class="n">painelPrincipal</span><span class="o">.</span><span class="na">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// (4, 4, hgap, vgap)</span>
+
+        <span class="c1">// 3. Preparação das Cartas (Lógica)</span>
+        <span class="c1">// Adiciona 8 pares de números (de "1" a "8")</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+            <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Embaralha a lista de valores</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">valores</span><span class="o">);</span>
+
+        <span class="c1">// --- ALTERAÇÃO DA FONTE (Início) ---</span>
+        <span class="c1">// 1. Criamos um único objeto Font para reutilizar</span>
+        <span class="c1">// Fonte: Padrão (Dialog), Estilo: Negrito (BOLD), Tamanho: 24</span>
+        <span class="nc">Font</span> <span class="n">fonteDoBotao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Font</span><span class="o">(</span><span class="nc">Font</span><span class="o">.</span><span class="na">DIALOG</span><span class="o">,</span> <span class="nc">Font</span><span class="o">.</span><span class="na">BOLD</span><span class="o">,</span> <span class="mi">24</span><span class="o">);</span>
+        <span class="c1">// --- ALTERAÇÃO DA FONTE (Fim) ---</span>
+
+        <span class="c1">// 4. Criação dos Botões (Cartas)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">JButton</span> <span class="n">botao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">();</span>
+
+            <span class="c1">// O "name" guarda o valor real (escondido) da carta</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+
+            <span class="c1">// O "text" é o que o usuário vê (a carta "virada")</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+
+            <span class="c1">// --- ALTERAÇÃO DA FONTE (Início) ---</span>
+            <span class="c1">// 2. Aplicamos a fonte criada ao botão</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setFont</span><span class="o">(</span><span class="n">fonteDoBotao</span><span class="o">);</span>
+            <span class="c1">// --- ALTERAÇÃO DA FONTE (Fim) ---</span>
+
+            <span class="c1">// Adiciona o "ouvinte de clique" (ActionListener)</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+            <span class="n">botoes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span> <span class="c1">// Guarda o botão na lista</span>
+            <span class="n">painelPrincipal</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">botao</span><span class="o">);</span> <span class="c1">// Adiciona o botão ao tabuleiro</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 5. Adiciona o painel principal (tabuleiro) à janela</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">painelPrincipal</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * O "Cérebro" do Jogo.
+     * Este método é chamado automaticamente sempre que um botão é clicado.
+     * @param e O evento (contém informação sobre o que foi clicado)
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Pega o botão exato que foi clicado</span>
+        <span class="nc">JButton</span> <span class="n">botaoClicado</span> <span class="o">=</span> <span class="o">(</span><span class="nc">JButton</span><span class="o">)</span> <span class="n">e</span><span class="o">.</span><span class="na">getSource</span><span class="o">();</span>
+
+        <span class="c1">// --- Regras de "Não-Ação" ---</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">botaoClicado</span> <span class="o">==</span> <span class="n">primeiroBotao</span> <span class="o">||</span> <span class="n">botaoClicado</span> <span class="o">==</span> <span class="n">segundoBotao</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">botaoClicado</span><span class="o">.</span><span class="na">isEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Revela a carta (mostra o valor que estava no "name")</span>
+        <span class="n">botaoClicado</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">botaoClicado</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+
+        <span class="c1">// --- Lógica da Jogada ---</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">primeiroBotao</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Se foi o PRIMEIRO clique da rodada</span>
+            <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="n">botaoClicado</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// Se foi o SEGUNDO clique da rodada</span>
+            <span class="n">segundoBotao</span> <span class="o">=</span> <span class="n">botaoClicado</span><span class="o">;</span>
+            <span class="n">verificarPares</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Método auxiliar que compara os dois botões clicados.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">verificarPares</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">valor1</span> <span class="o">=</span> <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">valor2</span> <span class="o">=</span> <span class="n">segundoBotao</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">valor2</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// --- ACERTOU ---</span>
+            <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">segundoBotao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+            <span class="n">paresEncontrados</span><span class="o">++;</span>
+            <span class="n">resetarSelecao</span><span class="o">();</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">paresEncontrados</span> <span class="o">==</span> <span class="mi">8</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">finalizarJogo</span><span class="o">();</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// --- ERROU ---</span>
+            <span class="c1">// Usa um Timer do Swing para esperar 1 segundo antes de virar</span>
+            <span class="nc">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Timer</span><span class="o">(</span><span class="mi">1000</span><span class="o">,</span> <span class="k">new</span> <span class="nc">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// Este código SÓ RODA depois de 1 segundo</span>
+                    <span class="n">primeiroBotao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+                    <span class="n">segundoBotao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span>
+                    <span class="n">resetarSelecao</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+            <span class="n">timer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// Roda só uma vez</span>
+            <span class="n">timer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Método auxiliar para "limpar" as variáveis de controle da rodada.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resetarSelecao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">primeiroBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">segundoBotao</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Chamado quando todos os 8 pares são encontrados.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">finalizarJogo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Mostra uma caixa de diálogo (JOptionPane)</span>
+        <span class="kt">int</span> <span class="n">resposta</span> <span class="o">=</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showConfirmDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span>
+                <span class="s">"Parabéns! Você encontrou todos os pares!
+Deseja jogar novamente?"</span><span class="o">,</span>
+                <span class="s">"Fim de Jogo"</span><span class="o">,</span>
+                <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_NO_OPTION</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">resposta</span> <span class="o">==</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">YES_OPTION</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">reiniciarJogo</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">// Fecha o programa</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Reseta o tabuleiro para um novo jogo.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">reiniciarJogo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1. Reseta os contadores</span>
+        <span class="n">paresEncontrados</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">resetarSelecao</span><span class="o">();</span>
+
+        <span class="c1">// 2. Re-embaralha os valores</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">valores</span><span class="o">);</span>
+
+        <span class="c1">// 3. Reseta todos os botões</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">JButton</span> <span class="n">botao</span> <span class="o">=</span> <span class="n">botoes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"?"</span><span class="o">);</span> <span class="c1">// Esconde o valor</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span> <span class="c1">// Atribui o novo valor embaralhado</span>
+            <span class="n">botao</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Re-habilita o botão</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Método Main: O ponto de entrada do programa.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// É uma boa prática iniciar a interface gráfica Swing</span>
+        <span class="c1">// dentro desta "thread" especial (Event Dispatch Thread).</span>
+        <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="nc">JogoDaMemoria</span> <span class="n">jogo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JogoDaMemoria</span><span class="o">();</span>
+            <span class="n">jogo</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Só torna visível DEPOIS de montar tudo.</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-etapa-8-melhorias-opcionais-desafios">✅ Etapa 8: Melhorias Opcionais (Desafios)</h3>
+
+<p>Parabéns! Se você chegou até aqui, você tem um Jogo da Memória completo e funcional.</p>
+
+<p>Como professor, eu sempre deixo alguns desafios para os alunos curiosos:</p>
+
+<ol>
+  <li><strong>Contador de Jogadas:</strong> Crie uma variável <code class="language-plaintext highlighter-rouge">int tentativas</code> e incremente-a toda vez que o jogador errar (ou toda vez que <code class="language-plaintext highlighter-rouge">verificarPares()</code> for chamado). Mostre isso na janela (talvez usando um <code class="language-plaintext highlighter-rouge">JLabel</code> no topo).</li>
+  <li><strong>Usar Imagens (Ícones):</strong> Em vez de números (“1”, “2”…), tente usar <code class="language-plaintext highlighter-rouge">ImageIcon</code>. Você terá que associar o <code class="language-plaintext highlighter-rouge">ImageIcon</code> ao <code class="language-plaintext highlighter-rouge">JButton</code> (<code class="language-plaintext highlighter-rouge">botao.setIcon(...)</code>) em vez de <code class="language-plaintext highlighter-rouge">botao.setText(...)</code>. O desafio aqui é como comparar se dois ícones são “iguais”. (Dica: compare os <em>nomes dos arquivos</em> das imagens!).</li>
+  <li><strong>Cronômetro:</strong> Use um <code class="language-plaintext highlighter-rouge">javax.swing.Timer</code> (dessa vez um que se repete a cada segundo) para contar o tempo que o jogador leva.</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

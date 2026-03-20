@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Projetos
+title: "Projetos"
 ---
 
 # Projetos

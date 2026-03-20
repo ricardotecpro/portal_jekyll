@@ -1,0 +1,116 @@
+<h1 id="-módulo-2-frontend-web---componentização-e-clareza">💻 Módulo 2: Frontend (Web) - Componentização e Clareza</h1>
+
+<p><strong>Objetivo:</strong> Refatorar a UI para uma experiência CRUD mais tradicional e clara (botões explícitos) e organizar melhor o estado do componente.</p>
+
+<h3 id="--passo-1-refatorando-a-ui-para-ações-explícitas">### 🎨 Passo 1: Refatorando a UI para Ações Explícitas</h3>
+
+<p>Vamos trocar a edição por duplo clique por botões “Editar” e “Salvar”, que são mais intuitivos em formulários web, como especificado nos requisitos de UX.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">task-list.component.html</code> (Refatorado)</strong></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Minha Lista de Tarefas (Web)<span class="nt">&lt;/h1&gt;</span>
+  
+  <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"form-add"</span> <span class="na">(ngSubmit)=</span><span class="s">"adicionarTarefa()"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">placeholder=</span><span class="s">"O que precisa ser feito?"</span> <span class="na">[(ngModel)]=</span><span class="s">"novaTarefa.descricao"</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">required</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/form&gt;</span>
+
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"task-list"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let tarefa of tarefas"</span> <span class="na">[class.editing]=</span><span class="s">"tarefa.id === tarefaEmEdicao?.id"</span><span class="nt">&gt;</span>
+      
+      <span class="nt">&lt;ng-container</span> <span class="na">*ngIf=</span><span class="s">"tarefa.id !== tarefaEmEdicao?.id"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">[(ngModel)]=</span><span class="s">"tarefa.concluida"</span> <span class="na">(change)=</span><span class="s">"atualizarTarefa(tarefa)"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">[ngClass]=</span><span class="s">"{'completed': tarefa.concluida}"</span><span class="nt">&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"actions"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-edit"</span> <span class="na">(click)=</span><span class="s">"iniciarEdicao(tarefa)"</span><span class="nt">&gt;</span>Editar<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-delete"</span> <span class="na">(click)=</span><span class="s">"deletarTarefa(tarefa.id)"</span><span class="nt">&gt;</span>Deletar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/ng-container&gt;</span>
+
+      <span class="nt">&lt;ng-container</span> <span class="na">*ngIf=</span><span class="s">"tarefa.id === tarefaEmEdicao?.id"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">[(ngModel)]=</span><span class="s">"tarefaEmEdicao.concluida"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"edit-input"</span> <span class="na">[(ngModel)]=</span><span class="s">"tarefaEmEdicao.descricao"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"actions"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-save"</span> <span class="na">(click)=</span><span class="s">"salvarEdicao()"</span><span class="nt">&gt;</span>Salvar<span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-cancel"</span> <span class="na">(click)=</span><span class="s">"cancelarEdicao()"</span><span class="nt">&gt;</span>Cancelar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/ng-container&gt;</span>
+
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Nota:</strong> Você precisará adicionar estilos para as novas classes de botões (<code class="language-plaintext highlighter-rouge">.btn-edit</code>, <code class="language-plaintext highlighter-rouge">.btn-delete</code>, <code class="language-plaintext highlighter-rouge">.btn-save</code>, <code class="language-plaintext highlighter-rouge">.btn-cancel</code>) no seu arquivo CSS.</li>
+</ul>
+
+<h3 id="--passo-2-refatorando-o-tasklistcomponent">### 🧩 Passo 2: Refatorando o <code class="language-plaintext highlighter-rouge">TaskListComponent</code></h3>
+
+<ul>
+  <li><strong>Melhoria (Clean Code):</strong> Em vez de uma flag <code class="language-plaintext highlighter-rouge">editando</code> em cada objeto <code class="language-plaintext highlighter-rouge">Tarefa</code>, o componente agora gerencia o estado de edição centralmente com uma única variável <code class="language-plaintext highlighter-rouge">tarefaEmEdicao</code>. Isso separa o estado da UI do modelo de dados.</li>
+</ul>
+
+<p><strong><code class="language-plaintext highlighter-rouge">task-list.component.ts</code> (Refatorado)</strong></p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Tarefa</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../models/tarefa</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TarefaService</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../services/tarefa.service</span><span class="dl">'</span><span class="p">;</span>
+<span class="c1">// ... outros imports ...</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-task-list</span><span class="dl">'</span><span class="p">,</span>
+  <span class="c1">// ... resto do decorator ...</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">TaskListComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="nl">tarefas</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nl">novaTarefa</span><span class="p">:</span> <span class="p">{</span> <span class="na">descricao</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span> <span class="nl">concluida</span><span class="p">:</span> <span class="nx">boolean</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span> <span class="na">descricao</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+  <span class="nl">tarefaEmEdicao</span><span class="p">:</span> <span class="nx">Tarefa</span> <span class="o">|</span> <span class="kc">null</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">tarefaService</span><span class="p">:</span> <span class="nx">TarefaService</span><span class="p">)</span> <span class="p">{}</span>
+  
+  <span class="nf">ngOnInit</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">carregarTarefas</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nf">carregarTarefas</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">getTarefas</span><span class="p">().</span><span class="nf">subscribe</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span> <span class="o">=</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nf">adicionarTarefa</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="c1">// ... implementação ...</span>
+  <span class="p">}</span>
+  
+  <span class="nf">deletarTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">?:</span> <span class="kr">number</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="c1">// ... implementação ...</span>
+  <span class="p">}</span>
+
+  <span class="nf">iniciarEdicao</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="c1">// Cria uma cópia para não alterar o original antes de salvar</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">tarefa</span> <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nf">cancelarEdicao</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">salvarEdicao</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">updateTarefa</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">(</span><span class="nx">tarefaAtualizada</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span><span class="p">.</span><span class="nf">findIndex</span><span class="p">(</span><span class="nx">t</span> <span class="o">=&gt;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">tarefaAtualizada</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">index</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="nx">tarefaAtualizada</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">tarefaEmEdicao</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// Sai do modo de edição</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nf">atualizarTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">updateTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="o">---</span>
+
+<span class="err">###</span> <span class="err">🚀</span> <span class="p">[</span><span class="nx">ricardotecpro</span><span class="p">.</span><span class="nx">github</span><span class="p">.</span><span class="nx">io</span><span class="p">](</span><span class="nx">https</span><span class="p">:</span><span class="c1">//ricardotecpro.github.io/)</span>
+
+
+</code></pre></div></div>

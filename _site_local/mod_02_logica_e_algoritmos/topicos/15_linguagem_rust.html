@@ -1,0 +1,477 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/15_linguagem_rust.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linguagem Rust 🦀 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Linguagem Rust 🦀" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/15_linguagem_rust.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/15_linguagem_rust.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linguagem Rust 🦀" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Linguagem Rust 🦀","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/15_linguagem_rust.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Linguagem rust 🦀</span>
+          
+        
+      </nav>
+
+      <h1 id="linguagem-rust-">Linguagem Rust 🦀</h1>
+
+<p>Bem-vindo ao guia da linguagem Rust, uma linguagem de programação de sistemas focada em três objetivos principais: <strong>segurança, velocidade e concorrência</strong>. Rust alcança segurança de memória sem a necessidade de um <em>garbage collector</em> (coletor de lixo), utilizando um sistema inovador de <strong>propriedade (ownership)</strong> e <strong>empréstimo (borrowing)</strong>. Isso permite que Rust seja tão rápido quanto C/C++, mas com garantias de segurança que previnem classes inteiras de bugs.</p>
+
+<h2 id="️-instalação-e-configuração-do-ambiente">🛠️ Instalação e Configuração do Ambiente</h2>
+
+<p>O ecossistema de Rust é gerenciado pela ferramenta <code class="language-plaintext highlighter-rouge">rustup</code>, que instala o compilador (<code class="language-plaintext highlighter-rouge">rustc</code>), o gerenciador de pacotes e build (<code class="language-plaintext highlighter-rouge">cargo</code>) e a documentação.</p>
+
+<ol>
+  <li>
+    <p><strong>Instale o Rust</strong>:</p>
+
+    <ul>
+      <li>Visite o <a href="https://www.rust-lang.org/tools/install">site oficial do Rust</a> e siga as instruções para o seu sistema operacional. O comando fornecido no site baixa e executa o script <code class="language-plaintext highlighter-rouge">rustup-init</code>, que cuida de toda a instalação.</li>
+      <li><code class="language-plaintext highlighter-rouge">rustup</code> irá configurar automaticamente o <code class="language-plaintext highlighter-rouge">PATH</code> do sistema. Após a instalação, abra um novo terminal e verifique as versões com <code class="language-plaintext highlighter-rouge">rustc --version</code> e <code class="language-plaintext highlighter-rouge">cargo --version</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Escolha uma IDE (Ambiente de Desenvolvimento Integrado)</strong>:</p>
+
+    <h3 id="opção-1-visual-studio-code-recomendado">Opção 1: Visual Studio Code (Recomendado)</h3>
+
+    <ul>
+      <li>Instale o <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+      <li>Na aba de extensões, instale a extensão <strong><code class="language-plaintext highlighter-rouge">rust-analyzer</code></strong>. Ela oferece um suporte de primeira linha para Rust, com autocompletar, análise de código em tempo real e integração com o <code class="language-plaintext highlighter-rouge">cargo</code>.</li>
+    </ul>
+
+    <h3 id="opção-2-clion-com-o-plugin-rust">Opção 2: CLion com o plugin Rust</h3>
+
+    <ul>
+      <li>Para quem prefere uma IDE mais robusta da JetBrains, o <a href="https://www.jetbrains.com/rust/">RustRover</a> ou <a href="https://www.jetbrains.com/clion/">CLion</a> com o plugin oficial do Rust é uma excelente alternativa.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-seu-primeiro-programa-em-rust">🚀 Seu Primeiro Programa em Rust</h3>
+
+<p>A ferramenta <code class="language-plaintext highlighter-rouge">cargo</code> facilita a criação e gerenciamento de projetos.</p>
+
+<ol>
+  <li><strong>Crie um novo projeto</strong>: No terminal, execute <code class="language-plaintext highlighter-rouge">cargo new ola_rust</code>.</li>
+  <li><strong>Entre no diretório</strong>: <code class="language-plaintext highlighter-rouge">cd ola_rust</code>.</li>
+  <li>O <code class="language-plaintext highlighter-rouge">cargo</code> cria um arquivo <code class="language-plaintext highlighter-rouge">src/main.rs</code> com o seguinte conteúdo:</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// A função main() é o ponto de entrada de todo programa executável em Rust.</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// println! é uma macro (indicado pela '!') que imprime texto no console.</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Olá, Universo Rust!"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>Compile e execute o projeto</strong>: No terminal, dentro do diretório do projeto, execute <code class="language-plaintext highlighter-rouge">cargo run</code>.</li>
+</ol>
+
+<h2 id="-tipos-de-dados-e-variáveis">📊 Tipos de Dados e Variáveis</h2>
+
+<p>Rust é uma linguagem <strong>estaticamente e fortemente tipada</strong>. Uma de suas características mais importantes é a <strong>imutabilidade por padrão</strong>.</p>
+
+<ul>
+  <li><strong>Imutabilidade</strong>: Variáveis declaradas com <code class="language-plaintext highlighter-rouge">let</code> são imutáveis. Para torná-las mutáveis, você deve usar a palavra-chave <code class="language-plaintext highlighter-rouge">mut</code>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Significado</th>
+      <th style="text-align: left">Tipo em Rust</th>
+      <th style="text-align: left">Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Número Inteiro</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">i32</code></td>
+      <td style="text-align: left">Tipo inteiro de 32 bits com sinal. Outros tipos incluem <code class="language-plaintext highlighter-rouge">i8</code>, <code class="language-plaintext highlighter-rouge">i64</code>, <code class="language-plaintext highlighter-rouge">u8</code> (sem sinal), etc.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Número de Ponto Flutuante</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">f64</code></td>
+      <td style="text-align: left">Padrão para números reais, com precisão dupla de 64 bits.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Texto (String)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">String</code></td>
+      <td style="text-align: left">Um tipo de string que pode crescer e ser modificado, alocado na <em>heap</em>. <code class="language-plaintext highlighter-rouge">&amp;str</code> é uma “fatia” de string imutável.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Valor Lógico</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bool</code></td>
+      <td style="text-align: left">Aceita apenas os valores <code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Um Único Caractere</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td style="text-align: left">Representa um único caractere Unicode, declarado com <strong>aspas simples</strong>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-declaração-e-formatação-de-saída">📝 Declaração e Formatação de Saída</h2>
+
+<p>A declaração de variáveis com <code class="language-plaintext highlighter-rouge">let</code> e a formatação com a macro <code class="language-plaintext highlighter-rouge">println!</code> são centrais em Rust.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 'let' cria uma variável imutável.</span>
+    <span class="k">let</span> <span class="n">nome</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span> <span class="o">=</span> <span class="s">"Helena Vargas"</span><span class="p">;</span>
+    <span class="c1">// 'let mut' cria uma variável mutável.</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">idade</span><span class="p">:</span> <span class="nb">i32</span> <span class="o">=</span> <span class="mi">29</span><span class="p">;</span>
+    <span class="k">let</span> <span class="n">salario</span><span class="p">:</span> <span class="nb">f64</span> <span class="o">=</span> <span class="mf">14200.50</span><span class="p">;</span>
+    <span class="k">let</span> <span class="n">is_gerente</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="c1">// A formatação é feita com placeholders {} dentro da string.</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"NOME = {}"</span><span class="p">,</span> <span class="n">nome</span><span class="p">);</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"IDADE = {}"</span><span class="p">,</span> <span class="n">idade</span><span class="p">);</span>
+
+    <span class="c1">// Para formatar um float com 2 casas decimais, usa-se {:.2}</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"SALÁRIO = {:.2}"</span><span class="p">,</span> <span class="n">salario</span><span class="p">);</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"É GERENTE? = {}"</span><span class="p">,</span> <span class="n">is_gerente</span><span class="p">);</span>
+
+    <span class="c1">// Modificando uma variável mutável</span>
+    <span class="n">idade</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"NOVA IDADE = {}"</span><span class="p">,</span> <span class="n">idade</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-operadores">🔢 Operadores</h2>
+
+<p>Os operadores em Rust são padrão e seguem a convenção da família C.</p>
+
+<h3 id="aritméticos">Aritméticos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Resto da divisão (módulo)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="comparativos">Comparativos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left">Igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente de</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual a</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="lógicos">Lógicos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left">E</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left">OU</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left">NÃO</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-entrada-de-dados">📥 Entrada de Dados</h2>
+
+<p>A leitura de dados do usuário em Rust é feita através do módulo <code class="language-plaintext highlighter-rouge">std::io</code> e exige tratamento de erros explícito. O compilador de Rust ajuda a garantir que você não se esqueça de tratar possíveis falhas.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="n">io</span><span class="p">;</span> <span class="c1">// Importa o módulo de entrada e saída.</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Digite seu nome completo:"</span><span class="p">);</span>
+    <span class="c1">// Declara uma nova String mutável para armazenar a entrada.</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">nome</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+    <span class="c1">// Lê a linha da entrada padrão.</span>
+    <span class="nn">io</span><span class="p">::</span><span class="nf">stdin</span><span class="p">()</span>
+        <span class="nf">.read_line</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="n">nome</span><span class="p">)</span>
+        <span class="nf">.expect</span><span class="p">(</span><span class="s">"Falha ao ler a linha"</span><span class="p">);</span> <span class="c1">// .expect() para o programa se ocorrer um erro.</span>
+    <span class="c1">// Remove espaços em branco e a quebra de linha da entrada.</span>
+    <span class="n">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="nf">.trim</span><span class="p">()</span><span class="nf">.to_string</span><span class="p">();</span>
+
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Digite sua idade:"</span><span class="p">);</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">idade_str</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+    <span class="nn">io</span><span class="p">::</span><span class="nf">stdin</span><span class="p">()</span>
+        <span class="nf">.read_line</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="n">idade_str</span><span class="p">)</span>
+        <span class="nf">.expect</span><span class="p">(</span><span class="s">"Falha ao ler a linha"</span><span class="p">);</span>
+    <span class="c1">// Converte a string para um número, tratando o erro.</span>
+    <span class="k">let</span> <span class="n">idade</span><span class="p">:</span> <span class="nb">i32</span> <span class="o">=</span> <span class="n">idade_str</span>
+        <span class="nf">.trim</span><span class="p">()</span>
+        <span class="nf">.parse</span><span class="p">()</span>
+        <span class="nf">.expect</span><span class="p">(</span><span class="s">"Por favor, digite um número!"</span><span class="p">);</span>
+
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"
+--- DADOS REGISTRADOS ---"</span><span class="p">);</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Nome: {}"</span><span class="p">,</span> <span class="n">nome</span><span class="p">);</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Idade: {}"</span><span class="p">,</span> <span class="n">idade</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-estruturas-de-controle">🔀 Estruturas de Controle</h2>
+
+<p>Rust usa chaves <code class="language-plaintext highlighter-rouge">{}</code> para delimitar blocos de código.</p>
+
+<h3 id="estrutura-condicional-ifelse-ifelse">Estrutura Condicional (<code class="language-plaintext highlighter-rouge">if/else if/else</code>)</h3>
+
+<p>Em Rust, a condição de um <code class="language-plaintext highlighter-rouge">if</code> não precisa de parênteses. Além disso, <code class="language-plaintext highlighter-rouge">if</code> é uma expressão, o que significa que pode retornar um valor.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">29</span><span class="p">;</span>
+<span class="c1">// 'if' pode ser usado para atribuir um valor a uma variável.</span>
+<span class="k">let</span> <span class="n">status</span> <span class="o">=</span> <span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="p">{</span>
+    <span class="s">"Adulto"</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="s">"Menor de idade"</span>
+<span class="p">};</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"Status: {}"</span><span class="p">,</span> <span class="n">status</span><span class="p">);</span> <span class="c1">// Status: Adulto</span>
+</code></pre></div></div>
+
+<h3 id="estruturas-de-repetição">Estruturas de Repetição</h3>
+
+<p>Rust oferece três tipos de laços:</p>
+
+<p><strong>1. <code class="language-plaintext highlighter-rouge">loop</code> (Laço Infinito)</strong>: Executa para sempre, a menos que seja interrompido por um <code class="language-plaintext highlighter-rouge">break</code>.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">loop</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Repetindo..."</span><span class="p">);</span>
+    <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">contador</span> <span class="o">==</span> <span class="mi">3</span> <span class="p">{</span>
+        <span class="k">break</span><span class="p">;</span> <span class="c1">// Para o laço</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>2. <code class="language-plaintext highlighter-rouge">while</code> (Laço Condicional)</strong>: Executa enquanto uma condição for verdadeira.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">numero</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="k">while</span> <span class="n">numero</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}!"</span><span class="p">,</span> <span class="n">numero</span><span class="p">);</span>
+    <span class="n">numero</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"LANÇAR!"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>3. <code class="language-plaintext highlighter-rouge">for</code> (Laço de Iteração)</strong>: O mais comum, usado para iterar sobre uma coleção ou um <code class="language-plaintext highlighter-rouge">range</code>.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Itera de 1 até 4 (o 5 não é incluído).</span>
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">..</span><span class="mi">5</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"O valor é: {}"</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-vetores-arrays-e-vectors">📏 Vetores (Arrays e Vectors)</h2>
+
+<p>Assim como Go, Rust distingue entre coleções de tamanho fixo e dinâmico.</p>
+
+<ul>
+  <li><strong>Array</strong>: Tamanho fixo, conhecido em tempo de compilação. Ex: <code class="language-plaintext highlighter-rouge">let a: [i32; 3] = [1, 2, 3];</code>.</li>
+  <li><strong>Vector (<code class="language-plaintext highlighter-rouge">Vec&lt;T&gt;</code>)</strong>: Uma “lista” que pode crescer e diminuir de tamanho, similar ao <code class="language-plaintext highlighter-rouge">std::vector</code> do C++ ou <code class="language-plaintext highlighter-rouge">ArrayList</code> do Java. É a escolha mais comum.</li>
+</ul>
+
+<h3 id="vectors">Vectors</h3>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Cria um novo vetor mutável e vazio.</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">numeros</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nn">Vec</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+    <span class="c1">// Adiciona elementos ao vetor.</span>
+    <span class="n">numeros</span><span class="nf">.push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">numeros</span><span class="nf">.push</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+    <span class="n">numeros</span><span class="nf">.push</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Vetor: {:?}"</span><span class="p">,</span> <span class="n">numeros</span><span class="p">);</span> <span class="c1">// {:?} é um formatador de debug.</span>
+
+    <span class="c1">// Iterando sobre o vetor</span>
+    <span class="k">for</span> <span class="n">numero</span> <span class="k">in</span> <span class="o">&amp;</span><span class="n">numeros</span> <span class="p">{</span> <span class="c1">// &amp; para emprestar o vetor sem mover a propriedade</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"Número: {}"</span><span class="p">,</span> <span class="n">numero</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="matrizes-vetores-de-vetores">Matrizes (Vetores de Vetores)</h3>
+
+<p>Uma matriz em Rust é tipicamente representada por um vetor, onde cada elemento é outro vetor.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Uma matriz 2x3</span>
+<span class="k">let</span> <span class="n">matriz</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;&gt;</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[</span>
+    <span class="nd">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="nd">vec!</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<span class="p">];</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"Elemento (1,1): {}"</span><span class="p">,</span> <span class="n">matriz</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// Acessa o elemento na segunda linha, segunda coluna (valor 5)</span>
+</code></pre></div></div>
+
+<h2 id="-depuração-debugging-em-rust">🐞 Depuração (Debugging) em Rust</h2>
+
+<h3 id="debugging-no-vs-code">Debugging no VS Code</h3>
+
+<ol>
+  <li>Além do <code class="language-plaintext highlighter-rouge">rust-analyzer</code>, instale a extensão <strong><code class="language-plaintext highlighter-rouge">CodeLLDB</code></strong> ou <strong><code class="language-plaintext highlighter-rouge">C/C++</code></strong> da Microsoft, que fornecem o depurador.</li>
+  <li>Abra seu projeto <code class="language-plaintext highlighter-rouge">cargo</code> no VS Code.</li>
+  <li>Vá para o seu arquivo <code class="language-plaintext highlighter-rouge">src/main.rs</code> e clique na margem à esquerda de uma linha para adicionar um <strong>breakpoint</strong>.</li>
+  <li>Pressione <code class="language-plaintext highlighter-rouge">F5</code>. O VS Code usará o <code class="language-plaintext highlighter-rouge">cargo</code> para compilar seu programa em modo de depuração e, em seguida, iniciará o depurador.</li>
+  <li>A execução pausará no breakpoint, permitindo que você inspecione variáveis, execute o código passo a passo (<code class="language-plaintext highlighter-rouge">F10</code>) e utilize o console de depuração.</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

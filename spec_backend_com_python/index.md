@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🐍 Python Backend - Curso Completo
+title: "🐍 Python Backend - Curso Completo"
 ---
 
 # 🐍 Python Backend - Curso Completo

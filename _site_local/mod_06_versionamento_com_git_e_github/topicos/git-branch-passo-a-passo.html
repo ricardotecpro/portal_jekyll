@@ -1,0 +1,151 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_06_versionamento_com_git_e_github/topicos/git-branch-passo-a-passo.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>GIT-BRANCH-PASSO-A-PASSO | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="GIT-BRANCH-PASSO-A-PASSO" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/git-branch-passo-a-passo.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/git-branch-passo-a-passo.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="GIT-BRANCH-PASSO-A-PASSO" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"GIT-BRANCH-PASSO-A-PASSO","url":"https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/git-branch-passo-a-passo.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/" style="margin-left: 0.5rem;">Mod 06 versionamento com git e github</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Git branch passo a passo</span>
+          
+        
+      </nav>
+
+      <p>Passo a Passo para Criar uma Nova Branch</p>
+
+<p>Passo 1: Sincronize seu Repositório LocalAntes de criar qualquer nova branch, certifique-se de que sua branch principal (geralmente main ou develop) está atualizada com a versão mais recente do repositório remoto.</p>
+
+<p>1.Vá para a branch principal:Shell Script</p>
+
+<p>git checkout main</p>
+
+<p>(Use develop se o seu projeto seguir o fluxo GitFlow).</p>
+
+<p>2.Puxe as últimas alterações:Shell Script</p>
+
+<p>git pull origin main</p>
+
+<p>Isso evita que você baseie seu novo trabalho em código desatualizado, o que poderia causar conflitos no futuro.</p>
+
+<p>Passo 2: Escolha um Nome Descritivo (A Prática Mais Importante)</p>
+
+<p>O nome da branch deve comunicar claramente seu propósito. A convenção mais utilizada e recomendada é usar prefixos para categorizar o trabalho.</p>
+
+<p>Formato Comum: tipo/ID-do-ticket-descricao-curta</p>
+
+<p>•tipo: Categoria da tarefa.
+•feature/: Para novas funcionalidades (ex: feature/adicionar-login-social).
+•bugfix/ ou fix/: Para correção de bugs não urgentes (ex: fix/corrigir-layout-quebrado-no-mobile).
+•hotfix/: Para correções críticas em produção.
+•chore/: Para tarefas de manutenção que não alteram a lógica do código (ex: chore/atualizar-dependencias, chore/configurar-linter).
+•docs/: Para alterações na documentação.</p>
+
+<p>git checkout -b hotfix/add-h2-and-task-table</p>
+
+<p>Passo 3: Crie e Mude para a Nova Branch</p>
+
+<p>Use o comando git checkout -b. A flag -b cria a nova branch e o checkout já muda seu ambiente para ela em um único passo.</p>
+
+<p>git checkout -b feature/PROJ-123-implementar-login-com-google</p>
+
+<p>O terminal responderá com algo como: Switched to a new branch ‘feature/PROJ-123-implementar-login-com-google’</p>
+
+<p>Agora você está na sua nova branch e pode começar a trabalhar com segurança, sem afetar a branch main.</p>
+
+<p>Passo 4: Publique a Branch no Repositório Remoto
+Assim que você criar a branch, é uma boa prática publicá-la no repositório remoto (GitHub, GitLab, etc.). Isso a torna visível para outros membros da equipe e serve como um backup do seu trabalho.</p>
+
+<p>git push -u origin hotfix/add-h2-and-task-table</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

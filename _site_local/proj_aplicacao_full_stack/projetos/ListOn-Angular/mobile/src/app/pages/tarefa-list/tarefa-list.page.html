@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Minhas Tarefas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="tarefas$ | async as tarefas; else loading">
+    <!-- Mensagem de erro -->
+    <ion-card *ngIf="errorLoading" color="light" class="info-card">
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="cloud-offline-outline" size="large" color="danger"></ion-icon>
+        <ion-card-title color="danger">Erro de Conexão</ion-card-title>
+        <p>Não foi possível carregar as tarefas.</p>
+        <ion-button (click)="carregarTarefas()" fill="outline">Tentar Novamente</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensagem de lista vazia -->
+    <ion-card *ngIf="!errorLoading && tarefas.length === 0" color="light" class="info-card">
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="file-tray-outline" size="large"></ion-icon>
+        <ion-card-title>Nenhuma Tarefa</ion-card-title>
+        <p>Clique no botão '+' para adicionar sua primeira tarefa.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Lista de Tarefas em Cards -->
+    <ion-card *ngFor="let tarefa of tarefas" class="task-card">
+      <ion-item lines="none">
+        <ion-checkbox slot="start" [checked]="tarefa.concluida" (ionChange)="toggleConcluida(tarefa)"></ion-checkbox>
+        <ion-label>
+          <h2 [class.task-completed]="tarefa.concluida">{{ tarefa.titulo }}</h2>
+          <p>{{ tarefa.dataCriacao | date:'dd/MM/yyyy' }}</p>
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding-start ion-padding-end ion-padding-bottom">
+        <ion-button fill="clear" (click)="abrirModal(tarefa)">
+          <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="deletar(tarefa.id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
+
+  <ng-template #loading>
+    <div class="ion-text-center ion-padding">
+      <ion-spinner></ion-spinner>
+      <p>Carregando tarefas...</p>
+    </div>
+  </ng-template>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🔷 TypeScript: JavaScript com Superpoderes de Tipagem
+title: "🔷 TypeScript: JavaScript com Superpoderes de Tipagem"
 ---
 
 # 🔷 TypeScript: JavaScript com Superpoderes de Tipagem

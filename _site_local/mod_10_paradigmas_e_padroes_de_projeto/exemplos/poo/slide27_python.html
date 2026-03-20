@@ -1,0 +1,261 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide27_python.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🥞 Projetos Full Stack | Navegando por Todas as Camadas de Desenvolvimento</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🥞 Projetos Full Stack" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide27_python.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide27_python.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🥞 Projetos Full Stack" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🥞 Projetos Full Stack","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide27_python.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/" style="margin-left: 0.5rem;">Poo</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Slide27 python.html</span>
+          
+        
+      </nav>
+
+      <h1 id="-slide-27-cadastro-de-alunos-em-python-poo"># Slide 27: Cadastro de Alunos em Python (POO)</h1>
+
+<p>Sistema de <strong>cadastro de alunos</strong> para <strong>Python</strong>, mantendo os princípios de <strong>Programação Orientada a Objetos (POO)</strong>.</p>
+
+<hr />
+
+<h2 id="-sistema-de-cadastro-de-alunos-em-python-poo">🐍 Sistema de Cadastro de Alunos em Python (POO)</h2>
+
+<hr />
+
+<h3 id="-objetivo">🎯 <strong>Objetivo</strong></h3>
+
+<p>Desenvolver um programa em <strong>Python</strong> que permita:</p>
+
+<ul>
+  <li>
+    <p>Cadastrar dados de um aluno</p>
+  </li>
+  <li>
+    <p>Cadastrar a média de notas</p>
+  </li>
+  <li>
+    <p>Exibir todas as informações do aluno</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-1-criando-a-classe-aluno">🧱 Etapa 1: Criando a classe <code class="language-plaintext highlighter-rouge">Aluno</code></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Aluno</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__nome</span> <span class="o">=</span> <span class="sh">""</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__idade</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__matricula</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__media</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">def</span> <span class="nf">cadastrar_dados</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">idade</span><span class="p">,</span> <span class="n">matricula</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__nome</span> <span class="o">=</span> <span class="n">nome</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__idade</span> <span class="o">=</span> <span class="n">idade</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__matricula</span> <span class="o">=</span> <span class="n">matricula</span>
+
+    <span class="k">def</span> <span class="nf">cadastrar_media_notas</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">media</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">__media</span> <span class="o">=</span> <span class="n">media</span>
+
+    <span class="k">def</span> <span class="nf">exibir_informacoes</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">=== DADOS DO ALUNO ===</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Nome: </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">__nome</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Idade: </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">__idade</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Matrícula: </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">__matricula</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Média de notas: </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">__media</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-etapa-2-criando-a-função-principal-main">🧱 Etapa 2: Criando a função principal (<code class="language-plaintext highlighter-rouge">main</code>)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">Aluno</span> <span class="kn">import</span> <span class="n">Aluno</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">aluno</span> <span class="o">=</span> <span class="nc">Aluno</span><span class="p">()</span>
+
+    <span class="n">nome</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite o nome do aluno: </span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">idade</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite a idade do aluno: </span><span class="sh">"</span><span class="p">))</span>
+    <span class="n">matricula</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite o número de matrícula: </span><span class="sh">"</span><span class="p">))</span>
+
+    <span class="n">aluno</span><span class="p">.</span><span class="nf">cadastrar_dados</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="n">idade</span><span class="p">,</span> <span class="n">matricula</span><span class="p">)</span>
+
+    <span class="n">media</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Digite a média de notas: </span><span class="sh">"</span><span class="p">))</span>
+    <span class="n">aluno</span><span class="p">.</span><span class="nf">cadastrar_media_notas</span><span class="p">(</span><span class="n">media</span><span class="p">)</span>
+
+    <span class="n">aluno</span><span class="p">.</span><span class="nf">exibir_informacoes</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-estrutura-do-projeto">📄 Estrutura do Projeto</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cadastro_aluno/
+ ├── aluno.py         # contém a classe Aluno
+ └── main.py          # contém a lógica de execução
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-fluxograma-plantuml-mesmo-da-versão-javac">📊 Fluxograma PlantUML (mesmo da versão Java/C++)</h2>
+
+<pre><code class="language-plantuml">@startuml
+start
+:Criar objeto aluno (Aluno);
+:Capturar nome, idade, matrícula;
+:Chamar aluno.cadastrar_dados();
+:Capturar média;
+:Chamar aluno.cadastrar_media_notas();
+:Chamar aluno.exibir_informacoes();
+stop
+@enduml
+</code></pre>
+
+<hr />
+
+<h2 id="-o-que-os-alunos-aprendem-com-este-exemplo">📌 O que os alunos aprendem com este exemplo?</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Conceito</th>
+      <th>Aplicação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Encapsulamento</td>
+      <td>Atributos privados (<code class="language-plaintext highlighter-rouge">__atributo</code>)</td>
+    </tr>
+    <tr>
+      <td>Métodos de instância</td>
+      <td><code class="language-plaintext highlighter-rouge">self</code> como referência ao objeto</td>
+    </tr>
+    <tr>
+      <td>Entrada e saída</td>
+      <td><code class="language-plaintext highlighter-rouge">input()</code> e <code class="language-plaintext highlighter-rouge">print()</code></td>
+    </tr>
+    <tr>
+      <td>Modularização</td>
+      <td>Separação de classe e execução</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-sugestão-para-próximo-passo">💡 Sugestão para próximo passo</h2>
+
+<ul>
+  <li>
+    <p>Criar uma lista de alunos</p>
+  </li>
+  <li>
+    <p>Adicionar menu interativo</p>
+  </li>
+  <li>
+    <p>Salvar e carregar os dados com arquivos <code class="language-plaintext highlighter-rouge">.txt</code> ou <code class="language-plaintext highlighter-rouge">.json</code></p>
+  </li>
+</ul>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

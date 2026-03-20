@@ -1,0 +1,206 @@
+<h3 id="visão-arquitetural-o-problema-do-mapeamento-objeto-relacional-orm"><strong>Visão Arquitetural: O Problema do Mapeamento Objeto-Relacional (ORM)</strong></h3>
+
+<p>Historicamente, um dos maiores desafios da programação orientada a objetos é a comunicação com bancos de dados relacionais. O paradigma de objetos (classes, atributos, herança) é fundamentalmente diferente do paradigma relacional (tabelas, colunas, chaves estrangeiras).</p>
+
+<p>Essa diferença, conhecida como <em>impedância objeto-relacional</em>, força os desenvolvedores a escrever uma grande quantidade de código repetitivo e suscetível a erros, apenas para converter dados de objetos para tabelas e vice-versa. Esse código de “tradução” manual, como visto em abordagens com JDBC puro, obscurece a lógica de negócio e aumenta drasticamente o custo de desenvolvimento e manutenção.</p>
+
+<p><strong>A Solução: JPA e Hibernate</strong></p>
+
+<p>Para resolver este problema, utilizamos frameworks de <strong>Mapeamento Objeto-Relacional (ORM)</strong>.</p>
+
+<ul>
+  <li><strong>JPA (Java Persistence API)</strong>: É uma <strong>especificação</strong> padrão do Java. Ela define um conjunto de interfaces, anotações e regras (<code class="language-plaintext highlighter-rouge">javax.persistence</code>) para a persistência de dados. A JPA diz “o que” deve ser feito, mas não “como”.</li>
+  <li><strong>Hibernate</strong>: É a <strong>implementação</strong> mais popular e robusta da especificação JPA. É o motor que, por baixo dos panos, executa o trabalho de converter objetos em comandos SQL, gerenciar transações e otimizar o acesso ao banco de dados.</li>
+</ul>
+
+<p>O uso de um ORM como o Hibernate nos permite focar na lógica de negócio, manipulando objetos Java, enquanto o framework cuida de toda a complexidade da comunicação com o banco de dados.</p>
+
+<h3 id="estrutura-de-um-projeto-jpahibernate"><strong>Estrutura de um Projeto JPA/Hibernate</strong></h3>
+
+<p>Uma organização clara é essencial para qualquer projeto. Para uma aplicação simples com JPA, a estrutura a seguir é um excelente ponto de partida:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NomeDoProjeto/
+├── src/
+│   ├── aplicacao/
+│   │   └── Programa.java           // Classe principal com a lógica de execução
+│   │
+│   ├── dominio/
+│   │   └── Pessoa.java             // Classe de entidade que representa a tabela
+│   │
+│   └── META-INF/
+│       └── persistence.xml         // Arquivo de configuração do JPA/Hibernate
+│
+└── lib/                            // Pasta para as bibliotecas (.jar)
+    ├── hibernate-core-x.y.z.jar
+    ├── jpa-api-x.y.z.jar
+    ├── mysql-connector-java-x.y.z.jar
+    └── ... (demais JARs necessários do Hibernate)
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-1-configuração-do-projeto-e-do-banco-de-dados"><strong>Fase 1: Configuração do Projeto e do Banco de Dados</strong></h3>
+
+<p>Vamos preparar o ambiente para a nossa aplicação.</p>
+
+<p><strong>Checklist de Ações:</strong></p>
+
+<ol>
+  <li><strong>Criar o Projeto Java</strong>: Em sua IDE, crie um novo projeto Java padrão.</li>
+  <li><strong>Criar o Banco de Dados</strong>: Utilize uma ferramenta como o MySQL Workbench, DBeaver ou o PhpMyAdmin (do XAMPP) para criar um banco de dados vazio. Vamos chamá-lo de <code class="language-plaintext highlighter-rouge">aulajpa</code>.</li>
+  <li><strong>Adicionar as Bibliotecas (JARs)</strong>:
+    <ul>
+      <li>Crie uma pasta <code class="language-plaintext highlighter-rouge">lib</code> na raiz do seu projeto.</li>
+      <li>Baixe o Hibernate (que já inclui a especificação JPA) e o MySQL Connector/J.</li>
+      <li>Copie todos os arquivos <code class="language-plaintext highlighter-rouge">.jar</code> necessários para a pasta <code class="language-plaintext highlighter-rouge">lib</code>.</li>
+      <li>Adicione esses JARs ao Build Path do seu projeto (na IDE, clique com o botão direito no projeto -&gt; Build Path -&gt; Configure Build Path -&gt; Libraries -&gt; Add JARs…).</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="fase-2-configuração-da-persistência-persistencexml"><strong>Fase 2: Configuração da Persistência (persistence.xml)</strong></h3>
+
+<p>Este arquivo é o cérebro da configuração do JPA. Ele informa ao Hibernate como se conectar ao banco de dados e como se comportar.</p>
+
+<p>Crie a estrutura de pastas <code class="language-plaintext highlighter-rouge">src/META-INF</code> e, dentro dela, o arquivo <code class="language-plaintext highlighter-rouge">persistence.xml</code>.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;persistence</span> <span class="na">version=</span><span class="s">"2.1"</span>
+    <span class="na">xmlns=</span><span class="s">"http://xmlns.jcp.org/xml/ns/persistence"</span>
+    <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">"http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;persistence-unit</span> <span class="na">name=</span><span class="s">"exemplo-jpa"</span> <span class="na">transaction-type=</span><span class="s">"RESOURCE_LOCAL"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;properties&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"javax.persistence.jdbc.driver"</span> <span class="na">value=</span><span class="s">"com.mysql.cj.jdbc.Driver"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"javax.persistence.jdbc.url"</span> <span class="na">value=</span><span class="s">"jdbc:mysql://localhost:3306/aulajpa?useSSL=false&amp;amp;serverTimezone=UTC"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"javax.persistence.jdbc.user"</span> <span class="na">value=</span><span class="s">"root"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"javax.persistence.jdbc.password"</span> <span class="na">value=</span><span class="s">"sua_senha_aqui"</span> <span class="nt">/&gt;</span>
+
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.dialect"</span> <span class="na">value=</span><span class="s">"org.hibernate.dialect.MySQL8Dialect"</span> <span class="nt">/&gt;</span>
+            
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.hbm2ddl.auto"</span> <span class="na">value=</span><span class="s">"update"</span> <span class="nt">/&gt;</span>
+            
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.show_sql"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"hibernate.format_sql"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/persistence-unit&gt;</span>
+<span class="nt">&lt;/persistence&gt;</span>
+</code></pre></div></div>
+
+<h3 id="fase-3-mapeando-a-entidade-de-domínio"><strong>Fase 3: Mapeando a Entidade de Domínio</strong></h3>
+
+<p>Agora, vamos transformar uma classe Java simples (<code class="language-plaintext highlighter-rouge">POJO</code>) em uma entidade que pode ser persistida no banco de dados usando anotações da JPA.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Pessoa.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package dominio;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.Serializable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="o">;</span>
+
+<span class="c1">// @Entity: Marca esta classe como uma entidade que pode ser mapeada para uma tabela.</span>
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pessoa</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+
+    <span class="c1">// @Id: Especifica que este atributo é a chave primária da tabela.</span>
+    <span class="nd">@Id</span>
+    <span class="c1">// @GeneratedValue: Define a estratégia de geração da chave primária.</span>
+    <span class="c1">// GenerationType.IDENTITY é ideal para colunas AUTO_INCREMENT do MySQL.</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+
+    <span class="c1">// Um construtor padrão é exigido pela especificação JPA.</span>
+    <span class="kd">public</span> <span class="nf">Pessoa</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Pessoa</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters, Setters e toString()</span>
+    <span class="c1">// ...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Pessoa [id="</span> <span class="o">+</span> <span class="n">id</span> <span class="o">+</span> <span class="s">", nome="</span> <span class="o">+</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", email="</span> <span class="o">+</span> <span class="n">email</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-4-criando-a-aplicação-e-persistindo-os-objetos"><strong>Fase 4: Criando a Aplicação e Persistindo os Objetos</strong></h3>
+
+<p>Finalmente, vamos criar o programa principal para interagir com o banco de dados usando a JPA.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Programa.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package aplicacao;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.EntityManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.EntityManagerFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Persistence</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dominio.Pessoa</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// 1. **Cria o EntityManagerFactory** a partir da unidade de persistência definida no persistence.xml.</span>
+        <span class="c1">//    Esta é uma operação custosa e deve ser feita apenas uma vez por aplicação.</span>
+        <span class="nc">EntityManagerFactory</span> <span class="n">emf</span> <span class="o">=</span> <span class="nc">Persistence</span><span class="o">.</span><span class="na">createEntityManagerFactory</span><span class="o">(</span><span class="s">"exemplo-jpa"</span><span class="o">);</span>
+        
+        <span class="c1">// 2. **Cria o EntityManager**, que é o objeto que efetivamente gerencia a persistência.</span>
+        <span class="nc">EntityManager</span> <span class="n">em</span> <span class="o">=</span> <span class="n">emf</span><span class="o">.</span><span class="na">createEntityManager</span><span class="o">();</span>
+
+        <span class="c1">// --- EXEMPLO DE INSERÇÃO ---</span>
+        <span class="nc">Pessoa</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Pessoa</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"Carlos da Silva"</span><span class="o">,</span> <span class="s">"carlos@gmail.com"</span><span class="o">);</span>
+        <span class="nc">Pessoa</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Pessoa</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"Joaquim Torres"</span><span class="o">,</span> <span class="s">"joaquim@gmail.com"</span><span class="o">);</span>
+        <span class="nc">Pessoa</span> <span class="n">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Pessoa</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"Ana Maria"</span><span class="o">,</span> <span class="s">"ana@gmail.com"</span><span class="o">);</span>
+
+        <span class="c1">// 3. **Inicia uma transação** com o banco de dados. Todas as operações de escrita (persist, merge, remove)</span>
+        <span class="c1">//    devem ocorrer dentro de uma transação.</span>
+        <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">().</span><span class="na">begin</span><span class="o">();</span>
+
+        <span class="c1">// 4. **Persiste os objetos**. O método persist() agenda os objetos para serem inseridos no banco.</span>
+        <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">p1</span><span class="o">);</span>
+        <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">p2</span><span class="o">);</span>
+        <span class="n">em</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">p3</span><span class="o">);</span>
+
+        <span class="c1">// 5. **Confirma a transação**, efetivando as inserções no banco de dados.</span>
+        <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">().</span><span class="na">commit</span><span class="o">();</span>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Pronto! Dados inseridos com sucesso."</span><span class="o">);</span>
+
+        <span class="c1">// --- EXEMPLO DE CONSULTA (find) ---</span>
+        <span class="c1">// O método find() busca uma entidade pela sua chave primária.</span>
+        <span class="nc">Pessoa</span> <span class="n">p_encontrada</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Pessoa</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span> <span class="c1">// Busca a pessoa com ID = 2</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Pessoa encontrada: "</span> <span class="o">+</span> <span class="n">p_encontrada</span><span class="o">);</span>
+
+        <span class="c1">// --- EXEMPLO DE REMOÇÃO ---</span>
+        <span class="c1">// OBS: Para remover, o objeto precisa estar no estado "managed", ou seja,</span>
+        <span class="c1">// ele precisa ter sido recém-consultado ou persistido na mesma transação.</span>
+        <span class="nc">Pessoa</span> <span class="n">p_remover</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">Pessoa</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span> <span class="c1">// Busca a pessoa com ID = 3 para remover</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="n">p_remover</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">().</span><span class="na">begin</span><span class="o">();</span>
+            <span class="n">em</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">p_remover</span><span class="o">);</span>
+            <span class="n">em</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">().</span><span class="na">commit</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Pessoa com ID 3 removida."</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 6. **Fecha os recursos** para liberar a conexão com o banco.</span>
+        <span class="n">em</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">emf</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Seguindo estes passos, você construiu uma aplicação Java que utiliza o poder do JPA e Hibernate para persistir objetos em um banco de dados de forma elegante e produtiva, eliminando a necessidade de escrever código SQL manualmente para operações CRUD básicas.</p>

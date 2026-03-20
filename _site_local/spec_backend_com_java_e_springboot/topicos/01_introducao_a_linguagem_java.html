@@ -1,0 +1,650 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/topicos/01_introducao_a_linguagem_java.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>☕ Introdução à Linguagem Java | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="☕ Introdução à Linguagem Java" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/01_introducao_a_linguagem_java.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/01_introducao_a_linguagem_java.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="☕ Introdução à Linguagem Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"☕ Introdução à Linguagem Java","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/01_introducao_a_linguagem_java.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / ☕ introdução à linguagem java</span>
+          
+        
+      </nav>
+
+      <h1 id="-introdução-à-linguagem-java">☕ Introdução à Linguagem Java</h1>
+
+<p>Este documento oferece uma introdução à linguagem de programação Java, abordando seu histórico, características, edições, o processo de compilação e execução, e os passos iniciais para configurar um ambiente de desenvolvimento.</p>
+
+<h2 id="versões-da-linguagem-java">Versões da Linguagem Java</h2>
+
+<p>A linguagem Java passou por diversas versões ao longo dos anos, com algumas delas sendo designadas como LTS (Long-Term Support), o que significa que recebem atualizações de segurança e correções por um período mais extenso. Algumas versões notáveis incluem:</p>
+
+<ul>
+  <li>Java 8 LTS</li>
+  <li>Java 11 LTS</li>
+  <li>Java 17 LTS</li>
+  <li>Java 21 LTS, e a 25 a LTS mais recente no momento da última atualização deste conteúdo contextual).</li>
+</ul>
+
+<p>Outras versões intermediárias (10, 12, 13, 14, 15, 16, etc.) introduzem novas funcionalidades que são posteriormente consolidadas nas versões LTS.</p>
+
+<h2 id="java---contextualização">Java - Contextualização</h2>
+
+<h3 id="o-que-é-java">O que é Java?</h3>
+
+<p>Java é mais do que apenas uma linguagem de programação. É um ecossistema completo que inclui:</p>
+
+<ul>
+  <li><strong>Linguagem de programação</strong>: Define a sintaxe e as regras para escrever código Java.</li>
+  <li><strong>Plataforma de desenvolvimento e execução</strong>: Um ambiente completo que permite desenvolver, compilar e executar aplicações Java.</li>
+  <li><strong>Bibliotecas (API - Application Programming Interface)</strong>: Um vasto conjunto de classes e métodos pré-construídos que facilitam o desenvolvimento de diversas funcionalidades, desde manipulação de strings e redes até interfaces gráficas e acesso a bancos de dados.</li>
+  <li><strong>Ambientes de execução</strong>: Principalmente a Java Virtual Machine (JVM), que permite que o código Java seja executado em diferentes sistemas operacionais.</li>
+</ul>
+
+<h2 id="histórico">Histórico</h2>
+
+<h3 id="problemas-resolvidos-e-motivo-de-sucesso">Problemas Resolvidos e Motivo de Sucesso</h3>
+
+<p>Java ganhou popularidade rapidamente por resolver alguns dos desafios comuns enfrentados por desenvolvedores no início dos anos 90:</p>
+
+<ul>
+  <li><strong>Gerenciamento de memória</strong>: Diferentemente de linguagens como C/C++, Java automatiza o gerenciamento de memória através de um processo chamado <em>garbage collection</em> (coleta de lixo), eliminando a necessidade de alocação e liberação manual de memória e reduzindo erros como <em>memory leaks</em> e <em>dangling pointers</em>.</li>
+  <li><strong>Portabilidade falha</strong>: Antes de Java, era comum ter que reescrever ou adaptar significativamente partes do código ao mudar de sistema operacional (SO). Java introduziu o conceito “Write Once, Run Anywhere” (WORA - Escreva uma vez, execute em qualquer lugar).</li>
+  <li><strong>Utilização em dispositivos diversos</strong>: Projetada para ser versátil, Java pode ser usada em uma ampla gama de dispositivos, desde servidores robustos até pequenos dispositivos embarcados.</li>
+  <li><strong>Custo</strong>: Sendo uma tecnologia de código aberto (OpenJDK) e com ferramentas de desenvolvimento gratuitas, Java se tornou uma opção acessível para muitos desenvolvedores e empresas.</li>
+</ul>
+
+<h3 id="criação-e-aquisição">Criação e Aquisição</h3>
+
+<ul>
+  <li>Java foi criada pela <strong>Sun Microsystems</strong> em meados da década de 1990, liderada por James Gosling.</li>
+  <li>Em 2010, a <strong>Oracle Corporation</strong> adquiriu a Sun Microsystems, tornando-se a principal mantenedora da plataforma Java.</li>
+</ul>
+
+<h3 id="aspectos-notáveis">Aspectos Notáveis</h3>
+
+<ul>
+  <li><strong>Compilação para Bytecode</strong>: O código fonte Java (<code class="language-plaintext highlighter-rouge">.java</code>) é compilado para um formato intermediário chamado <em>bytecode</em> (<code class="language-plaintext highlighter-rouge">.class</code>).</li>
+  <li><strong>Execução em Máquina Virtual (JVM)</strong>: O bytecode é então interpretado e executado pela Java Virtual Machine (JVM), que é específica para cada sistema operacional. Isso garante a portabilidade.</li>
+  <li><strong>Portável, Segura e Robusta</strong>: A JVM e as características da linguagem contribuem para a portabilidade, segurança (com recursos como o Security Manager) e robustez das aplicações Java (tratamento de exceções, por exemplo).</li>
+  <li><strong>Ampla Aplicação</strong>: Java roda em vários tipos de dispositivos, desde servidores corporativos, aplicações desktop, dispositivos móveis (foi a base do Android por muitos anos) e sistemas embarcados.</li>
+  <li><strong>Domínio Corporativo</strong>: Desde o final do século 20, Java tem sido uma das linguagens dominantes no mercado de desenvolvimento de software corporativo.</li>
+  <li>Segundo a Oracle, “3 Billion Devices Run Java”, destacando sua ampla adoção.</li>
+</ul>
+
+<h2 id="edições-da-plataforma-java">Edições da Plataforma Java</h2>
+
+<p>Java é disponibilizada em diferentes edições para atender a various tipos de aplicações:</p>
+
+<ul>
+  <li><strong>Java ME (Micro Edition)</strong>: Destinada a dispositivos com recursos limitados, como sistemas embarcados, sensores e dispositivos móveis mais antigos (IoT - Internet of Things).</li>
+  <li><strong>Java SE (Standard Edition)</strong>: É a edição principal (core) da plataforma Java. Fornece as APIs fundamentais e a JVM para o desenvolvimento de aplicações desktop, servidores e aplicações de console. É a base para as outras edições.</li>
+  <li><strong>Java EE (Enterprise Edition)</strong>: Construída sobre o Java SE, a Java EE (atualmente Jakarta EE) fornece um conjunto de especificações e APIs para o desenvolvimento de aplicações corporativas robustas, escaláveis e seguras, como sistemas web e serviços distribuídos.</li>
+</ul>
+
+<h2 id="plataforma-java-se">Plataforma Java SE</h2>
+
+<h3 id="jvm---java-virtual-machine">JVM - Java Virtual Machine</h3>
+
+<ul>
+  <li>A JVM é o coração da plataforma Java. É uma máquina abstrata que fornece o ambiente de execução para o bytecode Java.</li>
+  <li>Para executar qualquer sistema Java, é necessário ter uma JVM compatível instalada no dispositivo.</li>
+</ul>
+
+<h3 id="compilação-e-interpretação-de-linguagens">Compilação e Interpretação de Linguagens</h3>
+
+<p>Para entender o modelo de execução do Java, é útil compará-lo com outros tipos de linguagens:</p>
+
+<ul>
+  <li><strong>Linguagens Compiladas (ex: C, C++)</strong>:
+    <ul>
+      <li>O código fonte é traduzido diretamente para código de máquina específico de um processador e sistema operacional.</li>
+      <li>O executável resultante é rápido, mas não é portável entre diferentes sistemas operacionais sem recompilação (e, às vezes, adaptações no código).</li>
+    </ul>
+
+    <p><em>Exemplo conceitual em C++ :</em></p>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="c1"> // Para std::cout e std::cin</span><span class="cp">
+</span>
+  <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">media</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite o primeiro número: "</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite o segundo número: "</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+      <span class="n">media</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">;</span> <span class="c1">// Cálculo da média</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Média = "</span> <span class="o">&lt;&lt;</span> <span class="n">media</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+    <p>Este código C++, após compilado, geraria um executável específico para a plataforma onde foi compilado (Windows, Linux, Mac OS). Pode haver necessidade de adaptações para compilar em diferentes sistemas.</p>
+  </li>
+  <li><strong>Linguagens Interpretadas (ex: PHP, JavaScript, Python)</strong>:
+    <ul>
+      <li>O código fonte é lido e executado linha por linha por um programa chamado interpretador.</li>
+      <li>Geralmente são mais portáveis, pois o mesmo código pode rodar em qualquer sistema que tenha o interpretador adequado.</li>
+      <li>A execução pode ser mais lenta em comparação com código compilado nativamente.</li>
+    </ul>
+
+    <p><em>Exemplo conceitual em PHP:</em></p>
+    <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">&lt;?php</span>
+  <span class="k">echo</span> <span class="s2">"Digite o primeiro número: "</span><span class="p">;</span>
+  <span class="nv">$x</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">fgets</span><span class="p">(</span><span class="no">STDIN</span><span class="p">));</span>
+  <span class="k">echo</span> <span class="s2">"Digite o segundo número: "</span><span class="p">;</span>
+  <span class="nv">$y</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">fgets</span><span class="p">(</span><span class="no">STDIN</span><span class="p">));</span>
+  <span class="c1">// É importante converter para número antes de somar, pois fgets lê como string</span>
+  <span class="nv">$media</span> <span class="o">=</span> <span class="p">(</span><span class="nb">floatval</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="o">+</span> <span class="nb">floatval</span><span class="p">(</span><span class="nv">$y</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">echo</span> <span class="s2">"Média = "</span> <span class="mf">.</span> <span class="nv">$media</span><span class="p">;</span>
+  <span class="cp">?&gt;</span>
+</code></pre></div>    </div>
+    <p>Este script PHP seria executado por um interpretador PHP instalado no sistema operacional.</p>
+  </li>
+  <li><strong>Linguagens Pré-compiladas + Máquina Virtual (ex: Java, C#)</strong>:
+    <ul>
+      <li>Java adota uma abordagem híbrida. O código fonte (<code class="language-plaintext highlighter-rouge">.java</code>) é primeiro compilado para um código intermediário chamado <strong>bytecode</strong> (<code class="language-plaintext highlighter-rouge">.class</code>).</li>
+      <li>Esse bytecode não é específico de um sistema operacional, mas sim da <strong>Java Virtual Machine (JVM)</strong>.</li>
+      <li>A JVM, que é específica para cada plataforma (Windows, Linux, Mac OS), interpreta (ou compila em tempo real) o bytecode para código de máquina nativo.</li>
+    </ul>
+
+    <p><strong>Modelo de Execução Java:</strong></p>
+    <ol>
+      <li><strong>Código Fonte Java (<code class="language-plaintext highlighter-rouge">MeuPrograma.java</code>)</strong>
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span> <span class="c1">// Exemplo de pacote</span>
+<span class="c1">// importações (ex: java.util.Scanner)</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Olá Mundo!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li><strong>Compilador Java (<code class="language-plaintext highlighter-rouge">javac</code>)</strong> transforma o código fonte em <strong>Bytecode (<code class="language-plaintext highlighter-rouge">Programa.class</code>)</strong>.
+<em>Este bytecode é uma representação intermediária e portável.</em></li>
+      <li><strong>Java Virtual Machine (JVM)</strong>:
+        <ul>
+          <li>Carrega o arquivo <code class="language-plaintext highlighter-rouge">.class</code>.</li>
+          <li>Verifica a segurança do bytecode.</li>
+          <li>Interpreta o bytecode ou usa a <strong>Compilação Just-In-Time (JIT)</strong>.
+            <ul>
+              <li>O compilador JIT traduz o bytecode para código de máquina nativo durante a execução, em seções de código frequentemente usadas. Isso otimiza a performance, tornando a execução quase tão rápida quanto a de código compilado nativamente após um período inicial de “aquecimento”.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Execução</strong> do código de máquina no hardware subjacente (Windows, Linux, Mac OS, etc.).</li>
+    </ol>
+
+    <p>Este modelo permite que o mesmo arquivo <code class="language-plaintext highlighter-rouge">.class</code> (bytecode) seja executado em qualquer dispositivo que possua uma JVM compatível, alcançando o objetivo “Write Once, Run Anywhere”.</p>
+
+    <p><em>Exemplo de cálculo de média em Java (adaptado do slide):</em></p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+  <span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+          <span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">media</span><span class="o">;</span>
+
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o primeiro número: "</span><span class="o">);</span>
+          <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span> <span class="c1">// Lê um inteiro, que será promovido a double na atribuição</span>
+
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o segundo número: "</span><span class="o">);</span>
+          <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span> <span class="c1">// Lê um inteiro, que será promovido a double na atribuição</span>
+
+          <span class="n">media</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="o">;</span> <span class="c1">// Divisão de ponto flutuante</span>
+
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Média = %.2f%n"</span><span class="o">,</span> <span class="n">media</span><span class="o">);</span> <span class="c1">// %.2f formata para 2 casas decimais, %n para nova linha</span>
+
+          <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">// Fecha o Scanner para liberar recursos</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="estrutura-de-uma-aplicação-java">Estrutura de uma Aplicação Java</h2>
+
+<p>Uma aplicação Java é organizada de forma hierárquica:</p>
+
+<ol>
+  <li>
+    <p><strong>Classes</strong>: A unidade fundamental de programação em Java. Uma aplicação é composta por uma ou mais classes. Cada classe geralmente reside em seu próprio arquivo <code class="language-plaintext highlighter-rouge">.java</code>.
+<em>Exemplo: <code class="language-plaintext highlighter-rouge">class MinhaClasse { ... }</code></em></p>
+  </li>
+  <li><strong>Pacotes (Packages)</strong>: São usados para agrupar classes relacionadas logicamente, ajudando a organizar o código e a evitar conflitos de nomes. Fisicamente, pacotes correspondem a estruturas de diretórios.
+<em>Exemplo: <code class="language-plaintext highlighter-rouge">package com.minhaempresa.projeto.entidades;</code></em>
+    <ul>
+      <li>No diagrama são mostrados pacotes como <code class="language-plaintext highlighter-rouge">Entities</code>, <code class="language-plaintext highlighter-rouge">Services</code>, <code class="language-plaintext highlighter-rouge">Repositories</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Módulos (Java 9+)</strong>: Introduzidos a partir do Java 9, os módulos são um agrupamento lógico de pacotes relacionados. Eles permitem uma melhor encapsulação e organização de grandes aplicações, especificando quais pacotes são exportados (visíveis para outros módulos) e quais são as dependências de outros módulos.
+<em>Exemplo: um módulo <code class="language-plaintext highlighter-rouge">Financeiro</code> poderia agrupar pacotes de <code class="language-plaintext highlighter-rouge">entidades</code>, <code class="language-plaintext highlighter-rouge">servicos</code> e <code class="language-plaintext highlighter-rouge">repositorios</code> financeiros.</em></p>
+  </li>
+  <li><strong>Aplicação</strong>: Uma aplicação Java completa é um agrupamento de módulos (ou pacotes, em versões anteriores ao Java 9) que trabalham juntos para realizar uma tarefa específica, como um sistema de comércio eletrônico.
+    <ul>
+      <li>O <strong>Runtime</strong> refere-se ao agrupamento físico dos arquivos (classes, módulos) necessários para executar a aplicação.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="instalando-o-java-jdk-java-development-kit">Instalando o Java JDK (Java Development Kit)</h2>
+
+<p>Para desenvolver e executar aplicações Java, você precisa do JDK. O JDK inclui o JRE (Java Runtime Environment, que contém a JVM) e ferramentas de desenvolvimento como o compilador (<code class="language-plaintext highlighter-rouge">javac</code>).</p>
+
+<h3 id="builds-openjdk">Builds OpenJDK</h3>
+
+<p>Existem várias distribuições (builds) do OpenJDK (a implementação de referência de código aberto do Java SE). Algumas populares incluem:</p>
+
+<ul>
+  <li><strong>Adoptium Temurin (anteriormente AdoptOpenJDK)</strong></li>
+  <li><strong>Oracle OpenJDK</strong></li>
+  <li><strong>Amazon Corretto</strong></li>
+  <li><strong>Microsoft Build of OpenJDK</strong></li>
+  <li><strong>Azul Zulu</strong></li>
+</ul>
+
+<h3 id="passos-gerais-para-instalação">Passos Gerais para Instalação</h3>
+
+<p><strong>No Windows:</strong></p>
+
+<ol>
+  <li><strong>Baixar o JDK</strong>: Escolha uma distribuição OpenJDK (ex: Adoptium Temurin) e baixe o instalador <code class="language-plaintext highlighter-rouge">.msi</code> para Windows.</li>
+  <li><strong>Instalar o JDK</strong>: Execute o instalador e siga as instruções. Geralmente, ele configura o <code class="language-plaintext highlighter-rouge">PATH</code> automaticamente.</li>
+  <li><strong>Configurar Variáveis de Ambiente (se necessário)</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">JAVA_HOME</code>: Defina esta variável de ambiente para apontar para o diretório de instalação do JDK (ex: <code class="language-plaintext highlighter-rouge">C:\Program Files\Eclipse Adoptium\jdk-17.0.x.x</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">Path</code>: Adicione <code class="language-plaintext highlighter-rouge">%JAVA_HOME%\bin</code> à variável de ambiente <code class="language-plaintext highlighter-rouge">Path</code> do sistema.</li>
+    </ul>
+  </li>
+  <li><strong>Verificação</strong>: Abra um novo prompt de comando e digite:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-version</span>
+<span class="nb">echo</span> %JAVA_HOME%
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>No Linux e Mac:</strong></p>
+
+<ol>
+  <li><strong>Passos para instalação</strong>:
+    <ul>
+      <li><strong>Linux</strong>: Você pode usar gerenciadores de pacotes como <code class="language-plaintext highlighter-rouge">apt</code> (Debian/Ubuntu) ou <code class="language-plaintext highlighter-rouge">yum</code> (Fedora/CentOS). Por exemplo, no Ubuntu:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>apt update
+  <span class="nb">sudo </span>apt <span class="nb">install </span>openjdk-17-jdk <span class="c"># Ou a versão desejada</span>
+</code></pre></div>        </div>
+      </li>
+      <li><strong>Mac</strong>: Você pode baixar um instalador <code class="language-plaintext highlighter-rouge">.dmg</code> de um provedor OpenJDK ou usar o Homebrew:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  brew <span class="nb">install </span>openjdk@17 <span class="c"># Ou a versão desejada</span>
+</code></pre></div>        </div>
+      </li>
+      <li>É recomendado consultar a documentação oficial da distribuição OpenJDK escolhida ou guias da comunidade para passos detalhados e configurações específicas.</li>
+    </ul>
+  </li>
+  <li><strong>Configurar <code class="language-plaintext highlighter-rouge">JAVA_HOME</code> e <code class="language-plaintext highlighter-rouge">PATH</code> (se necessário)</strong>: Adicione as seguintes linhas ao seu arquivo de perfil do shell (ex: <code class="language-plaintext highlighter-rouge">~/.bashrc</code>, <code class="language-plaintext highlighter-rouge">~/.zshrc</code>):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/caminho/para/seu/jdk <span class="c"># Ex: /usr/lib/jvm/java-17-openjdk-amd64</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$PATH</span>
+</code></pre></div>    </div>
+    <p>Lembre-se de carregar as alterações: <code class="language-plaintext highlighter-rouge">source ~/.bashrc</code> (ou o arquivo correspondente).</p>
+  </li>
+  <li><strong>Verificação</strong>: Abra um novo terminal e digite:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-version</span>
+<span class="nb">echo</span> <span class="nv">$JAVA_HOME</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="configurando-um-ambiente-de-desenvolvimento-integrado-ide">Configurando um Ambiente de Desenvolvimento Integrado (IDE)</h2>
+
+<p>Uma IDE facilita a escrita, compilação, depuração e execução de código Java.</p>
+
+<h3 id="principais-ides-para-java">Principais IDEs para Java</h3>
+
+<ul>
+  <li><strong>IntelliJ IDEA</strong>: Uma IDE muito popular, conhecida por sua interface inteligente, refatoração poderosa e excelente suporte a frameworks. Possui uma versão Community (gratuita) e uma Ultimate (paga).</li>
+  <li><strong>Visual Studio Code (VS Code)</strong>: Um editor de código leve, mas altamente extensível. Com o “Extension Pack for Java” da Microsoft, ele se torna uma IDE Java completa e eficiente.</li>
+  <li><strong>Eclipse IDE</strong>: Uma IDE tradicional, de código aberto e rica em funcionalidades, com um vasto ecossistema de plugins.</li>
+  <li><strong>Apache NetBeans</strong>: Outra IDE de código aberto de longa data, oferecendo suporte robusto para Java SE, Java EE e outras tecnologias.</li>
+  <li><strong>Spring Tool Suite (STS)</strong>: Uma versão do Eclipse customizada para desenvolvimento com o Spring Framework.</li>
+  <li><strong>Outras</strong>: Existem diversas outras IDEs e editores que também suportam Java.</li>
+</ul>
+
+<h2 id="criando-seu-primeiro-programa-em-java-olá-mundo">Criando seu Primeiro Programa em Java (“Olá Mundo”)</h2>
+
+<p>Vamos ver os passos gerais para criar um projeto “Olá Mundo” usando VS Code e IntelliJ IDEA.</p>
+
+<h3 id="1-configurando-o-workspaceprojeto">1. Configurando o Workspace/Projeto</h3>
+
+<ul>
+  <li><strong>Conceito de Workspace/Diretório do Projeto</strong>: É a pasta no seu computador onde os arquivos do seu projeto (código fonte, bibliotecas, arquivos de configuração) serão armazenados.</li>
+</ul>
+
+<h3 id="2-criando-o-projeto-java">2. Criando o Projeto Java</h3>
+
+<ul>
+  <li><strong>Visual Studio Code (com Extension Pack for Java instalado):</strong>
+    <ol>
+      <li>Abra o VS Code.</li>
+      <li>Pressione <code class="language-plaintext highlighter-rouge">Ctrl+Shift+P</code> (ou <code class="language-plaintext highlighter-rouge">Cmd+Shift+P</code> no Mac) para abrir a Paleta de Comandos.</li>
+      <li>Digite <code class="language-plaintext highlighter-rouge">Java: Create Java Project</code>.</li>
+      <li>Selecione <code class="language-plaintext highlighter-rouge">No build tools</code> para um projeto simples.</li>
+      <li>Escolha uma pasta para o seu projeto e forneça um nome para ele (ex: <code class="language-plaintext highlighter-rouge">MeuPrimeiroApp</code>).</li>
+      <li>O VS Code criará uma estrutura básica de projeto, incluindo uma pasta <code class="language-plaintext highlighter-rouge">src</code> (para o código fonte) e uma pasta <code class="language-plaintext highlighter-rouge">lib</code> (para bibliotecas, se necessário).</li>
+    </ol>
+  </li>
+  <li><strong>IntelliJ IDEA (Community ou Ultimate):</strong>
+    <ol>
+      <li>Abra o IntelliJ IDEA.</li>
+      <li>Na tela de boas-vindas, clique em <code class="language-plaintext highlighter-rouge">New Project</code>.</li>
+      <li>No painel esquerdo, selecione <code class="language-plaintext highlighter-rouge">Java</code>.</li>
+      <li>Certifique-se de que um <code class="language-plaintext highlighter-rouge">Project SDK</code> (JDK) está selecionado. Se não, configure-o.</li>
+      <li>Opcionalmente, marque <code class="language-plaintext highlighter-rouge">Add sample code</code> para que o IntelliJ crie uma classe <code class="language-plaintext highlighter-rouge">Main</code> com um método <code class="language-plaintext highlighter-rouge">main</code>.</li>
+      <li>Clique em <code class="language-plaintext highlighter-rouge">Next</code> (ou <code class="language-plaintext highlighter-rouge">Create</code> dependendo da versão).</li>
+      <li>Dê um nome ao seu projeto (ex: <code class="language-plaintext highlighter-rouge">MeuPrimeiroApp</code>) e escolha o local.</li>
+      <li>Clique em <code class="language-plaintext highlighter-rouge">Finish</code> (ou <code class="language-plaintext highlighter-rouge">Create</code>). O IntelliJ criará a estrutura do projeto, incluindo uma pasta <code class="language-plaintext highlighter-rouge">src</code>.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="3-criando-a-classe-principal">3. Criando a Classe Principal</h3>
+
+<p>A classe principal é onde a execução do seu programa Java começa, através do método <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<ul>
+  <li><strong>Nome da Classe</strong>: Por convenção, nomes de classes em Java começam com letra maiúscula (PascalCase), por exemplo, <code class="language-plaintext highlighter-rouge">Programa</code> ou <code class="language-plaintext highlighter-rouge">Main</code>.</li>
+  <li><strong>Pacote (Package)</strong>: É uma boa prática organizar suas classes em pacotes. Se você não especificar um pacote, a classe será colocada no pacote padrão (geralmente não recomendado para projetos maiores). Por exemplo: <code class="language-plaintext highlighter-rouge">com.meuusuario.meuprimeiroapp</code>.
+    <ul>
+      <li>No VS Code ou IntelliJ, você pode clicar com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code>, selecionar <code class="language-plaintext highlighter-rouge">New Package</code>, e então criar sua classe dentro desse pacote.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Criando a Classe e o Método <code class="language-plaintext highlighter-rouge">main</code>:</strong></p>
+
+    <ul>
+      <li><strong>Visual Studio Code:</strong>
+        <ol>
+          <li>Na pasta <code class="language-plaintext highlighter-rouge">src</code> (ou dentro de um pacote que você criou em <code class="language-plaintext highlighter-rouge">src</code>), clique com o botão direito e selecione <code class="language-plaintext highlighter-rouge">New Java Class</code>.</li>
+          <li>Digite o nome da classe (ex: <code class="language-plaintext highlighter-rouge">Programa</code>) e pressione Enter.</li>
+          <li>Adicione o método <code class="language-plaintext highlighter-rouge">main</code> dentro da classe:</li>
+        </ol>
+      </li>
+      <li><strong>IntelliJ IDEA:</strong>
+        <ol>
+          <li>Na pasta <code class="language-plaintext highlighter-rouge">src</code> (ou dentro de um pacote), clique com o botão direito, selecione <code class="language-plaintext highlighter-rouge">New</code> -&gt; <code class="language-plaintext highlighter-rouge">Java Class</code>.</li>
+          <li>Digite o nome da classe (ex: <code class="language-plaintext highlighter-rouge">Programa</code>) e pressione Enter.</li>
+          <li>Adicione o método <code class="language-plaintext highlighter-rouge">main</code>. IntelliJ frequentemente oferece um atalho: digite <code class="language-plaintext highlighter-rouge">psvm</code> e pressione Tab.</li>
+        </ol>
+      </li>
+    </ul>
+
+    <p><strong>Código da Classe <code class="language-plaintext highlighter-rouge">Programa.java</code>:</strong></p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span> <span class="c1">// Ou o nome do seu pacote, ex: com.meuusuario.meuprimeiroapp</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+      <span class="c1">// O método main é o ponto de entrada da aplicação Java</span>
+      <span class="c1">// public: acessível de qualquer lugar</span>
+      <span class="c1">// static: pode ser chamado sem criar um objeto da classe</span>
+      <span class="c1">// void: não retorna nenhum valor</span>
+      <span class="c1">// main: nome padrão para o método principal</span>
+      <span class="c1">// String[] args: array de Strings para argumentos de linha de comando</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Olá Mundo, Java!"</span><span class="o">);</span> <span class="c1">// Imprime a mensagem no console</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="4-executando-o-programa">4. Executando o Programa</h3>
+
+<ul>
+  <li><strong>Visual Studio Code:</strong>
+    <ol>
+      <li>Abra o arquivo <code class="language-plaintext highlighter-rouge">Programa.java</code>.</li>
+      <li>Você verá um link <code class="language-plaintext highlighter-rouge">Run</code> acima do método <code class="language-plaintext highlighter-rouge">main</code>. Clique nele.</li>
+      <li>A saída “Olá Mundo, Java!” aparecerá no painel “TERMINAL” ou “DEBUG CONSOLE”.</li>
+    </ol>
+  </li>
+  <li><strong>IntelliJ IDEA:</strong>
+    <ol>
+      <li>Abra o arquivo <code class="language-plaintext highlighter-rouge">Programa.java</code>.</li>
+      <li>Clique na seta verde ao lado da declaração da classe ou do método <code class="language-plaintext highlighter-rouge">main</code>.</li>
+      <li>Selecione <code class="language-plaintext highlighter-rouge">Run 'Programa.main()'</code>.</li>
+      <li>A saída aparecerá na janela “Run” na parte inferior da IDE.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="5-ajustando-o-tamanho-da-fonte-dica-geral-de-ides">5. Ajustando o Tamanho da Fonte (Dica Geral de IDEs)</h3>
+
+<p>Quase todas as IDEs permitem ajustar o tamanho da fonte para melhor legibilidade:</p>
+
+<ul>
+  <li>Geralmente, <code class="language-plaintext highlighter-rouge">Ctrl +</code> (Control e sinal de mais) aumenta a fonte.</li>
+  <li>E <code class="language-plaintext highlighter-rouge">Ctrl -</code> (Control e sinal de menos) diminui a fonte.</li>
+  <li>No Mac, use <code class="language-plaintext highlighter-rouge">Cmd +</code> e <code class="language-plaintext highlighter-rouge">Cmd -</code>.</li>
+  <li>Você também pode encontrar configurações detalhadas de fonte nas preferências ou configurações da IDE (ex: <code class="language-plaintext highlighter-rouge">File -&gt; Settings/Preferences -&gt; Editor -&gt; Font</code>).</li>
+</ul>
+
+<p>Com esses passos, você terá configurado seu ambiente e executado seu primeiro programa Java! A partir daqui, você pode começar a explorar os vastos recursos e bibliotecas que a linguagem Java oferece.</p>
+
+<p>Uma aplicação Java é estruturada em uma hierarquia de componentes que organizam o código de forma lógica e física. A base dessa estrutura são as classes, que são agrupadas em pacotes, os quais por sua vez podem ser agrupados em módulos para formar a aplicação final.</p>
+
+<h3 id="níveis-da-estrutura-de-uma-aplicação-java">Níveis da Estrutura de uma Aplicação Java:</h3>
+
+<ul>
+  <li>
+    <p><strong>Classes</strong>: A aplicação é fundamentalmente composta por classes. Elas são as unidades básicas que contêm os dados e os comportamentos do sistema.</p>
+
+    <pre><code class="language-mermaid">graph TD
+    subgraph Aplicação
+        A[Class]
+        B[Class]
+        C[Class]
+        D[Class]
+        E[Class]
+        F[Class]
+    end
+</code></pre>
+  </li>
+  <li>
+    <p><strong>Pacotes (Packages)</strong>: Um pacote é um agrupamento lógico de classes que possuem funcionalidades relacionadas. Essa organização ajuda a evitar conflitos de nomes e a estruturar o projeto de forma coesa. Exemplos comuns de pacotes em uma arquitetura de software são <code class="language-plaintext highlighter-rouge">Entities</code>, <code class="language-plaintext highlighter-rouge">Services</code> e <code class="language-plaintext highlighter-rouge">Repositories</code>.</p>
+
+    <pre><code class="language-mermaid">graph TD
+    subgraph "Package: Entities"
+        direction LR
+        ClassE1[Class]
+        ClassE2[Class]
+        ClassE3[Class]
+    end
+
+    subgraph "Package: Services"
+        direction LR
+        ClassS1[Class]
+        ClassS2[Class]
+        ClassS3[Class]
+    end
+
+    subgraph "Package: Repositories"
+        direction LR
+        ClassR1[Class]
+        ClassR2[Class]
+        ClassR3[Class]
+    end
+</code></pre>
+  </li>
+  <li>
+    <p><strong>Módulos (Java 9+)</strong>: Um módulo é um agrupamento lógico de pacotes que estão relacionados. O sistema de módulos, introduzido no Java 9, permite um encapsulamento mais forte e uma declaração explícita das dependências, resultando em um agrupamento físico no <em>runtime</em>. Por exemplo, um módulo <code class="language-plaintext highlighter-rouge">Financial</code> pode agrupar os pacotes <code class="language-plaintext highlighter-rouge">Entities</code>, <code class="language-plaintext highlighter-rouge">Services</code> e <code class="language-plaintext highlighter-rouge">Repositories</code>, enquanto um módulo <code class="language-plaintext highlighter-rouge">Graphics</code> pode conter os pacotes <code class="language-plaintext highlighter-rouge">Graphics2D</code> e <code class="language-plaintext highlighter-rouge">Graphics3D</code>.</p>
+
+    <pre><code class="language-mermaid"> graph TD
+    subgraph "Módulo: Financial"
+        direction TB
+        P1["Package: Entities"]
+        P2["Package: Services"]
+        P3["Package: Repositories"]
+    end
+
+    subgraph "Módulo: Graphics"
+        direction TB
+        P4["Package: Graphics2D"]
+        P5["Package: Graphics3D"]
+    end
+</code></pre>
+  </li>
+  <li>
+    <p><strong>Aplicação</strong>: A aplicação completa é o resultado do agrupamento de módulos relacionados que trabalham juntos para entregar a funcionalidade final do software. Um exemplo é um “Sistema de comércio eletrônico”, que seria composto por diversos módulos, cada um responsável por uma parte do sistema.</p>
+
+    <pre><code class="language-mermaid">graph TD
+    subgraph "Aplicação: Sistema de Comércio Eletrônico"
+        direction LR
+        M1[Módulo A]
+        M2[Módulo B]
+        M3[Módulo C]
+        M4[Módulo D]
+    end
+</code></pre>
+  </li>
+</ul>
+
+<p>Em Java, a comunidade de desenvolvimento adota um conjunto de convenções de nomenclatura (<em>naming conventions</em>) para tornar o código mais legível, consistente e profissional.</p>
+
+<h3 id="️-padrões-de-nomes-naming-conventions-em-java">🏷️ Padrões de Nomes (Naming Conventions) em Java</h3>
+
+<ul>
+  <li><strong>Classes e Interfaces</strong>
+    <ul>
+      <li><strong>Padrão</strong>: <code class="language-plaintext highlighter-rouge">PascalCase</code> (também conhecido como <em>UpperCamelCase</em>).</li>
+      <li><strong>Descrição</strong>: Nomes de classes devem ser substantivos e começar com uma letra maiúscula. Se o nome for composto, cada palavra subsequente também começa com uma letra maiúscula.</li>
+      <li><strong>Exemplos</strong>: <code class="language-plaintext highlighter-rouge">public class Program</code>, <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">Scanner</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Pacotes (Packages)</strong>
+    <ul>
+      <li><strong>Padrão</strong>: <code class="language-plaintext highlighter-rouge">lowercase</code> (letras minúsculas).</li>
+      <li><strong>Descrição</strong>: Nomes de pacotes, que são agrupamentos lógicos de classes relacionadas, devem ser escritos inteiramente em letras minúsculas para evitar conflitos em diferentes sistemas de arquivos. O padrão comum é usar o domínio da internet da organização de forma invertida.</li>
+      <li><strong>Exemplos</strong>: <code class="language-plaintext highlighter-rouge">package course;</code>, <code class="language-plaintext highlighter-rouge">java.util</code>, <code class="language-plaintext highlighter-rouge">com.oracle.jdbc</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Variáveis e Métodos</strong>
+    <ul>
+      <li><strong>Padrão</strong>: <code class="language-plaintext highlighter-rouge">camelCase</code> (também conhecido como <em>lowerCamelCase</em>).</li>
+      <li><strong>Descrição</strong>: A primeira letra do nome é minúscula, e a primeira letra de cada palavra subsequente é maiúscula. Nomes de métodos geralmente são verbos que indicam uma ação.</li>
+      <li><strong>Exemplos de Variáveis</strong>: <code class="language-plaintext highlighter-rouge">double x, y, average;</code>, <code class="language-plaintext highlighter-rouge">scanner</code>, <code class="language-plaintext highlighter-rouge">somaTotal</code>.</li>
+      <li><strong>Exemplos de Métodos</strong>: <code class="language-plaintext highlighter-rouge">main(String[] args)</code>, <code class="language-plaintext highlighter-rouge">nextInt()</code>, <code class="language-plaintext highlighter-rouge">close()</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Constantes</strong>
+    <ul>
+      <li><strong>Padrão</strong>: <code class="language-plaintext highlighter-rouge">SNAKE_CASE</code> (também conhecido como <em>UPPER_CASE</em>).</li>
+      <li><strong>Descrição</strong>: Nomes de constantes (variáveis declaradas como <code class="language-plaintext highlighter-rouge">static final</code>) são escritos inteiramente em letras maiúsculas, com palavras separadas por um subtraço (<code class="language-plaintext highlighter-rouge">_</code>).</li>
+      <li><strong>Exemplos</strong>: <code class="language-plaintext highlighter-rouge">Math.PI</code>, <code class="language-plaintext highlighter-rouge">Integer.MAX_VALUE</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h2>📚</h2>
+<p>Referências</p>
+<ul>
+  <li><a href="https://docs.oracle.com/en/java/">Documentação Oficial do Java</a></li>
+  <li><a href="https://docs.oracle.com/javase/tutorial/">Java Tutorials</a></li>
+  <li>
+    <hr />
+  </li>
+</ul>
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

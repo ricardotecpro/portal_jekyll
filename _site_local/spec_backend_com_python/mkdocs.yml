@@ -1,0 +1,127 @@
+site_name: Python Backend - Curso Completo
+site_url: https://ricardotecpro.github.io/ads_spec_backend_com_python
+repo_url: https://github.com/ricardotecpro/ads_spec_backend_com_python
+repo_name: ricardotecpro/ads_spec_backend_com_python
+edit_uri: edit/main/aulas/
+docs_dir: aulas
+
+theme:
+  name: material
+  language: pt-BR
+  favicon: assets/images/python-logo.png
+  logo: assets/images/python-logo.png
+  custom_dir: overrides
+  features:
+    # - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    # - navigation.tabs.sticky # Removed to prevent parallax duplication issues
+    # - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Mudar para modo claro
+    - scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para modo escuro
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - pymdownx.critic
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - footnotes
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+
+plugins:
+  - search:
+      lang: pt
+  - glightbox
+  - mkdocs_quiz
+  - git-authors:
+      show_email_address: false
+      show_line_count: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: datetime
+  - macros
+  - mkdocs-video
+  - termynal
+  # - minify:
+  #     minify_html: true
+  - mkdocs-simple-hooks:
+      hooks:
+        on_post_build: "hooks.copy_slides:copy_slides"
+
+hooks:
+  - hooks/quiz_hook.py
+
+extra_css:
+  - assets/css/quiz.css
+  - assets/css/home.css
+  - assets/css/extra.css
+
+extra_javascript:
+  - assets/js/quiz.js
+  - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
+  - assets/js/mermaid-init.js
+  - assets/js/custom_termynal.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ricardotecpro
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/ricardotecpro
+  version:
+    provider: mike
+    default: estavel
+
+nav:
+  - Home: index.md
+  - Comece Aqui:
+    - Instalação: setup/instalacao_windows.md
+  - Módulos:
+    - Básico: modulos/python_basico.md
+    - Avançado: modulos/python_avancado.md
+    - Recursos Visuais: recursos_visuais.md
+  - Slides: slides/index.md
+  - Quiz:
+    - Todos os Quizzes: quiz/index.md
+    - Python Básico: quiz/python_basico.md
+    - Python Avançado: quiz/python_avancado.md
+  - Exercícios: exercicios/index.md
+  - Projetos: projetos/index.md

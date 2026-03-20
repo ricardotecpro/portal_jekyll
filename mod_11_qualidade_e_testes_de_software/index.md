@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🧪 Testes de Software: Garantindo a Qualidade e a Confiança
+title: "🧪 Testes de Software: Garantindo a Qualidade e a Confiança"
 ---
 
 # 🧪 Testes de Software: Garantindo a Qualidade e a Confiança

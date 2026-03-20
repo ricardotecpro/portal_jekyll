@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🦀 Rust: Performance, Segurança e Concorrência
+title: "🦀 Rust: Performance, Segurança e Concorrência"
 ---
 
 # 🦀 Rust: Performance, Segurança e Concorrência

@@ -1,0 +1,315 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/topicos/next-js_nestjs/aula_03_2.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Criando uma API REST Todo-List com Next.js e NestJS | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Criando uma API REST Todo-List com Next.js e NestJS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/next-js_nestjs/aula_03_2.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/next-js_nestjs/aula_03_2.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Criando uma API REST Todo-List com Next.js e NestJS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Criando uma API REST Todo-List com Next.js e NestJS","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/next-js_nestjs/aula_03_2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/next-js_nestjs/" style="margin-left: 0.5rem;">Next js nestjs</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Criando uma api rest todo list com next.js e nestjs</span>
+          
+        
+      </nav>
+
+      <h1 id="criando-uma-api-rest-todo-list-com-nextjs-e-nestjs">Criando uma API REST Todo-List com Next.js e NestJS</h1>
+
+<p>Este projeto é uma aplicação de lista de tarefas no estilo “quadro” com tarefas “A Fazer” e “Executadas”. Utilizaremos <strong>Next.js</strong> para o frontend e <strong>NestJS</strong> para o backend. O banco de dados <strong>H2</strong> será usado para testes e homologação, enquanto o <strong>MySQL</strong> será usado para produção.</p>
+
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+
+<p>A estrutura do projeto será organizada da seguinte forma:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/todo-list-app
+  ├── backend/  # Código do backend NestJS
+  ├── frontend/ # Código do frontend Next.js
+  ├── docker/   # Configuração Docker para o projeto
+  ├── README.md # Documentação do projeto
+</code></pre></div></div>
+
+<h2 id="pré-requisitos">Pré-requisitos</h2>
+
+<p>Antes de iniciar, certifique-se de ter instalado:</p>
+
+<ul>
+  <li><strong>Node.js</strong> (versão 20.11 ou superior)</li>
+  <li><strong>Docker</strong> (para facilitar a execução do banco de dados e da aplicação)</li>
+  <li><strong>Git</strong> (para versionamento de código)</li>
+</ul>
+
+<h2 id="configurando-o-backend-nestjs">Configurando o Backend (NestJS)</h2>
+
+<h3 id="1-criar-o-backend-com-nestjs">1. Criar o backend com NestJS</h3>
+
+<p>No terminal, execute:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>todo-list-app <span class="o">&amp;&amp;</span> <span class="nb">cd </span>todo-list-app
+npx @nestjs/cli new backend
+<span class="nb">cd </span>backend
+npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="2-instalar-dependências">2. Instalar dependências</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> @nestjs/typeorm typeorm mysql2 h2 reflect-metadata
+</code></pre></div></div>
+
+<h3 id="3-configurar-banco-de-dados">3. Configurar banco de dados</h3>
+
+<p>Edite o arquivo <code class="language-plaintext highlighter-rouge">src/app.module.ts</code>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Module</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@nestjs/common</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TypeOrmModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@nestjs/typeorm</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Task</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./task.entity</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Module</span><span class="p">({</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">TypeOrmModule</span><span class="p">.</span><span class="nf">forRoot</span><span class="p">({</span>
+      <span class="na">type</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">production</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">mysql</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">h2</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">host</span><span class="p">:</span> <span class="dl">'</span><span class="s1">localhost</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">port</span><span class="p">:</span> <span class="mi">3306</span><span class="p">,</span>
+      <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">password</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">database</span><span class="p">:</span> <span class="dl">'</span><span class="s1">todo_db</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">entities</span><span class="p">:</span> <span class="p">[</span><span class="nx">Task</span><span class="p">],</span>
+      <span class="na">synchronize</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}),</span>
+  <span class="p">],</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">AppModule</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<h3 id="4-criar-a-entidade-task">4. Criar a entidade Task</h3>
+
+<p>Crie o arquivo <code class="language-plaintext highlighter-rouge">src/task.entity.ts</code>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Entity</span><span class="p">,</span> <span class="nx">Column</span><span class="p">,</span> <span class="nx">PrimaryGeneratedColumn</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">typeorm</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Entity</span><span class="p">()</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">Task</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">PrimaryGeneratedColumn</span><span class="p">()</span>
+  <span class="nx">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+
+  <span class="p">@</span><span class="nd">Column</span><span class="p">()</span>
+  <span class="nx">title</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+
+  <span class="p">@</span><span class="nd">Column</span><span class="p">()</span>
+  <span class="nx">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">A Fazer</span><span class="dl">'</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">Executada</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="5-criar-o-controlador-e-serviço">5. Criar o controlador e serviço</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx nest generate resource task
+</code></pre></div></div>
+
+<p>Edite <code class="language-plaintext highlighter-rouge">src/task/task.controller.ts</code> para adicionar endpoints:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Get</span><span class="p">()</span>
+<span class="k">async</span> <span class="nf">getAllTasks</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">taskService</span><span class="p">.</span><span class="nf">findAll</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Post</span><span class="p">()</span>
+<span class="k">async</span> <span class="nf">createTask</span><span class="p">(@</span><span class="nd">Body</span><span class="p">()</span> <span class="nx">taskData</span><span class="p">:</span> <span class="nx">CreateTaskDto</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">taskService</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="nx">taskData</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="6-rodar-o-backend">6. Rodar o backend</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run start:dev
+</code></pre></div></div>
+
+<p>A API estará disponível em <code class="language-plaintext highlighter-rouge">http://localhost:3000/task</code>.</p>
+
+<h3 id="7-testar-api-no-navegador">7. Testar API no navegador</h3>
+
+<p>Abra no navegador ou use <strong>Postman</strong>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GET http://localhost:3000/task</code> → Lista todas as tarefas</li>
+  <li><code class="language-plaintext highlighter-rouge">POST http://localhost:3000/task</code> → Cria uma nova tarefa</li>
+</ul>
+
+<hr />
+
+<h2 id="configurando-o-frontend-nextjs">Configurando o Frontend (Next.js)</h2>
+
+<h3 id="1-criar-o-frontend-com-nextjs">1. Criar o frontend com Next.js</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ..
+npx create-next-app frontend
+<span class="nb">cd </span>frontend
+npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="2-criar-página-principal">2. Criar página principal</h3>
+
+<p>Edite <code class="language-plaintext highlighter-rouge">pages/index.tsx</code>:</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Home</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">tasks</span><span class="p">,</span> <span class="nx">setTasks</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">([]);</span>
+
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:3000/task</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">setTasks</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Lista de Tarefas<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="si">{</span><span class="nx">tasks</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+          <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span> - <span class="si">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">))</span><span class="si">}</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="3-rodar-o-frontend">3. Rodar o frontend</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div></div>
+
+<p>O frontend estará disponível em <code class="language-plaintext highlighter-rouge">http://localhost:3001</code>.</p>
+
+<hr />
+
+<h2 id="testando-a-aplicação-completa">Testando a Aplicação Completa</h2>
+
+<ol>
+  <li>
+    <p><strong>Rodar o backend</strong>:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd </span>backend
+ npm run start:dev
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Rodar o frontend</strong>:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> ../frontend
+ npm run dev
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Acessar no navegador</strong>:</p>
+
+    <ul>
+      <li>Backend API: <code class="language-plaintext highlighter-rouge">http://localhost:3000/task</code></li>
+      <li>Frontend: <code class="language-plaintext highlighter-rouge">http://localhost:3001</code></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

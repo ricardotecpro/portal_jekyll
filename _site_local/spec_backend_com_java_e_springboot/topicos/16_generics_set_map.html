@@ -1,0 +1,1134 @@
+<h1 id="-java-generics-set-map">☕ Java: Generics, Set, Map</h1>
+
+<p>Este documento aborda conceitos avançados em Java, incluindo Generics, as coleções Set e Map, e a importância dos métodos <code class="language-plaintext highlighter-rouge">hashCode</code> e <code class="language-plaintext highlighter-rouge">equals</code>.</p>
+
+<h2 id="-introdução-aos-generics">📜 Introdução aos Generics</h2>
+
+<p>Generics em Java permitem que classes, interfaces e métodos sejam parametrizados por tipo. Isso significa que você pode criar componentes que funcionam com diversos tipos de dados de forma segura e eficiente.</p>
+
+<p><strong>Benefícios dos Generics:</strong></p>
+<ul>
+  <li><strong>Reuso de Código</strong>: Escreva uma classe ou método uma vez e use-o com diferentes tipos.</li>
+  <li><strong>Type Safety (Segurança de Tipo)</strong>: Erros de tipo são detectados em tempo de compilação, em vez de em tempo de execução. Isso evita <code class="language-plaintext highlighter-rouge">ClassCastException</code> inesperadas.</li>
+  <li><strong>Performance</strong>: Evitam a necessidade de <em>casts</em> explícitos, o que pode levar a um código mais limpo e, em alguns casos, ligeiramente mais performático, pois o <em>overhead</em> do <em>casting</em> é eliminado.</li>
+  <li><strong>Uso Comum</strong>: Amplamente utilizados em coleções do Java Collections Framework.</li>
+</ul>
+
+<p><strong>Exemplo Básico:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Lista de Strings parametrizada com Generics</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">// Não é necessário cast</span>
+<span class="c1">// lista.add(10); // Erro de compilação, garantindo type safety</span>
+</code></pre></div></div>
+
+<h3 id="problema-motivador-1-reuso">Problema Motivador 1: Reuso</h3>
+
+<p><strong>Cenário:</strong> Deseja-se fazer um programa que leia uma quantidade N de valores (inicialmente, inteiros), imprima esses valores de forma organizada e, em seguida, informe qual foi o primeiro valor inserido.</p>
+
+<p><strong>Exemplo de Interação:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos valores? 3
+10
+8
+23
+[10, 8, 23]
+Primeiro: 10
+</code></pre></div></div>
+
+<p><strong>Solução Inicial (sem Generics):</strong>
+Seria necessário criar um serviço de impressão específico para inteiros.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Classe PrintService para inteiros</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServicoDeImpressaoInt</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarValor</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">valor</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">primeiro</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">"Serviço está vazio"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">imprimir</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"["</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">valores</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">valores</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">", "</span> <span class="o">+</span> <span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"]"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Se precisássemos de um serviço similar para Strings, ou qualquer outro tipo, teríamos que duplicar a classe, mudando apenas os tipos.</p>
+
+<h3 id="solução-com-generics-para-o-problema-1">Solução com Generics (para o Problema 1)</h3>
+
+<p>Com Generics, podemos criar um <code class="language-plaintext highlighter-rouge">ServicoDeImpressao</code> reutilizável para qualquer tipo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Classe PrintService genérica</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServicoDeImpressao</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span> <span class="c1">// T é um parâmetro de tipo</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarValor</span><span class="o">(</span><span class="no">T</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">valor</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="no">T</span> <span class="nf">primeiro</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">"Serviço está vazio"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">imprimir</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"["</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">valores</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">valores</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">", "</span> <span class="o">+</span> <span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"]"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Utilização:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ServicoDeImpressao</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">servicoInt</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServicoDeImpressao</span><span class="o">&lt;&gt;();</span>
+<span class="n">servicoInt</span><span class="o">.</span><span class="na">adicionarValor</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="n">servicoInt</span><span class="o">.</span><span class="na">adicionarValor</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Primeiro inteiro: "</span> <span class="o">+</span> <span class="n">servicoInt</span><span class="o">.</span><span class="na">primeiro</span><span class="o">());</span> <span class="c1">// Primeiro inteiro: 10</span>
+
+<span class="nc">ServicoDeImpressao</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">servicoStr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServicoDeImpressao</span><span class="o">&lt;&gt;();</span>
+<span class="n">servicoStr</span><span class="o">.</span><span class="na">adicionarValor</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">);</span>
+<span class="n">servicoStr</span><span class="o">.</span><span class="na">adicionarValor</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Primeira string: "</span> <span class="o">+</span> <span class="n">servicoStr</span><span class="o">.</span><span class="na">primeiro</span><span class="o">());</span> <span class="c1">// Primeira string: Maria</span>
+</code></pre></div></div>
+
+<h3 id="problema-motivador-2-type-safety-e-performance">Problema Motivador 2: Type Safety e Performance</h3>
+
+<p><strong>Cenário:</strong> Se, em vez de Generics, usássemos <code class="language-plaintext highlighter-rouge">Object</code> para tentar generalizar o <code class="language-plaintext highlighter-rouge">ServicoDeImpressao</code>, perderíamos a segurança de tipo e a clareza.</p>
+
+<p><strong>Solução com <code class="language-plaintext highlighter-rouge">Object</code> (problemática):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServicoDeImpressaoObject</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">valores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarValor</span><span class="o">(</span><span class="nc">Object</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">valores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">valor</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">primeiro</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valores</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">"Serviço está vazio"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">valores</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// ... método imprimir ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Problemas:</strong></p>
+
+<ol>
+  <li><strong>Falta de Type Safety:</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ServicoDeImpressaoObject</span> <span class="n">servico</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServicoDeImpressaoObject</span><span class="o">();</span>
+<span class="n">servico</span><span class="o">.</span><span class="na">adicionarValor</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">);</span>
+<span class="n">servico</span><span class="o">.</span><span class="na">adicionarValor</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> <span class="c1">// Permite adicionar tipos diferentes</span>
+
+<span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">servico</span><span class="o">.</span><span class="na">primeiro</span><span class="o">();</span> <span class="c1">// Necessário cast</span>
+<span class="c1">// Se o primeiro elemento fosse 10, ocorreria ClassCastException em tempo de execução</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Performance:</strong> <em>Casts</em> podem introduzir um pequeno <em>overhead</em>.</li>
+</ol>
+
+<p>Generics resolvem esses problemas, garantindo que apenas os tipos corretos sejam usados e eliminando a necessidade de <em>casts</em>.</p>
+
+<h2 id="-genéricos-delimitados-bounded-generics">📐 Genéricos Delimitados (Bounded Generics)</h2>
+
+<p>Às vezes, queremos restringir os tipos que podem ser usados como argumentos de tipo. Por exemplo, um método que calcula o maior entre elementos precisa que esses elementos sejam comparáveis.</p>
+
+<p><strong>Problema:</strong> Encontrar o maior elemento em uma lista.
+Fazer um programa que leia um conjunto de produtos a partir de um arquivo e depois mostre o mais caro deles.</p>
+
+<p><strong>Exemplo de Entrada (arquivo):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computador,890.50
+IPhone X,910.00
+Tablet,550.00
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mais caro:
+IPhone X, 910.00
+</code></pre></div></div>
+
+<p>Para isso, o tipo <code class="language-plaintext highlighter-rouge">T</code> deve implementar a interface <code class="language-plaintext highlighter-rouge">Comparable&lt;T&gt;</code>. Usamos <code class="language-plaintext highlighter-rouge">extends</code> na declaração do tipo genérico.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Entidade Produto</span>
+<span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">outro</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Compara produtos pelo preço</span>
+        <span class="k">return</span> <span class="n">preco</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">outro</span><span class="o">.</span><span class="na">getPreco</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Serviço de Cálculo</span>
+<span class="kn">package</span> <span class="nn">servicos</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServicoDeCalculo</span> <span class="o">{</span>
+
+    <span class="c1">// T é qualquer tipo que implementa Comparable&lt;T&gt;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span> <span class="kd">extends</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;&gt;</span> <span class="no">T</span> <span class="nf">max</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">lista</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">"A lista não pode estar vazia"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="no">T</span> <span class="n">maximo</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="no">T</span> <span class="n">item</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">maximo</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">maximo</span> <span class="o">=</span> <span class="n">item</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">maximo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Exemplo de uso</span>
+<span class="c1">// List&lt;Produto&gt; produtos = ... carregar de um arquivo ...</span>
+<span class="c1">// Produto maisCaro = ServicoDeCalculo.max(produtos);</span>
+<span class="c1">// System.out.println("Mais caro: " + maisCaro);</span>
+</code></pre></div></div>
+
+<p><strong>Nota:</strong> O Java já oferece <code class="language-plaintext highlighter-rouge">Collections.max(list)</code> para essa finalidade.</p>
+
+<p><strong>Versão Alternativa (mais flexível para hierarquias de herança):</strong>
+<code class="language-plaintext highlighter-rouge">public static &lt;T extends Comparable&lt;? super T&gt;&gt; T max(List&lt;T&gt; list)</code>
+Isso permite que <code class="language-plaintext highlighter-rouge">T</code> seja comparável com <code class="language-plaintext highlighter-rouge">T</code> ou qualquer supertipo de <code class="language-plaintext highlighter-rouge">T</code>. Por exemplo, se <code class="language-plaintext highlighter-rouge">B extends A</code> e <code class="language-plaintext highlighter-rouge">A implements Comparable&lt;A&gt;</code>, um <code class="language-plaintext highlighter-rouge">List&lt;B&gt;</code> poderia usar <code class="language-plaintext highlighter-rouge">max</code> porque <code class="language-plaintext highlighter-rouge">B</code> herda a comparabilidade de <code class="language-plaintext highlighter-rouge">A</code>.</p>
+
+<h2 id="-tipos-curinga-wildcard-types">❓ Tipos Curinga (Wildcard Types)</h2>
+
+<p>Generics são <strong>invariantes</strong>. Isso significa que <code class="language-plaintext highlighter-rouge">List&lt;Object&gt;</code> <strong>não</strong> é um supertipo de <code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">meusObjetos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;();</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">meusNumeros</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+<span class="c1">// meusObjetos = meusNumeros; // ERRO DE COMPILAÇÃO!</span>
+</code></pre></div></div>
+
+<p>O supertipo de qualquer tipo de lista é <code class="language-plaintext highlighter-rouge">List&lt;?&gt;</code> (lista de “qualquer tipo desconhecido”).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;?&gt;</span> <span class="n">meusObjetosGenericos</span><span class="o">;</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">meusNumeros</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+<span class="n">meusObjetosGenericos</span> <span class="o">=</span> <span class="n">meusNumeros</span><span class="o">;</span> <span class="c1">// OK</span>
+</code></pre></div></div>
+
+<p><strong>Uso em Métodos:</strong> Podemos criar métodos que recebem uma lista de qualquer tipo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">meusInteiros</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">imprimirLista</span><span class="o">(</span><span class="n">meusInteiros</span><span class="o">);</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">minhasStrings</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">,</span> <span class="s">"Alex"</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">);</span>
+        <span class="n">imprimirLista</span><span class="o">(</span><span class="n">minhasStrings</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Este método pode imprimir listas de qualquer tipo</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">imprimirLista</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;?&gt;</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Limitação de <code class="language-plaintext highlighter-rouge">List&lt;?&gt;</code>:</strong> Não é possível adicionar dados a uma coleção de tipo curinga (exceto <code class="language-plaintext highlighter-rouge">null</code>), pois o compilador não sabe qual é o tipo específico do qual a lista foi instanciada.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;?&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+<span class="c1">// lista.add(3); // ERRO DE COMPILAÇÃO</span>
+</code></pre></div></div>
+
+<h3 id="curingas-delimitados-bounded-wildcards">Curingas Delimitados (Bounded Wildcards)</h3>
+
+<p>Permitem mais flexibilidade com <code class="language-plaintext highlighter-rouge">get</code> e <code class="language-plaintext highlighter-rouge">put</code> em coleções genéricas.</p>
+
+<p><strong>Problema 1: Somar áreas de figuras</strong>
+Temos uma interface <code class="language-plaintext highlighter-rouge">Forma</code> e classes <code class="language-plaintext highlighter-rouge">Circulo</code>, <code class="language-plaintext highlighter-rouge">Retangulo</code>. Queremos um método <code class="language-plaintext highlighter-rouge">areaTotal</code> que some as áreas de uma lista de formas.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Interface Forma</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">area</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// Classe Circulo</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Circulo</span> <span class="kd">implements</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">raio</span><span class="o">;</span>
+    <span class="c1">// construtor, getters, setters...</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">raio</span> <span class="o">*</span> <span class="n">raio</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Classe Retangulo</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Retangulo</span> <span class="kd">implements</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">largura</span><span class="o">,</span> <span class="n">altura</span><span class="o">;</span>
+    <span class="c1">// construtor, getters, setters...</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">double</span> <span class="nf">area</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">largura</span> <span class="o">*</span> <span class="n">altura</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Soluções impróprias para <code class="language-plaintext highlighter-rouge">areaTotal</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">public double areaTotal(List&lt;Forma&gt; lista)</code>: Muito restritivo. Não aceitaria <code class="language-plaintext highlighter-rouge">List&lt;Circulo&gt;</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">public double areaTotal(List&lt;?&gt; lista)</code>: Muito genérico. Não poderíamos chamar <code class="language-plaintext highlighter-rouge">forma.area()</code> dentro do método, pois <code class="language-plaintext highlighter-rouge">Object</code> não tem <code class="language-plaintext highlighter-rouge">area()</code>.</li>
+</ul>
+
+<p><strong>Solução com Curinga Delimitado Superior (<code class="language-plaintext highlighter-rouge">extends</code>):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Aceita List&lt;Forma&gt;, List&lt;Circulo&gt;, List&lt;Retangulo&gt;, etc.</span>
+<span class="kd">public</span> <span class="kt">double</span> <span class="nf">areaTotal</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">Forma</span><span class="o">&gt;</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Forma</span> <span class="n">f</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Podemos ler (get) como Forma</span>
+        <span class="n">soma</span> <span class="o">+=</span> <span class="n">f</span><span class="o">.</span><span class="na">area</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="c1">// lista.add(new Circulo(...)); // ERRO: não podemos adicionar (put)</span>
+    <span class="k">return</span> <span class="n">soma</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">? extends Tipo</code>: <strong>Covariância</strong>. Pode-se <em>obter</em> (<code class="language-plaintext highlighter-rouge">get</code>) elementos como <code class="language-plaintext highlighter-rouge">Tipo</code>, mas não se pode <em>adicionar</em> (<code class="language-plaintext highlighter-rouge">put</code>) elementos (exceto <code class="language-plaintext highlighter-rouge">null</code>), pois não se sabe o subtipo exato. Útil para coleções “produtoras” (de onde você lê dados).</li>
+</ul>
+
+<p><strong>Problema 2: Princípio GET/PUT (Covariância e Contravariância)</strong>
+Vamos fazer um método que copia os elementos de uma lista para uma outra lista que pode ser mais genérica que a primeira.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">meusInteiros</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">meusDecimais</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mf">3.14</span><span class="o">,</span> <span class="mf">6.28</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">meusObjetos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;();</span>
+
+<span class="n">copiar</span><span class="o">(</span><span class="n">meusInteiros</span><span class="o">,</span> <span class="n">meusObjetos</span><span class="o">);</span> <span class="c1">// Copia Integers para uma lista de Objects</span>
+<span class="n">copiar</span><span class="o">(</span><span class="n">meusDecimais</span><span class="o">,</span> <span class="n">meusObjetos</span><span class="o">);</span> <span class="c1">// Copia Doubles para uma lista de Objects</span>
+</code></pre></div></div>
+
+<p>O método <code class="language-plaintext highlighter-rouge">copiar</code> precisa:</p>
+
+<ol>
+  <li>Ler de uma lista de origem (<code class="language-plaintext highlighter-rouge">source</code>) onde os elementos são subtipos de <code class="language-plaintext highlighter-rouge">Number</code> (e.g., <code class="language-plaintext highlighter-rouge">Integer</code>, <code class="language-plaintext highlighter-rouge">Double</code>).</li>
+  <li>Escrever em uma lista de destino (<code class="language-plaintext highlighter-rouge">destiny</code>) onde os elementos são supertipos de <code class="language-plaintext highlighter-rouge">Number</code> (e.g., <code class="language-plaintext highlighter-rouge">Number</code>, <code class="language-plaintext highlighter-rouge">Object</code>).</li>
+</ol>
+
+<p><strong>Implementação com <code class="language-plaintext highlighter-rouge">extends</code> e <code class="language-plaintext highlighter-rouge">super</code>:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">copiar</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">Number</span><span class="o">&gt;</span> <span class="n">origem</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="nc">Number</span><span class="o">&gt;</span> <span class="n">destino</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Number</span> <span class="n">numero</span> <span class="o">:</span> <span class="n">origem</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// GET da origem (covariância)</span>
+        <span class="n">destino</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">numero</span><span class="o">);</span>      <span class="c1">// PUT no destino (contravariância)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">imprimirListaCopiada</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;?&gt;</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">obj</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// No main:</span>
+<span class="c1">// ...</span>
+<span class="c1">// List&lt;Object&gt; meusObjetos = new ArrayList&lt;Object&gt;();</span>
+<span class="c1">// copiar(meusInteiros, meusObjetos);</span>
+<span class="c1">// imprimirListaCopiada(meusObjetos); // Saída: 1 2 3 4</span>
+<span class="c1">//</span>
+<span class="c1">// List&lt;Number&gt; meusNumeros = new ArrayList&lt;Number&gt;();</span>
+<span class="c1">// copiar(meusInteiros, meusNumeros);</span>
+<span class="c1">// imprimirListaCopiada(meusNumeros); // Saída: 1 2 3 4</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">? extends Tipo</code> (Covariância - GET é OK, PUT é ERRO): Use quando a estrutura genérica é um <strong>produtor</strong> de <code class="language-plaintext highlighter-rouge">T</code>. Você pode ler <code class="language-plaintext highlighter-rouge">T</code>s dela, mas não pode adicionar <code class="language-plaintext highlighter-rouge">T</code>s a ela.</li>
+  <li><code class="language-plaintext highlighter-rouge">? super Tipo</code> (Contravariância - PUT é OK, GET é ERRO (retorna <code class="language-plaintext highlighter-rouge">Object</code>)): Use quando a estrutura genérica é um <strong>consumidor</strong> de <code class="language-plaintext highlighter-rouge">T</code>. Você pode adicionar <code class="language-plaintext highlighter-rouge">T</code>s (ou subtipos de <code class="language-plaintext highlighter-rouge">T</code>) a ela, mas ao ler, você só tem a garantia de que é um <code class="language-plaintext highlighter-rouge">Object</code>.</li>
+</ul>
+
+<p><strong>PECS (Producer Extends, Consumer Super):</strong></p>
+
+<ul>
+  <li>Se você está lendo de uma coleção (produtor), use <code class="language-plaintext highlighter-rouge">extends</code>.</li>
+  <li>Se você está escrevendo em uma coleção (consumidor), use <code class="language-plaintext highlighter-rouge">super</code>.</li>
+  <li>Se você faz ambos, não use curingas (use o tipo exato).</li>
+</ul>
+
+<h3 id="hierarquia-dos-tipos-primitivos-wrapper-em-java">Hierarquia dos Tipos Primitivos Wrapper em Java</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Object
+  |-- Number
+  |     |-- Integer
+  |     |-- Byte
+  |     |-- Long
+  |     |-- Short
+  |     |-- Float
+  |     |-- Double
+  |-- Boolean
+  |-- Character
+</code></pre></div></div>
+
+<h2 id="️-hashcode-e-equals">⚖️ <code class="language-plaintext highlighter-rouge">hashCode</code> e <code class="language-plaintext highlighter-rouge">equals</code></h2>
+
+<p>São métodos fundamentais da classe <code class="language-plaintext highlighter-rouge">Object</code>, usados para comparar objetos.</p>
+
+<ul>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">equals(Object obj)</code></strong>:</p>
+
+    <ul>
+      <li>Compara se o objeto atual é igual a <code class="language-plaintext highlighter-rouge">obj</code>.</li>
+      <li>Retorna <code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>.</li>
+      <li>A comparação padrão (herdada de <code class="language-plaintext highlighter-rouge">Object</code>) verifica se as referências dos objetos são as mesmas (apontam para o mesmo local na memória).</li>
+      <li>Para classes personalizadas, geralmente precisa ser sobrescrito para fornecer uma comparação baseada no conteúdo (estado) dos objetos.</li>
+      <li>É mais lento, mas oferece uma resposta 100% precisa sobre a igualdade lógica.</li>
+    </ul>
+
+    <!-- end list -->
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">b</span><span class="o">));</span> <span class="c1">// true (conteúdo é igual)</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span>       <span class="c1">// false (referências diferentes)</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">);</span>       <span class="c1">// true (mesma referência)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">hashCode()</code></strong>:</p>
+
+    <ul>
+      <li>Retorna um número inteiro (código hash) gerado a partir das informações do objeto.</li>
+      <li>É usado por coleções baseadas em hash (como <code class="language-plaintext highlighter-rouge">HashSet</code>, <code class="language-plaintext highlighter-rouge">HashMap</code>, <code class="language-plaintext highlighter-rouge">LinkedHashSet</code>) para organizar e localizar objetos de forma eficiente.</li>
+      <li>É rápido.</li>
+      <li><strong>Regra de Ouro do HashCode (Contrato entre <code class="language-plaintext highlighter-rouge">equals</code> e <code class="language-plaintext highlighter-rouge">hashCode</code>):</strong>
+        <ol>
+          <li>Se <code class="language-plaintext highlighter-rouge">obj1.equals(obj2)</code> é <code class="language-plaintext highlighter-rouge">true</code>, então <code class="language-plaintext highlighter-rouge">obj1.hashCode()</code> <strong>deve</strong> ser igual a <code class="language-plaintext highlighter-rouge">obj2.hashCode()</code>.</li>
+          <li>Se <code class="language-plaintext highlighter-rouge">obj1.hashCode()</code> é diferente de <code class="language-plaintext highlighter-rouge">obj2.hashCode()</code>, então <code class="language-plaintext highlighter-rouge">obj1.equals(obj2)</code> <strong>deve</strong> ser <code class="language-plaintext highlighter-rouge">false</code>.</li>
+          <li>Se <code class="language-plaintext highlighter-rouge">obj1.hashCode()</code> é igual a <code class="language-plaintext highlighter-rouge">obj2.hashCode()</code>, não necessariamente <code class="language-plaintext highlighter-rouge">obj1.equals(obj2)</code> é <code class="language-plaintext highlighter-rouge">true</code> (isso é uma <strong>colisão de hash</strong>). <code class="language-plaintext highlighter-rouge">equals()</code> é então usado para confirmar a igualdade.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Tipos Comuns</strong>: <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">Date</code>, <code class="language-plaintext highlighter-rouge">Integer</code>, <code class="language-plaintext highlighter-rouge">Double</code>, etc., já possuem implementações corretas e otimizadas de <code class="language-plaintext highlighter-rouge">equals</code> e <code class="language-plaintext highlighter-rouge">hashCode</code>.</p>
+  </li>
+  <li>
+    <p><strong>Classes Personalizadas</strong>: Se você sobrescrever <code class="language-plaintext highlighter-rouge">equals</code>, <strong>você deve</strong> sobrescrever <code class="language-plaintext highlighter-rouge">hashCode</code> para manter o contrato. Caso contrário, coleções baseadas em hash não funcionarão corretamente com seus objetos.</p>
+  </li>
+</ul>
+
+<p><strong>Exemplo de Classe Personalizada (sem <code class="language-plaintext highlighter-rouge">equals</code>/<code class="language-plaintext highlighter-rouge">hashCode</code> inicialmente):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cliente</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Cliente</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// Getters e Setters omitidos para brevidade</span>
+
+    <span class="c1">// SEM equals() e hashCode() implementados:</span>
+    <span class="c1">// Cliente c1 = new Cliente("Maria", "maria@gmail.com");</span>
+    <span class="c1">// Cliente c2 = new Cliente("Maria", "maria@gmail.com");</span>
+    <span class="c1">// System.out.println(c1.equals(c2)); // false (compara referências)</span>
+    <span class="c1">// Set&lt;Cliente&gt; set = new HashSet&lt;&gt;();</span>
+    <span class="c1">// set.add(c1);</span>
+    <span class="c1">// set.add(c2);</span>
+    <span class="c1">// System.out.println(set.size()); // 2 (considera como objetos diferentes)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Implementando <code class="language-plaintext highlighter-rouge">equals</code> e <code class="language-plaintext highlighter-rouge">hashCode</code> (exemplo básico):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Objects</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cliente</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Cliente</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters ...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="c1">// Mesma referência</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// Null ou classe diferente</span>
+        <span class="nc">Cliente</span> <span class="n">cliente</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Cliente</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span> <span class="c1">// Cast seguro</span>
+        <span class="c1">// Compara campos relevantes</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">cliente</span><span class="o">.</span><span class="na">nome</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+               <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">email</span><span class="o">,</span> <span class="n">cliente</span><span class="o">.</span><span class="na">email</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Gera hashCode a partir dos mesmos campos usados em equals</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">email</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Agora, com equals e hashCode:</span>
+<span class="c1">// Cliente c1 = new Cliente("Maria", "maria@gmail.com");</span>
+<span class="c1">// Cliente c2 = new Cliente("Maria", "maria@gmail.com");</span>
+<span class="c1">// System.out.println(c1.equals(c2)); // true</span>
+<span class="c1">// Set&lt;Cliente&gt; set = new HashSet&lt;&gt;();</span>
+<span class="c1">// set.add(c1);</span>
+<span class="c1">// set.add(c2);</span>
+<span class="c1">// System.out.println(set.size()); // 1</span>
+</code></pre></div></div>
+
+<p><strong>Dica para IDEs (VS Code, IntelliJ IDEA):</strong> Ambas as IDEs podem gerar automaticamente implementações de <code class="language-plaintext highlighter-rouge">equals()</code> e <code class="language-plaintext highlighter-rouge">hashCode()</code> com base nos campos da classe.</p>
+
+<ul>
+  <li><strong>IntelliJ IDEA:</strong> <code class="language-plaintext highlighter-rouge">Alt + Insert</code> (ou <code class="language-plaintext highlighter-rouge">Cmd + N</code> no Mac) -&gt; <code class="language-plaintext highlighter-rouge">equals() and hashCode()</code></li>
+  <li><strong>VS Code (com Java Extension Pack):</strong> Clique com o botão direito no código -&gt; Source Action -&gt; Generate hashCode() and equals()…</li>
+</ul>
+
+<h2 id="sett">Set&lt;T&gt;</h2>
+
+<p>A interface <code class="language-plaintext highlighter-rouge">Set&lt;T&gt;</code> representa um conjunto de elementos, similar ao conceito da Álgebra.</p>
+
+<p><strong>Características Principais:</strong></p>
+
+<ul>
+  <li><strong>Não admite repetições</strong>: Se você tentar adicionar um elemento que já existe (conforme definido por <code class="language-plaintext highlighter-rouge">equals()</code>), a adição é ignorada.</li>
+  <li><strong>Elementos não possuem posição (índice)</strong>: O acesso não é feito por um índice numérico.</li>
+  <li><strong>Acesso, inserção e remoção de elementos são geralmente rápidos.</strong></li>
+  <li><strong>Oferece operações eficientes de conjunto</strong>: União, interseção, diferença.</li>
+</ul>
+
+<p><strong>Principais Implementações:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">HashSet&lt;T&gt;</code>:
+    <ul>
+      <li>Mais rápida (operações geralmente em tempo constante, $O(1)$, se não houver muitas colisões de hash).</li>
+      <li>Não garante a ordem dos elementos.</li>
+      <li>Usa <code class="language-plaintext highlighter-rouge">hashCode()</code> para organizar os elementos em uma tabela hash e <code class="language-plaintext highlighter-rouge">equals()</code> para verificar igualdade em caso de colisão.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">TreeSet&lt;T&gt;</code>:
+    <ul>
+      <li>Mais lenta (operações em tempo logarítmico, $O(\log n)$).</li>
+      <li>Mantém os elementos ordenados. A ordenação é definida pelo <code class="language-plaintext highlighter-rouge">compareTo()</code> do objeto (se a classe implementar <code class="language-plaintext highlighter-rouge">Comparable&lt;T&gt;</code>) ou por um <code class="language-plaintext highlighter-rouge">Comparator&lt;T&gt;</code> fornecido no construtor do <code class="language-plaintext highlighter-rouge">TreeSet</code>.</li>
+      <li>Se os elementos não forem <code class="language-plaintext highlighter-rouge">Comparable</code> e nenhum <code class="language-plaintext highlighter-rouge">Comparator</code> for fornecido, uma <code class="language-plaintext highlighter-rouge">ClassCastException</code> pode ocorrer ao tentar adicionar elementos.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">LinkedHashSet&lt;T&gt;</code>:
+    <ul>
+      <li>Velocidade intermediária (entre <code class="language-plaintext highlighter-rouge">HashSet</code> e <code class="language-plaintext highlighter-rouge">TreeSet</code>).</li>
+      <li>Mantém os elementos na ordem em que foram adicionados.</li>
+      <li>Combina uma tabela hash com uma lista duplamente encadeada.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Como <code class="language-plaintext highlighter-rouge">Set</code> (especialmente <code class="language-plaintext highlighter-rouge">HashSet</code>) testa igualdade?</strong></p>
+
+<ol>
+  <li>Primeiro, calcula o <code class="language-plaintext highlighter-rouge">hashCode()</code> do objeto a ser adicionado/verificado.</li>
+  <li>Usa esse <code class="language-plaintext highlighter-rouge">hashCode</code> para encontrar um “balde” (bucket) na tabela hash.</li>
+  <li>Se o balde estiver vazio, o objeto é adicionado (se for uma operação de adição).</li>
+  <li>Se o balde contiver um ou mais objetos (colisão de hash ou objeto já existente):
+    <ul>
+      <li>Compara o objeto com cada objeto no balde usando <code class="language-plaintext highlighter-rouge">equals()</code>.</li>
+      <li>Se <code class="language-plaintext highlighter-rouge">equals()</code> retornar <code class="language-plaintext highlighter-rouge">true</code> para algum objeto no balde, o <code class="language-plaintext highlighter-rouge">Set</code> considera que o elemento já existe.</li>
+      <li>Se <code class="language-plaintext highlighter-rouge">equals()</code> retornar <code class="language-plaintext highlighter-rouge">false</code> para todos, o novo objeto é adicionado ao balde (tratando a colisão).</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- end list -->
+
+<ul>
+  <li>Se <code class="language-plaintext highlighter-rouge">hashCode()</code> e <code class="language-plaintext highlighter-rouge">equals()</code> <strong>não</strong> estiverem implementados corretamente na sua classe personalizada, <code class="language-plaintext highlighter-rouge">HashSet</code> comparará as referências dos objetos, o que geralmente não é o comportamento desejado.</li>
+</ul>
+
+<p><strong>Alguns Métodos Importantes de <code class="language-plaintext highlighter-rouge">Set&lt;T&gt;</code>:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">boolean add(T obj)</code>: Adiciona o elemento. Retorna <code class="language-plaintext highlighter-rouge">true</code> se o elemento foi adicionado (não existia), <code class="language-plaintext highlighter-rouge">false</code> caso contrário.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean remove(Object obj)</code>: Remove o elemento. Retorna <code class="language-plaintext highlighter-rouge">true</code> se o elemento existia e foi removido.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean contains(Object obj)</code>: Verifica se o elemento existe.</li>
+  <li><code class="language-plaintext highlighter-rouge">void clear()</code>: Remove todos os elementos.</li>
+  <li><code class="language-plaintext highlighter-rouge">int size()</code>: Retorna o número de elementos.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean removeIf(Predicate&lt;? super T&gt; filter)</code>: Remove elementos que satisfazem o predicado.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean addAll(Collection&lt;? extends T&gt; other)</code>: <strong>União</strong>. Adiciona todos os elementos de <code class="language-plaintext highlighter-rouge">other</code> a este <code class="language-plaintext highlighter-rouge">Set</code>, sem repetição.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean retainAll(Collection&lt;?&gt; other)</code>: <strong>Interseção</strong>. Remove de este <code class="language-plaintext highlighter-rouge">Set</code> os elementos que não estão contidos em <code class="language-plaintext highlighter-rouge">other</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean removeAll(Collection&lt;?&gt; other)</code>: <strong>Diferença</strong>. Remove de este <code class="language-plaintext highlighter-rouge">Set</code> os elementos que também estão contidos em <code class="language-plaintext highlighter-rouge">other</code>.</li>
+</ul>
+
+<p><strong>Exemplo 1: <code class="language-plaintext highlighter-rouge">HashSet</code> com Strings</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.HashSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">conjunto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"TV"</span><span class="o">);</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">);</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">);</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"TV"</span><span class="o">);</span> <span class="c1">// Ignorado, "TV" já existe</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conjunto</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">));</span> <span class="c1">// true</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">p</span> <span class="o">:</span> <span class="n">conjunto</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">);</span> <span class="c1">// Ordem não garantida</span>
+        <span class="o">}</span>
+        <span class="c1">// Possível saída:</span>
+        <span class="c1">// Tablet</span>
+        <span class="c1">// TV</span>
+        <span class="c1">// Notebook</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplo 2: Operações com <code class="language-plaintext highlighter-rouge">TreeSet</code> de Integers</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.TreeSet</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+
+        <span class="c1">// União</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// Copia 'a'</span>
+        <span class="n">c</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"União c: "</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span> <span class="c1">// [0, 2, 4, 5, 6, 7, 8, 9, 10] (ordenado)</span>
+
+        <span class="c1">// Interseção</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;(</span><span class="n">a</span><span class="o">);</span>
+        <span class="n">d</span><span class="o">.</span><span class="na">retainAll</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Interseção d: "</span> <span class="o">+</span> <span class="n">d</span><span class="o">);</span> <span class="c1">// [5, 6, 8, 10]</span>
+
+        <span class="c1">// Diferença (elementos em 'a' que não estão em 'b')</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;(</span><span class="n">a</span><span class="o">);</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">removeAll</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Diferença e (a - b): "</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span> <span class="c1">// [0, 2, 4]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplo 3: <code class="language-plaintext highlighter-rouge">HashSet</code> com Objetos <code class="language-plaintext highlighter-rouge">Produto</code> (sem <code class="language-plaintext highlighter-rouge">equals</code>/<code class="language-plaintext highlighter-rouge">hashCode</code> implementados na classe <code class="language-plaintext highlighter-rouge">Produto</code>)</strong>
+Suponha a classe <code class="language-plaintext highlighter-rouge">Produto</code> definida anteriormente, mas <em>sem</em> a sobrescrita de <code class="language-plaintext highlighter-rouge">equals</code> e <code class="language-plaintext highlighter-rouge">hashCode</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.HashSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Produto</span><span class="o">;</span> <span class="c1">// Supondo que Produto não tem equals/hashCode</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">conjunto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.0</span><span class="o">));</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">,</span> <span class="mf">1200.0</span><span class="o">));</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">400.0</span><span class="o">));</span>
+
+        <span class="nc">Produto</span> <span class="n">prod</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">,</span> <span class="mf">1200.0</span><span class="o">);</span>
+
+        <span class="c1">// Sem equals/hashCode, 'contains' compara referências.</span>
+        <span class="c1">// 'prod' é uma nova instância, diferente daquela no conjunto.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conjunto</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">prod</span><span class="o">));</span> <span class="c1">// false</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Se <code class="language-plaintext highlighter-rouge">Produto</code> tivesse <code class="language-plaintext highlighter-rouge">equals</code> e <code class="language-plaintext highlighter-rouge">hashCode</code> implementados comparando <code class="language-plaintext highlighter-rouge">nome</code> e <code class="language-plaintext highlighter-rouge">preco</code>, <code class="language-plaintext highlighter-rouge">conjunto.contains(prod)</code> retornaria <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+<p><strong>Como <code class="language-plaintext highlighter-rouge">TreeSet</code> compara os elementos?</strong>
+<code class="language-plaintext highlighter-rouge">TreeSet</code> requer que seus elementos sejam comparáveis. Isso pode ser alcançado de duas formas:</p>
+
+<ol>
+  <li>A classe do elemento implementa a interface <code class="language-plaintext highlighter-rouge">java.lang.Comparable&lt;T&gt;</code> e sobrescreve o método <code class="language-plaintext highlighter-rouge">int compareTo(T other)</code>.</li>
+  <li>Um objeto <code class="language-plaintext highlighter-rouge">java.util.Comparator&lt;T&gt;</code> é passado para o construtor do <code class="language-plaintext highlighter-rouge">TreeSet</code>. O método <code class="language-plaintext highlighter-rouge">int compare(T o1, T o2)</code> do <code class="language-plaintext highlighter-rouge">Comparator</code> será usado.</li>
+</ol>
+
+<p><strong>Exemplo: <code class="language-plaintext highlighter-rouge">TreeSet</code> com Objetos <code class="language-plaintext highlighter-rouge">Produto</code> (com <code class="language-plaintext highlighter-rouge">Comparable</code>)</strong>
+Usando a classe <code class="language-plaintext highlighter-rouge">Produto</code> que implementa <code class="language-plaintext highlighter-rouge">Comparable&lt;Produto&gt;</code> (comparando por nome ou preço, conforme definido no <code class="language-plaintext highlighter-rouge">compareTo</code>).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.TreeSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Produto</span><span class="o">;</span> <span class="c1">// Produto implementa Comparable&lt;Produto&gt;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Se Produto.compareTo ordena por nome:</span>
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">conjunto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeSet</span><span class="o">&lt;&gt;();</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.0</span><span class="o">));</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">,</span> <span class="mf">1200.0</span><span class="o">));</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">400.0</span><span class="o">));</span> <span class="c1">// "Tablet"</span>
+        <span class="n">conjunto</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Abajur"</span><span class="o">,</span> <span class="mf">50.0</span><span class="o">));</span>  <span class="c1">// "Abajur"</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Produto</span> <span class="n">p</span> <span class="o">:</span> <span class="n">conjunto</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">);</span> <span class="c1">// Imprime ordenado pelo critério do compareTo</span>
+        <span class="o">}</span>
+        <span class="c1">// Saída (se ordenado por nome):</span>
+        <span class="c1">// Abajur, 50.00</span>
+        <span class="c1">// Notebook, 1200.00</span>
+        <span class="c1">// Tablet, 400.00</span>
+        <span class="c1">// TV, 900.00</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">Produto</code> para este exemplo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Objects</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Produto [nome="</span> <span class="o">+</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", preco="</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">)</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Implementação de equals e hashCode para consistência,</span>
+    <span class="c1">// embora TreeSet use primariamente compareTo para ordenação e unicidade.</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="nc">Produto</span> <span class="n">produto</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Produto</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">produto</span><span class="o">.</span><span class="na">nome</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">preco</span><span class="o">,</span> <span class="n">produto</span><span class="o">.</span><span class="na">preco</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">outro</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Ordena por nome (case-insensitive)</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">outro</span><span class="o">.</span><span class="na">getNome</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">());</span>
+        <span class="c1">// Para ordenar por preço:</span>
+        <span class="c1">// return preco.compareTo(outro.getPreco());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exercício-resolvido-set-">Exercício Resolvido (Set) 📜</h3>
+
+<p><strong>Problema:</strong> Um site de internet registra um log de acessos dos usuários. Um registro de log consiste no nome de usuário e o instante em que o usuário acessou o site no padrão ISO 8601, separados por espaço. Fazer um programa que leia o log de acessos a partir de um arquivo, e daí informe quantos usuários distintos acessaram o site.</p>
+
+<p><strong>Arquivo de Entrada (<code class="language-plaintext highlighter-rouge">in.txt</code>):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amanda 2018-08-26T20:45:08Z
+alex86 2018-08-26T21:49:37Z
+bobbrown 2018-08-27T03:19:13Z
+amanda 2018-08-27T08:11:00Z
+jeniffer3 2018-08-27T09:19:24Z
+alex86 2018-08-27T22:39:52Z
+amanda 2018-08-28T07:42:19Z
+</code></pre></div></div>
+
+<p><strong>Execução Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o caminho completo do arquivo: c:\temp\in.txt
+Total de usuários distintos: 4
+</code></pre></div></div>
+
+<p><strong>Solução:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.Instant</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.HashSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+
+<span class="c1">// Entidade para o Log (opcional para este problema específico, mas bom para estrutura)</span>
+<span class="kd">class</span> <span class="nc">RegistroLog</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">usuario</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">instante</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">RegistroLog</span><span class="o">(</span><span class="nc">String</span> <span class="n">usuario</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">instante</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">usuario</span> <span class="o">=</span> <span class="n">usuario</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">instante</span> <span class="o">=</span> <span class="n">instante</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getUsuario</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">usuario</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// hashCode e equals para RegistroLog se precisássemos de registros únicos</span>
+    <span class="c1">// Para este problema, apenas o nome do usuário é relevante para a contagem distinta.</span>
+    <span class="c1">// Se fôssemos colocar RegistroLog em um Set, precisaríamos de equals/hashCode.</span>
+<span class="o">}</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaLog</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o caminho completo do arquivo: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">caminho</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+
+        <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">usuariosDistintos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+
+        <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">caminho</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">linha</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">String</span><span class="o">[]</span> <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+                <span class="nc">String</span> <span class="n">nomeUsuario</span> <span class="o">=</span> <span class="n">campos</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+                <span class="c1">// String dataStr = campos[1]; // Data não é usada para a contagem de usuários distintos</span>
+                <span class="n">usuariosDistintos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">nomeUsuario</span><span class="o">);</span> <span class="c1">// HashSet garante que apenas nomes únicos são adicionados</span>
+                <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total de usuários distintos: "</span> <span class="o">+</span> <span class="n">usuariosDistintos</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exercício-proposto-set-">Exercício Proposto (Set) 📚</h3>
+
+<p>Em um portal de cursos online, cada usuário possui um código único (inteiro). Cada instrutor pode ter vários cursos, e um aluno pode se matricular em quantos cursos quiser. O número total de alunos de um instrutor não é a soma dos alunos de todos os cursos, pois pode haver alunos repetidos.
+O instrutor Alex possui três cursos: A, B e C. Seu programa deve ler os códigos dos alunos dos cursos A, B e C e, em seguida, mostrar a quantidade total de alunos distintos do instrutor Alex.</p>
+
+<p><strong>Exemplo de Interação:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos alunos para o curso A? 3
+21
+35
+22
+Quantos alunos para o curso B? 2
+21
+50
+Quantos alunos para o curso C? 3
+42
+35
+13
+Total de alunos: 6
+</code></pre></div></div>
+
+<p><em>(Alunos distintos: 21, 35, 22, 50, 42, 13)</em></p>
+
+<h2 id="️-mapk-v">🗺️ Map&lt;K, V&gt;</h2>
+
+<p>A interface <code class="language-plaintext highlighter-rouge">Map&lt;K, V&gt;</code> representa uma coleção de pares <strong>chave/valor</strong>. <code class="language-plaintext highlighter-rouge">K</code> é o tipo da chave (Key) e <code class="language-plaintext highlighter-rouge">V</code> é o tipo do valor (Value).</p>
+
+<p><strong>Características Principais:</strong></p>
+
+<ul>
+  <li><strong>Não admite repetições do objeto chave</strong>: Cada chave em um <code class="language-plaintext highlighter-rouge">Map</code> é única. Se você tentar inserir um par com uma chave que já existe, o valor antigo associado a essa chave é substituído pelo novo valor.</li>
+  <li><strong>Os elementos são indexados pelo objeto chave</strong>: Não possuem uma posição numérica como listas. O acesso é feito usando a chave.</li>
+  <li><strong>Acesso, inserção e remoção de elementos são geralmente rápidos</strong> (dependendo da implementação).</li>
+  <li><strong>Uso comum</strong>: Cookies (nome do cookie = chave, valor do cookie = valor), <em>local storage</em> em navegadores, qualquer modelo de dados chave-valor, representação de objetos JSON, contagem de frequência, etc.</li>
+</ul>
+
+<p><strong>Principais Implementações:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">HashMap&lt;K, V&gt;</code>:
+    <ul>
+      <li>Mais rápida (operações geralmente em tempo constante, $O(1)$ para <code class="language-plaintext highlighter-rouge">put</code>, <code class="language-plaintext highlighter-rouge">get</code>, <code class="language-plaintext highlighter-rouge">remove</code>, assumindo boa distribuição de hash e poucas colisões).</li>
+      <li>Não garante a ordem das chaves.</li>
+      <li>Usa <code class="language-plaintext highlighter-rouge">hashCode()</code> e <code class="language-plaintext highlighter-rouge">equals()</code> da chave para armazenar e recuperar pares.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">TreeMap&lt;K, V&gt;</code>:
+    <ul>
+      <li>Mais lenta (operações em tempo logarítmico, $O(\log n)$).</li>
+      <li>Mantém os pares ordenados pelas chaves. A ordenação é definida pelo <code class="language-plaintext highlighter-rouge">compareTo()</code> da chave (se a classe da chave implementar <code class="language-plaintext highlighter-rouge">Comparable&lt;K&gt;</code>) ou por um <code class="language-plaintext highlighter-rouge">Comparator&lt;K&gt;</code> fornecido no construtor.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">LinkedHashMap&lt;K, V&gt;</code>:
+    <ul>
+      <li>Velocidade intermediária.</li>
+      <li>Mantém os pares na ordem em que as chaves foram inseridas (ou na ordem de acesso, se configurado).</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Como <code class="language-plaintext highlighter-rouge">Map</code> (especialmente <code class="language-plaintext highlighter-rouge">HashMap</code>) usa <code class="language-plaintext highlighter-rouge">hashCode</code> e <code class="language-plaintext highlighter-rouge">equals</code> da Chave?</strong></p>
+
+<ul>
+  <li>Quando você insere um par <code class="language-plaintext highlighter-rouge">(chave, valor)</code>:
+    <ol>
+      <li>O <code class="language-plaintext highlighter-rouge">hashCode()</code> da <code class="language-plaintext highlighter-rouge">chave</code> é calculado.</li>
+      <li>Esse hash é usado para determinar um “balde” (bucket) na tabela hash interna do <code class="language-plaintext highlighter-rouge">HashMap</code>.</li>
+      <li>Se o balde estiver vazio, o par é armazenado.</li>
+      <li>Se o balde já contiver um ou mais pares (colisão de hash ou mesma chave):
+        <ul>
+          <li>A <code class="language-plaintext highlighter-rouge">chave</code> fornecida é comparada com as chaves dos pares existentes no balde usando <code class="language-plaintext highlighter-rouge">equals()</code>.</li>
+          <li>Se <code class="language-plaintext highlighter-rouge">chave.equals(chaveExistente)</code> for <code class="language-plaintext highlighter-rouge">true</code> para alguma chave no balde, o valor associado a essa <code class="language-plaintext highlighter-rouge">chaveExistente</code> é substituído pelo novo <code class="language-plaintext highlighter-rouge">valor</code>.</li>
+          <li>Se <code class="language-plaintext highlighter-rouge">equals()</code> for <code class="language-plaintext highlighter-rouge">false</code> para todas, o novo par <code class="language-plaintext highlighter-rouge">(chave, valor)</code> é adicionado ao balde (tratando a colisão).</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>Para <code class="language-plaintext highlighter-rouge">get(chave)</code> e <code class="language-plaintext highlighter-rouge">containsKey(chave)</code>, um processo similar ocorre para localizar a chave.</li>
+  <li><strong>Importante</strong>: Se a classe usada como chave em um <code class="language-plaintext highlighter-rouge">HashMap</code> não sobrescrever <code class="language-plaintext highlighter-rouge">equals()</code> e <code class="language-plaintext highlighter-rouge">hashCode()</code> corretamente, o <code class="language-plaintext highlighter-rouge">Map</code> não funcionará como esperado (comparará referências de chave, não conteúdo).</li>
+</ul>
+
+<p><strong>Alguns Métodos Importantes de <code class="language-plaintext highlighter-rouge">Map&lt;K, V&gt;</code>:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">V put(K key, V value)</code>: Associa o <code class="language-plaintext highlighter-rouge">value</code> à <code class="language-plaintext highlighter-rouge">key</code>. Se a <code class="language-plaintext highlighter-rouge">key</code> já existir, o valor antigo é substituído e retornado. Se for uma nova <code class="language-plaintext highlighter-rouge">key</code>, retorna <code class="language-plaintext highlighter-rouge">null</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">V get(Object key)</code>: Retorna o valor associado à <code class="language-plaintext highlighter-rouge">key</code>, ou <code class="language-plaintext highlighter-rouge">null</code> se a <code class="language-plaintext highlighter-rouge">key</code> não existir.</li>
+  <li><code class="language-plaintext highlighter-rouge">V remove(Object key)</code>: Remove o par associado à <code class="language-plaintext highlighter-rouge">key</code>. Retorna o valor que foi removido, ou <code class="language-plaintext highlighter-rouge">null</code> se a <code class="language-plaintext highlighter-rouge">key</code> não existia.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean containsKey(Object key)</code>: Retorna <code class="language-plaintext highlighter-rouge">true</code> se o <code class="language-plaintext highlighter-rouge">Map</code> contém a <code class="language-plaintext highlighter-rouge">key</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean containsValue(Object value)</code>: Retorna <code class="language-plaintext highlighter-rouge">true</code> se o <code class="language-plaintext highlighter-rouge">Map</code> contém o <code class="language-plaintext highlighter-rouge">value</code> (geralmente menos eficiente que <code class="language-plaintext highlighter-rouge">containsKey</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">void clear()</code>: Remove todos os pares.</li>
+  <li><code class="language-plaintext highlighter-rouge">int size()</code>: Retorna o número de pares chave-valor.</li>
+  <li><code class="language-plaintext highlighter-rouge">boolean isEmpty()</code>: Retorna <code class="language-plaintext highlighter-rouge">true</code> se o <code class="language-plaintext highlighter-rouge">Map</code> estiver vazio.</li>
+  <li><code class="language-plaintext highlighter-rouge">Set&lt;K&gt; keySet()</code>: Retorna um <code class="language-plaintext highlighter-rouge">Set</code> contendo todas as chaves do <code class="language-plaintext highlighter-rouge">Map</code>. Útil para iterar sobre as chaves.</li>
+  <li><code class="language-plaintext highlighter-rouge">Collection&lt;V&gt; values()</code>: Retorna uma <code class="language-plaintext highlighter-rouge">Collection</code> (não necessariamente um <code class="language-plaintext highlighter-rouge">Set</code>) contendo todos os valores do <code class="language-plaintext highlighter-rouge">Map</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet()</code>: Retorna um <code class="language-plaintext highlighter-rouge">Set</code> de objetos <code class="language-plaintext highlighter-rouge">Map.Entry</code>. Cada <code class="language-plaintext highlighter-rouge">Map.Entry</code> representa um par chave-valor e permite acessar a chave e o valor. É a forma mais eficiente de iterar sobre chaves e valores simultaneamente.</li>
+</ul>
+
+<p><strong>Exemplo 1: <code class="language-plaintext highlighter-rouge">TreeMap</code> para Cookies</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.TreeMap</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaMap</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">cookies</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TreeMap</span><span class="o">&lt;&gt;();</span> <span class="c1">// TreeMap ordena pelas chaves (Strings)</span>
+
+        <span class="n">cookies</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="s">"maria"</span><span class="o">);</span>
+        <span class="n">cookies</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"email"</span><span class="o">,</span> <span class="s">"maria@gmail.com"</span><span class="o">);</span>
+        <span class="n">cookies</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone"</span><span class="o">,</span> <span class="s">"99771122"</span><span class="o">);</span>
+
+        <span class="n">cookies</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="s">"email"</span><span class="o">);</span> <span class="c1">// Remove o par com chave "email"</span>
+        <span class="n">cookies</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone"</span><span class="o">,</span> <span class="s">"99771133"</span><span class="o">);</span> <span class="c1">// Atualiza o valor da chave "phone"</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Contém a chave 'phone': "</span> <span class="o">+</span> <span class="n">cookies</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">"phone"</span><span class="o">));</span> <span class="c1">// true</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número de telefone: "</span> <span class="o">+</span> <span class="n">cookies</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"phone"</span><span class="o">));</span> <span class="c1">// 99771133</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Email: "</span> <span class="o">+</span> <span class="n">cookies</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"email"</span><span class="o">));</span> <span class="c1">// null (foi removido)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tamanho: "</span> <span class="o">+</span> <span class="n">cookies</span><span class="o">.</span><span class="na">size</span><span class="o">());</span> <span class="c1">// 2</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"TODOS OS COOKIES (ordenados por chave):"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">chave</span> <span class="o">:</span> <span class="n">cookies</span><span class="o">.</span><span class="na">keySet</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">chave</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">cookies</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">chave</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="c1">// Saída:</span>
+        <span class="c1">// phone: 99771133</span>
+        <span class="c1">// username: maria</span>
+
+        <span class="c1">// Iterando com entrySet (mais eficiente se precisar de chave e valor)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+TODOS OS COOKIES (usando entrySet):"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">entrada</span> <span class="o">:</span> <span class="n">cookies</span><span class="o">.</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">entrada</span><span class="o">.</span><span class="na">getKey</span><span class="o">()</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">entrada</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplo 2: <code class="language-plaintext highlighter-rouge">HashMap</code> com Objetos <code class="language-plaintext highlighter-rouge">Produto</code> como Chave</strong>
+Suponha a classe <code class="language-plaintext highlighter-rouge">Produto</code> com <code class="language-plaintext highlighter-rouge">equals</code> e <code class="language-plaintext highlighter-rouge">hashCode</code> corretamente implementados (baseados em <code class="language-plaintext highlighter-rouge">nome</code> e <code class="language-plaintext highlighter-rouge">preco</code>).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Produto</span><span class="o">;</span> <span class="c1">// Produto com equals/hashCode</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaEstoque</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">,</span> <span class="nc">Double</span><span class="o">&gt;</span> <span class="n">estoque</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+
+        <span class="nc">Produto</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tv"</span><span class="o">,</span> <span class="mf">900.0</span><span class="o">);</span>
+        <span class="nc">Produto</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">,</span> <span class="mf">1200.0</span><span class="o">);</span>
+        <span class="nc">Produto</span> <span class="n">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">400.0</span><span class="o">);</span>
+
+        <span class="n">estoque</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="mf">10000.0</span><span class="o">);</span> <span class="c1">// 10000 unidades de Tv</span>
+        <span class="n">estoque</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">p2</span><span class="o">,</span> <span class="mf">20000.0</span><span class="o">);</span> <span class="c1">// 20000 unidades de Notebook</span>
+        <span class="n">estoque</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">p3</span><span class="o">,</span> <span class="mf">15000.0</span><span class="o">);</span> <span class="c1">// 15000 unidades de Tablet</span>
+
+        <span class="nc">Produto</span> <span class="n">ps</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tv"</span><span class="o">,</span> <span class="mf">900.0</span><span class="o">);</span> <span class="c1">// Outra instância, mas representa o mesmo produto</span>
+
+        <span class="c1">// Com equals/hashCode corretos, ps é considerado igual a p1 para fins de chave</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Contém a chave 'ps' (representando Tv)? "</span> <span class="o">+</span> <span class="n">estoque</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">ps</span><span class="o">));</span> <span class="c1">// true</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Quantidade de 'ps' (Tv) em estoque: "</span> <span class="o">+</span> <span class="n">estoque</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ps</span><span class="o">));</span> <span class="c1">// 10000.0</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">Produto</code> para este exemplo (com <code class="language-plaintext highlighter-rouge">equals</code> e <code class="language-plaintext highlighter-rouge">hashCode</code>):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Objects</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span> <span class="c1">// Não precisa implementar Comparable para HashMap</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Produto [nome="</span> <span class="o">+</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", preco="</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">)</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">==</span> <span class="n">o</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">getClass</span><span class="o">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="na">getClass</span><span class="o">())</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="nc">Produto</span> <span class="n">produto</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Produto</span><span class="o">)</span> <span class="n">o</span><span class="o">;</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">produto</span><span class="o">.</span><span class="na">nome</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">preco</span><span class="o">,</span> <span class="n">produto</span><span class="o">.</span><span class="na">preco</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exercício-proposto-map-️">Exercício Proposto (Map) 🗳️</h3>
+
+<p>Na contagem de votos de uma eleição, são gerados vários registros de votação em formato <code class="language-plaintext highlighter-rouge">.csv</code> contendo o nome do candidato e a quantidade de votos que ele obteve em uma urna de votação. Você deve fazer um programa para ler os registros de votação a partir de um arquivo e, daí, gerar um relatório consolidado com os totais de votos de cada candidato.</p>
+
+<p><strong>Arquivo de Entrada Exemplo (<code class="language-plaintext highlighter-rouge">votacao.csv</code>):</strong></p>
+
+<pre><code class="language-csv">Alex Blue,15
+Maria Green,22
+Bob Brown,21
+Alex Blue,30
+Bob Brown,15
+Maria Green,27
+Maria Green,22
+Bob Brown,25
+Alex Blue,31
+</code></pre>
+
+<p><strong>Execução Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o caminho completo do arquivo de votação: c:\temp\votacao.csv
+Resultado da Votação:
+Alex Blue: 76
+Maria Green: 71
+Bob Brown: 61
+</code></pre></div></div>
+
+<p><strong>Dica:</strong> Use um <code class="language-plaintext highlighter-rouge">Map&lt;String, Integer&gt;</code> onde a chave é o nome do candidato e o valor é o total de votos acumulado.</p>
+
+<hr />
+
+<h3 id="️-utilizando-os-exemplos-de-código-em-ides-vs-code-intellij-idea">🖥️ Utilizando os Exemplos de Código em IDEs (VS Code, IntelliJ IDEA)</h3>
+
+<p>Os exemplos de código Java fornecidos são padrão e podem ser executados em qualquer ambiente de desenvolvimento Java que suporte a versão da linguagem utilizada (geralmente Java 8 ou superior para esses conceitos).</p>
+
+<p><strong>Para VS Code (com o Java Extension Pack):</strong></p>
+
+<ol>
+  <li>Crie um novo projeto Java: <code class="language-plaintext highlighter-rouge">View &gt; Command Palette... &gt; Java: Create Java Project</code>.</li>
+  <li>Selecione <code class="language-plaintext highlighter-rouge">No build tools</code>.</li>
+  <li>Escolha um local para o projeto e dê um nome a ele.</li>
+  <li>Crie os pacotes (<code class="language-plaintext highlighter-rouge">entidades</code>, <code class="language-plaintext highlighter-rouge">aplicacao</code>, <code class="language-plaintext highlighter-rouge">servicos</code>) dentro da pasta <code class="language-plaintext highlighter-rouge">src</code>.</li>
+  <li>Crie as classes <code class="language-plaintext highlighter-rouge">.java</code> dentro dos pacotes correspondentes.</li>
+  <li>Para executar uma classe com um método <code class="language-plaintext highlighter-rouge">main</code>, abra o arquivo e clique no botão “Run” que aparece acima do método <code class="language-plaintext highlighter-rouge">main</code> ou clique com o botão direito no arquivo no explorador e selecione “Run Java”.</li>
+</ol>
+
+<p><strong>Para IntelliJ IDEA:</strong></p>
+
+<ol>
+  <li>Crie um novo projeto: <code class="language-plaintext highlighter-rouge">File &gt; New &gt; Project...</code>.</li>
+  <li>Selecione <code class="language-plaintext highlighter-rouge">Java</code> na lista à esquerda. Escolha um SDK (JDK) apropriado. Clique em <code class="language-plaintext highlighter-rouge">Next</code> (ou <code class="language-plaintext highlighter-rouge">Create</code>).</li>
+  <li>Dê um nome ao projeto e escolha um local.</li>
+  <li>Na janela do projeto, clique com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code> para criar pacotes (<code class="language-plaintext highlighter-rouge">New &gt; Package</code>).</li>
+  <li>Dentro dos pacotes, crie as classes (<code class="language-plaintext highlighter-rouge">New &gt; Java Class</code>).</li>
+  <li>Para executar uma classe com um método <code class="language-plaintext highlighter-rouge">main</code>, abra o arquivo e clique na seta verde ao lado da declaração do método <code class="language-plaintext highlighter-rouge">main</code> ou clique com o botão direito no arquivo no Project Explorer e selecione “Run ‘NomeDaClasse.main()’”.</li>
+</ol>
+
+<p>Lembre-se de que, para exemplos que leem arquivos, você precisará fornecer o caminho correto para o arquivo de entrada ou colocar o arquivo no diretório raiz do projeto (o caminho relativo pode variar dependendo da configuração da execução).</p>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

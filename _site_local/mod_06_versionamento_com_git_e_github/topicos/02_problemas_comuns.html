@@ -1,0 +1,488 @@
+<h1 id="️-git-e-github-resolvendo-problemas-comuns">🛠️ Git e Github: Resolvendo Problemas Comuns</h1>
+
+<p>Este guia aborda soluções para problemas comuns encontrados ao usar Git e GitHub, com base nos slides fornecidos.</p>
+
+<h2 id="como-remover-arquivos-da-área-de-stage-preparação-">Como remover arquivos da área de <em>stage</em> (preparação) 🧺</h2>
+
+<p>A área de <em>stage</em> (também conhecida como índice ou área de preparação) é onde você agrupa as alterações que farão parte do próximo <em>commit</em>. Às vezes, você pode adicionar arquivos à área de <em>stage</em> por engano ou decidir que algumas alterações não devem ser incluídas no próximo <em>commit</em>.</p>
+
+<p><strong>Comandos Úteis:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git status</code>: Mostra o estado atual do seu repositório, incluindo quais arquivos estão na área de <em>stage</em>, quais foram modificados mas não preparados, e quais não estão sendo rastreados.</li>
+  <li><code class="language-plaintext highlighter-rouge">git reset &lt;arquivo&gt;</code>: Remove o arquivo especificado da área de <em>stage</em> (tira do “palco”), mas <strong>mantém as modificações</strong> no seu diretório de trabalho. Suas alterações no código não são perdidas.
+    <ul>
+      <li>Exemplo: <code class="language-plaintext highlighter-rouge">git reset meuArquivo.txt</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">git reset</code>: Se nenhum arquivo for especificado, remove todos os arquivos da área de <em>stage</em>, mas também mantém todas as modificações no seu diretório de trabalho.</li>
+</ul>
+
+<p><strong>Exemplo Prático:</strong>
+Você modificou <code class="language-plaintext highlighter-rouge">arquivo1.txt</code> e <code class="language-plaintext highlighter-rouge">arquivo2.txt</code> e adicionou ambos à área de stage com <code class="language-plaintext highlighter-rouge">git add .</code>. Depois, percebeu que as mudanças em <code class="language-plaintext highlighter-rouge">arquivo2.txt</code> não deveriam ir neste commit.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+<span class="c"># On branch main</span>
+<span class="c"># Changes to be committed:</span>
+<span class="c">#   (use "git reset HEAD &lt;file&gt;..." to unstage)</span>
+<span class="c">#</span>
+<span class="c">#       modified:   arquivo1.txt</span>
+<span class="c">#       modified:   arquivo2.txt</span>
+<span class="c">#</span>
+
+git reset arquivo2.txt
+
+git status
+<span class="c"># On branch main</span>
+<span class="c"># Changes to be committed:</span>
+<span class="c">#   (use "git reset HEAD &lt;file&gt;..." to unstage)</span>
+<span class="c">#</span>
+<span class="c">#       modified:   arquivo1.txt</span>
+<span class="c">#</span>
+<span class="c"># Changes not staged for commit:</span>
+<span class="c">#   (use "git add &lt;file&gt;..." to update what will be committed)</span>
+<span class="c">#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)</span>
+<span class="c">#</span>
+<span class="c">#       modified:   arquivo2.txt</span>
+<span class="c">#</span>
+</code></pre></div></div>
+<p>Agora, apenas <code class="language-plaintext highlighter-rouge">arquivo1.txt</code> está na área de <em>stage</em>. As modificações em <code class="language-plaintext highlighter-rouge">arquivo2.txt</code> continuam no seu diretório de trabalho.</p>
+
+<h2 id="como-desfazer-modificações-não-preparadas-unstaged-️">Como desfazer modificações não preparadas (<em>unstaged</em>) ↩️</h2>
+
+<p>Modificações não preparadas são alterações em arquivos no seu diretório de trabalho que ainda não foram adicionadas à área de <em>stage</em> com <code class="language-plaintext highlighter-rouge">git add</code>. Se você deseja descartar essas alterações e reverter o arquivo para a versão do último <em>commit</em> (ou da área de <em>stage</em>, se o arquivo já esteve lá e foi modificado novamente).</p>
+
+<p><strong>Comandos Úteis:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git status</code>: Use para verificar quais arquivos foram modificados em seu diretório de trabalho mas não estão na área de <em>stage</em>.</li>
+  <li><code class="language-plaintext highlighter-rouge">git checkout -- &lt;arquivo&gt;</code>: Descarta as alterações no arquivo especificado no seu diretório de trabalho, revertendo-o para a versão do último <em>commit</em>.
+    <ul>
+      <li><strong>Atenção:</strong> Esta ação é destrutiva para as alterações não salvas (<em>unstaged</em>) no arquivo. Elas serão perdidas.</li>
+      <li>Exemplo: <code class="language-plaintext highlighter-rouge">git checkout -- config.yml</code> (descarta as alterações feitas em <code class="language-plaintext highlighter-rouge">config.yml</code> desde o último commit).</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">git clean -df</code>: Remove arquivos e diretórios não rastreados (<em>untracked files</em>) do seu diretório de trabalho. Arquivos não rastreados são aqueles que nunca foram adicionados ao Git.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-d</code>: Remove diretórios não rastreados além de arquivos.</li>
+      <li><code class="language-plaintext highlighter-rouge">-f</code>: Força a remoção (geralmente necessário, pois é uma operação destrutiva).</li>
+      <li><strong>🚨 Use com extremo cuidado!</strong> Antes de usar <code class="language-plaintext highlighter-rouge">git clean -df</code>, é altamente recomendável executar <code class="language-plaintext highlighter-rouge">git clean -ndf</code> (modo <em>dry-run</em> ou simulação). Este comando mostrará o que seria deletado sem realmente deletar nada, permitindo que você verifique se está prestes a remover os arquivos corretos.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Exemplo Prático (git checkout):</strong>
+Você editou o arquivo <code class="language-plaintext highlighter-rouge">README.md</code> mas decidiu que não gostou das alterações e quer voltar à versão que está no último commit.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+<span class="c"># On branch main</span>
+<span class="c"># Changes not staged for commit:</span>
+<span class="c">#   (use "git add &lt;file&gt;..." to update what will be committed)</span>
+<span class="c">#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)</span>
+<span class="c">#</span>
+<span class="c">#       modified:   README.md</span>
+<span class="c">#</span>
+
+git checkout <span class="nt">--</span> README.md
+
+git status
+<span class="c"># On branch main</span>
+<span class="c"># nothing to commit, working tree clean</span>
+</code></pre></div></div>
+<p>As alterações em <code class="language-plaintext highlighter-rouge">README.md</code> foram descartadas.</p>
+
+<h2 id="o-que-fazer-quando-o-editor-vim-abre-inesperadamente-️">O que fazer quando o editor VIM abre inesperadamente ✍️</h2>
+
+<p>O VIM é o editor de texto padrão para muitas ferramentas de linha de comando, incluindo o Git. Ele pode abrir automaticamente quando o Git precisa que você forneça uma mensagem, por exemplo:</p>
+
+<ul>
+  <li>Ao fazer um <em>commit</em> sem fornecer a mensagem diretamente (<code class="language-plaintext highlighter-rouge">git commit</code> sem <code class="language-plaintext highlighter-rouge">-m "sua mensagem"</code>).</li>
+  <li>Ao realizar um <em>merge</em> de três vias que requer uma mensagem de <em>commit</em> de <em>merge</em>.</li>
+</ul>
+
+<p><strong>Comandos básicos do VIM para sair:</strong></p>
+
+<ol>
+  <li>Pressione a tecla <code class="language-plaintext highlighter-rouge">&lt;ESC&gt;</code> para garantir que você está no <strong>Modo de Comando</strong> (em vez do Modo de Inserção).</li>
+  <li>Para <strong>salvar</strong> as alterações (por exemplo, a mensagem do commit que você digitou) e sair:
+    <ul>
+      <li>Digite <code class="language-plaintext highlighter-rouge">:wq</code> (que significa <em>write</em> e <em>quit</em>)</li>
+      <li>Pressione <code class="language-plaintext highlighter-rouge">&lt;ENTER&gt;</code></li>
+    </ul>
+  </li>
+  <li>Para <strong>descartar</strong> as alterações (por exemplo, se você não quer completar o commit) e sair:
+    <ul>
+      <li>Digite <code class="language-plaintext highlighter-rouge">:q!</code> (que significa <em>quit</em> e ignorar avisos/alterações)</li>
+      <li>Pressione <code class="language-plaintext highlighter-rouge">&lt;ENTER&gt;</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Dica: Configurando um Editor Padrão Diferente</strong></p>
+
+<p>Se você não se sente confortável com o VIM, pode configurar o Git para usar um editor de sua preferência.</p>
+
+<ul>
+  <li><strong>Para VS Code:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> core.editor <span class="s2">"code --wait"</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Para Nano (um editor de terminal mais simples):</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> core.editor <span class="s2">"nano"</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Para Sublime Text:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> core.editor <span class="s2">"subl -n -w"</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Para IntelliJ IDEA (ou outros JetBrains IDEs):</strong> Geralmente, você fará <em>commits</em> e <em>merges</em> através da interface gráfica do IntelliJ. Se, no entanto, você usar o Git pelo terminal integrado e o VIM abrir, a configuração para outro editor (como VS Code ou Nano, listada acima) ainda seria a forma de mudar o editor padrão do Git na linha de comando. O IntelliJ em si não se registra como um <code class="language-plaintext highlighter-rouge">core.editor</code> para o Git de linha de comando da mesma forma que editores de texto leves.</li>
+</ul>
+
+<h2 id="como-desfazer-o-último-commit-mantendo-as-alterações-️">Como desfazer o último <em>commit</em> (mantendo as alterações) ♻️</h2>
+
+<p>Isso é útil se você fez um <em>commit</em> muito cedo, esqueceu de incluir alguma alteração, ou quer refazer a mensagem do <em>commit</em>. Esta operação desfaz o <em>commit</em> mas mantém as alterações que estavam nele disponíveis para você continuar trabalhando.</p>
+
+<p><strong>Comandos Úteis:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git status</code>: Verifique o estado do seu repositório antes e depois do <code class="language-plaintext highlighter-rouge">reset</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">git reset --soft HEAD~1</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">HEAD</code>: É um ponteiro para o <em>commit</em> atual no <em>branch</em> atual.</li>
+      <li><code class="language-plaintext highlighter-rouge">HEAD~1</code>: Refere-se ao <em>commit</em> imediatamente anterior ao <code class="language-plaintext highlighter-rouge">HEAD</code> (ou seja, o penúltimo <em>commit</em> feito).</li>
+      <li><code class="language-plaintext highlighter-rouge">--soft</code>: Esta opção move o ponteiro <code class="language-plaintext highlighter-rouge">HEAD</code> para o <em>commit</em> anterior (<code class="language-plaintext highlighter-rouge">HEAD~1</code>), efetivamente “desfazendo” o último <em>commit</em>. No entanto, as alterações do <em>commit</em> desfeito são mantidas na sua <strong>área de <em>stage</em></strong> e o seu <strong>diretório de trabalho permanece inalterado</strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Exemplo Prático:</strong>
+Você fez um <em>commit</em>, mas percebeu que esqueceu de adicionar um novo arquivo ou quer mudar a mensagem do <em>commit</em>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Histórico inicial: CommitA &lt;- CommitB (HEAD)</span>
+git log <span class="nt">--oneline</span>
+
+git reset <span class="nt">--soft</span> HEAD~1
+<span class="c"># Agora o HEAD aponta para CommitA. As alterações do CommitB estão na área de stage.</span>
+
+git status
+<span class="c"># Changes to be committed:</span>
+<span class="c">#   (use "git reset HEAD &lt;file&gt;..." to unstage)</span>
+<span class="c">#</span>
+<span class="c">#       modified:   arquivoQueEstavaNoCommitB.txt</span>
+<span class="c">#       new file:   outroArquivoDoCommitB.txt</span>
+<span class="c">#</span>
+</code></pre></div></div>
+<p>Agora você pode adicionar mais arquivos (<code class="language-plaintext highlighter-rouge">git add &lt;novo_arquivo&gt;</code>), remover arquivos da área de <em>stage</em> (<code class="language-plaintext highlighter-rouge">git reset &lt;arquivo_para_remover&gt;</code>), e então fazer um novo <em>commit</em> com as alterações corretas e/ou uma nova mensagem:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add arquivo_esquecido.txt
+git commit <span class="nt">-m</span> <span class="s2">"Nova mensagem de commit com todas as alterações corretas"</span>
+</code></pre></div></div>
+
+<h2 id="como-deletar-commits-e-modificações-nos-arquivos-ação-destrutiva-">Como deletar <em>commits</em> e modificações nos arquivos (ação destrutiva!) 💣</h2>
+
+<p>Esta operação é usada para reverter o projeto a um estado anterior, descartando <em>commits</em> posteriores e todas as modificações associadas a eles, tanto na área de <em>stage</em> quanto no diretório de trabalho.</p>
+
+<p><strong>Comandos Úteis:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git status</code>: Verifique o estado antes do <code class="language-plaintext highlighter-rouge">reset</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">git log --oneline</code>: Para visualizar o histórico de <em>commits</em> e encontrar o <em>hash</em> do <em>commit</em> para o qual você deseja retornar.</li>
+</ul>
+
+<p><strong>Opções de <code class="language-plaintext highlighter-rouge">git reset --hard</code>:</strong></p>
+
+<ol>
+  <li><strong>Voltar o projeto ao estado de um <em>commit</em> específico:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset <span class="nt">--hard</span> &lt;hash_do_commit&gt;
+</code></pre></div>    </div>
+    <ul>
+      <li>Move o ponteiro <code class="language-plaintext highlighter-rouge">HEAD</code> (e o <em>branch</em> atual) para o <code class="language-plaintext highlighter-rouge">&lt;hash_do_commit&gt;</code> especificado.</li>
+      <li><code class="language-plaintext highlighter-rouge">--hard</code>: Esta opção <strong>altera o histórico de <em>commits</em></strong> do <em>branch</em> local, <strong>reseta a área de <em>stage</em></strong> (limpa), e <strong>sobrescreve todas as alterações no seu diretório de trabalho</strong> para corresponder exatamente ao estado do <code class="language-plaintext highlighter-rouge">&lt;hash_do_commit&gt;</code>.</li>
+      <li>Todos os <em>commits</em> feitos <em>após</em> o <code class="language-plaintext highlighter-rouge">&lt;hash_do_commit&gt;</code> no <em>branch</em> atual serão perdidos localmente.</li>
+    </ul>
+  </li>
+  <li><strong>Voltar o projeto ao estado do penúltimo <em>commit</em> (descartar o último <em>commit</em>):</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset <span class="nt">--hard</span> HEAD~1
+</code></pre></div>    </div>
+    <ul>
+      <li>Similar ao anterior, mas especificamente descarta o último <em>commit</em> e todas as alterações que ele continha, bem como quaisquer alterações não comitadas no diretório de trabalho e na área de <em>stage</em>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>🚨 ATENÇÃO: AÇÃO DESTRUTIVA! 🚨</strong></p>
+
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">git reset --hard</code> com extrema cautela. Uma vez que os <em>commits</em> e as alterações são descartados desta forma, eles são muito difíceis (quase impossíveis para usuários casuais) de recuperar.</li>
+  <li><strong>Nunca use <code class="language-plaintext highlighter-rouge">git reset --hard</code> em <em>commits</em> que já foram enviados (<em>pushed</em>) para um repositório remoto compartilhado com outras pessoas.</strong> Reescrever o histórico público pode causar sérios problemas para seus colaboradores. Para reverter <em>commits</em> em um histórico público, prefira <code class="language-plaintext highlighter-rouge">git revert &lt;hash_do_commit&gt;</code>, que cria um novo <em>commit</em> que desfaz as alterações do <em>commit</em> especificado, mantendo o histórico intacto.</li>
+  <li>Se você usou <code class="language-plaintext highlighter-rouge">git reset --hard</code> em um <em>branch</em> local que já existe no remoto e quer atualizar o remoto para refletir essa mudança, você precisará usar <code class="language-plaintext highlighter-rouge">git push --force</code> (veja a seção sobre sobrescrever histórico).</li>
+</ul>
+
+<h2 id="como-atualizar-o-repositório-local-com-base-no-remoto-">Como atualizar o repositório local com base no remoto 🔄</h2>
+
+<p>É crucial manter seu repositório local atualizado com as últimas alterações do repositório remoto, especialmente antes de começar a trabalhar em novas funcionalidades ou antes de enviar (<em>push</em>) suas próprias alterações. Isso ajuda a evitar conflitos e a garantir que você está trabalhando na versão mais recente do código.</p>
+
+<p><strong>Comandos Úteis:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git status</code>: Pode indicar se seu <em>branch</em> local está sincronizado, à frente ou atrás do <em>branch</em> remoto correspondente.</li>
+  <li><code class="language-plaintext highlighter-rouge">git pull &lt;nome_do_remoto&gt; &lt;nome_do_branch&gt;</code>: Este comando é, na verdade, uma combinação de dois outros comandos:
+    <ol>
+      <li><code class="language-plaintext highlighter-rouge">git fetch &lt;nome_do_remoto&gt;</code>: Baixa as alterações (novos <em>commits</em>, <em>branches</em>, etc.) do repositório remoto para o seu repositório local, mas <strong>não</strong> as aplica automaticamente ao seu diretório de trabalho. Ele atualiza as referências aos <em>branches</em> remotos (ex: <code class="language-plaintext highlighter-rouge">origin/main</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">git merge &lt;nome_do_remoto&gt;/&lt;nome_do_branch&gt;</code> (ou <code class="language-plaintext highlighter-rouge">git rebase</code> se configurado): Após o <code class="language-plaintext highlighter-rouge">fetch</code>, o <code class="language-plaintext highlighter-rouge">pull</code> tenta mesclar (<em>merge</em>) o <em>branch</em> remoto baixado (ex: <code class="language-plaintext highlighter-rouge">origin/main</code>) no seu <em>branch</em> local atual (ex: <code class="language-plaintext highlighter-rouge">main</code>).</li>
+    </ol>
+  </li>
+</ul>
+
+<p><strong>Exemplo Comum:</strong></p>
+
+<p>Assumindo que seu repositório remoto padrão se chama <code class="language-plaintext highlighter-rouge">origin</code> (o que é comum) e você quer atualizar seu <em>branch</em> local <code class="language-plaintext highlighter-rouge">main</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Verifica o status, pode mostrar que seu branch está "behind"</span>
+git status
+
+<span class="c"># Atualiza o branch local 'main' com as alterações do 'main' no 'origin'</span>
+git pull origin main
+</code></pre></div></div>
+
+<p><strong>O que acontece durante o <code class="language-plaintext highlighter-rouge">git pull</code>:</strong></p>
+
+<ul>
+  <li>Se não houver alterações locais que conflitam com as remotas, o <em>merge</em> geralmente acontece automaticamente (chamado de <em>fast-forward merge</em> se você não tiver <em>commits</em> locais divergentes) ou um <em>commit</em> de <em>merge</em> é criado.</li>
+  <li>Se houver alterações locais que conflitam com as alterações remotas (ou seja, ambos os lados modificaram as mesmas partes dos mesmos arquivos), o Git tentará um <em>merge</em>, mas ele pausará e informará sobre os conflitos. Você precisará resolvê-los manualmente antes de completar o <em>merge</em> (veja a seção sobre resolução de conflitos).</li>
+</ul>
+
+<h2 id="como-resolver-um-push-rejeitado-">Como resolver um <em>push</em> rejeitado 🚫📤</h2>
+
+<p>Um <code class="language-plaintext highlighter-rouge">git push</code> pode ser rejeitado pelo servidor remoto por vários motivos, mas o mais comum é quando seu repositório local está “atrasado” em relação ao histórico do repositório remoto. Isso significa que existem <em>commits</em> no <em>branch</em> remoto que você ainda não possui em seu <em>branch</em> local.</p>
+
+<p><strong>Por que isso acontece?</strong>
+O Git faz isso para evitar que você sobrescreva acidentalmente o histórico do repositório remoto e, potencialmente, o trabalho de outros colaboradores.</p>
+
+<p><strong>Diagrama Conceitual da Rejeição:</strong></p>
+
+<ul>
+  <li><strong>NO GITHUB (Remoto):</strong> <code class="language-plaintext highlighter-rouge">Commit A</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit B</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit C</code> (Alguém enviou <code class="language-plaintext highlighter-rouge">Commit C</code> enquanto você trabalhava)</li>
+  <li><strong>SEU COMPUTADOR (Local):</strong> <code class="language-plaintext highlighter-rouge">Commit A</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit B</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit D</code> (Você criou <code class="language-plaintext highlighter-rouge">Commit D</code> localmente)</li>
+</ul>
+
+<p>Se você tentar <code class="language-plaintext highlighter-rouge">git push origin main</code> neste cenário, o Git remoto verá que o seu <code class="language-plaintext highlighter-rouge">Commit B</code> local (que é o ancestral comum) não é o mesmo que o <code class="language-plaintext highlighter-rouge">Commit C</code> mais recente dele. Seu <em>push</em> será rejeitado com uma mensagem como “failed to push some refs to…” e “updates were rejected because the remote contains work that you do not have locally”.</p>
+
+<p><strong>Solução:</strong></p>
+
+<ol>
+  <li><strong>Primeiro, atualize seu repositório local:</strong>
+Você precisa trazer os <em>commits</em> remotos para o seu <em>branch</em> local e integrar suas alterações com eles.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull &lt;nome_do_remoto&gt; &lt;nome_do_branch&gt;
+<span class="c"># Exemplo: git pull origin main</span>
+</code></pre></div>    </div>
+    <p>Isso fará um <code class="language-plaintext highlighter-rouge">git fetch</code> para buscar os <em>commits</em> remotos (como <code class="language-plaintext highlighter-rouge">Commit C</code>) e depois um <code class="language-plaintext highlighter-rouge">git merge</code> para tentar mesclar o <em>branch</em> remoto (<code class="language-plaintext highlighter-rouge">origin/main</code>) no seu <em>branch</em> local (<code class="language-plaintext highlighter-rouge">main</code>).</p>
+  </li>
+  <li><strong>Resolva conflitos (se houver):</strong>
+Se suas alterações locais (<code class="language-plaintext highlighter-rouge">Commit D</code>) conflitarem com as alterações remotas (<code class="language-plaintext highlighter-rouge">Commit C</code>), o <code class="language-plaintext highlighter-rouge">git pull</code> resultará em um conflito de <em>merge</em>. Você precisará:
+    <ul>
+      <li>Abrir os arquivos com conflitos.</li>
+      <li>Editar os arquivos para resolver as diferenças.</li>
+      <li>Usar <code class="language-plaintext highlighter-rouge">git add &lt;arquivo_resolvido&gt;</code> para marcar os conflitos como resolvidos.</li>
+      <li>Completar o <em>merge</em> com <code class="language-plaintext highlighter-rouge">git commit</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Tente o <code class="language-plaintext highlighter-rouge">git push</code> novamente:</strong>
+Após o <code class="language-plaintext highlighter-rouge">pull</code> bem-sucedido (e a resolução de quaisquer conflitos), seu histórico local estará atualizado e conterá tanto suas alterações quanto as remotas, geralmente com um novo <em>commit</em> de <em>merge</em> (ou seus <em>commits</em> rebaseados, se você usar <code class="language-plaintext highlighter-rouge">git pull --rebase</code>).
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Exemplo: Seu histórico local após o pull pode ser:</span>
+<span class="c"># Commit A -&gt; Commit B -&gt; Commit C (do remoto) -&gt; Commit D (seu) -&gt; Commit E (de merge)</span>
+<span class="c"># OU se usou rebase: Commit A -&gt; Commit B -&gt; Commit C (do remoto) -&gt; Commit D' (seu commit D reescrito sobre C)</span>
+
+git push &lt;nome_do_remoto&gt; &lt;nome_do_branch&gt;
+<span class="c"># Exemplo: git push origin main</span>
+</code></pre></div>    </div>
+    <p>Agora o <em>push</em> deve ser aceito, pois seu <em>branch</em> local não está mais “atrasado”.</p>
+  </li>
+</ol>
+
+<h2 id="como-sobrescrever-um-histórico-no-github-ação-destrutiva-">Como sobrescrever um histórico no GitHub (ação destrutiva!) 💥</h2>
+
+<p>Às vezes, você pode precisar reescrever o histórico do seu <em>branch</em> local usando comandos como <code class="language-plaintext highlighter-rouge">git rebase</code> (especialmente o interativo, <code class="language-plaintext highlighter-rouge">git rebase -i</code>) ou <code class="language-plaintext highlighter-rouge">git reset --hard</code> para um <em>commit</em> anterior. Quando você faz isso, seu histórico local diverge do histórico do <em>branch</em> correspondente no repositório remoto (como o GitHub) de uma forma que não é um simples avanço.</p>
+
+<p>Nesses casos, um <code class="language-plaintext highlighter-rouge">git push</code> normal será rejeitado porque o Git detecta que os históricos são diferentes e não pode fazer um <em>fast-forward merge</em>. Para forçar o repositório remoto a aceitar o seu novo histórico (sobrescrevendo o antigo que estava lá), você precisa usar a opção de “force push”.</p>
+
+<p><strong>Diagrama Conceitual:</strong></p>
+
+<ul>
+  <li><strong>NO GITHUB (Remoto antes do force push):</strong> <code class="language-plaintext highlighter-rouge">Commit A</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit B</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit C</code></li>
+  <li><strong>SEU COMPUTADOR (Local, após um rebase ou reset):</strong> <code class="language-plaintext highlighter-rouge">Commit A</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit X</code> -&gt; <code class="language-plaintext highlighter-rouge">Commit Y</code> (onde <code class="language-plaintext highlighter-rouge">X</code> e <code class="language-plaintext highlighter-rouge">Y</code> são <em>commits</em> reescritos ou <code class="language-plaintext highlighter-rouge">B</code> e <code class="language-plaintext highlighter-rouge">C</code> foram removidos)</li>
+</ul>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="nt">-f</span> &lt;nome_do_remoto&gt; &lt;nome_do_branch&gt;
+<span class="c"># OU</span>
+git push <span class="nt">--force</span> &lt;nome_do_remoto&gt; &lt;nome_do_branch&gt;
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-f</code> ou <code class="language-plaintext highlighter-rouge">--force</code>: Esta opção diz ao Git para forçar o <em>push</em>. O <em>branch</em> no repositório remoto será atualizado para corresponder exatamente ao seu <em>branch</em> local, <strong>descartando quaisquer <em>commits</em> que estavam no remoto mas não estão no seu histórico local reescrito.</strong></li>
+  <li>Exemplo: <code class="language-plaintext highlighter-rouge">git push -f origin main</code></li>
+</ul>
+
+<p><strong>🚨 ATENÇÃO: AÇÃO EXTREMAMENTE DESTRUTIVA! 🚨</strong></p>
+
+<ul>
+  <li><strong>NUNCA use <code class="language-plaintext highlighter-rouge">git push --force</code> em <em>branches</em> compartilhados</strong> (como <code class="language-plaintext highlighter-rouge">main</code>, <code class="language-plaintext highlighter-rouge">master</code>, <code class="language-plaintext highlighter-rouge">develop</code>, ou qualquer <em>branch</em> em que outros colaboradores estejam trabalhando) a menos que você esteja <strong>absolutamente certo</strong> do que está fazendo e tenha <strong>coordenado explicitamente com toda a sua equipe</strong>. Fazer um <em>force push</em> em um <em>branch</em> compartilhado pode apagar o trabalho de outras pessoas e causar grande confusão.</li>
+  <li>É geralmente considerado mais seguro usar <code class="language-plaintext highlighter-rouge">git push --force</code> apenas em seus próprios <em>branches</em> de funcionalidade (<em>feature branches</em>) que mais ninguém está usando.</li>
+  <li><strong>Alternativa mais segura: <code class="language-plaintext highlighter-rouge">git push --force-with-lease</code></strong>
+    <ul>
+      <li>Este comando é uma versão mais segura do <em>force push</em>. Antes de forçar o <em>push</em>, ele verifica se o <em>branch</em> remoto é o que você espera (ou seja, se ninguém mais fez <em>push</em> para ele desde a última vez que você o buscou (<code class="language-plaintext highlighter-rouge">fetch</code>)). Se o <em>branch</em> remoto mudou inesperadamente, o <code class="language-plaintext highlighter-rouge">--force-with-lease</code> falhará, protegendo você de sobrescrever o trabalho de outros inadvertidamente.</li>
+      <li>Exemplo: <code class="language-plaintext highlighter-rouge">git push --force-with-lease origin main</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="resolvendo-conflitos-de-merge-">Resolvendo conflitos de <em>merge</em> 🤝</h2>
+
+<p>Conflitos de <em>merge</em> ocorrem quando o Git tenta combinar automaticamente alterações de diferentes <em>branches</em> (ou entre seu <em>branch</em> local e um <em>branch</em> remoto durante um <code class="language-plaintext highlighter-rouge">git pull</code>), mas encontra modificações sobrepostas nas mesmas linhas de um arquivo, ou quando um <em>branch</em> deleta um arquivo que outro <em>branch</em> modificou. O Git não consegue decidir qual versão é a correta, então ele pausa o processo e pede para você resolver os conflitos manualmente.</p>
+
+<p><strong>Passos para Resolver Conflitos:</strong></p>
+
+<ol>
+  <li><strong>Identifique os arquivos com conflito:</strong>
+Quando um conflito ocorre (por exemplo, durante um <code class="language-plaintext highlighter-rouge">git merge</code> ou <code class="language-plaintext highlighter-rouge">git pull</code>), o Git irá notificá-lo. Você pode usar <code class="language-plaintext highlighter-rouge">git status</code> para ver uma lista dos arquivos que estão em estado de “unmerged paths” (caminhos não mesclados).
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+<span class="c"># On branch main</span>
+<span class="c"># You have unmerged paths.</span>
+<span class="c">#   (fix conflicts and run "git commit")</span>
+<span class="c">#   (use "git merge --abort" to abort the merge)</span>
+<span class="c">#</span>
+<span class="c"># Unmerged paths:</span>
+<span class="c">#   (use "git add &lt;file&gt;..." to mark resolution)</span>
+<span class="c">#</span>
+<span class="c">#       both modified:   arquivo_conflitante.txt</span>
+<span class="c">#</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Abra os arquivos conflitantes:</strong>
+Use seu editor de texto ou IDE favorito para abrir cada arquivo listado como conflitante. O Git insere marcadores de conflito diretamente no conteúdo do arquivo para mostrar as seções problemáticas:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Esta é a versão do seu branch atual (HEAD).
+Conteúdo da linha que está no seu branch.
+=======
+Este é o conteúdo da linha que veio do branch
+que você está tentando mesclar (ex: origin/main).
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; nome_do_outro_branch_ou_commit_hash
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>: Indica o início das alterações do seu <em>branch</em> atual (onde <code class="language-plaintext highlighter-rouge">HEAD</code> está apontando).</li>
+      <li><code class="language-plaintext highlighter-rouge">=======</code>: Separa as alterações do seu <em>branch</em> das alterações do <em>branch</em> que está sendo mesclado.</li>
+      <li><code class="language-plaintext highlighter-rouge">&gt;&gt;&gt;&gt;&gt;&gt;&gt; [nome_do_outro_branch/commit_hash]</code>: Indica o fim das alterações do <em>branch</em> que está sendo mesclado.</li>
+    </ul>
+  </li>
+  <li><strong>Analise o código fonte e faça as edições necessárias:</strong>
+Seu objetivo é editar o arquivo para que ele fique com a versão final correta. Isso pode envolver:
+    <ul>
+      <li>Manter apenas a sua versão (do <code class="language-plaintext highlighter-rouge">HEAD</code>).</li>
+      <li>Manter apenas a versão do outro <em>branch</em> (a versão “incoming”).</li>
+      <li>Combinar manualmente partes de ambas as versões.</li>
+      <li>Escrever um código completamente novo que substitua as duas versões conflitantes.
+<strong>Importante:</strong> Você deve remover completamente os marcadores de conflito (<code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code class="language-plaintext highlighter-rouge">=======</code>, <code class="language-plaintext highlighter-rouge">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>) após decidir como o código final deve ficar.</li>
+    </ul>
+
+    <p><strong>Dica para IDEs:</strong></p>
+    <ul>
+      <li><strong>VS Code:</strong> Oferece uma interface visual muito útil para resolver conflitos. Ele destaca as seções conflitantes e permite que você clique para aceitar a “Current Change” (sua), “Incoming Change” (do outro <em>branch</em>), “Both Changes”, ou editar manualmente.</li>
+      <li><strong>IntelliJ IDEA (e outros JetBrains IDEs):</strong> Também possuem uma poderosa ferramenta de <em>merge</em> visual de três vias que mostra sua versão, a versão do outro <em>branch</em>, e o resultado da mesclagem em painéis separados, facilitando a escolha e combinação das alterações.</li>
+    </ul>
+  </li>
+  <li><strong>Adicione os arquivos resolvidos à área de <em>stage</em></strong>:
+Depois de editar cada arquivo conflitante e salvar suas alterações (garantindo que todos os marcadores de conflito foram removidos), você precisa informar ao Git que o conflito foi resolvido adicionando o arquivo à área de <em>stage</em>.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add arquivo_conflitante.txt
+<span class="c"># Repita para todos os arquivos que tiveram conflitos e foram resolvidos.</span>
+<span class="c"># Ou, se você resolveu todos:</span>
+<span class="c"># git add .</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Faça um novo <em>commit</em> para completar o <em>merge</em></strong>:
+Uma vez que todos os conflitos foram resolvidos e os arquivos relevantes foram adicionados à área de <em>stage</em>, você pode finalizar o processo de <em>merge</em> fazendo um <em>commit</em>.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit
+</code></pre></div>    </div>
+    <p>O Git geralmente abrirá seu editor de texto configurado com uma mensagem de <em>commit</em> de <em>merge</em> padrão (ex: “Merge branch ‘feature-xyz’ into ‘main’”). Você pode usar essa mensagem ou editá-la, se necessário.</p>
+
+    <p>Se o conflito ocorreu durante um <code class="language-plaintext highlighter-rouge">git rebase</code>, o comando para continuar após resolver e adicionar os arquivos é:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase <span class="nt">--continue</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>Para abortar um <em>merge</em> (se você não quiser continuar):</strong>
+Se você está no meio de um <em>merge</em> com conflitos e decide que não quer completá-lo, você pode abortar o processo:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git merge <span class="nt">--abort</span>
+</code></pre></div></div>
+<p>Isso tentará reverter seu <em>branch</em> para o estado em que estava antes de você iniciar o <em>merge</em>.</p>
+
+<h2 id="como-alterar-a-url-de-um-repositório-remoto-">Como alterar a URL de um repositório remoto 🌐</h2>
+
+<p>Pode haver situações em que você precise alterar a URL de um repositório remoto ao qual seu projeto local está conectado. Isso pode acontecer se:</p>
+
+<ul>
+  <li>O repositório foi movido para um novo servidor ou plataforma (ex: de Bitbucket para GitHub).</li>
+  <li>O nome de usuário ou da organização que hospeda o repositório mudou.</li>
+  <li>Você deseja mudar o protocolo de conexão (ex: de HTTPS para SSH, ou vice-versa).</li>
+</ul>
+
+<p><strong>Comandos Úteis:</strong></p>
+
+<ol>
+  <li><strong>Verificar os remotos atuais e suas URLs:</strong>
+Antes de alterar uma URL, é bom verificar quais remotos estão configurados e quais são suas URLs atuais.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote <span class="nt">-v</span>
+</code></pre></div>    </div>
+    <p>Isso listará todos os seus repositórios remotos configurados (geralmente, pelo menos <code class="language-plaintext highlighter-rouge">origin</code>) e suas URLs para <em>fetch</em> (buscar) e <em>push</em> (enviar).
+Exemplo de saída:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>origin  https://github.com/seuusuarioantigo/meurepositorio.git (fetch)
+origin  https://github.com/seuusuarioantigo/meurepositorio.git (push)
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Alterar a URL de um remoto existente:</strong>
+O comando para isso é <code class="language-plaintext highlighter-rouge">git remote set-url</code>.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote set-url &lt;nome_do_remoto&gt; &lt;nova_url&gt;
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">&lt;nome_do_remoto&gt;</code>: É o nome do remoto que você quer modificar (geralmente <code class="language-plaintext highlighter-rouge">origin</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">&lt;nova_url&gt;</code>: É a nova URL completa para o repositório remoto.</li>
+    </ul>
+
+    <p><strong>Exemplo: Mudando de HTTPS para SSH para o remoto <code class="language-plaintext highlighter-rouge">origin</code></strong>
+Suponha que a URL atual do <code class="language-plaintext highlighter-rouge">origin</code> é <code class="language-plaintext highlighter-rouge">https://github.com/seuusuario/meurepo.git</code> e você quer mudar para a URL SSH <code class="language-plaintext highlighter-rouge">git@github.com:seuusuario/meurepo.git</code>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote set-url origin git@github.com:seuusuario/meurepo.git
+</code></pre></div>    </div>
+
+    <p><strong>Exemplo: Repositório mudou de nome de usuário</strong>
+Se o repositório <code class="language-plaintext highlighter-rouge">meurepo</code> foi transferido de <code class="language-plaintext highlighter-rouge">usuarioantigo</code> para <code class="language-plaintext highlighter-rouge">novousuario</code> no GitHub.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote set-url origin https://github.com/novousuario/meurepo.git
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Verificar se a URL foi atualizada:</strong>
+Após executar <code class="language-plaintext highlighter-rouge">git remote set-url</code>, você pode verificar novamente com <code class="language-plaintext highlighter-rouge">git remote -v</code> para confirmar que a URL foi alterada com sucesso.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote <span class="nt">-v</span>
+<span class="c"># Exemplo de saída após a alteração:</span>
+<span class="c"># origin  git@github.com:seuusuario/meurepo.git (fetch)</span>
+<span class="c"># origin  git@github.com:seuusuario/meurepo.git (push)</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>Adicionar um novo remoto em vez de alterar:</strong>
+Se você não quer alterar a URL do <code class="language-plaintext highlighter-rouge">origin</code>, mas sim adicionar uma conexão para um outro repositório remoto (por exemplo, um <em>fork</em> ou um espelho), você usaria <code class="language-plaintext highlighter-rouge">git remote add</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add &lt;nome_para_o_novo_remoto&gt; &lt;url_do_novo_remoto&gt;
+<span class="c"># Exemplo:</span>
+<span class="c"># git remote add upstream https://github.com/projetooriginal/repositorio.git</span>
+</code></pre></div></div>
+
+<p>Agora, você pode usar <code class="language-plaintext highlighter-rouge">&lt;nome_para_o_novo_remoto&gt;</code> para referenciar esse novo repositório remoto em comandos como <code class="language-plaintext highlighter-rouge">git fetch</code>, <code class="language-plaintext highlighter-rouge">git pull</code>, ou <code class="language-plaintext highlighter-rouge">git push</code>.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>Este guia cobre algumas das situações mais comuns que você pode encontrar ao usar Git e GitHub, desde remover arquivos da área de <em>stage</em> até resolver conflitos de <em>merge</em>. Lembre-se sempre de fazer backup do seu trabalho antes de executar comandos destrutivos como <code class="language-plaintext highlighter-rouge">git reset --hard</code> ou <code class="language-plaintext highlighter-rouge">git push --force</code>, e de comunicar-se com sua equipe ao fazer alterações significativas no histórico do repositório. Boa sorte com seus projetos! 🚀</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

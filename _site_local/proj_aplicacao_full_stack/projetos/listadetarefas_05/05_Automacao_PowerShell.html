@@ -1,0 +1,53 @@
+<h1 id="-módulo-5-automação-com-powershell-listadetarefas-painelps1">🤖 Módulo 5: Automação com PowerShell (<code class="language-plaintext highlighter-rouge">listadetarefas-painel.ps1</code>)</h1>
+
+<p><strong>Objetivo:</strong> Centralizar o gerenciamento do ecossistema com um painel de controle para iniciar e parar todos os serviços de forma rápida e fácil.</p>
+
+<h3 id="--passo-1-estrutura-final-e-configuração">### 📂 Passo 1: Estrutura Final e Configuração</h3>
+<ol>
+  <li>Na <strong>pasta raiz</strong> que contém todos os 4 projetos, crie o arquivo <code class="language-plaintext highlighter-rouge">listadetarefas-painel.ps1</code>.</li>
+  <li><strong>Habilite a Execução de Scripts:</strong> Abra o PowerShell como <strong>Administrador</strong> e execute (apenas uma vez):
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Set-ExecutionPolicy</span><span class="w"> </span><span class="nt">-ExecutionPolicy</span><span class="w"> </span><span class="nx">RemoteSigned</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="estrutura-de-pastas-final-do-projeto-completo">Estrutura de Pastas Final do Projeto Completo</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>projeto-todolist/
+├── listadetarefas-api/
+├── listadetarefas-web/
+├── listadetarefas-desktop/
+├── listadetarefas-android/
+└── listadetarefas-painel.ps1  # &lt;- Script de automação
+</code></pre></div></div>
+
+<h3 id="--passo-2-o-script-de-automação">### 📜 Passo 2: O Script de Automação</h3>
+<p>Copie o código abaixo para o seu arquivo <code class="language-plaintext highlighter-rouge">listadetarefas-painel.ps1</code>. Ele está corrigido para usar os nomes corretos dos projetos, é portátil e verifica se os projetos precisam ser construídos antes de executar.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cole o código completo e corrigido do listadetarefas-painel.ps1 do guia anterior aqui.</span><span class="w">
+</span><span class="c"># Este script já inclui as melhores práticas de verificação e portabilidade.</span><span class="w">
+</span><span class="c"># --- CONFIGURAÇÕES GLOBAIS ---</span><span class="w">
+</span><span class="nv">$basePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">$PSScriptRoot</span><span class="w">
+</span><span class="nv">$apiPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"</span><span class="nv">$basePath</span><span class="s2">\listadetarefas-api"</span><span class="w">
+</span><span class="nv">$webPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"</span><span class="nv">$basePath</span><span class="s2">\listadetarefas-web"</span><span class="w">
+</span><span class="nv">$desktopPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"</span><span class="nv">$basePath</span><span class="s2">\listadetarefas-desktop"</span><span class="w">
+</span><span class="nv">$androidPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"</span><span class="nv">$basePath</span><span class="s2">\listadetarefas-android"</span><span class="w">
+</span><span class="nv">$sdkPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"C:\Users\</span><span class="nv">$</span><span class="nn">env</span><span class="p">:</span><span class="nv">UserName</span><span class="s2">\AppData\Local\Android\Sdk"</span><span class="w"> </span><span class="c"># Ajuste se necessário</span><span class="w">
+</span><span class="nv">$emulatorPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"</span><span class="nv">$sdkPath</span><span class="s2">\emulator"</span><span class="w">
+</span><span class="nv">$platformToolsPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"</span><span class="nv">$sdkPath</span><span class="s2">\platform-tools"</span><span class="w">
+</span><span class="nv">$emulatorName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Medium_Phone"</span><span class="w"> </span><span class="c"># Nome do seu emulador</span><span class="w">
+</span><span class="nv">$androidPackage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"br.com.curso.listadetarefas.android"</span><span class="w">
+</span><span class="nv">$desktopWindowTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Minha Lista de Tarefas (Desktop)"</span><span class="w">
+</span><span class="c"># ... (resto das funções Get-ServiceStatus, Start-Service, Stop-Service e o menu interativo) ...</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="--passo-3-teste-do-painel-de-controle">### ✅ Passo 3: Teste do Painel de Controle</h3>
+<ol>
+  <li>Abra o terminal na pasta raiz do projeto.</li>
+  <li>Execute o script: <code class="language-plaintext highlighter-rouge">.\listadetarefas-painel.ps1</code></li>
+  <li>Teste as opções do menu (Iniciar API, Parar API, Iniciar TUDO, etc.) para garantir que o painel está gerenciando todos os componentes do ecossistema corretamente.</li>
+</ol>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

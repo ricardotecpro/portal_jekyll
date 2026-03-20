@@ -1,0 +1,501 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/04_estrutura_condicional.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>⚖️ Estrutura Condicional em Programação | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="⚖️ Estrutura Condicional em Programação" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/04_estrutura_condicional.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/04_estrutura_condicional.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="⚖️ Estrutura Condicional em Programação" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"⚖️ Estrutura Condicional em Programação","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/04_estrutura_condicional.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / ⚖️ estrutura condicional em programação</span>
+          
+        
+      </nav>
+
+      <h1 id="️-estrutura-condicional-em-programação">⚖️ Estrutura Condicional em Programação</h1>
+
+<p>Após entendermos como os programas executam comandos em sequência, vamos explorar a <strong>estrutura condicional</strong>. Ela permite que um programa tome decisões, alterando seu fluxo de execução com base em condições específicas. É o que torna os programas “inteligentes” e dinâmicos.</p>
+
+<h2 id="-expressões-lógicas-e-comparativas">🔍 Expressões Lógicas e Comparativas</h2>
+
+<p>Para que uma estrutura condicional funcione, ela precisa avaliar uma condição. O resultado dessa avaliação é sempre um valor lógico: <strong>verdadeiro</strong> ou <strong>falso</strong>. Essas condições são construídas com expressões comparativas e lógicas.</p>
+
+<h3 id="expressões-comparativas">Expressões Comparativas</h3>
+
+<p>Comparam dois valores e o resultado é sempre um <code class="language-plaintext highlighter-rouge">boolean</code> (<code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>).</p>
+
+<p><strong>Operadores Comparativos em Java:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Operador VisualG</th>
+      <th style="text-align: left">Operador Java</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior que</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor que</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">=</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left"><strong>Igual a</strong> (Note a diferença!)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&lt;&gt;</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente de</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Exemplos (supondo <code class="language-plaintext highlighter-rouge">int x = 10;</code>):</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">x &gt; 0</code> → Resultado: <code class="language-plaintext highlighter-rouge">true</code></li>
+  <li><code class="language-plaintext highlighter-rouge">x == 10</code> → Resultado: <code class="language-plaintext highlighter-rouge">true</code></li>
+  <li><code class="language-plaintext highlighter-rouge">x != 10</code> → Resultado: <code class="language-plaintext highlighter-rouge">false</code></li>
+  <li><code class="language-plaintext highlighter-rouge">20 &lt;= 15</code> → Resultado: <code class="language-plaintext highlighter-rouge">false</code></li>
+</ul>
+
+<h3 id="expressões-lógicas">Expressões Lógicas</h3>
+
+<p>Combinam duas ou mais expressões comparativas, permitindo criar condições mais complexas.</p>
+
+<p><strong>Operadores Lógicos em Java:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Operador VisualG</th>
+      <th style="text-align: left">Operador Java</th>
+      <th style="text-align: left">Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">E</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left"><strong>E (AND)</strong>: Verdadeiro somente se <strong>todas</strong> as condições forem verdadeiras.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">OU</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left"><strong>OU (OR)</strong>: Verdadeiro se <strong>pelo menos uma</strong> condição for verdadeira.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">NAO</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left"><strong>NÃO (NOT)</strong>: <strong>Inverte</strong> o valor da condição (de <code class="language-plaintext highlighter-rouge">true</code> para <code class="language-plaintext highlighter-rouge">false</code> e vice-versa).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="operador--e">Operador <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> (E)</h4>
+
+<p>Pense na regra para obter uma habilitação de motorista: você precisa ser aprovado no exame psicotécnico <strong>E</strong> no exame de legislação <strong>E</strong> no exame de direção. Se falhar em qualquer um deles, o resultado final é “reprovado”. Todas as condições devem ser verdadeiras.</p>
+
+<p><strong>Tabela Verdade (E):</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">A</th>
+      <th style="text-align: left">B</th>
+      <th style="text-align: left">A &amp;&amp; B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="operador--ou">Operador <code class="language-plaintext highlighter-rouge">||</code> (OU)</h4>
+
+<p>Pense nas vagas de estacionamento preferenciais: você pode usá-las se for idoso(a), <strong>OU</strong> pessoa com deficiência, <strong>OU</strong> gestante. Basta atender a uma das condições para ter o direito.</p>
+
+<p><strong>Tabela Verdade (OU):</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">A</th>
+      <th style="text-align: left">B</th>
+      <th style="text-align: left">A</th>
+      <th> </th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="operador--não">Operador <code class="language-plaintext highlighter-rouge">!</code> (NÃO)</h4>
+
+<p>Pense na regra para uma bolsa de estudos: você tem direito se <strong>NÃO</strong> possuir renda maior que R$ 3.000,00. Este operador inverte o resultado da condição. Se a condição <code class="language-plaintext highlighter-rouge">renda &gt; 3000</code> for verdadeira, <code class="language-plaintext highlighter-rouge">!(renda &gt; 3000)</code> será falsa.</p>
+
+<p><strong>Tabela Verdade (NÃO):</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">A</th>
+      <th style="text-align: left">!A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-a-estrutura-if-else">🔀 A Estrutura <code class="language-plaintext highlighter-rouge">if-else</code></h2>
+
+<p>É a principal estrutura de controle condicional. Ela permite que um bloco de comandos seja executado somente se uma determinada condição for atendida.</p>
+
+<h3 id="if-simples"><code class="language-plaintext highlighter-rouge">if</code> Simples</h3>
+
+<p>Executa um bloco de código se a condição for verdadeira. Se for falsa, o bloco é simplesmente ignorado.</p>
+
+<p><strong>Sintaxe em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">condicao</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Bloco de comandos a ser executado</span>
+    <span class="c1">// se a condição for verdadeira.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="if-else-composta"><code class="language-plaintext highlighter-rouge">if-else</code> Composta</h3>
+
+<p>Oferece um caminho alternativo. Se a condição for verdadeira, o bloco <code class="language-plaintext highlighter-rouge">if</code> é executado. Caso contrário (<code class="language-plaintext highlighter-rouge">else</code>), o bloco <code class="language-plaintext highlighter-rouge">else</code> é executado.</p>
+
+<p><strong>Sintaxe em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span><span class="n">condicao</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Bloco de comandos a ser executado</span>
+    <span class="c1">// se a condição for verdadeira.</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="c1">// Bloco de comandos a ser executado</span>
+    <span class="c1">// se a condição for falsa.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="encadeamento-com-else-if">Encadeamento com <code class="language-plaintext highlighter-rouge">else if</code></h3>
+
+<p>Para cenários com múltiplas condições (mais de duas possibilidades), podemos encadear várias estruturas <code class="language-plaintext highlighter-rouge">if-else</code>.</p>
+
+<p><strong>Exemplo: Saudação baseada na hora do dia</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Saudacao</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a hora atual (0-23): "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">hora</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// se a hora for menor que 12</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bom dia!"</span><span class="o">);</span> <span class="c1">// imprime Bom dia!</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// senão, se a hora for menor que 18</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Boa tarde!"</span><span class="o">);</span> <span class="c1">// imprime Boa tarde!</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// senão (para qualquer outra hora &gt;= 18)</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Boa noite!"</span><span class="o">);</span> <span class="c1">// imprime Boa noite!</span>
+        <span class="o">}</span>
+        
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Boa Prática</strong>: Repare na <strong>indentação</strong> (o recuo dos blocos de código). Ela não afeta o funcionamento em Java, mas é fundamental para a legibilidade do código!</p>
+</blockquote>
+
+<h2 id="-a-estrutura-switch-case">🔢 A Estrutura <code class="language-plaintext highlighter-rouge">switch-case</code></h2>
+
+<p>Quando temos várias opções de fluxo que dependem do valor de uma <strong>única variável</strong>, podemos usar a estrutura <code class="language-plaintext highlighter-rouge">switch-case</code> como uma alternativa mais limpa e organizada a um longo encadeamento de <code class="language-plaintext highlighter-rouge">if-else if</code>.</p>
+
+<p><strong>Problema Exemplo:</strong> Ler um número inteiro de 1 a 7 e escrever o dia da semana correspondente.</p>
+
+<p><strong>Solução com <code class="language-plaintext highlighter-rouge">switch-case</code> em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DiaDaSemana</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite um número para o dia da semana (1-7): "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">dia</span><span class="o">;</span>
+
+        <span class="k">switch</span> <span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// A variável a ser avaliada</span>
+            <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="c1">// Se o valor for 1</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Domingo"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span> <span class="c1">// Interrompe a execução do switch</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="c1">// Se o valor for 2</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Segunda-feira"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Terça-feira"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Quarta-feira"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Quinta-feira"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Sexta-feira"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Sábado"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="k">default</span><span class="o">:</span> <span class="c1">// Equivalente ao "outrocaso", se nenhum caso corresponder</span>
+                <span class="n">dia</span> <span class="o">=</span> <span class="s">"Valor inválido"</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dia da semana: "</span> <span class="o">+</span> <span class="n">dia</span><span class="o">);</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Importante:</strong> O comando <code class="language-plaintext highlighter-rouge">break</code> é essencial. Sem ele, o código continuaria a executar os <code class="language-plaintext highlighter-rouge">case</code> seguintes (“fall-through”), o que geralmente não é o comportamento desejado. O bloco <code class="language-plaintext highlighter-rouge">default</code> é opcional e lida com todos os valores não cobertos pelos <code class="language-plaintext highlighter-rouge">case</code>.</p>
+</blockquote>
+
+<h2 id="️-exercícios-práticos-resolvidos-em-java">✍️ Exercícios Práticos Resolvidos em Java</h2>
+
+<h3 id="exercício-1-fórmula-de-bhaskara-com-validação">Exercício 1: Fórmula de Bhaskara com Validação</h3>
+
+<p><strong>Problema:</strong> Relembrando a fórmula de Bhaskara (\(ax^2 + bx + c = 0\)), precisamos criar um programa que calcule as raízes, mas com duas validações importantes:</p>
+
+<ol>
+  <li>O coeficiente <code class="language-plaintext highlighter-rouge">a</code> não pode ser zero, pois senão não é uma equação do segundo grau.</li>
+  <li>O valor de delta (\(\Delta = b^2 - 4ac\)) não pode ser negativo, pois não existe raiz quadrada real de número negativo.</li>
+</ol>
+
+<p>O programa deve tratar essas condições antes de tentar calcular as raízes.</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bhaskara</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Coeficiente a: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Coeficiente b: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Coeficiente c: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">c</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Esta não é uma equação de segundo grau!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="kt">double</span> <span class="n">delta</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">)</span> <span class="o">-</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="o">;</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Esta equação não possui raízes reais."</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="kt">double</span> <span class="n">x1</span> <span class="o">=</span> <span class="o">(-</span><span class="n">b</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">delta</span><span class="o">))</span> <span class="o">/</span> <span class="o">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">a</span><span class="o">);</span>
+                <span class="kt">double</span> <span class="n">x2</span> <span class="o">=</span> <span class="o">(-</span><span class="n">b</span> <span class="o">-</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">delta</span><span class="o">))</span> <span class="o">/</span> <span class="o">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">a</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"X1 = %.4f
+"</span><span class="o">,</span> <span class="n">x1</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"X2 = %.4f
+"</span><span class="o">,</span> <span class="n">x2</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplos de Execução:</strong></p>
+
+<ul>
+  <li><strong>Entrada:</strong> <code class="language-plaintext highlighter-rouge">a=1</code>, <code class="language-plaintext highlighter-rouge">b=0</code>, <code class="language-plaintext highlighter-rouge">c=-9</code> → <strong>Saída:</strong> <code class="language-plaintext highlighter-rouge">X1 = 3.0000</code>, <code class="language-plaintext highlighter-rouge">X2 = -3.0000</code></li>
+  <li><strong>Entrada:</strong> <code class="language-plaintext highlighter-rouge">a=2</code>, <code class="language-plaintext highlighter-rouge">b=9</code>, <code class="language-plaintext highlighter-rouge">c=10</code> → <strong>Saída:</strong> <code class="language-plaintext highlighter-rouge">X1 = -2.0000</code>, <code class="language-plaintext highlighter-rouge">X2 = -2.5000</code></li>
+  <li><strong>Entrada:</strong> <code class="language-plaintext highlighter-rouge">a=5</code>, <code class="language-plaintext highlighter-rouge">b=2</code>, <code class="language-plaintext highlighter-rouge">c=3</code> → <strong>Saída:</strong> <code class="language-plaintext highlighter-rouge">Esta equação não possui raízes reais.</code></li>
+  <li><strong>Entrada:</strong> <code class="language-plaintext highlighter-rouge">a=0</code>, <code class="language-plaintext highlighter-rouge">b=4</code>, <code class="language-plaintext highlighter-rouge">c=2</code> → <strong>Saída:</strong> <code class="language-plaintext highlighter-rouge">Esta não é uma equação de segundo grau!</code></li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

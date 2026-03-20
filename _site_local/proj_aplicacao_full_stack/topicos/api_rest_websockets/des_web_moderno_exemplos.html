@@ -1,0 +1,256 @@
+<h2 id="desenvolvimento-web-moderno">Desenvolvimento Web Moderno:</h2>
+<h3 id="http-tcpip-websockets-spa-htmx-ipv4ipv6-e-infraestrutura-de-rede-com-exemplos-práticos">HTTP, TCP/IP, WebSockets, SPA, HTMX, IPv4/IPv6 e Infraestrutura de Rede com Exemplos Práticos</h3>
+
+<p>O desenvolvimento web envolve não apenas frameworks modernos, mas também uma <strong>infraestrutura robusta</strong> que garante a comunicação eficiente entre servidores e clientes. Aqui, veremos conceitos como <strong>HTTP, TCP/IP, DNS, DHCP, IPv4/IPv6, CDNs</strong> e exemplos práticos para aplicar esses conceitos.</p>
+
+<hr />
+
+<h2 id="1-códigos-de-status-http-com-exemplo-prático"><strong>1. Códigos de Status HTTP com Exemplo Prático</strong></h2>
+
+<p>Os códigos HTTP indicam o status das requisições entre cliente e servidor.</p>
+
+<h3 id="exemplo-criando-uma-api-rest-com-nodejs-e-express"><strong>Exemplo: Criando uma API REST com Node.js e Express</strong></h3>
+
+<p>Este código cria um servidor que responde com diferentes códigos HTTP.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+
+<span class="c1">// Rota com status 200 (OK)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Requisição bem-sucedida!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Rota com status 404 (Not Found)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/erro</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Recurso não encontrado!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Rota com status 500 (Erro Interno)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/falha</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erro no servidor!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Servidor rodando em http://localhost:</span><span class="p">${</span><span class="nx">port</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="testando"><strong>Testando</strong></h3>
+
+<ol>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:3000/</code> → Retorna <code class="language-plaintext highlighter-rouge">200 OK</code>.</li>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:3000/erro</code> → Retorna <code class="language-plaintext highlighter-rouge">404 Not Found</code>.</li>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:3000/falha</code> → Retorna <code class="language-plaintext highlighter-rouge">500 Internal Server Error</code>.</li>
+</ol>
+
+<hr />
+
+<h2 id="2-comunicação-tcpip-com-exemplo-prático"><strong>2. Comunicação TCP/IP com Exemplo Prático</strong></h2>
+
+<h3 id="exemplo-criando-um-servidor-tcp-em-nodejs"><strong>Exemplo: Criando um Servidor TCP em Node.js</strong></h3>
+
+<p>O TCP garante a entrega ordenada dos pacotes de dados. Aqui está um exemplo de <strong>servidor e cliente TCP</strong>.</p>
+
+<h4 id="servidor-tcp-nodejs"><strong>Servidor TCP (Node.js)</strong></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">net</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">net</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">createServer</span><span class="p">((</span><span class="nx">socket</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Cliente conectado.</span><span class="dl">'</span><span class="p">);</span>
+
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Mensagem recebida: </span><span class="p">${</span><span class="nx">data</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="nx">socket</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">Resposta do servidor: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">data</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">end</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Cliente desconectado.</span><span class="dl">'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Servidor TCP rodando na porta 4000</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h4 id="cliente-tcp-nodejs"><strong>Cliente TCP (Node.js)</strong></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">net</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">net</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">createConnection</span><span class="p">({</span> <span class="na">port</span><span class="p">:</span> <span class="mi">4000</span> <span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Conectado ao servidor</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">client</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="dl">'</span><span class="s1">Olá, servidor!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">client</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Resposta do servidor: </span><span class="p">${</span><span class="nx">data</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="nx">client</span><span class="p">.</span><span class="nf">end</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">client</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">end</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Desconectado do servidor</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="testando-1"><strong>Testando</strong></h3>
+
+<ol>
+  <li><strong>Execute o servidor TCP</strong>: <code class="language-plaintext highlighter-rouge">node servidor.js</code>.</li>
+  <li><strong>Execute o cliente TCP</strong>: <code class="language-plaintext highlighter-rouge">node cliente.js</code>.</li>
+  <li><strong>Saída esperada</strong>:
+    <ul>
+      <li>No servidor: “Mensagem recebida: Olá, servidor!”</li>
+      <li>No cliente: “Resposta do servidor: Olá, servidor!”</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="3-websockets-comunicação-em-tempo-real"><strong>3. WebSockets: Comunicação em Tempo Real</strong></h2>
+
+<p>Os <strong>WebSockets</strong> permitem comunicação bidirecional entre cliente e servidor.</p>
+
+<h3 id="exemplo-criando-um-chat-com-websockets-nodejs-e-html"><strong>Exemplo: Criando um Chat com WebSockets (Node.js e HTML)</strong></h3>
+
+<h4 id="servidor-websocket-nodejs"><strong>Servidor WebSocket (Node.js)</strong></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">.</span><span class="nc">Server</span><span class="p">({</span> <span class="na">port</span><span class="p">:</span> <span class="mi">8080</span> <span class="p">});</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">connection</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Cliente conectado.</span><span class="dl">'</span><span class="p">);</span>
+
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Mensagem recebida:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+        <span class="nx">socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="s2">`Servidor recebeu: </span><span class="p">${</span><span class="nx">message</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Cliente desconectado.</span><span class="dl">'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Servidor WebSocket rodando na porta 8080</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="cliente-websocket-html--javascript"><strong>Cliente WebSocket (HTML + JavaScript)</strong></h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Chat WebSocket<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>Chat WebSocket<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"mensagem"</span> <span class="na">placeholder=</span><span class="s">"Digite uma mensagem"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"enviarMensagem()"</span><span class="nt">&gt;</span>Enviar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">"resposta"</span><span class="nt">&gt;&lt;/p&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+        <span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://localhost:8080</span><span class="dl">'</span><span class="p">);</span>
+
+        <span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">resposta</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+        <span class="p">};</span>
+
+        <span class="kd">function</span> <span class="nf">enviarMensagem</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">mensagem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">mensagem</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+            <span class="nx">socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="testando-2"><strong>Testando</strong></h3>
+
+<ol>
+  <li><strong>Inicie o servidor WebSocket</strong>: <code class="language-plaintext highlighter-rouge">node servidor.js</code>.</li>
+  <li><strong>Abra o HTML no navegador e envie mensagens</strong>.</li>
+  <li><strong>Veja a resposta do servidor sendo exibida na página</strong>.</li>
+</ol>
+
+<hr />
+
+<h2 id="4-resolução-de-dns-com-exemplo-prático"><strong>4. Resolução de DNS com Exemplo Prático</strong></h2>
+
+<p>O <strong>DNS</strong> converte nomes de domínio em endereços IP.</p>
+
+<h3 id="exemplo-fazendo-uma-consulta-dns-em-nodejs"><strong>Exemplo: Fazendo uma Consulta DNS em Node.js</strong></h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dns</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dns</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">dns</span><span class="p">.</span><span class="nf">lookup</span><span class="p">(</span><span class="dl">'</span><span class="s1">google.com</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">address</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Endereço IP do Google: </span><span class="p">${</span><span class="nx">address</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="testando-3"><strong>Testando</strong></h3>
+
+<p>Execute o script com <code class="language-plaintext highlighter-rouge">node dns.js</code>.</p>
+
+<ul>
+  <li><strong>Saída esperada</strong>: <code class="language-plaintext highlighter-rouge">Endereço IP do Google: 142.250.217.206</code> (pode variar).</li>
+</ul>
+
+<hr />
+
+<h2 id="5-testando-ipv4-e-ipv6"><strong>5. Testando IPv4 e IPv6</strong></h2>
+
+<p>Para verificar o <strong>endereço IPv4 e IPv6 do seu dispositivo</strong>, use o seguinte comando:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ipconfig <span class="o">(</span>Windows<span class="o">)</span>
+ifconfig <span class="o">(</span>Linux/Mac<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Ou execute o seguinte código em <strong>Node.js</strong>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">os</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">os</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">interfaces</span> <span class="o">=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">networkInterfaces</span><span class="p">();</span>
+<span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">nome</span> <span class="k">in</span> <span class="nx">interfaces</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">interfaces</span><span class="p">[</span><span class="nx">nome</span><span class="p">].</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">info</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">nome</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">info</span><span class="p">.</span><span class="nx">family</span><span class="p">}</span><span class="s2"> - </span><span class="p">${</span><span class="nx">info</span><span class="p">.</span><span class="nx">address</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída esperada</strong> (Exemplo):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Wi-Fi: IPv4 - 192.168.1.10
+Wi-Fi: IPv6 - fe80::1c4d:4567:abcd:ef90
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-simulando-uma-cdn"><strong>6. Simulando uma CDN</strong></h2>
+
+<p>Uma <strong>CDN</strong> distribui conteúdo para melhorar a performance.</p>
+
+<h3 id="exemplo-servindo-arquivos-estáticos-com-expressjs-simulação-de-cdn"><strong>Exemplo: Servindo Arquivos Estáticos com Express.js (Simulação de CDN)</strong></h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">/static</span><span class="dl">'</span><span class="p">,</span> <span class="nx">express</span><span class="p">.</span><span class="nf">static</span><span class="p">(</span><span class="dl">'</span><span class="s1">public</span><span class="dl">'</span><span class="p">));</span> <span class="c1">// Pasta pública para arquivos estáticos</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Servidor rodando em http://localhost:3000/static/arquivo.jpg</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Crie uma pasta <code class="language-plaintext highlighter-rouge">public/</code> e adicione uma imagem <code class="language-plaintext highlighter-rouge">arquivo.jpg</code>.</li>
+  <li>Execute o servidor com <code class="language-plaintext highlighter-rouge">node cdn.js</code>.</li>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:3000/static/arquivo.jpg</code> no navegador.</li>
+</ol>
+
+<p>Isso simula um CDN, servindo arquivos de forma otimizada.</p>
+
+<hr />
+
+<h2 id="conclusão"><strong>Conclusão</strong></h2>
+
+<p>Com esses exemplos práticos, você pode testar e entender melhor conceitos essenciais como <strong>HTTP, TCP/IP, WebSockets, DNS, IPv4/IPv6 e CDNs</strong>.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

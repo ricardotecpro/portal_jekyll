@@ -1,0 +1,96 @@
+<h1 id="-módulo-4-mobile-android---adotando-padrões-de-ui-modernos-mvvm">📱 Módulo 4: Mobile (Android) - Adotando Padrões de UI Modernos (MVVM)</h1>
+
+<p><strong>Objetivo:</strong> Implementar uma interação CRUD moderna e fluida, utilizando gestos de deslizar (swipe), seguindo o padrão <strong>MVVM</strong> com Jetpack Compose.</p>
+
+<h3 id="--passo-1-implementando-ações-de-deslizar-swipe">### 👉 Passo 1: Implementando Ações de Deslizar (Swipe)</h3>
+<ul>
+  <li><strong>Melhoria:</strong> Substituímos botões estáticos por ações de deslizar, um padrão de UX universal em dispositivos móveis. Usaremos o <code class="language-plaintext highlighter-rouge">SwipeToDismissBox</code> do Material 3, a abordagem recomendada pelo Google.</li>
+</ul>
+
+<ol>
+  <li>Primeiro, modifique a <code class="language-plaintext highlighter-rouge">LazyColumn</code> em <code class="language-plaintext highlighter-rouge">MainActivity.kt</code> para usar o novo componente <code class="language-plaintext highlighter-rouge">TarefaItemSwipeable</code>.</li>
+  <li>Crie o novo Composable <code class="language-plaintext highlighter-rouge">TarefaItemSwipeable</code>.</li>
+</ol>
+
+<p><strong><code class="language-plaintext highlighter-rouge">MainActivity.kt</code> (Trecho da <code class="language-plaintext highlighter-rouge">LazyColumn</code>)</strong></p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... dentro do Composable TarefaScreen ...</span>
+<span class="nc">LazyColumn</span><span class="p">(</span><span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">fillMaxSize</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nf">items</span><span class="p">(</span><span class="n">tarefas</span><span class="p">,</span> <span class="n">key</span> <span class="p">=</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">id</span><span class="o">!!</span> <span class="p">})</span> <span class="p">{</span> <span class="n">tarefa</span> <span class="p">-&gt;</span>
+        <span class="c1">// Substituindo o antigo TarefaItem pelo novo componente com swipe</span>
+        <span class="nc">TarefaItemSwipeable</span><span class="p">(</span> 
+            <span class="n">tarefa</span> <span class="p">=</span> <span class="n">tarefa</span><span class="p">,</span>
+            <span class="n">onEdit</span> <span class="p">=</span> <span class="p">{</span> <span class="nf">onTaskClick</span><span class="p">(</span><span class="n">tarefa</span><span class="p">)</span> <span class="p">},</span> <span class="c1">// Abre o diálogo de edição</span>
+            <span class="n">onDelete</span> <span class="p">=</span> <span class="p">{</span> <span class="nf">onDeleteTask</span><span class="p">(</span><span class="n">tarefa</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="p">},</span>
+            <span class="n">onCheckedChange</span> <span class="p">=</span> <span class="p">{</span> <span class="n">isChecked</span> <span class="p">-&gt;</span> <span class="nf">onUpdateTask</span><span class="p">(</span><span class="n">tarefa</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">concluida</span> <span class="p">=</span> <span class="n">isChecked</span><span class="p">))</span> <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="nc">Divider</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Novo Composable: <code class="language-plaintext highlighter-rouge">TarefaItemSwipeable.kt</code></strong></p>
+<ul>
+  <li><strong>Boas Práticas:</strong> Este Composable é reutilizável e encapsula toda a lógica e estado do gesto de swipe, mantendo a <code class="language-plaintext highlighter-rouge">MainActivity</code> mais limpa.
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OptIn</span><span class="p">(</span><span class="nc">ExperimentalMaterial3Api</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">TarefaItemSwipeable</span><span class="p">(</span>
+  <span class="n">tarefa</span><span class="p">:</span> <span class="nc">Tarefa</span><span class="p">,</span>
+  <span class="n">onEdit</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Unit</span><span class="p">,</span>
+  <span class="n">onDelete</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Unit</span><span class="p">,</span>
+  <span class="n">onCheckedChange</span><span class="p">:</span> <span class="p">(</span><span class="nc">Boolean</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nc">Unit</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="kd">val</span> <span class="py">dismissState</span> <span class="p">=</span> <span class="nf">rememberDismissState</span><span class="p">(</span>
+      <span class="n">confirmValueChange</span> <span class="p">=</span> <span class="p">{</span>
+          <span class="k">when</span> <span class="p">(</span><span class="n">it</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nc">DismissValue</span><span class="p">.</span><span class="nc">DismissedToEnd</span> <span class="p">-&gt;</span> <span class="nf">onDelete</span><span class="p">()</span> <span class="c1">// Swipe para a direita -&gt; Deletar</span>
+              <span class="nc">DismissValue</span><span class="p">.</span><span class="nc">DismissedToStart</span> <span class="p">-&gt;</span> <span class="nf">onEdit</span><span class="p">()</span> <span class="c1">// Swipe para a esquerda -&gt; Editar</span>
+              <span class="nc">DismissValue</span><span class="p">.</span><span class="nc">Default</span> <span class="p">-&gt;</span> <span class="p">{}</span>
+          <span class="p">}</span>
+          <span class="c1">// Retorna false para que o item não suma da lista, apenas dispare a ação.</span>
+          <span class="k">return</span><span class="nd">@rememberDismissState</span> <span class="k">false</span> 
+      <span class="p">}</span>
+  <span class="p">)</span>
+
+  <span class="nc">SwipeToDismissBox</span><span class="p">(</span>
+      <span class="n">state</span> <span class="p">=</span> <span class="n">dismissState</span><span class="p">,</span>
+      <span class="n">enableDismissFromStartToEnd</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// Habilita swipe para direita</span>
+      <span class="n">enableDismissFromEndToStart</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// Habilita swipe para esquerda</span>
+      <span class="n">backgroundContent</span> <span class="p">=</span> <span class="p">{</span>
+          <span class="c1">// Desenha o fundo dinâmico (cor e ícone) baseado na direção do swipe</span>
+          <span class="kd">val</span> <span class="py">direction</span> <span class="p">=</span> <span class="n">dismissState</span><span class="p">.</span><span class="n">dismissDirection</span> <span class="o">?:</span> <span class="k">return</span><span class="nd">@SwipeToDismissBox</span>
+          <span class="kd">val</span> <span class="py">color</span> <span class="k">by</span> <span class="nf">animateColorAsState</span><span class="p">(</span>
+              <span class="k">when</span> <span class="p">(</span><span class="n">direction</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nc">DismissDirection</span><span class="p">.</span><span class="nc">StartToEnd</span> <span class="p">-&gt;</span> <span class="nc">Color</span><span class="p">(</span><span class="mh">0xFFFF4444</span><span class="p">)</span>
+                  <span class="nc">DismissDirection</span><span class="p">.</span><span class="nc">EndToStart</span> <span class="p">-&gt;</span> <span class="nc">Color</span><span class="p">(</span><span class="mh">0xFF33B5E5</span><span class="p">)</span>
+              <span class="p">}</span>
+          <span class="p">)</span>
+          <span class="kd">val</span> <span class="py">alignment</span> <span class="p">=</span> <span class="k">when</span> <span class="p">(</span><span class="n">direction</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nc">DismissDirection</span><span class="p">.</span><span class="nc">StartToEnd</span> <span class="p">-&gt;</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">CenterStart</span>
+              <span class="nc">DismissDirection</span><span class="p">.</span><span class="nc">EndToStart</span> <span class="p">-&gt;</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">CenterEnd</span>
+          <span class="p">}</span>
+          <span class="kd">val</span> <span class="py">icon</span> <span class="p">=</span> <span class="k">when</span> <span class="p">(</span><span class="n">direction</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nc">DismissDirection</span><span class="p">.</span><span class="nc">StartToEnd</span> <span class="p">-&gt;</span> <span class="nc">Icons</span><span class="p">.</span><span class="nc">Default</span><span class="p">.</span><span class="nc">Delete</span>
+              <span class="nc">DismissDirection</span><span class="p">.</span><span class="nc">EndToStart</span> <span class="p">-&gt;</span> <span class="nc">Icons</span><span class="p">.</span><span class="nc">Default</span><span class="p">.</span><span class="nc">Edit</span>
+          <span class="p">}</span>
+            
+          <span class="nc">Box</span><span class="p">(</span>
+              <span class="nc">Modifier</span><span class="p">.</span><span class="nf">fillMaxSize</span><span class="p">().</span><span class="nf">background</span><span class="p">(</span><span class="n">color</span><span class="p">).</span><span class="nf">padding</span><span class="p">(</span><span class="n">horizontal</span> <span class="p">=</span> <span class="mi">20</span><span class="p">.</span><span class="n">dp</span><span class="p">),</span>
+              <span class="n">contentAlignment</span> <span class="p">=</span> <span class="n">alignment</span>
+          <span class="p">)</span> <span class="p">{</span>
+              <span class="nc">Icon</span><span class="p">(</span><span class="n">icon</span><span class="p">,</span> <span class="n">contentDescription</span> <span class="p">=</span> <span class="s">"Ação"</span><span class="p">,</span> <span class="n">tint</span> <span class="p">=</span> <span class="nc">Color</span><span class="p">.</span><span class="nc">White</span><span class="p">)</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Conteúdo principal do item (o mesmo do TarefaItem anterior)</span>
+      <span class="nc">TarefaItem</span><span class="p">(</span><span class="n">tarefa</span> <span class="p">=</span> <span class="n">tarefa</span><span class="p">,</span> <span class="n">onCheckedChange</span> <span class="p">=</span> <span class="n">onCheckedChange</span><span class="p">,</span> <span class="n">onDeleteClick</span> <span class="p">=</span> <span class="p">{},</span> <span class="n">onTaskClick</span> <span class="p">=</span> <span class="p">{})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>O <code class="language-plaintext highlighter-rouge">ViewModel</code> não precisa de alterações, pois a View (<code class="language-plaintext highlighter-rouge">MainActivity</code>) continua chamando os mesmos métodos de negócio. A mudança é puramente na camada de UI.</li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

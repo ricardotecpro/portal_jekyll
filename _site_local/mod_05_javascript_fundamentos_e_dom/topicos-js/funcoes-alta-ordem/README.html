@@ -1,0 +1,99 @@
+<h1 id="-curso-nivelamento-javascript"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png" alt="curso logo" /> Curso Nivelamento JavaScript</h1>
+<blockquote>
+  <p>Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end</p>
+</blockquote>
+
+<h2 id="realização">Realização</h2>
+<p><a href="https://curso.com.br">curso - Escola de programação</a></p>
+
+<p><a href="https://instagram.com/curso.ig"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/ig-icon.png" alt="curso no Instagram" /></a>
+<a href="https://youtube.com/curso"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/yt-icon.png" alt="curso no Youtube" /></a></p>
+
+<h2 id="javascript---funções-de-alta-ordem">JavaScript - Funções de alta ordem</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">list2</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">const</span> <span class="nx">nomes</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">MARIA</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">JOAO</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ANABELA</span><span class="dl">'</span><span class="p">];</span>
+
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="c1">// map: aplica uma função a cada elemento da coleção original, </span>
+<span class="c1">// retornando uma nova coleção com os elementos alterados</span>
+
+<span class="kd">function</span> <span class="nf">dobro</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">triplo</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">m1</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">dobro</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">m2</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">triplo</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">m3</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">MAP ------------------------</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">m1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">m2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">m3</span><span class="p">);</span>
+
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="c1">// filter: retorna uma nova coleção contendo apenas </span>
+<span class="c1">// aqueles elementos da coleção original que </span>
+<span class="c1">// satisfazem um dado predicado</span>
+
+<span class="kd">function</span> <span class="nf">par</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">f1</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">par</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">f2</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">f3</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">FILTER ------------------------</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">f1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">f2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">f3</span><span class="p">);</span>
+
+<span class="c1">// -------------------------------------------------------------</span>
+<span class="c1">// reduce: aplica cumulativamente uma função aos elementos de </span>
+<span class="c1">// uma coleção, retornando o resultado final cumulativo.</span>
+<span class="c1">// * você pode informar, opcionalmente, um valor inicial como </span>
+<span class="c1">// parâmetro (necessário para coleção vazia).</span>
+
+<span class="kd">function</span> <span class="nf">soma</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">produto</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">r1</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="nx">soma</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">r2</span> <span class="o">=</span> <span class="nx">list2</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="nx">soma</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">r3</span> <span class="o">=</span> <span class="nx">list1</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="nx">produto</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">REDUCE ------------------------</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">r1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">r2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">r3</span><span class="p">);</span>
+
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="c1">// sort: ordena a coleção conforme a função de comparação </span>
+<span class="c1">// informada como parâmetro</span>
+
+<span class="kd">function</span> <span class="nf">compararPorTamanho</span><span class="p">(</span><span class="nx">s1</span><span class="p">,</span> <span class="nx">s2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">s1</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">s2</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">SORT -----------------------------</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">s1</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">nomes</span><span class="p">].</span><span class="nf">sort</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">s1</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">s2</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">nomes</span><span class="p">].</span><span class="nf">sort</span><span class="p">(</span><span class="nx">compararPorTamanho</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">s2</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">s3</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">nomes</span><span class="p">].</span><span class="nf">sort</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">y</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">s3</span><span class="p">);</span>
+</code></pre></div></div>
+

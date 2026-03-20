@@ -1,0 +1,435 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/08_funcoes_(exercicios).html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>☕ Exercícios Resolvidos com Funções em Java | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="☕ Exercícios Resolvidos com Funções em Java" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/08_funcoes_(exercicios).html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/08_funcoes_(exercicios).html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="☕ Exercícios Resolvidos com Funções em Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"☕ Exercícios Resolvidos com Funções em Java","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/08_funcoes_(exercicios).html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / ☕ exercícios resolvidos com funções em java</span>
+          
+        
+      </nav>
+
+      <h1 id="-exercícios-resolvidos-com-funções-em-java">☕ Exercícios Resolvidos com Funções em Java</h1>
+
+<p>Este documento apresenta uma série de problemas práticos e suas soluções em Java, com foco na criação e utilização de funções (métodos). Cada exercício foi projetado para reforçar conceitos como modularidade, reutilização de código e a diferença entre funções que retornam valores e procedimentos (<code class="language-plaintext highlighter-rouge">void</code>).</p>
+
+<blockquote>
+  <p><strong>Atenção:</strong> Nos exemplos de execução, os dados em <strong>vermelho</strong> representam os valores digitados pelo usuário no console.</p>
+</blockquote>
+
+<h2 id="1-problema-temperatura">1. Problema “temperatura”</h2>
+
+<p><strong>Descrição:</strong> Fazer um programa que solicite uma temperatura em Fahrenheit e mostre a conversão para Celsius. A fórmula é: \(C = \frac{5}{9}(F - 32)\)</p>
+
+<h3 id="solução-em-java">Solução em Java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Temperatura</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Converte uma temperatura de Fahrenheit para Celsius.
+     * @param f A temperatura em Fahrenheit.
+     * @return A temperatura equivalente em Celsius.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">fahrenheitParaCelsius</span><span class="o">(</span><span class="kt">double</span> <span class="n">f</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// É crucial usar 5.0/9.0 para garantir a divisão de ponto flutuante.</span>
+        <span class="k">return</span> <span class="mf">5.0</span> <span class="o">/</span> <span class="mf">9.0</span> <span class="o">*</span> <span class="o">(</span><span class="n">f</span> <span class="o">-</span> <span class="mf">32.0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a temperatura em Fahrenheit: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="kt">double</span> <span class="n">celsius</span> <span class="o">=</span> <span class="n">fahrenheitParaCelsius</span><span class="o">(</span><span class="n">fahrenheit</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Temperatura em Celsius = %.2f
+"</span><span class="o">,</span> <span class="n">celsius</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-de-execução">Exemplo de Execução</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite a temperatura em Fahrenheit: 75.0
+Temperatura em Celsius = 23.89
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-problema-retangulo">2. Problema “retangulo”</h2>
+
+<p><strong>Descrição:</strong> Fazer um programa para ler a base e a altura de um retângulo. Em seguida, usando funções, mostrar os valores da área, do perímetro e da diagonal.</p>
+
+<h3 id="solução-em-java-1">Solução em Java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Retangulo</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">calcularArea</span><span class="o">(</span><span class="kt">double</span> <span class="n">base</span><span class="o">,</span> <span class="kt">double</span> <span class="n">altura</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">base</span> <span class="o">*</span> <span class="n">altura</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">calcularPerimetro</span><span class="o">(</span><span class="kt">double</span> <span class="n">base</span><span class="o">,</span> <span class="kt">double</span> <span class="n">altura</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">(</span><span class="n">base</span> <span class="o">+</span> <span class="n">altura</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">calcularDiagonal</span><span class="o">(</span><span class="kt">double</span> <span class="n">base</span><span class="o">,</span> <span class="kt">double</span> <span class="n">altura</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">)</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">altura</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o valor da base do retângulo: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">base</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o valor da altura do retângulo: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">altura</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="kt">double</span> <span class="n">area</span> <span class="o">=</span> <span class="n">calcularArea</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="n">altura</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">perimetro</span> <span class="o">=</span> <span class="n">calcularPerimetro</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="n">altura</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">diagonal</span> <span class="o">=</span> <span class="n">calcularDiagonal</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="n">altura</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Área = %.2f
+"</span><span class="o">,</span> <span class="n">area</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Perímetro = %.2f
+"</span><span class="o">,</span> <span class="n">perimetro</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Diagonal = %.2f
+"</span><span class="o">,</span> <span class="n">diagonal</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-de-execução-1">Exemplo de Execução</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o valor da base do retângulo: 3.0
+Digite o valor da altura do retângulo: 4.0
+Área = 12.00
+Perímetro = 14.00
+Diagonal = 5.00
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-problema-tabuada">3. Problema “tabuada”</h2>
+
+<p><strong>Descrição:</strong> Fazer um programa para imprimir a tabuada de multiplicação (de 1 a 10) de um número N fornecido pelo usuário, usando um procedimento (<code class="language-plaintext highlighter-rouge">void</code>).</p>
+
+<h3 id="solução-em-java-2">Solução em Java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tabuada</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Exibe na tela a tabuada de multiplicação de 1 a 10 para um dado número.
+     * @param n O número para o qual a tabuada será gerada.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mostrarTabuada</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%d x %d = %d
+"</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Você quer a tabuada de qual número? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">numero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        
+        <span class="n">mostrarTabuada</span><span class="o">(</span><span class="n">numero</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-de-execução-2">Exemplo de Execução</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Você quer a tabuada de qual número? 7
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-problema-classificar_imc">4. Problema “classificar_imc”</h2>
+
+<p><strong>Descrição:</strong> Fazer um programa para ler o peso e altura de uma pessoa. Primeiro, calcular o IMC (\(IMC = \frac{Peso}{Altura^2}\)). Depois, classificar o resultado de acordo com a tabela:</p>
+
+<ul>
+  <li><strong>Abaixo de 20:</strong> “abaixo do peso”</li>
+  <li><strong>De 20 a 25 (exclusive):</strong> “peso normal”</li>
+  <li><strong>De 25 a 30 (exclusive):</strong> “sobrepeso”</li>
+  <li><strong>30 ou mais:</strong> “obeso”</li>
+</ul>
+
+<h3 id="solução-em-java-3">Solução em Java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassificarImc</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Calcula o Índice de Massa Corporal (IMC).
+     * @param peso O peso da pessoa em kg.
+     * @param altura A altura da pessoa em metros.
+     * @return O valor do IMC.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">calcularImc</span><span class="o">(</span><span class="kt">double</span> <span class="n">peso</span><span class="o">,</span> <span class="kt">double</span> <span class="n">altura</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">peso</span> <span class="o">/</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">altura</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Exibe a classificação do IMC de acordo com as faixas de referência.
+     * @param imc O valor do IMC a ser classificado.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">classificar</span><span class="o">(</span><span class="kt">double</span> <span class="n">imc</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">classificacao</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">imc</span> <span class="o">&lt;</span> <span class="mf">20.0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">classificacao</span> <span class="o">=</span> <span class="s">"abaixo do peso"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">imc</span> <span class="o">&lt;</span> <span class="mf">25.0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">classificacao</span> <span class="o">=</span> <span class="s">"peso normal"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">imc</span> <span class="o">&lt;</span> <span class="mf">30.0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">classificacao</span> <span class="o">=</span> <span class="s">"sobrepeso"</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">classificacao</span> <span class="o">=</span> <span class="s">"obeso"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Classificação: "</span> <span class="o">+</span> <span class="n">classificacao</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o peso: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">peso</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a altura: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">altura</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="kt">double</span> <span class="n">imc</span> <span class="o">=</span> <span class="n">calcularImc</span><span class="o">(</span><span class="n">peso</span><span class="o">,</span> <span class="n">altura</span><span class="o">);</span>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Resultado do IMC: %.2f
+"</span><span class="o">,</span> <span class="n">imc</span><span class="o">);</span>
+        <span class="n">classificar</span><span class="o">(</span><span class="n">imc</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-de-execução-3">Exemplo de Execução</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o peso: 83.5
+Digite a altura: 1.86
+Resultado do IMC: 24.16
+Classificação: peso normal
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-problema-salario_liquido">5. Problema “salario_liquido”</h2>
+
+<p><strong>Descrição:</strong> Fazer um programa que informa o salário líquido a partir do salário bruto, descontando imposto e previdência com base em faixas de valores.</p>
+
+<ul>
+  <li><strong>Imposto:</strong> 20% para salários até R$ 4000.00; 25% para salários acima.</li>
+  <li><strong>Previdência:</strong> 10% para salários até R$ 1500.00; 15% para salários acima.</li>
+</ul>
+
+<h3 id="solução-em-java-4">Solução em Java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SalarioLiquido</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Calcula o valor do imposto com base no salário bruto.
+     * @param quantia O valor do salário bruto.
+     * @return O valor do imposto a ser pago.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">imposto</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&lt;=</span> <span class="mf">4000.00</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">quantia</span> <span class="o">*</span> <span class="mf">0.20</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">quantia</span> <span class="o">*</span> <span class="mf">0.25</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Calcula o valor da previdência com base no salário bruto.
+     * @param quantia O valor do salário bruto.
+     * @return O valor do desconto da previdência.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">previdencia</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&lt;=</span> <span class="mf">1500.00</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">quantia</span> <span class="o">*</span> <span class="mf">0.10</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">quantia</span> <span class="o">*</span> <span class="mf">0.15</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Calcula o salário líquido.
+     * @param quantia O valor do salário bruto.
+     * @return O valor do salário líquido.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">calcularSalarioLiquido</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">impostoPago</span> <span class="o">=</span> <span class="n">imposto</span><span class="o">(</span><span class="n">quantia</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">previdenciaPaga</span> <span class="o">=</span> <span class="n">previdencia</span><span class="o">(</span><span class="n">quantia</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">quantia</span> <span class="o">-</span> <span class="n">impostoPago</span> <span class="o">-</span> <span class="n">previdenciaPaga</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o valor do salário bruto: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">salarioBruto</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="kt">double</span> <span class="n">liquido</span> <span class="o">=</span> <span class="n">calcularSalarioLiquido</span><span class="o">(</span><span class="n">salarioBruto</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Salário líquido = R$ %.2f
+"</span><span class="o">,</span> <span class="n">liquido</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-de-execução-4">Exemplo de Execução</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o valor do salário bruto: 5000.00
+Salário líquido = R$ 3000.00
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

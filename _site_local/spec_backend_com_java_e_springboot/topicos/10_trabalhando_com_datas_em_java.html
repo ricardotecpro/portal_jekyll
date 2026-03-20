@@ -1,0 +1,401 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/topicos/10_trabalhando_com_datas_em_java.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>📅 Trabalhando com Datas em Java | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="📅 Trabalhando com Datas em Java" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/10_trabalhando_com_datas_em_java.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/10_trabalhando_com_datas_em_java.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="📅 Trabalhando com Datas em Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"📅 Trabalhando com Datas em Java","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/10_trabalhando_com_datas_em_java.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 📅 trabalhando com datas em java</span>
+          
+        
+      </nav>
+
+      <h1 id="-trabalhando-com-datas-em-java">📅 Trabalhando com Datas em Java</h1>
+
+<p>Este material aborda como manipular datas e horas em Java, focando nas classes mais antigas (<code class="language-plaintext highlighter-rouge">Date</code>, <code class="language-plaintext highlighter-rouge">SimpleDateFormat</code>, <code class="language-plaintext highlighter-rouge">Calendar</code>) e introduzindo brevemente o <code class="language-plaintext highlighter-rouge">Instant</code> do pacote <code class="language-plaintext highlighter-rouge">java.time</code> (embora as classes mais antigas sejam o foco principal do PDF original).</p>
+
+<h2 id="️-a-classe-date">🕰️ A Classe <code class="language-plaintext highlighter-rouge">Date</code></h2>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">java.util.Date</code> representa um instante específico no tempo, com precisão de milissegundos.</p>
+
+<ul>
+  <li><strong>Pacote:</strong> <code class="language-plaintext highlighter-rouge">java.util</code></li>
+  <li><strong>Armazenamento Interno:</strong> Um objeto <code class="language-plaintext highlighter-rouge">Date</code> armazena o número de milissegundos que se passaram desde a meia-noite de 1º de janeiro de 1970 GMT (UTC).
+    <ul>
+      <li><strong>GMT:</strong> Greenwich Mean Time (fuso horário).</li>
+      <li><strong>UTC:</strong> Coordinated Universal Time (padrão de tempo).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Embora <code class="language-plaintext highlighter-rouge">Date</code> seja fundamental, muitas de suas funcionalidades, especialmente para manipulação e obtenção de componentes de data (dia, mês, ano), foram depreciadas em favor da classe <code class="language-plaintext highlighter-rouge">Calendar</code> ou das classes mais modernas do pacote <code class="language-plaintext highlighter-rouge">java.time</code> (introduzidas no Java 8).</p>
+
+<p><strong>Exemplo Básico:</strong>
+Para obter a data e hora atuais:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploDate</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Date</span> <span class="n">agora</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">agora</span><span class="o">);</span> <span class="c1">// Imprime a data e hora atuais</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-formatação-com-simpledateformat">📄 Formatação com <code class="language-plaintext highlighter-rouge">SimpleDateFormat</code></h2>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">java.text.SimpleDateFormat</code> é usada para formatar e analisar (converter de String para Date) datas de acordo com um padrão específico.</p>
+
+<ul>
+  <li>Permite definir formatos para conversão entre <code class="language-plaintext highlighter-rouge">Date</code> e <code class="language-plaintext highlighter-rouge">String</code>.</li>
+  <li><strong>Exemplos de Padrões:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">dd/MM/yyyy</code> → <code class="language-plaintext highlighter-rouge">23/07/2018</code></li>
+      <li><code class="language-plaintext highlighter-rouge">dd/MM/yyyy HH:mm:ss</code> → <code class="language-plaintext highlighter-rouge">23/07/2018 15:42:07</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Observação Importante:</strong> <code class="language-plaintext highlighter-rouge">SimpleDateFormat</code> não é thread-safe. Se você precisar usá-lo em um ambiente concorrente, precisará de sincronização externa ou usar uma instância por thread. Para novos projetos, é altamente recomendável usar as classes do pacote <code class="language-plaintext highlighter-rouge">java.time</code> (como <code class="language-plaintext highlighter-rouge">DateTimeFormatter</code>), que são imutáveis e thread-safe.</p>
+
+<p><strong>Exemplo de Formatação:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.ParseException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploSimpleDateFormat</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Date</span> <span class="n">agora</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+
+        <span class="nc">SimpleDateFormat</span> <span class="n">formatadorBarra</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">dataFormatadaBarra</span> <span class="o">=</span> <span class="n">formatadorBarra</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">agora</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data formatada (dd/MM/yyyy): "</span> <span class="o">+</span> <span class="n">dataFormatadaBarra</span><span class="o">);</span>
+
+        <span class="nc">SimpleDateFormat</span> <span class="n">formatadorCompleto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy HH:mm:ss"</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">dataFormatadaCompleta</span> <span class="o">=</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">agora</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data e hora formatadas (dd/MM/yyyy HH:mm:ss): "</span> <span class="o">+</span> <span class="n">dataFormatadaCompleta</span><span class="o">);</span>
+
+        <span class="c1">// Exemplo de Parse (String para Date)</span>
+        <span class="nc">String</span> <span class="n">dataString</span> <span class="o">=</span> <span class="s">"10/05/2023"</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">Date</span> <span class="n">dataParseada</span> <span class="o">=</span> <span class="n">formatadorBarra</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">dataString</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data parseada: "</span> <span class="o">+</span> <span class="n">dataParseada</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao parsear a data: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-padrão-iso-8601-e-a-classe-instant">🌍 Padrão ISO 8601 e a Classe <code class="language-plaintext highlighter-rouge">Instant</code></h2>
+
+<p>O padrão ISO 8601 é um padrão internacional para representação de datas e horas.</p>
+<ul>
+  <li><strong>Formato Comum:</strong> <code class="language-plaintext highlighter-rouge">yyyy-MM-ddTHH:mm:ssZ</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">T</code> é um delimitador que separa a data da hora.</li>
+      <li><code class="language-plaintext highlighter-rouge">Z</code> indica que o tempo está em UTC (Zulu time).</li>
+    </ul>
+  </li>
+  <li><strong>Exemplo:</strong> <code class="language-plaintext highlighter-rouge">"2018-06-25T15:42:07Z"</code></li>
+</ul>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">java.time.Instant</code> (introduzida no Java 8) representa um ponto instantâneo na linha do tempo, geralmente usado para registrar timestamps de eventos no formato UTC. É uma abordagem mais moderna e robusta para lidar com instantes.</p>
+
+<p>Para converter um <code class="language-plaintext highlighter-rouge">Instant</code> para um <code class="language-plaintext highlighter-rouge">java.util.Date</code> (útil para interoperabilidade com código legado):</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Date</span> <span class="n">dataConvertida</span> <span class="o">=</span> <span class="nc">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2018-06-25T15:42:07Z"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<h3 id="-demonstração-criação-e-impressão-de-datas">💻 Demonstração: Criação e Impressão de Datas</h3>
+
+<p>O código a seguir demonstra várias maneiras de instanciar e formatar objetos <code class="language-plaintext highlighter-rouge">Date</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.ParseException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.Instant</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.TimeZone</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaDatas</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ParseException</span> <span class="o">{</span> <span class="c1">// Adicionado throws ParseException para simplificar o exemplo</span>
+
+        <span class="c1">// Formatadores</span>
+        <span class="nc">SimpleDateFormat</span> <span class="n">formatadorSimples</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">);</span>
+        <span class="nc">SimpleDateFormat</span> <span class="n">formatadorCompleto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy HH:mm:ss"</span><span class="o">);</span>
+        <span class="nc">SimpleDateFormat</span> <span class="n">formatadorCompletoGMT</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy HH:mm:ss"</span><span class="o">);</span>
+        <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">setTimeZone</span><span class="o">(</span><span class="nc">TimeZone</span><span class="o">.</span><span class="na">getTimeZone</span><span class="o">(</span><span class="s">"GMT"</span><span class="o">));</span> <span class="c1">// Configura o fuso horário para GMT</span>
+
+        <span class="c1">// Instanciando Datas</span>
+        <span class="nc">Date</span> <span class="n">x1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span> <span class="c1">// Data e hora atuais</span>
+        <span class="nc">Date</span> <span class="n">x2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">());</span> <span class="c1">// Equivalente a new Date()</span>
+        <span class="nc">Date</span> <span class="n">x3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="mi">0L</span><span class="o">);</span> <span class="c1">// Representa o início da Época Unix (01/01/1970 00:00:00 GMT)</span>
+        <span class="nc">Date</span> <span class="n">x4</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">(</span><span class="mi">1000L</span> <span class="o">*</span> <span class="mi">60L</span> <span class="o">*</span> <span class="mi">60L</span> <span class="o">*</span> <span class="mi">5L</span><span class="o">);</span> <span class="c1">// 5 horas após a Época Unix</span>
+
+        <span class="nc">Date</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">formatadorSimples</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"25/06/2018"</span><span class="o">);</span>
+        <span class="nc">Date</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"25/06/2018 15:42:07"</span><span class="o">);</span>
+        <span class="nc">Date</span> <span class="n">y3</span> <span class="o">=</span> <span class="nc">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2018-06-25T15:42:07Z"</span><span class="o">));</span> <span class="c1">// Padrão ISO 8601 (UTC)</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- DATAS NÃO FORMATADAS (toString() padrão) ---"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x1: "</span> <span class="o">+</span> <span class="n">x1</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x2: "</span> <span class="o">+</span> <span class="n">x2</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x3: "</span> <span class="o">+</span> <span class="n">x3</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x4: "</span> <span class="o">+</span> <span class="n">x4</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y1: "</span> <span class="o">+</span> <span class="n">y1</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y2: "</span> <span class="o">+</span> <span class="n">y2</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y3: "</span> <span class="o">+</span> <span class="n">y3</span><span class="o">);</span> <span class="c1">// Note que y3 será impresso no fuso horário local</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-------------------------------------------------------"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- DATAS FORMATADAS (FUSO HORÁRIO LOCAL DA JVM) ---"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x1: "</span> <span class="o">+</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x1</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x2: "</span> <span class="o">+</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x2</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x3: "</span> <span class="o">+</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x3</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x4: "</span> <span class="o">+</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x4</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y1: "</span> <span class="o">+</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">y1</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y2: "</span> <span class="o">+</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">y2</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y3: "</span> <span class="o">+</span> <span class="n">formatadorCompleto</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">y3</span><span class="o">));</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-------------------------------------------------------"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- DATAS FORMATADAS (FUSO HORÁRIO GMT) ---"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x1: "</span> <span class="o">+</span> <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x1</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x2: "</span> <span class="o">+</span> <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x2</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x3: "</span> <span class="o">+</span> <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x3</span><span class="o">));</span> <span class="c1">// Será 01/01/1970 00:00:00</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x4: "</span> <span class="o">+</span> <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">x4</span><span class="o">));</span> <span class="c1">// Será 01/01/1970 05:00:00</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y1: "</span> <span class="o">+</span> <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">y1</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y2: "</span> <span class="o">+</span> <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">y2</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"y3: "</span> <span class="o">+</span> <span class="n">formatadorCompletoGMT</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">y3</span><span class="o">));</span> <span class="c1">// y3 foi criado a partir de um Instant UTC</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Observações sobre o código:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">new Date(0L)</code> cria uma data que representa o marco zero da contagem de tempo em Java: 01 de janeiro de 1970, 00:00:00 GMT. Ao formatá-lo com o fuso horário local da sua JVM, o horário pode ser diferente (ex: 31/12/1969 21:00:00 se você estiver em GMT-3).</li>
+  <li><code class="language-plaintext highlighter-rouge">Date.from(Instant.parse("...Z"))</code> cria um <code class="language-plaintext highlighter-rouge">Date</code> a partir de uma string que já está em UTC. <code class="language-plaintext highlighter-rouge">SimpleDateFormat</code> sem <code class="language-plaintext highlighter-rouge">setTimeZone</code> usará o fuso horário padrão da JVM para formatar. Se <code class="language-plaintext highlighter-rouge">setTimeZone(TimeZone.getTimeZone("GMT"))</code> for usado, ele mostrará o tempo em GMT.</li>
+</ul>
+
+<h2 id="️-manipulando-datas-com-calendar">🗓️ Manipulando Datas com <code class="language-plaintext highlighter-rouge">Calendar</code></h2>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">java.util.Calendar</code> é uma classe abstrata que fornece métodos para converter entre um instante específico no tempo (representado por um <code class="language-plaintext highlighter-rouge">Date</code>) e um conjunto de campos de calendário como <code class="language-plaintext highlighter-rouge">YEAR</code> (ano), <code class="language-plaintext highlighter-rouge">MONTH</code> (mês), <code class="language-plaintext highlighter-rouge">DAY_OF_MONTH</code> (dia do mês), <code class="language-plaintext highlighter-rouge">HOUR_OF_DAY</code> (hora do dia), etc. Ela também permite a manipulação desses campos (adição, subtração).</p>
+
+<p><strong>Importante:</strong> A API <code class="language-plaintext highlighter-rouge">Calendar</code> é conhecida por ser um pouco complicada e propensa a erros (por exemplo, meses são indexados a partir de 0). Para novos desenvolvimentos, é <strong>fortemente recomendado</strong> usar as classes do pacote <code class="language-plaintext highlighter-rouge">java.time</code> (como <code class="language-plaintext highlighter-rouge">LocalDateTime</code>, <code class="language-plaintext highlighter-rouge">ZonedDateTime</code>, <code class="language-plaintext highlighter-rouge">Period</code>, <code class="language-plaintext highlighter-rouge">Duration</code>), que oferecem uma API muito mais intuitiva, imutável e robusta.</p>
+
+<h3 id="adicionando-unidades-de-tempo">Adicionando Unidades de Tempo</h3>
+
+<p>Podemos usar o método <code class="language-plaintext highlighter-rouge">add()</code> da classe <code class="language-plaintext highlighter-rouge">Calendar</code> para somar ou subtrair unidades de tempo de uma data.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.Instant</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Calendar</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaManipulacaoCalendar</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SimpleDateFormat</span> <span class="n">formatador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy HH:mm:ss"</span><span class="o">);</span>
+        <span class="nc">Date</span> <span class="n">dataInicial</span> <span class="o">=</span> <span class="nc">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2018-06-25T15:42:07Z"</span><span class="o">));</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data original: "</span> <span class="o">+</span> <span class="n">formatador</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataInicial</span><span class="o">));</span>
+
+        <span class="nc">Calendar</span> <span class="n">calendario</span> <span class="o">=</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span> <span class="c1">// Obtém uma instância de Calendar</span>
+        <span class="n">calendario</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">dataInicial</span><span class="o">);</span> <span class="c1">// Configura o Calendar com a data inicial</span>
+
+        <span class="c1">// Adicionando 4 horas à data</span>
+        <span class="n">calendario</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">HOUR_OF_DAY</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+        <span class="nc">Date</span> <span class="n">dataModificada</span> <span class="o">=</span> <span class="n">calendario</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span> <span class="c1">// Obtém a nova data do Calendar</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data após adicionar 4 horas: "</span> <span class="o">+</span> <span class="n">formatador</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataModificada</span><span class="o">));</span>
+
+        <span class="c1">// Adicionando 2 dias à data</span>
+        <span class="n">calendario</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">dataInicial</span><span class="o">);</span> <span class="c1">// Resetar para a data original para um novo cálculo</span>
+        <span class="n">calendario</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+        <span class="nc">Date</span> <span class="n">dataMaisDoisDias</span> <span class="o">=</span> <span class="n">calendario</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data após adicionar 2 dias: "</span> <span class="o">+</span> <span class="n">formatador</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataMaisDoisDias</span><span class="o">));</span>
+
+        <span class="c1">// Subtraindo 1 mês</span>
+        <span class="n">calendario</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">dataInicial</span><span class="o">);</span> <span class="c1">// Resetar</span>
+        <span class="n">calendario</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">MONTH</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// Subtrai um mês</span>
+        <span class="nc">Date</span> <span class="n">dataMenosUmMes</span> <span class="o">=</span> <span class="n">calendario</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data após subtrair 1 mês: "</span> <span class="o">+</span> <span class="n">formatador</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataMenosUmMes</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="obtendo-unidades-de-tempo">Obtendo Unidades de Tempo</h3>
+
+<p>Podemos usar o método <code class="language-plaintext highlighter-rouge">get()</code> da classe <code class="language-plaintext highlighter-rouge">Calendar</code> para extrair componentes específicos de uma data, como o mês, ano, minutos, etc.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.Instant</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Calendar</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaObterUnidadesCalendar</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SimpleDateFormat</span> <span class="n">formatador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy HH:mm:ss"</span><span class="o">);</span>
+        <span class="nc">Date</span> <span class="n">dataReferencia</span> <span class="o">=</span> <span class="nc">Date</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2018-06-25T15:42:07Z"</span><span class="o">));</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Data de referência: "</span> <span class="o">+</span> <span class="n">formatador</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataReferencia</span><span class="o">));</span>
+
+        <span class="nc">Calendar</span> <span class="n">calendario</span> <span class="o">=</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+        <span class="n">calendario</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">dataReferencia</span><span class="o">);</span>
+
+        <span class="kt">int</span> <span class="n">minutos</span> <span class="o">=</span> <span class="n">calendario</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">MINUTE</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">mes</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">calendario</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">MONTH</span><span class="o">);</span> <span class="c1">// Mês em Calendar é 0-indexado (Janeiro=0, Fevereiro=1, ...), por isso somamos 1.</span>
+        <span class="kt">int</span> <span class="n">ano</span> <span class="o">=</span> <span class="n">calendario</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">diaDaSemana</span> <span class="o">=</span> <span class="n">calendario</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">DAY_OF_WEEK</span><span class="o">);</span> <span class="c1">// Domingo=1, Segunda=2, ... Sábado=7</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Minutos: "</span> <span class="o">+</span> <span class="n">minutos</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Mês: "</span> <span class="o">+</span> <span class="n">mes</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ano: "</span> <span class="o">+</span> <span class="n">ano</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dia da Semana (1=Domingo, ..., 7=Sábado): "</span> <span class="o">+</span> <span class="n">diaDaSemana</span><span class="o">);</span>
+
+        <span class="c1">// Convertendo dia da semana para nome (exemplo simples)</span>
+        <span class="nc">String</span> <span class="n">nomeDiaSemana</span><span class="o">;</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">diaDaSemana</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">SUNDAY</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Domingo"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">MONDAY</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Segunda-feira"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">TUESDAY</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Terça-feira"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">WEDNESDAY</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Quarta-feira"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">THURSDAY</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Quinta-feira"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">FRIDAY</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Sexta-feira"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">case</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">SATURDAY</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Sábado"</span><span class="o">;</span> <span class="k">break</span><span class="o">;</span>
+            <span class="k">default</span><span class="o">:</span> <span class="n">nomeDiaSemana</span> <span class="o">=</span> <span class="s">"Desconhecido"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome do Dia da Semana: "</span> <span class="o">+</span> <span class="n">nomeDiaSemana</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Lembrete:</strong> A indexação dos meses em <code class="language-plaintext highlighter-rouge">Calendar</code> começa em 0 (Janeiro é 0, Dezembro é 11). Sempre some 1 ao valor retornado por <code class="language-plaintext highlighter-rouge">cal.get(Calendar.MONTH)</code> se quiser o número do mês no formato usual (1-12).</p>
+
+<h2 id="-executando-os-exemplos-vs-code-e-intellij-idea">🚀 Executando os Exemplos (VS Code e IntelliJ IDEA)</h2>
+
+<p>Todos os exemplos de código Java fornecidos podem ser executados em qualquer ambiente de desenvolvimento Java padrão, como Visual Studio Code (com o Java Extension Pack) ou IntelliJ IDEA.</p>
+
+<p><strong>Passos Gerais:</strong></p>
+
+<ol>
+  <li><strong>Crie um Projeto Java:</strong>
+    <ul>
+      <li><strong>IntelliJ IDEA:</strong> <code class="language-plaintext highlighter-rouge">File</code> &gt; <code class="language-plaintext highlighter-rouge">New</code> &gt; <code class="language-plaintext highlighter-rouge">Project...</code> &gt; Selecione <code class="language-plaintext highlighter-rouge">Java</code> e um JDK.</li>
+      <li><strong>VS Code:</strong> Use o comando <code class="language-plaintext highlighter-rouge">Java: Create Java Project...</code> (Ctrl+Shift+P para abrir a paleta de comandos).</li>
+    </ul>
+  </li>
+  <li><strong>Crie um Arquivo <code class="language-plaintext highlighter-rouge">.java</code>:</strong>
+    <ul>
+      <li>Dentro do diretório <code class="language-plaintext highlighter-rouge">src</code> (ou similar) do seu projeto, crie um novo arquivo Java (ex: <code class="language-plaintext highlighter-rouge">ProgramaDatas.java</code>, <code class="language-plaintext highlighter-rouge">ExemploSimpleDateFormat.java</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Copie e Cole o Código:</strong>
+    <ul>
+      <li>Copie um dos exemplos de código fornecidos neste documento e cole-o no arquivo <code class="language-plaintext highlighter-rouge">.java</code> que você criou. Certifique-se de que o nome da classe no arquivo corresponda ao nome do arquivo.</li>
+    </ul>
+  </li>
+  <li><strong>Execute o Método <code class="language-plaintext highlighter-rouge">main</code>:</strong>
+    <ul>
+      <li><strong>IntelliJ IDEA:</strong> Clique na seta verde ao lado da declaração do método <code class="language-plaintext highlighter-rouge">main</code> ou da classe e selecione <code class="language-plaintext highlighter-rouge">Run 'NomeDaClasse.main()'</code>.</li>
+      <li><strong>VS Code:</strong> Abra o arquivo Java. Você verá links <code class="language-plaintext highlighter-rouge">Run</code> e <code class="language-plaintext highlighter-rouge">Debug</code> acima do método <code class="language-plaintext highlighter-rouge">main</code>. Clique em <code class="language-plaintext highlighter-rouge">Run</code>. Alternativamente, clique com o botão direito no editor e escolha <code class="language-plaintext highlighter-rouge">Run Java</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>O output do programa será exibido no console ou terminal integrado da IDE.</p>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

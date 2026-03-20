@@ -1,0 +1,171 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_06_versionamento_com_git_e_github/topicos/13_script_rename_repo.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Automatizar esse processo de Rename | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Automatizar esse processo de Rename" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/13_script_rename_repo.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/13_script_rename_repo.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Automatizar esse processo de Rename" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Automatizar esse processo de Rename","url":"https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/13_script_rename_repo.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/" style="margin-left: 0.5rem;">Mod 06 versionamento com git e github</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Automatizar esse processo de rename</span>
+          
+        
+      </nav>
+
+      <h1 id="automatizar-esse-processo-de-rename">Automatizar esse processo de Rename</h1>
+
+<p>pode economizar tempo e evitar erros, especialmente se você faz isso com frequência. Abaixo está um <strong>script em PowerShell</strong> que:</p>
+
+<ol>
+  <li>Renomeia a pasta local no Windows.</li>
+  <li>Atualiza o link remoto do Git para o novo nome do repositório no GitHub.</li>
+</ol>
+
+<hr />
+
+<h3 id="️-script-powershell-para-automatizar-a-renomeação">⚙️ <strong>Script PowerShell para Automatizar a Renomeação</strong></h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Parâmetros</span><span class="w">
+</span><span class="nv">$usuarioGitHub</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SEU_USUARIO"</span><span class="w">
+</span><span class="nv">$nomeAntigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repositorio-antigo"</span><span class="w">
+</span><span class="nv">$nomeNovo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repositorio-novo"</span><span class="w">
+</span><span class="nv">$caminhoBase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"C:\caminho\para\seus\repositorios"</span><span class="w">
+
+</span><span class="c"># Caminhos completos</span><span class="w">
+</span><span class="nv">$caminhoAntigo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Join-Path</span><span class="w"> </span><span class="nv">$caminhoBase</span><span class="w"> </span><span class="nv">$nomeAntigo</span><span class="w">
+</span><span class="nv">$caminhoNovo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Join-Path</span><span class="w"> </span><span class="nv">$caminhoBase</span><span class="w"> </span><span class="nv">$nomeNovo</span><span class="w">
+
+</span><span class="c"># Renomear pasta</span><span class="w">
+</span><span class="n">Rename-Item</span><span class="w"> </span><span class="nt">-Path</span><span class="w"> </span><span class="nv">$caminhoAntigo</span><span class="w"> </span><span class="nt">-NewName</span><span class="w"> </span><span class="nv">$nomeNovo</span><span class="w">
+
+</span><span class="c"># Navegar para a nova pasta</span><span class="w">
+</span><span class="n">Set-Location</span><span class="w"> </span><span class="nv">$caminhoNovo</span><span class="w">
+
+</span><span class="c"># Atualizar URL remota do Git</span><span class="w">
+</span><span class="nv">$novaURL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"https://github.com/</span><span class="nv">$usuarioGitHub</span><span class="s2">/</span><span class="nv">$nomeNovo</span><span class="s2">.git"</span><span class="w">
+</span><span class="n">git</span><span class="w"> </span><span class="nx">remote</span><span class="w"> </span><span class="nx">set-url</span><span class="w"> </span><span class="nx">origin</span><span class="w"> </span><span class="nv">$novaURL</span><span class="w">
+
+</span><span class="c"># Verificar se funcionou</span><span class="w">
+</span><span class="n">git</span><span class="w"> </span><span class="nx">remote</span><span class="w"> </span><span class="nt">-v</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="-instruções-para-usar">📝 <strong>Instruções para Usar</strong></h3>
+
+<ol>
+  <li>Substitua:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">"SEU_USUARIO"</code> pelo seu nome de usuário no GitHub.</li>
+      <li><code class="language-plaintext highlighter-rouge">"repositorio-antigo"</code> e <code class="language-plaintext highlighter-rouge">"repositorio-novo"</code> pelos nomes desejados.</li>
+      <li><code class="language-plaintext highlighter-rouge">"C:\caminho\para\seus\repositorios"</code> pelo caminho onde está sua pasta local.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Salve o script como <code class="language-plaintext highlighter-rouge">renomear.ps1</code>.</p>
+  </li>
+  <li>Execute no PowerShell com permissões adequadas:
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="n">\renomear.ps1</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-dica-extra-renomear-no-github-via-api-opcional">🚀 <strong>Dica Extra: Renomear no GitHub via API (Opcional)</strong></h3>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

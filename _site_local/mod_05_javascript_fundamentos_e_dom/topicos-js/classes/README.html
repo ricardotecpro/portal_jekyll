@@ -1,0 +1,50 @@
+<h1 id="-curso-nivelamento-javascript"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png" alt="curso logo" /> Curso Nivelamento JavaScript</h1>
+<blockquote>
+  <p>Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end</p>
+</blockquote>
+
+<h2 id="realização">Realização</h2>
+<p><a href="https://curso.com.br">curso - Escola de programação</a></p>
+
+<p><a href="https://instagram.com/curso.ig"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/ig-icon.png" alt="curso no Instagram" /></a>
+<a href="https://youtube.com/curso"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/yt-icon.png" alt="curso no Youtube" /></a></p>
+
+<h2 id="javascript---classes">JavaScript - Classes</h2>
+
+<p>Classes em JavaScript são um <code class="language-plaintext highlighter-rouge">syntactic sugar</code> para funções contrutoras e prototypes.</p>
+
+<p>Isso significa que a classe é apenas uma forma alternativa de se escrever um tipo com propriedades e métodos. Mas internamente a estrutura será a mesma, baseada em prototypes.</p>
+
+<p><img src="https://raw.githubusercontent.com/curso/curso-nivelamento-javascript/main/img/product.png" alt="Image" title="Diagrama classe Product" /></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Product</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">=</span> <span class="nx">price</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">=</span> <span class="nx">quantity</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">total</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">price</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">quantity</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">add</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">remove</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">&gt;=</span> <span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">-=</span> <span class="nx">amount</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nf">label</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">Dados: </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">, </span><span class="dl">"</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">price</span><span class="p">.</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Product</span><span class="p">(</span><span class="dl">"</span><span class="s2">Monitor</span><span class="dl">"</span><span class="p">,</span> <span class="mf">800.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Product</span><span class="p">(</span><span class="dl">"</span><span class="s2">Mouse</span><span class="dl">"</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</code></pre></div></div>
+

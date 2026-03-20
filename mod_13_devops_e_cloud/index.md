@@ -1,6 +1,6 @@
 ---
 layout: default
-title: # 📜 A Filosofia DevOps: Mais do que Ferramentas
+title: "# 📜 A Filosofia DevOps: Mais do que Ferramentas"
 ---
 
 ## 📜 A Filosofia DevOps: Mais do que Ferramentas

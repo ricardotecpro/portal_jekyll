@@ -1,0 +1,362 @@
+<h1 id="-projeto-nginx-com-balanceamento-de-carga-e-visualização-em-tempo-real">🚀 Projeto: Nginx com Balanceamento de Carga e Visualização em Tempo Real</h1>
+
+<h2 id="-objetivo">🎯 Objetivo</h2>
+
+<p>Criar um ambiente que simula um sistema web real, demonstrando visualmente como o Nginx atua como um <em>Reverse Proxy</em> (Proxy Reverso) e distribui a carga (<em>Load Balancing</em>) entre duas APIs de backend idênticas.</p>
+
+<h2 id="️-tecnologias-utilizadas">🛠️ Tecnologias Utilizadas</h2>
+
+<ul>
+  <li><strong>Docker &amp; Docker Compose:</strong> Para criar e gerenciar os contêineres dos nossos serviços.</li>
+  <li><strong>Nginx:</strong> Nosso proxy reverso e balanceador de carga.</li>
+  <li><strong>Node.js (Express):</strong> Para criar duas APIs de backend.</li>
+  <li><strong>k6:</strong> Uma ferramenta moderna para teste de carga.</li>
+  <li><strong>HTML/JS (com Chart.js):</strong> Para criar um <em>dashboard</em> de visualização em tempo real.</li>
+</ul>
+
+<hr />
+
+<h2 id="-parte-1-estrutura-do-projeto">📁 Parte 1: Estrutura do Projeto</h2>
+
+<p>Garanta que seu projeto tenha a seguinte estrutura de pastas e arquivos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>projeto-nginx-visual/
+├── api-01/
+│   ├── index.js
+│   ├── package.json
+│   └── Dockerfile
+├── api-02/
+│   ├── index.js
+│   ├── package.json
+│   └── Dockerfile
+├── nginx/
+│   ├── nginx.conf
+│   └── Dockerfile
+├── visualizer/
+│   ├── index.html
+│   └── chart.js
+├── docker-compose.yml
+└── load-test.js
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-parte-2-criando-as-apis-de-backend-nodejs">⚙️ Parte 2: Criando as APIs de Backend (Node.js)</h2>
+
+<p><strong>1. Arquivos da <code class="language-plaintext highlighter-rouge">api-01/</code></strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">api-01/package.json</code>:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api-01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node index.js"</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"express"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.18.2"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">api-01/index.js</code> (Corrigido para responder na rota raiz):
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">PORT</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">SERVER_ID</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">API-01</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`[</span><span class="p">${</span><span class="nx">SERVER_ID</span><span class="p">}</span><span class="s2">] Recebeu requisição`</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">({</span> <span class="na">servidor</span><span class="p">:</span> <span class="nx">SERVER_ID</span><span class="p">,</span> <span class="na">timestamp</span><span class="p">:</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">toISOString</span><span class="p">()</span> <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`[</span><span class="p">${</span><span class="nx">SERVER_ID</span><span class="p">}</span><span class="s2">] Rodando na porta </span><span class="p">${</span><span class="nx">PORT</span><span class="p">}</span><span class="s2">`</span><span class="p">));</span>
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">api-01/Dockerfile</code> (Corrigido para o contexto de build correto):
+    <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> node:18-alpine</span>
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app</span>
+
+<span class="c"># Copia APENAS os arquivos necessários da API-01</span>
+<span class="k">COPY</span><span class="s"> ./api-01/package.json ./</span>
+<span class="k">COPY</span><span class="s"> ./api-01/index.js ./</span>
+
+<span class="k">RUN </span>npm <span class="nb">install</span>
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">CMD</span><span class="s"> [ "npm", "start" ]</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>2. Arquivos da <code class="language-plaintext highlighter-rouge">api-02/</code></strong></p>
+
+<p>Copie os arquivos da <code class="language-plaintext highlighter-rouge">api-01/</code> para <code class="language-plaintext highlighter-rouge">api-02/</code> e mude <strong>APENAS UMA LINHA</strong> no <code class="language-plaintext highlighter-rouge">api-02/index.js</code> e o <code class="language-plaintext highlighter-rouge">Dockerfile</code> para refletir a <code class="language-plaintext highlighter-rouge">api-02</code>.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">api-02/index.js</code> (linha 5):
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">SERVER_ID</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">API-02</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// Mude de API-01 para API-02</span>
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">api-02/Dockerfile</code>:
+    <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> node:18-alpine</span>
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app</span>
+
+<span class="c"># Copia APENAS os arquivos necessários da API-02</span>
+<span class="k">COPY</span><span class="s"> ./api-02/package.json ./</span>
+<span class="k">COPY</span><span class="s"> ./api-02/index.js ./</span>
+
+<span class="k">RUN </span>npm <span class="nb">install</span>
+
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">CMD</span><span class="s"> [ "npm", "start" ]</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="proxy-parte-3-configurando-o-nginx">proxy Parte 3: Configurando o Nginx</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">nginx/nginx.conf</code> (Simplificado para HTTP):
+    <div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">events</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="k">http</span> <span class="p">{</span>
+    <span class="c1"># Define o grupo de servidores de backend (Load Balancing)</span>
+    <span class="kn">upstream</span> <span class="s">backend_servers</span> <span class="p">{</span>
+        <span class="kn">server</span> <span class="nf">api-01</span><span class="p">:</span><span class="mi">3000</span><span class="p">;</span>
+        <span class="kn">server</span> <span class="nf">api-02</span><span class="p">:</span><span class="mi">3000</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Servidor principal (HTTP)</span>
+    <span class="kn">server</span> <span class="p">{</span>
+        <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+        <span class="kn">server_name</span> <span class="s">localhost</span><span class="p">;</span>
+
+        <span class="c1"># Rota para o Dashboard de Visualização</span>
+        <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+            <span class="kn">root</span> <span class="n">/usr/share/nginx/html</span><span class="p">;</span>
+            <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Rota da API (Proxy Reverso)</span>
+        <span class="kn">location</span> <span class="n">/api</span> <span class="p">{</span>
+            <span class="c1"># Remove o /api antes de enviar para o backend</span>
+            <span class="kn">rewrite</span> <span class="n">/api</span><span class="s">(.*)</span> <span class="n">/</span><span class="nv">$1</span> <span class="s">break</span><span class="p">;</span> 
+                
+            <span class="c1"># Envia a requisição para o grupo de servidores</span>
+            <span class="kn">proxy_pass</span> <span class="s">http://backend_servers</span><span class="p">;</span>
+                
+            <span class="c1"># Cabeçalhos importantes para o proxy</span>
+            <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+            <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+            <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+            <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">nginx/Dockerfile</code> (Corrigido para o contexto de build correto):
+    <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> nginx:1.23-alpine</span>
+
+<span class="c"># Copia nossa configuração personalizada (relativo ao 'context')</span>
+<span class="k">COPY</span><span class="s"> ./nginx/nginx.conf /etc/nginx/nginx.conf</span>
+
+<span class="c"># Copia os arquivos do visualizer (relativo ao 'context')</span>
+<span class="k">COPY</span><span class="s"> ./visualizer /usr/share/nginx/html</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-parte-4-criando-o-dashboard-de-visualização">📊 Parte 4: Criando o Dashboard de Visualização</h2>
+
+<ol>
+  <li>
+    <p><strong>Obtenha o Chart.js (Versão Correta):</strong>
+Crie o arquivo <code class="language-plaintext highlighter-rouge">visualizer/chart.js</code>. Abra o link abaixo, copie <strong>todo o conteúdo</strong> e cole no seu arquivo <code class="language-plaintext highlighter-rouge">chart.js</code>.</p>
+
+    <ul>
+      <li><strong>Link:</strong> <code class="language-plaintext highlighter-rouge">https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">visualizer/index.html</code>:</p>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Visualizador de Carga Nginx<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"chart.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">grid</span><span class="p">;</span> <span class="nl">place-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="nl">background</span><span class="p">:</span> <span class="nx">#f4f4f4</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nf">#chart-container</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">500px</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">h1</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">h2</span> <span class="p">{</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">5px</span> <span class="m">0</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nf">#api-01</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#36A2EB</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nf">#api-02</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#FF6384</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Dashboard de Balanceamento de Carga<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart-container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;canvas</span> <span class="na">id=</span><span class="s">"loadChart"</span><span class="nt">&gt;&lt;/canvas&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"api-01"</span><span class="nt">&gt;</span>API-01: 0<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"api-02"</span><span class="nt">&gt;</span>API-02: 0<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;h3&gt;</span>Total: <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">"total"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/span&gt;&lt;/h3&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+        <span class="kd">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">loadChart</span><span class="dl">'</span><span class="p">).</span><span class="nf">getContext</span><span class="p">(</span><span class="dl">'</span><span class="s1">2d</span><span class="dl">'</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">counters</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">API-01</span><span class="dl">'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="dl">'</span><span class="s1">API-02</span><span class="dl">'</span><span class="p">:</span> <span class="mi">0</span> <span class="p">};</span>
+        <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="kd">const</span> <span class="nx">h2_api1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">api-01</span><span class="dl">'</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">h2_api2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">api-02</span><span class="dl">'</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">span_total</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">total</span><span class="dl">'</span><span class="p">);</span>
+
+        <span class="kd">const</span> <span class="nx">loadChart</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Chart</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">{</span>
+            <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">pie</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">labels</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">API-01</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">API-02</span><span class="dl">'</span><span class="p">],</span>
+                <span class="na">datasets</span><span class="p">:</span> <span class="p">[{</span>
+                    <span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                    <span class="na">backgroundColor</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">#36A2EB</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#FF6384</span><span class="dl">'</span><span class="p">]</span>
+                <span class="p">}]</span>
+            <span class="p">},</span>
+            <span class="na">options</span><span class="p">:</span> <span class="p">{</span> <span class="na">responsive</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">animation</span><span class="p">:</span> <span class="p">{</span> <span class="na">duration</span><span class="p">:</span> <span class="mi">500</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">async</span> <span class="kd">function</span> <span class="nf">fetchData</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api</span><span class="dl">'</span><span class="p">);</span>
+                <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Falha na rede</span><span class="dl">'</span><span class="p">);</span>
+                <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+                    
+                <span class="nx">counters</span><span class="p">[</span><span class="nx">data</span><span class="p">.</span><span class="nx">servidor</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="nx">total</span><span class="o">++</span><span class="p">;</span>
+
+                <span class="nx">h2_api1</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">`API-01: </span><span class="p">${</span><span class="nx">counters</span><span class="p">[</span><span class="dl">'</span><span class="s1">API-01</span><span class="dl">'</span><span class="p">]}</span><span class="s2">`</span><span class="p">;</span>
+                <span class="nx">h2_api2</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">`API-02: </span><span class="p">${</span><span class="nx">counters</span><span class="p">[</span><span class="dl">'</span><span class="s1">API-02</span><span class="dl">'</span><span class="p">]}</span><span class="s2">`</span><span class="p">;</span>
+                <span class="nx">span_total</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">total</span><span class="p">;</span>
+
+                <span class="nx">loadChart</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="nx">counters</span><span class="p">[</span><span class="dl">'</span><span class="s1">API-01</span><span class="dl">'</span><span class="p">],</span> <span class="nx">counters</span><span class="p">[</span><span class="dl">'</span><span class="s1">API-02</span><span class="dl">'</span><span class="p">]];</span>
+                <span class="nx">loadChart</span><span class="p">.</span><span class="nf">update</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erro ao buscar API:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nf">setInterval</span><span class="p">(</span><span class="nx">fetchData</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="-parte-5-orquestrando-com-docker-compose">🐳 Parte 5: Orquestrando com Docker Compose</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">docker-compose.yml</code> (Corrigido para usar <code class="language-plaintext highlighter-rouge">context</code> e <code class="language-plaintext highlighter-rouge">dockerfile</code>):
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">api-01</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span>
+      <span class="na">context</span><span class="pi">:</span> <span class="s">.</span>
+      <span class="na">dockerfile</span><span class="pi">:</span> <span class="s">./api-01/Dockerfile</span>
+
+  <span class="na">api-02</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span>
+      <span class="na">context</span><span class="pi">:</span> <span class="s">.</span>
+      <span class="na">dockerfile</span><span class="pi">:</span> <span class="s">./api-02/Dockerfile</span>
+
+  <span class="na">nginx</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span>
+      <span class="na">context</span><span class="pi">:</span> <span class="s">.</span>
+      <span class="na">dockerfile</span><span class="pi">:</span> <span class="s">./nginx/Dockerfile</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">80:80"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">api-01</span>
+      <span class="pi">-</span> <span class="s">api-02</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-parte-6-script-de-teste-de-carga-k6">⚡ Parte 6: Script de Teste de Carga (k6)</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">load-test.js</code> (Simplificado para HTTP):
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">http</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">sleep</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">k6</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">stages</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">duration</span><span class="p">:</span> <span class="dl">'</span><span class="s1">30s</span><span class="dl">'</span><span class="p">,</span> <span class="na">target</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span> <span class="c1">// Simula 10 usuários por 30 segundos</span>
+  <span class="p">],</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Acessa o endpoint da API através do Nginx</span>
+  <span class="nx">http</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost/api</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nf">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span> <span class="c1">// Espera 500ms entre requisições</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-parte-7-executando-o-projeto">🏁 Parte 7: Executando o Projeto!</h2>
+
+<p><strong>1. Instale o k6:</strong>
+Siga as instruções em <a href="https://k6.io/docs/getting-started/installation/">k6.io</a> para o seu sistema operacional.</p>
+
+<p><strong>2. Suba os Serviços:</strong>
+No terminal, na raiz do projeto, execute:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div></div>
+<p>Isso irá construir as imagens e iniciar os 3 contêineres (<code class="language-plaintext highlighter-rouge">api-01</code>, <code class="language-plaintext highlighter-rouge">api-02</code>, <code class="language-plaintext highlighter-rouge">nginx</code>).</p>
+
+<p><strong>3. Acesse o Visualizador:</strong>
+Abra seu navegador e vá para: <strong><code class="language-plaintext highlighter-rouge">http://localhost</code></strong></p>
+
+<p>Você verá o dashboard. Ele já começará a fazer requisições lentamente, e o gráfico de pizza deve mostrar uma divisão de ~50% para cada API.</p>
+
+<p><strong>4. Execute o Teste de Carga:</strong></p>
+
+<h1 id="k6-load-testing-for-api-on-windows-11-">K6 Load Testing for API on Windows 11 🚀</h1>
+
+<p>K6 é uma poderosa ferramenta open-source para testes de carga de APIs. Abaixo estão os passos para configurar e executar o K6 no Windows 11.</p>
+
+<h2 id="1-instalar-o-k6-no-windows-11-️">1. Instalar o K6 no Windows 11 🖥️</h2>
+
+<ol>
+  <li>
+    <p>Abra um terminal (Prompt de Comando, PowerShell ou Bash).</p>
+  </li>
+  <li>
+    <p>Use o Gerenciador de Pacotes do Windows (Winget) para instalar o K6:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>winget <span class="nb">install </span>k6 <span class="nt">--source</span> winget
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<p>Em <strong>outro</strong> terminal, execute o k6:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>k6 run load-test.js
+</code></pre></div></div>
+
+<p><strong>5. Observe o Dashboard:</strong>
+Volte para o navegador. Você verá os números no dashboard subindo <strong>drasticamente rápido</strong>. O gráfico de pizza se ajustará em tempo real, mas deve sempre se manter próximo de 50/50, provando que o Nginx está distribuindo a carga.</p>
+
+<p><strong>6. Para Desligar:</strong>
+Pressione <code class="language-plaintext highlighter-rouge">Ctrl + C</code> no terminal onde o <code class="language-plaintext highlighter-rouge">docker-compose</code> está rodando e depois execute:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose down
+</code></pre></div></div>
+

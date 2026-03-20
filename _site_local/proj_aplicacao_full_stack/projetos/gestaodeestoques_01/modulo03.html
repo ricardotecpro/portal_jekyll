@@ -1,0 +1,401 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo03.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MODULO03 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MODULO03" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo03.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo03.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MODULO03" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MODULO03","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo03.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/" style="margin-left: 0.5rem;">Gestaodeestoques 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Modulo03</span>
+          
+        
+      </nav>
+
+      <p>Este guia fornecerá todos os conceitos e códigos completos para que os alunos possam expor a inteligência do sistema para o mundo exterior de forma padronizada e profissional.</p>
+
+<h1 id="-guia-didático-definitivo-gestão-de-estoques-com-spring-boot">💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot</h1>
+
+<hr />
+
+<h2 id="módulo-3--construindo-a-api-rest">Módulo 3: 🔌 Construindo a API REST</h2>
+
+<p><strong>Objetivo:</strong> Expor a lógica de negócio, que criamos no Módulo 2, através de endpoints HTTP. Ao final deste módulo, o aluno terá uma API REST completamente funcional, capaz de realizar todas as operações de CRUD (Create, Read, Update, Delete), pronta para ser consumida por qualquer cliente (como um frontend SPA ou um aplicativo mobile).</p>
+
+<hr />
+
+<h3 id="-aula-31-introdução-a-apis-rest-e-restcontroller">### Aula 3.1: Introdução a APIs REST e <code class="language-plaintext highlighter-rouge">@RestController</code></h3>
+
+<p><strong>Conceito-Chave: API REST (Representational State Transfer)</strong>
+Pense em uma API REST como um “garçom” para a sua aplicação. O cliente (frontend) faz um pedido (requisição HTTP) para um “prato” específico (um recurso, como <code class="language-plaintext highlighter-rouge">/produtos</code>), e o garçom (a API) vai até a cozinha (a camada de serviço) e traz de volta o que foi pedido (uma representação do recurso, geralmente em formato JSON).</p>
+
+<p>As principais regras são:</p>
+
+<ol>
+  <li><strong>Comunicação Cliente-Servidor:</strong> São sistemas separados.</li>
+  <li><strong>Stateless:</strong> O servidor não guarda informações sobre o cliente entre as requisições.</li>
+  <li><strong>Recursos:</strong> Tudo é um recurso, identificado por uma URL (ex: <code class="language-plaintext highlighter-rouge">/api/produtos/1</code>).</li>
+</ol>
+
+<p><strong>Conceito-Chave: <code class="language-plaintext highlighter-rouge">@RestController</code></strong>
+No Spring, esta anotação é um atalho poderoso. Ela combina duas outras anotações:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Controller</code>: Marca a classe como um componente Spring que lida com requisições web.</li>
+  <li><code class="language-plaintext highlighter-rouge">@ResponseBody</code>: Indica que o valor retornado por um método deve ser serializado (convertido) diretamente no corpo da resposta HTTP. Para APIs, isso quase sempre significa converter um objeto Java em JSON.</li>
+</ul>
+
+<p><strong>Ação:</strong> Crie o pacote <code class="language-plaintext highlighter-rouge">br.com.aula.gestaodeestoques.controller</code>. É aqui que nossos “garçons” irão morar.</p>
+
+<hr />
+
+<h3 id="-aula-32-mapeando-verbos-http-para-operações-de-crud">### Aula 3.2: Mapeando Verbos HTTP para Operações de CRUD</h3>
+
+<p><strong>Conceito-Chave:</strong> O REST utiliza os verbos (métodos) do protocolo HTTP para indicar a intenção da operação sobre um recurso.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Verbo HTTP</th>
+      <th style="text-align: left">Operação CRUD</th>
+      <th style="text-align: left">Exemplo de Endpoint</th>
+      <th style="text-align: left">Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GET</code></td>
+      <td style="text-align: left"><strong>R</strong>ead</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/api/produtos</code></td>
+      <td style="text-align: left">Busca uma lista de todos os produtos.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">GET</code></td>
+      <td style="text-align: left"><strong>R</strong>ead</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/api/produtos/{id}</code></td>
+      <td style="text-align: left">Busca um único produto pelo seu ID.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">POST</code></td>
+      <td style="text-align: left"><strong>C</strong>reate</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/api/produtos</code></td>
+      <td style="text-align: left">Cria um novo produto.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">PUT</code></td>
+      <td style="text-align: left"><strong>U</strong>pdate</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/api/produtos/{id}</code></td>
+      <td style="text-align: left">Atualiza um produto existente pelo seu ID.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DELETE</code></td>
+      <td style="text-align: left"><strong>D</strong>elete</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/api/produtos/{id}</code></td>
+      <td style="text-align: left">Deleta um produto existente pelo seu ID.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>O Spring nos dá anotações diretas para mapear cada um desses verbos:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@GetMapping</code></li>
+  <li><code class="language-plaintext highlighter-rouge">@PostMapping</code></li>
+  <li><code class="language-plaintext highlighter-rouge">@PutMapping</code></li>
+  <li><code class="language-plaintext highlighter-rouge">@DeleteMapping</code></li>
+</ul>
+
+<hr />
+
+<h3 id="-aula-33-manipulando-respostas-http-com-responseentity">### Aula 3.3: Manipulando Respostas HTTP com <code class="language-plaintext highlighter-rouge">ResponseEntity</code></h3>
+
+<p><strong>Conceito-Chave:</strong> Uma resposta HTTP não é apenas o dado (o corpo JSON), mas também um <strong>Status Code</strong> que informa ao cliente o resultado da operação. O <code class="language-plaintext highlighter-rouge">ResponseEntity</code> é uma classe do Spring que nos dá controle total sobre a resposta.</p>
+
+<p><strong>Status Codes mais comuns em APIs REST:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">200 OK</code>: Sucesso. A requisição (geralmente um <code class="language-plaintext highlighter-rouge">GET</code>) foi bem-sucedida.</li>
+  <li><code class="language-plaintext highlighter-rouge">201 Created</code>: Sucesso. Um novo recurso foi criado com sucesso (usado em <code class="language-plaintext highlighter-rouge">POST</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">204 No Content</code>: Sucesso. A operação (geralmente <code class="language-plaintext highlighter-rouge">DELETE</code>) foi bem-sucedida, mas não há nada a retornar no corpo.</li>
+  <li><code class="language-plaintext highlighter-rouge">400 Bad Request</code>: Erro do cliente. A requisição é malformada ou contém dados inválidos.</li>
+  <li><code class="language-plaintext highlighter-rouge">401 Unauthorized</code>: Erro do cliente. Requer autenticação.</li>
+  <li><code class="language-plaintext highlighter-rouge">403 Forbidden</code>: Erro do cliente. Autenticado, mas sem permissão para acessar o recurso.</li>
+  <li><code class="language-plaintext highlighter-rouge">404 Not Found</code>: Erro do cliente. O recurso solicitado não existe.</li>
+  <li><code class="language-plaintext highlighter-rouge">500 Internal Server Error</code>: Erro do servidor. Algo inesperado aconteceu no backend.</li>
+</ul>
+
+<hr />
+
+<h3 id="-aula-34-implementando-os-controllers">### Aula 3.4: Implementando os <code class="language-plaintext highlighter-rouge">Controllers</code></h3>
+
+<p><strong>Ação:</strong> Agora vamos juntar todos os conceitos e criar os controllers para nossas entidades. Eles irão injetar e utilizar as interfaces de serviço que criamos no Módulo 2.</p>
+
+<h4 id="código-controllercategoriacontrollerjava">Código: <code class="language-plaintext highlighter-rouge">controller/CategoriaController.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.CategoriaDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.service.CategoriaService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.Valid</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.support.ServletUriComponentsBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/categorias"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CategoriaController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">CategoriaService</span> <span class="n">service</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">CategoriaDTO</span><span class="o">&gt;&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CategoriaDTO</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">CategoriaDTO</span><span class="o">&gt;</span> <span class="nf">findById</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">CategoriaDTO</span> <span class="n">dto</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">dto</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">CategoriaDTO</span><span class="o">&gt;</span> <span class="nf">create</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">CategoriaDTO</span> <span class="n">categoriaDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">CategoriaDTO</span> <span class="n">newDto</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">categoriaDTO</span><span class="o">);</span>
+        <span class="no">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="nc">ServletUriComponentsBuilder</span><span class="o">.</span><span class="na">fromCurrentRequest</span><span class="o">().</span><span class="na">path</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">buildAndExpand</span><span class="o">(</span><span class="n">newDto</span><span class="o">.</span><span class="na">id</span><span class="o">()).</span><span class="na">toUri</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">created</span><span class="o">(</span><span class="n">uri</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">newDto</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">CategoriaDTO</span><span class="o">&gt;</span> <span class="nf">update</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">CategoriaDTO</span> <span class="n">categoriaDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">CategoriaDTO</span> <span class="n">updatedDto</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">categoriaDTO</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">updatedDto</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">delete</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">service</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="código-controllerfornecedorcontrollerjava">Código: <code class="language-plaintext highlighter-rouge">controller/FornecedorController.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.FornecedorDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.service.FornecedorService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.Valid</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.support.ServletUriComponentsBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/fornecedores"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FornecedorController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">FornecedorService</span> <span class="n">service</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">FornecedorDTO</span><span class="o">&gt;&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">service</span><span class="o">.</span><span class="na">findAll</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">FornecedorDTO</span><span class="o">&gt;</span> <span class="nf">create</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">FornecedorDTO</span> <span class="n">fornecedorDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FornecedorDTO</span> <span class="n">newDto</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">fornecedorDTO</span><span class="o">);</span>
+        <span class="no">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="nc">ServletUriComponentsBuilder</span><span class="o">.</span><span class="na">fromCurrentRequest</span><span class="o">().</span><span class="na">path</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">buildAndExpand</span><span class="o">(</span><span class="n">newDto</span><span class="o">.</span><span class="na">id</span><span class="o">()).</span><span class="na">toUri</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">created</span><span class="o">(</span><span class="n">uri</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">newDto</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... Implementar outros endpoints (findById, update, delete) seguindo o padrão acima ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="código-controllerprodutocontrollerjava">Código: <code class="language-plaintext highlighter-rouge">controller/ProdutoController.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoFormDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.service.ProdutoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.Valid</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.support.ServletUriComponentsBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/produtos"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">ProdutoService</span> <span class="n">service</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ProdutoDTO</span><span class="o">&gt;&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">service</span><span class="o">.</span><span class="na">findAll</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">ProdutoDTO</span><span class="o">&gt;</span> <span class="nf">findById</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">service</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">ProdutoDTO</span><span class="o">&gt;</span> <span class="nf">create</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">ProdutoFormDTO</span> <span class="n">produtoFormDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ProdutoDTO</span> <span class="n">newDto</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">produtoFormDTO</span><span class="o">);</span>
+        <span class="no">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="nc">ServletUriComponentsBuilder</span><span class="o">.</span><span class="na">fromCurrentRequest</span><span class="o">().</span><span class="na">path</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">buildAndExpand</span><span class="o">(</span><span class="n">newDto</span><span class="o">.</span><span class="na">id</span><span class="o">()).</span><span class="na">toUri</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">created</span><span class="o">(</span><span class="n">uri</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">newDto</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">ProdutoDTO</span><span class="o">&gt;</span> <span class="nf">update</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">ProdutoFormDTO</span> <span class="n">produtoFormDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ProdutoDTO</span> <span class="n">updatedDto</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">produtoFormDTO</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">updatedDto</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">delete</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">service</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>Observação Importante:</em> Note que os controllers injetam as <strong>interfaces</strong> (<code class="language-plaintext highlighter-rouge">ProdutoService</code>), não as implementações (<code class="language-plaintext highlighter-rouge">ProdutoServiceImpl</code>). Isso é o Princípio da Inversão de Dependência em ação!</p>
+
+<hr />
+
+<h3 id="conclusão-do-módulo-3-e-próximos-passos">Conclusão do Módulo 3 e Próximos Passos</h3>
+
+<p><strong>Parabéns!</strong> Você acaba de construir uma API REST completa. Neste ponto, temos:</p>
+
+<ul>
+  <li>Endpoints claros e padronizados para todas as nossas entidades.</li>
+  <li>Uma comunicação bem definida com o mundo exterior através do protocolo HTTP e do formato JSON.</li>
+  <li>Respostas HTTP com status codes corretos, informando o resultado de cada operação.</li>
+</ul>
+
+<p>Se você executar a aplicação agora, poderá usar uma ferramenta como <strong>Postman</strong>, <strong>Insomnia</strong> ou até mesmo o comando <code class="language-plaintext highlighter-rouge">curl</code> para interagir com a sua API. Você pode criar, listar, atualizar e deletar produtos, categorias e fornecedores.</p>
+
+<p><strong>O Grande Problema:</strong> Nossa API está totalmente desprotegida. Qualquer pessoa pode deletar todos os produtos!</p>
+
+<p>No <strong>próximo módulo</strong>, vamos resolver isso. Mergulharemos fundo no Spring Security para “trancar as portas” da nossa API, implementando um sistema de autenticação e autorização robusto e moderno com <strong>JSON Web Tokens (JWT)</strong>.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<h1 id="módulo-back-end-componentes-e-injeção-de-dependência-">Módulo Back-end: Componentes e Injeção de Dependência 🧩</h1>
+
+<p>Este material aborda os conceitos fundamentais de componentização de software e injeção de dependência, pilares para o desenvolvimento de sistemas modernos, flexíveis e de fácil manutenção.</p>
+
+<h2 id="sistema-e-componentes-️">Sistema e Componentes 🏗️</h2>
+
+<p>Um sistema de software é, em sua essência, um conjunto de componentes que trabalham juntos para entregar uma funcionalidade. Para que o sistema seja robusto e escalável, esses componentes devem seguir dois princípios-chave:</p>
+
+<ul>
+  <li><strong>Coesão</strong>: Cada componente deve ter uma responsabilidade clara e única. Por exemplo, um componente calcula impostos, outro gerencia o acesso a dados de usuários, e nada mais.</li>
+  <li><strong>Baixo Acoplamento</strong>: Os componentes devem ser o mais independentes possível uns dos outros.</li>
+</ul>
+
+<p>Adoar essa abordagem nos traz os seguintes objetivos e benefícios:</p>
+
+<ul>
+  <li><strong>Flexibilidade</strong>: Sistemas flexíveis se adaptam mais facilmente a novas regras de negócio.</li>
+  <li><strong>Manutenção Facilitada</strong>: É muito mais simples atualizar ou substituir um componente isolado do que modificar um sistema monolítico e fortemente acoplado.</li>
+  <li><strong>Reaproveitamento</strong>: Componentes bem definidos, como um serviço de cálculo de frete, podem ser reutilizados em diferentes projetos.</li>
+</ul>
+
+<h2 id="exemplo-didático-">Exemplo Didático 🧑‍🏫</h2>
+
+<p>Vamos trabalhar com um problema prático para ilustrar esses conceitos.</p>
+
+<p><strong>O Problema:</strong> Criar um programa que leia os dados de um funcionário (nome e salário bruto). Em seguida, o programa deve calcular e exibir o salário líquido, aplicando os descontos de imposto e previdência.</p>
+
+<p><strong>Regras de Negócio:</strong></p>
+
+<ul>
+  <li>Imposto: <strong>20%</strong> sobre o salário bruto.</li>
+  <li>Previdência: <strong>10%</strong> sobre o salário bruto.</li>
+</ul>
+
+<p><strong>Exemplo com Novos Dados:</strong></p>
+
+<ul>
+  <li><strong>Nome</strong>: João Silva</li>
+  <li><strong>Salário Bruto</strong>: R$ 6000,00</li>
+  <li><strong>Cálculo</strong>: <code class="language-plaintext highlighter-rouge">6000.00 - (6000.00 * 0.20) - (6000.00 * 0.10) = 6000.00 - 1200.00 - 600.00</code></li>
+  <li><strong>Salário Líquido Esperado</strong>: R$ 4200,00</li>
+</ul>
+
+<h3 id="solução-rápida-">Solução “Rápida” 💨</h3>
+
+<p>Uma primeira abordagem, focada apenas em resolver o problema rapidamente, poderia ser um único bloco de código no método <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Salário bruto: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">salarioBruto</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="c1">// Cálculo "mágico" com forte acoplamento</span>
+        <span class="kt">double</span> <span class="n">salarioLiquido</span> <span class="o">=</span> <span class="n">salarioBruto</span> <span class="o">*</span> <span class="mf">0.7</span><span class="o">;</span> <span class="c1">// 100% - 20% - 10% = 70%</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Salário líquido = %.2f%n"</span><span class="o">,</span> <span class="n">salarioLiquido</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Essa solução funciona, mas é problemática. E se a alíquota do imposto mudar? Teríamos que encontrar e alterar o “número mágico” <code class="language-plaintext highlighter-rouge">0.7</code> diretamente no código, quebrando a coesão e dificultando a manutenção.</p>
+
+<h3 id="solução-pensando-em-componentes-">Solução Pensando em Componentes 🧩</h3>
+
+<p>Uma abordagem mais profissional é separar as responsabilidades em componentes.</p>
+
+<p><strong>Modelo de Domínio (Entidade):</strong>
+Primeiro, modelamos os dados do funcionário.</p>
+
+<p><strong>Componentes (Serviços):</strong>
+Depois, criamos componentes para cada responsabilidade de negócio. O <code class="language-plaintext highlighter-rouge">ServicoDeSalario</code> usará os outros dois serviços para realizar seu trabalho.</p>
+
+<blockquote>
+  <p><strong>Dica:</strong> Repare que temos dois tipos de objetos no sistema: <strong>componentes</strong> (como <code class="language-plaintext highlighter-rouge">ServicoDeImposto</code>), que contêm lógica e regras, e <strong>objetos de dados</strong> (como <code class="language-plaintext highlighter-rouge">Funcionario</code>), que apenas carregam informações.</p>
+</blockquote>
+
+<h2 id="inversão-de-controle-ioc-">Inversão de Controle (IoC) 🔄</h2>
+
+<p>A Inversão de Controle (do inglês, <em>Inversion of Control</em>) é um princípio de design que prega que um componente não deve criar ou gerenciar suas próprias dependências.</p>
+
+<p><strong>Analogia do Carro:</strong>
+Pense no motor de um carro. Ele <em>depende</em> da bateria para funcionar, mas o suporte da bateria não fica <em>dentro</em> do motor. Por quê? Para que você possa trocar a bateria sem precisar abrir e desmontar o motor inteiro. O controle sobre qual bateria usar é “invertido” para fora do motor.</p>
+
+<p>No nosso exemplo, o <code class="language-plaintext highlighter-rouge">ServicoDeSalario</code> depende do <code class="language-plaintext highlighter-rouge">ServicoDeImposto</code> e do <code class="language-plaintext highlighter-rouge">ServicoDePrevidencia</code>. Se o <code class="language-plaintext highlighter-rouge">ServicoDeSalario</code> instanciar esses serviços diretamente, ele fica fortemente acoplado a eles.</p>
+
+<p><strong>Forma Errada (Alto Acoplamento):</strong>
+Isto está <strong>errado</strong>, pois o <code class="language-plaintext highlighter-rouge">ServicoDeSalario</code> está controlando diretamente suas dependências.</p>
+
+<h2 id="injeção-de-dependência-di-">Injeção de Dependência (DI) 💉</h2>
+
+<p>A Injeção de Dependência (do inglês, <em>Dependency Injection</em>) é a técnica que usamos para aplicar a Inversão de Controle. Em vez de o componente criar suas dependências, elas são “injetadas” de fora.</p>
+
+<p>Essa injeção pode ser feita de algumas formas:</p>
+
+<ol>
+  <li><strong>Via Construtor (Recomendado)</strong>: As dependências são passadas como parâmetros no construtor do objeto.</li>
+  <li><strong>Via Método Set</strong>: Métodos <code class="language-plaintext highlighter-rouge">set</code> são usados para fornecer a dependência.</li>
+  <li><strong>Via Container (Framework)</strong>: Um framework gerencia todo o processo automaticamente.</li>
+</ol>
+
+<p><strong>Exemplo com Injeção de Dependência via Construtor:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServicoDeSalario</span> <span class="o">{</span>
+
+    <span class="c1">// Dependências não são mais instanciadas aqui</span>
+    <span class="kd">private</span> <span class="nc">ServicoDeImposto</span> <span class="n">servicoDeImposto</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">ServicoDePrevidencia</span> <span class="n">servicoDePrevidencia</span><span class="o">;</span>
+
+    <span class="c1">// As dependências são "injetadas" pelo construtor</span>
+    <span class="kd">public</span> <span class="nf">ServicoDeSalario</span><span class="o">(</span><span class="nc">ServicoDeImposto</span> <span class="n">servicoDeImposto</span><span class="o">,</span> <span class="nc">ServicoDePrevidencia</span> <span class="n">servicoDePrevidencia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">servicoDeImposto</span> <span class="o">=</span> <span class="n">servicoDeImposto</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">servicoDePrevidencia</span> <span class="o">=</span> <span class="n">servicoDePrevidencia</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularSalarioLiquido</span><span class="o">(</span><span class="nc">Funcionario</span> <span class="n">funcionario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">imposto</span> <span class="o">=</span> <span class="n">servicoDeImposto</span><span class="o">.</span><span class="na">tax</span><span class="o">(</span><span class="n">funcionario</span><span class="o">.</span><span class="na">getSalarioBruto</span><span class="o">());</span>
+        <span class="kt">double</span> <span class="n">previdencia</span> <span class="o">=</span> <span class="n">servicoDePrevidencia</span><span class="o">.</span><span class="na">discount</span><span class="o">(</span><span class="n">funcionario</span><span class="o">.</span><span class="na">getSalarioBruto</span><span class="o">());</span>
+        <span class="k">return</span> <span class="n">funcionario</span><span class="o">.</span><span class="na">getSalarioBruto</span><span class="o">()</span> <span class="o">-</span> <span class="n">imposto</span> <span class="o">-</span> <span class="n">previdencia</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Agora, o <code class="language-plaintext highlighter-rouge">ServicoDeSalario</code> é desacoplado e muito mais fácil de testar e manter.</p>
+
+<h2 id="frameworks-️">Frameworks 🛠️</h2>
+
+<p>Um framework é uma estrutura de trabalho que oferece uma infraestrutura completa para desenvolver sistemas de forma mais produtiva e organizada. Em vez de você chamar o código do framework, é o framework que chama o seu código (isso é Inversão de Controle!).</p>
+
+<p>Frameworks modernos, como o <strong>Spring</strong> para Java, gerenciam automaticamente:</p>
+
+<ul>
+  <li><strong>Injeção de dependências</strong></li>
+  <li>Ciclo de vida e escopo dos componentes</li>
+  <li>Configurações</li>
+  <li>Transações com banco de dados, segurança, integrações e muito mais.</li>
+</ul>
+
+<h3 id="usando-injeção-de-dependência-com-frameworks-️">Usando Injeção de Dependência com Frameworks ⚙️</h3>
+
+<p>Para usar a injeção de dependência em um framework como o Spring, o processo geralmente se resume a dois passos simples:</p>
+
+<ol>
+  <li><strong>Registrar os Componentes</strong>: Você “avisa” ao framework quais classes são componentes. No Spring, isso é feito com anotações como <code class="language-plaintext highlighter-rouge">@Component</code>, <code class="language-plaintext highlighter-rouge">@Service</code> ou <code class="language-plaintext highlighter-rouge">@Repository</code>.</li>
+  <li><strong>Indicar as Dependências</strong>: Você declara onde um componente precisa de outro. No Spring, a anotação <code class="language-plaintext highlighter-rouge">@Autowired</code> é usada para isso (geralmente no construtor da classe).</li>
+</ol>
+
+<p>Depois disso, o framework cuida de todo o trabalho pesado:</p>
+
+<ul>
+  <li><strong>Instanciar</strong> os componentes na ordem correta.</li>
+  <li><strong>Resolver e injetar</strong> as dependências automaticamente.</li>
+  <li><strong>Reaproveitar</strong> componentes, gerenciando seu ciclo de vida.</li>
+</ul>
+
+<p>Essa abordagem permite que o desenvolvedor foque no que realmente importa: as regras de negócio da aplicação.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,0 +1,306 @@
+<h3 id="visão-arquitetural-construindo-um-web-service-com-camadas-lógicas"><strong>Visão Arquitetural: Construindo um Web Service com Camadas Lógicas</strong></h3>
+
+<p>O objetivo é desenvolver um web service RESTful robusto, seguindo as melhores práticas de design de software. Para isso, adotaremos uma <strong>arquitetura em camadas</strong>, que é fundamental para a organização, manutenibilidade e testabilidade do código.</p>
+
+<ol>
+  <li><strong>Resource Layer (Camada de Recursos)</strong>: É a porta de entrada da nossa API. Composta por Controladores REST (<code class="language-plaintext highlighter-rouge">REST Controllers</code>), esta camada é responsável por expor os endpoints HTTP (ex: <code class="language-plaintext highlighter-rouge">/users</code>, <code class="language-plaintext highlighter-rouge">/products/{id}</code>) e por traduzir as requisições HTTP em chamadas para a camada de serviço.</li>
+  <li><strong>Service Layer (Camada de Serviço)</strong>: Contém a lógica de negócio da aplicação. Ela orquestra as operações, aplica regras e validações. Os serviços são agnósticos em relação à tecnologia de apresentação (não sabem que estão sendo chamados por um controlador REST) e delegam as operações de persistência à camada de acesso a dados.</li>
+  <li><strong>Data Access Layer (Camada de Acesso a Dados)</strong>: Também conhecida como <em>Repository Layer</em>. É a única camada que se comunica com o banco de dados. Utilizando o <strong>Spring Data JPA</strong>, definimos interfaces que, por mágica do framework, nos fornecem implementações completas para operações CRUD (Create, Retrieve, Update, Delete), abstraindo toda a complexidade do JDBC e do Hibernate.</li>
+</ol>
+
+<p>As <strong>Entidades</strong> são os objetos do nosso modelo de domínio, que transitam entre essas camadas.</p>
+
+<h3 id="estrutura-do-projeto-organização-para-escalabilidade"><strong>Estrutura do Projeto: Organização para Escalabilidade</strong></h3>
+
+<p>A organização dos pacotes deve refletir a nossa arquitetura em camadas. Esta estrutura torna o projeto intuitivo e fácil de navegar.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>com.yourproject
+├── config/                  // Classes de configuração (ex: popular o banco de teste)
+├── entities/                // Classes do modelo de domínio (User, Order, Product, etc.)
+│   └── enums/               // Enums específicos do domínio (OrderStatus)
+├── repositories/            // Interfaces do Spring Data JPA (UserRepository, etc.)
+├── services/                // Classes da camada de serviço (UserService, etc.)
+│   └── exceptions/          // Exceções customizadas da camada de serviço
+└── resources/               // Controladores REST (UserResource, etc.)
+    └── exceptions/          // Manipulador de exceções global para a camada de recursos
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-1-configuração-do-projeto-e-ambiente-de-teste"><strong>Fase 1: Configuração do Projeto e Ambiente de Teste</strong></h3>
+
+<p>Vamos criar a base do projeto e configurar um ambiente de desenvolvimento rápido com o banco de dados em memória H2.</p>
+
+<ol>
+  <li>
+    <p><strong>Criação do Projeto</strong>: Utilize o <a href="https://start.spring.io/">Spring Initializr</a> ou a funcionalidade integrada da sua IDE (<code class="language-plaintext highlighter-rouge">File -&gt; New -&gt; Spring Starter Project</code>).</p>
+
+    <ul>
+      <li><strong>Project</strong>: Maven</li>
+      <li><strong>Language</strong>: Java (versão 11 ou superior)</li>
+      <li><strong>Packaging</strong>: JAR</li>
+      <li><strong>Dependencies</strong>: <code class="language-plaintext highlighter-rouge">Spring Web</code>, <code class="language-plaintext highlighter-rouge">Spring Data JPA</code>, <code class="language-plaintext highlighter-rouge">H2 Database</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Configuração de Perfis (Profiles)</strong>: O Spring permite criar perfis de configuração para diferentes ambientes. Vamos criar um perfil <code class="language-plaintext highlighter-rouge">test</code> para usar o H2.</p>
+
+    <p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code></strong> (arquivo principal que ativa o perfil de teste)</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.profiles.active</span><span class="p">=</span><span class="s">test</span>
+</code></pre></div>    </div>
+
+    <p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/application-test.properties</code></strong> (configurações específicas para o H2)</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configuração da conexão com o banco H2 em memória
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+
+<span class="c"># Habilita o console web do H2 para debug (acessível em http://localhost:8080/h2-console)
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+
+<span class="c"># Configurações do JPA/Hibernate para mostrar e formatar o SQL gerado
+</span><span class="py">spring.jpa.show-sql</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.jpa.properties.hibernate.format_sql</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="fase-2-implementando-a-camada-de-dados-e-o-modelo-de-domínio"><strong>Fase 2: Implementando a Camada de Dados e o Modelo de Domínio</strong></h3>
+
+<p>Com o projeto configurado, vamos criar nossa primeira entidade e seu repositório.</p>
+
+<ol>
+  <li>
+    <p><strong>Entidade <code class="language-plaintext highlighter-rouge">User.java</code></strong>: Esta é uma classe POJO (Plain Old Java Object) anotada com JPA para mapeamento objeto-relacional.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.entities;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.Serializable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Objects</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tb_user"</span><span class="o">)</span> <span class="c1">// Define o nome da tabela no banco de dados</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+
+    <span class="c1">// Construtores, Getters, Setters, hashCode e equals</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Repositório <code class="language-plaintext highlighter-rouge">UserRepository.java</code></strong>: Ao estender <code class="language-plaintext highlighter-rouge">JpaRepository</code>, o Spring Data JPA gera automaticamente todos os métodos CRUD básicos em tempo de execução.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.repositories;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourproject.entities.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="c1">// JpaRepository&lt;TipoDaEntidade, TipoDaChavePrimaria&gt;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="c1">// Métodos CRUD como save(), findById(), findAll(), deleteById() já estão disponíveis.</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Povoando o Banco de Testes (Database Seeding)</strong>: Vamos criar uma classe de configuração para inserir dados no banco H2 sempre que a aplicação iniciar no perfil <code class="language-plaintext highlighter-rouge">test</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.config;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourproject.entities.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourproject.repositories.UserRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.CommandLineRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Profile</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@Profile</span><span class="o">(</span><span class="s">"test"</span><span class="o">)</span> <span class="c1">// Indica que esta configuração só será ativa no perfil 'test'</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestConfig</span> <span class="kd">implements</span> <span class="nc">CommandLineRunner</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span> <span class="c1">// O Spring injeta a dependência automaticamente</span>
+    <span class="kd">private</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="nc">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="nc">User</span> <span class="n">u1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"Maria Brown"</span><span class="o">,</span> <span class="s">"maria@gmail.com"</span><span class="o">,</span> <span class="s">"988888888"</span><span class="o">,</span> <span class="s">"123456"</span><span class="o">);</span>
+        <span class="nc">User</span> <span class="n">u2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"Alex Green"</span><span class="o">,</span> <span class="s">"alex@gmail.com"</span><span class="o">,</span> <span class="s">"977777777"</span><span class="o">,</span> <span class="s">"123456"</span><span class="o">);</span>
+
+        <span class="n">userRepository</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">u1</span><span class="o">,</span> <span class="n">u2</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="fase-3-implementando-as-camadas-de-serviço-e-recursos-crud"><strong>Fase 3: Implementando as Camadas de Serviço e Recursos (CRUD)</strong></h3>
+
+<p>Agora, vamos expor as operações CRUD através de uma API REST.</p>
+
+<ol>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">UserService.java</code></strong>: Contém a lógica de negócio. Ela depende do <code class="language-plaintext highlighter-rouge">UserRepository</code> para acessar os dados.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.services;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourproject.entities.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourproject.repositories.UserRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourproject.services.exceptions.ResourceNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="nd">@Service</span> <span class="c1">// Registra a classe como um componente de serviço do Spring</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">UserRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">User</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">repository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">ResourceNotFoundException</span><span class="o">(</span><span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+        
+    <span class="kd">public</span> <span class="nc">User</span> <span class="nf">insert</span><span class="o">(</span><span class="nc">User</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">UserResource.java</code></strong>: O Controlador REST que expõe os endpoints HTTP.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.resources;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourproject.entities.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourproject.services.UserService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.support.ServletUriComponentsBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserResource</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">UserService</span> <span class="n">service</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findById</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">User</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+    <span class="o">}</span>
+        
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">insert</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">User</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+        <span class="c1">// Retorna o status HTTP 201 Created com a URL do novo recurso no header</span>
+        <span class="no">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="nc">ServletUriComponentsBuilder</span><span class="o">.</span><span class="na">fromCurrentRequest</span><span class="o">().</span><span class="na">path</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">buildAndExpand</span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">toUri</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">created</span><span class="o">(</span><span class="n">uri</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="fase-4-tratamento-de-exceções-centralizado"><strong>Fase 4: Tratamento de Exceções Centralizado</strong></h3>
+
+<p>Para evitar blocos <code class="language-plaintext highlighter-rouge">try-catch</code> em cada método do controlador e padronizar as respostas de erro, criamos um manipulador de exceções global.</p>
+
+<ol>
+  <li>
+    <p><strong>Exceção Customizada</strong>: <code class="language-plaintext highlighter-rouge">ResourceNotFoundException.java</code></p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">ResourceExceptionHandler.java</code></strong>: Intercepta exceções lançadas pelos controladores e retorna uma resposta HTTP padronizada.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.resources.exceptions;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourproject.services.exceptions.ResourceNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ControllerAdvice</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ExceptionHandler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.Instant</span><span class="o">;</span>
+
+<span class="nd">@ControllerAdvice</span> <span class="c1">// Intercepta exceções para serem tratadas globalmente</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResourceExceptionHandler</span> <span class="o">{</span>
+
+    <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="nc">ResourceNotFoundException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="c1">// Trata exceções do tipo especificado</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">StandardError</span><span class="o">&gt;</span> <span class="nf">resourceNotFound</span><span class="o">(</span><span class="nc">ResourceNotFoundException</span> <span class="n">e</span><span class="o">,</span> <span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">error</span> <span class="o">=</span> <span class="s">"Resource not found"</span><span class="o">;</span>
+        <span class="nc">HttpStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">;</span>
+        <span class="nc">StandardError</span> <span class="n">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StandardError</span><span class="o">(</span><span class="nc">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">(),</span> <span class="n">status</span><span class="o">.</span><span class="na">value</span><span class="o">(),</span> <span class="n">error</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">request</span><span class="o">.</span><span class="na">getRequestURI</span><span class="o">());</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">status</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">err</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="fase-5-implantação-em-produção-com-postgresql-e-heroku"><strong>Fase 5: Implantação em Produção com PostgreSQL e Heroku</strong></h3>
+
+<p>Para a produção, trocamos o H2 por um banco de dados robusto como o PostgreSQL e fazemos o deploy na nuvem.</p>
+
+<ol>
+  <li><strong>Adicionar Dependência do PostgreSQL</strong> no <code class="language-plaintext highlighter-rouge">pom.xml</code>.</li>
+  <li><strong>Criar Perfis <code class="language-plaintext highlighter-rouge">dev</code> e <code class="language-plaintext highlighter-rouge">prod</code></strong>:
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">application-dev.properties</code></strong>: Para conectar a um PostgreSQL local.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">application-prod.properties</code></strong>: Para conectar ao banco do Heroku, usando variáveis de ambiente (<code class="language-plaintext highlighter-rouge">${...}</code>).
+        <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># URL do banco de dados fornecida pelo Heroku
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">${DATABASE_URL}</span>
+
+<span class="c"># Desativa a criação automática de tabelas em produção
+</span><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">none </span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Configurar o Heroku</strong>:
+    <ul>
+      <li>Crie uma conta e um novo aplicativo no Heroku.</li>
+      <li>Provisione o add-on “Heroku Postgres”.</li>
+      <li>No painel de configurações do seu app Heroku (<code class="language-plaintext highlighter-rouge">Settings -&gt; Config Vars</code>), o Heroku já cria a variável <code class="language-plaintext highlighter-rouge">DATABASE_URL</code>. Adicione outras variáveis que sua aplicação precise (como segredos JWT, etc.).</li>
+    </ul>
+  </li>
+  <li><strong>Criar <code class="language-plaintext highlighter-rouge">system.properties</code></strong>: Na raiz do projeto, crie este arquivo para especificar a versão do Java para o Heroku.
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">java.runtime.version</span><span class="p">=</span><span class="s">11</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Fazer o Deploy</strong>: Após configurar o Git para o seu repositório Heroku, o deploy é feito com um simples comando:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push heroku master
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Seguindo este guia, você terá construído um web service completo, desde a concepção e desenvolvimento local até a implantação em um ambiente de produção na nuvem, utilizando um conjunto de tecnologias moderno e poderoso do ecossistema Java.</p>

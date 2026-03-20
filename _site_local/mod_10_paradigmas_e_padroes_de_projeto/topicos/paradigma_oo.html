@@ -1,0 +1,600 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/topicos/paradigma_oo.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>PARADIGMA OO | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="PARADIGMA OO" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/topicos/paradigma_oo.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/topicos/paradigma_oo.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PARADIGMA OO" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"PARADIGMA OO","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/topicos/paradigma_oo.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Paradigma oo</span>
+          
+        
+      </nav>
+
+      <p>Com base no material fornecido, realizei uma revisão completa e reescrevi o guia didático, aplicando as melhores práticas de engenharia de software, separação de responsabilidades e adicionando seções essenciais sobre testes e execução em ambientes de desenvolvimento modernos.</p>
+
+<hr />
+
+<h2 id="guia-didático-aprimorado-orientação-a-objetos-em-java"><strong>Guia Didático Aprimorado: Orientação a Objetos em Java</strong></h2>
+
+<h3 id="1-revisão-dos-conceitos-fundamentais"><strong>1. Revisão dos Conceitos Fundamentais</strong></h3>
+
+<p>A Orientação a Objetos (OO) organiza o software em torno de <strong>objetos</strong>, que encapsulam <strong>dados (atributos)</strong> e <strong>comportamentos (métodos)</strong>.</p>
+
+<ul>
+  <li><strong>Classe</strong>: Molde para criar objetos.</li>
+  <li><strong>Objeto</strong>: Instância de uma classe.</li>
+  <li><strong>Encapsulamento</strong>: Oculta os detalhes internos de um objeto, controlando o acesso aos seus dados através de métodos públicos (<code class="language-plaintext highlighter-rouge">getters</code>/<code class="language-plaintext highlighter-rouge">setters</code>).</li>
+  <li><strong>Herança</strong>: Permite que uma classe (filha) herde atributos e métodos de outra (pai), promovendo o reuso de código (<code class="language-plaintext highlighter-rouge">extends</code>).</li>
+  <li><strong>Polimorfismo</strong>: Capacidade de um objeto ser referenciado de múltiplas formas, geralmente permitindo que métodos com a mesma assinatura tenham comportamentos diferentes em subclasses (<code class="language-plaintext highlighter-rouge">@Override</code>).</li>
+  <li><strong>Abstração</strong>: Foca nos aspectos essenciais, escondendo complexidade. Implementada via <strong>classes abstratas</strong> e <strong>interfaces</strong>.</li>
+</ul>
+
+<h3 id="2-estrutura-e-configuração-do-projeto"><strong>2. Estrutura e Configuração do Projeto</strong></h3>
+
+<p>Uma estrutura de pacotes bem definida é fundamental para a manutenibilidade. A abordagem “sem ferramentas de build” é útil para aprendizado, mas projetos reais utilizam <strong>Maven</strong> ou <strong>Gradle</strong>. Demonstraremos a estrutura com Maven, que é o padrão da indústria.</p>
+
+<h4 id="estrutura-de-pastas-padrão-maven"><strong>Estrutura de Pastas (Padrão Maven)</strong></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>estudo-oo-java/
+├── pom.xml                 # Arquivo de configuração do Maven
+└── src/
+    ├── main/
+    │   └── java/
+    │       └── br/
+    │           └── com/
+    │               └── oo/ # Pacote raiz da aplicação
+    └── test/
+        └── java/
+            └── br/
+                └── com/
+                    └── oo/ # Pacote raiz dos testes
+</code></pre></div></div>
+
+<p><strong>Comando para criar um projeto Maven via terminal:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn archetype:generate <span class="nt">-DgroupId</span><span class="o">=</span>br.com.oo <span class="nt">-DartifactId</span><span class="o">=</span>estudo-oo-java <span class="nt">-DarchetypeArtifactId</span><span class="o">=</span>maven-archetype-quickstart <span class="nt">-DinteractiveMode</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-pilares-da-oo-com-código-revisado"><strong>3. Pilares da OO com Código Revisado</strong></h3>
+
+<p>As implementações foram refatoradas para seguir o <strong>Princípio da Responsabilidade Única (SRP)</strong>. As classes de domínio (ex: <code class="language-plaintext highlighter-rouge">Carro</code>, <code class="language-plaintext highlighter-rouge">ContaBancaria</code>) não devem ser responsáveis por imprimir no console. Elas devem retornar dados, e a classe que as utiliza (a “camada de apresentação”, como a <code class="language-plaintext highlighter-rouge">Main</code>) decide como exibi-los.</p>
+
+<h4 id="31-classes-e-objetos"><strong>3.1. Classes e Objetos</strong></h4>
+
+<ul>
+  <li><strong>Motivação da Melhoria</strong>: O método <code class="language-plaintext highlighter-rouge">ligar()</code> foi alterado para retornar uma <code class="language-plaintext highlighter-rouge">String</code> em vez de imprimir diretamente. Isso desacopla a lógica de negócio da apresentação, tornando a classe <code class="language-plaintext highlighter-rouge">Carro</code> mais reutilizável e testável.</li>
+</ul>
+
+<p><strong>Estrutura de Arquivos:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/main/java/br/com/oo/basico/
+├── Carro.java
+└── Main.java
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Carro.java</code> (Revisado)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.basico</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Carro</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">modelo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">cor</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">ano</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Carro</span><span class="o">(</span><span class="nc">String</span> <span class="n">modelo</span><span class="o">,</span> <span class="nc">String</span> <span class="n">cor</span><span class="o">,</span> <span class="kt">int</span> <span class="n">ano</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">modelo</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cor</span> <span class="o">=</span> <span class="n">cor</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">ano</span> <span class="o">=</span> <span class="n">ano</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getModelo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">modelo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">ligar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"O carro "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">modelo</span> <span class="o">+</span> <span class="s">" ("</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">ano</span> <span class="o">+</span> <span class="s">") está ligado."</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">desligar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"O carro "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">modelo</span> <span class="o">+</span> <span class="s">" está desligado."</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Main.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.basico</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Carro</span> <span class="n">meuCarro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Carro</span><span class="o">(</span><span class="s">"Fusca"</span><span class="o">,</span> <span class="s">"azul"</span><span class="o">,</span> <span class="mi">1975</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Modelo: "</span> <span class="o">+</span> <span class="n">meuCarro</span><span class="o">.</span><span class="na">getModelo</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">meuCarro</span><span class="o">.</span><span class="na">ligar</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">meuCarro</span><span class="o">.</span><span class="na">desligar</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Diagrama de Classe:</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    class Carro {
+        -String modelo
+        -String cor
+        -int ano
+        +String getModelo()
+        +String ligar()
+        +String desligar()
+    }
+</code></pre>
+
+<h4 id="32-encapsulamento-e-tratamento-de-exceções"><strong>3.2. Encapsulamento e Tratamento de Exceções</strong></h4>
+
+<ul>
+  <li><strong>Motivação da Melhoria</strong>: Lançar exceções (<code class="language-plaintext highlighter-rouge">IllegalArgumentException</code>) é a prática correta para lidar com estados inválidos (ex: sacar um valor negativo). Isso é mais robusto do que imprimir mensagens de erro, pois força o código cliente a tratar a falha explicitamente (com <code class="language-plaintext highlighter-rouge">try-catch</code>).</li>
+</ul>
+
+<p><strong>Estrutura de Arquivos:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/main/java/br/com/oo/encapsulamento/
+├── ContaBancaria.java
+└── Main.java
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">ContaBancaria.java</code> (Revisado)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.encapsulamento</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ContaBancaria</span><span class="o">(</span><span class="kt">double</span> <span class="n">saldoInicial</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">saldoInicial</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"Saldo inicial não pode ser negativo."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="n">saldoInicial</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"O valor do depósito deve ser positivo."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"O valor do saque deve ser positivo."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">.</span><span class="na">saldo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">"Saldo insuficiente para o saque."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Main.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.encapsulamento</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">minhaConta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">(</span><span class="mf">1000.0</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo inicial: R$"</span> <span class="o">+</span> <span class="n">minhaConta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">minhaConta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mf">500.0</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Depósito de R$500.00 realizado. Novo saldo: R$"</span> <span class="o">+</span> <span class="n">minhaConta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+
+            <span class="n">minhaConta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mf">300.0</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saque de R$300.00 realizado. Novo saldo: R$"</span> <span class="o">+</span> <span class="n">minhaConta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+
+            <span class="n">minhaConta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mf">1500.0</span><span class="o">);</span> <span class="c1">// Isso vai lançar uma exceção</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IllegalArgumentException</span> <span class="o">|</span> <span class="nc">IllegalStateException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro na operação: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo final: R$"</span> <span class="o">+</span> <span class="n">minhaConta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Diagrama de Classe:</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    class ContaBancaria {
+        -double saldo
+        +void depositar(double valor)
+        +void sacar(double valor)
+        +double getSaldo()
+    }
+</code></pre>
+
+<h4 id="33-herança-e-polimorfismo"><strong>3.3. Herança e Polimorfismo</strong></h4>
+
+<ul>
+  <li><strong>Motivação da Melhoria</strong>: Assim como antes, os métodos <code class="language-plaintext highlighter-rouge">fazerSom()</code> e <code class="language-plaintext highlighter-rouge">voar()</code> devem retornar o resultado, não imprimi-lo. Isso permite que a lógica seja testada e reutilizada em diferentes contextos (ex: em uma API web, em vez de um console).</li>
+</ul>
+
+<p><strong>Estrutura de Arquivos (Herança):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/main/java/br/com/oo/heranca/
+├── Animal.java
+├── Cachorro.java
+├── Gato.java
+└── Main.java
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Animal.java</code> (Superclasse)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.heranca</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Animal</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">fazerSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"O animal faz um som genérico."</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Cachorro.java</code> (Subclasse)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.heranca</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cachorro</span> <span class="kd">extends</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">Cachorro</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nome</span><span class="o">);</span> <span class="c1">// Chama o construtor de Animal</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">fazerSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">+</span> <span class="s">" faz: Au Au!"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Main.java</code> (Demonstrando Polimorfismo)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.heranca</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="c1">// Este método demonstra o polimorfismo: ele aceita qualquer objeto 'Animal'.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">emitirSom</span><span class="o">(</span><span class="nc">Animal</span> <span class="n">animal</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">animal</span><span class="o">.</span><span class="na">fazerSom</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Animal</span> <span class="n">cachorro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cachorro</span><span class="o">(</span><span class="s">"Rex"</span><span class="o">);</span>
+        <span class="nc">Animal</span> <span class="n">gato</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Gato</span><span class="o">(</span><span class="s">"Mimi"</span><span class="o">);</span> <span class="c1">// Supondo que a classe Gato exista</span>
+
+        <span class="n">emitirSom</span><span class="o">(</span><span class="n">cachorro</span><span class="o">);</span> <span class="c1">// Saída: Rex faz: Au Au!</span>
+        <span class="n">emitirSom</span><span class="o">(</span><span class="n">gato</span><span class="o">);</span>     <span class="c1">// Saída: Mimi faz: Miau!</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Diagrama de Classe:</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    Animal &lt;|-- Cachorro
+    Animal &lt;|-- Gato
+    class Animal {
+        #String nome
+        +String fazerSom()
+    }
+    class Cachorro {
+        +String fazerSom()
+    }
+    class Gato {
+        +String fazerSom()
+    }
+</code></pre>
+
+<h4 id="34-abstração-classes-abstratas-e-interfaces"><strong>3.4. Abstração (Classes Abstratas e Interfaces)</strong></h4>
+
+<ul>
+  <li><strong>Motivação</strong>: O exemplo original com a classe abstrata <code class="language-plaintext highlighter-rouge">Forma</code> já é muito bom e segue boas práticas, pois o método <code class="language-plaintext highlighter-rouge">calcularArea()</code> retorna um valor. Nenhuma alteração de código é necessária, apenas a garantia da estrutura correta.</li>
+</ul>
+
+<p><strong>Estrutura de Arquivos:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/main/java/br/com/oo/abstracao/
+├── Forma.java
+├── Circulo.java
+├── Retangulo.java
+└── Main.java
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Forma.java</code> (Classe Abstrata)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.abstracao</span><span class="o">;</span>
+
+<span class="c1">// Não pode ser instanciada diretamente. Define um contrato.</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="c1">// Método abstrato: subclasses SÃO OBRIGADAS a implementar.</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">double</span> <span class="nf">calcularArea</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Circulo.java</code> (Implementação Concreta)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.abstracao</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Circulo</span> <span class="kd">extends</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">raio</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Circulo</span><span class="o">(</span><span class="kt">double</span> <span class="n">raio</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">raio</span> <span class="o">=</span> <span class="n">raio</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularArea</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="k">this</span><span class="o">.</span><span class="na">raio</span> <span class="o">*</span> <span class="k">this</span><span class="o">.</span><span class="na">raio</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Diagrama de Classe:</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    Forma &lt;|-- Circulo
+    Forma &lt;|-- Retangulo
+    class Forma {
+        &lt;&lt;abstract&gt;&gt;
+        +double calcularArea()
+    }
+    class Circulo {
+        -double raio
+        +double calcularArea()
+    }
+    class Retangulo {
+        -double largura
+        -double altura
+        +double calcularArea()
+    }
+</code></pre>
+
+<hr />
+
+<h3 id="4-testes-unitários-com-junit-5"><strong>4. Testes Unitários com JUnit 5</strong></h3>
+
+<p>Testes unitários são essenciais para garantir a qualidade e a manutenibilidade do código. Eles validam as menores partes da sua aplicação (unidades) de forma isolada.</p>
+
+<p><strong>Etapa 1: Adicionar Dependência do JUnit (em <code class="language-plaintext highlighter-rouge">pom.xml</code>)</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>junit-jupiter-api<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>5.10.2<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Etapa 2: Criar a Classe de Teste</strong></p>
+
+<p><strong>Estrutura de Arquivos:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/test/java/br/com/oo/encapsulamento/
+└── ContaBancariaTest.java
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">ContaBancariaTest.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.oo.encapsulamento</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Assertions</span><span class="o">.*;</span>
+
+<span class="kd">class</span> <span class="nc">ContaBancariaTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">deveDepositarCorretamente</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">(</span><span class="mf">100.0</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mf">50.0</span><span class="o">);</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="mf">150.0</span><span class="o">,</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">deveSacarCorretamente</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">(</span><span class="mf">200.0</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mf">50.0</span><span class="o">);</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="mf">150.0</span><span class="o">,</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">deveLancarExcecaoParaSaqueComValorNegativo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">(</span><span class="mf">100.0</span><span class="o">);</span>
+        <span class="c1">// Verifica se a exceção esperada é lançada pela lambda</span>
+        <span class="n">assertThrows</span><span class="o">(</span><span class="nc">IllegalArgumentException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(-</span><span class="mf">50.0</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">deveLancarExcecaoParaSaldoInsuficiente</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">(</span><span class="mf">100.0</span><span class="o">);</span>
+        <span class="n">assertThrows</span><span class="o">(</span><span class="nc">IllegalStateException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mf">200.0</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-executando-e-depurando-o-projeto"><strong>5. Executando e Depurando o Projeto</strong></h3>
+
+<h4 id="no-vs-code-com-extension-pack-for-java"><strong>No VS Code (com Extension Pack for Java)</strong></h4>
+
+<ol>
+  <li><strong>Executar</strong>: Abra qualquer arquivo <code class="language-plaintext highlighter-rouge">.java</code> com um método <code class="language-plaintext highlighter-rouge">main</code>. Acima do método, clique no botão <strong>Run</strong>. O output aparecerá no painel <strong>TERMINAL</strong>.</li>
+  <li><strong>Depurar</strong>:
+    <ul>
+      <li>Clique na margem esquerda de uma linha de código para adicionar um <strong>breakpoint</strong> (ponto vermelho).</li>
+      <li>Clique em <strong>Debug</strong> (ao lado de <strong>Run</strong>) ou pressione <code class="language-plaintext highlighter-rouge">F5</code>.</li>
+      <li>A execução pausará no breakpoint. Use a barra de ferramentas de depuração para controlar o fluxo:
+        <ul>
+          <li><strong>Continue (<code class="language-plaintext highlighter-rouge">F5</code>)</strong>: Continua até o próximo breakpoint.</li>
+          <li><strong>Step Over (<code class="language-plaintext highlighter-rouge">F10</code>)</strong>: Executa a linha atual e vai para a próxima.</li>
+          <li><strong>Step Into (<code class="language-plaintext highlighter-rouge">F11</code>)</strong>: Entra na execução de um método.</li>
+          <li><strong>Step Out (<code class="language-plaintext highlighter-rouge">Shift+F11</code>)</strong>: Sai do método atual.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Executar Testes</strong>: Abra o arquivo de teste (<code class="language-plaintext highlighter-rouge">ContaBancariaTest.java</code>). Clique no ícone de “play” ao lado do nome da classe para rodar todos os testes, ou ao lado de um método para rodar um teste específico.</li>
+</ol>
+
+<h4 id="nas-ides-jetbrains-intellij-idea"><strong>Nas IDEs JetBrains (IntelliJ IDEA)</strong></h4>
+
+<ol>
+  <li><strong>Executar</strong>:
+    <ul>
+      <li>Abra um arquivo com um método <code class="language-plaintext highlighter-rouge">main</code>.</li>
+      <li>Clique na seta verde na margem esquerda ao lado da declaração do método <code class="language-plaintext highlighter-rouge">main</code> e selecione <strong>“Run ‘Main.main()’“</strong>.</li>
+      <li>Alternativamente, use o atalho <code class="language-plaintext highlighter-rouge">Shift + F10</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Depurar</strong>:
+    <ul>
+      <li>Clique na margem para adicionar um <strong>breakpoint</strong>.</li>
+      <li>Clique na seta verde e selecione <strong>“Debug ‘Main.main()’“</strong> ou use o atalho <code class="language-plaintext highlighter-rouge">Shift + F9</code>.</li>
+      <li>Os controles de depuração (<code class="language-plaintext highlighter-rouge">F7</code>, <code class="language-plaintext highlighter-rouge">F8</code>, <code class="language-plaintext highlighter-rouge">F9</code>) são similares aos do VS Code e aparecem no painel <strong>Debug</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Run/Debug Configurations</strong>: No canto superior direito, você pode criar e gerenciar configurações de execução, personalizando argumentos de VM, variáveis de ambiente e mais.</li>
+  <li><strong>Executar Testes</strong>: A IDE detecta automaticamente as classes de teste JUnit. Clique na seta verde ao lado do nome da classe ou do método de teste para executá-los. Os resultados aparecem em um painel dedicado.</li>
+</ol>
+
+<hr />
+
+<h3 id="6-sugestões-arquiteturais"><strong>6. Sugestões Arquiteturais</strong></h3>
+
+<p>Os conceitos de OO são a base para padrões arquiteturais como o <strong>MVC (Model-View-Controller)</strong>.</p>
+
+<ul>
+  <li><strong>Model</strong>: As classes de domínio que criamos (<code class="language-plaintext highlighter-rouge">Carro</code>, <code class="language-plaintext highlighter-rouge">ContaBancaria</code>, <code class="language-plaintext highlighter-rouge">Forma</code>). Elas contêm os dados e a lógica de negócio. Elas não sabem como serão exibidas.</li>
+  <li><strong>View</strong>: A camada de apresentação. No nosso caso, o <code class="language-plaintext highlighter-rouge">System.out.println</code> é uma view extremamente simples. Em aplicações reais, seria uma interface gráfica (Swing, JavaFX) ou uma página web (HTML renderizado por um framework).</li>
+  <li><strong>Controller</strong>: A classe que orquestra a interação. Nossas classes <code class="language-plaintext highlighter-rouge">Main</code> atuam como controllers: elas recebem a “requisição” (início do programa), instanciam os Models e enviam os dados para a View (console).</li>
+</ul>
+
+<p>Adotar essa separação desde o início, mesmo em projetos pequenos, resulta em um código mais organizado, testável e fácil de manter.</p>
+
+<p><strong>Diagrama de Caso de Uso Simples (Operação Bancária):</strong></p>
+
+<pre><code class="language-mermaid">flowchart TD
+    actor[Usuário]
+    actor --&gt; depositar((Depositar Dinheiro))
+    actor --&gt; sacar((Sacar Dinheiro))
+    sacar --&gt; verificar((Verificar Saldo))
+
+</code></pre>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

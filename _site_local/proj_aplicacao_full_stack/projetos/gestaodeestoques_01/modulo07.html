@@ -1,0 +1,541 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo07.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MODULO07 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MODULO07" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo07.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo07.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MODULO07" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MODULO07","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo07.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/" style="margin-left: 0.5rem;">Gestaodeestoques 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Modulo07</span>
+          
+        
+      </nav>
+
+      <p>Neste guia, vamos focar nos conceitos fundamentais de uma <strong>Single Page Application (SPA)</strong>, construindo uma interface de usuário do zero com <strong>JavaScript puro (“vanilla”)</strong>. Esta abordagem, embora mais verbosa que usar um framework como React ou Vue, é a melhor forma de aprender os mecanismos que operam por baixo do capô.</p>
+
+<h1 id="-guia-didático-definitivo-gestão-de-estoques-com-spring-boot">💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot</h1>
+
+<hr />
+
+<h2 id="módulo-7--introdução-ao-frontend-spa-single-page-application">Módulo 7: 🎨 Introdução ao Frontend SPA (Single Page Application)</h2>
+
+<p><strong>Objetivo:</strong> Mostrar como o backend robusto que foi construído pode ser consumido por um cliente web moderno. Ao final deste módulo, o aluno terá uma SPA funcional que realiza login, exibe dados e interage com a API, tudo sem recarregar a página.</p>
+
+<hr />
+
+<h3 id="-aula-71-o-que-é-uma-spa-comparação-com-a-abordagem-de-thymeleaf">### Aula 7.1: O que é uma SPA? (Comparação com a abordagem de Thymeleaf)</h3>
+
+<p><strong>Conceito-Chave: A Mudança de Paradigma</strong>
+Até agora, poderíamos ter usado o <strong>Thymeleaf</strong>, uma abordagem de <strong>Renderização no Lado do Servidor (Server-Side Rendering - SSR)</strong>.</p>
+
+<ul>
+  <li><strong>Fluxo SSR (Thymeleaf):</strong>
+    <ol>
+      <li>O navegador pede uma página (ex: <code class="language-plaintext highlighter-rouge">/produtos</code>).</li>
+      <li>O <strong>servidor Spring Boot</strong> busca os dados no banco, processa um template HTML, injeta os dados no HTML e envia uma <strong>página HTML completa</strong> de volta.</li>
+      <li>Cada clique em um link repete todo o processo.</li>
+    </ol>
+  </li>
+  <li><strong>Analogia SSR:</strong> Pedir um “prato feito” completo em um restaurante.</li>
+</ul>
+
+<p>Agora, vamos adotar a abordagem de <strong>Renderização no Lado do Cliente (Client-Side Rendering - CSR)</strong>, a base de uma <strong>SPA</strong>.</p>
+
+<ul>
+  <li><strong>Fluxo CSR (SPA):</strong>
+    <ol>
+      <li>O navegador pede a aplicação <strong>uma única vez</strong>. O servidor envia uma “casca” HTML quase vazia e vários arquivos JavaScript.</li>
+      <li>O <strong>JavaScript</strong>, executando no navegador do cliente, é quem pede os <strong>dados puros (JSON)</strong> à nossa API.</li>
+      <li>O JavaScript então usa esses dados para construir e renderizar o HTML dinamicamente, atualizando apenas as partes necessárias da página.</li>
+    </ol>
+  </li>
+  <li><strong>Analogia CSR:</strong> Ter uma cozinha (o JavaScript) e pedir apenas os ingredientes crus (o JSON) ao fornecedor (a API) para montar seus próprios pratos.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Característica</th>
+      <th style="text-align: left">SSR (Thymeleaf)</th>
+      <th style="text-align: left">CSR (Single Page Application)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Carga Inicial</strong></td>
+      <td style="text-align: left">Mais rápida para a primeira visualização.</td>
+      <td style="text-align: left">Mais lenta (baixa todo o app), mas instantânea depois.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Navegação</strong></td>
+      <td style="text-align: left">Lenta, recarrega a página a cada clique.</td>
+      <td style="text-align: left">Rápida e fluida, sem recarregamento da página.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Carga no Servidor</strong></td>
+      <td style="text-align: left">Maior (precisa renderizar HTML a cada vez).</td>
+      <td style="text-align: left">Menor (serve apenas JSON e arquivos estáticos).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Arquitetura</strong></td>
+      <td style="text-align: left">Acoplada (Frontend e Backend no mesmo processo).</td>
+      <td style="text-align: left">Desacoplada (Backend é uma API, Frontend é um cliente).</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="-aula-72-estruturando-o-frontend">### Aula 7.2: Estruturando o Frontend</h3>
+
+<p>Nossa SPA viverá inteiramente no diretório <code class="language-plaintext highlighter-rouge">src/main/resources/static/</code>. O próprio Spring Boot servirá esses arquivos.</p>
+
+<p><strong>Ação:</strong> Crie os arquivos HTML e uma folha de estilos básica.</p>
+
+<h4 id="código-staticloginhtml">Código: <code class="language-plaintext highlighter-rouge">static/login.html</code></h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Login - Gestão de Estoque<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"/css/style.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row justify-content-center align-items-center vh-100"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-6 col-lg-4"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow-5-strong"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-header text-center bg-dark text-white p-4"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">"h4 mb-1"</span><span class="nt">&gt;</span>Gestão de Estoque<span class="nt">&lt;/h2&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body p-4"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"error-message"</span> <span class="na">class=</span><span class="s">"alert alert-danger d-none"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                        <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"login-form"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-outline mb-4"</span> <span class="na">data-mdb-input-init</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"username"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span> <span class="nt">/&gt;</span>
+                                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"username"</span><span class="nt">&gt;</span>Usuário (admin)<span class="nt">&lt;/label&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-outline mb-4"</span> <span class="na">data-mdb-input-init</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span> <span class="nt">/&gt;</span>
+                                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"password"</span><span class="nt">&gt;</span>Senha (admin123)<span class="nt">&lt;/label&gt;</span>
+                            <span class="nt">&lt;/div&gt;</span>
+                            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-primary btn-block mb-4"</span> <span class="na">data-mdb-ripple-init</span><span class="nt">&gt;</span>Entrar<span class="nt">&lt;/button&gt;</span>
+                        <span class="nt">&lt;/form&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/auth.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h4 id="código-staticindexhtml-a-casca-da-nossa-spa">Código: <code class="language-plaintext highlighter-rouge">static/index.html</code> (A “casca” da nossa SPA)</h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Gestão de Estoque<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"/css/style.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;header&gt;</span>
+        <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-expand-lg navbar-dark bg-dark shadow-sm"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">href=</span><span class="s">"#/produtos"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fas fa-boxes-stacked me-2"</span><span class="nt">&gt;&lt;/i&gt;</span>Gestão de Estoque<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"navbar-nav d-flex flex-row"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item me-3"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"#/categorias"</span><span class="nt">&gt;</span>Categorias<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item me-3"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"#/fornecedores"</span><span class="nt">&gt;</span>Fornecedores<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"logout-button"</span> <span class="na">class=</span><span class="s">"btn btn-outline-danger btn-rounded"</span><span class="nt">&gt;</span>Sair<span class="nt">&lt;/button&gt;</span>
+                    <span class="nt">&lt;/li&gt;</span>
+                <span class="nt">&lt;/ul&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/nav&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+
+    <span class="nt">&lt;main</span> <span class="na">id=</span><span class="s">"app-content"</span> <span class="na">class=</span><span class="s">"container my-5"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/main&gt;</span>
+
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/auth.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/api.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/router.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h4 id="código-staticcssstylecss">Código: <code class="language-plaintext highlighter-rouge">static/css/style.css</code></h4>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* Estilos globais para a aplicação */</span>
+<span class="nc">.table-hover</span> <span class="nt">tbody</span> <span class="nt">tr</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.075</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-73-gerenciando-autenticação-no-cliente-authjs">### Aula 7.3: Gerenciando Autenticação no Cliente (<code class="language-plaintext highlighter-rouge">auth.js</code>)</h3>
+
+<p><strong>Conceito-Chave:</strong> O <code class="language-plaintext highlighter-rouge">localStorage</code> é um mecanismo do navegador que nos permite salvar dados (como o token JWT) que persistem mesmo se o navegador for fechado.</p>
+
+<p><strong>Ação:</strong> Crie o arquivo <code class="language-plaintext highlighter-rouge">js/auth.js</code> para centralizar toda a lógica de autenticação do lado do cliente.</p>
+
+<h4 id="código-staticjsauthjs">Código: <code class="language-plaintext highlighter-rouge">static/js/auth.js</code></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Este objeto encapsula toda a lógica de autenticação</span>
+<span class="kd">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Salva o token no localStorage</span>
+    <span class="na">saveToken</span><span class="p">:</span> <span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">localStorage</span><span class="p">.</span><span class="nf">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">jwt_token</span><span class="dl">'</span><span class="p">,</span> <span class="nx">token</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="c1">// Pega o token do localStorage</span>
+    <span class="na">getToken</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nf">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">jwt_token</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="c1">// Remove o token para fazer logout</span>
+    <span class="na">removeToken</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">localStorage</span><span class="p">.</span><span class="nf">removeItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">jwt_token</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="c1">// Verifica se existe um token</span>
+    <span class="na">isLoggedIn</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">auth</span><span class="p">.</span><span class="nf">getToken</span><span class="p">();</span>
+        <span class="k">return</span> <span class="o">!!</span><span class="nx">token</span><span class="p">;</span> <span class="c1">// Retorna true se o token existir, false caso contrário</span>
+    <span class="p">},</span>
+    <span class="c1">// Lida com o processo de login</span>
+    <span class="na">handleLogin</span><span class="p">:</span> <span class="k">async </span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/auth/login</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+                <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+                <span class="p">},</span>
+                <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span> <span class="na">login</span><span class="p">:</span> <span class="nx">username</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="nx">password</span> <span class="p">})</span>
+            <span class="p">});</span>
+
+            <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Usuário ou senha inválidos.</span><span class="dl">'</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+            <span class="nx">auth</span><span class="p">.</span><span class="nf">saveToken</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span> <span class="c1">// Salva o token recebido</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/index.html</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Redireciona para a página principal</span>
+        <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">errorDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">error-message</span><span class="dl">'</span><span class="p">);</span>
+            <span class="nx">errorDiv</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+            <span class="nx">errorDiv</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="dl">'</span><span class="s1">d-none</span><span class="dl">'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1">// Lida com o processo de logout</span>
+    <span class="na">handleLogout</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">auth</span><span class="p">.</span><span class="nf">removeToken</span><span class="p">();</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/login.html</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Redireciona para a página de login</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Adiciona o listener de evento APENAS se estivermos na página de login</span>
+<span class="k">if </span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nf">endsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">login.html</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">login-form</span><span class="dl">'</span><span class="p">).</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span> <span class="c1">// Impede o envio padrão do formulário</span>
+        <span class="kd">const</span> <span class="nx">username</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">username</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+        <span class="kd">const</span> <span class="nx">password</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">password</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+        <span class="nx">auth</span><span class="p">.</span><span class="nf">handleLogin</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// Adiciona o listener de evento APENAS se estivermos na página principal</span>
+<span class="k">if </span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nf">endsWith</span><span class="p">(</span><span class="dl">'</span><span class="s1">index.html</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">logout-button</span><span class="dl">'</span><span class="p">).</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">auth</span><span class="p">.</span><span class="nx">handleLogout</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-74-consumindo-a-api-apijs">### Aula 7.4: Consumindo a API (<code class="language-plaintext highlighter-rouge">api.js</code>)</h3>
+
+<p><strong>Conceito-Chave:</strong> Centralizar as chamadas de API em um único módulo (<code class="language-plaintext highlighter-rouge">api.js</code>) é uma boa prática. Isso nos permite adicionar lógica comum a todas as requisições, como incluir o token de autorização.</p>
+
+<p><strong>Ação:</strong> Crie o arquivo <code class="language-plaintext highlighter-rouge">js/api.js</code> que fará as chamadas <code class="language-plaintext highlighter-rouge">fetch</code> para nosso backend.</p>
+
+<h4 id="código-staticjsapijs">Código: <code class="language-plaintext highlighter-rouge">static/js/api.js</code></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Módulo para centralizar todas as chamadas à API</span>
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// Função auxiliar genérica para requisições</span>
+    <span class="na">fetch</span><span class="p">:</span> <span class="k">async </span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">method</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span> <span class="nx">body</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">auth</span><span class="p">.</span><span class="nf">getToken</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="p">};</span>
+
+        <span class="k">if </span><span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">headers</span><span class="p">[</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">method</span><span class="p">:</span> <span class="nx">method</span><span class="p">,</span>
+            <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+        <span class="p">};</span>
+
+        <span class="k">if </span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">config</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="s2">`/api</span><span class="p">${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+        <span class="c1">// Se o token for inválido/expirado, o servidor retornará 403.</span>
+        <span class="c1">// Devemos deslogar o usuário.</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">403</span> <span class="o">||</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">401</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">auth</span><span class="p">.</span><span class="nf">handleLogout</span><span class="p">();</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="s2">`Erro na API: </span><span class="p">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="c1">// Retorna um JSON vazio para respostas 204 No Content</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">204</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">{};</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="c1">// Funções específicas para cada recurso</span>
+    <span class="na">getProdutos</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/produtos</span><span class="dl">'</span><span class="p">),</span>
+    <span class="na">deleteProduto</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">`/produtos/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">),</span>
+    
+    <span class="na">getCategorias</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/categorias</span><span class="dl">'</span><span class="p">),</span>
+    <span class="c1">// ... adicione outras funções conforme necessário (getFornecedores, createProduto, etc.)</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-75-roteamento-no-lado-do-cliente-routerjs">### Aula 7.5: Roteamento no Lado do Cliente (<code class="language-plaintext highlighter-rouge">router.js</code>)</h3>
+
+<p><strong>Conceito-Chave:</strong> Um roteador de cliente observa a URL e, em vez de pedir uma nova página ao servidor, ele decide qual conteúdo JavaScript deve renderizar na tela. Usaremos uma técnica simples baseada no “hash” (<code class="language-plaintext highlighter-rouge">#</code>) da URL.</p>
+
+<p><strong>Ação:</strong> Crie o arquivo <code class="language-plaintext highlighter-rouge">js/router.js</code> para controlar qual “página” é exibida.</p>
+
+<h4 id="código-staticjsrouterjs">Código: <code class="language-plaintext highlighter-rouge">static/js/router.js</code></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">appContent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">app-content</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Templates HTML para cada "página"</span>
+<span class="kd">const</span> <span class="nx">renderProdutos</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">produtos</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">getProdutos</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">tableRows</span> <span class="o">=</span> <span class="nx">produtos</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="s2">`
+            &lt;tr&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">nome</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">quantidade</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;R$ </span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">preco</span><span class="p">.</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge badge-primary rounded-pill d-inline"&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">nomeCategoria</span><span class="p">}</span><span class="s2">&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button class="btn btn-sm btn-danger btn-floating" data-id="</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">" data-action="delete"&gt;
+                        &lt;i class="fas fa-trash"&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        `</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="s2">`
+            &lt;div class="d-flex justify-content-between align-items-center mb-4"&gt;
+                &lt;h1 class="h2"&gt;Produtos em Estoque&lt;/h1&gt;
+                &lt;a href="#/produtos/novo" class="btn btn-primary btn-rounded"&gt;&lt;i class="fas fa-plus me-2"&gt;&lt;/i&gt;Adicionar Produto&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="card"&gt;&lt;div class="card-body"&gt;
+                &lt;table class="table align-middle mb-0 bg-white table-hover"&gt;
+                    &lt;thead class="bg-light"&gt;
+                        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Qtd.&lt;/th&gt;&lt;th&gt;Preço&lt;/th&gt;&lt;th&gt;Categoria&lt;/th&gt;&lt;th&gt;Ações&lt;/th&gt;&lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;</span><span class="p">${</span><span class="nx">tableRows</span><span class="p">}</span><span class="s2">&lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;&lt;/div&gt;
+        `</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">`&lt;div class="alert alert-danger"&gt;Erro ao carregar produtos.&lt;/div&gt;`</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">renderCategorias</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Lógica similar para buscar e renderizar categorias</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">&lt;h1&gt;Página de Categorias (a implementar)&lt;/h1&gt;</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Mapa de rotas</span>
+<span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">/produtos</span><span class="dl">'</span><span class="p">:</span> <span class="nx">renderProdutos</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">/categorias</span><span class="dl">'</span><span class="p">:</span> <span class="nx">renderCategorias</span><span class="p">,</span>
+    <span class="c1">// Adicione outras rotas aqui</span>
+<span class="p">};</span>
+
+<span class="c1">// Função principal do roteador</span>
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Proteção de rota: se não estiver logado, manda para o login.</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">auth</span><span class="p">.</span><span class="nf">isLoggedIn</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/login.html</span><span class="dl">'</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Pega o caminho do hash ou vai para a página padrão</span>
+    <span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nf">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">/produtos</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">renderFunction</span> <span class="o">=</span> <span class="nx">routes</span><span class="p">[</span><span class="nx">path</span><span class="p">]</span> <span class="o">||</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="dl">'</span><span class="s1">&lt;h2&gt;Página não encontrada&lt;/h2&gt;</span><span class="dl">'</span><span class="p">);</span>
+    
+    <span class="nx">appContent</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">renderFunction</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="c1">// O roteador é acionado quando a página carrega ou o hash da URL muda</span>
+<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">load</span><span class="dl">'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">hashchange</span><span class="dl">'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+
+<span class="c1">// Delegação de eventos para botões de ação (ex: deletar)</span>
+<span class="nx">appContent</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="k">async </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nf">closest</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-action="delete"]</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+        <span class="k">if </span><span class="p">(</span><span class="nf">confirm</span><span class="p">(</span><span class="s2">`Tem certeza que deseja deletar o produto ID </span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">?`</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">deleteProduto</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+                <span class="nf">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Produto deletado com sucesso!</span><span class="dl">'</span><span class="p">);</span>
+                <span class="nf">router</span><span class="p">();</span> <span class="c1">// Recarrega a view atual</span>
+            <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nf">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erro ao deletar produto. Você tem permissão de ADMIN?</span><span class="dl">'</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="conclusão-do-módulo-7">Conclusão do Módulo 7</h3>
+
+<p><strong>Parabéns!</strong> Você construiu uma Single Page Application funcional do zero. Embora simples, ela demonstra todos os conceitos fundamentais:</p>
+
+<ul>
+  <li>Separação total entre frontend e backend.</li>
+  <li>Consumo de uma API REST segura com JWT.</li>
+  <li>Gerenciamento de estado de autenticação no cliente.</li>
+  <li>Renderização dinâmica de conteúdo e roteamento sem recarregar a página.</li>
+</ul>
+
+<p>Este conhecimento é a base para o uso de frameworks modernos como <strong>React, Vue e Angular</strong>, que resolvem muitos desses problemas (roteamento, renderização, gerenciamento de estado) de forma mais eficiente e escalável.</p>
+
+<p>No <strong>próximo e último módulo</strong>, aprenderemos a empacotar nossa aplicação backend com <strong>Docker</strong>, preparando-a para o deploy em qualquer ambiente.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

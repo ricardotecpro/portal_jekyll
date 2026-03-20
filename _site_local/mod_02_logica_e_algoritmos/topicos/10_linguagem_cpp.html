@@ -1,0 +1,635 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/10_linguagem_cpp.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linguagem C++ 💻 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Linguagem C++ 💻" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/10_linguagem_cpp.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/10_linguagem_cpp.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linguagem C++ 💻" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Linguagem C++ 💻","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/10_linguagem_cpp.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Linguagem c++ 💻</span>
+          
+        
+      </nav>
+
+      <h1 id="linguagem-c-">Linguagem C++ 💻</h1>
+
+<p>Bem-vindo ao guia de C++, uma evolução da linguagem C com recursos poderosos como orientação a objetos, strings nativas e um sistema de entrada e saída mais robusto. Este material é ideal para quem já tem noções de lógica e busca dominar os fundamentos do C++.</p>
+
+<h2 id="️-instalação-e-configuração-do-ambiente-vs-code">🛠️ Instalação e Configuração do Ambiente (VS Code)</h2>
+
+<p>Assim como em C, para programar em C++ você precisa de um <strong>compilador</strong> e de um <strong>IDE</strong>. O compilador para C++ que usaremos é o <strong>g++</strong>, que também faz parte do pacote <strong>MinGW</strong>.</p>
+
+<p>O processo de instalação é o mesmo do guia de C:</p>
+
+<ol>
+  <li><strong>Instale o Compilador (MinGW-w64)</strong>: Siga as instruções para instalar o MinGW e adicionar sua pasta <code class="language-plaintext highlighter-rouge">bin</code> à variável de ambiente <code class="language-plaintext highlighter-rouge">Path</code> do Windows. Isso dará ao sistema acesso tanto ao <code class="language-plaintext highlighter-rouge">gcc</code> (para C) quanto ao <code class="language-plaintext highlighter-rouge">g++</code> (para C++).</li>
+  <li><strong>Instale o VS Code</strong>: Baixe e instale o <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+  <li><strong>Instale a Extensão C/C++</strong>: No VS Code, instale a extensão “C/C++” da Microsoft para habilitar o suporte completo à linguagem.</li>
+</ol>
+
+<h3 id="-seu-primeiro-programa-em-c">🚀 Seu Primeiro Programa em C++</h3>
+
+<p>Vamos criar o programa “Olá, Mundo!” na versão C++.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Ola, Universo C++!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ola, Universo C++!
+</code></pre></div></div>
+
+<p><strong>Análise do Código:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;iostream&gt;</code>: Importa a biblioteca de <em>stream</em> (fluxo) de entrada e saída, essencial para usar <code class="language-plaintext highlighter-rouge">cout</code> e <code class="language-plaintext highlighter-rouge">cin</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">using namespace std;</code>: Indica que usaremos elementos do <em>namespace</em> (espaço de nomes) <code class="language-plaintext highlighter-rouge">std</code> (standard/padrão). Isso nos permite escrever <code class="language-plaintext highlighter-rouge">cout</code> em vez de <code class="language-plaintext highlighter-rouge">std::cout</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">int main()</code>: A função principal onde a execução do programa começa.</li>
+  <li><code class="language-plaintext highlighter-rouge">cout &lt;&lt; "..." &lt;&lt; endl;</code>: <code class="language-plaintext highlighter-rouge">cout</code> é o objeto de saída padrão (o console). O operador <code class="language-plaintext highlighter-rouge">&lt;&lt;</code> “insere” dados no fluxo de saída. <code class="language-plaintext highlighter-rouge">endl</code> insere uma nova linha e limpa o buffer.</li>
+  <li><code class="language-plaintext highlighter-rouge">return 0;</code>: Informa ao sistema operacional que o programa terminou com sucesso.</li>
+</ul>
+
+<h2 id="-tipos-de-dados-e-variáveis">📊 Tipos de Dados e Variáveis</h2>
+
+<p>C++ herda os tipos de dados de C, mas adiciona tipos nativos que facilitam muito a programação, como <code class="language-plaintext highlighter-rouge">string</code> e <code class="language-plaintext highlighter-rouge">bool</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Significado</th>
+      <th style="text-align: left">Tipo em C++</th>
+      <th style="text-align: left">Exemplo de Declaração</th>
+      <th style="text-align: left">Observações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Número Inteiro</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int quantidade;</code></td>
+      <td style="text-align: left">Armazena números inteiros. Use <code class="language-plaintext highlighter-rouge">long long</code> para números muito grandes.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Número com Ponto Flutuante</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double preco;</code></td>
+      <td style="text-align: left">Armazena números reais com alta precisão. <code class="language-plaintext highlighter-rouge">float</code> pode ser usado para precisão simples.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Um Único Caractere</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char categoria;</code></td>
+      <td style="text-align: left">Armazena um caractere entre <strong>aspas simples</strong>. Ex: <code class="language-plaintext highlighter-rouge">'A'</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Texto (String)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">string nomeProduto;</code></td>
+      <td style="text-align: left">Um tipo nativo poderoso e flexível para textos. Requer a biblioteca <code class="language-plaintext highlighter-rouge">&lt;string&gt;</code> e usa <strong>aspas duplas</strong>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Valor Lógico (Booleano)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bool</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bool emEstoque;</code></td>
+      <td style="text-align: left">Armazena os valores <code class="language-plaintext highlighter-rouge">true</code> (verdadeiro) ou <code class="language-plaintext highlighter-rouge">false</code> (falso).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-declaração-e-atribuição-de-variáveis">📝 Declaração e Atribuição de Variáveis</h2>
+
+<p>A declaração e atribuição em C++ são diretas e intuitivas, especialmente com o tipo <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="c1"> // Para formatar a saída de dados</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Declaração e inicialização de variáveis</span>
+    <span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">35</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">salario</span> <span class="o">=</span> <span class="mf">7500.90</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">altura</span> <span class="o">=</span> <span class="mf">1.82</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">genero</span> <span class="o">=</span> <span class="sc">'M'</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">nome</span> <span class="o">=</span> <span class="s">"Carlos Pereira"</span><span class="p">;</span> <span class="c1">// Atribuição direta e simples</span>
+
+    <span class="c1">// Configura a saída para exibir 2 casas decimais em números double</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">setprecision</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+    <span class="c1">// Saída de dados</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"NOME = "</span> <span class="o">&lt;&lt;</span> <span class="n">nome</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"IDADE = "</span> <span class="o">&lt;&lt;</span> <span class="n">idade</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"GENERO = "</span> <span class="o">&lt;&lt;</span> <span class="n">genero</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ALTURA = "</span> <span class="o">&lt;&lt;</span> <span class="n">altura</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"SALARIO = R$ "</span> <span class="o">&lt;&lt;</span> <span class="n">salario</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NOME = Carlos Pereira
+IDADE = 35
+GENERO = M
+ALTURA = 1.82
+SALARIO = R$ 7500.90
+</code></pre></div></div>
+
+<h2 id="-operadores">🔢 Operadores</h2>
+
+<p>Os operadores em C++ são, em sua maioria, idênticos aos da linguagem C.</p>
+
+<h3 id="aritméticos">Aritméticos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Resto da divisão (módulo)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="comparativos">Comparativos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left">Igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente de</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="lógicos">Lógicos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left">E (AND)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left">OU (OR)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left">NÃO (NOT)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-saída-de-dados-com-cout">📤 Saída de Dados com <code class="language-plaintext highlighter-rouge">cout</code></h2>
+
+<p>O <code class="language-plaintext highlighter-rouge">cout</code> é o principal meio de exibir informações no console em C++. Para formatar números, usamos manipuladores da biblioteca <code class="language-plaintext highlighter-rouge">&lt;iomanip&gt;</code>.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cout &lt;&lt; fixed &lt;&lt; setprecision(N);</code>: Define que a saída de números de ponto flutuante terá um número fixo de <code class="language-plaintext highlighter-rouge">N</code> casas decimais.</li>
+</ul>
+
+<p><strong>Nota sobre <code class="language-plaintext highlighter-rouge">#include &lt;bits/stdc++.h&gt;</code></strong>:
+Você pode encontrar este comando em alguns códigos. Ele é um atalho (não padrão do C++) que inclui todas as bibliotecas padrão de uma vez. Embora seja prático para competições de programação, <strong>não é recomendado</strong> em projetos profissionais, pois aumenta o tempo de compilação e pode não ser compatível com todos os compiladores.</p>
+
+<h2 id="-processamento-de-dados-e-casting">🔄 Processamento de Dados e Casting</h2>
+
+<p>O <em>casting</em> (conversão de tipo) em C++ funciona de forma similar ao C e é crucial para operações matemáticas precisas.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">resultado</span><span class="p">;</span>
+
+    <span class="c1">// A divisão de dois inteiros resulta em um inteiro (a parte decimal é truncada)</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Divisao de inteiros: "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// Saída: 2</span>
+
+    <span class="c1">// Fazendo o casting de 'a' para double para obter um resultado preciso</span>
+    <span class="n">resultado</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">setprecision</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Divisao com casting: "</span> <span class="o">&lt;&lt;</span> <span class="n">resultado</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// Saída: 2.75</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-entrada-de-dados-com-cin">📥 Entrada de Dados com <code class="language-plaintext highlighter-rouge">cin</code></h2>
+
+<p>Para receber dados do usuário, usamos o objeto <code class="language-plaintext highlighter-rouge">cin</code> com o operador de extração <code class="language-plaintext highlighter-rouge">&gt;&gt;</code>.</p>
+
+<p><strong>Lendo Textos com Espaços (<code class="language-plaintext highlighter-rouge">getline</code>)</strong>
+O <code class="language-plaintext highlighter-rouge">cin &gt;&gt;</code> lê a entrada até encontrar um espaço em branco. Para ler uma linha inteira de texto (com espaços), usamos a função <code class="language-plaintext highlighter-rouge">getline(cin, variavel_string);</code>.</p>
+
+<p><strong>Limpando o Buffer de Entrada</strong>
+Assim como em C, ler um número com <code class="language-plaintext highlighter-rouge">cin &gt;&gt;</code> deixa uma quebra de linha (<code class="language-plaintext highlighter-rouge">
+</code>) no buffer. Isso pode atrapalhar uma chamada subsequente a <code class="language-plaintext highlighter-rouge">getline</code>. Para resolver isso, limpamos o buffer.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cin.ignore(INT_MAX, '
+');</code>: Ignora todos os caracteres no buffer até encontrar e descartar a próxima quebra de linha.</li>
+</ul>
+
+<!-- end list -->
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;climits&gt;</span><span class="c1"> // Para usar INT_MAX</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">idade</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">salario</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">nome</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite sua idade: "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">idade</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite seu nome completo: "</span><span class="p">;</span>
+    <span class="n">cin</span><span class="p">.</span><span class="n">ignore</span><span class="p">(</span><span class="n">INT_MAX</span><span class="p">,</span> <span class="err">'</span>
+<span class="err">'</span><span class="p">);</span> <span class="c1">// Limpeza de buffer obrigatória aqui!</span>
+    <span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">nome</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite seu salario: "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">salario</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">setprecision</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="err">
+</span><span class="s">--- DADOS DIGITADOS ---</span><span class="err">
+</span><span class="s">"</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Nome: "</span> <span class="o">&lt;&lt;</span> <span class="n">nome</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Idade: "</span> <span class="o">&lt;&lt;</span> <span class="n">idade</span> <span class="o">&lt;&lt;</span> <span class="s">" anos"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Salario: R$ "</span> <span class="o">&lt;&lt;</span> <span class="n">salario</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-estrutura-condicional-if-else">🔀 Estrutura Condicional (<code class="language-plaintext highlighter-rouge">if-else</code>)</h2>
+
+<p>Permite executar blocos de código diferentes com base em uma condição.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">hora</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite uma hora do dia (0-23): "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">hora</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Bom dia!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Boa tarde!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Boa noite!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-estruturas-de-repetição">🔁 Estruturas de Repetição</h2>
+
+<h3 id="while-enquanto"><code class="language-plaintext highlighter-rouge">while</code> (Enquanto)</h3>
+
+<p>Executa um bloco de código repetidamente enquanto uma condição for verdadeira. A condição é verificada <strong>antes</strong> de cada iteração.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">numero</span><span class="p">,</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite um numero (0 para parar): "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">numero</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">numero</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">soma</span> <span class="o">+=</span> <span class="n">numero</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite outro numero (0 para parar): "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">numero</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"SOMA FINAL = "</span> <span class="o">&lt;&lt;</span> <span class="n">soma</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="for-para"><code class="language-plaintext highlighter-rouge">for</code> (Para)</h3>
+
+<p>É a estrutura ideal para laços com um número conhecido de repetições.</p>
+
+<p>Sintaxe: <code class="language-plaintext highlighter-rouge">for (inicialização; condição; incremento) { ... }</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">valor</span><span class="p">,</span> <span class="n">soma</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Quantos numeros voce quer somar? "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+
+    <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite o valor #"</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="s">": "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">valor</span><span class="p">;</span>
+        <span class="n">soma</span> <span class="o">+=</span> <span class="n">valor</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"SOMA = "</span> <span class="o">&lt;&lt;</span> <span class="n">soma</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="do-while-faça-enquanto"><code class="language-plaintext highlighter-rouge">do-while</code> (Faça-Enquanto)</h3>
+
+<p>Garante que o bloco de código seja executado <strong>pelo menos uma vez</strong>, pois a condição é verificada <strong>ao final</strong> da iteração.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">C</span><span class="p">,</span> <span class="n">F</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">resposta</span><span class="p">;</span>
+
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite a temperatura em Celsius: "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">C</span><span class="p">;</span>
+
+        <span class="n">F</span> <span class="o">=</span> <span class="mf">9.0</span> <span class="o">*</span> <span class="n">C</span> <span class="o">/</span> <span class="mf">5.0</span> <span class="o">+</span> <span class="mf">32.0</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Equivalente em Fahrenheit: "</span> <span class="o">&lt;&lt;</span> <span class="n">F</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Deseja repetir (s/n)? "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">resposta</span><span class="p">;</span>
+
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">resposta</span> <span class="o">==</span> <span class="sc">'s'</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-vetores-e-matrizes">📏 Vetores e Matrizes</h2>
+
+<h3 id="vetores-arrays-c-style">Vetores (Arrays C-style)</h3>
+
+<p>Vetores são coleções de tamanho fixo de elementos do mesmo tipo.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Quantos numeros voce vai digitar? "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+
+    <span class="kt">double</span> <span class="n">vet</span><span class="p">[</span><span class="n">N</span><span class="p">];</span> <span class="c1">// Vetor C-style de tamanho N</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite um numero: "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">vet</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="n">setprecision</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="err">
+</span><span class="s">NUMEROS DIGITADOS:</span><span class="err">
+</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vet</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Nota Moderna</strong>: Em C++ moderno, prefira usar <code class="language-plaintext highlighter-rouge">std::vector</code> (da biblioteca <code class="language-plaintext highlighter-rouge">&lt;vector&gt;</code>), que é um contêiner dinâmico e mais seguro.</p>
+
+<h3 id="matrizes-arrays-2d-c-style">Matrizes (Arrays 2D C-style)</h3>
+
+<p>Matrizes são estruturas bidimensionais, basicamente um vetor de vetores.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Quantas linhas tera a matriz? "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">M</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Quantas colunas tera a matriz? "</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">mat</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Elemento ["</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">j</span> <span class="o">&lt;&lt;</span> <span class="s">"]: "</span><span class="p">;</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="err">
+</span><span class="s">MATRIZ DIGITADA:</span><span class="err">
+</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Nota Moderna</strong>: Para matrizes dinâmicas em C++, a abordagem recomendada é <code class="language-plaintext highlighter-rouge">std::vector&lt;std::vector&lt;int&gt;&gt;</code>.</p>
+
+<h2 id="-depuração-debugging-no-vs-code">🐞 Depuração (Debugging) no VS Code</h2>
+
+<p>O processo de depuração em C++ no VS Code é idêntico ao de C.</p>
+
+<ol>
+  <li><strong>Marcar Breakpoints</strong>: Clique na margem à esquerda do número da linha para criar um ponto de parada.</li>
+  <li><strong>Iniciar Depuração</strong>: Pressione <code class="language-plaintext highlighter-rouge">F5</code> para iniciar.</li>
+  <li><strong>Controlar Execução</strong>: Use <code class="language-plaintext highlighter-rouge">F10</code> (Step Over) para executar linha por linha e <code class="language-plaintext highlighter-rouge">F5</code> para continuar até o próximo breakpoint.</li>
+  <li><strong>Analisar Variáveis</strong>: Inspecione os valores das variáveis na janela <code class="language-plaintext highlighter-rouge">VARIABLES</code> do painel de depuração.</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

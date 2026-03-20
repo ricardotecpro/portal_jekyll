@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🧩 Paradigmas e Padrões: Estruturando o Pensamento e a Solução
+title: "🧩 Paradigmas e Padrões: Estruturando o Pensamento e a Solução"
 ---
 
 # 🧩 Paradigmas e Padrões: Estruturando o Pensamento e a Solução

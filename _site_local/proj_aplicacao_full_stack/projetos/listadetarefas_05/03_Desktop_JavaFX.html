@@ -1,0 +1,51 @@
+<h1 id="️-módulo-3-desktop-javafx---melhorando-a-experiência-nativa">🖥️ Módulo 3: Desktop (JavaFX) - Melhorando a Experiência Nativa</h1>
+
+<p><strong>Objetivo:</strong> Aprimorar a UX do cliente desktop para seguir convenções nativas, como o menu de contexto (clique direito), e manter a edição por duplo clique.</p>
+
+<h3 id="-️-passo-1-implementando-o-menu-de-contexto">### 🖱️ Passo 1: Implementando o Menu de Contexto</h3>
+<ul>
+  <li><strong>Melhoria:</strong> Adicionamos um menu de contexto em cada linha da tabela, uma forma muito comum e esperada de interagir com aplicações desktop, conforme os requisitos de UX.</li>
+</ul>
+
+<p><strong><code class="language-plaintext highlighter-rouge">MainViewController.java</code> (Trecho Refatorado do <code class="language-plaintext highlighter-rouge">initialize</code>)</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="no">URL</span> <span class="n">url</span><span class="o">,</span> <span class="nc">ResourceBundle</span> <span class="n">resourceBundle</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ... (configuração das colunas, setEditable, setCellFactory, setOnEditCommit, etc.) ...</span>
+
+    <span class="c1">// Boas Práticas: Adiciona um menu de contexto às linhas da tabela</span>
+    <span class="n">tabelaTarefas</span><span class="o">.</span><span class="na">setRowFactory</span><span class="o">(</span><span class="n">tv</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="nc">TableRow</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="n">row</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">TableRow</span><span class="o">&lt;&gt;();</span>
+        <span class="nc">ContextMenu</span> <span class="n">contextMenu</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContextMenu</span><span class="o">();</span>
+        
+        <span class="nc">MenuItem</span> <span class="n">editarItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MenuItem</span><span class="o">(</span><span class="s">"Editar Descrição"</span><span class="o">);</span>
+        <span class="c1">// A ação do menu dispara o mesmo modo de edição do duplo clique</span>
+        <span class="n">editarItem</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">row</span><span class="o">.</span><span class="na">getTableView</span><span class="o">().</span><span class="na">edit</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="na">getIndex</span><span class="o">(),</span> <span class="n">colunaDescricao</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="nc">MenuItem</span> <span class="n">deletarItem</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MenuItem</span><span class="o">(</span><span class="s">"Deletar Tarefa"</span><span class="o">);</span>
+        <span class="n">deletarItem</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="n">deletarTarefa</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="na">getItem</span><span class="o">()));</span>
+
+        <span class="n">contextMenu</span><span class="o">.</span><span class="na">getItems</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">editarItem</span><span class="o">,</span> <span class="k">new</span> <span class="nc">SeparatorMenuItem</span><span class="o">(),</span> <span class="n">deletarItem</span><span class="o">);</span>
+
+        <span class="c1">// Mostra o menu apenas se a linha não estiver vazia</span>
+        <span class="n">row</span><span class="o">.</span><span class="na">contextMenuProperty</span><span class="o">().</span><span class="na">bind</span><span class="o">(</span>
+            <span class="nc">Bindings</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="na">emptyProperty</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">then</span><span class="o">((</span><span class="nc">ContextMenu</span><span class="o">)</span><span class="kc">null</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">otherwise</span><span class="o">(</span><span class="n">contextMenu</span><span class="o">)</span>
+        <span class="o">);</span>
+        <span class="k">return</span> <span class="n">row</span><span class="o">;</span>
+    <span class="o">});</span>
+
+    <span class="c1">// ... (resto do método) ...</span>
+    <span class="n">carregarTarefas</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Manutenção da Edição por Duplo Clique:</strong> A implementação anterior, que usa <code class="language-plaintext highlighter-rouge">TextFieldTableCell</code> e <code class="language-plaintext highlighter-rouge">setOnEditCommit</code>, já é uma boa prática e deve ser mantida, pois oferece um atalho rápido para o usuário. O menu de contexto serve como uma alternativa mais explícita.</li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,0 +1,465 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/padroes-projeto/padroes_de_projeto2.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Padrões de Projeto, Arquiteturas, Testes, Banco de Dados e Boas Práticas | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Padrões de Projeto, Arquiteturas, Testes, Banco de Dados e Boas Práticas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/padroes-projeto/padroes_de_projeto2.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/padroes-projeto/padroes_de_projeto2.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Padrões de Projeto, Arquiteturas, Testes, Banco de Dados e Boas Práticas" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Padrões de Projeto, Arquiteturas, Testes, Banco de Dados e Boas Práticas","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/padroes-projeto/padroes_de_projeto2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/padroes-projeto/" style="margin-left: 0.5rem;">Padroes projeto</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Padrões de projeto, arquiteturas, testes, banco de dados e boas práticas</span>
+          
+        
+      </nav>
+
+      <h1 id="padrões-de-projeto-arquiteturas-testes-banco-de-dados-e-boas-práticas">Padrões de Projeto, Arquiteturas, Testes, Banco de Dados e Boas Práticas</h1>
+
+<h2 id="1-outros-padrões-de-projeto">1. Outros Padrões de Projeto</h2>
+
+<p>Os padrões de projeto são soluções reutilizáveis para problemas recorrentes no desenvolvimento de software. Eles ajudam a estruturar o código de maneira eficiente e facilitam a manutenção e escalabilidade do sistema.</p>
+
+<h3 id="11-factory-method">1.1 Factory Method</h3>
+
+<ul>
+  <li>
+    <p>Define uma interface para criação de objetos, mas permite que subclasses alterem o tipo de objetos criados.</p>
+  </li>
+  <li>
+    <p>Útil quando a criação de um objeto envolve lógica complexa ou quando não queremos expor diretamente a instância da classe.</p>
+  </li>
+  <li>
+    <p>Exemplo:</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface Produto {
+    void criar();
+}
+
+class ProdutoA implements Produto {
+    public void criar() {
+        System.out.println("Produto A criado");
+    }
+}
+
+class FabricaDeProdutos {
+    public static Produto criarProduto(String tipo) {
+        if (tipo.equals("A")) {
+            return new ProdutoA();
+        }
+        throw new IllegalArgumentException("Tipo desconhecido");
+    }
+}
+</code></pre></div></div>
+
+<h3 id="12-singleton">1.2 Singleton</h3>
+
+<ul>
+  <li>
+    <p>Garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela.</p>
+  </li>
+  <li>
+    <p>Usado para gerenciar recursos compartilhados, como conexões de banco de dados.</p>
+  </li>
+  <li>
+    <p>Exemplo:</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Configuracao {
+    private static Configuracao instancia;
+    private Configuracao() {}
+    
+    public static Configuracao getInstance() {
+        if (instancia == null) {
+            instancia = new Configuracao();
+        }
+        return instancia;
+    }
+}
+</code></pre></div></div>
+
+<h3 id="13-observer">1.3 Observer</h3>
+
+<ul>
+  <li>
+    <p>Define uma dependência um-para-muitos entre objetos, onde um objeto (sujeito) notifica múltiplos observadores sobre mudanças de estado.</p>
+  </li>
+  <li>
+    <p>Muito utilizado em eventos e sistemas de notificação.</p>
+  </li>
+  <li>
+    <p>Exemplo:</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface Observador {
+    void atualizar(String mensagem);
+}
+
+class Usuario implements Observador {
+    private String nome;
+    public Usuario(String nome) { this.nome = nome; }
+    public void atualizar(String mensagem) {
+        System.out.println(nome + " recebeu: " + mensagem);
+    }
+}
+
+class Notificador {
+    private List&lt;Observador&gt; observadores = new ArrayList&lt;&gt;();
+    public void adicionar(Observador o) { observadores.add(o); }
+    public void notificarTodos(String mensagem) {
+        for (Observador o : observadores) {
+            o.atualizar(mensagem);
+        }
+    }
+}
+</code></pre></div></div>
+
+<h3 id="14-decorator">1.4 Decorator</h3>
+
+<ul>
+  <li>
+    <p>Permite adicionar funcionalidades a objetos dinamicamente sem modificar suas classes.</p>
+  </li>
+  <li>
+    <p>Exemplo:</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface Cafe {
+    String descricao();
+}
+
+class CafeSimples implements Cafe {
+    public String descricao() { return "Café Simples"; }
+}
+
+class LeiteDecorator implements Cafe {
+    private Cafe cafe;
+    public LeiteDecorator(Cafe cafe) { this.cafe = cafe; }
+    public String descricao() { return cafe.descricao() + ", com leite"; }
+}
+</code></pre></div></div>
+
+<h3 id="15-adapter">1.5 Adapter</h3>
+
+<ul>
+  <li>
+    <p>Converte a interface de uma classe em outra interface esperada pelos clientes.</p>
+  </li>
+  <li>
+    <p>Útil para integrar sistemas legados com novas APIs.</p>
+  </li>
+  <li>
+    <p>Exemplo:</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class TomadaAntiga {
+    public void ligarNaTomadaDoisPinos() {
+        System.out.println("Ligado na tomada de dois pinos");
+    }
+}
+
+class AdaptadorTomada {
+    private TomadaAntiga tomada;
+    public AdaptadorTomada(TomadaAntiga tomada) { this.tomada = tomada; }
+    public void ligarNaTomadaTresPinos() {
+        tomada.ligarNaTomadaDoisPinos();
+    }
+}
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-arquiteturas">2. Arquiteturas</h2>
+<p>Diferentes arquiteturas são usadas para estruturar aplicações de forma escalável e organizada.</p>
+
+<h3 id="21-microservices-vs-monólito">2.1 Microservices vs Monólito</h3>
+
+<ul>
+  <li><strong>Monólito</strong>: Aplicação única e indivisível.</li>
+  <li><strong>Microservices</strong>: Divisão da aplicação em serviços independentes e interoperáveis.</li>
+  <li>Vantagens dos microservices: escalabilidade, deploy independente.</li>
+  <li>Vantagens do monólito: menor complexidade inicial, mais fácil de testar.</li>
+</ul>
+
+<h3 id="22-ddd-domain-driven-design">2.2 DDD (Domain-Driven Design)</h3>
+
+<ul>
+  <li>Modela o software com base na lógica do domínio de negócio.</li>
+  <li>Utiliza conceitos como <strong>Entidades</strong>, <strong>Agregados</strong>, <strong>Repositorios</strong> e <strong>Serviços de Domínio</strong>.</li>
+  <li>Focado em colaboração com especialistas do domínio.</li>
+</ul>
+
+<h3 id="23-arquitetura-hexagonal">2.3 Arquitetura Hexagonal</h3>
+
+<ul>
+  <li>Separa a lógica de negócios da infraestrutura (banco de dados, frameworks, interfaces gráficas).</li>
+  <li>Utiliza portas e adaptadores para desacoplar dependências externas.</li>
+  <li>Facilita testes e manutenibilidade.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-testes-e-qualidade">3. Testes e Qualidade</h2>
+
+<p>Os testes garantem a confiabilidade e robustez do código.</p>
+
+<h3 id="31-junit">3.1 JUnit</h3>
+
+<ul>
+  <li>Framework para testes unitários em Java.</li>
+  <li>Exemplo de teste:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSoma</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="nc">Calculadora</span><span class="o">.</span><span class="na">somar</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="32-mockito">3.2 Mockito</h3>
+
+<ul>
+  <li>Framework para simulação (mocking) de objetos.</li>
+  <li>Exemplo:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">repositorio</span><span class="o">.</span><span class="na">buscarPorId</span><span class="o">(</span><span class="mi">1L</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="k">new</span> <span class="nc">Cliente</span><span class="o">(</span><span class="s">"João"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<h3 id="33-testes-de-integração-no-spring">3.3 Testes de Integração no Spring</h3>
+
+<ul>
+  <li>Testes que validam a integração entre diferentes partes do sistema.</li>
+  <li>Utilizam o Spring Boot Test para configurar um ambiente de testes realista.</li>
+  <li>Exemplo:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClienteServiceTest</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">ClienteService</span> <span class="n">clienteService</span><span class="o">;</span>
+    
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testBuscarCliente</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Cliente</span> <span class="n">cliente</span> <span class="o">=</span> <span class="n">clienteService</span><span class="o">.</span><span class="na">buscarPorId</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+        <span class="n">assertNotNull</span><span class="o">(</span><span class="n">cliente</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-banco-de-dados">4. Banco de Dados</h2>
+
+<p>Os bancos de dados armazenam e gerenciam dados da aplicação.</p>
+
+<h3 id="41-jdbc">4.1 JDBC</h3>
+
+<ul>
+  <li>API para interação direta com bancos de dados SQL.</li>
+  <li>Exemplo de conexão:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="42-jpahibernate">4.2 JPA/Hibernate</h3>
+
+<ul>
+  <li><strong>JPA</strong>: Especificação Java para persistência de dados.</li>
+  <li><strong>Hibernate</strong>: Implementação da JPA.</li>
+  <li>Exemplo de entidade:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Usuario</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="43-nosql">4.3 NoSQL</h3>
+
+<ul>
+  <li>Bancos de dados não relacionais (MongoDB, Redis, Cassandra).</li>
+  <li>Utilizados para alta escalabilidade e flexibilidade de estrutura de dados.</li>
+</ul>
+
+<hr />
+
+<h2 id="5-boas-práticas">5. Boas Práticas</h2>
+
+<h3 id="51-clean-code">5.1 Clean Code</h3>
+
+<ul>
+  <li>Código limpo e de fácil entendimento.</li>
+  <li>Princípios: nomes significativos, funções pequenas, evitar repetições.</li>
+</ul>
+
+<h3 id="52-dry-dont-repeat-yourself">5.2 DRY (Don’t Repeat Yourself)</h3>
+
+<ul>
+  <li>Evitar duplicação de código.</li>
+  <li>Exemplo: Criar métodos reutilizáveis em vez de copiar e colar código.</li>
+</ul>
+
+<h3 id="53-kiss-keep-it-simple-stupid">5.3 KISS (Keep It Simple, Stupid)</h3>
+
+<ul>
+  <li>Manter o código simples e direto.</li>
+  <li>Evitar complexidade desnecessária.</li>
+</ul>
+
+<h3 id="54-yagni-you-arent-gonna-need-it">5.4 YAGNI (You Aren’t Gonna Need It)</h3>
+
+<ul>
+  <li>Implementar apenas o que é necessário.</li>
+  <li>Evitar adicionar funcionalidades prematuramente.</li>
+</ul>
+
+<hr />
+
+<h2 id="6-assuntos-complementares">6. Assuntos Complementares</h2>
+
+<h3 id="61-design-patterns-avançados">6.1 Design Patterns Avançados</h3>
+
+<ul>
+  <li>Padrões como <strong>Strategy</strong>, <strong>Prototype</strong>, <strong>Mediator</strong>, <strong>Chain of Responsibility</strong>.</li>
+  <li>Comparação: Strategy permite troca de algoritmos dinamicamente, enquanto Singleton restringe instância única.</li>
+</ul>
+
+<h3 id="62-cicd-integração-contínua-e-entrega-contínua">6.2 CI/CD (Integração Contínua e Entrega Contínua)</h3>
+
+<ul>
+  <li>Ferramentas: Jenkins, GitHub Actions, GitLab CI.</li>
+  <li>Comparação: Jenkins é altamente configurável, enquanto GitHub Actions é integrado ao GitHub.</li>
+</ul>
+
+<h3 id="63-cloud-computing">6.3 Cloud Computing</h3>
+
+<ul>
+  <li>AWS, Azure, Google Cloud.</li>
+  <li>Comparação: AWS tem mais serviços, enquanto Google Cloud é forte em IA/ML.</li>
+</ul>
+
+<h3 id="64-segurança-em-aplicações">6.4 Segurança em Aplicações</h3>
+
+<ul>
+  <li>Princípios de segurança: OWASP, JWT, OAuth.</li>
+  <li>Comparação: JWT é usado para autenticação stateless, enquanto OAuth é mais amplo para autorização.</li>
+</ul>
+
+<h3 id="65-performance-e-escalabilidade">6.5 Performance e Escalabilidade</h3>
+
+<ul>
+  <li>Caching (Redis), Load Balancers, Otimização de Queries.</li>
+  <li>Comparação: Redis é um cache na memória, enquanto Load Balancer distribui requisições.</li>
+</ul>
+
+<hr />
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Este guia fornece uma visão geral de padrões de projeto, arquiteturas, testes, banco de dados e boas práticas essenciais para desenvolvimento de software. Além disso, explorar tópicos complementares ajudará o estudante a aprofundar seus conhecimentos e desenvolver sistemas robustos e escaláveis.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

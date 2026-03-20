@@ -1,0 +1,167 @@
+<h1 id="tutorial-atualizado-instalando-neovim-e-lunarvim-no-debian">Tutorial Atualizado: Instalando Neovim e LunarVim no Debian</h1>
+
+<h2 id="1-removendo-instalações-anteriores">1. Removendo Instalações Anteriores</h2>
+
+<p>Antes de instalar o Neovim e o LunarVim, remova qualquer instalação existente para evitar conflitos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> <span class="nt">-rf</span> ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim ~/.config/nvim
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> ~/.local/share/lunarvim ~/.local/state/lunarvim ~/.cache/lunarvim ~/.config/lvim
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> /usr/local/bin/nvim /usr/local/bin/nvim-linux-x86_64.appimage /opt/neovim
+</code></pre></div></div>
+
+<h2 id="2-instalando-dependências-essenciais">2. Instalando Dependências Essenciais</h2>
+
+<p>Antes de instalar o Neovim e o LunarVim, certifique-se de que seu sistema tem os pacotes necessários:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt upgrade <span class="nt">-y</span>
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> curl wget git fuse libfuse2 unzip
+</code></pre></div></div>
+
+<h2 id="3-instalando-neovim-versão-mais-recente-via-appimage">3. Instalando Neovim (Versão mais recente via AppImage)</h2>
+
+<p>Baixe e instale o <strong>Neovim AppImage</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/local/bin
+<span class="nb">sudo </span>wget https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
+<span class="nb">sudo chmod</span> +x nvim-linux-x86_64.appimage
+</code></pre></div></div>
+
+<p>Teste a instalação:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/bin/nvim-linux-x86_64.appimage <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Se funcionar corretamente, crie um atalho global:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo ln</span> <span class="nt">-sf</span> /usr/local/bin/nvim-linux-x86_64.appimage /usr/local/bin/nvim
+</code></pre></div></div>
+
+<p>Agora, o Neovim pode ser iniciado com:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim
+</code></pre></div></div>
+
+<p>Caso o AppImage não rode, extraia o conteúdo e utilize a versão extraída:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./nvim-linux-x86_64.appimage <span class="nt">--appimage-extract</span>
+<span class="nb">sudo mv </span>squashfs-root /opt/neovim
+<span class="nb">sudo ln</span> <span class="nt">-sf</span> /opt/neovim/usr/bin/nvim /usr/local/bin/nvim
+</code></pre></div></div>
+
+<h2 id="4-instalando-o-lunarvim">4. Instalando o LunarVim</h2>
+
+<p>ciInstale o <strong>LunarVim</strong> com o script oficial:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LV_BRANCH</span><span class="o">=</span><span class="s1">'release-1.4/neovim-0.10'</span> bash &lt;<span class="o">(</span>curl <span class="nt">-s</span> https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Se houver problemas de permissão ao instalar dependências do NodeJS, use:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/.npm-global
+npm config <span class="nb">set </span>prefix <span class="s1">'~/.npm-global'</span>
+<span class="nb">echo</span> <span class="s1">'export PATH="$HOME/.npm-global/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<p>Após a instalação, carregue as configurações com:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> ~/.bashrc
+lvim <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Se o comando <code class="language-plaintext highlighter-rouge">lvim</code> não for encontrado, adicione o caminho ao <strong>.bashrc</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH="$HOME/.local/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div></div>
+
+<h2 id="5-configurando-lunarvim-para-parecer-com-o-vs-code">5. Configurando LunarVim para Parecer com o VS Code</h2>
+
+<p>Edite o arquivo de configuração:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/.config/lvim
+nvim ~/.config/lvim/config.lua
+</code></pre></div></div>
+
+<p>Adicione as seguintes configurações:</p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Ativar números de linha</span>
+<span class="n">vim</span><span class="p">.</span><span class="n">opt</span><span class="p">.</span><span class="n">number</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">vim</span><span class="p">.</span><span class="n">opt</span><span class="p">.</span><span class="n">relativenumber</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="c1">-- Melhor indentação</span>
+<span class="n">vim</span><span class="p">.</span><span class="n">opt</span><span class="p">.</span><span class="n">tabstop</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">vim</span><span class="p">.</span><span class="n">opt</span><span class="p">.</span><span class="n">shiftwidth</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">vim</span><span class="p">.</span><span class="n">opt</span><span class="p">.</span><span class="n">expandtab</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">vim</span><span class="p">.</span><span class="n">opt</span><span class="p">.</span><span class="n">smartindent</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="c1">-- Tema similar ao VS Code</span>
+<span class="n">lvim</span><span class="p">.</span><span class="n">colorscheme</span> <span class="o">=</span> <span class="s2">"tokyonight"</span>
+
+<span class="c1">-- Atalhos parecidos com VS Code</span>
+<span class="n">lvim</span><span class="p">.</span><span class="n">keys</span><span class="p">.</span><span class="n">normal_mode</span><span class="p">[</span><span class="s2">"&lt;C-s&gt;"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">":w&lt;CR&gt;"</span>
+<span class="n">lvim</span><span class="p">.</span><span class="n">keys</span><span class="p">.</span><span class="n">normal_mode</span><span class="p">[</span><span class="s2">"&lt;C-p&gt;"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">":Telescope find_files&lt;CR&gt;"</span>
+<span class="n">lvim</span><span class="p">.</span><span class="n">keys</span><span class="p">.</span><span class="n">normal_mode</span><span class="p">[</span><span class="s2">"&lt;C-b&gt;"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">":NvimTreeToggle&lt;CR&gt;"</span>
+
+<span class="c1">-- Configurar barra lateral como no VS Code</span>
+<span class="n">lvim</span><span class="p">.</span><span class="n">builtin</span><span class="p">.</span><span class="n">nvimtree</span><span class="p">.</span><span class="n">setup</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">side</span> <span class="o">=</span> <span class="s2">"left"</span>
+
+<span class="c1">-- Melhor autocomplete</span>
+<span class="kd">local</span> <span class="n">cmp</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">"cmp"</span><span class="p">)</span>
+<span class="n">lvim</span><span class="p">.</span><span class="n">builtin</span><span class="p">.</span><span class="n">cmp</span><span class="p">.</span><span class="n">mapping</span><span class="p">[</span><span class="s2">"&lt;Tab&gt;"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmp</span><span class="p">.</span><span class="n">mapping</span><span class="p">.</span><span class="n">select_next_item</span><span class="p">()</span>
+<span class="n">lvim</span><span class="p">.</span><span class="n">builtin</span><span class="p">.</span><span class="n">cmp</span><span class="p">.</span><span class="n">mapping</span><span class="p">[</span><span class="s2">"&lt;S-Tab&gt;"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmp</span><span class="p">.</span><span class="n">mapping</span><span class="p">.</span><span class="n">select_prev_item</span><span class="p">()</span>
+
+<span class="c1">-- Ativar barra de status estilo VS Code</span>
+<span class="nb">require</span><span class="p">(</span><span class="s2">"lualine"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+  <span class="n">options</span> <span class="o">=</span> <span class="p">{</span> <span class="n">theme</span> <span class="o">=</span> <span class="s2">"auto"</span> <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="c1">-- Ativar barra superior com arquivos abertos</span>
+<span class="nb">require</span><span class="p">(</span><span class="s2">"bufferline"</span><span class="p">).</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="c1">-- Melhor indentação visual</span>
+<span class="nb">require</span><span class="p">(</span><span class="s2">"indent_blankline"</span><span class="p">).</span><span class="n">setup</span> <span class="p">{</span>
+    <span class="n">char</span> <span class="o">=</span> <span class="s2">"│"</span><span class="p">,</span>
+    <span class="n">buftype_exclude</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"terminal"</span> <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Salve e saia (<code class="language-plaintext highlighter-rouge">ESC</code> → <code class="language-plaintext highlighter-rouge">:wq</code>).</p>
+
+<h2 id="6-testando-o-lunarvim">6. Testando o LunarVim</h2>
+
+<p>Execute o <strong>LunarVim</strong> para testar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lvim
+</code></pre></div></div>
+
+<p>Se houver problemas, tente reinstalar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lo
+</code></pre></div></div>
+
+<p>Se o erro “lua/lualine/themes/gruvbox/init.lua Not found” ocorrer, altere o tema no arquivo de configuração:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim ~/.config/lvim/config.lua
+</code></pre></div></div>
+
+<p>E substitua:</p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span><span class="p">(</span><span class="s2">"lualine"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+  <span class="n">options</span> <span class="o">=</span> <span class="p">{</span> <span class="n">theme</span> <span class="o">=</span> <span class="s2">"tokyonight"</span> <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>por</p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span><span class="p">(</span><span class="s2">"lualine"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+  <span class="n">options</span> <span class="o">=</span> <span class="p">{</span> <span class="n">theme</span> <span class="o">=</span> <span class="s2">"auto"</span> <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Agora você tem o <strong>Neovim</strong> e <strong>LunarVim</strong> configurados para uma experiência semelhante ao <strong>VS Code</strong>! 🚀</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

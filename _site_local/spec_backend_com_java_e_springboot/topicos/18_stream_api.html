@@ -1,0 +1,453 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/topicos/18_stream_api.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>API de Streams do Java | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="API de Streams do Java" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/18_stream_api.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/18_stream_api.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="API de Streams do Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"API de Streams do Java","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/18_stream_api.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Api de streams do java</span>
+          
+        
+      </nav>
+
+      <h1 id="api-de-streams-do-java">API de Streams do Java</h1>
+
+<p>Este documento oferece uma série de aulas sobre a API de Streams do Java, introduzida no Java 8. As Streams revolucionaram a forma como coleções de dados são processadas, permitindo um estilo de programação mais funcional, declarativo e expressivo.</p>
+
+<hr />
+
+<h2 id="aula-1-introdução-à-api-de-streams">Aula 1: Introdução à API de Streams</h2>
+
+<p>Nesta primeira aula, vamos entender o que são Streams, seus conceitos fundamentais e as vantagens de utilizá-las.</p>
+
+<h3 id="o-que-é-uma-stream">O que é uma Stream?</h3>
+
+<p>Uma Stream é uma sequência de elementos provenientes de uma fonte de dados que suporta operações de agregação. É importante frisar que uma Stream não é uma estrutura de dados, mas sim um fluxo de dados que pode ser processado.</p>
+
+<p><strong>Características Principais:</strong></p>
+
+<ul>
+  <li><strong>Fonte de Dados:</strong> Streams consomem dados de fontes como coleções (Lists, Sets, Maps), arrays ou recursos de I/O.</li>
+  <li><strong>Pipeline de Operações:</strong> As operações em uma Stream são encadeadas, formando um pipeline. Esse pipeline consiste em uma fonte, zero ou mais operações intermediárias e uma operação terminal.</li>
+  <li><strong>Não armazena dados:</strong> Uma Stream não armazena seus elementos. Ela os transporta da fonte através do pipeline de operações.</li>
+  <li><strong>Imutabilidade da fonte:</strong> As operações em uma Stream não modificam sua fonte de dados original. Elas produzem um novo resultado.</li>
+  <li><strong>Execução “Lazy” (Preguiçosa):</strong> As operações intermediárias em uma Stream são “preguiçosas”, ou seja, elas só são executadas quando uma operação terminal é invocada.</li>
+  <li><strong>Consumível uma única vez:</strong> Uma vez que uma operação terminal é executada em uma Stream, ela não pode ser reutilizada. Para processar os mesmos dados novamente, uma nova Stream deve ser criada.</li>
+</ul>
+
+<h3 id="vantagens-de-usar-streams">Vantagens de usar Streams</h3>
+
+<ul>
+  <li><strong>Código mais legível e conciso:</strong> Reduz a verbosidade do código em comparação com os loops tradicionais.</li>
+  <li><strong>Programação Funcional:</strong> Facilita a aplicação de conceitos de programação funcional, como funções lambda e referências de método.</li>
+  <li><strong>Processamento Paralelo Simplificado:</strong> Permite a paralelização de operações de forma simples, melhorando o desempenho em sistemas com múltiplos núcleos de processamento.</li>
+  <li><strong>Otimizações Internas:</strong> O pipeline de operações pode ser otimizado internamente pelo Java.</li>
+</ul>
+
+<h3 id="criando-uma-stream">Criando uma Stream</h3>
+
+<p>Existem várias maneiras de se obter uma Stream. As mais comuns são:</p>
+
+<ul>
+  <li><strong>A partir de uma Coleção:</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"a"</span><span class="o">,</span> <span class="s">"b"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">);</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>A partir de um Array:</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="o">{</span><span class="s">"a"</span><span class="o">,</span> <span class="s">"b"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">};</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">array</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>A partir de valores estáticos:</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"a"</span><span class="o">,</span> <span class="s">"b"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Streams de tipos primitivos:</strong> Para evitar o custo de “boxing” e “unboxing”, existem especializações para tipos primitivos: <code class="language-plaintext highlighter-rouge">IntStream</code>, <code class="language-plaintext highlighter-rouge">LongStream</code> e <code class="language-plaintext highlighter-rouge">DoubleStream</code>.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">IntStream</span> <span class="n">intStream</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="aula-2-operações-intermediárias">Aula 2: Operações Intermediárias</h2>
+
+<p>As operações intermediárias transformam uma Stream em outra. Elas são sempre “lazy” e são encadeadas para formar um pipeline.</p>
+
+<h3 id="principais-operações-intermediárias">Principais Operações Intermediárias</h3>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">filter(Predicate&lt;T&gt;)</code>: Retorna uma Stream consistindo dos elementos que correspondem ao predicado fornecido.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">nomes</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"Alice"</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">,</span> <span class="s">"Charlie"</span><span class="o">,</span> <span class="s">"David"</span><span class="o">);</span>
+<span class="n">nomes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+     <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">nome</span> <span class="o">-&gt;</span> <span class="n">nome</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"A"</span><span class="o">))</span>
+     <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> <span class="c1">// Imprime: Alice</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">map(Function&lt;T, R&gt;)</code>: Retorna uma Stream consistindo dos resultados da aplicação da função fornecida aos elementos desta Stream.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">palavras</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"java"</span><span class="o">,</span> <span class="s">"stream"</span><span class="o">,</span> <span class="s">"api"</span><span class="o">);</span>
+<span class="n">palavras</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> <span class="c1">// Imprime: JAVA STREAM API</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">flatMap(Function&lt;T, Stream&lt;R&gt;&gt;)</code>: Semelhante ao <code class="language-plaintext highlighter-rouge">map</code>, mas a função de mapeamento retorna uma Stream. O <code class="language-plaintext highlighter-rouge">flatMap</code> “achata” essas Streams em uma única Stream.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;&gt;</span> <span class="n">listaDeListas</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+    <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"a"</span><span class="o">,</span> <span class="s">"b"</span><span class="o">),</span>
+    <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"c"</span><span class="o">,</span> <span class="s">"d"</span><span class="o">)</span>
+<span class="o">);</span>
+<span class="n">listaDeListas</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+             <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="nl">Collection:</span><span class="o">:</span><span class="n">stream</span><span class="o">)</span>
+             <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> <span class="c1">// Imprime: a b c d</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">distinct()</code>: Retorna uma Stream com os elementos distintos (de acordo com <code class="language-plaintext highlighter-rouge">Object.equals(Object)</code>).</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numeros</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">numeros</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+       <span class="o">.</span><span class="na">distinct</span><span class="o">()</span>
+       <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> <span class="c1">// Imprime: 1 2 3 4</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">sorted()</code>: Retorna uma Stream com os elementos classificados em ordem natural.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">nomes</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"Charlie"</span><span class="o">,</span> <span class="s">"Alice"</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">);</span>
+<span class="n">nomes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+     <span class="o">.</span><span class="na">sorted</span><span class="o">()</span>
+     <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> <span class="c1">// Imprime: Alice Bob Charlie</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">peek(Consumer&lt;T&gt;)</code>: Retorna uma Stream que consiste nos elementos da Stream original, realizando uma ação adicional em cada elemento. É útil para depuração.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">nomes</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"um"</span><span class="o">,</span> <span class="s">"dois"</span><span class="o">,</span> <span class="s">"tres"</span><span class="o">);</span>
+<span class="n">nomes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+     <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Elemento original: "</span> <span class="o">+</span> <span class="n">s</span><span class="o">))</span>
+     <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span>
+     <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Elemento maiúsculo: "</span> <span class="o">+</span> <span class="n">s</span><span class="o">))</span>
+     <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">limit(long maxSize)</code>: Retorna uma Stream que não é maior que o tamanho máximo fornecido.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">skip(long n)</code>: Retorna uma Stream que descarta os primeiros <code class="language-plaintext highlighter-rouge">n</code> elementos.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="aula-3-operações-terminais">Aula 3: Operações Terminais</h2>
+
+<p>As operações terminais produzem um resultado ou um “side-effect”. Uma vez que uma operação terminal é executada, a Stream é consumida e não pode ser reutilizada.</p>
+
+<h3 id="principais-operações-terminais">Principais Operações Terminais</h3>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">forEach(Consumer&lt;T&gt;)</code>: Realiza uma ação para cada elemento da Stream.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">nomes</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"Ana"</span><span class="o">,</span> <span class="s">"Bia"</span><span class="o">,</span> <span class="s">"Carol"</span><span class="o">);</span>
+<span class="n">nomes</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">collect(Collector&lt;T, A, R&gt;)</code>: Realiza uma mutação redutora dos elementos. É uma das operações terminais mais versáteis.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">nomes</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"um"</span><span class="o">,</span> <span class="s">"dois"</span><span class="o">,</span> <span class="s">"tres"</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">maiusculas</span> <span class="o">=</span> <span class="n">nomes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                              <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span>
+                              <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">maiusculas</span><span class="o">);</span> <span class="c1">// [UM, DOIS, TRES]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">reduce(BinaryOperator&lt;T&gt;)</code>: Realiza uma redução nos elementos da Stream, usando um operador binário associativo.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numeros</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+<span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">soma</span> <span class="o">=</span> <span class="n">numeros</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
+<span class="n">soma</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span> <span class="c1">// 15</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">count()</code>: Retorna a contagem de elementos na Stream.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">anyMatch(Predicate&lt;T&gt;)</code>: Retorna se algum elemento da Stream corresponde ao predicado fornecido.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">allMatch(Predicate&lt;T&gt;)</code>: Retorna se todos os elementos da Stream correspondem ao predicado fornecido.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">noneMatch(Predicate&lt;T&gt;)</code>: Retorna se nenhum elemento da Stream corresponde ao predicado fornecido.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">findFirst()</code>: Retorna um <code class="language-plaintext highlighter-rouge">Optional</code> descrevendo o primeiro elemento da Stream, ou um <code class="language-plaintext highlighter-rouge">Optional</code> vazio se a Stream estiver vazia.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">findAny()</code>: Retorna um <code class="language-plaintext highlighter-rouge">Optional</code> descrevendo algum elemento da Stream, ou um <code class="language-plaintext highlighter-rouge">Optional</code> vazio se a Stream estiver vazia. Este é particularmente útil em Streams paralelas.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="aula-4-exemplos-do-mundo-real-e-casos-de-uso-complexos">Aula 4: Exemplos do Mundo Real e Casos de Uso Complexos</h2>
+
+<p>Vamos aplicar o que aprendemos em cenários mais práticos.</p>
+
+<h3 id="exemplo-1-processando-uma-lista-de-funcionários">Exemplo 1: Processando uma Lista de Funcionários</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">salario</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">departamento</span><span class="o">;</span>
+
+    <span class="c1">// construtores, getters e setters</span>
+<span class="o">}</span>
+
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">funcionarios</span> <span class="o">=</span> <span class="o">...;</span> <span class="c1">// Inicializa a lista</span>
+
+<span class="c1">// Encontrar os 3 funcionários com os maiores salários do departamento de "TI"</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">top3TI</span> <span class="o">=</span> <span class="n">funcionarios</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="s">"TI"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">f</span><span class="o">.</span><span class="na">getDepartamento</span><span class="o">()))</span>
+    <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparingDouble</span><span class="o">(</span><span class="nl">Funcionario:</span><span class="o">:</span><span class="n">getSalario</span><span class="o">).</span><span class="na">reversed</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+
+<span class="c1">// Calcular o salário médio de todos os funcionários</span>
+<span class="kt">double</span> <span class="n">mediaSalarial</span> <span class="o">=</span> <span class="n">funcionarios</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="nl">Funcionario:</span><span class="o">:</span><span class="n">getSalario</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">average</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="mf">0.0</span><span class="o">);</span>
+
+<span class="c1">// Agrupar funcionários por departamento</span>
+<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;&gt;</span> <span class="n">porDepartamento</span> <span class="o">=</span> <span class="n">funcionarios</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span><span class="nl">Funcionario:</span><span class="o">:</span><span class="n">getDepartamento</span><span class="o">));</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-2-análise-de-dados-de-log">Exemplo 2: Análise de Dados de Log</h3>
+
+<p>Imagine um arquivo de log com linhas no formato <code class="language-plaintext highlighter-rouge">[NÍVEL] MENSAGEM</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">linhasLog</span> <span class="o">=</span> <span class="o">...;</span> <span class="c1">// Lê as linhas do arquivo</span>
+
+<span class="c1">// Contar o número de erros</span>
+<span class="kt">long</span> <span class="n">numeroDeErros</span> <span class="o">=</span> <span class="n">linhasLog</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">linha</span> <span class="o">-&gt;</span> <span class="n">linha</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"[ERRO]"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">count</span><span class="o">();</span>
+
+<span class="c1">// Extrair as mensagens de erro</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">mensagensDeErro</span> <span class="o">=</span> <span class="n">linhasLog</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">linha</span> <span class="o">-&gt;</span> <span class="n">linha</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"[ERRO]"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">linha</span> <span class="o">-&gt;</span> <span class="n">linha</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">linha</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">"]"</span><span class="o">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="aula-5-streams-paralelas-e-considerações-de-desempenho">Aula 5: Streams Paralelas e Considerações de Desempenho</h2>
+
+<p>As Streams podem ser processadas em paralelo para aproveitar o hardware de múltiplos núcleos.</p>
+
+<h3 id="streams-paralelas">Streams Paralelas</h3>
+
+<p>A conversão de uma Stream sequencial para paralela é simples:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numeros</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span>
+
+<span class="c1">// Stream Sequencial</span>
+<span class="n">numeros</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">print</span><span class="o">);</span> <span class="c1">// Ordem garantida</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+
+<span class="c1">// Stream Paralela</span>
+<span class="n">numeros</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">print</span><span class="o">);</span> <span class="c1">// A ordem não é garantida</span>
+</code></pre></div></div>
+
+<p><strong>Quando usar Streams Paralelas?</strong></p>
+
+<ul>
+  <li><strong>Grandes conjuntos de dados:</strong> Os benefícios do paralelismo superam a sobrecarga de gerenciamento de threads.</li>
+  <li><strong>Operações com uso intensivo de CPU:</strong> Tarefas como cálculos complexos se beneficiam do processamento paralelo.</li>
+  <li><strong>Operações independentes:</strong> As operações em cada elemento não devem depender do estado de outros elementos.</li>
+</ul>
+
+<p><strong>Quando evitar Streams Paralelas?</strong></p>
+
+<ul>
+  <li><strong>Pequenos conjuntos de dados:</strong> A sobrecarga pode tornar o processamento mais lento.</li>
+  <li><strong>Operações com I/O:</strong> O gargalo será a operação de entrada/saída, não a CPU.</li>
+  <li><strong>Operações com estado e dependência de ordem:</strong> A natureza não determinística do processamento paralelo pode levar a resultados incorretos.</li>
+</ul>
+
+<h3 id="operações-com-e-sem-estado-stateful-vs-stateless">Operações com e sem estado (Stateful vs. Stateless)</h3>
+
+<ul>
+  <li><strong>Stateless (Sem estado):</strong> Operações como <code class="language-plaintext highlighter-rouge">filter</code> e <code class="language-plaintext highlighter-rouge">map</code> não retêm informações sobre os elementos processados anteriormente. Cada elemento é tratado de forma independente.</li>
+  <li><strong>Stateful (Com estado):</strong> Operações como <code class="language-plaintext highlighter-rouge">distinct</code>, <code class="language-plaintext highlighter-rouge">sorted</code>, <code class="language-plaintext highlighter-rouge">limit</code> e <code class="language-plaintext highlighter-rouge">skip</code> podem precisar reter o estado dos elementos vistos para produzir o resultado correto. Essas operações podem impactar o desempenho em Streams paralelas.</li>
+</ul>
+
+<h3 id="considerações-de-desempenho">Considerações de Desempenho</h3>
+
+<ul>
+  <li><strong>Evite operações desnecessárias:</strong> O encadeamento excessivo pode adicionar sobrecarga.</li>
+  <li><strong>Use operações de curto-circuito:</strong> Operações como <code class="language-plaintext highlighter-rouge">anyMatch</code>, <code class="language-plaintext highlighter-rouge">findFirst</code> e <code class="language-plaintext highlighter-rouge">limit</code> podem encerrar o processamento antecipadamente.</li>
+  <li><strong>Minimize o boxing/unboxing:</strong> Use Streams de tipos primitivos (<code class="language-plaintext highlighter-rouge">IntStream</code>, <code class="language-plaintext highlighter-rouge">LongStream</code>, <code class="language-plaintext highlighter-rouge">DoubleStream</code>) sempre que possível.</li>
+  <li><strong>Escolha os coletores corretos:</strong> Alguns coletores são mais eficientes que outros para determinadas tarefas.</li>
+</ul>
+
+<hr />
+
+<h2 id="aula-6-coletores-collectors-avançados-e-personalizados">Aula 6: Coletores (Collectors) Avançados e Personalizados</h2>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">Collectors</code> oferece uma ampla gama de funcionalidades para coletar os resultados de uma Stream.</p>
+
+<h3 id="coletores-avançados">Coletores Avançados</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">groupingBy(Function)</code>: Agrupa elementos de acordo com uma função de classificação.</li>
+  <li><code class="language-plaintext highlighter-rouge">partitioningBy(Predicate)</code>: Particiona os elementos em um <code class="language-plaintext highlighter-rouge">Map&lt;Boolean, List&lt;T&gt;&gt;</code> com base em um predicado.</li>
+  <li><code class="language-plaintext highlighter-rouge">joining(CharSequence)</code>: Une os elementos de uma <code class="language-plaintext highlighter-rouge">Stream&lt;CharSequence&gt;</code> em uma única String.</li>
+  <li><code class="language-plaintext highlighter-rouge">summarizingInt(ToIntFunction)</code>, <code class="language-plaintext highlighter-rouge">summarizingLong(ToLongFunction)</code>, <code class="language-plaintext highlighter-rouge">summarizingDouble(ToDoubleFunction)</code>: Retorna um objeto de estatísticas (contagem, soma, média, mínimo, máximo).</li>
+</ul>
+
+<h3 id="criando-um-coletor-personalizado">Criando um Coletor Personalizado</h3>
+
+<p>Para cenários muito específicos, você pode criar seu próprio <code class="language-plaintext highlighter-rouge">Collector</code> implementando a interface <code class="language-plaintext highlighter-rouge">java.util.stream.Collector</code>. Um <code class="language-plaintext highlighter-rouge">Collector</code> é definido por quatro funções:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">supplier()</code>: Cria um novo contêiner de resultado mutável.</li>
+  <li><code class="language-plaintext highlighter-rouge">accumulator()</code>: Incorpora um novo elemento de dados em um contêiner de resultado.</li>
+  <li><code class="language-plaintext highlighter-rouge">combiner()</code>: Combina dois contêineres de resultado em um. Essencial para Streams paralelas.</li>
+  <li><code class="language-plaintext highlighter-rouge">finisher()</code>: Realiza uma transformação final opcional no contêiner de resultado.</li>
+</ol>
+
+<p><strong>Exemplo: Um coletor que cria uma String de elementos separados por vírgula e entre colchetes.</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.StringJoiner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collector</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringCollector</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Collector</span><span class="o">&lt;</span><span class="nc">CharSequence</span><span class="o">,</span> <span class="nc">StringJoiner</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="nf">toStringCollector</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Collector</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+                <span class="o">()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">StringJoiner</span><span class="o">(</span><span class="s">", "</span><span class="o">,</span> <span class="s">"["</span><span class="o">,</span> <span class="s">"]"</span><span class="o">),</span> <span class="c1">// supplier</span>
+                <span class="nl">StringJoiner:</span><span class="o">:</span><span class="n">add</span><span class="o">,</span>                      <span class="c1">// accumulator</span>
+                <span class="nl">StringJoiner:</span><span class="o">:</span><span class="n">merge</span><span class="o">,</span>                    <span class="c1">// combiner</span>
+                <span class="nl">StringJoiner:</span><span class="o">:</span><span class="n">toString</span>                  <span class="c1">// finisher</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Uso</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">itens</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"Maçã"</span><span class="o">,</span> <span class="s">"Banana"</span><span class="o">,</span> <span class="s">"Laranja"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">resultado</span> <span class="o">=</span> <span class="n">itens</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="nc">StringCollector</span><span class="o">.</span><span class="na">toStringCollector</span><span class="o">());</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">resultado</span><span class="o">);</span> <span class="c1">// [Maçã, Banana, Laranja]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

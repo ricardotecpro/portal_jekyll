@@ -1,0 +1,298 @@
+<h1 id="-java-matrizes">☕ Java: Matrizes</h1>
+
+<p>Este material aborda o conceito de matrizes em Java, incluindo sua declaração, instanciação, manipulação e o uso da propriedade <code class="language-plaintext highlighter-rouge">length</code>.</p>
+
+<h2 id="-checklist">📋 Checklist</h2>
+
+<ul>
+  <li>Revisão do conceito de matriz</li>
+  <li>Declaração e instanciação</li>
+  <li>Acesso aos elementos / como percorrer uma matriz</li>
+  <li>Propriedade <code class="language-plaintext highlighter-rouge">length</code></li>
+</ul>
+
+<h2 id="-matrizes">📐 Matrizes</h2>
+
+<p>Em programação, <strong>matriz</strong> é o nome dado a arranjos bidimensionais. Uma maneira útil de pensar em matrizes é como um “vetor de vetores”. Imagine uma tabela ou uma grade; isso é essencialmente como uma matriz organiza os dados.</p>
+
+<p>Um <strong>arranjo (array)</strong> é uma estrutura de dados fundamental que possui as seguintes características:</p>
+<ul>
+  <li><strong>Homogênea</strong>: Todos os dados armazenados na matriz devem ser do mesmo tipo (por exemplo, todos inteiros, todos strings).</li>
+  <li><strong>Ordenada</strong>: Os elementos são acessados por meio de suas posições (índices), geralmente representados por um par <code class="language-plaintext highlighter-rouge">[linha][coluna]</code>.</li>
+  <li><strong>Alocada de uma vez só</strong>: A memória para a matriz é alocada em um bloco contíguo quando a matriz é criada.</li>
+</ul>
+
+<p><strong>Exemplo de uma Matriz 2D (3x4):</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Coluna 0</th>
+      <th style="text-align: left">Coluna 1</th>
+      <th style="text-align: left">Coluna 2</th>
+      <th style="text-align: left">Coluna 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Linha 0</td>
+      <td style="text-align: left">3.5</td>
+      <td style="text-align: left">17.0</td>
+      <td style="text-align: left">12.3</td>
+      <td style="text-align: left">8.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Linha 1</td>
+      <td style="text-align: left">4.1</td>
+      <td style="text-align: left">6.2</td>
+      <td style="text-align: left">7.5</td>
+      <td style="text-align: left">2.9</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Linha 2</td>
+      <td style="text-align: left">11.0</td>
+      <td style="text-align: left">9.5</td>
+      <td style="text-align: left">14.8</td>
+      <td style="text-align: left">21.7</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="declaração-e-instanciação-de-matrizes-em-java">Declaração e Instanciação de Matrizes em Java</h3>
+
+<p>Para usar uma matriz em Java, você primeiro precisa declará-la e depois instanciá-la (criar o objeto matriz e alocar memória).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Declaração de uma matriz de inteiros</span>
+<span class="kt">int</span><span class="o">[][]</span> <span class="n">minhaMatriz</span><span class="o">;</span>
+
+<span class="c1">// Instanciação: criando uma matriz com 3 linhas e 4 colunas</span>
+<span class="n">minhaMatriz</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">4</span><span class="o">];</span>
+
+<span class="c1">// Declaração e instanciação em uma única linha</span>
+<span class="kt">double</span><span class="o">[][]</span> <span class="n">matrizDeReais</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">2</span><span class="o">][</span><span class="mi">5</span><span class="o">];</span>
+
+<span class="c1">// Também é possível inicializar com valores diretamente</span>
+<span class="nc">String</span><span class="o">[][]</span> <span class="n">nomes</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="o">{</span><span class="s">"Ana"</span><span class="o">,</span> <span class="s">"Beatriz"</span><span class="o">},</span>
+    <span class="o">{</span><span class="s">"Carlos"</span><span class="o">,</span> <span class="s">"Daniel"</span><span class="o">},</span>
+    <span class="o">{</span><span class="s">"Eduarda"</span><span class="o">,</span> <span class="s">"Fernanda"</span><span class="o">}</span>
+<span class="o">};</span>
+</code></pre></div></div>
+
+<h3 id="acesso-aos-elementos-e-como-percorrer-uma-matriz">Acesso aos Elementos e Como Percorrer uma Matriz</h3>
+
+<p>Os elementos de uma matriz são acessados usando seus índices de linha e coluna, começando do zero. Para acessar o elemento na primeira linha e primeira coluna de <code class="language-plaintext highlighter-rouge">minhaMatriz</code>, você usaria <code class="language-plaintext highlighter-rouge">minhaMatriz[0][0]</code>.</p>
+
+<p>Para percorrer (ou iterar sobre) todos os elementos de uma matriz, geralmente se utilizam laços <code class="language-plaintext highlighter-rouge">for</code> aninhados:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Supondo que matrizDeInteiros já foi declarada e instanciada</span>
+<span class="c1">// por exemplo: int[][] matrizDeInteiros = new int[3][3];</span>
+
+<span class="c1">// Preenchendo a matriz com valores (exemplo: produto dos índices)</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">matrizDeInteiros</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// Itera sobre as linhas</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matrizDeInteiros</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// Itera sobre as colunas da linha i</span>
+        <span class="n">matrizDeInteiros</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Imprimindo os elementos da matriz</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Elementos da matriz:"</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">matrizDeInteiros</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matrizDeInteiros</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">matrizDeInteiros</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="s">"\t"</span><span class="o">);</span> <span class="c1">// \t para tabular</span>
+    <span class="o">}</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="c1">// Nova linha após cada linha da matriz</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="propriedade-length">Propriedade <code class="language-plaintext highlighter-rouge">length</code></h3>
+
+<p>A propriedade <code class="language-plaintext highlighter-rouge">length</code> é crucial ao trabalhar com matrizes:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">nomeDaMatriz.length</code> retorna o <strong>número de linhas</strong> da matriz.</li>
+  <li><code class="language-plaintext highlighter-rouge">nomeDaMatriz[i].length</code> retorna o <strong>número de colunas</strong> da <em>i</em>-ésima linha.</li>
+</ul>
+
+<p>Isso é particularmente importante em Java porque as matrizes podem ser “irregulares” (jagged arrays), onde cada linha pode ter um número diferente de colunas.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrizIrregular</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">][];</span>
+<span class="n">matrizIrregular</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span> <span class="c1">// Linha 0 tem 2 colunas</span>
+<span class="n">matrizIrregular</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">4</span><span class="o">];</span> <span class="c1">// Linha 1 tem 4 colunas</span>
+<span class="n">matrizIrregular</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span> <span class="c1">// Linha 2 tem 3 colunas</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número de linhas: "</span> <span class="o">+</span> <span class="n">matrizIrregular</span><span class="o">.</span><span class="na">length</span><span class="o">);</span> <span class="c1">// Saída: 3</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número de colunas na linha 0: "</span> <span class="o">+</span> <span class="n">matrizIrregular</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span><span class="o">);</span> <span class="c1">// Saída: 2</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número de colunas na linha 1: "</span> <span class="o">+</span> <span class="n">matrizIrregular</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="na">length</span><span class="o">);</span> <span class="c1">// Saída: 4</span>
+</code></pre></div></div>
+
+<h3 id="-vantagens-das-matrizes">👍 Vantagens das Matrizes:</h3>
+
+<ul>
+  <li><strong>Acesso imediato aos elementos pela sua posição</strong>: Se você sabe os índices <code class="language-plaintext highlighter-rouge">[i][j]</code>, pode acessar o elemento diretamente em tempo constante, O(1).</li>
+  <li><strong>Estrutura de dados simples e eficiente</strong> para representar grades, tabelas e outros dados bidimensionais.</li>
+</ul>
+
+<h3 id="-desvantagens-das-matrizes">👎 Desvantagens das Matrizes:</h3>
+
+<ul>
+  <li><strong>Tamanho fixo</strong>: Uma vez que uma matriz é criada, seu tamanho (número de linhas e colunas) não pode ser alterado. Para adicionar ou remover linhas/colunas, é necessário criar uma nova matriz e copiar os elementos.</li>
+  <li><strong>Dificuldade para se realizar inserções e deleções</strong>: Inserir ou deletar um elemento no meio da matriz pode exigir o deslocamento de muitos outros elementos, o que é ineficiente. Para operações dinâmicas de inserção/deleção, estruturas como <code class="language-plaintext highlighter-rouge">ArrayList</code> de <code class="language-plaintext highlighter-rouge">ArrayLists</code> (<code class="language-plaintext highlighter-rouge">ArrayList&lt;ArrayList&lt;Integer&gt;&gt;</code>) podem ser mais adequadas, embora com um custo maior de memória e complexidade.</li>
+</ul>
+
+<h2 id="-exercício-resolvido">💡 Exercício Resolvido</h2>
+
+<p>Fazer um programa para ler um número inteiro N e uma matriz de ordem N (quadrada) contendo números inteiros. Em seguida, mostrar a diagonal principal e a quantidade de valores negativos da matriz.</p>
+
+<p><strong>Exemplo:</strong></p>
+
+<p><strong>Input:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3
+5 -3 10
+15 8 2
+7 9 -4
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Diagonal principal:
+5 8 -4
+Números negativos = 2
+</code></pre></div></div>
+
+<h3 id="solução-em-java">Solução em Java</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaMatriz</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a ordem da matriz (N): "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">][</span><span class="n">n</span><span class="o">];</span> <span class="c1">// Matriz quadrada N x N</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite os elementos da matriz:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// ou matriz.length</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// ou matriz[i].length</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Elemento [%d][%d]: "</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+                <span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Diagonal principal:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="c1">// Nova linha</span>
+
+        <span class="kt">int</span> <span class="n">contadorNegativos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">contadorNegativos</span><span class="o">++;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Quantidade de números negativos = "</span> <span class="o">+</span> <span class="n">contadorNegativos</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-executando-o-código-java">💻 Executando o Código Java</h3>
+
+<p>Você pode compilar e executar este código Java em diversos ambientes de desenvolvimento (IDEs) ou diretamente pelo terminal.</p>
+
+<p><strong>No VS Code:</strong></p>
+<ol>
+  <li>Certifique-se de ter o Java Development Kit (JDK) instalado.</li>
+  <li>Instale o pacote de extensões “Extension Pack for Java” da Microsoft no VS Code.</li>
+  <li>Crie um arquivo chamado <code class="language-plaintext highlighter-rouge">ProgramaMatriz.java</code> (ou o nome da sua classe principal) dentro de uma pasta de projeto (por exemplo, <code class="language-plaintext highlighter-rouge">src/aplicacao/ProgramaMatriz.java</code> se estiver usando a estrutura de pacotes).</li>
+  <li>Cole o código no arquivo.</li>
+  <li>Para executar, você pode clicar com o botão direito no editor e selecionar “Run Java” ou usar o ícone de “play” que aparece no canto superior direito. A saída e a entrada de dados ocorrerão no painel “TERMINAL”.</li>
+</ol>
+
+<p><strong>No IntelliJ IDEA:</strong></p>
+<ol>
+  <li>Certifique-se de ter o JDK instalado.</li>
+  <li>Crie um novo projeto Java: <code class="language-plaintext highlighter-rouge">File</code> &gt; <code class="language-plaintext highlighter-rouge">New</code> &gt; <code class="language-plaintext highlighter-rouge">Project...</code>. Selecione “Java” e seu JDK.</li>
+  <li>Dentro da pasta <code class="language-plaintext highlighter-rouge">src</code> do seu projeto, crie um pacote (se desejar, por exemplo, <code class="language-plaintext highlighter-rouge">aplicacao</code>) clicando com o botão direito em <code class="language-plaintext highlighter-rouge">src</code> &gt; <code class="language-plaintext highlighter-rouge">New</code> &gt; <code class="language-plaintext highlighter-rouge">Package</code>.</li>
+  <li>Crie uma classe Java (<code class="language-plaintext highlighter-rouge">ProgramaMatriz</code>) dentro do pacote: clique com o botão direito no pacote &gt; <code class="language-plaintext highlighter-rouge">New</code> &gt; <code class="language-plaintext highlighter-rouge">Java Class</code>.</li>
+  <li>Cole o código na classe.</li>
+  <li>Para executar, clique na seta verde ao lado da declaração do método <code class="language-plaintext highlighter-rouge">main</code> ou da classe e selecione “Run ‘ProgramaMatriz.main()’ “. A entrada e saída de dados ocorrerão na janela “Run” na parte inferior.</li>
+</ol>
+
+<hr />
+
+<h2 id="-memória">🧠 Memória</h2>
+
+<p>Quando você trabalha com <strong>matrizes</strong> (e objetos em geral) em <strong>Java</strong>, é importante entender como a memória é gerenciada:</p>
+
+<h3 id="-stack-pilha">📌 Stack (Pilha)</h3>
+
+<ul>
+  <li>
+    <p>Armazena:</p>
+
+    <ul>
+      <li>Variáveis de <strong>tipos primitivos</strong> (como <code class="language-plaintext highlighter-rouge">int n</code>)</li>
+      <li><strong>Referências</strong> a objetos</li>
+    </ul>
+  </li>
+  <li>Tem acesso rápido</li>
+  <li>Escopo limitado ao bloco de execução (por exemplo, dentro do método <code class="language-plaintext highlighter-rouge">main</code>)</li>
+</ul>
+
+<h3 id="-heap-monte">📌 Heap (Monte)</h3>
+
+<ul>
+  <li>Onde os <strong>objetos reais</strong> são alocados (como arrays e instâncias de classes)</li>
+  <li>Quando usamos <code class="language-plaintext highlighter-rouge">new int[N][N]</code>, a matriz é criada no <strong>Heap</strong></li>
+  <li>A variável <code class="language-plaintext highlighter-rouge">mat</code> (na Stack) armazena o <strong>endereço de memória</strong> da matriz no Heap</li>
+</ul>
+
+<hr />
+
+<h3 id="-diagrama-de-memória-baseado-no-exercício-anterior">🧩 Diagrama de Memória (baseado no exercício anterior)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Memória
++--------------------------+     +-----------------------------+
+|         Stack            |     |            Heap             |
++--------------------------+     +-----------------------------+
+| int n = 3                |     | int[][]                      |
+|                          |     | +-----+-----+-----+         |
+| int[][] mat ------------ | --&gt; | |  5  | -3  | 10  | &lt;-- linha 0
+|                          |     | +-----+-----+-----+         |
+|                          |     | | 15  |  8  |  2  | &lt;-- linha 1
+|                          |     | +-----+-----+-----+         |
+|                          |     | |  7  |  9  | -4  | &lt;-- linha 2
++--------------------------+     +-----------------------------+
+</code></pre></div></div>
+
+<h3 id="-explicação">🔍 Explicação</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">n</code> é um <strong>tipo primitivo</strong> armazenado diretamente na <strong>Stack</strong>, com valor <code class="language-plaintext highlighter-rouge">3</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">mat</code> é uma <strong>referência</strong> (tipo objeto), também na <strong>Stack</strong>, mas aponta para o objeto real no <strong>Heap</strong>.</li>
+  <li>A matriz de inteiros é armazenada no Heap e acessada indiretamente por meio de <code class="language-plaintext highlighter-rouge">mat</code>.</li>
+</ul>
+
+<hr />
+
+<h3 id="-importância-prática">💡 Importância prática</h3>
+
+<ul>
+  <li>A passagem de arrays e objetos para métodos em Java é feita <strong>por valor da referência</strong>.</li>
+  <li>O <strong>Garbage Collector</strong> (coletor de lixo) é responsável por liberar automaticamente a memória no Heap que <strong>não está mais sendo referenciada</strong> em nenhum lugar do código.</li>
+  <li>Isso permite que você se concentre mais na lógica do programa e menos na gestão manual de memória, como seria necessário em linguagens como C/C++.</li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

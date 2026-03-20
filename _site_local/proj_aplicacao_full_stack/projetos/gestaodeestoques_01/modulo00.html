@@ -1,0 +1,241 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo00.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MODULO00 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MODULO00" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo00.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo00.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MODULO00" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MODULO00","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo00.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/" style="margin-left: 0.5rem;">Gestaodeestoques 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Modulo00</span>
+          
+        
+      </nav>
+
+      <p>Abaixo está a estrutura completa do nosso projeto <strong>“Gestão de Estoques”</strong>, detalhada com comentários que explicam o propósito de cada diretório e arquivo principal.</p>
+
+<hr />
+
+<h2 id="️-estrutura-de-pastas-e-arquivos-do-projeto">🗺️ Estrutura de Pastas e Arquivos do Projeto</h2>
+
+<p>A organização do nosso projeto segue as convenções do Maven e as melhores práticas para uma aplicação Spring Boot com uma API REST desacoplada e um frontend SPA.</p>
+
+<h3 id="visão-geral-da-estrutura">Visão Geral da Estrutura</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gestaodeestoques/
+├── .mvn/                                  // Arquivos do Maven Wrapper
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── br/com/aula/gestaodeestoques/
+│   │   │       ├── GestaodeestoquesApplication.java    // Ponto de entrada da aplicação Spring Boot
+│   │   │       ├── config/
+│   │   │       │   ├── CustomAuthenticationSuccessHandler.java // (Não utilizado na versão API REST, mas mantido para referência de estudos)
+│   │   │       │   ├── DataSeeder.java                     // Popula o banco de dados com dados iniciais
+│   │   │       │   ├── OpenApiConfig.java                  // Configuração global do Swagger/OpenAPI
+│   │   │       │   └── SecurityConfig.java                 // Configuração principal do Spring Security (stateless com JWT)
+│   │   │       │   └── security/
+│   │   │       │       ├── JwtAuthenticationFilter.java    // O "segurança" que valida o token em cada requisição
+│   │   │       │       └── JwtTokenProvider.java           // Classe utilitária para criar e validar tokens JWT
+│   │   │       ├── controller/
+│   │   │       │   ├── AdminController.java                // Endpoint de exemplo para administradores
+│   │   │       │   ├── AuthenticationController.java       // Endpoint para login (/api/auth/login)
+│   │   │       │   ├── CategoriaController.java            // Endpoints para /api/categorias
+│   │   │       │   ├── FornecedorController.java           // Endpoints para /api/fornecedores
+│   │   │       │   └── ProdutoController.java              // Endpoints para /api/produtos
+│   │   │       ├── dto/
+│   │   │       │   ├── CategoriaDTO.java
+│   │   │       │   ├── ErrorResponseDTO.java               // DTO para padronizar respostas de erro
+│   │   │       │   ├── FornecedorDTO.java
+│   │   │       │   ├── ProdutoDTO.java                     // DTO para exibir produtos
+│   │   │       │   ├── ProdutoFormDTO.java                 // DTO para receber dados de formulários de produto
+│   │   │       │   └── auth/
+│   │   │       │       ├── JwtAuthenticationResponse.java  // DTO para a resposta de login com o token
+│   │   │       │       └── LoginRequest.java               // DTO para a requisição de login
+│   │   │       ├── exception/
+│   │   │       │   ├── GlobalExceptionHandler.java         // Handler global para tratar exceções da API
+│   │   │       │   └── ResourceNotFoundException.java      // Exceção customizada para erros 404
+│   │   │       ├── mapper/
+│   │   │       │   ├── CategoriaMapper.java
+│   │   │       │   ├── FornecedorMapper.java
+│   │   │       │   └── ProdutoMapper.java
+│   │   │       ├── model/
+│   │   │       │   ├── Categoria.java
+│   │   │       │   ├── Fornecedor.java
+│   │   │       │   ├── Papel.java
+│   │   │       │   ├── Produto.java
+│   │   │       │   └── Usuario.java
+│   │   │       ├── repository/
+│   │   │       │   ├── CategoriaRepository.java
+│   │   │       │   ├── FornecedorRepository.java
+│   │   │       │   ├── PapelRepository.java
+│   │   │       │   ├── ProdutoRepository.java
+│   │   │       │   └── UsuarioRepository.java
+│   │   │       └── service/
+│   │   │           ├── DatabaseUserDetailsService.java     // Carrega dados do usuário para o Spring Security
+│   │   │           ├── CategoriaService.java, FornecedorService.java, ProdutoService.java // Interfaces dos serviços
+│   │   │           └── impl/
+│   │   │               └── CategoriaServiceImpl.java, FornecedorServiceImpl.java, ProdutoServiceImpl.java // Implementações
+│   │   └── resources/
+│   │       ├── application.properties                      // Configurações principais (H2, JWT secret)
+│   │       ├── application-prod.properties                 // Configurações para o ambiente de produção (PostgreSQL)
+│   │       ├── schema.sql                                  // Script de criação das tabelas para o H2
+│   │       └── static/                                     // &lt;-- Raiz de todos os arquivos do Frontend (SPA)
+│   │           ├── css/
+│   │           │   └── style.css
+│   │           ├── js/
+│   │           │   ├── api.js                              // Módulo para centralizar as chamadas à API
+│   │           │   ├── auth.js                             // Módulo para gerenciar autenticação (token, login, logout)
+│   │           │   └── router.js                           // Módulo para roteamento no lado do cliente
+│   │           ├── index.html                              // A "casca" principal da SPA
+│   │           └── login.html                              // Página de login estática
+│   └── test/
+│       └── java/
+│           └── br/com/aula/gestaodeestoques/
+│               ├── GestaodeestoquesApplicationTests.java
+│               ├── controller/
+│               │   └── ProdutoControllerTest.java          // Teste de integração para o controller de produtos
+│               └── service/
+│                   └── impl/
+│                       └── ProdutoServiceImplTest.java     // Teste unitário para o serviço de produtos
+├── .gitignore                                 // Arquivos e pastas a serem ignorados pelo Git
+├── Dockerfile                                 // Receita para construir a imagem Docker da aplicação
+├── docker-compose.yml                         // Orquestrador para subir a API e o banco PostgreSQL
+├── mvnw                                       // Executável do Maven Wrapper para Unix/Linux
+├── mvnw.cmd                                   // Script do Maven Wrapper para Windows
+└── pom.xml                                    // O coração do projeto Maven: dependências e build
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-análise-das-responsabilidades-de-cada-diretório">### Análise das Responsabilidades de cada Diretório</h3>
+
+<p>Esta estrutura não é aleatória; ela segue o princípio da <strong>Separação de Responsabilidades</strong> para manter o projeto organizado e escalável.</p>
+
+<h4 id="-srcmainjavabrcomaulagestaodeestoques---o-coração-do-backend">📁 <code class="language-plaintext highlighter-rouge">src/main/java/br/com/aula/gestaodeestoques/</code> - O Coração do Backend</h4>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">config/</code></strong>: Contém todas as classes de configuração do Spring. A separação em um subpacote <code class="language-plaintext highlighter-rouge">security/</code> ajuda a isolar a complexidade da autenticação JWT.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">controller/</code></strong>: A camada mais externa do backend. Responsável por expor os endpoints da API, receber requisições HTTP e retornar respostas JSON. <strong>Não contém lógica de negócio</strong>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">dto/</code></strong>: Objetos de Transferência de Dados. São os “contratos” da nossa API, definindo a estrutura dos dados que entram e saem.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">exception/</code></strong>: Classes para tratamento de erros, incluindo o <code class="language-plaintext highlighter-rouge">GlobalExceptionHandler</code> que padroniza as respostas de erro da API.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">mapper/</code></strong>: Classes responsáveis pela conversão entre as entidades do banco (<code class="language-plaintext highlighter-rouge">model</code>) e os objetos de transferência (<code class="language-plaintext highlighter-rouge">dto</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">model/</code></strong>: As entidades que representam as tabelas do nosso banco de dados. São a representação interna dos nossos dados.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">repository/</code></strong>: Interfaces do Spring Data que definem como acessar o banco de dados. Abstraem toda a complexidade do JDBC/SQL.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">service/</code></strong>: O “cérebro” da aplicação. Contém toda a lógica de negócio (regras, orquestração de operações). As <code class="language-plaintext highlighter-rouge">impl/</code> são as implementações concretas das interfaces de serviço.</li>
+</ul>
+
+<h4 id="-srcmainresources---configurações-e-o-frontend">📁 <code class="language-plaintext highlighter-rouge">src/main/resources/</code> - Configurações e o Frontend</h4>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">application.properties</code></strong>: Arquivos de configuração do Spring. O uso de perfis (ex: <code class="language-plaintext highlighter-rouge">application-prod.properties</code>) permite ter configurações diferentes para ambientes diferentes.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">schema.sql</code></strong>: Usado pelo H2 para criar o banco em memória, ideal para o ambiente de desenvolvimento.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">static/</code></strong>: <strong>Este é o nosso frontend</strong>. Como estamos construindo uma SPA, todos os arquivos HTML, CSS e JavaScript são servidos como arquivos estáticos pelo Spring Boot. O backend não sabe e não se importa com o conteúdo desses arquivos; ele apenas os entrega ao navegador.</li>
+</ul>
+
+<h4 id="-raiz-do-projeto----ferramentas-de-build-e-deploy">📁 Raiz do Projeto (<code class="language-plaintext highlighter-rouge">/</code>) - Ferramentas de Build e Deploy</h4>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">pom.xml</code></strong>: Define todas as dependências do projeto e como ele deve ser compilado e empacotado.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Dockerfile</code> e <code class="language-plaintext highlighter-rouge">docker-compose.yml</code></strong>: Ferramentas de DevOps. Definem como nossa aplicação será “empacotada” em um container e como ela irá rodar junto com outros serviços (como um banco de dados) em qualquer ambiente.</li>
+</ul>
+
+<p>Esta estrutura clara e bem definida é a marca de um projeto profissional, tornando-o mais fácil de entender, manter e escalar no futuro.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

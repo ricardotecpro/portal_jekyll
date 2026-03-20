@@ -1,0 +1,1904 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/bibliotecajogos_01/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Biblioteca de Jogos | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Biblioteca de Jogos" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/bibliotecajogos_01/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/bibliotecajogos_01/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Biblioteca de Jogos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Biblioteca de Jogos","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/bibliotecajogos_01/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/bibliotecajogos_01/" style="margin-left: 0.5rem;">Bibliotecajogos 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 biblioteca de jogos</span>
+          
+        
+      </nav>
+
+      <h1 id="-biblioteca-de-jogos">🚀 Biblioteca de Jogos</h1>
+
+<p>v1.1</p>
+
+<h2 id="guia-completo-desenvolvendo-e-implantando-uma-biblioteca-de-jogos-com-spring-boot-e-thymeleaf">Guia Completo: Desenvolvendo e Implantando uma Biblioteca de Jogos com Spring Boot e Thymeleaf</h2>
+
+<p><strong>Nível:</strong> Intermediário</p>
+
+<p>Este guia completo foi elaborado para desenvolvedores Java com alguma experiência em Spring Boot que desejam aprofundar seus conhecimentos na criação de aplicações web robustas. Ao final deste tutorial, você terá construído uma aplicação completa de CRUD (Create, Read, Update, Delete) para gerenciar uma biblioteca de jogos, utilizando tecnologias modernas e as melhores práticas do mercado.</p>
+
+<h3 id="1-visão-geral-da-arquitetura-e-tecnologias">1. Visão Geral da Arquitetura e Tecnologias</h3>
+
+<p>Nossa aplicação seguirá uma arquitetura em camadas, padrão em projetos Spring Boot, para garantir a separação de responsabilidades e a manutenibilidade do código:</p>
+
+<ul>
+  <li><strong>Camada de Apresentação (View):</strong> Utilizaremos o <strong>Thymeleaf</strong> como nosso motor de templates. Ele se integra perfeitamente com o Spring e nos permite criar páginas HTML dinâmicas com uma sintaxe elegante e natural.</li>
+  <li><strong>Camada de Controle (Controller):</strong> Os <code class="language-plaintext highlighter-rouge">Controllers</code> serão responsáveis por receber as requisições HTTP, processar as entradas do usuário e retornar as respostas adequadas, interagindo com a camada de serviço.</li>
+  <li><strong>Camada de Serviço (Service):</strong> A lógica de negócio da nossa aplicação residirá aqui. Os <code class="language-plaintext highlighter-rouge">Services</code> orquestrarão as operações, como salvar, atualizar e buscar jogos, garantindo a integridade dos dados.</li>
+  <li><strong>Camada de Acesso a Dados (Repository):</strong> Utilizaremos o <strong>Spring Data JPA</strong> para simplificar a interação com o banco de dados. Com ele, conseguimos realizar operações de persistência de forma declarativa, sem a necessidade de escrever queries SQL complexas.</li>
+  <li><strong>Banco de Dados:</strong> Para o ambiente de desenvolvimento, utilizaremos o <strong>H2</strong>, um banco de dados em memória que facilita a prototipação e os testes. Para o ambiente de produção, configuraremos o <strong>PostgreSQL</strong>, um banco de dados relacional robusto e escalável.</li>
+  <li><strong>Linguagem e Framework:</strong> Todo o backend será construído com <strong>Java 21</strong> e <strong>Spring Boot 3</strong>, aproveitando os recursos mais recentes e a produtividade que o ecossistema Spring oferece.</li>
+</ul>
+
+<h3 id="2-configurando-o-ambiente-de-desenvolvimento">2. Configurando o Ambiente de Desenvolvimento</h3>
+
+<p>Antes de começarmos a codificar, vamos preparar nosso ambiente:</p>
+
+<ol>
+  <li><strong>Java Development Kit (JDK) 21:</strong> Certifique-se de ter o JDK 21 instalado e configurado em sua máquina.</li>
+  <li><strong>Maven ou Gradle:</strong> Utilize sua ferramenta de build de preferência. Este guia utilizará a sintaxe do Maven.</li>
+  <li><strong>IDE (Ambiente de Desenvolvimento Integrado):</strong> Recomendamos o uso do IntelliJ IDEA, Eclipse ou Visual Studio Code com as extensões Java e Spring Boot.</li>
+  <li><strong>Spring Initializr:</strong> A maneira mais fácil de iniciar um projeto Spring Boot é através do <a href="https://start.spring.io/">Spring Initializr</a>.</li>
+</ol>
+
+<p><strong>Configuração no Spring Initializr:</strong></p>
+
+<ul>
+  <li><strong>Project:</strong> Maven Project</li>
+  <li><strong>Language:</strong> Java</li>
+  <li><strong>Spring Boot:</strong> A versão mais recente (ex: 3.3.x)</li>
+  <li><strong>Group:</strong> (defina o nome do seu grupo, ex: <code class="language-plaintext highlighter-rouge">br.com.bibliotecajogos</code>)</li>
+  <li><strong>Artifact:</strong> (defina o nome do seu artefato, ex: <code class="language-plaintext highlighter-rouge">bibliotecajogos</code>)</li>
+  <li><strong>Packaging:</strong> Jar</li>
+  <li><strong>Java:</strong> 21</li>
+  <li><strong>Dependencies:</strong>
+    <ul>
+      <li>Spring Web</li>
+      <li>Thymeleaf</li>
+      <li>Spring Data JPA</li>
+      <li>H2 Database</li>
+      <li>PostgreSQL Driver</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Após preencher as informações, clique em “Generate” para baixar o projeto base.</p>
+
+<hr />
+
+<h3 id="3-estrutura-do-projeto">3. Estrutura do Projeto</h3>
+
+<p>Após importar o projeto para sua IDE, teremos a seguinte estrutura de pacotes:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src
+└── main
+    ├── java
+    │   └── br
+    │       └── com
+    │           └── bibliotecajogos
+    │               ├── BibliotecaJogosApplication.java
+    │               ├── config    
+    │               ├── controller
+    │               ├── entity
+    │               ├── repository
+    │               └── service
+    └── resources
+        ├── static
+        ├── templates
+        └── application.properties
+        └── application-dev.properties
+        └── application-prod.properties                        
+</code></pre></div></div>
+
+<hr />
+
+<p>Abaixo está o modelo de banco de dados e o relacionamento entre as entidades <code class="language-plaintext highlighter-rouge">Categoria</code> e <code class="language-plaintext highlighter-rouge">Jogo</code>, representados em um Diagrama de Entidade-Relacionamento (ERD).</p>
+
+<p>Este diagrama reflete exatamente a estrutura que definimos em nossas classes <code class="language-plaintext highlighter-rouge">Entity</code> com JPA.</p>
+
+<hr />
+
+<h3 id="diagrama-de-entidade-relacionamento-erd">Diagrama de Entidade-Relacionamento (ERD)</h3>
+
+<pre><code class="language-mermaid">erDiagram
+    CATEGORIA ||--o{ JOGO : "possui"
+
+    CATEGORIA {
+        BIGINT id PK "Chave Primária"
+        VARCHAR nome "Nome da categoria (ex: RPG, Ação)"
+    }
+
+    JOGO {
+        BIGINT id PK "Chave Primária"
+        VARCHAR titulo "Título do jogo"
+        VARCHAR autor "Desenvolvedora ou Autor"
+        INT anoPublicacao "Ano de lançamento"
+        VARCHAR genero "Gênero específico (ex: RPG de Ação)"
+        BOOLEAN finalizado "Indica se o jogo foi concluído"
+        BIGINT categoria_id FK "Chave Estrangeira para Categoria"
+    }
+</code></pre>
+
+<hr />
+
+<p>Abaixo está um diagrama Mermaid que ilustra o fluxo de navegação e a relação entre as páginas HTML da aplicação “Biblioteca de Jogos”.</p>
+
+<h3 id="diagrama-de-fluxo-das-páginas-views">Diagrama de Fluxo das Páginas (Views)</h3>
+
+<p>Este diagrama mostra como o usuário navega entre a tela de listagem e a tela de formulário, e quais ações disparam cada transição.</p>
+
+<pre><code class="language-mermaid">graph TD
+    A["Página: Lista de Jogos (jogos.html)"] --&gt;|Clica em 'Adicionar'| B["Página: Formulário (formulario-jogo.html)"];
+    A --&gt;|Clica em 'Editar'| B;
+    
+    B --&gt;|Clica em 'Salvar'| A;
+    B --&gt;|Clica em 'Cancelar'| A;
+
+    A --&gt;|Clica em 'Excluir'| A;
+    A --&gt;|Submete 'Pesquisa'| A;
+</code></pre>
+
+<h3 id="explicação-do-diagrama">Explicação do Diagrama</h3>
+
+<ol>
+  <li>
+    <p><strong>Template Base (<code class="language-plaintext highlighter-rouge">layout.html</code>)</strong>: O diagrama mostra que tanto a “Lista de Jogos” (<code class="language-plaintext highlighter-rouge">jogos.html</code>) quanto o “Formulário de Jogo” (<code class="language-plaintext highlighter-rouge">formulario-jogo.html</code>) são envolvidos pelo <code class="language-plaintext highlighter-rouge">layout.html</code>, que fornece a estrutura visual comum (menu de navegação, rodapé, etc.).</p>
+  </li>
+  <li>
+    <p><strong>Página: Lista de Jogos (<code class="language-plaintext highlighter-rouge">jogos.html</code>)</strong>:</p>
+
+    <ul>
+      <li>É a tela principal e o ponto de partida (<code class="language-plaintext highlighter-rouge">/jogos</code>).</li>
+      <li>A partir dela, o usuário pode iniciar três fluxos principais:
+        <ul>
+          <li><strong>Adicionar</strong>: Leva para a página de formulário.</li>
+          <li><strong>Editar</strong>: Também leva para a mesma página de formulário, mas com os dados do jogo pré-carregados.</li>
+          <li><strong>Excluir e Pesquisar</strong>: São ações que executam uma lógica no backend e, em seguida, recarregam a própria página de lista, seja para remover um item ou para exibir um resultado filtrado. Por isso, as setas apontam de volta para a própria página.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Página: Formulário de Jogo (<code class="language-plaintext highlighter-rouge">formulario-jogo.html</code>)</strong>:</p>
+
+    <ul>
+      <li>É a tela usada tanto para <strong>criação</strong> quanto para <strong>edição</strong>.</li>
+      <li>Possui duas saídas principais:
+        <ul>
+          <li><strong>Salvar</strong>: Envia os dados do formulário para o servidor (<code class="language-plaintext highlighter-rouge">POST /jogos</code>) e, após o processamento, redireciona o usuário de volta para a lista de jogos atualizada.</li>
+          <li><strong>Cancelar</strong>: Simplesmente retorna o usuário para a lista de jogos, descartando quaisquer alterações.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<p>Uma versão mais detalhada e didática do diagrama é uma ótima maneira de solidificar o conhecimento para estudantes.</p>
+
+<p>A versão anterior era funcional, mas esta nova versão focará em explicar o <strong>“porquê”</strong> das coisas acontecerem, incluindo os <strong>métodos HTTP</strong> e o fluxo de <strong>requisição e resposta</strong> entre o navegador e o servidor.</p>
+
+<h3 id="diagrama-de-fluxo-acadêmico-navegador--servidor">Diagrama de Fluxo Acadêmico (Navegador ↔ Servidor)</h3>
+
+<p>Este diagrama separa visualmente o que acontece no navegador do usuário (Client-Side) e o que acontece no servidor (Server-Side), detalhando as requisições HTTP que conectam os dois.</p>
+
+<pre><code class="language-mermaid">graph TD
+    subgraph "Lado do Cliente (Navegador)"
+        A["Página: Lista de Jogos&lt;br&gt;(&lt;b&gt;GET&lt;/b&gt; /jogos)"]
+        B["Página: Formulário&lt;br&gt;(&lt;b&gt;GET&lt;/b&gt; /jogos/novo ou /jogos/editar/{id})"]
+    end
+
+    subgraph "Lado do Servidor (Spring Boot)"
+        C["Controller processa&lt;br&gt;&lt;b&gt;POST&lt;/b&gt; /jogos"]
+        D["Controller processa&lt;br&gt;&lt;b&gt;GET&lt;/b&gt; /jogos/excluir/{id}"]
+        E["Redirecionamento&lt;br&gt;(HTTP 302 Found)"]
+    end
+
+    %% Fluxos de Navegação
+    A --"1. Clica em 'Adicionar' ou 'Editar'"--&gt; B
+
+    B --"2. Clica em 'Salvar'"--&gt; C
+    C --"3. Salva no Banco de Dados"--&gt; E
+    
+    A --"4. Clica em 'Excluir'"--&gt; D
+    D --"5. Exclui do Banco de Dados"--&gt; E
+
+    E --"6. Navegador é redirecionado para a lista"--&gt; A
+    
+    B --"7. Clica em 'Cancelar' (Link simples)"--&gt; A
+
+    %% Estilos para clareza
+    style A fill:#cde4ff,stroke:#333
+    style B fill:#e8dff5,stroke:#333
+    style C fill:#fff5cc,stroke:#333
+    style D fill:#fff5cc,stroke:#333
+    style E fill:#d4edda,stroke:#333
+</code></pre>
+
+<h3 id="explicação-didática-do-diagrama">Explicação Didática do Diagrama</h3>
+
+<p>Este modelo vai além de simplesmente mostrar a navegação, ele ensina conceitos fundamentais de desenvolvimento web:</p>
+
+<ol>
+  <li>
+    <p><strong>Separação Cliente-Servidor</strong>: O diagrama mostra claramente que existem dois “mundos”: o que o usuário vê e interage no <strong>Navegador</strong> e o que a aplicação <strong>Spring Boot</strong> processa no Servidor.</p>
+  </li>
+  <li>
+    <p><strong>Métodos HTTP e URLs</strong>:</p>
+
+    <ul>
+      <li>Para <strong>visualizar</strong> páginas, o navegador sempre faz uma requisição <code class="language-plaintext highlighter-rouge">GET</code> para uma URL específica (ex: <code class="language-plaintext highlighter-rouge">GET /jogos</code>).</li>
+      <li>Para <strong>enviar dados</strong> (criar ou atualizar um jogo), o formulário faz uma requisição <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">/jogos</code>. O método <code class="language-plaintext highlighter-rouge">POST</code> é usado para alterar dados no servidor.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>O Padrão Post-Redirect-Get (PRG)</strong>: Este é um dos conceitos mais importantes ilustrados aqui.</p>
+
+    <ul>
+      <li>Observe o fluxo ao “Salvar” (<code class="language-plaintext highlighter-rouge">2 → 3 → 6</code>):
+        <ol>
+          <li>O navegador envia os dados (<code class="language-plaintext highlighter-rouge">POST</code>).</li>
+          <li>O <strong>Servidor</strong> recebe, processa e salva no banco (<code class="language-plaintext highlighter-rouge">Controller processa POST /jogos</code>).</li>
+          <li><strong>Crucial</strong>: Em vez de devolver uma página HTML diretamente, o servidor responde com um <strong>Redirecionamento</strong> (<code class="language-plaintext highlighter-rouge">HTTP 302</code>).</li>
+          <li>O Navegador recebe essa resposta e “obedece”, fazendo uma nova requisição <code class="language-plaintext highlighter-rouge">GET</code> para a página de listagem (<code class="language-plaintext highlighter-rouge">/jogos</code>), que agora mostrará os dados atualizados.</li>
+        </ol>
+      </li>
+      <li><strong>Por que isso é importante?</strong> Isso evita o reenvio acidental de formulários. Se o usuário atualizasse a página após salvar, ele estaria atualizando a página de listagem (<code class="language-plaintext highlighter-rouge">GET</code>), e não reenviando os dados do formulário (<code class="language-plaintext highlighter-rouge">POST</code>). O mesmo padrão se aplica à exclusão.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Ações de Estado vs. Ações de Navegação</strong>:</p>
+
+    <ul>
+      <li>“Salvar” e “Excluir” são <strong>ações que mudam o estado</strong> dos dados no servidor. Por isso, elas passam por um processamento no backend antes de redirecionar.</li>
+      <li>“Cancelar” é uma simples <strong>ação de navegação</strong>. É apenas um link (<code class="language-plaintext highlighter-rouge">&lt;a&gt;</code>) que leva o usuário de volta para a página de lista, sem a necessidade de processamento no servidor.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Este diagrama oferece uma visão muito mais completa e alinhada com os conceitos que um estudante de engenharia de software precisa entender sobre o funcionamento de uma aplicação web moderna.</p>
+
+<hr />
+
+<h3 id="explicação-do-modelo">Explicação do Modelo</h3>
+
+<h4 id="1-entidades-tabelas">1. Entidades (Tabelas)</h4>
+
+<ul>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">CATEGORIA</code></strong>: Esta tabela armazena as categorias gerais dos jogos.</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">id (BIGINT, PK)</code>: É a chave primária da tabela, um número único que identifica cada categoria.</li>
+      <li><code class="language-plaintext highlighter-rouge">nome (VARCHAR)</code>: Armazena o nome da categoria, como “RPG”, “Ação”, “Estratégia”, etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">JOGO</code></strong>: Esta tabela armazena as informações de cada jogo cadastrado na biblioteca.</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">id (BIGINT, PK)</code>: A chave primária que identifica unicamente cada jogo.</li>
+      <li><code class="language-plaintext highlighter-rouge">titulo</code>, <code class="language-plaintext highlighter-rouge">autor</code>, <code class="language-plaintext highlighter-rouge">anoPublicacao</code>, <code class="language-plaintext highlighter-rouge">genero</code>: Atributos com as informações básicas do jogo.</li>
+      <li><code class="language-plaintext highlighter-rouge">finalizado (BOOLEAN)</code>: Um campo booleano (<code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>) para atender ao requisito extra de marcar jogos como finalizados.</li>
+      <li><code class="language-plaintext highlighter-rouge">categoria_id (BIGINT, FK)</code>: Esta é a <strong>chave estrangeira</strong> (<code class="language-plaintext highlighter-rouge">Foreign Key</code>). Ela armazena o <code class="language-plaintext highlighter-rouge">id</code> da categoria à qual o jogo pertence, criando a ligação entre as duas tabelas.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="2-relacionamento">2. Relacionamento</h4>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">CATEGORIA ||--o{ JOGO : "possui"</code></strong>: Esta linha define o relacionamento entre as tabelas.
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">||--o{</code></strong>: É a notação que representa uma relação de <strong>Um-para-Muitos</strong> (<code class="language-plaintext highlighter-rouge">One-to-Many</code>).</li>
+      <li><strong>Tradução</strong>: “Uma <code class="language-plaintext highlighter-rouge">CATEGORIA</code> pode possuir <strong>muitos</strong> <code class="language-plaintext highlighter-rouge">JOGO</code>s”. Por outro lado, um <code class="language-plaintext highlighter-rouge">JOGO</code> pertence a apenas <strong>uma</strong> <code class="language-plaintext highlighter-rouge">CATEGORIA</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Este modelo simples, porém robusto, é a base da nossa aplicação, permitindo organizar os jogos de forma eficiente e realizar consultas e ordenações baseadas em suas categorias.</p>
+
+<hr />
+
+<h3 id="4-modelando-os-dados-entidades">4. Modelando os Dados: Entidades</h3>
+
+<p>Vamos começar definindo as entidades que representarão nossos dados. Teremos duas entidades principais: <code class="language-plaintext highlighter-rouge">Jogo</code> e <code class="language-plaintext highlighter-rouge">Categoria</code>.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Categoria.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos.entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.OneToMany</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Categoria</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"categoria"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="n">jogos</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="nf">getJogos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jogos</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJogos</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="n">jogos</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">jogos</span> <span class="o">=</span> <span class="n">jogos</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Jogo.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos.entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.JoinColumn</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.ManyToOne</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Jogo</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">autor</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">anoPublicacao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">genero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">urlCapa</span><span class="o">;</span> <span class="c1">// Novo campo</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">finalizado</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"categoria_id"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Categoria</span> <span class="n">categoria</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTitulo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">titulo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitulo</span><span class="o">(</span><span class="nc">String</span> <span class="n">titulo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titulo</span> <span class="o">=</span> <span class="n">titulo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getAutor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">autor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAutor</span><span class="o">(</span><span class="nc">String</span> <span class="n">autor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">autor</span> <span class="o">=</span> <span class="n">autor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getAnoPublicacao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">anoPublicacao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAnoPublicacao</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">anoPublicacao</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">anoPublicacao</span> <span class="o">=</span> <span class="n">anoPublicacao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getGenero</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">genero</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGenero</span><span class="o">(</span><span class="nc">String</span> <span class="n">genero</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">genero</span> <span class="o">=</span> <span class="n">genero</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getUrlCapa</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">urlCapa</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUrlCapa</span><span class="o">(</span><span class="nc">String</span> <span class="n">urlCapa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">urlCapa</span> <span class="o">=</span> <span class="n">urlCapa</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isFinalizado</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">finalizado</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setFinalizado</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">finalizado</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">finalizado</span> <span class="o">=</span> <span class="n">finalizado</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Categoria</span> <span class="nf">getCategoria</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">categoria</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoria</span><span class="o">(</span><span class="nc">Categoria</span> <span class="n">categoria</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">categoria</span> <span class="o">=</span> <span class="n">categoria</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Pontos importantes:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Entity</code>: Anotação que indica que a classe é uma entidade JPA.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Id</code> e <code class="language-plaintext highlighter-rouge">@GeneratedValue</code>: Definem a chave primária e a estratégia de geração de seu valor.</li>
+  <li><code class="language-plaintext highlighter-rouge">@OneToMany</code> e <code class="language-plaintext highlighter-rouge">@ManyToOne</code>: Estabelecem o relacionamento entre <code class="language-plaintext highlighter-rouge">Categoria</code> e <code class="language-plaintext highlighter-rouge">Jogo</code>. Uma categoria pode ter vários jogos, e um jogo pertence a uma categoria.</li>
+  <li><code class="language-plaintext highlighter-rouge">@JoinColumn</code>: Especifica a coluna na tabela de jogos que fará a junção com a tabela de categorias.</li>
+</ul>
+
+<h3 id="5-camada-de-acesso-a-dados-repositórios">5. Camada de Acesso a Dados: Repositórios</h3>
+
+<p>Com as entidades definidas, vamos criar os repositórios para interagir com o banco de dados. O Spring Data JPA nos permite criar interfaces que, em tempo de execução, terão suas implementações geradas automaticamente.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">CategoriaRepository.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.entity.Categoria</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CategoriaRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Categoria</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">JogoRepository.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.entity.Jogo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">JogoRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="nf">findByTituloContainingIgnoreCase</span><span class="o">(</span><span class="nc">String</span> <span class="n">titulo</span><span class="o">);</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="nf">findByAutorContainingIgnoreCase</span><span class="o">(</span><span class="nc">String</span> <span class="n">autor</span><span class="o">);</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="nf">findByGeneroContainingIgnoreCase</span><span class="o">(</span><span class="nc">String</span> <span class="n">genero</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Entendendo o <code class="language-plaintext highlighter-rouge">JogoRepository</code>:</strong></p>
+
+<ul>
+  <li>Ao estender <code class="language-plaintext highlighter-rouge">JpaRepository</code>, já temos acesso a métodos de CRUD básicos como <code class="language-plaintext highlighter-rouge">save()</code>, <code class="language-plaintext highlighter-rouge">findById()</code>, <code class="language-plaintext highlighter-rouge">findAll()</code> e <code class="language-plaintext highlighter-rouge">deleteById()</code>.</li>
+  <li>Declaramos métodos de busca personalizados que o Spring Data JPA interpretará e implementará automaticamente com base em seus nomes. Por exemplo, <code class="language-plaintext highlighter-rouge">findByTituloContainingIgnoreCase</code> buscará jogos cujo título contenha a string fornecida, ignorando maiúsculas e minúsculas.</li>
+</ul>
+
+<h3 id="6-lógica-de-negócio-camada-de-serviço">6. Lógica de Negócio: Camada de Serviço</h3>
+
+<p>A camada de serviço conterá a lógica de negócio da nossa aplicação.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">JogoService.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.entity.Jogo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.repository.JogoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.domain.Sort</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoService</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">JogoRepository</span> <span class="n">jogoRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="nf">listarTodos</span><span class="o">(</span><span class="nc">String</span> <span class="n">sortBy</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jogoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">(</span><span class="nc">Sort</span><span class="o">.</span><span class="na">by</span><span class="o">(</span><span class="n">sortBy</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Jogo</span> <span class="nf">salvar</span><span class="o">(</span><span class="nc">Jogo</span> <span class="n">jogo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jogoRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">jogo</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Jogo</span> <span class="nf">buscarPorId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jogoRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">excluir</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">jogoRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Jogo</span><span class="o">&gt;</span> <span class="nf">pesquisar</span><span class="o">(</span><span class="nc">String</span> <span class="n">termo</span><span class="o">,</span> <span class="nc">String</span> <span class="n">tipoPesquisa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">tipoPesquisa</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="s">"titulo"</span><span class="o">:</span>
+                <span class="k">return</span> <span class="n">jogoRepository</span><span class="o">.</span><span class="na">findByTituloContainingIgnoreCase</span><span class="o">(</span><span class="n">termo</span><span class="o">);</span>
+            <span class="k">case</span> <span class="s">"autor"</span><span class="o">:</span>
+                <span class="k">return</span> <span class="n">jogoRepository</span><span class="o">.</span><span class="na">findByAutorContainingIgnoreCase</span><span class="o">(</span><span class="n">termo</span><span class="o">);</span>
+            <span class="k">case</span> <span class="s">"genero"</span><span class="o">:</span>
+                <span class="k">return</span> <span class="n">jogoRepository</span><span class="o">.</span><span class="na">findByGeneroContainingIgnoreCase</span><span class="o">(</span><span class="n">termo</span><span class="o">);</span>
+            <span class="k">default</span><span class="o">:</span>
+                <span class="k">return</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Principais pontos:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Service</code>: Indica ao Spring que esta é uma classe de serviço.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Autowired</code>: Realiza a injeção de dependência do <code class="language-plaintext highlighter-rouge">JogoRepository</code>.</li>
+  <li>O método <code class="language-plaintext highlighter-rouge">listarTodos</code> agora aceita um parâmetro <code class="language-plaintext highlighter-rouge">sortBy</code> para ordenação dinâmica.</li>
+  <li>O método <code class="language-plaintext highlighter-rouge">pesquisar</code> implementa a lógica para buscar por título, autor ou gênero.</li>
+</ul>
+
+<h3 id="7-camada-de-controle-controllers">7. Camada de Controle: Controllers</h3>
+
+<p>Os controllers são a porta de entrada da nossa aplicação. Eles recebem as requisições HTTP e as direcionam para a camada de serviço.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">JogoController.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.entity.Jogo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.service.JogoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ModelAttribute</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PathVariable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestParam</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">JogoService</span> <span class="n">jogoService</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/jogos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">listarJogos</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">,</span> <span class="nd">@RequestParam</span><span class="o">(</span><span class="n">defaultValue</span> <span class="o">=</span> <span class="s">"titulo"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">sortBy</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"jogos"</span><span class="o">,</span> <span class="n">jogoService</span><span class="o">.</span><span class="na">listarTodos</span><span class="o">(</span><span class="n">sortBy</span><span class="o">));</span>
+        <span class="k">return</span> <span class="s">"jogos"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/jogos/novo"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">novoJogoForm</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"jogo"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"formulario-jogo"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/jogos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">salvarJogo</span><span class="o">(</span><span class="nd">@ModelAttribute</span><span class="o">(</span><span class="s">"jogo"</span><span class="o">)</span> <span class="nc">Jogo</span> <span class="n">jogo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">jogoService</span><span class="o">.</span><span class="na">salvar</span><span class="o">(</span><span class="n">jogo</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"redirect:/jogos"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/jogos/editar/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">editarJogoForm</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"jogo"</span><span class="o">,</span> <span class="n">jogoService</span><span class="o">.</span><span class="na">buscarPorId</span><span class="o">(</span><span class="n">id</span><span class="o">));</span>
+        <span class="k">return</span> <span class="s">"formulario-jogo"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/jogos/excluir/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">excluirJogo</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">jogoService</span><span class="o">.</span><span class="na">excluir</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"redirect:/jogos"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/jogos/pesquisar"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">pesquisarJogos</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">termo</span><span class="o">,</span> <span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">tipo</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"jogos"</span><span class="o">,</span> <span class="n">jogoService</span><span class="o">.</span><span class="na">pesquisar</span><span class="o">(</span><span class="n">termo</span><span class="o">,</span> <span class="n">tipo</span><span class="o">));</span>
+        <span class="k">return</span> <span class="s">"jogos"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Anotações importantes:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@Controller</code>: Marca a classe como um controller do Spring MVC.</li>
+  <li><code class="language-plaintext highlighter-rouge">@GetMapping</code>, <code class="language-plaintext highlighter-rouge">@PostMapping</code>: Mapeiam as requisições HTTP GET e POST para os métodos correspondentes.</li>
+  <li><code class="language-plaintext highlighter-rouge">@PathVariable</code>: Extrai valores da URL.</li>
+  <li><code class="language-plaintext highlighter-rouge">@RequestParam</code>: Extrai parâmetros da requisição.</li>
+  <li><code class="language-plaintext highlighter-rouge">@ModelAttribute</code>: Vincula um objeto do modelo a um parâmetro do método.</li>
+  <li><code class="language-plaintext highlighter-rouge">Model</code>: Um objeto que permite passar dados do controller para a view.</li>
+</ul>
+
+<hr />
+
+<p><strong><code class="language-plaintext highlighter-rouge">BibliotecajogosApplication.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.domain.EntityScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.config.EnableJpaRepositories</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="nd">@EntityScan</span><span class="o">(</span><span class="s">"br.com.bibliotecajogos.entity"</span><span class="o">)</span>
+<span class="nd">@EnableJpaRepositories</span><span class="o">(</span><span class="s">"br.com.bibliotecajogos.repository"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BibliotecajogosApplication</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">BibliotecajogosApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="8-camada-de-apresentação-views-com-thymeleaf">8. Camada de Apresentação: Views com Thymeleaf</h3>
+
+<p>Agora, vamos criar as páginas HTML que serão exibidas para o usuário.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/templates/jogos.html</code></strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Biblioteca de Jogos<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Biblioteca de Jogos<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/jogos/pesquisar}"</span> <span class="na">method=</span><span class="s">"get"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"termo"</span> <span class="na">placeholder=</span><span class="s">"Pesquisar..."</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"tipo"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"titulo"</span><span class="nt">&gt;</span>Título<span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"autor"</span><span class="nt">&gt;</span>Autor<span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"genero"</span><span class="nt">&gt;</span>Gênero<span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;/select&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Pesquisar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+
+    <span class="nt">&lt;br&gt;</span>
+
+    <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos/novo}"</span><span class="nt">&gt;</span>Adicionar Novo Jogo<span class="nt">&lt;/a&gt;</span>
+
+    <span class="nt">&lt;br&gt;&lt;br&gt;</span>
+
+    <span class="nt">&lt;table&gt;</span>
+        <span class="nt">&lt;thead&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos(sortBy='titulo')}"</span><span class="nt">&gt;</span>Título<span class="nt">&lt;/a&gt;&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos(sortBy='autor')}"</span><span class="nt">&gt;</span>Autor<span class="nt">&lt;/a&gt;&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos(sortBy='anoPublicacao')}"</span><span class="nt">&gt;</span>Ano<span class="nt">&lt;/a&gt;&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gênero<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Finalizado<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Ações<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/thead&gt;</span>
+        <span class="nt">&lt;tbody&gt;</span>
+            <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"jogo : ${jogos}"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.titulo}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.autor}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.anoPublicacao}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.genero}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.finalizado ? 'Sim' : 'Não'}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>
+                    <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos/editar/{id}(id=${jogo.id})}"</span><span class="nt">&gt;</span>Editar<span class="nt">&lt;/a&gt;</span>
+                    <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos/excluir/{id}(id=${jogo.id})}"</span><span class="nt">&gt;</span>Excluir<span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/tbody&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/templates/formulario-jogo.html</code></strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Formulário de Jogo<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Formulário de Jogo<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/jogos}"</span> <span class="na">th:object=</span><span class="s">"${jogo}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">th:field=</span><span class="s">"*{id}"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;label&gt;</span>Título:<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">th:field=</span><span class="s">"*{titulo}"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;label&gt;</span>Autor:<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">th:field=</span><span class="s">"*{autor}"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;label&gt;</span>Ano de Publicação:<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">th:field=</span><span class="s">"*{anoPublicacao}"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;label&gt;</span>Gênero:<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">th:field=</span><span class="s">"*{genero}"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;label&gt;</span>Finalizado:<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">th:field=</span><span class="s">"*{finalizado}"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Salvar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Sintaxe do Thymeleaf:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">th:action</code>, <code class="language-plaintext highlighter-rouge">th:href</code>: Geram URLs dinamicamente.</li>
+  <li><code class="language-plaintext highlighter-rouge">th:each</code>: Itera sobre uma coleção de objetos.</li>
+  <li><code class="language-plaintext highlighter-rouge">th:text</code>: Exibe o valor de uma expressão.</li>
+  <li><code class="language-plaintext highlighter-rouge">th:object</code>, <code class="language-plaintext highlighter-rouge">th:field</code>: Facilitam o data binding em formulários.</li>
+</ul>
+
+<h3 id="9-configuração-do-banco-de-dados">9. Configuração do Banco de Dados</h3>
+
+<p>Agora, vamos configurar os bancos de dados para os ambientes de desenvolvimento e produção.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.application.name</span><span class="p">=</span><span class="s">bibliotecajogos</span>
+<span class="c"># --- H2 (Desenvolvimento) ---
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+<span class="c"># Forca a recriacao do banco de dados a cada inicializacao para garantir que os dados de teste sejam sempre atualizados
+</span><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">create</span>
+
+<span class="c"># --- PostgreSQL (Producao) ---
+#spring.datasource.url=jdbc:postgresql://localhost:5432/bibliotecajogos
+#spring.datasource.username=seu_usuario
+#spring.datasource.password=sua_senha
+#spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+</span>
+<span class="c"># --- Configuracao Ativa (Desenvolvimento) ---
+</span><span class="py">spring.profiles.active</span><span class="p">=</span><span class="s">dev</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/application-dev.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/application-prod.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:postgresql://localhost:5432/bibliotecajogos</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">seu_usuario</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">sua_senha</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+<span class="py">spring.jpa.properties.hibernate.dialect</span><span class="p">=</span><span class="s">org.hibernate.dialect.PostgreSQLDialect</span>
+</code></pre></div></div>
+
+<p><strong>Explicação:</strong></p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">application.properties</code></strong>: Define o perfil ativo. Por padrão, está como <code class="language-plaintext highlighter-rouge">dev</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">application-dev.properties</code></strong>: Contém as configurações para o ambiente de desenvolvimento (H2).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">application-prod.properties</code></strong>: Contém as configurações para o ambiente de produção (PostgreSQL).</li>
+  <li>Para rodar em produção, altere <code class="language-plaintext highlighter-rouge">spring.profiles.active</code> para <code class="language-plaintext highlighter-rouge">prod</code> ou defina a variável de ambiente <code class="language-plaintext highlighter-rouge">SPRING_PROFILES_ACTIVE=prod</code>.</li>
+</ul>
+
+<hr />
+
+<p><strong><code class="language-plaintext highlighter-rouge">pom.xml</code></strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+	<span class="nt">&lt;parent&gt;</span>
+		<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+		<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;version&gt;</span>3.5.5<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;relativePath/&gt;</span> <span class="c">&lt;!-- lookup parent from repository --&gt;</span>
+	<span class="nt">&lt;/parent&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>br.com.bibliotecajogos<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>bibliotecajogos<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;name&gt;</span>bibliotecajogos<span class="nt">&lt;/name&gt;</span>
+	<span class="nt">&lt;description&gt;</span>Demo project for Spring Boot<span class="nt">&lt;/description&gt;</span>
+	<span class="nt">&lt;url/&gt;</span>
+	<span class="nt">&lt;licenses&gt;</span>
+		<span class="nt">&lt;license/&gt;</span>
+	<span class="nt">&lt;/licenses&gt;</span>
+	<span class="nt">&lt;developers&gt;</span>
+		<span class="nt">&lt;developer/&gt;</span>
+	<span class="nt">&lt;/developers&gt;</span>
+	<span class="nt">&lt;scm&gt;</span>
+		<span class="nt">&lt;connection/&gt;</span>
+		<span class="nt">&lt;developerConnection/&gt;</span>
+		<span class="nt">&lt;tag/&gt;</span>
+		<span class="nt">&lt;url/&gt;</span>
+	<span class="nt">&lt;/scm&gt;</span>
+	<span class="nt">&lt;properties&gt;</span>
+		<span class="nt">&lt;java.version&gt;</span>21<span class="nt">&lt;/java.version&gt;</span>
+		<span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+
+	<span class="nt">&lt;/properties&gt;</span>
+	<span class="nt">&lt;dependencies&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-thymeleaf<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-devtools<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+			<span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.postgresql<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-test<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+	<span class="nt">&lt;/dependencies&gt;</span>
+
+	<span class="nt">&lt;build&gt;</span>
+		<span class="nt">&lt;plugins&gt;</span>
+			<span class="nt">&lt;plugin&gt;</span>
+				<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+				<span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;/plugin&gt;</span>
+		<span class="nt">&lt;/plugins&gt;</span>
+	<span class="nt">&lt;/build&gt;</span>
+
+<span class="nt">&lt;/project&gt;</span>
+
+</code></pre></div></div>
+<hr />
+
+<h3 id="estrutura-do-projeto-atulizado">Estrutura do Projeto (Atulizado)</h3>
+
+<p>Após importar o projeto para sua IDE, teremos a seguinte estrutura de pacotes:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src
+└── main
+    ├── java
+    │   └── br
+    │       └── com
+    │           └── bibliotecajogos
+    │               ├── BibliotecajogosApplication.java
+    │               ├── config
+    │               │   └── DataInitializer.java
+    │               ├── controller
+    │               │   └── JogoController.java
+    │               ├── entity
+    │               │   ├── Categoria.java
+    │               │   └── Jogo.java
+    │               ├── repository
+    │               │   ├── CategoriaRepository.java
+    │               │   └── JogoRepository.java
+    │               └── service
+    │                   └── JogoService.java
+    │               ├── BibliotecaJogosApplication.java    
+    └── resources
+        ├── static/
+        ├── templates
+        │   ├── formulario-jogo.html
+        │   ├── jogos.html
+        │   └── layout.html
+        ├── application.properties
+        ├── application-dev.properties
+        └── application-prod.properties
+</code></pre></div></div>
+
+<h3 id="10-executando-e-testando-a-aplicação">10. Executando e Testando a Aplicação</h3>
+
+<ol>
+  <li><strong>Execute a aplicação:</strong> Rode a classe <code class="language-plaintext highlighter-rouge">BibliotecaJogosApplication.java</code> a partir da sua IDE.</li>
+  <li><strong>Acesse a aplicação:</strong> Abra seu navegador e acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080/jogos</code>.</li>
+  <li><strong>Teste as funcionalidades:</strong>
+    <ul>
+      <li>Adicione novos jogos.</li>
+      <li>Edite jogos existentes.</li>
+      <li>Exclua jogos.</li>
+      <li>Teste a ordenação clicando nos cabeçalhos da tabela.</li>
+      <li>Utilize a barra de pesquisa para encontrar jogos por título, autor ou gênero.</li>
+      <li>Marque jogos como finalizados.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="11-próximos-passos-e-melhorias">11. Próximos Passos e Melhorias</h3>
+
+<p>Com a base da aplicação construída, você pode explorar diversas melhorias:</p>
+
+<ul>
+  <li><strong>Validação de Dados:</strong> Implemente validações nos campos do formulário para garantir que os dados inseridos sejam válidos.</li>
+  <li><strong>Paginação:</strong> Adicione paginação à lista de jogos para lidar com grandes volumes de dados.</li>
+  <li><strong>Autenticação e Autorização:</strong> Utilize o Spring Security para proteger a aplicação e definir diferentes níveis de acesso para os usuários.</li>
+  <li><strong>Testes Unitários e de Integração:</strong> Escreva testes para garantir a qualidade e a robustez do seu código.</li>
+  <li><strong>Melhorias na Interface do Usuário:</strong> Utilize um framework CSS como o Bootstrap para criar uma interface mais amigável e responsiva.</li>
+  <li><strong>Containerização com Docker:</strong> Crie uma imagem Docker da sua aplicação para facilitar o deploy em diferentes ambientes.</li>
+</ul>
+
+<hr />
+
+<p>Vamos adicionar as seções de “Melhorias na Interface do Usuário com Bootstrap” e “Containerização com Docker” ao guia, detalhando o passo a passo para cada uma.</p>
+
+<h3 id="12-melhorias-na-interface-do-usuário-com-bootstrap">12. Melhorias na Interface do Usuário com Bootstrap</h3>
+
+<p>Para deixar nossa aplicação com uma aparência mais profissional e responsiva sem muito esforço, vamos integrar o Bootstrap, um dos frameworks CSS mais populares do mundo.</p>
+
+<h4 id="passo-1-adicionar-o-bootstrap-ao-projeto">Passo 1: Adicionar o Bootstrap ao Projeto</h4>
+
+<p>A forma mais simples de incluir o Bootstrap é utilizando um CDN (Content Delivery Network). Isso evita a necessidade de gerenciar os arquivos CSS e JavaScript localmente. Vamos criar um template base para centralizar a inclusão do Bootstrap e a estrutura principal da página.</p>
+
+<p><strong>Crie um novo arquivo: <code class="language-plaintext highlighter-rouge">src/main/resources/templates/layout.html</code></strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">th:fragment=</span><span class="s">"layout(title, content)"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title</span> <span class="na">th:replace=</span><span class="s">"${title}"</span><span class="nt">&gt;</span>Biblioteca de Jogos<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span>
+      <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span>
+      <span class="na">rel=</span><span class="s">"stylesheet"</span>
+      <span class="na">integrity=</span><span class="s">"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"</span>
+      <span class="na">crossorigin=</span><span class="s">"anonymous"</span>
+    <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-expand-lg navbar-dark bg-dark mb-4"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">th:href=</span><span class="s">"@{/jogos}"</span><span class="nt">&gt;</span>Biblioteca de Jogos<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/nav&gt;</span>
+
+    <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">th:replace=</span><span class="s">"${content}"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/main&gt;</span>
+
+    <span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">"container text-center mt-5"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p&gt;</span><span class="ni">&amp;copy;</span>  Biblioteca de Jogos 2025<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/footer&gt;</span>
+
+    <span class="nt">&lt;script
+      </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"</span>
+      <span class="na">integrity=</span><span class="s">"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"</span>
+      <span class="na">crossorigin=</span><span class="s">"anonymous"</span>
+    <span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h4 id="passo-2-atualizar-as-views-para-usar-o-layout-e-as-classes-do-bootstrap">Passo 2: Atualizar as Views para Usar o Layout e as Classes do Bootstrap</h4>
+
+<p>Agora, vamos refatorar nossas páginas <code class="language-plaintext highlighter-rouge">jogos.html</code> e <code class="language-plaintext highlighter-rouge">formulario-jogo.html</code> para utilizar o novo layout e as classes de estilo do Bootstrap.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/templates/jogos.html</code> (Atualizado)</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span>
+  <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span>
+  <span class="na">th:replace=</span><span class="s">"~{layout :: layout (title=~{::title}, content=~{::section})}"</span>
+<span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Biblioteca de Jogos<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;section&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex justify-content-between align-items-center mb-4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"mb-0"</span><span class="nt">&gt;</span>Listagem de Jogos<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos/novo}"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span>
+          <span class="nt">&gt;</span>Adicionar Novo Jogo<span class="nt">&lt;/a</span>
+        <span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/jogos/pesquisar}"</span> <span class="na">method=</span><span class="s">"get"</span> <span class="na">class=</span><span class="s">"mb-4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"input-group"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;input</span>
+            <span class="na">type=</span><span class="s">"text"</span>
+            <span class="na">name=</span><span class="s">"termo"</span>
+            <span class="na">class=</span><span class="s">"form-control"</span>
+            <span class="na">placeholder=</span><span class="s">"Pesquisar..."</span>
+          <span class="nt">/&gt;</span>
+          <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"tipo"</span> <span class="na">class=</span><span class="s">"form-select"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"titulo"</span><span class="nt">&gt;</span>Título<span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"autor"</span><span class="nt">&gt;</span>Autor<span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"genero"</span><span class="nt">&gt;</span>Gênero<span class="nt">&lt;/option&gt;</span>
+          <span class="nt">&lt;/select&gt;</span>
+          <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-outline-secondary"</span><span class="nt">&gt;</span>
+            Pesquisar
+          <span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/form&gt;</span>
+
+      <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-striped table-hover"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;thead</span> <span class="na">class=</span><span class="s">"table-dark"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;tr&gt;</span>
+            <span class="nt">&lt;th&gt;</span>Capa<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;th&gt;</span>
+              <span class="nt">&lt;a</span>
+                <span class="na">class=</span><span class="s">"text-white text-decoration-none"</span>
+                <span class="na">th:href=</span><span class="s">"@{/jogos(sortBy='titulo')}"</span>
+                <span class="nt">&gt;</span>Título<span class="nt">&lt;/a</span>
+              <span class="nt">&gt;</span>
+            <span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;th&gt;</span>
+              <span class="nt">&lt;a</span>
+                <span class="na">class=</span><span class="s">"text-white text-decoration-none"</span>
+                <span class="na">th:href=</span><span class="s">"@{/jogos(sortBy='autor')}"</span>
+                <span class="nt">&gt;</span>Autor<span class="nt">&lt;/a</span>
+              <span class="nt">&gt;</span>
+            <span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;th&gt;</span>
+              <span class="nt">&lt;a</span>
+                <span class="na">class=</span><span class="s">"text-white text-decoration-none"</span>
+                <span class="na">th:href=</span><span class="s">"@{/jogos(sortBy='anoPublicacao')}"</span>
+                <span class="nt">&gt;</span>Ano<span class="nt">&lt;/a</span>
+              <span class="nt">&gt;</span>
+            <span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;th&gt;</span>Gênero<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;th&gt;</span>Finalizado<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;th&gt;</span>Ações<span class="nt">&lt;/th&gt;</span>
+          <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/thead&gt;</span>
+        <span class="nt">&lt;tbody&gt;</span>
+          <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"jogo : ${jogos}"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;td&gt;</span>
+              <span class="nt">&lt;img</span>
+                <span class="na">th:if=</span><span class="s">"${jogo.urlCapa != null and !jogo.urlCapa.isEmpty()}"</span>
+                <span class="na">th:src=</span><span class="s">"${jogo.urlCapa}"</span>
+                <span class="na">alt=</span><span class="s">"Capa do Jogo"</span>
+                <span class="na">width=</span><span class="s">"50"</span>
+                <span class="na">onerror=</span><span class="s">"this.onerror=null;this.src='https://via.placeholder.com/50x75.png?text=Capa';"</span>
+              <span class="nt">/&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">th:if=</span><span class="s">"${jogo.urlCapa == null or jogo.urlCapa.isEmpty()}"</span>
+                <span class="nt">&gt;</span>Sem capa<span class="nt">&lt;/span</span>
+              <span class="nt">&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.titulo}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.autor}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.anoPublicacao}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${jogo.genero}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>
+              <span class="nt">&lt;span</span> <span class="na">th:if=</span><span class="s">"${jogo.finalizado}"</span> <span class="na">class=</span><span class="s">"badge bg-success"</span>
+                <span class="nt">&gt;</span>Sim<span class="nt">&lt;/span</span>
+              <span class="nt">&gt;</span>
+              <span class="nt">&lt;span</span>
+                <span class="na">th:unless=</span><span class="s">"${jogo.finalizado}"</span>
+                <span class="na">class=</span><span class="s">"badge bg-warning text-dark"</span>
+                <span class="nt">&gt;</span>Não<span class="nt">&lt;/span</span>
+              <span class="nt">&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>
+              <span class="nt">&lt;a</span>
+                <span class="na">th:href=</span><span class="s">"@{/jogos/editar/{id}(id=${jogo.id})}"</span>
+                <span class="na">class=</span><span class="s">"btn btn-sm btn-info"</span>
+                <span class="nt">&gt;</span>Editar<span class="nt">&lt;/a</span>
+              <span class="nt">&gt;</span>
+              <span class="nt">&lt;a</span>
+                <span class="na">th:href=</span><span class="s">"@{/jogos/excluir/{id}(id=${jogo.id})}"</span>
+                <span class="na">class=</span><span class="s">"btn btn-sm btn-danger"</span>
+                <span class="nt">&gt;</span>Excluir<span class="nt">&lt;/a</span>
+              <span class="nt">&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+          <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/tbody&gt;</span>
+      <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;/section&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/resources/templates/formulario-jogo.html</code> (Atualizado)</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span>
+  <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span>
+  <span class="na">th:replace=</span><span class="s">"~{layout :: layout (title=~{::title}, content=~{::section})}"</span>
+<span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title</span> <span class="na">th:text=</span><span class="s">"${jogo.id == null ? 'Novo Jogo' : 'Editar Jogo'}"</span><span class="nt">&gt;</span>
+      Formulário de Jogo
+    <span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;section&gt;</span>
+      <span class="nt">&lt;h1</span> <span class="na">th:text=</span><span class="s">"${jogo.id == null ? 'Adicionar Novo Jogo' : 'Editar Jogo'}"</span><span class="nt">&gt;</span>
+        Formulário
+      <span class="nt">&lt;/h1&gt;</span>
+
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/jogos}"</span> <span class="na">th:object=</span><span class="s">"${jogo}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">th:field=</span><span class="s">"*{id}"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"titulo"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Título:<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span>
+                <span class="na">type=</span><span class="s">"text"</span>
+                <span class="na">id=</span><span class="s">"titulo"</span>
+                <span class="na">class=</span><span class="s">"form-control"</span>
+                <span class="na">th:field=</span><span class="s">"*{titulo}"</span>
+              <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"autor"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Autor:<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span>
+                <span class="na">type=</span><span class="s">"text"</span>
+                <span class="na">id=</span><span class="s">"autor"</span>
+                <span class="na">class=</span><span class="s">"form-control"</span>
+                <span class="na">th:field=</span><span class="s">"*{autor}"</span>
+              <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"anoPublicacao"</span> <span class="na">class=</span><span class="s">"form-label"</span>
+                <span class="nt">&gt;</span>Ano de Publicação:<span class="nt">&lt;/label</span>
+              <span class="nt">&gt;</span>
+              <span class="nt">&lt;input</span>
+                <span class="na">type=</span><span class="s">"number"</span>
+                <span class="na">id=</span><span class="s">"anoPublicacao"</span>
+                <span class="na">class=</span><span class="s">"form-control"</span>
+                <span class="na">th:field=</span><span class="s">"*{anoPublicacao}"</span>
+              <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"genero"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Gênero:<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span>
+                <span class="na">type=</span><span class="s">"text"</span>
+                <span class="na">id=</span><span class="s">"genero"</span>
+                <span class="na">class=</span><span class="s">"form-control"</span>
+                <span class="na">th:field=</span><span class="s">"*{genero}"</span>
+              <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"urlCapa"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>URL da Capa:<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;input</span>
+                <span class="na">type=</span><span class="s">"text"</span>
+                <span class="na">id=</span><span class="s">"urlCapa"</span>
+                <span class="na">class=</span><span class="s">"form-control"</span>
+                <span class="na">th:field=</span><span class="s">"*{urlCapa}"</span>
+              <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-check mb-3"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;input</span>
+                <span class="na">type=</span><span class="s">"checkbox"</span>
+                <span class="na">id=</span><span class="s">"finalizado"</span>
+                <span class="na">class=</span><span class="s">"form-check-input"</span>
+                <span class="na">th:field=</span><span class="s">"*{finalizado}"</span>
+              <span class="nt">/&gt;</span>
+              <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"finalizado"</span> <span class="na">class=</span><span class="s">"form-check-label"</span>
+                <span class="nt">&gt;</span>Finalizado<span class="nt">&lt;/label</span>
+              <span class="nt">&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;div&gt;</span>
+              <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-success"</span><span class="nt">&gt;</span>Salvar<span class="nt">&lt;/button&gt;</span>
+              <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/jogos}"</span> <span class="na">class=</span><span class="s">"btn btn-secondary"</span><span class="nt">&gt;</span>Cancelar<span class="nt">&lt;/a&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/form&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/section&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>Após aplicar essas mudanças, reinicie a aplicação. Você verá uma interface muito mais moderna e agradável.</p>
+
+<hr />
+
+<h3 id="13-containerização-com-docker">13. Containerização com Docker</h3>
+
+<p>Containerizar nossa aplicação com Docker nos permite empacotar o software com todas as suas dependências em uma unidade padronizada para desenvolvimento, envio e implantação. Isso garante que a aplicação funcione da mesma forma em qualquer ambiente.</p>
+
+<p>Um diagrama é uma excelente forma de visualizar a arquitetura completa do projeto que construímos, incluindo todos os componentes e suas interações.</p>
+
+<p>Aqui está um diagrama Mermaid que representa a estrutura geral do nosso sistema, desde a interação do usuário até a infraestrutura em contêineres com Docker.</p>
+
+<h3 id="diagrama-de-arquitetura-do-projeto">Diagrama de Arquitetura do Projeto</h3>
+
+<pre><code class="language-mermaid">graph TD
+    subgraph "Ambiente Docker"
+        direction LR
+        subgraph "Container: App Spring Boot"
+            direction TB
+            A[Controller] --&gt; B[Service]
+            B --&gt; C[Repository / JPA]
+        end
+
+        subgraph "Container: Banco de Dados"
+            direction TB
+            DB[(PostgreSQL)]
+        end
+
+        subgraph "Container: Gerenciador de DB"
+            direction TB
+            PGADMIN([pgAdmin])
+        end
+
+        C --&gt; DB
+        PGADMIN -.-&gt; DB
+    end
+
+    USER[Usuário] --&gt;|Requisição HTTP| A
+    A --&gt;|HTML com Thymeleaf| USER
+
+    style USER fill:#f9f,stroke:#333,stroke-width:2px
+    style DB fill:#add,stroke:#333,stroke-width:2px
+    style PGADMIN fill:#f8d5a2,stroke:#333,stroke-width:2px
+</code></pre>
+
+<h3 id="explicação-do-diagrama-1">Explicação do Diagrama</h3>
+
+<p>Este diagrama de fluxo ilustra os seguintes pontos-chave da nossa arquitetura:</p>
+
+<ol>
+  <li><strong>Usuário</strong>: Representa o cliente final interagindo com a aplicação através de um navegador web.</li>
+  <li><strong>Ambiente Docker</strong>: É o bloco maior, indicando que todos os nossos serviços (aplicação, banco de dados e pgAdmin) estão rodando como contêineres isolados, mas conectados, gerenciados pelo Docker Compose.</li>
+  <li><strong>Container: App Spring Boot</strong>:
+    <ul>
+      <li><strong>Controller</strong>: A porta de entrada da aplicação. Recebe as requisições HTTP do usuário.</li>
+      <li><strong>Service</strong>: Onde a lógica de negócio é processada.</li>
+      <li><strong>Repository / JPA</strong>: A camada de acesso aos dados, responsável por se comunicar com o banco de dados.</li>
+      <li>O fluxo <code class="language-plaintext highlighter-rouge">Controller -&gt; Service -&gt; Repository</code> demonstra a arquitetura em camadas da nossa aplicação.</li>
+    </ul>
+  </li>
+  <li><strong>Container: Banco de Dados</strong>:
+    <ul>
+      <li><strong>PostgreSQL</strong>: Nosso banco de dados relacional que armazena todos os dados da aplicação (jogos, categorias, etc.). A aplicação se comunica com ele através da camada de repositório.</li>
+    </ul>
+  </li>
+  <li><strong>Container: Gerenciador de DB</strong>:
+    <ul>
+      <li><strong>pgAdmin</strong>: A ferramenta de administração gráfica. A linha pontilhada (<code class="language-plaintext highlighter-rouge">-.-&gt;</code>) indica que ele se conecta ao banco de dados para fins de gerenciamento e visualização, mas não faz parte do fluxo principal da aplicação.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>O diagrama mostra claramente como uma requisição do usuário viaja através das camadas da aplicação Spring Boot para ler ou escrever no banco de dados PostgreSQL, e como o pgAdmin oferece uma interface de gerenciamento paralela, tudo orquestrado dentro do ambiente Docker.</p>
+<h4 id="passo-1-criar-o-dockerfile">Passo 1: Criar o Dockerfile</h4>
+
+<p>Na raiz do seu projeto, crie um arquivo chamado <code class="language-plaintext highlighter-rouge">Dockerfile</code> (sem extensão).</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Dockerfile</code></strong></p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Estágio 1: Build da aplicação com Maven</span>
+<span class="c"># Usamos uma imagem que já contém o JDK e o Maven</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">maven:3.9.6-eclipse-temurin-21</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+
+<span class="c"># Define o diretório de trabalho dentro do container</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># Copia os arquivos de configuração do Maven para aproveitar o cache de dependências</span>
+<span class="k">COPY</span><span class="s"> pom.xml .</span>
+<span class="k">COPY</span><span class="s"> .mvn .mvn</span>
+
+<span class="c"># Baixa as dependências do projeto</span>
+<span class="k">RUN </span>mvn dependency:go-offline
+
+<span class="c"># Copia o restante do código fonte</span>
+<span class="k">COPY</span><span class="s"> src ./src</span>
+
+<span class="c"># Executa o build do projeto, gerando o arquivo .jar</span>
+<span class="c"># -DskipTests para pular a execução dos testes durante o build da imagem</span>
+<span class="k">RUN </span>mvn package <span class="nt">-DskipTests</span>
+
+<span class="c"># Estágio 2: Criação da imagem final</span>
+<span class="c"># Usamos uma imagem mais leve, contendo apenas o JRE, para rodar a aplicação</span>
+<span class="k">FROM</span><span class="s"> eclipse-temurin:21-jre-jammy</span>
+
+<span class="c"># Define o diretório de trabalho</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># Copia o arquivo .jar gerado no estágio de build para a imagem final</span>
+<span class="k">COPY</span><span class="s"> --from=build /app/target/*.jar app.jar</span>
+
+<span class="c"># Expõe a porta que a aplicação Spring Boot usa por padrão</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+
+<span class="c"># Comando para iniciar a aplicação quando o container for executado</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<p><strong>Explicação do Dockerfile (Multi-stage build):</strong></p>
+
+<ul>
+  <li><strong>Estágio <code class="language-plaintext highlighter-rouge">build</code></strong>: Usamos uma imagem completa com Maven e JDK para compilar o projeto e gerar o arquivo <code class="language-plaintext highlighter-rouge">.jar</code>. Isso mantém as ferramentas de build fora da imagem final.</li>
+  <li><strong>Estágio final</strong>: Partimos de uma imagem Java Runtime (JRE) muito mais leve, que é suficiente para rodar a aplicação. Copiamos apenas o <code class="language-plaintext highlighter-rouge">.jar</code> gerado no estágio anterior. Isso resulta em uma imagem final menor, mais segura e otimizada.</li>
+</ul>
+
+<h4 id="passo-2-criar-o-arquivo-dockerignore">Passo 2: Criar o arquivo .dockerignore</h4>
+
+<p>Para evitar que arquivos desnecessários sejam copiados para o contexto de build do Docker, crie um arquivo <code class="language-plaintext highlighter-rouge">.dockerignore</code> na raiz do projeto.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">.dockerignore</code></strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.git
+.idea
+target/
+</code></pre></div></div>
+
+<h4 id="passo-3-construir-e-rodar-a-imagem-docker">Passo 3: Construir e Rodar a Imagem Docker</h4>
+
+<p>Abra um terminal na raiz do projeto e execute os seguintes comandos:</p>
+
+<ol>
+  <li>
+    <p><strong>Construir a imagem Docker:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> bibliotecajogos <span class="nb">.</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker build</code>: Comando para construir a imagem.</li>
+      <li><code class="language-plaintext highlighter-rouge">-t bibliotecajogos</code>: Atribui um nome (tag) à imagem.</li>
+      <li><code class="language-plaintext highlighter-rouge">.</code>: Indica que o contexto do build (onde o <code class="language-plaintext highlighter-rouge">Dockerfile</code> está) é o diretório atual.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Rodar o container:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-p</span> 8080:8080 bibliotecajogos
+</code></pre></div>    </div>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker run</code>: Comando para criar e iniciar um container a partir de uma imagem.</li>
+      <li><code class="language-plaintext highlighter-rouge">-p 8080:8080</code>: Mapeia a porta 8080 do seu computador (host) para a porta 8080 do container.</li>
+      <li>``: O nome da imagem que você quer rodar.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Agora, você pode acessar a aplicação em <code class="language-plaintext highlighter-rouge">http://localhost:8080/jogos</code> exatamente como antes, mas desta vez ela está rodando dentro de um container Docker!</p>
+
+<h4 id="passo-4-avançado-orquestrando-com-docker-compose">Passo 4 (Avançado): Orquestrando com Docker Compose</h4>
+
+<p>Para um ambiente de produção, é comum rodar tanto a aplicação quanto o banco de dados em containers separados. O <code class="language-plaintext highlighter-rouge">Docker Compose</code> é a ferramenta ideal para definir e gerenciar aplicações Docker multi-container.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie o arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> na raiz do projeto:</strong></p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.8"</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="c1"># Serviço do banco de dados PostgreSQL</span>
+  <span class="na">db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">postgres-db</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">seu_usuario</span> <span class="c1"># Mesmo usuário do application-prod.properties</span>
+      <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">sua_senha</span> <span class="c1"># Mesma senha do application-prod.properties</span>
+      <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">bibliotecajogos</span> <span class="c1"># Mesmo nome do banco do application-prod.properties</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">postgres_data:/var/lib/postgresql/data</span>
+
+  <span class="c1"># Serviço da nossa aplicação</span>
+  <span class="na">app</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span> <span class="c1"># Indica para construir a imagem a partir do Dockerfile no diretório atual</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">bibliotecajogos-app</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">db</span> <span class="c1"># Garante que o serviço 'db' inicie antes do serviço 'app'</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="c1"># Sobrescreve as configurações para apontar para o container do banco de dados</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bibliotecajogos</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_USERNAME=seu_usuario</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_PASSWORD=sua_senha</span>
+      <span class="pi">-</span> <span class="s">SPRING_PROFILES_ACTIVE=prod</span> <span class="c1"># Ativa o perfil de produção</span>
+
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">postgres_data</span><span class="pi">:</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Atualize o <code class="language-plaintext highlighter-rouge">application-prod.properties</code>:</strong></p>
+
+    <p>A única mudança necessária é no host do datasource URL, que agora será o nome do serviço do Docker (<code class="language-plaintext highlighter-rouge">db</code>). No entanto, passamos essa configuração via variáveis de ambiente no <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>, o que é uma prática melhor.</p>
+  </li>
+  <li>
+    <p><strong>Rode com Docker Compose:</strong></p>
+
+    <p>No terminal, na raiz do projeto, execute:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">docker-compose up</code>: Inicia todos os serviços definidos no arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">--build</code>: Força a reconstrução da imagem da sua aplicação caso haja alguma alteração no código ou no <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Agora você tem sua aplicação e um banco de dados PostgreSQL rodando em containers isolados, mas conectados em rede, simulando um ambiente de produção de forma simples e replicável.</p>
+
+<hr />
+
+<h3 id="14-populando-o-banco-de-dados-com-dados-iniciais-database-seeding">14. Populando o Banco de Dados com Dados Iniciais (Database Seeding)</h3>
+
+<p>Para facilitar os testes, vamos criar uma classe que insere alguns jogos e categorias no banco de dados assim que a aplicação é iniciada. Faremos isso de uma forma que só aconteça no ambiente de desenvolvimento (<code class="language-plaintext highlighter-rouge">dev</code>), evitando que esses dados sejam inseridos em produção.</p>
+
+<p>A abordagem que usaremos é a implementação da interface <code class="language-plaintext highlighter-rouge">CommandLineRunner</code>. O Spring Boot executa automaticamente todos os beans do tipo <code class="language-plaintext highlighter-rouge">CommandLineRunner</code> uma vez, após o contexto da aplicação ter sido completamente inicializado.</p>
+
+<h4 id="passo-1-criar-a-classe-de-seed">Passo 1: Criar a Classe de Seed</h4>
+
+<p>Vamos criar uma nova classe para conter nossa lógica de seeding. É uma boa prática colocá-la em um pacote de configuração.</p>
+
+<p><strong>Crie o arquivo: <code class="language-plaintext highlighter-rouge">src/main/java/br/com/bibliotecajogos/config/DataInitializer.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.bibliotecajogos.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.entity.Categoria</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.entity.Jogo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.repository.CategoriaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.bibliotecajogos.repository.JogoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.CommandLineRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Profile</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="nd">@Component</span>
+<span class="nd">@Profile</span><span class="o">(</span><span class="s">"dev"</span><span class="o">)</span> <span class="c1">// A anotação @Profile("dev") garante que este bean só será ativado quando o perfil 'dev' estiver ativo</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataInitializer</span> <span class="kd">implements</span> <span class="nc">CommandLineRunner</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">JogoRepository</span> <span class="n">jogoRepository</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">CategoriaRepository</span> <span class="n">categoriaRepository</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="nc">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">categoriaRepository</span><span class="o">.</span><span class="na">count</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&gt;&gt;&gt; Populando banco de dados de desenvolvimento..."</span><span class="o">);</span>
+
+            <span class="c1">// Criar Categorias</span>
+            <span class="nc">Categoria</span> <span class="n">rpg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Categoria</span><span class="o">();</span>
+            <span class="n">rpg</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"RPG"</span><span class="o">);</span>
+
+            <span class="nc">Categoria</span> <span class="n">acao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Categoria</span><span class="o">();</span>
+            <span class="n">acao</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Ação"</span><span class="o">);</span>
+
+            <span class="nc">Categoria</span> <span class="n">estrategia</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Categoria</span><span class="o">();</span>
+            <span class="n">estrategia</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Estratégia"</span><span class="o">);</span>
+
+            <span class="nc">Categoria</span> <span class="n">aventura</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Categoria</span><span class="o">();</span>
+            <span class="n">aventura</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Aventura"</span><span class="o">);</span>
+
+            <span class="n">categoriaRepository</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">rpg</span><span class="o">,</span> <span class="n">acao</span><span class="o">,</span> <span class="n">estrategia</span><span class="o">,</span> <span class="n">aventura</span><span class="o">));</span>
+
+            <span class="c1">// Criar Jogos</span>
+            <span class="nc">Jogo</span> <span class="n">jogo1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo1</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"The Witcher 3: Wild Hunt"</span><span class="o">);</span>
+            <span class="n">jogo1</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"CD Projekt Red"</span><span class="o">);</span>
+            <span class="n">jogo1</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2015</span><span class="o">);</span>
+            <span class="n">jogo1</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"RPG de Ação"</span><span class="o">);</span>
+            <span class="n">jogo1</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">rpg</span><span class="o">);</span>
+            <span class="n">jogo1</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">jogo1</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/thumb/0/06/TW3_Wild_Hunt.png/270px-TW3_Wild_Hunt.png"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo2</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Red Dead Redemption 2"</span><span class="o">);</span>
+            <span class="n">jogo2</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"Rockstar Games"</span><span class="o">);</span>
+            <span class="n">jogo2</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2018</span><span class="o">);</span>
+            <span class="n">jogo2</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"Ação-Aventura"</span><span class="o">);</span>
+            <span class="n">jogo2</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">acao</span><span class="o">);</span>
+            <span class="n">jogo2</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">jogo2</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/e/e7/Red_Dead_Redemption_2.png"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo3</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Age of Empires IV"</span><span class="o">);</span>
+            <span class="n">jogo3</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"Relic Entertainment"</span><span class="o">);</span>
+            <span class="n">jogo3</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2021</span><span class="o">);</span>
+            <span class="n">jogo3</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"Estratégia em Tempo Real"</span><span class="o">);</span>
+            <span class="n">jogo3</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">estrategia</span><span class="o">);</span>
+            <span class="n">jogo3</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">jogo3</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/4/43/Capa_do_jogo_Age_of_Empires_IV.jpg"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo4</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo4</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Baldur's Gate 3"</span><span class="o">);</span>
+            <span class="n">jogo4</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"Larian Studios"</span><span class="o">);</span>
+            <span class="n">jogo4</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2023</span><span class="o">);</span>
+            <span class="n">jogo4</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"RPG"</span><span class="o">);</span>
+            <span class="n">jogo4</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">rpg</span><span class="o">);</span>
+            <span class="n">jogo4</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">jogo4</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/1/18/Baldur%27s_Gate_III_Larian_Studios_key_art.png"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo5</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo5</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"God of War Ragnarök"</span><span class="o">);</span>
+            <span class="n">jogo5</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"Santa Monica Studio"</span><span class="o">);</span>
+            <span class="n">jogo5</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2022</span><span class="o">);</span>
+            <span class="n">jogo5</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"Ação-Aventura"</span><span class="o">);</span>
+            <span class="n">jogo5</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">aventura</span><span class="o">);</span>
+            <span class="n">jogo5</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">jogo5</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/a/a5/God_of_War_Ragnar%C3%B6k_capa.jpg"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo6</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo6</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Elden Ring"</span><span class="o">);</span>
+            <span class="n">jogo6</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"FromSoftware"</span><span class="o">);</span>
+            <span class="n">jogo6</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2022</span><span class="o">);</span>
+            <span class="n">jogo6</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"RPG de Ação"</span><span class="o">);</span>
+            <span class="n">jogo6</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">rpg</span><span class="o">);</span>
+            <span class="n">jogo6</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">jogo6</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/0/0d/Elden_Ring_capa.jpg"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo7</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo7</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Cyberpunk 2077"</span><span class="o">);</span>
+            <span class="n">jogo7</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"CD Projekt Red"</span><span class="o">);</span>
+            <span class="n">jogo7</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2020</span><span class="o">);</span>
+            <span class="n">jogo7</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"RPG de Ação"</span><span class="o">);</span>
+            <span class="n">jogo7</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">rpg</span><span class="o">);</span>
+            <span class="n">jogo7</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">jogo7</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/thumb/f/f7/Cyberpunk_2077_capa.png/270px-Cyberpunk_2077_capa.png"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo8</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo8</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"StarCraft II: Wings of Liberty"</span><span class="o">);</span>
+            <span class="n">jogo8</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"Blizzard Entertainment"</span><span class="o">);</span>
+            <span class="n">jogo8</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2010</span><span class="o">);</span>
+            <span class="n">jogo8</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"Estratégia em Tempo Real"</span><span class="o">);</span>
+            <span class="n">jogo8</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">estrategia</span><span class="o">);</span>
+            <span class="n">jogo8</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">jogo8</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/4/40/StarCraft_II_capa.jpg"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo9</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo9</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"The Legend of Zelda: Tears of the Kingdom"</span><span class="o">);</span>
+            <span class="n">jogo9</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"Nintendo"</span><span class="o">);</span>
+            <span class="n">jogo9</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2023</span><span class="o">);</span>
+            <span class="n">jogo9</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"Ação-Aventura"</span><span class="o">);</span>
+            <span class="n">jogo9</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">aventura</span><span class="o">);</span>
+            <span class="n">jogo9</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">jogo9</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/2/25/Zelda_TotK_capa.jpg"</span><span class="o">);</span>
+
+            <span class="nc">Jogo</span> <span class="n">jogo10</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Jogo</span><span class="o">();</span>
+            <span class="n">jogo10</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Grand Theft Auto V"</span><span class="o">);</span>
+            <span class="n">jogo10</span><span class="o">.</span><span class="na">setAutor</span><span class="o">(</span><span class="s">"Rockstar Games"</span><span class="o">);</span>
+            <span class="n">jogo10</span><span class="o">.</span><span class="na">setAnoPublicacao</span><span class="o">(</span><span class="mi">2013</span><span class="o">);</span>
+            <span class="n">jogo10</span><span class="o">.</span><span class="na">setGenero</span><span class="o">(</span><span class="s">"Ação-Aventura"</span><span class="o">);</span>
+            <span class="n">jogo10</span><span class="o">.</span><span class="na">setCategoria</span><span class="o">(</span><span class="n">acao</span><span class="o">);</span>
+            <span class="n">jogo10</span><span class="o">.</span><span class="na">setFinalizado</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">jogo10</span><span class="o">.</span><span class="na">setUrlCapa</span><span class="o">(</span><span class="s">"https://upload.wikimedia.org/wikipedia/pt/8/80/Grand_Theft_Auto_V_capa.png"</span><span class="o">);</span>
+
+            <span class="n">jogoRepository</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">jogo1</span><span class="o">,</span> <span class="n">jogo2</span><span class="o">,</span> <span class="n">jogo3</span><span class="o">,</span> <span class="n">jogo4</span><span class="o">,</span> <span class="n">jogo5</span><span class="o">,</span> <span class="n">jogo6</span><span class="o">,</span> <span class="n">jogo7</span><span class="o">,</span> <span class="n">jogo8</span><span class="o">,</span> <span class="n">jogo9</span><span class="o">,</span> <span class="n">jogo10</span><span class="o">));</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&gt;&gt;&gt; Banco de dados populado com sucesso!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&gt;&gt;&gt; O banco de dados já está populado. Nenhuma ação foi tomada."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="explicação-do-código">Explicação do Código</h4>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">@Component</code></strong>: Esta anotação transforma a classe em um bean gerenciado pelo Spring, permitindo que o framework a encontre e execute.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">@Profile("dev")</code></strong>: Esta é a parte mais importante. Ela instrui o Spring a criar e executar este bean <strong>apenas</strong> quando o perfil de execução ativo for <code class="language-plaintext highlighter-rouge">dev</code>. Como configuramos <code class="language-plaintext highlighter-rouge">spring.profiles.active=dev</code> no <code class="language-plaintext highlighter-rouge">application.properties</code>, este código rodará ao iniciar a aplicação no ambiente de desenvolvimento. Ao mudar o perfil para <code class="language-plaintext highlighter-rouge">prod</code>, este bean será ignorado.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">implements CommandLineRunner</code></strong>: Ao implementar esta interface, somos obrigados a sobrescrever o método <code class="language-plaintext highlighter-rouge">run</code>. Este método é o ponto de entrada da nossa lógica de seeding.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">@Autowired</code></strong>: Injetamos nossos repositórios (<code class="language-plaintext highlighter-rouge">JogoRepository</code> e <code class="language-plaintext highlighter-rouge">CategoriaRepository</code>) para termos acesso aos métodos de persistência no banco de dados.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">if (categoriaRepository.count() == 0)</code></strong>: Adicionamos uma verificação simples para garantir que a lógica de seeding só execute uma vez. Como estamos usando o H2 em memória, a cada reinicialização os dados são perdidos, então a condição será sempre verdadeira. No entanto, se você estivesse usando um banco de dados persistente em desenvolvimento, essa verificação impediria a inserção de dados duplicados a cada reinicialização.</li>
+  <li><strong>Criação e Persistência</strong>: Criamos objetos <code class="language-plaintext highlighter-rouge">Categoria</code> e <code class="language-plaintext highlighter-rouge">Jogo</code> em Java e usamos o método <code class="language-plaintext highlighter-rouge">saveAll()</code> dos repositórios para salvá-los no banco de dados de forma eficiente.</li>
+</ol>
+
+<h4 id="passo-2-testar-o-seeding">Passo 2: Testar o Seeding</h4>
+
+<p>Agora, basta rodar sua aplicação novamente com o perfil <code class="language-plaintext highlighter-rouge">dev</code> ativo. Observe o console de logs da sua IDE ou terminal. Você deverá ver as mensagens que adicionamos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; Populando banco de dados de desenvolvimento...
+&gt;&gt;&gt; Banco de dados populado com sucesso!
+</code></pre></div></div>
+
+<p>Ao acessar <code class="language-plaintext highlighter-rouge">http://localhost:8080/jogos</code> no seu navegador, a lista de jogos já estará preenchida com os dados que cadastramos no <code class="language-plaintext highlighter-rouge">DataInitializer</code>.</p>
+
+<hr />
+
+<p>Adicionar o pgAdmin ao nosso ambiente Docker é uma maneira excelente de ter uma interface gráfica para visualizar e gerenciar nosso banco de dados PostgreSQL.</p>
+
+<p>Vamos integrar o pgAdmin ao nosso <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> e detalhar o passo a passo para acessá-lo e conectar ao banco da nossa aplicação.</p>
+
+<h3 id="1-modificando-o-arquivo-docker-composeyml">1. Modificando o arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code></h3>
+
+<p>Vamos adicionar um novo <code class="language-plaintext highlighter-rouge">service</code> para o pgAdmin no mesmo arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> que criamos anteriormente.</p>
+
+<p>O serviço do pgAdmin precisará de:</p>
+
+<ul>
+  <li>A imagem oficial (<code class="language-plaintext highlighter-rouge">dpage/pgadmin4</code>).</li>
+  <li>Variáveis de ambiente para configurar o login inicial.</li>
+  <li>Um mapeamento de porta para que possamos acessá-lo pelo navegador.</li>
+  <li>Um volume para persistir os dados de configuração (como as conexões de servidor que você salvar).</li>
+  <li>Uma dependência do serviço do banco de dados (<code class="language-plaintext highlighter-rouge">db</code>) para garantir a ordem correta de inicialização.</li>
+</ul>
+
+<p>Abra o arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> e adicione o serviço <code class="language-plaintext highlighter-rouge">pgadmin</code> da seguinte forma:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="c1"># Serviço do banco de dados PostgreSQL (já existente)</span>
+  <span class="na">db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">postgres-db</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">seu_usuario</span>
+      <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">sua_senha</span>
+      <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">bibliotecajogos</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">postgres_data:/var/lib/postgresql/data</span>
+
+  <span class="c1"># Serviço da nossa aplicação (já existente)</span>
+  <span class="na">app</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">biblioteca-jogos-app</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">db</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bibliotecajogos</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_USERNAME=seu_usuario</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_PASSWORD=sua_senha</span>
+      <span class="pi">-</span> <span class="s">SPRING_PROFILES_ACTIVE=prod</span>
+
+  <span class="c1"># NOVO SERVIÇO: pgAdmin</span>
+  <span class="na">pgadmin</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">dpage/pgadmin4</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">pgadmin4-web</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">PGADMIN_DEFAULT_EMAIL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">admin@admin.com"</span>  <span class="c1"># Email para login no pgAdmin</span>
+      <span class="na">PGADMIN_DEFAULT_PASSWORD</span><span class="pi">:</span> <span class="s2">"</span><span class="s">admin"</span>         <span class="c1"># Senha para login no pgAdmin</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5050:80"</span>  <span class="c1"># Mapeia a porta 5050 do seu PC para a 80 do container</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">db</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">pgadmin_data:/var/lib/pgadmin</span>
+
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">postgres_data</span><span class="pi">:</span>
+  <span class="na">pgadmin_data</span><span class="pi">:</span>  <span class="c1"># Adiciona o volume para o pgAdmin</span>
+</code></pre></div></div>
+
+<p><strong>O que fizemos de novo?</strong></p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">services.pgadmin</code></strong>: Adicionamos a definição de um novo contêiner chamado <code class="language-plaintext highlighter-rouge">pgadmin</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">environment</code></strong>: Definimos um e-mail (<code class="language-plaintext highlighter-rouge">PGADMIN_DEFAULT_EMAIL</code>) e uma senha (<code class="language-plaintext highlighter-rouge">PGADMIN_DEFAULT_PASSWORD</code>) que serão usados como suas credenciais para acessar a interface web do pgAdmin.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ports: - "5050:80"</code></strong>: Mapeamos a porta <code class="language-plaintext highlighter-rouge">5050</code> do nosso computador (host) para a porta <code class="language-plaintext highlighter-rouge">80</code> dentro do contêiner do pgAdmin. Escolhemos <code class="language-plaintext highlighter-rouge">5050</code> para não conflitar com a nossa aplicação (<code class="language-plaintext highlighter-rouge">8080</code>) ou com o Postgres (<code class="language-plaintext highlighter-rouge">5432</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">volumes: - pgadmin_data:/var/lib/pgadmin</code></strong>: Criamos um volume chamado <code class="language-plaintext highlighter-rouge">pgadmin_data</code>. Isso é <strong>muito importante</strong> para que suas configurações de servidor e outros dados do pgAdmin não sejam perdidos se o contêiner for recriado.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">volumes: pgadmin_data:</code></strong>: Declaramos o volume na seção principal de volumes no final do arquivo.</li>
+</ol>
+
+<h3 id="2-passo-a-passo-para-acessar-e-configurar-o-pgadmin">2. Passo a Passo para Acessar e Configurar o pgAdmin</h3>
+
+<p>Com o arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> atualizado, siga os passos abaixo:</p>
+
+<h4 id="passo-1-iniciar-os-serviços">Passo 1: Iniciar os Serviços</h4>
+
+<p>No terminal, na raiz do projeto, pare qualquer execução anterior (<code class="language-plaintext highlighter-rouge">Ctrl + C</code>) e suba os serviços novamente. O Docker Compose irá detectar o novo serviço <code class="language-plaintext highlighter-rouge">pgadmin</code> e o criará.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div></div>
+
+<p>Aguarde até que os logs indiquem que os três contêineres (<code class="language-plaintext highlighter-rouge">db</code>, <code class="language-plaintext highlighter-rouge">app</code> e <code class="language-plaintext highlighter-rouge">pgadmin</code>) estão rodando.</p>
+
+<h4 id="passo-2-acessar-a-interface-web-do-pgadmin">Passo 2: Acessar a Interface Web do pgAdmin</h4>
+
+<p>Abra seu navegador e acesse a URL:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">http://localhost:5050</code></strong></p>
+
+<p>Você verá a tela de login do pgAdmin.</p>
+
+<h4 id="passo-3-fazer-o-login">Passo 3: Fazer o Login</h4>
+
+<p>Use as credenciais que você definiu no arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>:</p>
+
+<ul>
+  <li><strong>Email</strong>: <code class="language-plaintext highlighter-rouge">admin@admin.com</code></li>
+  <li><strong>Password</strong>: <code class="language-plaintext highlighter-rouge">admin</code></li>
+</ul>
+
+<h4 id="passo-4-conectar-ao-banco-de-dados-postgresql">Passo 4: Conectar ao Banco de Dados PostgreSQL</h4>
+
+<p>Após o login, você verá a tela inicial. Agora, vamos registrar o nosso servidor de banco de dados (<code class="language-plaintext highlighter-rouge">db</code>).</p>
+
+<ol>
+  <li>
+    <p>Clique em <strong>“Add New Server”</strong>.</p>
+  </li>
+  <li>
+    <p>Na aba <strong>“General”</strong>, dê um nome para a sua conexão. Pode ser qualquer nome, por exemplo: <code class="language-plaintext highlighter-rouge">Biblioteca Jogos Local</code>.</p>
+  </li>
+  <li>
+    <p>Vá para a aba <strong>“Connection”</strong> e preencha os dados do seu contêiner do PostgreSQL. <strong>Esta é a parte mais importante!</strong></p>
+
+    <ul>
+      <li><strong>Host name/address</strong>: <code class="language-plaintext highlighter-rouge">db</code>
+        <ul>
+          <li><strong>Por que <code class="language-plaintext highlighter-rouge">db</code>?</strong> Porque é o nome do serviço do PostgreSQL definido no nosso <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>. Dentro da rede do Docker Compose, os contêineres podem se comunicar usando os nomes dos serviços como se fossem nomes de host (DNS). <strong>Não use <code class="language-plaintext highlighter-rouge">localhost</code> aqui!</strong></li>
+        </ul>
+      </li>
+      <li><strong>Port</strong>: <code class="language-plaintext highlighter-rouge">5432</code> (a porta padrão do Postgres).</li>
+      <li><strong>Maintenance database</strong>: <code class="language-plaintext highlighter-rouge">bibliotecajogos</code> (o nome do banco que definimos).</li>
+      <li><strong>Username</strong>: <code class="language-plaintext highlighter-rouge">seu_usuario</code> (o usuário que definimos).</li>
+      <li><strong>Password</strong>: <code class="language-plaintext highlighter-rouge">sua_senha</code> (a senha que definimos).</li>
+      <li>Marque a opção “Save password?”.</li>
+    </ul>
+
+    <p>A sua tela deve ficar assim:</p>
+  </li>
+  <li>
+    <p>Clique em <strong>“Save”</strong>.</p>
+  </li>
+</ol>
+
+<h3 id="pronto">Pronto!</h3>
+
+<p>Se tudo deu certo, o servidor aparecerá na barra lateral esquerda. Agora você pode navegar pelas Databases, Schemas e Tabelas para visualizar os dados que a sua aplicação está inserindo, executar queries SQL diretamente e muito mais.</p>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

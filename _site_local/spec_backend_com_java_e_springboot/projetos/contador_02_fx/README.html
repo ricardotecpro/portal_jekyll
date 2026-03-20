@@ -1,0 +1,588 @@
+<h2 id="-guia-didático-migrando-de-swing-para-javafx-botão-e-contador">🚀 Guia Didático: Migrando de Swing para JavaFX (Botão e Contador)</h2>
+
+<p>Esta sequência didática refatora o projeto de contador usando JavaFX, o framework moderno para GUIs em Java. Focaremos nas diferenças arquiteturais e nas práticas recomendadas.</p>
+
+<h3 id="o-que-vamos-usar">O que vamos usar?</h3>
+
+<ul>
+  <li><strong>JavaFX:</strong> O framework sucessor do Swing (agora parte do projeto OpenJFX).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Application</code>:</strong> A classe base para qualquer app JavaFX, gerenciando o ciclo de vida.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Stage</code>:</strong> A “janela” principal (equivalente ao <code class="language-plaintext highlighter-rouge">JFrame</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Scene</code>:</strong> O “conteúdo” dentro da janela (contém os componentes).</li>
+  <li><strong>Layout Panes (ex: <code class="language-plaintext highlighter-rouge">VBox</code>):</strong> Contêineres que organizam os componentes (substituem os <code class="language-plaintext highlighter-rouge">LayoutManager</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Button</code> e <code class="language-plaintext highlighter-rouge">Label</code>:</strong> Os controles da interface.</li>
+  <li><strong>Lambdas:</strong> A forma moderna de tratar eventos (substitui <code class="language-plaintext highlighter-rouge">ActionListener</code>).</li>
+</ul>
+
+<hr />
+
+<h3 id="passo-1-o-esqueleto-javafx-stage-e-scene">Passo 1: O Esqueleto JavaFX (Stage e Scene)</h3>
+
+<p>Em JavaFX, a estrutura base é diferente. A classe principal deve estender <code class="language-plaintext highlighter-rouge">Application</code> e o ponto de entrada da GUI é o método <code class="language-plaintext highlighter-rouge">start()</code>.</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">ContadorFXApp.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.VBox</span><span class="o">;</span> <span class="c1">// Um layout pane vertical</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Nossa classe principal estende Application.
+ * Ela NÃO é a janela (Stage), ela GERENCIA a janela.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorFXApp</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * O método 'start' é o ponto de entrada principal para
+     * todas as aplicações JavaFX. A 'primaryStage' (janela)
+     * é fornecida pelo framework.
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">primaryStage</span><span class="o">)</span> <span class="o">{</span>
+        
+        <span class="c1">// 1. O Layout: Um VBox organiza os componentes verticalmente</span>
+        <span class="nc">VBox</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VBox</span><span class="o">();</span>
+        
+        <span class="c1">// 2. A Cena: Contém o layout. Definimos o tamanho aqui.</span>
+        <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+
+        <span class="c1">// 3. O Palco (Stage): Configurações da janela</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador JavaFX"</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span> <span class="c1">// Define a cena na janela</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>          <span class="c1">// Exibe a janela</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * O 'main' em JavaFX é simples: ele apenas
+     * chama 'launch()', que inicializa o framework
+     * e chama o método 'start()' na thread correta.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+<h3 id="passo-2-arquivo-pomxml">Passo 2 <strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">pom.xml</code></h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> 
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>contadorfx<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+
+    <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+        <span class="nt">&lt;maven.compiler.release&gt;</span>21<span class="nt">&lt;/maven.compiler.release&gt;</span>
+<span class="nt">&lt;javafx.version&gt;</span>21<span class="nt">&lt;/javafx.version&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javafx-controls<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${javafx.version}<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;sourceDirectory&gt;</span>src/main/java<span class="nt">&lt;/sourceDirectory&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>3.11.0<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;release&gt;</span>${maven.compiler.release}<span class="nt">&lt;/release&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>javafx-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>0.0.8<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;mainClass&gt;</span>com.example.ContadorFXApp<span class="nt">&lt;/mainClass&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>➡️ O que fazer:</strong> Salve, compile e execute. (Nota: Dependendo da sua configuração de Java, você pode precisar <a href="https://openjfx.io/openjfx-docs/">configurar o JavaFX SDK</a> se estiver usando Java 11+). Você verá uma janela vazia.</p>
+
+<hr />
+
+<h3 id="passo-2-adicionando-componentes-e-layout">Passo 2: Adicionando Componentes e Layout</h3>
+
+<p>Vamos declarar o estado (contador) e os componentes (<code class="language-plaintext highlighter-rouge">Button</code>, <code class="language-plaintext highlighter-rouge">Label</code>). Em JavaFX, adicionamos componentes a um <em>layout pane</em> (nosso <code class="language-plaintext highlighter-rouge">VBox</code>), e não diretamente à janela.</p>
+
+<p>Vamos modificar <code class="language-plaintext highlighter-rouge">ContadorFXApp.java</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.geometry.Insets</span><span class="o">;</span> <span class="c1">// Para espaçamento (padding)</span>
+<span class="kn">import</span> <span class="nn">javafx.geometry.Pos</span><span class="o">;</span>     <span class="c1">// Para alinhamento</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Button</span><span class="o">;</span> <span class="c1">// Importação do JavaFX</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Label</span><span class="o">;</span>  <span class="c1">// Importação do JavaFX</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.VBox</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorFXApp</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+    <span class="c1">// --- Variável de Estado ---</span>
+    <span class="c1">// Deve ser uma variável de instância para ser acessada pelo handler</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">contador</span><span class="o">;</span>
+
+    <span class="c1">// --- Componentes (Nós da Cena) ---</span>
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">botaoClique</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Label</span> <span class="n">labelContador</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">primaryStage</span><span class="o">)</span> <span class="o">{</span>
+        
+        <span class="c1">// --- Inicializando o Estado e Componentes ---</span>
+        <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">botaoClique</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"Clique em mim!"</span><span class="o">);</span>
+        <span class="n">labelContador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+
+        <span class="c1">// --- Configurando o Layout (VBox) ---</span>
+        <span class="c1">// 1. Cria o VBox com espaçamento de 10px entre os filhos</span>
+        <span class="nc">VBox</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VBox</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> 
+        
+        <span class="c1">// 2. Centraliza os filhos dentro do VBox</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span> 
+        
+        <span class="c1">// 3. Adiciona os componentes (nós) ao layout</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">botaoClique</span><span class="o">,</span> <span class="n">labelContador</span><span class="o">);</span>
+
+        <span class="c1">// --- Configurando a Cena e o Palco ---</span>
+        <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador JavaFX"</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>➡️ O que fazer:</strong> Execute novamente. Agora você verá o botão e o rótulo, centralizados verticalmente. Clicar ainda não faz nada.</p>
+
+<hr />
+
+<h3 id="passo-3-a-lógica-handler-com-lambda">Passo 3: A Lógica (Handler com Lambda)</h3>
+
+<p>JavaFX usa um modelo de eventos mais moderno. Em vez de forçar a classe a implementar <code class="language-plaintext highlighter-rouge">ActionListener</code>, anexamos a lógica diretamente ao componente usando o método <code class="language-plaintext highlighter-rouge">setOnAction()</code>. A forma idiomática de fazer isso é com uma <strong>expressão lambda</strong>.</p>
+
+<p>Este é o código final e completo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.geometry.Pos</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Button</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Label</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.VBox</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Versão JavaFX completa.
+ * A lógica do evento é tratada com uma expressão lambda.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorFXApp</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+    <span class="c1">// Variável de estado</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">contador</span><span class="o">;</span>
+
+    <span class="c1">// Componentes (Nós)</span>
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">botaoClique</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Label</span> <span class="n">labelContador</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">primaryStage</span><span class="o">)</span> <span class="o">{</span>
+        
+        <span class="c1">// --- Inicialização ---</span>
+        <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">botaoClique</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"Clique em mim!"</span><span class="o">);</span>
+        <span class="n">labelContador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+
+        <span class="c1">// --- Passo 3: Lógica do Evento (Handler) ---</span>
+        
+        <span class="c1">// Define a ação a ser executada quando o botão for clicado.</span>
+        <span class="c1">// Usamos uma expressão lambda (event -&gt; ...)</span>
+        <span class="c1">// Esta é a prática moderna que substitui as classes internas anônimas.</span>
+        <span class="n">botaoClique</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="c1">// 1. Atualiza o estado</span>
+            <span class="n">contador</span><span class="o">++;</span>
+            <span class="c1">// 2. Atualiza a UI (reflete o estado)</span>
+            <span class="n">labelContador</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="c1">// --- Layout (VBox) ---</span>
+        <span class="nc">VBox</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VBox</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> 
+        <span class="n">root</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span> 
+        <span class="n">root</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">botaoClique</span><span class="o">,</span> <span class="n">labelContador</span><span class="o">);</span>
+
+        <span class="c1">// --- Cena e Palco ---</span>
+        <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador JavaFX"</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Ponto de entrada que inicializa o toolkit JavaFX.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>➡️ O que fazer:</strong> Compile e execute. A aplicação agora está funcional e idêntica, em comportamento, à versão Swing.</p>
+
+<hr />
+
+<h3 id="-dissecando-a-arquitetura-javafx-revisão-didática">🎓 Dissecando a Arquitetura JavaFX (Revisão Didática)</h3>
+
+<ol>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">Application</code> e Ciclo de Vida:</strong> Em vez de instanciar um <code class="language-plaintext highlighter-rouge">JFrame</code> no <code class="language-plaintext highlighter-rouge">main</code>, você estende <code class="language-plaintext highlighter-rouge">Application</code> e o framework chama <code class="language-plaintext highlighter-rouge">start()</code>. O <code class="language-plaintext highlighter-rouge">main</code> apenas <code class="language-plaintext highlighter-rouge">launch()</code>a aplicação. Isso dá ao JavaFX controle sobre o ciclo de vida e a <em>thread</em> da UI (a <em>JavaFX Application Thread</em>), eliminando a necessidade de <code class="language-plaintext highlighter-rouge">SwingUtilities.invokeLater()</code>.</p>
+  </li>
+  <li>
+    <p><strong>O <em>Scene Graph</em> (Palco, Cena, Nós):</strong> Swing mistura contêineres e componentes. JavaFX tem uma hierarquia clara chamada <em>Scene Graph</em>:</p>
+
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">Stage</code> (Palco):</strong> A janela de nível superior (o <code class="language-plaintext highlighter-rouge">JFrame</code>).</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">Scene</code> (Cena):</strong> O conteúdo <em>dentro</em> da janela. Uma <code class="language-plaintext highlighter-rouge">Stage</code> só pode ter uma <code class="language-plaintext highlighter-rouge">Scene</code> por vez.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">Node</code> (Nó):</strong> Qualquer item dentro da <code class="language-plaintext highlighter-rouge">Scene</code>. Isso inclui <strong>Controles</strong> (<code class="language-plaintext highlighter-rouge">Button</code>, <code class="language-plaintext highlighter-rouge">Label</code>) e <strong>Layout Panes</strong> (<code class="language-plaintext highlighter-rouge">VBox</code>).</li>
+      <li><strong>Hierarquia:</strong> <code class="language-plaintext highlighter-rouge">Stage</code> contém <code class="language-plaintext highlighter-rouge">Scene</code> que contém um <em>Nó Raiz</em> (<code class="language-plaintext highlighter-rouge">VBox</code>) que contém <em>Nós Filhos</em> (<code class="language-plaintext highlighter-rouge">Button</code>, <code class="language-plaintext highlighter-rouge">Label</code>).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Layouts como Nós:</strong> Em Swing, layouts (<code class="language-plaintext highlighter-rouge">FlowLayout</code>) são <em>políticas</em> aplicadas a um contêiner (<code class="language-plaintext highlighter-rouge">JFrame</code>). Em JavaFX, os layouts (<code class="language-plaintext highlighter-rouge">VBox</code>, <code class="language-plaintext highlighter-rouge">HBox</code>, <code class="language-plaintext highlighter-rouge">BorderPane</code>, <code class="language-plaintext highlighter-rouge">GridPane</code>) são <em>Nós</em> que existem no <em>Scene Graph</em>. Você adiciona filhos a eles (<code class="language-plaintext highlighter-rouge">root.getChildren().add(...)</code>). Isso é mais consistente e poderoso.</p>
+  </li>
+  <li>
+    <p><strong>Propriedades e Configuração:</strong> Em vez de métodos como <code class="language-plaintext highlighter-rouge">setSize()</code> e <code class="language-plaintext highlighter-rouge">setAlignment()</code>, JavaFX favorece <strong>Propriedades</strong> (como <code class="language-plaintext highlighter-rouge">setAlignment(Pos.CENTER)</code> e <code class="language-plaintext highlighter-rouge">setSpacing(10)</code> no construtor do <code class="language-plaintext highlighter-rouge">VBox</code>). Isso permite <em>data binding</em> (vinculação de dados), um conceito arquitetural muito mais avançado.</p>
+  </li>
+  <li>
+    <p><strong>Eventos (Lambdas vs. Listeners):</strong></p>
+
+    <ul>
+      <li><strong>Swing:</strong> <code class="language-plaintext highlighter-rouge">botao.addActionListener(this);</code> exige que a classe <code class="language-plaintext highlighter-rouge">implements ActionListener</code> e tenha um método <code class="language-plaintext highlighter-rouge">actionPerformed</code>. Isso cria um <strong>acoplamento forte</strong> da lógica do evento à classe da janela.</li>
+      <li><strong>JavaFX:</strong> <code class="language-plaintext highlighter-rouge">botao.setOnAction(event -&gt; { ... });</code> anexa um bloco de código (uma lambda) diretamente ao evento. A classe da janela <em>não precisa saber</em> sobre a interface <code class="language-plaintext highlighter-rouge">EventHandler</code>. Isso promove <strong>baixo acoplamento</strong> e <strong>alta coesão</strong>, pois a lógica vive junto ao componente que a dispara. É uma prática de engenharia de software superior.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+<h3 id="diagnóstico-do-erro">Diagnóstico do Erro</h3>
+
+<p>O erro de compilação é <code class="language-plaintext highlighter-rouge">invalid method declaration; return type required</code> na linha <code class="language-plaintext highlighter-rouge">public ContadorApp()</code>.</p>
+
+<p><strong>Causa Raiz:</strong> Você tem uma grave inconsistência entre seus arquivos de projeto:</p>
+
+<ol>
+  <li>
+    <p><strong>O Problema (Código):</strong> O arquivo <code class="language-plaintext highlighter-rouge">ContadorFXApp.java</code> contém código <strong>Java Swing</strong> (<code class="language-plaintext highlighter-rouge">import javax.swing.JFrame;</code> etc.). Além disso, o nome da classe é <code class="language-plaintext highlighter-rouge">ContadorFXApp</code>, mas seu construtor chama-se <code class="language-plaintext highlighter-rouge">ContadorApp()</code>. Em Java, um construtor <strong>deve</strong> ter o nome exato da classe. O compilador vê <code class="language-plaintext highlighter-rouge">ContadorApp()</code> como um método normal que está sem tipo de retorno (como <code class="language-plaintext highlighter-rouge">void</code>).</p>
+  </li>
+  <li>
+    <p><strong>O Desejado (Configuração):</strong> Seus arquivos <code class="language-plaintext highlighter-rouge">pom.xml</code>, <code class="language-plaintext highlighter-rouge">settings.json</code> e <code class="language-plaintext highlighter-rouge">launch.json</code> estão todos configurados para um projeto <strong>JavaFX</strong>, não Swing.</p>
+  </li>
+</ol>
+
+<p>Você está colocando código Swing em um arquivo que deveria conter código JavaFX.</p>
+
+<hr />
+
+<h3 id="ação-corretiva-1-o-código">Ação Corretiva 1: O Código</h3>
+
+<p>Você deve substituir <strong>todo o conteúdo</strong> do seu arquivo <code class="language-plaintext highlighter-rouge">src/ContadorFXApp.java</code> pelo código JavaFX correto, que usa <code class="language-plaintext highlighter-rouge">javafx.application.Application</code>.</p>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/ContadorFXApp.java</code> (Conteúdo Correto)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.geometry.Pos</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Button</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Label</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.VBox</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Versão JavaFX completa.
+ * A lógica do evento é tratada com uma expressão lambda.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorFXApp</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span> <span class="c1">// Deve estender Application</span>
+
+    <span class="c1">// Variável de estado</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">contador</span><span class="o">;</span>
+
+    <span class="c1">// Componentes (Nós)</span>
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">botaoClique</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Label</span> <span class="n">labelContador</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">primaryStage</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Ponto de entrada do JavaFX</span>
+        
+        <span class="c1">// --- Inicialização ---</span>
+        <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">botaoClique</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"Clique em mim!"</span><span class="o">);</span>
+        <span class="n">labelContador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+
+        <span class="c1">// --- Lógica do Evento (Handler) ---</span>
+        <span class="n">botaoClique</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">contador</span><span class="o">++;</span>
+            <span class="n">labelContador</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="c1">// --- Layout (VBox) ---</span>
+        <span class="nc">VBox</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VBox</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span> 
+        <span class="n">root</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span> 
+        <span class="n">root</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">botaoClique</span><span class="o">,</span> <span class="n">labelContador</span><span class="o">);</span>
+
+        <span class="c1">// --- Cena e Palco ---</span>
+        <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador JavaFX"</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Ponto de entrada que inicializa o toolkit JavaFX.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">(</span><span class="n">args</span><span class="o">);</span> <span class="c1">// Método correto para iniciar o app JavaFX</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ação-corretiva-2-a-execução-prática-correta">Ação Corretiva 2: A Execução (Prática Correta)</h3>
+
+<p>Seu comando <code class="language-plaintext highlighter-rouge">javac ...; java ...</code> ignora seu <code class="language-plaintext highlighter-rouge">pom.xml</code>. Você criou um projeto <strong>Maven</strong>, portanto, deve usar o Maven para compilá-lo e executá-lo. O Maven lerá seu <code class="language-plaintext highlighter-rouge">pom.xml</code> e usará o <code class="language-plaintext highlighter-rouge">javafx-maven-plugin</code> para executar o projeto com todos os módulos corretos.</p>
+
+<p>Abra seu terminal na raiz do projeto (<code class="language-plaintext highlighter-rouge">ContadorFXApp</code>, onde está o <code class="language-plaintext highlighter-rouge">pom.xml</code>) e execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean javafx:run
+</code></pre></div></div>
+
+<p><strong>O que este comando faz:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean</code>: Limpa quaisquer compilações antigas.</li>
+  <li><code class="language-plaintext highlighter-rouge">mvn javafx:run</code>: Compila seu código e executa a <code class="language-plaintext highlighter-rouge">mainClass</code> definida no <code class="language-plaintext highlighter-rouge">pom.xml</code> (que é <code class="language-plaintext highlighter-rouge">ContadorFXApp</code>), gerenciando automaticamente o <em>module-path</em> e o <em>classpath</em> para você.</li>
+</ul>
+
+<hr />
+
+<p>Aqui está a atualização do guia, continuando de onde paramos (aplicação funcional) e adicionando a camada de estilização profissional com CSS, conforme os arquivos fornecidos.</p>
+
+<hr />
+
+<h3 id="passo-4-estilização-com-css-separando-aparência-e-lógica">Passo 4: Estilização com CSS (Separando Aparência e Lógica)</h3>
+
+<p>Uma das maiores vantagens arquiteturais do JavaFX sobre o Swing é o suporte nativo a <strong>CSS (Cascading Style Sheets)</strong>. Isso nos permite separar completamente a <strong>lógica</strong> (o código Java) da <strong>apresentação</strong> (a aparência), um princípio fundamental da engenharia de software moderna (Separation of Concerns - SoC).</p>
+
+<p>Em vez de definirmos fontes, cores e preenchimentos (<em>padding</em>) no código Java (o que é uma má prática), nós delegamos isso a um arquivo <code class="language-plaintext highlighter-rouge">.css</code> externo.</p>
+
+<h4 id="1-crie-o-arquivo-de-estilo-stylescss">1. Crie o Arquivo de Estilo (<code class="language-plaintext highlighter-rouge">styles.css</code>)</h4>
+
+<p>O Maven espera que arquivos de recursos (como CSS, imagens, fontes) fiquem em <code class="language-plaintext highlighter-rouge">src/main/resources</code>. Para que o caminho <code class="language-plaintext highlighter-rouge">/com/example/styles.css</code> funcione, a estrutura de pastas deve ser:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ContadorFXApp/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           └── ContadorFXApp.java
+│   │   └── resources/
+│   │       └── com/
+│   │           └── example/
+│   │               └── styles.css  &lt;-- CRIE ESTE ARQUIVO AQUI
+└── pom.xml
+</code></pre></div></div>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">src/main/resources/com/example/styles.css</code></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* Define estilos globais para o nó raiz */</span>
+<span class="nc">.root</span> <span class="p">{</span>
+    <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#f4f4f4</span><span class="p">;</span>
+    <span class="py">-fx-font-family</span><span class="p">:</span> <span class="s1">"Arial"</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Estiliza TODOS os componentes Button */</span>
+<span class="nc">.button</span> <span class="p">{</span>
+    <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#007bff</span><span class="p">;</span> <span class="c">/* Azul moderno */</span>
+    <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+    <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
+    <span class="py">-fx-padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">20px</span><span class="p">;</span>
+    <span class="py">-fx-background-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span> <span class="c">/* Bordas arredondadas */</span>
+    <span class="py">-fx-border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+    <span class="py">-fx-cursor</span><span class="p">:</span> <span class="n">hand</span><span class="p">;</span> <span class="c">/* Muda o cursor ao passar por cima */</span>
+<span class="p">}</span>
+
+<span class="c">/* Define o estado "hover" (mouse por cima) */</span>
+<span class="nc">.button</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#0056b3</span><span class="p">;</span> <span class="c">/* Azul mais escuro */</span>
+<span class="p">}</span>
+
+<span class="c">/* Estiliza TODOS os componentes Label */</span>
+<span class="nc">.label</span> <span class="p">{</span>
+    <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+    <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">#333333</span><span class="p">;</span>
+    <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="2-atualize-a-classe-java-contadorfxappjava">2. Atualize a Classe Java (<code class="language-plaintext highlighter-rouge">ContadorFXApp.java</code>)</h4>
+
+<p>Agora, modificamos o método <code class="language-plaintext highlighter-rouge">start()</code> para carregar este arquivo CSS e aplicar as classes aos nossos nós (componentes).</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">src/main/java/com/example/ContadorFXApp.java</code> (Versão Final)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.geometry.Pos</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Button</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Label</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.VBox</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorFXApp</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">contador</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">botaoClique</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Label</span> <span class="n">labelContador</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">primaryStage</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">botaoClique</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"Clique em mim!"</span><span class="o">);</span>
+        <span class="n">labelContador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+
+        <span class="n">botaoClique</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">event</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">contador</span><span class="o">++;</span>
+            <span class="n">labelContador</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+        <span class="o">});</span>
+
+        <span class="nc">VBox</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VBox</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span> <span class="c1">// Aumentado o espaçamento</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">"root"</span><span class="o">);</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">labelContador</span><span class="o">,</span> <span class="n">botaoClique</span><span class="o">);</span>
+
+        <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="mi">350</span><span class="o">,</span> <span class="mi">200</span><span class="o">);</span>
+        <span class="n">scene</span><span class="o">.</span><span class="na">getStylesheets</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResource</span><span class="o">(</span><span class="s">"/com/example/styles.css"</span><span class="o">).</span><span class="na">toExternalForm</span><span class="o">());</span>
+
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Contador Moderno"</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+        <span class="n">primaryStage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="3-atualize-a-classe-java-pomxml">3. Atualize a Classe Java (<code class="language-plaintext highlighter-rouge">pom.xml</code>)</h4>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">pom.xml</code> (Versão Final)</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> 
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+    <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>contadorfx<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+
+    <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+        <span class="nt">&lt;maven.compiler.release&gt;</span>21<span class="nt">&lt;/maven.compiler.release&gt;</span>
+        <span class="nt">&lt;javafx.version&gt;</span>21<span class="nt">&lt;/javafx.version&gt;</span>
+        <span class="c">&lt;!-- plataforma para dependências JavaFX (ajuste para 'win', 'linux' ou 'mac') --&gt;</span>
+        <span class="nt">&lt;javafx.platform&gt;</span>win<span class="nt">&lt;/javafx.platform&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javafx-controls<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${javafx.version}<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;classifier&gt;</span>${javafx.platform}<span class="nt">&lt;/classifier&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javafx-fxml<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${javafx.version}<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;classifier&gt;</span>${javafx.platform}<span class="nt">&lt;/classifier&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;sourceDirectory&gt;</span>src/main/java<span class="nt">&lt;/sourceDirectory&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>3.11.0<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;release&gt;</span>${maven.compiler.release}<span class="nt">&lt;/release&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>javafx-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>0.0.8<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;mainClass&gt;</span>com.example.ContadorFXApp<span class="nt">&lt;/mainClass&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+
+</code></pre></div></div>
+
+<h4 id="4-execute-o-projeto">4. Execute o Projeto</h4>
+
+<p>Use o Maven para compilar, empacotar os recursos (o CSS) e executar a aplicação:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean javafx:run
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nt">-DskipTests</span> clean package
+mvn <span class="nt">-DskipTests</span> javafx:run
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-dissecando-a-arquitetura-revisão-didática">🎓 Dissecando a Arquitetura (Revisão Didática)</h3>
+
+<ol>
+  <li><strong>Separation of Concerns (SoC):</strong> Sua lógica (<code class="language-plaintext highlighter-rouge">contador++</code>) está em <code class="language-plaintext highlighter-rouge">.java</code>. Sua aparência (<code class="language-plaintext highlighter-rouge">-fx-background-color</code>) está em <code class="language-plaintext highlighter-rouge">.css</code>. Se um designer quiser alterar as cores, ele não precisa tocar no código Java, evitando a introdução de <em>bugs</em> lógicos. Esta é uma arquitetura muito mais robusta e manutenível.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">src/main/resources</code> vs. <code class="language-plaintext highlighter-rouge">src/main/java</code>:</strong> O Maven trata estes diretórios de forma diferente. <code class="language-plaintext highlighter-rouge">java</code> é para código-fonte a ser compilado. <code class="language-plaintext highlighter-rouge">resources</code> é para arquivos estáticos (CSS, imagens, XML) que devem ser copiados <em>como estão</em> para o <em>classpath</em> do produto final (o arquivo JAR ou o diretório <code class="language-plaintext highlighter-rouge">target/classes</code>).</li>
+  <li><strong>Seletores JavaFX:</strong> O JavaFX mapeia automaticamente seus componentes a classes CSS. Um <code class="language-plaintext highlighter-rouge">Button</code> pode ser estilizado com <code class="language-plaintext highlighter-rouge">.button</code>. Um <code class="language-plaintext highlighter-rouge">Label</code> com <code class="language-plaintext highlighter-rouge">.label</code>. Você pode criar classes customizadas (como fizemos com <code class="language-plaintext highlighter-rouge">.root</code>) e aplicá-las manualmente com <code class="language-plaintext highlighter-rouge">componente.getStyleClass().add("minha-classe")</code>.</li>
+  <li><strong>Carregamento de Recursos:</strong> A linha <code class="language-plaintext highlighter-rouge">getClass().getResource("/com/example/styles.css")</code> é a forma padrão em Java para carregar um arquivo do <em>classpath</em>. O <code class="language-plaintext highlighter-rouge">/</code> no início significa “procurar a partir da raiz do classpath” (que, para o Maven, é <code class="language-plaintext highlighter-rouge">target/classes</code>, onde o conteúdo de <code class="language-plaintext highlighter-rouge">src/main/resources</code> foi copiado).</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,0 +1,184 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_06_versionamento_com_git_e_github/topicos/14_remover_arquivos_commitados.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Como remover do seu repositório arquivos que já foram “commitados” | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Como remover do seu repositório arquivos que já foram “commitados”" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/14_remover_arquivos_commitados.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/14_remover_arquivos_commitados.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Como remover do seu repositório arquivos que já foram “commitados”" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Como remover do seu repositório arquivos que já foram “commitados”","url":"https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/14_remover_arquivos_commitados.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/" style="margin-left: 0.5rem;">Mod 06 versionamento com git e github</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Como remover do seu repositório arquivos que já foram "commitados"</span>
+          
+        
+      </nav>
+
+      <h1 id="como-remover-do-seu-repositório-arquivos-que-já-foram-commitados">Como remover do seu repositório arquivos que já foram “commitados”</h1>
+
+<p>Mas que agora estão no <code class="language-plaintext highlighter-rouge">.gitignore</code>, não basta apenas criar o arquivo de ignore. O Git continuará rastreando os arquivos que ele já conhece.</p>
+
+<p>O comando principal para resolver isso é o <code class="language-plaintext highlighter-rouge">git rm --cached</code>. Ele remove o arquivo do controle do Git (da “staging area”), mas <strong>mantém o arquivo no seu computador</strong>.</p>
+
+<hr />
+
+<h3 id="cuidado-antes-de-começar">Cuidado Antes de Começar</h3>
+
+<p>Antes de executar os comandos abaixo, certifique-se de que todas as suas alterações importantes já foram “commitadas” ou salvas. O ideal é começar com um “working directory clean”. Você pode verificar isso com o comando <code class="language-plaintext highlighter-rouge">git status</code>.</p>
+
+<hr />
+
+<h3 id="método-1-o-mais-completo-e-recomendado-para-limpar-tudo">Método 1: O Mais Completo e Recomendado (Para Limpar Tudo)</h3>
+
+<p>Esta é a forma mais eficaz de garantir que seu repositório fique perfeitamente alinhado com as regras do seu <code class="language-plaintext highlighter-rouge">.gitignore</code>.</p>
+
+<p><strong>Passo 1: Remova tudo do índice do Git (não do seu disco!)</strong>
+Execute o seguinte comando na pasta raiz do seu projeto. Ele vai remover o rastreamento de todos os arquivos de forma recursiva.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">rm</span> <span class="nt">-r</span> <span class="nt">--cached</span> <span class="nb">.</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">rm</code>: Comando para remover.</li>
+  <li><code class="language-plaintext highlighter-rouge">-r</code>: Recursivo, para aplicar a pastas e subpastas.</li>
+  <li><code class="language-plaintext highlighter-rouge">--cached</code>: A opção mais importante. Garante que os arquivos sejam removidos apenas do índice do Git, mas permaneçam no seu disco.</li>
+  <li><code class="language-plaintext highlighter-rouge">.</code>: Representa o diretório atual.</li>
+</ul>
+
+<p>Após rodar este comando, se você executar <code class="language-plaintext highlighter-rouge">git status</code>, verá todos os arquivos do seu projeto como “deleted” ou “untracked”. Não se preocupe, isso é o esperado.</p>
+
+<p><strong>Passo 2: Adicione tudo de volta</strong>
+Agora, vamos adicionar tudo novamente. Desta vez, o Git irá ler o seu arquivo <code class="language-plaintext highlighter-rouge">.gitignore</code> e vai ignorar todos os arquivos e pastas listados nele.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+</code></pre></div></div>
+
+<p><strong>Passo 3: Faça o commit da limpeza</strong>
+Agora basta fazer o commit dessas alterações. É uma boa prática usar uma mensagem clara para explicar o que foi feito.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Chore: Limpa o repositório e aplica o gitignore"</span>
+</code></pre></div></div>
+
+<p><strong>Passo 4: Envie para o GitHub</strong>
+Finalmente, envie a alteração para o seu repositório remoto.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="método-2-manual-para-remover-arquivos-específicos">Método 2: Manual (Para Remover Arquivos Específicos)</h3>
+
+<p>Se você quer remover apenas um arquivo ou uma pasta específica que foi adicionada por engano, pode usar o mesmo comando de forma mais direcionada.</p>
+
+<p><strong>Para remover um arquivo específico:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">rm</span> <span class="nt">--cached</span> caminho/para/o/arquivo.log
+</code></pre></div></div>
+
+<p><strong>Para remover uma pasta específica (como <code class="language-plaintext highlighter-rouge">node_modules</code> ou <code class="language-plaintext highlighter-rouge">build</code>):</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">rm</span> <span class="nt">-r</span> <span class="nt">--cached</span> caminho/para/a/pasta/
+</code></pre></div></div>
+
+<p>Depois de remover manualmente, o processo é o mesmo: faça o commit da remoção e envie para o GitHub.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Fix: Remove arquivos/pastas ignorados do rastreamento"</span>
+git push
+</code></pre></div></div>
+
+<p>Resumindo, a abordagem <strong>automática (Método 1)</strong> é a mais segura e completa para garantir que todo o repositório respeite as regras do seu <code class="language-plaintext highlighter-rouge">.gitignore</code>.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

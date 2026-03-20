@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ➕ C++: O Poder do C com Abstrações Modernas
+title: "➕ C++: O Poder do C com Abstrações Modernas"
 ---
 
 # ➕ C++: O Poder do C com Abstrações Modernas

@@ -1,0 +1,350 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/08_funcoes.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>📦 Funções (Métodos) em Programação | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="📦 Funções (Métodos) em Programação" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/08_funcoes.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/08_funcoes.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="📦 Funções (Métodos) em Programação" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"📦 Funções (Métodos) em Programação","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/08_funcoes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 📦 funções (métodos) em programação</span>
+          
+        
+      </nav>
+
+      <h1 id="-funções-métodos-em-programação">📦 Funções (Métodos) em Programação</h1>
+
+<p>Funções, que em Java e em outras linguagens orientadas a objetos são mais comumente chamadas de <strong>métodos</strong>, são um dos pilares da programação estruturada. Elas nos permitem organizar e reutilizar código, tornando nossos programas mais modulares, legíveis e fáceis de manter.</p>
+
+<h2 id="-o-que-são-funções-ou-métodos">🤔 O que são Funções (ou Métodos)?</h2>
+
+<p>De maneira informal, uma função (ou método) é uma unidade de código autônoma que realiza uma tarefa específica. Ela também pode ser chamada de subprograma ou sub-rotina. Suas principais características são:</p>
+
+<ul>
+  <li><strong>Pode receber parâmetros</strong> (ou argumentos) de entrada.</li>
+  <li><strong>Pode executar uma lógica</strong> interna.</li>
+  <li><strong>Pode retornar um valor</strong> de saída.</li>
+</ul>
+
+<h3 id="qual-a-importância-de-usar-funções">Qual a importância de usar funções?</h3>
+
+<p>Utilizar funções traz enormes benefícios para o desenvolvimento de software:</p>
+
+<ul>
+  <li><strong>Dividir para conquistar</strong>: Permite quebrar um problema complexo em problemas menores e mais gerenciáveis.</li>
+  <li><strong>Organização e Legibilidade</strong>: O código fica mais limpo e mais fácil de entender.</li>
+  <li><strong>Reaproveitamento de código</strong>: Uma função escrita uma vez pode ser chamada (usada) várias vezes em diferentes partes do programa.</li>
+  <li><strong>Delegação</strong>: Facilita a atribuição de responsabilidades em projetos de equipe.</li>
+</ul>
+
+<h2 id="dissecando-um-método-em-java">Dissecando um Método em Java</h2>
+
+<p>Vamos analisar a estrutura de um método em Java, traduzindo o exemplo <code class="language-plaintext highlighter-rouge">media</code> do material de estudo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//      (1)     (2)     (3)            (4)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">calcularMedia</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// (5) Corpo do método</span>
+    <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span> <span class="c1">// Variável local do método</span>
+    
+    <span class="c1">// (6) Retorno do método</span>
+    <span class="k">return</span> <span class="n">soma</span> <span class="o">/</span> <span class="mf">2.0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>Modificadores de Acesso e <code class="language-plaintext highlighter-rouge">static</code></strong>: <code class="language-plaintext highlighter-rouge">public</code> significa que o método pode ser chamado de qualquer lugar. <code class="language-plaintext highlighter-rouge">static</code> indica que o método pertence à classe, e não a um objeto específico (essencial para chamá-lo diretamente do <code class="language-plaintext highlighter-rouge">main</code>).</li>
+  <li><strong>Tipo de Retorno</strong>: <code class="language-plaintext highlighter-rouge">double</code> indica o tipo de dado que o método irá retornar ao final de sua execução.</li>
+  <li><strong>Nome do Método</strong>: <code class="language-plaintext highlighter-rouge">calcularMedia</code> é o identificador que usamos para chamar o método.</li>
+  <li><strong>Parâmetros de Entrada</strong>: <code class="language-plaintext highlighter-rouge">(double a, double b)</code> é a lista de parâmetros que o método espera receber.</li>
+  <li><strong>Corpo do Método</strong>: O bloco de código entre chaves <code class="language-plaintext highlighter-rouge">{}</code> onde a lógica é executada.</li>
+  <li><strong>Comando <code class="language-plaintext highlighter-rouge">return</code></strong>: Envia o resultado do cálculo de volta para quem chamou o método.</li>
+</ol>
+
+<h3 id="chamando-um-método">Chamando um Método</h3>
+
+<p>Para usar um método, você o “chama” pelo nome, passando os valores esperados para os parâmetros.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Chamando o método e armazenando o resultado</span>
+    <span class="kt">double</span> <span class="n">mediaFinal</span> <span class="o">=</span> <span class="n">calcularMedia</span><span class="o">(</span><span class="mf">8.0</span><span class="o">,</span> <span class="mf">7.5</span><span class="o">);</span>
+
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"A média é: "</span> <span class="o">+</span> <span class="n">mediaFinal</span><span class="o">);</span> <span class="c1">// Saída: A média é: 7.75</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-escopo-de-variáveis">🔐 Escopo de Variáveis</h2>
+
+<p>O <strong>escopo</strong> de uma variável define onde ela é “visível” e pode ser utilizada.</p>
+
+<p>Em Java, as variáveis declaradas dentro de um método, incluindo seus parâmetros, são <strong>locais</strong>. Isso significa que elas só existem e só podem ser acessadas dentro daquele método.</p>
+
+<ul>
+  <li>Uma função não “enxerga” as variáveis locais de outra função.</li>
+  <li>Se duas funções diferentes tiverem variáveis com o mesmo nome, elas são completamente independentes uma da outra.</li>
+</ul>
+
+<p><strong>Exemplo:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">funcaoF</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">// 'x' só existe aqui dentro</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dentro da funcaoF, x = "</span> <span class="o">+</span> <span class="n">x</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">funcaoG</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">99</span><span class="o">;</span> <span class="c1">// Este é outro 'x', totalmente diferente do anterior</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dentro da funcaoG, x = "</span> <span class="o">+</span> <span class="n">x</span><span class="o">);</span>
+    <span class="c1">// System.out.println(funcaoF.x); // ERRO! Não é possível acessar o 'x' da funcaoF</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Boas Práticas</strong>: Para que uma função seja previsível e reutilizável, ela deve, idealmente, ser uma <strong>função pura</strong>. Isso significa que seu resultado deve depender <em>apenas</em> de seus parâmetros de entrada, sem acessar ou modificar variáveis de fora de seu escopo (evitando “efeitos colaterais”).</p>
+</blockquote>
+
+<h2 id="-documentando-métodos-com-javadoc">📝 Documentando Métodos com Javadoc</h2>
+
+<p>Documentar seu código é crucial. Em Java, o padrão para isso é o <strong>Javadoc</strong>. A documentação é feita em um bloco de comentário especial (<code class="language-plaintext highlighter-rouge">/** ... */</code>) logo acima da assinatura do método.</p>
+
+<ul>
+  <li><strong>Assinatura</strong>: A primeira linha da definição do método.</li>
+  <li><strong>Descrição dos Parâmetros</strong>: O que cada parâmetro de entrada representa (usando a tag <code class="language-plaintext highlighter-rouge">@param</code>).</li>
+  <li><strong>Efeito da Função</strong>: O que a função faz e o que ela retorna (usando a tag <code class="language-plaintext highlighter-rouge">@return</code>).</li>
+</ul>
+
+<p><strong>Exemplo com a fórmula de Heron:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Calcula a área de um triângulo usando a fórmula de Heron.
+ *
+ * @param a Primeiro lado do triângulo
+ * @param b Segundo lado do triângulo
+ * @param c Terceiro lado do triângulo
+ * @return A área calculada do triângulo
+ */</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">areaTriangulo</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">,</span> <span class="kt">double</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="o">;</span>
+    <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">p</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">b</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-métodos-que-não-retornam-valor-void">📢 Métodos que Não Retornam Valor (<code class="language-plaintext highlighter-rouge">void</code>)</h2>
+
+<p>Às vezes, uma função precisa executar uma ação (como imprimir algo na tela) em vez de calcular e retornar um valor. Esses métodos são chamados de <strong>procedimentos</strong> em algumas linguagens.</p>
+
+<p>Em Java, eles são declarados com o tipo de retorno <code class="language-plaintext highlighter-rouge">void</code>.</p>
+
+<p><strong>Exemplo: Gerar um Relatório</strong></p>
+
+<p><strong>Problema:</strong> Ler os dados de um contrato e mostrar um relatório formatado na tela.</p>
+
+<p><strong>Solução em Java com <code class="language-plaintext highlighter-rouge">void</code>:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RelatorioFinanceiro</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Exibe um relatório de financiamento formatado no console.
+     * @param nome O nome do cliente
+     * @param total O valor total do financiamento
+     * @param entrada O valor da entrada
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mostrarRelatorio</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">total</span><span class="o">,</span> <span class="kt">double</span> <span class="n">entrada</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">restante</span> <span class="o">=</span> <span class="n">total</span> <span class="o">-</span> <span class="n">entrada</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+--- RELATÓRIO ---"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NOME: "</span> <span class="o">+</span> <span class="n">nome</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"VALOR TOTAL: R$ %.2f
+"</span><span class="o">,</span> <span class="n">total</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"VALOR DE ENTRADA: R$ %.2f
+"</span><span class="o">,</span> <span class="n">entrada</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"VALOR PARCELADO: R$ %.2f
+"</span><span class="o">,</span> <span class="n">restante</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"-----------------"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome do cliente: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">nomeCliente</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Valor total financiado: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">valorTotal</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Valor de entrada: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">valorEntrada</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="c1">// A chamada de um método void é uma instrução "solta"</span>
+        <span class="n">mostrarRelatorio</span><span class="o">(</span><span class="n">nomeCliente</span><span class="o">,</span> <span class="n">valorTotal</span><span class="o">,</span> <span class="n">valorEntrada</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="️-exercícios-práticos-resolvidos">✍️ Exercícios Práticos Resolvidos</h2>
+
+<h3 id="exercício-1-área-de-triângulos">Exercício 1: Área de Triângulos</h3>
+
+<p><strong>Problema:</strong> Ler as medidas dos lados de dois triângulos, X e Y. Em seguida, mostrar o valor da área de cada um, reutilizando a lógica de cálculo.</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// O método areaTriangulo() já foi definido e documentado acima.</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+    
+    <span class="c1">// Medidas do triângulo X</span>
+    <span class="kt">double</span> <span class="n">areaX</span> <span class="o">=</span> <span class="n">areaTriangulo</span><span class="o">(</span><span class="mf">3.00</span><span class="o">,</span> <span class="mf">4.00</span><span class="o">,</span> <span class="mf">5.00</span><span class="o">);</span>
+    
+    <span class="c1">// Medidas do triângulo Y</span>
+    <span class="kt">double</span> <span class="n">areaY</span> <span class="o">=</span> <span class="n">areaTriangulo</span><span class="o">(</span><span class="mf">7.50</span><span class="o">,</span> <span class="mf">4.50</span><span class="o">,</span> <span class="mf">4.02</span><span class="o">);</span>
+
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Área de X = %.4f
+"</span><span class="o">,</span> <span class="n">areaX</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Área de Y = %.4f
+"</span><span class="o">,</span> <span class="n">areaY</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Área de X = 6.0000
+Área de Y = 7.5638
+</code></pre></div></div>
+
+<h3 id="exercício-2-funções-que-chamam-funções">Exercício 2: Funções que Chamam Funções</h3>
+
+<p><strong>Problema:</strong> Fazer um programa para ler cinco números inteiros e mostrar o menor dentre eles, reaproveitando a lógica ao máximo.</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Encontra o menor valor entre três números inteiros.
+ * @return O menor dos três números
+ */</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">menorDeTres</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">y</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">z</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+ * Encontra o menor valor entre cinco números inteiros,
+ * reutilizando a função menorDeTres.
+ * @return O menor dos cinco números
+ */</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">menorDeCinco</span><span class="o">(</span><span class="kt">int</span> <span class="n">n1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n3</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n4</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n5</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Encontra o menor dos três primeiros</span>
+    <span class="kt">int</span> <span class="n">aux</span> <span class="o">=</span> <span class="n">menorDeTres</span><span class="o">(</span><span class="n">n1</span><span class="o">,</span> <span class="n">n2</span><span class="o">,</span> <span class="n">n3</span><span class="o">);</span>
+    <span class="c1">// Compara o resultado anterior com os dois últimos números</span>
+    <span class="k">return</span> <span class="nf">menorDeTres</span><span class="o">(</span><span class="n">aux</span><span class="o">,</span> <span class="n">n4</span><span class="o">,</span> <span class="n">n5</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">menor</span> <span class="o">=</span> <span class="n">menorDeCinco</span><span class="o">(</span><span class="mi">9</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">12</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Menor = "</span> <span class="o">+</span> <span class="n">menor</span><span class="o">);</span> <span class="c1">// Saída: Menor = 3</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,489 @@
+<h3 id="estrutura-proposta-curso-prático-de-php---do-zero-à-aplicação-dinâmica"><strong>Estrutura Proposta: Curso Prático de PHP - Do Zero à Aplicação Dinâmica</strong></h3>
+
+<p><strong>Projeto Guia:</strong> Construção de um “Mural de Recados” interativo.
+<strong>Pré-requisitos:</strong> Conhecimento básico de HTML e CSS.</p>
+
+<hr />
+
+<h3 id="módulo-0-preparando-o-terreno-configuração-do-ambiente"><strong>Módulo 0: Preparando o Terreno (Configuração do Ambiente)</strong></h3>
+
+<p>O objetivo é eliminar a primeira grande barreira: a instalação.</p>
+
+<ol>
+  <li><strong>O que é PHP?</strong>
+    <ul>
+      <li>Explicação clara: PHP como uma linguagem de script do lado do servidor (<em>server-side</em>).</li>
+      <li>Como funciona o ciclo Requisição-Resposta (Navegador -&gt; Servidor -&gt; PHP -&gt; HTML -&gt; Navegador).</li>
+    </ul>
+  </li>
+  <li><strong>Instalando o Ambiente de Desenvolvimento Local:</strong>
+    <ul>
+      <li>Guia passo a passo para instalar o XAMPP (ou MAMP/Laragon), que inclui Apache, PHP e MySQL.</li>
+      <li>Verificando a instalação: Criar o primeiro arquivo <code class="language-plaintext highlighter-rouge">index.php</code> com <code class="language-plaintext highlighter-rouge">&lt;?php phpinfo(); ?&gt;</code> para confirmar que tudo está funcionando.</li>
+    </ul>
+  </li>
+  <li><strong>Ferramentas Essenciais:</strong>
+    <ul>
+      <li>Configurando o editor de código (VS Code) com extensões úteis (ex: PHP Intelephense).</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="módulo-1-fundamentos-da-linguagem-a-base-sólida"><strong>Módulo 1: Fundamentos da Linguagem (A Base Sólida)</strong></h3>
+
+<p>Aqui, introduzimos a sintaxe básica com exemplos diretos e úteis.</p>
+
+<ol>
+  <li>
+    <p><strong>Sintaxe Básica e Saída de Dados:</strong></p>
+
+    <ul>
+      <li>Tags do PHP: <code class="language-plaintext highlighter-rouge">&lt;?php ... ?&gt;</code>.</li>
+      <li>Comentários: <code class="language-plaintext highlighter-rouge">//</code> e <code class="language-plaintext highlighter-rouge">/* */</code>.</li>
+      <li>Comandos de saída: <code class="language-plaintext highlighter-rouge">echo</code> vs. <code class="language-plaintext highlighter-rouge">print</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Variáveis e Tipos de Dados:</strong></p>
+
+    <ul>
+      <li>Criação de variáveis (<code class="language-plaintext highlighter-rouge">$nome</code>).</li>
+      <li>Tipos de dados primários: <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">bool</code>.</li>
+      <li>Uso de <code class="language-plaintext highlighter-rouge">var_dump()</code> para inspecionar variáveis e entender seus tipos.</li>
+      <li>Concatenação de strings com <code class="language-plaintext highlighter-rouge">.</code> e uso de aspas duplas para interpolação.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Constantes:</strong></p>
+
+    <ul>
+      <li>Quando e por que usar constantes (<code class="language-plaintext highlighter-rouge">define()</code>). Exemplo: <code class="language-plaintext highlighter-rouge">define('VERSAO', '1.0');</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Operadores:</strong></p>
+
+    <ul>
+      <li>Aritméticos (<code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">*</code>, <code class="language-plaintext highlighter-rouge">/</code>, <code class="language-plaintext highlighter-rouge">%</code>).</li>
+      <li>Atribuição (<code class="language-plaintext highlighter-rouge">=</code>, <code class="language-plaintext highlighter-rouge">+=</code>, <code class="language-plaintext highlighter-rouge">-=</code>).</li>
+      <li>Comparação (<code class="language-plaintext highlighter-rouge">==</code>, <code class="language-plaintext highlighter-rouge">===</code>, <code class="language-plaintext highlighter-rouge">!=</code>, <code class="language-plaintext highlighter-rouge">&gt;</code>).</li>
+      <li>Lógicos (<code class="language-plaintext highlighter-rouge">&amp;&amp;</code>, <code class="language-plaintext highlighter-rouge">||</code>, <code class="language-plaintext highlighter-rouge">!</code>).</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo Prático do Módulo 1 (Arquivo <code class="language-plaintext highlighter-rouge">perfil.php</code>):</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Módulo 1: Fundamentos</span>
+
+<span class="c1">// Variáveis com informações do usuário</span>
+<span class="nv">$nome_usuario</span> <span class="o">=</span> <span class="s2">"Maria Silva"</span><span class="p">;</span>
+<span class="nv">$idade</span> <span class="o">=</span> <span class="mi">29</span><span class="p">;</span>
+<span class="nv">$altura_metros</span> <span class="o">=</span> <span class="mf">1.75</span><span class="p">;</span>
+<span class="nv">$e_desenvolvedora</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="c1">// Constante para o nome do projeto</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'NOME_PROJETO'</span><span class="p">,</span> <span class="s1">'Mural de Recados'</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-BR"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Perfil do Usuário - <span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="no">NOME_PROJETO</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;style&gt;body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="p">}</span><span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Perfil do Usuário<span class="nt">&lt;/h1&gt;</span>
+    
+    <span class="cp">&lt;?php</span>
+        <span class="c1">// Usando echo para exibir os dados no HTML</span>
+        <span class="k">echo</span> <span class="s2">"&lt;p&gt;&lt;strong&gt;Nome:&lt;/strong&gt; "</span> <span class="mf">.</span> <span class="nv">$nome_usuario</span> <span class="mf">.</span> <span class="s2">"&lt;/p&gt;"</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s2">"&lt;p&gt;&lt;strong&gt;Idade:&lt;/strong&gt; "</span> <span class="mf">.</span> <span class="nv">$idade</span> <span class="mf">.</span> <span class="s2">" anos&lt;/p&gt;"</span><span class="p">;</span>
+        
+        <span class="c1">// Exemplo de interpolação com aspas duplas</span>
+        <span class="k">echo</span> <span class="s2">"&lt;p&gt;&lt;strong&gt;Altura:&lt;/strong&gt; </span><span class="nv">$altura_metros</span><span class="s2"> m&lt;/p&gt;"</span><span class="p">;</span>
+
+        <span class="c1">// Usando uma estrutura condicional (próximo módulo) para exibir um valor booleano</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$e_desenvolvedora</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">echo</span> <span class="s2">"&lt;p&gt;&lt;strong&gt;Profissão:&lt;/strong&gt; Desenvolvedora&lt;/p&gt;"</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">echo</span> <span class="s2">"&lt;p&gt;&lt;strong&gt;Profissão:&lt;/strong&gt; Não informada&lt;/p&gt;"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="cp">?&gt;</span>
+    
+    <span class="nt">&lt;footer&gt;</span>
+        <span class="nt">&lt;p&gt;</span><span class="ni">&amp;copy;</span> <span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y'</span><span class="p">);</span> <span class="cp">?&gt;</span> <span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="no">NOME_PROJETO</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/footer&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="módulo-2-lógica-e-estruturas-de-repetição"><strong>Módulo 2: Lógica e Estruturas de Repetição</strong></h3>
+
+<p>O cérebro da aplicação.</p>
+
+<ol>
+  <li><strong>Estruturas Condicionais:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">if</code>, <code class="language-plaintext highlighter-rouge">else</code>, <code class="language-plaintext highlighter-rouge">elseif</code>.</li>
+      <li>Operador Ternário.</li>
+    </ul>
+  </li>
+  <li><strong>Estruturas de Repetição (Loops):</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">for</code>: Quando o número de iterações é conhecido.</li>
+      <li><code class="language-plaintext highlighter-rouge">while</code>: Para loops baseados em uma condição.</li>
+      <li><code class="language-plaintext highlighter-rouge">foreach</code>: A forma essencial para percorrer arrays (será o mais usado).</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo Prático do Módulo 2 (Melhorando o Mural):</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Módulo 2: Lógica e Estruturas de Repetição</span>
+
+<span class="c1">// Vamos simular alguns recados que viriam de um banco de dados</span>
+<span class="c1">// Isso introduz o conceito de Array (próximo módulo) de forma natural</span>
+<span class="nv">$recados</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"Olá! Bem-vindo ao mural."</span><span class="p">,</span>
+    <span class="s2">"Lembre-se de estudar PHP todos os dias."</span><span class="p">,</span>
+    <span class="s2">"Este é um exemplo de como exibir múltiplos itens."</span><span class="p">,</span>
+    <span class="s2">"Amanhã vamos aprender sobre formulários!"</span>
+<span class="p">];</span>
+
+<span class="nv">$usuario_logado</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nv">$nome_usuario</span> <span class="o">=</span> <span class="s2">"Maria Silva"</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-BR"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Mural de Recados<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Mural de Recados<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nv">$usuario_logado</span><span class="p">)</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Bem-vinda, <span class="nt">&lt;strong&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$nome_usuario</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/strong&gt;</span>!<span class="nt">&lt;/p&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">else</span><span class="o">:</span> <span class="cp">?&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Bem-vindo, visitante!<span class="nt">&lt;/p&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+    <span class="nt">&lt;hr&gt;</span>
+
+    <span class="nt">&lt;h2&gt;</span>Recados Atuais:<span class="nt">&lt;/h2&gt;</span>
+    
+    <span class="cp">&lt;?php</span>
+    <span class="c1">// Usando foreach para iterar sobre a lista de recados e exibi-los</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$recados</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"&lt;ul&gt;"</span><span class="p">;</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$recados</span> <span class="k">as</span> <span class="nv">$recado</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">echo</span> <span class="s2">"&lt;li&gt;"</span> <span class="mf">.</span> <span class="nv">$recado</span> <span class="mf">.</span> <span class="s2">"&lt;/li&gt;"</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">echo</span> <span class="s2">"&lt;/ul&gt;"</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"&lt;p&gt;Nenhum recado para exibir no momento.&lt;/p&gt;"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cp">?&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="módulo-3-arrays-e-funções-organização-é-tudo"><strong>Módulo 3: Arrays e Funções (Organização é Tudo)</strong></h3>
+
+<ol>
+  <li><strong>Arrays:</strong>
+    <ul>
+      <li>Arrays Indexados (Numéricos).</li>
+      <li>Arrays Associativos (Chave =&gt; Valor).</li>
+      <li>Funções úteis para arrays: <code class="language-plaintext highlighter-rouge">count()</code>, <code class="language-plaintext highlighter-rouge">print_r()</code>, <code class="language-plaintext highlighter-rouge">array_push()</code>, <code class="language-plaintext highlighter-rouge">unset()</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Funções:</strong>
+    <ul>
+      <li>Por que usar funções (DRY - Don’t Repeat Yourself).</li>
+      <li>Criando funções com parâmetros e <code class="language-plaintext highlighter-rouge">return</code>.</li>
+      <li>Escopo de variáveis.</li>
+    </ul>
+  </li>
+  <li><strong>Modularização com <code class="language-plaintext highlighter-rouge">include</code> e <code class="language-plaintext highlighter-rouge">require</code>:</strong>
+    <ul>
+      <li>Dividindo o layout em <code class="language-plaintext highlighter-rouge">header.php</code>, <code class="language-plaintext highlighter-rouge">footer.php</code>. Isso limpa o código drasticamente.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo Prático do Módulo 3 (Refatorando o Mural):</strong></p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">config.php</code></strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Arquivo de configuração e funções</span>
+<span class="nb">date_default_timezone_set</span><span class="p">(</span><span class="s1">'America/Sao_Paulo'</span><span class="p">);</span>
+
+<span class="k">function</span> <span class="n">formatarRecado</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$recado</span><span class="p">):</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="c1">// Adiciona formatação e segurança básica (veremos mais tarde)</span>
+    <span class="k">return</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nv">$recado</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="n">exibirRecados</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$recados</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$recados</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"&lt;ul&gt;"</span><span class="p">;</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$recados</span> <span class="k">as</span> <span class="nv">$recado</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">echo</span> <span class="s2">"&lt;li&gt;"</span> <span class="mf">.</span> <span class="nf">formatarRecado</span><span class="p">(</span><span class="nv">$recado</span><span class="p">)</span> <span class="mf">.</span> <span class="s2">"&lt;/li&gt;"</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">echo</span> <span class="s2">"&lt;/ul&gt;"</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"&lt;p&gt;Nenhum recado para exibir.&lt;/p&gt;"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">header.php</code></strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-BR"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Mural de Recados 2.0<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"style.css"</span><span class="nt">&gt;</span> <span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;header&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Mural de Recados Moderno<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+    <span class="nt">&lt;main&gt;</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">footer.php</code></strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nt">&lt;/main&gt;</span>
+    <span class="nt">&lt;footer&gt;</span>
+        <span class="nt">&lt;p&gt;</span><span class="ni">&amp;copy;</span> <span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y'</span><span class="p">);</span> <span class="cp">?&gt;</span> - Todos os direitos reservados.<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/footer&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">index.php</code> (Arquivo Principal)</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Inclui os arquivos de configuração e funções</span>
+<span class="k">require_once</span> <span class="s1">'config.php'</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="s1">'header.php'</span><span class="p">;</span>
+
+<span class="c1">// Array associativo para mais detalhes</span>
+<span class="nv">$recados_db</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">'autor'</span> <span class="o">=&gt;</span> <span class="s1">'Carlos'</span><span class="p">,</span> <span class="s1">'mensagem'</span> <span class="o">=&gt;</span> <span class="s1">'Primeiro recado do mural!'</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">'autor'</span> <span class="o">=&gt;</span> <span class="s1">'Ana'</span><span class="p">,</span> <span class="s1">'mensagem'</span> <span class="o">=&gt;</span> <span class="s1">'PHP é muito poderoso.'</span><span class="p">],</span>
+<span class="p">];</span>
+
+<span class="c1">// Lógica principal da página</span>
+<span class="k">echo</span> <span class="s2">"&lt;h2&gt;Recados:&lt;/h2&gt;"</span><span class="p">;</span>
+<span class="c1">// Sim, podemos melhorar isso...</span>
+<span class="k">echo</span> <span class="s2">"&lt;ul&gt;"</span><span class="p">;</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$recados_db</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"&lt;li&gt;&lt;strong&gt;"</span> <span class="mf">.</span> <span class="nf">formatarRecado</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="s1">'autor'</span><span class="p">])</span> <span class="mf">.</span> <span class="s2">" disse:&lt;/strong&gt; "</span> <span class="mf">.</span> <span class="nf">formatarRecado</span><span class="p">(</span><span class="nv">$item</span><span class="p">[</span><span class="s1">'mensagem'</span><span class="p">])</span> <span class="mf">.</span> <span class="s2">"&lt;/li&gt;"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="s2">"&lt;/ul&gt;"</span><span class="p">;</span>
+
+
+<span class="c1">// Inclui o rodapé</span>
+<span class="k">require_once</span> <span class="s1">'footer.php'</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="módulo-4-formulários-e-superglobais-interatividade-real"><strong>Módulo 4: Formulários e Superglobais (Interatividade Real)</strong></h3>
+
+<p>O momento da mágica: o usuário envia dados para o servidor.</p>
+
+<ol>
+  <li><strong>Formulários HTML:</strong>
+    <ul>
+      <li>Métodos <code class="language-plaintext highlighter-rouge">GET</code> vs. <code class="language-plaintext highlighter-rouge">POST</code> e quando usar cada um.</li>
+    </ul>
+  </li>
+  <li><strong>Superglobais:</strong>
+    <ul>
+      <li>Recebendo dados com <code class="language-plaintext highlighter-rouge">$_POST</code> e <code class="language-plaintext highlighter-rouge">$_GET</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">$_SERVER</code> para obter informações do servidor.</li>
+    </ul>
+  </li>
+  <li><strong>Validação de Dados:</strong>
+    <ul>
+      <li>A importância de NUNCA confiar nos dados do usuário.</li>
+      <li>Funções de validação: <code class="language-plaintext highlighter-rouge">empty()</code>, <code class="language-plaintext highlighter-rouge">isset()</code>, <code class="language-plaintext highlighter-rouge">filter_var()</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo Prático do Módulo 4 (Adicionando recados via formulário):</strong></p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">index.php</code> (Atualizado)</strong></p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">require_once</span> <span class="s1">'config.php'</span><span class="p">;</span>
+<span class="c1">// Simula um "banco de dados" em sessão para persistir os dados entre requisições</span>
+<span class="nb">session_start</span><span class="p">();</span>
+
+<span class="c1">// Inicializa a lista de recados se não existir</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'recados'</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'recados'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="c1">// Lógica para processar o formulário</span>
+<span class="nv">$erro</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'REQUEST_METHOD'</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'POST'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$autor</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'autor'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="nv">$mensagem</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">'mensagem'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$autor</span><span class="p">)</span> <span class="o">||</span> <span class="k">empty</span><span class="p">(</span><span class="nv">$mensagem</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$erro</span> <span class="o">=</span> <span class="s2">"Todos os campos são obrigatórios!"</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Adiciona o novo recado à sessão</span>
+        <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'recados'</span><span class="p">][]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">'autor'</span> <span class="o">=&gt;</span> <span class="nv">$autor</span><span class="p">,</span>
+            <span class="s1">'mensagem'</span> <span class="o">=&gt;</span> <span class="nv">$mensagem</span><span class="p">,</span>
+            <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'d/m/Y H:i'</span><span class="p">)</span>
+        <span class="p">];</span>
+        <span class="c1">// Redireciona para evitar reenvio do formulário ao atualizar a página</span>
+        <span class="nb">header</span><span class="p">(</span><span class="s2">"Location: index.php"</span><span class="p">);</span>
+        <span class="k">exit</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">require_once</span> <span class="s1">'header.php'</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+
+<span class="nt">&lt;h2&gt;</span>Deixe seu Recado<span class="nt">&lt;/h2&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$erro</span><span class="p">))</span><span class="o">:</span> <span class="cp">?&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">"color: red;"</span><span class="nt">&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$erro</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">endif</span><span class="p">;</span> <span class="cp">?&gt;</span>
+
+<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"index.php"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"autor"</span><span class="nt">&gt;</span>Seu Nome:<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"autor"</span> <span class="na">name=</span><span class="s">"autor"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;br&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"mensagem"</span><span class="nt">&gt;</span>Sua Mensagem:<span class="nt">&lt;/label&gt;&lt;br&gt;</span>
+        <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"mensagem"</span> <span class="na">name=</span><span class="s">"mensagem"</span> <span class="na">rows=</span><span class="s">"4"</span> <span class="na">cols=</span><span class="s">"50"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;br&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Enviar Recado<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+
+<span class="nt">&lt;hr&gt;</span>
+
+<span class="nt">&lt;h2&gt;</span>Recados Salvos<span class="nt">&lt;/h2&gt;</span>
+<span class="cp">&lt;?php</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'recados'</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"&lt;ul&gt;"</span><span class="p">;</span>
+    <span class="c1">// Exibe em ordem inversa (mais novos primeiro)</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nb">array_reverse</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'recados'</span><span class="p">])</span> <span class="k">as</span> <span class="nv">$recado</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"&lt;li&gt;"</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s2">"&lt;strong&gt;"</span> <span class="mf">.</span> <span class="nf">formatarRecado</span><span class="p">(</span><span class="nv">$recado</span><span class="p">[</span><span class="s1">'autor'</span><span class="p">])</span> <span class="mf">.</span> <span class="s2">"&lt;/strong&gt;"</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s2">" &lt;small&gt;("</span> <span class="mf">.</span> <span class="nv">$recado</span><span class="p">[</span><span class="s1">'data'</span><span class="p">]</span> <span class="mf">.</span> <span class="s2">")&lt;/small&gt;:&lt;br&gt;"</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s2">"&lt;em&gt;"</span> <span class="mf">.</span> <span class="nf">formatarRecado</span><span class="p">(</span><span class="nv">$recado</span><span class="p">[</span><span class="s1">'mensagem'</span><span class="p">])</span> <span class="mf">.</span> <span class="s2">"&lt;/em&gt;"</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s2">"&lt;/li&gt;&lt;br&gt;"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">echo</span> <span class="s2">"&lt;/ul&gt;"</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"&lt;p&gt;Seja o primeiro a deixar um recado!&lt;/p&gt;"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">require_once</span> <span class="s1">'footer.php'</span><span class="p">;</span> <span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Nota Didática:</strong> O uso de <code class="language-plaintext highlighter-rouge">session</code> aqui é um passo intermediário antes de introduzir o banco de dados. Mostra como manter dados persistentes durante a visita do usuário.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="módulo-5-persistência-de-dados-com-banco-de-dados-tornando-o-profissional"><strong>Módulo 5: Persistência de Dados com Banco de Dados (Tornando-o Profissional)</strong></h3>
+
+<ol>
+  <li><strong>Introdução a Bancos de Dados Relacionais (MySQL/MariaDB).</strong></li>
+  <li><strong>Criando a Tabela:</strong> Usar o phpMyAdmin para criar uma tabela <code class="language-plaintext highlighter-rouge">recados</code> (<code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">autor</code>, <code class="language-plaintext highlighter-rouge">mensagem</code>, <code class="language-plaintext highlighter-rouge">data_criacao</code>).</li>
+  <li><strong>Conectando ao Banco de Dados com PDO:</strong>
+    <ul>
+      <li><strong>Por que PDO?</strong> Explicar que é a forma moderna e segura (prevenção contra SQL Injection).</li>
+      <li>Criar um arquivo de conexão (<code class="language-plaintext highlighter-rouge">conexao.php</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Operações CRUD com PDO:</strong>
+    <ul>
+      <li><strong>Create:</strong> <code class="language-plaintext highlighter-rouge">INSERT</code> para salvar o recado do formulário no banco.</li>
+      <li><strong>Read:</strong> <code class="language-plaintext highlighter-rouge">SELECT</code> para ler e exibir os recados do banco.</li>
+      <li><strong>Update:</strong> (Tópico avançado) Adicionar um link de “editar”.</li>
+      <li><strong>Delete:</strong> (Tópico avançado) Adicionar um link de “excluir”.</li>
+      <li><strong>USO OBRIGATÓRIO DE PREPARED STATEMENTS!</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo Prático do Módulo 5 (Substituindo a sessão pelo banco de dados):</strong></p>
+
+<ul>
+  <li>Seria criado um <code class="language-plaintext highlighter-rouge">conexao.php</code>.</li>
+  <li>O <code class="language-plaintext highlighter-rouge">index.php</code> seria refatorado para usar <code class="language-plaintext highlighter-rouge">PDO::prepare()</code> e <code class="language-plaintext highlighter-rouge">execute()</code> para inserir e selecionar dados da tabela <code class="language-plaintext highlighter-rouge">recados</code>, eliminando a necessidade de <code class="language-plaintext highlighter-rouge">$_SESSION</code> para armazenar os recados.</li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-6-tópicos-essenciais-de-segurança-e-boas-práticas"><strong>Módulo 6: Tópicos Essenciais de Segurança e Boas Práticas</strong></h3>
+
+<p>Um módulo dedicado para reforçar a importância da segurança.</p>
+
+<ol>
+  <li><strong>Prevenção de SQL Injection:</strong>
+    <ul>
+      <li>Revisar na prática como os <em>prepared statements</em> do PDO resolvem isso. Mostrar um exemplo vulnerável vs. um seguro.</li>
+    </ul>
+  </li>
+  <li><strong>Prevenção de Cross-Site Scripting (XSS):</strong>
+    <ul>
+      <li>Explicar o que é XSS.</li>
+      <li>Demonstrar o uso de <code class="language-plaintext highlighter-rouge">htmlspecialchars()</code> ao <strong>exibir</strong> dados que vieram do usuário. (Já foi introduzido na função <code class="language-plaintext highlighter-rouge">formatarRecado</code>, agora explicamos o porquê).</li>
+    </ul>
+  </li>
+  <li><strong>Organização de Arquivos:</strong>
+    <ul>
+      <li>Estruturar o projeto em pastas: <code class="language-plaintext highlighter-rouge">/public</code>, <code class="language-plaintext highlighter-rouge">/src</code>, <code class="language-plaintext highlighter-rouge">/config</code>, etc.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="módulo-7-conclusão-e-próximos-passos"><strong>Módulo 7: Conclusão e Próximos Passos</strong></h3>
+
+<ol>
+  <li><strong>Revisão do Projeto:</strong> Olhar para o “Mural de Recados” completo e funcional.</li>
+  <li><strong>O que vem a seguir?</strong>
+    <ul>
+      <li><strong>Orientação a Objetos (OOP) em PHP:</strong> Como organizar o código de forma ainda mais profissional.</li>
+      <li><strong>Composer:</strong> O gerenciador de dependências do PHP.</li>
+      <li>
+        <h2 id="frameworks-uma-breve-introdução-ao-que-são-laravel-e-symfony-e-por-que-eles-aceleram-o-desenvolvimento"><strong>Frameworks:</strong> Uma breve introdução ao que são Laravel e Symfony e por que eles aceleram o desenvolvimento.</h2>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

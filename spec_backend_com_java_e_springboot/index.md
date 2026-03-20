@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ## ☕ **Java: A Linguagem da Robustez e Portabilidade**
+title: "## ☕ **Java: A Linguagem da Robustez e Portabilidade**"
 ---
 
 ### ☕ **Java: A Linguagem da Robustez e Portabilidade**

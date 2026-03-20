@@ -1,0 +1,27 @@
+@startuml
+
+
+class Main {
+    + main()
+}
+
+package entities {
+    class Quadrado {
+        - lado: float
+        + __init__(lado: float)
+        + area(): float
+        + perimetro(): float
+        + hipotenusa(): float
+    }
+}
+
+package application {
+    class Program {
+        + main()
+    }
+}
+
+entities.Quadrado <|-- application.Program
+application.Program <|-- Main
+
+@enduml

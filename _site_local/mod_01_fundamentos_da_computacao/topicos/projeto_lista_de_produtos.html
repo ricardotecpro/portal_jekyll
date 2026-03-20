@@ -1,0 +1,245 @@
+<h1 id="tutorial-atualizado-configurando-spring-boot-e-angular">Tutorial Atualizado: Configurando Spring Boot e Angular</h1>
+
+<p>Configuração de um projeto <strong>Spring Boot (backend)</strong> e <strong>Angular (frontend)</strong> para consumir uma API REST com suporte a CORS e banco de dados H2/MySQL. Além disso, forneceremos um arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> para facilitar a execução do projeto.</p>
+
+<hr />
+
+<h2 id="1-criando-o-backend---spring-boot"><strong>1. Criando o Backend - Spring Boot</strong></h2>
+
+<h3 id="11-criando-o-projeto-spring-boot"><strong>1.1 Criando o Projeto Spring Boot</strong></h3>
+
+<p>Use o <strong>Spring Initializr</strong> (<a href="https://start.spring.io">start.spring.io</a>) com as seguintes dependências:</p>
+
+<ul>
+  <li>Spring Web</li>
+  <li>Spring Boot DevTools</li>
+  <li>Spring Data JPA</li>
+  <li>H2 Database (para homologação) / MySQL Driver (para produção)</li>
+</ul>
+
+<p>Baixe o projeto e extraia na sua IDE (IntelliJ, VS Code, Eclipse, etc.).</p>
+
+<p>Se preferir via CLI, execute:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn archetype:generate <span class="nt">-DgroupId</span><span class="o">=</span>com.seu_projeto <span class="nt">-DartifactId</span><span class="o">=</span>backend <span class="nt">-DarchetypeArtifactId</span><span class="o">=</span>maven-archetype-quickstart <span class="nt">-DinteractiveMode</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="12-criando-a-entidade-produto"><strong>1.2 Criando a Entidade</strong> <code class="language-plaintext highlighter-rouge">Produto</code></h3>
+
+<p>Crie a classe <code class="language-plaintext highlighter-rouge">Produto.java</code> em <code class="language-plaintext highlighter-rouge">src/main/java/com/seu_projeto/model/</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.seu_projeto.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="13-criando-o-repositório"><strong>1.3 Criando o Repositório</strong></h3>
+
+<p>Crie a interface <code class="language-plaintext highlighter-rouge">ProdutoRepository.java</code> em <code class="language-plaintext highlighter-rouge">src/main/java/com/seu_projeto/repository/</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.seu_projeto.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.seu_projeto.model.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProdutoRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="14-criando-o-controller"><strong>1.4 Criando o Controller</strong></h3>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">ProdutoController.java</code> em <code class="language-plaintext highlighter-rouge">src/main/java/com/seu_projeto/controller/</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.seu_projeto.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.seu_projeto.model.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.seu_projeto.repository.ProdutoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/produtos"</span><span class="o">)</span>
+<span class="nd">@CrossOrigin</span><span class="o">(</span><span class="n">origins</span> <span class="o">=</span> <span class="s">"http://localhost:4200"</span><span class="o">)</span> <span class="c1">// Permitir acesso do Angular</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoController</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ProdutoRepository</span> <span class="n">produtoRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ProdutoController</span><span class="o">(</span><span class="nc">ProdutoRepository</span> <span class="n">produtoRepository</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">produtoRepository</span> <span class="o">=</span> <span class="n">produtoRepository</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="nf">getAllProdutos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">produtoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="15-configurando-o-banco-de-dados"><strong>1.5 Configurando o Banco de Dados</strong></h3>
+
+<p>No arquivo <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code>, configure:</p>
+
+<h4 id="para-homologação-h2-database"><strong>Para Homologação (H2 Database)</strong></h4>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:teste</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<h4 id="para-produção-mysql"><strong>Para Produção (MySQL)</strong></h4>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:mysql://mysql:3306/seu_banco</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">root</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">senha</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.MySQLDialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="16-configurando-o-cors"><strong>1.6 Configurando o CORS</strong></h3>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">CorsConfig.java</code> em <code class="language-plaintext highlighter-rouge">src/main/java/com/seu_projeto/config/</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.seu_projeto.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.CorsRegistry</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.WebMvcConfigurer</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CorsConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">WebMvcConfigurer</span> <span class="nf">corsConfigurer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">WebMvcConfigurer</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCorsMappings</span><span class="o">(</span><span class="nc">CorsRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">registry</span><span class="o">.</span><span class="na">addMapping</span><span class="o">(</span><span class="s">"/**"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">allowedOrigins</span><span class="o">(</span><span class="s">"http://localhost:4200"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">allowedMethods</span><span class="o">(</span><span class="s">"GET"</span><span class="o">,</span> <span class="s">"POST"</span><span class="o">,</span> <span class="s">"PUT"</span><span class="o">,</span> <span class="s">"DELETE"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">allowedHeaders</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">allowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Reinicie o Spring Boot:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./mvnw spring-boot:run
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-criando-dockerfiles-para-backend-e-frontend"><strong>2. Criando Dockerfiles para Backend e Frontend</strong></h2>
+
+<p>Crie um arquivo <code class="language-plaintext highlighter-rouge">Dockerfile</code> dentro da pasta <strong>backend</strong>:</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> openjdk:21-jdk-slim</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> target/backend.jar app.jar</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<p>Crie um arquivo <code class="language-plaintext highlighter-rouge">Dockerfile</code> dentro da pasta <strong>frontend</strong>:</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> node:20</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> package.json package-lock.json ./</span>
+<span class="k">RUN </span>npm <span class="nb">install</span>
+<span class="k">COPY</span><span class="s"> ../_analisar/_apresentacao_do_curso/estudos .</span>
+<span class="k">RUN </span>npm run build
+<span class="k">CMD</span><span class="s"> ["npm", "start"]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-criando-docker-compose-separado-para-backend-frontend-banco-de-dados-e-nginx"><strong>3. Criando Docker Compose Separado para Backend, Frontend, Banco de Dados e Nginx</strong></h2>
+
+<p>Crie um arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> na raiz do projeto:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">backend</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">./backend</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">SPRING_DATASOURCE_URL</span><span class="pi">:</span> <span class="s">jdbc:mysql://mysql:3306/seu_banco</span>
+      <span class="na">SPRING_DATASOURCE_USERNAME</span><span class="pi">:</span> <span class="s">root</span>
+      <span class="na">SPRING_DATASOURCE_PASSWORD</span><span class="pi">:</span> <span class="s">senha</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mysql</span>
+
+  <span class="na">mysql</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mysql:8.0</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">MYSQL_ROOT_PASSWORD</span><span class="pi">:</span> <span class="s">senha</span>
+      <span class="na">MYSQL_DATABASE</span><span class="pi">:</span> <span class="s">seu_banco</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">3306:3306"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mysql-data:/var/lib/mysql</span>
+
+  <span class="na">frontend</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">./frontend</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">4200:4200"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">backend</span>
+
+  <span class="na">nginx</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">nginx:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">80:80"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./nginx.conf:/etc/nginx/nginx.conf</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">frontend</span>
+
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">mysql-data</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<p>Para iniciar o projeto com Docker Compose, execute:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div></div>
+
+<p>Agora o Angular, o Spring Boot, o MySQL e o Nginx estão configurados corretamente e podem ser executados em containers Docker separados. 🚀</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🐘 PHP: A Linguagem da Web
+title: "🐘 PHP: A Linguagem da Web"
 ---
 
 # 🐘 PHP: A Linguagem da Web

@@ -1,0 +1,874 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.web.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Projeto Lista de Tarefas” (To-Do List) | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Projeto Lista de Tarefas” (To-Do List)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.web.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.web.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Projeto Lista de Tarefas” (To-Do List)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Projeto Lista de Tarefas” (To-Do List)","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/listadetarefas.web.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/" style="margin-left: 0.5rem;">Listadetarefas 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 projeto lista de tarefas" (to do list)</span>
+          
+        
+      </nav>
+
+      <h1 id="-projeto-lista-de-tarefas-to-do-list">🚀 Projeto Lista de Tarefas” (To-Do List)</h1>
+
+<p>v2.1 - Guia Detalhado da Interface Web Dinâmica</p>
+
+<p>Este é um guia completo para construir a interface web para a nossa API de Lista de Tarefas. Vamos cobrir cada operação do CRUD (Create, Read, Update, Delete), com o código completo e um guia de teste para cada funcionalidade.</p>
+
+<h2 id="-módulo-7-revisado-configuração-e-leitura-read">📦 Módulo 7 (Revisado): Configuração e Leitura (Read)</h2>
+
+<p><strong>Objetivo:</strong> Configurar o projeto para servir páginas web e exibir a lista de tarefas inicial.</p>
+
+<h3 id="etapa-71-adicionar-a-dependência-do-thymeleaf">Etapa 7.1: Adicionar a Dependência do Thymeleaf</h3>
+
+<p>Primeiro, precisamos habilitar o Thymeleaf em nosso projeto.</p>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Abra o arquivo <code class="language-plaintext highlighter-rouge">pom.xml</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código:</strong> Adicione o seguinte bloco de dependência dentro da tag <code class="language-plaintext highlighter-rouge">&lt;dependencies&gt;</code>:</p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-thymeleaf<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Verificação:</strong> Sua IDE deve sincronizar o projeto, baixando a nova dependência. Não há uma saída visual, mas a ausência de erros é um bom sinal.</p>
+  </li>
+</ol>
+
+<h3 id="etapa-72-criar-o-controller-da-web">Etapa 7.2: Criar o Controller da Web</h3>
+
+<p>Este controller será responsável por receber requisições do navegador e retornar páginas HTML.</p>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Crie um novo arquivo Java <code class="language-plaintext highlighter-rouge">TarefaWebController.java</code> no pacote <code class="language-plaintext highlighter-rouge">br.com.curso.listadetarefas.api.tarefa</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código:</strong> Adicione o seguinte conteúdo completo ao arquivo:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span> <span class="c1">// Responderá na raiz da aplicação: http://localhost:8080/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaWebController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TarefaWebController</span><span class="o">(</span><span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tarefaService</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">index</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Buscamos todas as tarefas e as ordenamos por ID para consistência</span>
+        <span class="kt">var</span> <span class="n">tarefasOrdenadas</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Tarefa:</span><span class="o">:</span><span class="n">getId</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+
+        <span class="c1">// Adicionamos a lista de tarefas ao modelo que será enviado para o Thymeleaf</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefas"</span><span class="o">,</span> <span class="n">tarefasOrdenadas</span><span class="o">);</span>
+            
+        <span class="c1">// Retorna o nome do arquivo HTML (sem a extensão .html)</span>
+        <span class="k">return</span> <span class="s">"index"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="etapa-73-criar-a-página-html-com-thymeleaf">Etapa 7.3: Criar a Página HTML com Thymeleaf</h3>
+
+<p>Esta é a nossa view, a estrutura visual da aplicação.</p>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Na pasta <code class="language-plaintext highlighter-rouge">src/main/resources/</code>, crie um novo diretório chamado <code class="language-plaintext highlighter-rouge">templates</code>.</p>
+  </li>
+  <li>
+    <p><strong>Ação:</strong> Dentro de <code class="language-plaintext highlighter-rouge">templates</code>, crie um novo arquivo chamado <code class="language-plaintext highlighter-rouge">index.html</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código:</strong> Adicione o seguinte conteúdo completo ao arquivo:</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Lista de Tarefas Dinâmica<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/htmx.org@1.9.10"</span> <span class="na">integrity=</span><span class="s">"sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;&lt;/script&gt;</span>
+        
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="o">-</span><span class="n">apple-system</span><span class="p">,</span> <span class="n">BlinkMacSystemFont</span><span class="p">,</span> <span class="s1">"Segoe UI"</span><span class="p">,</span> <span class="n">Roboto</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">max-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f9f9f9</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#0056b3</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">table</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">border-collapse</span><span class="p">:</span> <span class="nb">collapse</span><span class="p">;</span> <span class="nl">margin-top</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span> <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">2px</span> <span class="m">4px</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0.1</span><span class="p">);</span> <span class="p">}</span>
+        <span class="nt">thead</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#0056b3</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">middle</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f2f9ff</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">tr</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#e6f2ff</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.concluida-texto</span> <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">line-through</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#888</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span> <span class="p">{</span> <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span> <span class="m">12px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-delete</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#dc3545</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-delete</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#c82333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">form</span> <span class="p">{</span> <span class="nl">margin-top</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"text"</span><span class="o">]</span> <span class="p">{</span> <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ccc</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"submit"</span><span class="o">]</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#007bff</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">15px</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"submit"</span><span class="o">]</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#0069d9</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+    <span class="nt">&lt;h1&gt;</span>Minha Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+
+    <span class="nt">&lt;table&gt;</span>
+        <span class="nt">&lt;thead&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">style=</span><span class="s">"width: 10%;"</span><span class="nt">&gt;</span>Status<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Título<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">style=</span><span class="s">"width: 15%;"</span><span class="nt">&gt;</span>Ações<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/thead&gt;</span>
+        <span class="nt">&lt;tbody</span> <span class="na">id=</span><span class="s">"tabela-tarefas"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"tarefa : ${tarefas}"</span><span class="nt">&gt;</span>
+               <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${tarefa.isConcluida() ? '✅' : '⬜️'}"</span><span class="nt">&gt;</span>Status<span class="nt">&lt;/td&gt;</span>
+               <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${tarefa.titulo}"</span><span class="nt">&gt;</span>Título da Tarefa<span class="nt">&lt;/td&gt;</span>
+               <span class="nt">&lt;td&gt;&lt;button</span> <span class="na">class=</span><span class="s">"btn-delete"</span><span class="nt">&gt;</span>Deletar<span class="nt">&lt;/button&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/tbody&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+
+    <span class="nt">&lt;h2&gt;</span>Nova Tarefa<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;form&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"titulo"</span> <span class="na">placeholder=</span><span class="s">"O que precisa ser feito?"</span> <span class="na">required</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="-teste-da-funcionalidade-de-leitura-read">✅ Teste da Funcionalidade de Leitura (Read)</h3>
+
+<ol>
+  <li><strong>Reinicie a aplicação Spring Boot:</strong> Execute a classe <code class="language-plaintext highlighter-rouge">ListadetarefasApiApplication.java</code> novamente.</li>
+  <li><strong>Acesse no navegador:</strong> Abra a URL <code class="language-plaintext highlighter-rouge">http://localhost:8080</code>.</li>
+  <li><strong>Resultado Esperado:</strong> Você deve ver uma página com o título “Minha Lista de Tarefas”. A tabela deve exibir as tarefas que você inseriu no arquivo <code class="language-plaintext highlighter-rouge">data.sql</code> (“Configurar o Backend” e “Criar a API REST”). Os botões ainda não funcionam.</li>
+</ol>
+
+<hr />
+
+<h2 id="-módulo-8-implementando-a-criação-create">🧠 Módulo 8: Implementando a Criação (Create)</h2>
+
+<p><strong>Objetivo:</strong> Permitir que o usuário adicione uma nova tarefa através do formulário, e a tarefa apareça na lista instantaneamente.</p>
+
+<h3 id="etapa-81-criar-o-fragmento-thymeleaf">Etapa 8.1: Criar o “Fragmento” Thymeleaf</h3>
+
+<p>HTMX funciona trocando pedaços de HTML. Precisamos de um bloco de HTML que represente <strong>uma única linha da tabela</strong>. Isso é um “fragmento”.</p>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Em <code class="language-plaintext highlighter-rouge">index.html</code>, crie um arquivo separado ou adicione o fragmento no mesmo arquivo. Para simplificar, vamos criar um novo arquivo <code class="language-plaintext highlighter-rouge">fragments.html</code> dentro da pasta <code class="language-plaintext highlighter-rouge">templates</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código (<code class="language-plaintext highlighter-rouge">templates/fragments.html</code>):</strong></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+    <span class="nt">&lt;tr</span> <span class="na">th:fragment=</span><span class="s">"linha-tarefa"</span> <span class="na">th:id=</span><span class="s">"'tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto'"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">th:checked=</span><span class="s">"${tarefa.concluida}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${tarefa.titulo}"</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto'"</span><span class="nt">&gt;</span>
+            Título da Tarefa
+        <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-delete"</span><span class="nt">&gt;</span>Deletar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Ação:</strong> Altere o <code class="language-plaintext highlighter-rouge">index.html</code> para usar este fragmento.</p>
+  </li>
+  <li>
+    <p><strong>Código (<code class="language-plaintext highlighter-rouge">templates/index.html</code> - Apenas o <code class="language-plaintext highlighter-rouge">&lt;tbody&gt;</code> modificado):</strong></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;tbody</span> <span class="na">id=</span><span class="s">"tabela-tarefas"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;tr</span> <span class="na">th:replace=</span><span class="s">"~{fragments :: linha-tarefa(tarefa=${tarefa})}"</span> <span class="na">th:each=</span><span class="s">"tarefa : ${tarefas}"</span><span class="nt">&gt;&lt;/tr&gt;</span>
+<span class="nt">&lt;/tbody&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="etapa-82-adicionar-o-endpoint-de-criação-no-controller">Etapa 8.2: Adicionar o Endpoint de Criação no Controller</h3>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Adicione um novo método ao <code class="language-plaintext highlighter-rouge">TarefaWebController.java</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código (adicionar dentro da classe <code class="language-plaintext highlighter-rouge">TarefaWebController</code>):</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestParam</span><span class="o">;</span>
+
+<span class="c1">// ...</span>
+
+<span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">String</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Cria e salva a nova tarefa</span>
+    <span class="nc">Tarefa</span> <span class="n">novaTarefa</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+    <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="n">titulo</span><span class="o">);</span>
+    <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="s">""</span><span class="o">);</span> <span class="c1">// Pode ser deixado em branco ou vir do form</span>
+    <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="nc">Tarefa</span> <span class="n">tarefaSalva</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">criarTarefa</span><span class="o">(</span><span class="n">novaTarefa</span><span class="o">);</span>
+
+    <span class="c1">// Prepara o modelo APENAS com a nova tarefa</span>
+    <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefa"</span><span class="o">,</span> <span class="n">tarefaSalva</span><span class="o">);</span>
+
+    <span class="c1">// Retorna o caminho para o FRAGMENTO, não a página inteira</span>
+    <span class="k">return</span> <span class="s">"fragments :: linha-tarefa"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="etapa-83-habilitar-o-formulário-com-htmx">Etapa 8.3: Habilitar o Formulário com HTMX</h3>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Modifique a tag <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code> no arquivo <code class="language-plaintext highlighter-rouge">index.html</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código (substituir o <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code> antigo):</strong></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">hx-post=</span><span class="s">"/tarefas"</span>      
+      <span class="na">hx-target=</span><span class="s">"#tabela-tarefas"</span> 
+      <span class="na">hx-swap=</span><span class="s">"beforeend"</span>
+      <span class="na">hx-on::after-request=</span><span class="s">"this.reset()"</span><span class="nt">&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"titulo"</span> <span class="na">placeholder=</span><span class="s">"O que precisa ser feito?"</span> <span class="na">required</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-post="/tarefas"</code></strong>: Envia os dados do formulário via <code class="language-plaintext highlighter-rouge">POST</code> para o endpoint que acabamos de criar.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-target="#tabela-tarefas"</code></strong>: O resultado da requisição (o HTML da nova linha) será colocado dentro do elemento com <code class="language-plaintext highlighter-rouge">id="tabela-tarefas"</code>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-swap="beforeend"</code></strong>: O HTML recebido será adicionado no final do conteúdo do alvo.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-on::after-request="this.reset()"</code></strong>: Um pequeno “script” que limpa o formulário após a requisição ser concluída.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-teste-da-funcionalidade-de-criação-create">✅ Teste da Funcionalidade de Criação (Create)</h3>
+
+<ol>
+  <li><strong>Reinicie a aplicação Spring Boot.</strong></li>
+  <li><strong>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> no navegador.</strong></li>
+  <li><strong>Ação:</strong> No campo de texto “O que precisa ser feito?”, digite <strong>“Testar a criação de tarefas”</strong>.</li>
+  <li><strong>Ação:</strong> Clique no botão <strong>“Adicionar”</strong>.</li>
+  <li><strong>Resultado Esperado:</strong>
+    <ul>
+      <li>A nova tarefa “Testar a criação de tarefas” deve aparecer instantaneamente no final da lista.</li>
+      <li>A página <strong>não deve recarregar</strong>.</li>
+      <li>O campo de texto deve ficar vazio, pronto para adicionar outra tarefa.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="️-módulo-9-implementando-a-deleção-delete">🗑️ Módulo 9: Implementando a Deleção (Delete)</h2>
+
+<p><strong>Objetivo:</strong> Permitir que o usuário remova uma tarefa da lista clicando em um botão.</p>
+
+<h3 id="etapa-91-adicionar-o-endpoint-de-deleção-no-controller">Etapa 9.1: Adicionar o Endpoint de Deleção no Controller</h3>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Adicione um novo método ao <code class="language-plaintext highlighter-rouge">TarefaWebController.java</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código (adicionar dentro da classe <code class="language-plaintext highlighter-rouge">TarefaWebController</code>):</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.DeleteMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PathVariable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ResponseBody</span><span class="o">;</span>
+
+<span class="c1">// ...</span>
+
+<span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/web/tarefas/{id}"</span><span class="o">)</span>
+<span class="nd">@ResponseBody</span> <span class="c1">// Indica que não estamos retornando uma view, mas sim dados (ou nada) no corpo</span>
+<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletarTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="c1">// Retorna HTTP 200 OK. HTMX entende que uma resposta vazia e bem-sucedida</span>
+    <span class="c1">// significa que o elemento alvo deve ser removido (se hx-swap for outerHTML).</span>
+    <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">().</span><span class="na">build</span><span class="o">();</span> 
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="etapa-92-habilitar-o-botão-de-deleção-com-htmx">Etapa 9.2: Habilitar o Botão de Deleção com HTMX</h3>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Modifique o botão de deletar no arquivo <code class="language-plaintext highlighter-rouge">fragments.html</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código (<code class="language-plaintext highlighter-rouge">templates/fragments.html</code> - apenas o fragmento modificado):</strong></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;tr</span> <span class="na">th:fragment=</span><span class="s">"linha-tarefa"</span> <span class="na">th:id=</span><span class="s">"'tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto'"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">th:checked=</span><span class="s">"${tarefa.concluida}"</span> 
+               <span class="na">hx-post=</span><span class="s">"@{/tarefas/{id}/toggle(id=${tarefa.id})}"</span>
+               <span class="na">hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span>
+               <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${tarefa.titulo}"</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto'"</span><span class="nt">&gt;</span>
+        Título da Tarefa
+    <span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-delete"</span>
+                <span class="na">hx-delete=</span><span class="s">"@{/tarefas/{id}(id=${tarefa.id})}"</span>
+                <span class="na">hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span>
+                <span class="na">hx-swap=</span><span class="s">"outerHTML"</span>
+                <span class="na">hx-confirm=</span><span class="s">"Tem certeza que deseja apagar esta tarefa?"</span><span class="nt">&gt;</span>
+            Deletar
+        <span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-delete</code></strong>: Envia uma requisição <code class="language-plaintext highlighter-rouge">DELETE</code> para <code class="language-plaintext highlighter-rouge">/tarefas/{id}</code>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-target</code></strong>: O alvo da operação é a própria linha (<code class="language-plaintext highlighter-rouge">&lt;tr&gt;</code>) que tem o <code class="language-plaintext highlighter-rouge">id="tarefa-X"</code>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-swap="outerHTML"</code></strong>: Substitui o elemento alvo inteiro (a linha <code class="language-plaintext highlighter-rouge">&lt;tr&gt;</code>) pela resposta. Como a resposta do nosso controller é vazia, a linha simplesmente desaparece.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-confirm</code></strong>: Mostra uma caixa de diálogo de confirmação nativa do navegador.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-teste-da-funcionalidade-de-deleção-delete">✅ Teste da Funcionalidade de Deleção (Delete)</h3>
+
+<ol>
+  <li><strong>Reinicie a aplicação Spring Boot.</strong></li>
+  <li><strong>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> no navegador.</strong></li>
+  <li><strong>Ação:</strong> Encontre a tarefa “Criar a API REST” e clique no botão <strong>“Deletar”</strong> ao lado dela.</li>
+  <li><strong>Ação:</strong> Uma caixa de diálogo vai perguntar “Tem certeza…”. Clique em <strong>“OK”</strong>.</li>
+  <li><strong>Resultado Esperado:</strong> A linha correspondente à tarefa “Criar a API REST” deve desaparecer da tabela instantaneamente, sem recarregar a página.</li>
+</ol>
+
+<hr />
+
+<h2 id="-módulo-10-implementando-a-atualização-update">🔄 Módulo 10: Implementando a Atualização (Update)</h2>
+
+<p><strong>Objetivo:</strong> Permitir que o usuário marque ou desmarque uma tarefa como concluída, atualizando seu estado visual.</p>
+
+<h3 id="etapa-101-adicionar-o-endpoint-de-atualização-no-controller">Etapa 10.1: Adicionar o Endpoint de Atualização no Controller</h3>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Adicione o método para alternar o status no <code class="language-plaintext highlighter-rouge">TarefaWebController.java</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código (adicionar dentro da classe <code class="language-plaintext highlighter-rouge">TarefaWebController</code>):</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (as importações @PostMapping e @PathVariable já devem existir)</span>
+
+<span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/tarefas/{id}/toggle"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toggleTarefaConcluida</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Busca a tarefa no banco</span>
+    <span class="n">tarefaService</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">tarefa</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="c1">// Inverte o estado de 'concluida'</span>
+        <span class="n">tarefa</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(!</span><span class="n">tarefa</span><span class="o">.</span><span class="na">isConcluida</span><span class="o">());</span>
+        <span class="c1">// Salva a tarefa atualizada</span>
+        <span class="nc">Tarefa</span> <span class="n">tarefaAtualizada</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizarTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">tarefa</span><span class="o">).</span><span class="na">orElse</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+        <span class="c1">// Adiciona ao modelo para enviar de volta ao fragmento</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefa"</span><span class="o">,</span> <span class="n">tarefaAtualizada</span><span class="o">);</span>
+    <span class="o">});</span>
+
+    <span class="c1">// Retorna o fragmento da linha atualizado</span>
+    <span class="k">return</span> <span class="s">"fragments :: linha-tarefa"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p><em>Obs: Precisaremos adicionar o método <code class="language-plaintext highlighter-rouge">findById</code> ao <code class="language-plaintext highlighter-rouge">TarefaService</code> se ele não existir.</em>
+<strong>No <code class="language-plaintext highlighter-rouge">TarefaService.java</code>:</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="etapa-102-habilitar-o-checkbox-com-htmx">Etapa 10.2: Habilitar o Checkbox com HTMX</h3>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> A modificação no <code class="language-plaintext highlighter-rouge">input[type="checkbox"]</code> já foi feita na etapa 9.2, mas vamos analisá-la em detalhes.</p>
+  </li>
+  <li>
+    <p><strong>Código (<code class="language-plaintext highlighter-rouge">templates/fragments.html</code> - o input dentro do fragmento):</strong></p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">th:checked=</span><span class="s">"${tarefa.concluida}"</span>
+           <span class="na">hx-post=</span><span class="s">"@{/tarefas/{id}/toggle(id=${tarefa.id})}"</span>
+           <span class="na">hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span>
+           <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-post</code></strong>: Quando o checkbox é clicado, ele envia uma requisição <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">/tarefas/{id}/toggle</code>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-target</code></strong>: O alvo, novamente, é a linha inteira da tabela (<code class="language-plaintext highlighter-rouge">&lt;tr&gt;</code>).</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">hx-swap="outerHTML"</code></strong>: A linha antiga será completamente substituída pela nova linha (com a classe de texto riscado e o checkbox marcado/desmarcado) que o controller retorna.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-teste-da-funcionalidade-de-atualização-update">✅ Teste da Funcionalidade de Atualização (Update)</h3>
+
+<ol>
+  <li><strong>Reinicie a aplicação Spring Boot.</strong></li>
+  <li><strong>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> no navegador.</strong></li>
+  <li><strong>Ação:</strong> Encontre a tarefa “Configurar o Backend”, que deve estar marcada como concluída (texto riscado). Clique na caixa de seleção dela.</li>
+  <li><strong>Resultado Esperado:</strong> O risco no texto deve desaparecer e o checkbox deve ficar desmarcado, tudo sem recarregar a página.</li>
+  <li><strong>Ação:</strong> Clique novamente no mesmo checkbox.</li>
+  <li><strong>Resultado Esperado:</strong> A tarefa deve voltar ao estado de concluída (texto riscado e checkbox marcado).</li>
+</ol>
+
+<hr />
+
+<h2 id="-módulo-11-refatorando-e-implementando-novas-funcionalidades">🔄 Módulo 11: Refatorando e Implementando novas funcionalidades</h2>
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> No arquivo Java <code class="language-plaintext highlighter-rouge">TarefaWebController.java</code> no pacote <code class="language-plaintext highlighter-rouge">br.com.curso.listadetarefas.api.tarefa</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código:</strong> Adicione o seguinte conteúdo completo ao arquivo:</p>
+  </li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+
+    <span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+    
+    <span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+    
+    <span class="nd">@Controller</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaWebController</span> <span class="o">{</span>
+    
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span>
+    
+        <span class="kd">public</span> <span class="nf">TarefaWebController</span><span class="o">(</span><span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">tarefaService</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">;</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@GetMapping</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">index</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">var</span> <span class="n">tarefasOrdenadas</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Tarefa:</span><span class="o">:</span><span class="n">getId</span><span class="o">))</span>
+                    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+            <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefas"</span><span class="o">,</span> <span class="n">tarefasOrdenadas</span><span class="o">);</span>
+            <span class="k">return</span> <span class="s">"index"</span><span class="o">;</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/web/tarefas"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">Tarefa</span> <span class="n">novaTarefa</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+            <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="n">titulo</span><span class="o">);</span>
+            <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+            <span class="n">novaTarefa</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="nc">Tarefa</span> <span class="n">tarefaSalva</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">salvar</span><span class="o">(</span><span class="n">novaTarefa</span><span class="o">);</span>
+            <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefa"</span><span class="o">,</span> <span class="n">tarefaSalva</span><span class="o">);</span>
+            <span class="k">return</span> <span class="s">"fragments :: linha-tarefa"</span><span class="o">;</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/web/tarefas/{id}"</span><span class="o">)</span>
+        <span class="nd">@ResponseBody</span>
+        <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletarTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+            <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/web/tarefas/{id}/toggle"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toggleTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizarStatusTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefa</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefa"</span><span class="o">,</span> <span class="n">tarefa</span><span class="o">);</span>
+                        <span class="k">return</span> <span class="s">"fragments :: linha-tarefa"</span><span class="o">;</span>
+                    <span class="o">})</span>
+                    <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/web/tarefas/{id}/edit"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getEditForm</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefa</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefa"</span><span class="o">,</span> <span class="n">tarefa</span><span class="o">);</span>
+                        <span class="k">return</span> <span class="s">"fragments :: edit-form"</span><span class="o">;</span>
+                    <span class="o">})</span>
+                    <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/web/tarefas/{id}"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">atualizarTarefaWeb</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefaExistente</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="n">titulo</span><span class="o">);</span>
+                        <span class="nc">Tarefa</span> <span class="n">tarefaAtualizada</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">salvar</span><span class="o">(</span><span class="n">tarefaExistente</span><span class="o">);</span>
+                        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefa"</span><span class="o">,</span> <span class="n">tarefaAtualizada</span><span class="o">);</span>
+                        <span class="k">return</span> <span class="s">"fragments :: linha-tarefa"</span><span class="o">;</span>
+                    <span class="o">})</span>
+                    <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/web/tarefas/{id}"</span><span class="o">)</span>
+        <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTarefa</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">tarefa</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefa"</span><span class="o">,</span> <span class="n">tarefa</span><span class="o">);</span>
+                        <span class="k">return</span> <span class="s">"fragments :: linha-tarefa"</span><span class="o">;</span>
+                    <span class="o">})</span>
+                    <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<ol>
+  <li>
+    <p><strong>Ação:</strong> Dentro de <code class="language-plaintext highlighter-rouge">templates</code>, no arquivo chamado <code class="language-plaintext highlighter-rouge">index.html</code>.</p>
+  </li>
+  <li>
+    <p><strong>Código:</strong> Adicione o seguinte conteúdo completo ao arquivo:</p>
+  </li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Lista de Tarefas Dinâmica<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/htmx.org@1.9.10"</span> <span class="na">integrity=</span><span class="s">"sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="o">-</span><span class="n">apple-system</span><span class="p">,</span> <span class="n">BlinkMacSystemFont</span><span class="p">,</span> <span class="s1">"Segoe UI"</span><span class="p">,</span> <span class="n">Roboto</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">max-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f9f9f9</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#0056b3</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">table</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">border-collapse</span><span class="p">:</span> <span class="nb">collapse</span><span class="p">;</span> <span class="nl">margin-top</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span> <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">2px</span> <span class="m">4px</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0.1</span><span class="p">);</span> <span class="p">}</span>
+        <span class="nt">thead</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#0056b3</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">middle</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f2f9ff</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">tr</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#e6f2ff</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.concluida-texto</span> <span class="p">{</span> <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">line-through</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#888</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="nt">button</span> <span class="p">{</span>
+            <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+            <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+            <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span> <span class="m">12px</span><span class="p">;</span>
+            <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+            <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+            <span class="nl">white-space</span><span class="p">:</span> <span class="nb">nowrap</span><span class="p">;</span> <span class="c">/* Impede que o texto do botão quebre */</span>
+        <span class="p">}</span>
+        <span class="nc">.btn-delete</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#dc3545</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-delete</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#c82333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-edit</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#ffc107</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#212529</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-edit</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#e0a800</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-save</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#28a745</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-save</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#218838</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-cancel</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#6c757d</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-cancel</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#5a6268</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-refresh</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#007bff</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.btn-refresh</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#0069d9</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="c">/* Container para os botões de ação (Editar/Deletar) */</span>
+        <span class="nc">.actions</span> <span class="p">{</span>
+            <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+            <span class="nl">gap</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+            <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c">/* Estilo geral para inputs e textareas */</span>
+        <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"text"</span><span class="o">],</span> <span class="nt">textarea</span> <span class="p">{</span>
+            <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+            <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ccc</span><span class="p">;</span>
+            <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+            <span class="nl">font-family</span><span class="p">:</span> <span class="nb">inherit</span><span class="p">;</span>
+            <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+            <span class="nl">box-sizing</span><span class="p">:</span> <span class="nb">border-box</span><span class="p">;</span> <span class="c">/* Garante que padding não afete a largura final */</span>
+        <span class="p">}</span>
+
+        <span class="nt">textarea</span> <span class="p">{</span>
+            <span class="nl">resize</span><span class="p">:</span> <span class="nb">vertical</span><span class="p">;</span>
+            <span class="nl">min-height</span><span class="p">:</span> <span class="m">60px</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c">/* Formulário de nova tarefa (na parte inferior da página) */</span>
+        <span class="nt">form</span><span class="nf">#new-task-form</span> <span class="p">{</span>
+            <span class="nl">margin-top</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span>
+            <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+            <span class="nl">flex-direction</span><span class="p">:</span> <span class="nb">column</span><span class="p">;</span> <span class="c">/* Empilha os campos */</span>
+            <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nt">form</span><span class="nf">#new-task-form</span> <span class="nt">button</span> <span class="p">{</span>
+            <span class="nl">align-self</span><span class="p">:</span> <span class="nb">flex-start</span><span class="p">;</span> <span class="c">/* Alinha o botão à esquerda */</span>
+        <span class="p">}</span>
+
+        <span class="c">/* Formulário de edição que aparece na linha da tabela */</span>
+        <span class="nt">form</span><span class="nc">.edit-form</span> <span class="p">{</span>
+            <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+            <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+            <span class="nl">gap</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+            <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+            <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span> <span class="c">/* Remove margens para alinhar dentro da célula */</span>
+        <span class="p">}</span>
+
+        <span class="c">/* Layout para o cabeçalho com título e botão de refresh */</span>
+        <span class="nc">.header-container</span> <span class="p">{</span>
+            <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+            <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">space-between</span><span class="p">;</span>
+            <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+            <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nt">footer</span> <span class="p">{</span>
+            <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+            <span class="nl">margin-top</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span>
+            <span class="nl">padding-top</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+            <span class="nl">border-top</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span>
+            <span class="nl">color</span><span class="p">:</span> <span class="nx">#888</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header-container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Minha Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-refresh"</span> <span class="na">hx-get=</span><span class="s">"/tarefas/list"</span> <span class="na">hx-target=</span><span class="s">"#tabela-tarefas"</span> <span class="na">hx-swap=</span><span class="s">"innerHTML"</span><span class="nt">&gt;</span>Atualizar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;table&gt;</span>
+        <span class="nt">&lt;thead&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">style=</span><span class="s">"width: 10%;"</span><span class="nt">&gt;</span>Status<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Título<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Descrição<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th</span> <span class="na">style=</span><span class="s">"width: 20%;"</span><span class="nt">&gt;</span>Ações<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        <span class="nt">&lt;/thead&gt;</span>
+        <span class="nt">&lt;tbody</span> <span class="na">id=</span><span class="s">"tabela-tarefas"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;th:block</span> <span class="na">th:replace=</span><span class="s">"~{fragments :: lista-tarefas(tarefas=${tarefas})}"</span><span class="nt">&gt;&lt;/th:block&gt;</span>
+        <span class="nt">&lt;/tbody&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+
+    <span class="nt">&lt;h2&gt;</span>Nova Tarefa<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"new-task-form"</span> <span class="na">hx-post=</span><span class="s">"/tarefas"</span>
+          <span class="na">hx-target=</span><span class="s">"#tabela-tarefas"</span>
+          <span class="na">hx-swap=</span><span class="s">"beforeend"</span>
+          <span class="na">hx-on::after-request=</span><span class="s">"this.reset()"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"titulo"</span> <span class="na">placeholder=</span><span class="s">"O que precisa ser feito?"</span> <span class="na">required</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">placeholder=</span><span class="s">"Adicione uma descrição..."</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn-save"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+
+    <span class="nt">&lt;footer&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Lista de Tarefas (c)2025<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/footer&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<ol>
+  <li><strong>Código (<code class="language-plaintext highlighter-rouge">templates/fragments.html</code>):</strong></li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+
+<span class="c">&lt;!-- FRAGMENTO: Lista de Tarefas --&gt;</span>
+<span class="nt">&lt;th:block</span> <span class="na">th:fragment=</span><span class="s">"lista-tarefas(tarefas)"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;th:block</span> <span class="na">th:each=</span><span class="s">"tarefa : ${tarefas}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;tr</span> <span class="na">th:replace=</span><span class="s">"~{fragments :: linha-tarefa(tarefa=${tarefa})}"</span><span class="nt">&gt;&lt;/tr&gt;</span>
+    <span class="nt">&lt;/th:block&gt;</span>
+<span class="nt">&lt;/th:block&gt;</span>
+
+<span class="c">&lt;!-- FRAGMENTO: Linha da Tabela --&gt;</span>
+<span class="nt">&lt;tr</span> <span class="na">th:fragment=</span><span class="s">"linha-tarefa(tarefa)"</span> <span class="na">th:id=</span><span class="s">"'tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Célula do Checkbox --&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto' : ''"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">th:checked=</span><span class="s">"${tarefa.concluida}"</span>
+               <span class="na">th:hx-post=</span><span class="s">"'/tarefas/' + ${tarefa.id} + '/toggle'"</span>
+               <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span>
+               <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+    <span class="c">&lt;!-- Célula do Título --&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${tarefa.titulo}"</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto' : ''"</span><span class="nt">&gt;&lt;/td&gt;</span>
+    <span class="c">&lt;!-- Célula da Descrição --&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${tarefa.descricao}"</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto' : ''"</span><span class="nt">&gt;&lt;/td&gt;</span>
+    <span class="c">&lt;!-- Célula das Ações --&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"actions"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-edit"</span>
+                <span class="na">th:hx-get=</span><span class="s">"'/tarefas/' + ${tarefa.id} + '/edit'"</span>
+                <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span>
+                <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>Editar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-delete"</span>
+                <span class="na">th:hx-delete=</span><span class="s">"'/tarefas/' + ${tarefa.id}"</span>
+                <span class="na">hx-target=</span><span class="s">"closest tr"</span>
+                <span class="na">hx-swap=</span><span class="s">"outerHTML"</span>
+                <span class="na">hx-confirm=</span><span class="s">"Tem certeza que deseja apagar esta tarefa?"</span><span class="nt">&gt;</span>Deletar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+
+<span class="c">&lt;!-- FRAGMENTO: Formulário de Edição --&gt;</span>
+<span class="nt">&lt;tr</span> <span class="na">th:fragment=</span><span class="s">"edit-form(tarefa)"</span> <span class="na">th:id=</span><span class="s">"'tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"edit-form"</span> <span class="na">th:hx-put=</span><span class="s">"'/tarefas/' + ${tarefa.id}"</span> <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span> <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"titulo"</span> <span class="na">th:value=</span><span class="s">"${tarefa.titulo}"</span> <span class="na">class=</span><span class="s">"edit-input"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">th:text=</span><span class="s">"${tarefa.descricao}"</span> <span class="na">class=</span><span class="s">"edit-input"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn-save"</span><span class="nt">&gt;</span>Salvar<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"btn-cancel"</span> <span class="na">th:hx-get=</span><span class="s">"'/tarefas/' + ${tarefa.id}"</span> <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>Cancelar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

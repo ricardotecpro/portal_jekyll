@@ -1,0 +1,374 @@
+<h1 id="tutorial-estudo-de-spring-boot"><strong>Tutorial: Estudo de Spring Boot</strong></h1>
+
+<h2 id="1-o-que-é-spring-boot"><strong>1. O que é Spring Boot?</strong></h2>
+
+<p>O <strong>Spring Boot</strong> é uma extensão do framework <strong>Spring</strong> que simplifica a configuração e o desenvolvimento de novas aplicações Java. Ele foi projetado para criar <strong>aplicações autônomas e prontas para produção</strong> com o mínimo de esforço e configuração.</p>
+
+<p>Algumas das características principais do Spring Boot:</p>
+
+<ul>
+  <li><strong>Autoconfiguração</strong>: O Spring Boot tenta adivinhar e configurar os componentes necessários para a aplicação, com base nas dependências presentes no projeto.</li>
+  <li><strong>Aplicações Standalone</strong>: Não há necessidade de um servidor de aplicação externo (como Tomcat ou Jetty) porque o Spring Boot já integra um servidor embutido.</li>
+  <li><strong>Spring Initializr</strong>: Ferramenta para inicializar projetos Spring de maneira rápida.</li>
+  <li><strong>Atuadores</strong>: Facilita o monitoramento e a administração da aplicação.</li>
+  <li><strong>Suporte para microserviços</strong>: O Spring Boot é muito utilizado no desenvolvimento de microserviços.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-pré-requisitos"><strong>2. Pré-Requisitos</strong></h2>
+
+<p>Antes de começar a usar o Spring Boot, você deve ter:</p>
+
+<ul>
+  <li><strong>JDK</strong> instalado (Java 8 ou superior).</li>
+  <li><strong>IDE</strong> (como IntelliJ IDEA, Eclipse ou VSCode).</li>
+  <li><strong>Maven</strong> ou <strong>Gradle</strong> para gerenciamento de dependências (Maven será usado neste tutorial).</li>
+  <li><strong>Conhecimentos básicos de Java</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-criando-o-projeto-com-spring-boot"><strong>3. Criando o Projeto com Spring Boot</strong></h2>
+
+<h3 id="31-usando-o-spring-initializr"><strong>3.1. Usando o Spring Initializr</strong></h3>
+
+<p>O <strong>Spring Initializr</strong> é uma ferramenta online para criar projetos Spring Boot rapidamente. Você pode acessar o Spring Initializr <a href="https://start.spring.io/">aqui</a>.</p>
+
+<ol>
+  <li><strong>Configuração do Projeto</strong>:
+    <ul>
+      <li><strong>Project</strong>: Maven Project (ou Gradle, dependendo da sua preferência).</li>
+      <li><strong>Language</strong>: Java.</li>
+      <li><strong>Spring Boot Version</strong>: Escolha a versão estável mais recente.</li>
+      <li><strong>Group</strong>: com.exemplo.</li>
+      <li><strong>Artifact</strong>: demo (ou o nome que preferir para o projeto).</li>
+      <li><strong>Dependencies</strong>: Adicione dependências como:
+        <ul>
+          <li><strong>Spring Web</strong> (para criar APIs RESTful).</li>
+          <li><strong>Spring Data JPA</strong> (para integração com banco de dados).</li>
+          <li><strong>H2 Database</strong> (banco de dados em memória para testes).</li>
+          <li><strong>Spring Boot DevTools</strong> (para facilitar o desenvolvimento).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Gerar o Projeto</strong>:
+Após preencher os campos, clique em “Generate” para baixar o projeto compactado. Extraia o arquivo e abra na sua IDE.</li>
+</ol>
+
+<hr />
+
+<h3 id="32-estrutura-do-projeto"><strong>3.2. Estrutura do Projeto</strong></h3>
+
+<p>Após criar o projeto, a estrutura do diretório será algo assim:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>demo/
+ ├── src/
+ │   ├── main/
+ │   │   ├── java/
+ │   │   │   └── com/
+ │   │   │       └── exemplo/
+ │   │   │           └── demo/
+ │   │   │               ├── DemoApplication.java
+ │   │   │               └── controllers/
+ │   │   │               └── models/
+ │   │   │               └── repositories/
+ │   │   │               └── services/
+ │   │   ├── resources/
+ │   │   │   ├── application.properties
+ │   │   │   └── static/
+ │   │   │   └── templates/
+ ├── pom.xml
+ └── .gitignore
+</code></pre></div></div>
+
+<h3 id="33-demoapplicationjava"><strong>3.3. <code class="language-plaintext highlighter-rouge">DemoApplication.java</code></strong></h3>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">DemoApplication.java</code> é a entrada principal da sua aplicação Spring Boot.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.demo</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.SpringApplication</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.SpringBootApplication</span><span class="o">;</span>
+
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoApplication</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">DemoApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>@SpringBootApplication</strong>: Esta anotação ativa várias funcionalidades, incluindo a configuração automática e a varredura de componentes (como controllers, services e repositórios).</li>
+</ul>
+
+<p>Para rodar a aplicação, basta executar a classe <code class="language-plaintext highlighter-rouge">DemoApplication.java</code>. O Spring Boot iniciará a aplicação, por padrão, em <strong>localhost:8080</strong>.</p>
+
+<hr />
+
+<h2 id="4-criando-uma-api-rest-com-spring-boot"><strong>4. Criando uma API REST com Spring Boot</strong></h2>
+
+<p>Agora vamos criar um exemplo simples de API REST que retorna dados de uma lista de “Produtos” usando o Spring Boot.</p>
+
+<h3 id="41-criando-o-modelo-entity"><strong>4.1. Criando o Modelo (Entity)</strong></h3>
+
+<p>Primeiro, criamos uma classe <code class="language-plaintext highlighter-rouge">Produto</code> que será usada como nosso modelo de dados:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.demo.models</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="c1">// Construtores, getters e setters</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="42-criando-o-controller"><strong>4.2. Criando o Controller</strong></h3>
+
+<p>Agora, criamos o <strong>controller</strong>, que será responsável por gerenciar as requisições HTTP para a nossa API.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.demo.controllers</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.exemplo.demo.models.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/produtos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="nf">obterProdutos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Produto</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="mi">1L</span><span class="o">,</span> <span class="s">"Produto 1"</span><span class="o">,</span> <span class="mf">10.0</span><span class="o">);</span>
+        <span class="nc">Produto</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="mi">2L</span><span class="o">,</span> <span class="s">"Produto 2"</span><span class="o">,</span> <span class="mf">20.0</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>@RestController</strong>: Essa anotação indica que a classe será um controlador REST e cada método retornará um corpo de resposta, geralmente em formato JSON.</li>
+  <li><strong>@GetMapping(“/produtos”)</strong>: Define que o método <code class="language-plaintext highlighter-rouge">obterProdutos</code> será responsável por atender requisições GET para o endpoint <code class="language-plaintext highlighter-rouge">/produtos</code>.</li>
+</ul>
+
+<h3 id="43-testando-a-api"><strong>4.3. Testando a API</strong></h3>
+
+<p>Agora, ao executar a aplicação, você pode acessar a API em <code class="language-plaintext highlighter-rouge">http://localhost:8080/produtos</code>, e a resposta será um JSON com a lista de produtos:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Produto 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"preco"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nome"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Produto 2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"preco"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="5-conectando-ao-banco-de-dados-com-spring-data-jpa"><strong>5. Conectando ao Banco de Dados com Spring Data JPA</strong></h2>
+
+<p>Agora, vamos adicionar a capacidade de persistir os dados em um banco de dados relacional utilizando o <strong>Spring Data JPA</strong>.</p>
+
+<h3 id="51-adicionando-dependências-no-pomxml"><strong>5.1. Adicionando Dependências no <code class="language-plaintext highlighter-rouge">pom.xml</code></strong></h3>
+
+<p>No arquivo <code class="language-plaintext highlighter-rouge">pom.xml</code>, adicione a dependência do <strong>Spring Data JPA</strong> e um banco de dados como o <strong>H2 Database</strong> (um banco em memória):</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="c">&lt;!-- Outras dependências --&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<h3 id="52-criando-o-repositório-jpa"><strong>5.2. Criando o Repositório JPA</strong></h3>
+
+<p>Agora, crie o repositório que permitirá interagir com o banco de dados.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.demo.repositories</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.exemplo.demo.models.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProdutoRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>A interface <code class="language-plaintext highlighter-rouge">ProdutoRepository</code> estende <code class="language-plaintext highlighter-rouge">JpaRepository</code>, que fornece várias operações prontas, como salvar, buscar e excluir objetos.</p>
+
+<h3 id="53-configuração-do-banco-de-dados"><strong>5.3. Configuração do Banco de Dados</strong></h3>
+
+<p>No arquivo <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code>, configure o banco de dados H2:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">password</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<h3 id="54-usando-o-repositório-no-controller"><strong>5.4. Usando o Repositório no Controller</strong></h3>
+
+<p>Agora, vamos modificar o <strong>controller</strong> para usar o repositório e persistir os dados:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.demo.controllers</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.exemplo.demo.models.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.exemplo.demo.repositories.ProdutoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">ProdutoRepository</span> <span class="n">produtoRepository</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/produtos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="nf">obterProdutos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">produtoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="55-testando-com-banco-de-dados"><strong>5.5. Testando com Banco de Dados</strong></h3>
+
+<p>Agora, os produtos serão armazenados no banco de dados H2. Você pode acessar a interface H2 em <code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code> e verificar o conteúdo do banco de dados.</p>
+
+<hr />
+
+<h2 id="6-conclusão"><strong>6. Conclusão</strong></h2>
+
+<p>Neste tutorial, você aprendeu os principais conceitos do <strong>Spring Boot</strong>:</p>
+
+<ul>
+  <li>Criando uma aplicação Spring Boot básica.</li>
+  <li>Criando uma API REST simples.</li>
+  <li>Usando o Spring Data JPA para persistir dados em um banco de dados.</li>
+</ul>
+
+<p>Spring Boot é uma excelente ferramenta para construir aplicações Java rapidamente, e você pode expandir esse tutorial com mais recursos, como autenticação, validação de dados e muito mais.</p>
+
+<p>O erro ocorre porque a classe <code class="language-plaintext highlighter-rouge">Produto</code> não está sendo gerenciada pelo Spring Data JPA como uma entidade. Para corrigir isso, você precisa adicionar a anotação <code class="language-plaintext highlighter-rouge">@Entity</code> e definir uma chave primária com <code class="language-plaintext highlighter-rouge">@Id</code>.</p>
+
+<p>Aqui está a correção na classe <code class="language-plaintext highlighter-rouge">Produto</code>:</p>
+
+<h3 id="correção-da-classe-produto"><strong>Correção da Classe Produto</strong></h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.exemplo.demo.models</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="c1">// Construtores, getters e setters</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h3 id="explicação-das-mudanças"><strong>Explicação das Mudanças</strong></h3>
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">@Entity</code></strong> → Define a classe <code class="language-plaintext highlighter-rouge">Produto</code> como uma entidade gerenciada pelo JPA.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">@Id</code></strong> → Define o campo <code class="language-plaintext highlighter-rouge">id</code> como a chave primária.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.IDENTITY)</code></strong> → Indica que o banco de dados deve gerar automaticamente o valor do <code class="language-plaintext highlighter-rouge">id</code>.</li>
+  <li><strong>Construtor Padrão</strong> → O JPA exige um construtor sem argumentos.</li>
+</ol>
+
+<p>🚀</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

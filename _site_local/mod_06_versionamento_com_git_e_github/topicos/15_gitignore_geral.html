@@ -1,0 +1,323 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_06_versionamento_com_git_e_github/topicos/15_gitignore_geral.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Gitignore | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Gitignore" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/15_gitignore_geral.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/15_gitignore_geral.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Gitignore" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Gitignore","url":"https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/15_gitignore_geral.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/" style="margin-left: 0.5rem;">Mod 06 versionamento com git e github</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Gitignore</span>
+          
+        
+      </nav>
+
+      <h1 id="gitignore">Gitignore</h1>
+
+<p>Arquivo <code class="language-plaintext highlighter-rouge">.gitignore</code> abrangente, organizado por seções, para todos os tipos de aplicações que você listou. Você pode copiar o conteúdo inteiro para um arquivo chamado <code class="language-plaintext highlighter-rouge">.gitignore</code> na raiz do seu repositório ou apenas usar as seções relevantes para seu projeto.</p>
+
+<p>Um arquivo <strong><code class="language-plaintext highlighter-rouge">.gitignore</code></strong> especifica arquivos e pastas que o Git deve ignorar e não rastrear. Isso é útil para evitar que arquivos de compilação, dependências, arquivos de configuração local e outros artefatos gerados automaticamente sejam enviados para o repositório.</p>
+
+<hr />
+
+<h3 id="arquivo-gitignore-consolidado">Arquivo <code class="language-plaintext highlighter-rouge">.gitignore</code> Consolidado</h3>
+
+<pre><code class="language-gitignore"># ===================================================================
+# GERAL: Sistema Operacional e Editores de Código
+# ===================================================================
+
+# Arquivos de sistema do macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Arquivos de sistema do Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Arquivos de log e bancos de dados temporários
+*.log
+*.sql
+*.sqlite
+*.tmp
+
+# Arquivos de IDEs e Editores
+../.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-project
+*.sublime-workspace
+
+# ===================================================================
+# Android (app_android)
+# ===================================================================
+*.apk
+*.aab
+*.ap_
+*.dex
+build/
+app/build/
+captures/
+.gradle/
+local.properties
+*.jks
+*.keystore
+
+# ===================================================================
+# Angular (app_angular)
+# ===================================================================
+/dist/
+/tmp/
+/out-tsc/
+/node_modules/
+.angular/
+coverage/
+# Descomente abaixo se seus arquivos de ambiente contiverem segredos
+# src/environments/environment.prod.ts
+# src/environments/environment.ts
+
+# ===================================================================
+# C &amp; C++ (app_c, app_c_csfml, app_c++, app_c++sfml)
+# ===================================================================
+# Arquivos compilados
+*.o
+*.obj
+*.so
+*.a
+*.dll
+*.lib
+*.dylib
+*.pdb
+*.gdb
+
+# Executáveis
+*.exe
+*.out
+*.app
+
+# Diretórios de build
+bin/
+build/
+obj/
+
+# ===================================================================
+# Flutter (app_flutter)
+# ===================================================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/
+android/.gradle/
+android/local.properties
+android/app/build/
+*.iml
+
+# ===================================================================
+# Go (app_go, app_go_fyne, app_go_gio, etc.)
+# ===================================================================
+# Binários
+*.exe
+*.exe~
+*.test
+*.out
+
+# Diretório de dependências (antigo)
+# vendor/
+
+# ===================================================================
+# Java (app_java, app_java_javafx, app_java_swing)
+# ===================================================================
+# Arquivos compilados
+*.class
+
+# Pacotes
+*.jar
+*.war
+*.ear
+
+# Diretórios de build (Maven, Gradle, etc.)
+target/
+build/
+bin/
+.gradle/
+
+# ===================================================================
+# JavaScript (app_js web node)
+# ===================================================================
+node_modules/
+dist/
+build/
+public/build/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+.env
+.env.local
+.env.*.local
+
+# ===================================================================
+# PHP (app_php)
+# ===================================================================
+vendor/
+composer.phar
+.env
+storage/framework/
+storage/logs/
+bootstrap/cache/
+
+# ===================================================================
+# Python (app_python, app_python_qt, app_python_tkinter)
+# ===================================================================
+# Ambientes virtuais
+.env
+.venv
+env/
+venv/
+
+# Bytecode e arquivos compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distribuição e pacotes
+build/
+dist/
+eggs/
+*.egg-info/
+*.egg
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# ===================================================================
+# Rust (app_rust, app_rust_gtk)
+# ===================================================================
+target/
+*.rlib
+*.rs.bk
+
+# ===================================================================
+# Scripts (app_bash, app_powershell)
+# ===================================================================
+# Arquivos de log e backup
+*.log
+*.tmp
+*.bak
+
+# Variáveis de ambiente e segredos
+*.env
+secrets.*
+config.local.*
+
+</code></pre>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

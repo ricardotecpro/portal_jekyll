@@ -1,0 +1,472 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_cpp.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SLIDE 27 CPP | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="SLIDE 27 CPP" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_cpp.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_cpp.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SLIDE 27 CPP" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"SLIDE 27 CPP","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_cpp.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/" style="margin-left: 0.5rem;">Poo</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Slide 27 cpp</span>
+          
+        
+      </nav>
+
+      <p>Sistema de cadastro de alunos em <strong>C++ com orientação a objetos (POO)</strong>:</p>
+
+<hr />
+
+<h2 id="-objetivo-do-exercício">✅ <strong>Objetivo do Exercício</strong></h2>
+
+<p>Criar um sistema simples para <strong>cadastrar alunos</strong>, utilizando conceitos de <strong>Programação Orientada a Objetos</strong> em C++. O sistema deve permitir:</p>
+
+<ul>
+  <li>
+    <p>Cadastrar dados básicos do aluno;</p>
+  </li>
+  <li>
+    <p>Registrar a média de notas;</p>
+  </li>
+  <li>
+    <p>Exibir as informações completas do aluno.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-1-inclusão-de-bibliotecas">📌 <strong>Etapa 1: Inclusão de bibliotecas</strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></code></pre></div></div>
+
+<h3 id="explicação">Explicação:</h3>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">#include &lt;iostream&gt;</code>: biblioteca que permite usar comandos de entrada e saída como <code class="language-plaintext highlighter-rouge">cin</code> e <code class="language-plaintext highlighter-rouge">cout</code>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">#include &lt;string&gt;</code>: permite usar a classe <code class="language-plaintext highlighter-rouge">string</code>, que armazena textos (como o nome do aluno).</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-2-utilização-do-namespace-padrão">📌 <strong>Etapa 2: Utilização do namespace padrão</strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="explicação-1">Explicação:</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">std</code> é o namespace padrão da biblioteca C++. Com <code class="language-plaintext highlighter-rouge">using namespace std;</code>, evitamos escrever <code class="language-plaintext highlighter-rouge">std::cout</code>, <code class="language-plaintext highlighter-rouge">std::cin</code>, etc. É uma forma de <strong>simplificar a sintaxe</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-3-definição-da-classe-aluno">📌 <strong>Etapa 3: Definição da Classe <code class="language-plaintext highlighter-rouge">Aluno</code></strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Aluno</span> <span class="p">{</span>
+<span class="nl">private:</span>
+    <span class="n">string</span> <span class="n">nome</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">idade</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">matricula</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">mediaNotas</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="explicação-2">Explicação:</h3>
+
+<ul>
+  <li>
+    <p>Criamos a <strong>classe <code class="language-plaintext highlighter-rouge">Aluno</code></strong>, que representa a estrutura de dados de um aluno.</p>
+  </li>
+  <li>
+    <p>Os <strong>atributos (variáveis)</strong> estão em <code class="language-plaintext highlighter-rouge">private</code> para garantir <strong>encapsulamento</strong> (princípio da POO que protege os dados da classe).</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-4-construtor-da-classe">📌 <strong>Etapa 4: Construtor da Classe</strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">public:</span>
+    <span class="n">Aluno</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">nome</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+        <span class="n">idade</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">matricula</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">mediaNotas</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="explicação-3">Explicação:</h3>
+
+<ul>
+  <li>
+    <p>O <strong>construtor</strong> inicializa os atributos com valores padrão.</p>
+  </li>
+  <li>
+    <p>Ele é chamado automaticamente quando criamos um objeto do tipo <code class="language-plaintext highlighter-rouge">Aluno</code>.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-5-método-cadastrardados">📌 <strong>Etapa 5: Método <code class="language-plaintext highlighter-rouge">cadastrarDados()</code></strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">void</span> <span class="nf">cadastrarDados</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite o nome do aluno: "</span><span class="p">;</span>
+        <span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">nome</span><span class="p">);</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite a idade do aluno: "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">idade</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite o número de matrícula do aluno: "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">matricula</span><span class="p">;</span>
+        <span class="n">cin</span><span class="p">.</span><span class="n">ignore</span><span class="p">();</span> <span class="c1">// limpa o buffer do teclado</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="explicação-4">Explicação:</h3>
+
+<ul>
+  <li>
+    <p>Permite ao usuário <strong>inserir os dados do aluno</strong>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">getline(cin, nome)</code> é usado para permitir nomes com espaços.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">cin.ignore()</code> limpa o “Enter” deixado pelo <code class="language-plaintext highlighter-rouge">cin</code>, evitando erros em próximas entradas de texto.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-6-método-cadastrarmedianotas">📌 <strong>Etapa 6: Método <code class="language-plaintext highlighter-rouge">cadastrarMediaNotas()</code></strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">void</span> <span class="nf">cadastrarMediaNotas</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Digite a média de notas do aluno: "</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">mediaNotas</span><span class="p">;</span>
+        <span class="n">cin</span><span class="p">.</span><span class="n">ignore</span><span class="p">();</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="explicação-5">Explicação:</h3>
+
+<ul>
+  <li>
+    <p>Permite inserir a média de notas.</p>
+  </li>
+  <li>
+    <p>Também usa <code class="language-plaintext highlighter-rouge">cin.ignore()</code> por segurança, caso o próximo input seja do tipo texto.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-7-método-exibirinformacoes">📌 <strong>Etapa 7: Método <code class="language-plaintext highlighter-rouge">exibirInformacoes()</code></strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">void</span> <span class="nf">exibirInformacoes</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="err">
+</span><span class="s">--- Informações do Aluno ---</span><span class="err">
+</span><span class="s">"</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Nome: "</span> <span class="o">&lt;&lt;</span> <span class="n">nome</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Idade: "</span> <span class="o">&lt;&lt;</span> <span class="n">idade</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Matrícula: "</span> <span class="o">&lt;&lt;</span> <span class="n">matricula</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Média de Notas: "</span> <span class="o">&lt;&lt;</span> <span class="n">mediaNotas</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="explicação-6">Explicação:</h3>
+
+<ul>
+  <li>
+    <p>Exibe todos os dados armazenados no objeto da classe.</p>
+  </li>
+  <li>
+    <p>Usamos <code class="language-plaintext highlighter-rouge">cout</code> com <code class="language-plaintext highlighter-rouge">endl</code> para formatar a saída de forma clara.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-8-função-main">📌 <strong>Etapa 8: Função <code class="language-plaintext highlighter-rouge">main()</code></strong></h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Aluno</span> <span class="n">aluno1</span><span class="p">;</span>
+
+    <span class="n">aluno1</span><span class="p">.</span><span class="n">cadastrarDados</span><span class="p">();</span>
+    <span class="n">aluno1</span><span class="p">.</span><span class="n">cadastrarMediaNotas</span><span class="p">();</span>
+    <span class="n">aluno1</span><span class="p">.</span><span class="n">exibirInformacoes</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="explicação-7">Explicação:</h3>
+
+<ul>
+  <li>
+    <p>Criamos um <strong>objeto da classe <code class="language-plaintext highlighter-rouge">Aluno</code></strong> chamado <code class="language-plaintext highlighter-rouge">aluno1</code>.</p>
+  </li>
+  <li>
+    <p>Chamamos os métodos da classe para interagir com o objeto:</p>
+
+    <ul>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">cadastrarDados()</code> → coleta os dados básicos.</p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">cadastrarMediaNotas()</code> → registra a média.</p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">exibirInformacoes()</code> → mostra tudo o que foi inserido.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-conceitos-de-poo-utilizados">🧠 <strong>Conceitos de POO Utilizados</strong></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Conceito</th>
+      <th>Aplicação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Classe</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">Aluno</code>, que representa um modelo de dados.</td>
+    </tr>
+    <tr>
+      <td><strong>Objeto</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">aluno1</code>, instância concreta da classe <code class="language-plaintext highlighter-rouge">Aluno</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Encapsulamento</strong></td>
+      <td>Atributos privados e acesso por métodos públicos.</td>
+    </tr>
+    <tr>
+      <td><strong>Métodos</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">cadastrarDados</code>, <code class="language-plaintext highlighter-rouge">cadastrarMediaNotas</code>, <code class="language-plaintext highlighter-rouge">exibirInformacoes</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Construtor</strong></td>
+      <td>Método que inicializa o objeto.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="️-próximos-passos-para-prática-avançada">🛠️ <strong>Próximos Passos (para prática avançada)</strong></h2>
+
+<p>Você pode propor como exercício extra:</p>
+
+<ul>
+  <li>
+    <p>Permitir o cadastro de <strong>vários alunos</strong> usando <code class="language-plaintext highlighter-rouge">vetores</code> ou <code class="language-plaintext highlighter-rouge">listas</code>.</p>
+  </li>
+  <li>
+    <p>Criar <strong>validações</strong> (ex: idade &gt; 0).</p>
+  </li>
+  <li>
+    <p>Usar <strong>arquivos</strong> para armazenar os dados permanentemente.</p>
+  </li>
+  <li>
+    <p>Criar um <strong>menu interativo</strong>.</p>
+  </li>
+</ul>
+
+<hr />
+
+<p>xemplo simples e funcional de implementação em <strong>C++</strong> de um sistema de cadastro de alunos com base na descrição do exercício:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+using namespace std;
+
+class Aluno {
+private:
+    string nome;
+    int idade;
+    int matricula;
+    float mediaNotas;
+
+public:
+    // Construtor padrão
+    Aluno() {
+        nome = "";
+        idade = 0;
+        matricula = 0;
+        mediaNotas = 0.0;
+    }
+
+    // Método para cadastrar os dados do aluno
+    void cadastrarDados() {
+        cout &lt;&lt; "Digite o nome do aluno: ";
+        getline(cin, nome);
+        cout &lt;&lt; "Digite a idade do aluno: ";
+        cin &gt;&gt; idade;
+        cout &lt;&lt; "Digite o número de matrícula do aluno: ";
+        cin &gt;&gt; matricula;
+        cin.ignore(); // limpar o buffer após cin
+    }
+
+    // Método para cadastrar a média de notas
+    void cadastrarMediaNotas() {
+        cout &lt;&lt; "Digite a média de notas do aluno: ";
+        cin &gt;&gt; mediaNotas;
+        cin.ignore();
+    }
+
+    // Método para exibir as informações do aluno
+    void exibirInformacoes() {
+        cout &lt;&lt; "
+--- Informações do Aluno ---
+";
+        cout &lt;&lt; "Nome: " &lt;&lt; nome &lt;&lt; endl;
+        cout &lt;&lt; "Idade: " &lt;&lt; idade &lt;&lt; endl;
+        cout &lt;&lt; "Matrícula: " &lt;&lt; matricula &lt;&lt; endl;
+        cout &lt;&lt; "Média de Notas: " &lt;&lt; mediaNotas &lt;&lt; endl;
+    }
+};
+
+// Função principal
+int main() {
+    Aluno aluno1;
+
+    aluno1.cadastrarDados();
+    aluno1.cadastrarMediaNotas();
+    aluno1.exibirInformacoes();
+
+    return 0;
+}
+
+</code></pre></div></div>
+<h3 id="explicação-do-código">Explicação do Código:</h3>
+<ul>
+  <li><strong>Inclusão de Bibliotecas</strong>: <code class="language-plaintext highlighter-rouge">#include &lt;iostream&gt;</code> e <code class="language-plaintext highlighter-rouge">#include &lt;string&gt;</code> são usadas para entrada/saída e manipulação de strings.</li>
+  <li><strong>Namespace</strong>: <code class="language-plaintext highlighter-rouge">using namespace std;</code> simplifica o uso de <code class="language-plaintext highlighter-rouge">cout</code>, <code class="language-plaintext highlighter-rouge">cin</code>, etc.</li>
+  <li><strong>Classe <code class="language-plaintext highlighter-rouge">Aluno</code></strong>: Define os atributos e métodos para manipular os dados do aluno.</li>
+  <li><strong>Construtor</strong>: Inicializa os atributos com valores padrão.</li>
+  <li><strong>Métodos</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">cadastrarDados()</code> coleta os dados do aluno.</li>
+      <li><code class="language-plaintext highlighter-rouge">cadastrarMediaNotas()</code> registra a média de notas.</li>
+      <li><code class="language-plaintext highlighter-rouge">exibirInformacoes()</code> exibe todos os dados coletados.</li>
+    </ul>
+  </li>
+  <li><strong>Função <code class="language-plaintext highlighter-rouge">main()</code></strong>: Cria um objeto <code class="language-plaintext highlighter-rouge">aluno1</code>, chama os métodos para coletar e exibir os dados.
+    <h3 id="compilação-e-execução">Compilação e Execução:</h3>
+    <p>Para compilar e executar o código, você pode usar os seguintes comandos no terminal:</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g++ <span class="nt">-o</span> cadastro_alunos cadastro_alunos.cpp
+./cadastro_alunos
+</code></pre></div>    </div>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

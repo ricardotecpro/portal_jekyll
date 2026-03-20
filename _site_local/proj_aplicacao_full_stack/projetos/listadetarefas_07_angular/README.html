@@ -1,0 +1,191 @@
+<h1 id="guia-didático-projeto-lista-de-tarefas-full-stack">Guia Didático: Projeto Lista de Tarefas (Full Stack)</h1>
+
+<p>Este guia foi elaborado para professores e alunos iniciantes em computação. Ele apresenta o desenvolvimento de uma aplicação web completa (Full Stack) utilizando tecnologias modernas e amplamente adotadas no mercado: <strong>Spring Boot (Java)</strong> para o Backend e <strong>Angular</strong> para o Frontend.</p>
+
+<h2 id="-objetivos-de-aprendizagem">🎯 Objetivos de Aprendizagem</h2>
+
+<p>Ao final deste projeto, o aluno será capaz de:</p>
+<ol>
+  <li>Compreender a arquitetura <strong>Cliente-Servidor</strong> e o padrão <strong>MVC</strong>.</li>
+  <li>Desenvolver uma <strong>API REST</strong> robusta com Java e Spring Boot.</li>
+  <li>Criar uma interface web moderna (<strong>SPA</strong>) com Angular.</li>
+  <li>Entender conceitos de <strong>Injeção de Dependência</strong>, <strong>JPA/Hibernate</strong> e <strong>Componentização</strong>.</li>
+  <li>Aplicar boas práticas como <strong>SOLID</strong>, <strong>Clean Code</strong> e <strong>Testes Automatizados</strong>.</li>
+</ol>
+
+<hr />
+
+<h2 id="️-tecnologias-utilizadas">🛠️ Tecnologias Utilizadas</h2>
+
+<h3 id="backend-o-cérebro-da-aplicação">Backend (O “Cérebro” da Aplicação)</h3>
+<ul>
+  <li><strong>Java 21</strong>: Linguagem de programação robusta e tipada.</li>
+  <li><strong>Spring Boot 3</strong>: Framework que facilita a criação de aplicações Java.</li>
+  <li><strong>H2 Database</strong>: Banco de dados em memória (ideal para aprendizado e testes).</li>
+  <li><strong>Spring Data JPA</strong>: Facilita a comunicação com o banco de dados.</li>
+  <li><strong>JUnit 5 &amp; Mockito</strong>: Ferramentas para testes automatizados.</li>
+</ul>
+
+<h3 id="frontend-a-cara-da-aplicação">Frontend (A “Cara” da Aplicação)</h3>
+<ul>
+  <li><strong>Angular 18+</strong>: Framework para criação de interfaces dinâmicas.</li>
+  <li><strong>TypeScript</strong>: Superset do JavaScript que adiciona tipagem estática.</li>
+  <li><strong>HTML &amp; CSS</strong>: Estrutura e estilização das páginas.</li>
+</ul>
+
+<hr />
+
+<h2 id="-passo-1-configuração-do-ambiente">🚀 Passo 1: Configuração do Ambiente</h2>
+
+<p>Antes de começar, certifique-se de ter instalado:</p>
+<ol>
+  <li><strong>JDK 21</strong> (Java Development Kit).</li>
+  <li><strong>Node.js</strong> (Versão LTS).</li>
+  <li><strong>Maven</strong> (Gerenciador de dependências Java).</li>
+  <li><strong>Angular CLI</strong>: Instale via terminal com <code class="language-plaintext highlighter-rouge">npm install -g @angular/cli</code>.</li>
+  <li><strong>IDE</strong>: Recomendamos IntelliJ IDEA (Backend) e VS Code (Frontend).</li>
+</ol>
+
+<hr />
+
+<h2 id="️-passo-2-o-backend-api">🏗️ Passo 2: O Backend (API)</h2>
+
+<p>O Backend é responsável por processar as regras de negócio e salvar os dados.</p>
+
+<h3 id="estrutura-do-projeto-backend">Estrutura do Projeto (<code class="language-plaintext highlighter-rouge">backend/</code>)</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api</code>: Código fonte Java.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">model/</code>: Define as entidades (ex: <code class="language-plaintext highlighter-rouge">Tarefa</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">repository/</code>: Interface de acesso ao banco de dados.</li>
+      <li><code class="language-plaintext highlighter-rouge">service/</code>: Regras de negócio.</li>
+      <li><code class="language-plaintext highlighter-rouge">controller/</code>: Recebe as requisições HTTP (GET, POST, etc.).</li>
+      <li><code class="language-plaintext highlighter-rouge">dto/</code>: Objetos de transferência de dados (Data Transfer Objects).</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">src/main/resources</code>: Configurações.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">application.properties</code>: Configurações gerais.</li>
+      <li><code class="language-plaintext highlighter-rouge">application-dev.properties</code>: Configurações específicas de desenvolvimento (banco H2).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="como-rodar-o-backend">Como Rodar o Backend</h3>
+
+<ol>
+  <li>Abra o terminal na pasta <code class="language-plaintext highlighter-rouge">backend</code>.</li>
+  <li>Execute o comando:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run <span class="s2">"-Dspring.profiles.active=dev"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>O servidor iniciará na porta <strong>8088</strong>.</li>
+  <li>Acesse o Console do Banco de Dados H2 em: <code class="language-plaintext highlighter-rouge">http://localhost:8088/h2-console</code>
+    <ul>
+      <li>URL JDBC: <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:tarefasdb</code></li>
+      <li>Usuário: <code class="language-plaintext highlighter-rouge">sa</code></li>
+      <li>Senha: (vazio)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="testando-a-api">Testando a API</h3>
+
+<p>Você pode testar os endpoints usando o Postman ou <code class="language-plaintext highlighter-rouge">curl</code>:</p>
+
+<ul>
+  <li><strong>Listar Tarefas</strong>: <code class="language-plaintext highlighter-rouge">GET http://localhost:8088/tarefas</code></li>
+  <li><strong>Criar Tarefa</strong>: <code class="language-plaintext highlighter-rouge">POST http://localhost:8088/tarefas</code> (JSON no corpo)</li>
+</ul>
+
+<hr />
+
+<h2 id="-passo-3-o-frontend-interface">🎨 Passo 3: O Frontend (Interface)</h2>
+
+<p>O Frontend é o que o usuário vê e interage. Ele consome a API do Backend.</p>
+
+<h3 id="estrutura-do-projeto-frontend">Estrutura do Projeto (<code class="language-plaintext highlighter-rouge">frontend/</code>)</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">src/app/</code>: Código fonte da aplicação.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">components/</code>: Componentes visuais (Lista, Formulário).</li>
+      <li><code class="language-plaintext highlighter-rouge">models/</code>: Definição dos tipos de dados (Interface <code class="language-plaintext highlighter-rouge">Tarefa</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">services/</code>: Comunicação com o Backend (<code class="language-plaintext highlighter-rouge">TarefaService</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">app.routes.ts</code>: Definição das rotas (navegação).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="como-rodar-o-frontend">Como Rodar o Frontend</h3>
+
+<ol>
+  <li>Abra um novo terminal na pasta <code class="language-plaintext highlighter-rouge">frontend</code>.</li>
+  <li>Instale as dependências (apenas na primeira vez):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Inicie o servidor de desenvolvimento:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng serve
+</code></pre></div>    </div>
+  </li>
+  <li>Acesse a aplicação no navegador: <code class="language-plaintext highlighter-rouge">http://localhost:4200</code></li>
+</ol>
+
+<hr />
+
+<h2 id="-passo-4-testes-automatizados">🧪 Passo 4: Testes Automatizados</h2>
+
+<p>Testes garantem que sua aplicação funciona como esperado e facilitam a manutenção.</p>
+
+<h3 id="testes-de-backend-junit">Testes de Backend (JUnit)</h3>
+<p>No terminal do <code class="language-plaintext highlighter-rouge">backend</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nb">test</span>
+</code></pre></div></div>
+<p>Isso executará testes unitários e de integração para garantir que a API está correta.</p>
+
+<h3 id="testes-de-frontend-karmajasmine">Testes de Frontend (Karma/Jasmine)</h3>
+<p>No terminal do <code class="language-plaintext highlighter-rouge">frontend</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng <span class="nb">test</span> <span class="nt">--watch</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div></div>
+<p>Isso verificará se os componentes e serviços do Angular estão funcionando corretamente.</p>
+
+<hr />
+
+<h2 id="-conceitos-chave-para-sala-de-aula">📚 Conceitos Chave para Sala de Aula</h2>
+
+<h3 id="1-mvc-model-view-controller">1. MVC (Model-View-Controller)</h3>
+<ul>
+  <li><strong>Model</strong>: <code class="language-plaintext highlighter-rouge">Tarefa</code> (Java) e <code class="language-plaintext highlighter-rouge">tarefa.model.ts</code> (TypeScript). Representa os dados.</li>
+  <li><strong>View</strong>: HTML/CSS do Angular. É a interface visual.</li>
+  <li><strong>Controller</strong>: <code class="language-plaintext highlighter-rouge">TarefaController</code> (Java). Gerencia as requisições e conecta Model e View.</li>
+</ul>
+
+<h3 id="2-api-rest">2. API REST</h3>
+<p>A comunicação entre Frontend e Backend segue o padrão REST, utilizando verbos HTTP:</p>
+<ul>
+  <li><strong>GET</strong>: Buscar dados.</li>
+  <li><strong>POST</strong>: Criar novos dados.</li>
+  <li><strong>PUT</strong>: Atualizar dados completos.</li>
+  <li><strong>PATCH</strong>: Atualizar dados parciais (ex: apenas o status).</li>
+  <li><strong>DELETE</strong>: Remover dados.</li>
+</ul>
+
+<h3 id="3-injeção-de-dependência">3. Injeção de Dependência</h3>
+<p>O Spring Boot (<code class="language-plaintext highlighter-rouge">@Autowired</code>) e o Angular (Construtor) gerenciam automaticamente as dependências das classes, facilitando o desacoplamento e os testes.</p>
+
+<hr />
+
+<h2 id="-exercícios-sugeridos-para-alunos">📝 Exercícios Sugeridos para Alunos</h2>
+
+<ol>
+  <li><strong>Adicionar Prioridade</strong>: Adicione um campo <code class="language-plaintext highlighter-rouge">prioridade</code> (Alta, Média, Baixa) na Tarefa. Atualize o Backend (Model, DTO, Controller) e o Frontend (Interface, Formulário).</li>
+  <li><strong>Filtros</strong>: Crie botões no Frontend para filtrar tarefas por “Todas”, “Pendentes” e “Concluídas”.</li>
+  <li><strong>Validação</strong>: Melhore as mensagens de erro quando o usuário tentar criar uma tarefa sem título.</li>
+</ol>
+
+<hr />
+
+<p><strong>Bom aprendizado!</strong> 🚀</p>
+

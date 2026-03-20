@@ -1,0 +1,311 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_java.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>📘 Sistema de Cadastro de Alunos em Java (POO) | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="📘 Sistema de Cadastro de Alunos em Java (POO)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_java.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_java.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="📘 Sistema de Cadastro de Alunos em Java (POO)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"📘 Sistema de Cadastro de Alunos em Java (POO)","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/slide_27_java.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/poo/" style="margin-left: 0.5rem;">Poo</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 📘 sistema de cadastro de alunos em java (poo)</span>
+          
+        
+      </nav>
+
+      <h2 id="-sistema-de-cadastro-de-alunos-em-java-poo">📘 Sistema de Cadastro de Alunos em Java (POO)</h2>
+
+<hr />
+
+<h3 id="-objetivo">🧩 <strong>Objetivo</strong></h3>
+
+<p>Criar uma aplicação Java simples usando <strong>Programação Orientada a Objetos (POO)</strong> que permita:</p>
+
+<ul>
+  <li>
+    <p>Cadastrar dados de um aluno</p>
+  </li>
+  <li>
+    <p>Cadastrar a média de notas</p>
+  </li>
+  <li>
+    <p>Exibir todas as informações do aluno</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapas-do-projeto">🚀 Etapas do Projeto</h2>
+
+<hr />
+
+<pre><code class="language-mermaid">classDiagram
+    class Aluno {
+        - String nome
+        - int idade
+        - int matricula
+        - float media
+        + void cadastrarDados(String, int, int)
+        + void cadastrarMediaNotas(float)
+        + void exibirInformacoes()
+    }
+    class Main {
+        + void main(String[])
+    }
+    Main --&gt; Aluno : uses
+</code></pre>
+
+<h3 id="1️⃣-criação-da-classe-aluno">1️⃣ <strong>Criação da Classe <code class="language-plaintext highlighter-rouge">Aluno</code></strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Aluno</span> <span class="o">{</span>
+    <span class="c1">// Atributos (variáveis de instância)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">matricula</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">float</span> <span class="n">media</span><span class="o">;</span>
+
+    <span class="c1">// Método para cadastrar os dados básicos</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cadastrarDados</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">,</span> <span class="kt">int</span> <span class="n">matricula</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">idade</span> <span class="o">=</span> <span class="n">idade</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">matricula</span> <span class="o">=</span> <span class="n">matricula</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para cadastrar a média de notas</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cadastrarMediaNotas</span><span class="o">(</span><span class="kt">float</span> <span class="n">media</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">media</span> <span class="o">=</span> <span class="n">media</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para exibir todas as informações</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">exibirInformacoes</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"=== DADOS DO ALUNO ==="</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome: "</span> <span class="o">+</span> <span class="n">nome</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Idade: "</span> <span class="o">+</span> <span class="n">idade</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Matrícula: "</span> <span class="o">+</span> <span class="n">matricula</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Média de notas: "</span> <span class="o">+</span> <span class="n">media</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Objeto Aluno</p>
+
+<pre><code class="language-mermaid">flowchart TD
+    A[Start] --&gt; B[Criar objeto Aluno]
+    B --&gt; C[Capturar nome, idade, matrícula]
+    C --&gt; D["Chamar aluno.cadastrarDados()"]
+    D --&gt; E[Capturar média]
+    E --&gt; F["Chamar aluno.cadastrarMediaNotas()"]
+    F --&gt; G["Chamar aluno.exibirInformacoes()"]
+    G --&gt; H[End]
+</code></pre>
+
+<h3 id="2️⃣-criação-da-classe-principal-main">2️⃣ <strong>Criação da Classe Principal (<code class="language-plaintext highlighter-rouge">Main</code>)</strong></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">Aluno</span> <span class="n">aluno</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Aluno</span><span class="o">();</span>
+
+        <span class="c1">// Entrada de dados</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o nome do aluno: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a idade do aluno: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o número de matrícula: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">matricula</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="n">aluno</span><span class="o">.</span><span class="na">cadastrarDados</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">idade</span><span class="o">,</span> <span class="n">matricula</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a média de notas: "</span><span class="o">);</span>
+        <span class="kt">float</span> <span class="n">media</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextFloat</span><span class="o">();</span>
+
+        <span class="n">aluno</span><span class="o">.</span><span class="na">cadastrarMediaNotas</span><span class="o">(</span><span class="n">media</span><span class="o">);</span>
+
+        <span class="c1">// Saída de dados</span>
+        <span class="n">aluno</span><span class="o">.</span><span class="na">exibirInformacoes</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-explicação-por-etapas">💡 Explicação por Etapas</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Etapa</th>
+      <th>Conceito Java</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">private</code></td>
+      <td>Encapsulamento: restringe acesso direto aos atributos</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">public void cadastrar...()</code></td>
+      <td>Métodos públicos para manipular os dados</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Scanner</code></td>
+      <td>Entrada de dados via console</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">System.out.println</code></td>
+      <td>Impressão de informações</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-arquitetura-do-projeto">📄 Arquitetura do Projeto</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/src
+ ├── Main.java
+ └── Aluno.java
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-fluxograma-lógica-do-programa">📊 Fluxograma (Lógica do Programa)</h2>
+
+<p>Você pode usar o mesmo fluxograma que criamos em PlantUML anteriormente para este projeto em Java, pois a <strong>lógica de execução é equivalente</strong> à versão C++:</p>
+
+<pre><code class="language-mermaid">flowchart TD
+    A[Início] --&gt; B["Criar objeto aluno (new Aluno)"]
+    B --&gt; C[Capturar nome, idade, matrícula]
+    C --&gt; D["Chamar aluno.cadastrarDados()"]
+    D --&gt; E[Capturar média]
+    E --&gt; F["Chamar aluno.cadastrarMediaNotas()"]
+    F --&gt; G["Chamar aluno.exibirInformacoes()"]
+    G --&gt; H[Fim]
+</code></pre>
+
+<hr />
+
+<h2 id="-o-que-os-alunos-aprendem-com-esse-exercício">✅ O que os alunos aprendem com esse exercício?</h2>
+
+<ul>
+  <li>
+    <p><strong>Encapsulamento</strong></p>
+  </li>
+  <li>
+    <p><strong>Criação e uso de classes e objetos</strong></p>
+  </li>
+  <li>
+    <p><strong>Entrada e saída de dados</strong></p>
+  </li>
+  <li>
+    <p><strong>Separação de responsabilidades</strong></p>
+  </li>
+  <li>
+    <p><strong>Boa prática de código limpo</strong></p>
+  </li>
+</ul>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

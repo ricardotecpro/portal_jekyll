@@ -1,0 +1,111 @@
+<h1 id="instanciação-e-alocação-dinâmica-de-memória-stack-vs-heap">Instanciação e Alocação Dinâmica de Memória: Stack vs Heap</h1>
+
+<p>A <strong>instanciação</strong> em programação refere-se ao processo de criação de uma instância (ou objeto) de uma classe ou estrutura de dados em tempo de execução. A alocação dinâmica de memória, por sua vez, envolve a alocação de memória durante a execução do programa, permitindo que o tamanho e a quantidade de memória necessária possam ser definidos em tempo de execução. Esse processo ocorre principalmente nas <strong>memórias stack</strong> e <strong>heap</strong>.</p>
+
+<p>Vamos explicar isso de forma mais detalhada:</p>
+
+<h3 id="memória-stack-pilha">Memória Stack (Pilha)</h3>
+
+<ul>
+  <li>
+    <p><strong>O que é?</strong>: A memória stack é uma região da memória utilizada para armazenar variáveis locais e informações relacionadas à execução das funções (como o endereço de retorno de uma função).</p>
+  </li>
+  <li>
+    <p><strong>Como funciona?</strong>: A alocação de memória na stack segue o princípio <strong>LIFO (Last In, First Out)</strong>, ou seja, o último item alocado é o primeiro a ser desalocado. Quando uma função é chamada, suas variáveis locais são empurradas para a stack. Quando a função termina, as variáveis locais são removidas da stack automaticamente.</p>
+  </li>
+  <li><strong>Características</strong>:
+    <ul>
+      <li>A alocação e desalocação de memória na stack são rápidas e automáticas.</li>
+      <li>A memória na stack é de tamanho limitado.</li>
+      <li>A memória é desalocada assim que a função termina.</li>
+      <li>Variáveis locais e parâmetros de função geralmente são armazenados aqui.</li>
+    </ul>
+  </li>
+  <li><strong>Exemplo em C</strong>:
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">minhaFuncao</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>  <span class="c1">// 'a' é alocado na stack</span>
+    <span class="c1">// a alocação de 'a' é automaticamente liberada quando a função termina</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="memória-heap">Memória Heap</h3>
+
+<ul>
+  <li>
+    <p><strong>O que é?</strong>: A memória heap é uma região da memória usada para alocar dados de forma dinâmica durante a execução do programa. Diferente da stack, a memória heap permite que a alocação e a desalocação ocorram em qualquer ordem.</p>
+  </li>
+  <li>
+    <p><strong>Como funciona?</strong>: A alocação dinâmica de memória é feita através de funções específicas (como <code class="language-plaintext highlighter-rouge">malloc</code>, <code class="language-plaintext highlighter-rouge">calloc</code>, <code class="language-plaintext highlighter-rouge">new</code> em C/C++). A memória alocada na heap precisa ser liberada manualmente pelo programador (com <code class="language-plaintext highlighter-rouge">free</code> ou <code class="language-plaintext highlighter-rouge">delete</code>), caso contrário, pode ocorrer <strong>vazamento de memória</strong> (memory leak).</p>
+  </li>
+  <li><strong>Características</strong>:
+    <ul>
+      <li>A alocação e desalocação de memória são mais lentas que na stack.</li>
+      <li>A memória não é automaticamente liberada; o programador deve gerenciar sua liberação.</li>
+      <li>O tamanho da memória disponível é muito maior do que na stack.</li>
+      <li>Pode ser usado para armazenar grandes blocos de dados ou objetos cujo tamanho não é conhecido em tempo de compilação.</li>
+    </ul>
+  </li>
+  <li><strong>Exemplo em C</strong>:
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">minhaFuncao</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>  <span class="c1">// 'p' aloca memória na heap</span>
+    <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>  <span class="c1">// A memória deve ser liberada manualmente</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="diferenças-entre-stack-e-heap">Diferenças entre Stack e Heap</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Característica</th>
+      <th>Stack</th>
+      <th>Heap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tipo de alocação</strong></td>
+      <td>Estática (pré-determinada)</td>
+      <td>Dinâmica (definida em tempo de execução)</td>
+    </tr>
+    <tr>
+      <td><strong>Velocidade de alocação</strong></td>
+      <td>Muito rápida</td>
+      <td>Relativamente lenta</td>
+    </tr>
+    <tr>
+      <td><strong>Gerenciamento</strong></td>
+      <td>Automático (desalocação quando a função termina)</td>
+      <td>Manual (requere <code class="language-plaintext highlighter-rouge">free</code> ou <code class="language-plaintext highlighter-rouge">delete</code>)</td>
+    </tr>
+    <tr>
+      <td><strong>Limite de tamanho</strong></td>
+      <td>Limitado (tamanho pequeno)</td>
+      <td>Muito maior (limite depende do sistema operacional)</td>
+    </tr>
+    <tr>
+      <td><strong>Uso típico</strong></td>
+      <td>Variáveis locais, parâmetros de função</td>
+      <td>Objetos grandes, estruturas de dados dinâmicas</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="conclusão">Conclusão</h3>
+
+<ul>
+  <li><strong>Stack</strong>: Usada para armazenar variáveis locais e dados temporários. A alocação e desalocação são rápidas e automáticas.</li>
+  <li><strong>Heap</strong>: Usada para alocar memória de forma dinâmica e flexível, onde o programador deve gerenciar a memória manualmente para evitar vazamentos.</li>
+</ul>
+
+<p>Essa distinção é importante, especialmente em linguagens como C e C++, onde o controle explícito da memória é essencial.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

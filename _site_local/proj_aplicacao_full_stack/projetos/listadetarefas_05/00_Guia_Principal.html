@@ -1,0 +1,51 @@
+<h1 id="️-guia-arquitetural-refatorando-o-sistema-full-stack-v3">🏛️ Guia Arquitetural: Refatorando o Sistema Full Stack v3</h1>
+
+<h2 id="-visão-geral-e-objetivos-da-refatoração">🎯 Visão Geral e Objetivos da Refatoração</h2>
+<p>Este guia assume o papel de uma revisão de arquitetura e engenharia de software sobre o projeto “Lista de Tarefas”. O objetivo não é apenas construir, mas refatorar e aprimorar a solução existente, aplicando princípios de <strong>Clean Code</strong>, <strong>SOLID</strong> e padrões de design modernos como <strong>DTOs (Data Transfer Objects)</strong> e <strong>MVVM (Model-View-ViewModel)</strong>.</p>
+
+<p>Vamos transformar o código funcional em um código <strong>profissional</strong>, <strong>escalável</strong> e <strong>fácil de manter</strong>, melhorando a experiência do usuário em cada plataforma de acordo com as melhores práticas de mercado.</p>
+
+<h2 id="️-arquitetura-proposta">🗺️ Arquitetura Proposta</h2>
+<p>A arquitetura geral de serviços e clientes permanece, mas refinaremos as camadas internas de cada componente para aumentar o desacoplamento e a clareza.</p>
+
+<pre><code class="language-mermaid">graph TD
+    subgraph "🎛️ Gerenciamento e Automação"
+        Script["🛠️ Painel de Controle (listadetarefas-painel.ps1)"]
+    end
+
+    subgraph "📱 Clientes (Frontends)"
+        Web["💻 Frontend Web (Angular)"]
+        Desktop["🖥️ Frontend Desktop (JavaFX)"]
+        Mobile["📱 Frontend Mobile (Android)"]
+    end
+
+    subgraph "⚙️ Serviços (Backend)"
+        API["🔌 Backend API (Spring Boot)"]
+        DB[("🗄️ Banco de Dados Em Memória H2")]
+    end
+
+    %% Conexões de Dados
+    Web --&gt;|Requisições HTTP/JSON| API
+    Desktop --&gt;|Requisições HTTP/JSON| API
+    Mobile --&gt;|Requisições HTTP/JSON| API
+    API --- DB
+</code></pre>
+
+<h3 id="️-estrutura-de-módulos">🗂️ Estrutura de Módulos</h3>
+<p>Este guia está dividido nos seguintes módulos:</p>
+
+<ol>
+  <li><strong>Backend (API) com Spring Boot:</strong> Foco em robustez, desacoplamento e segurança.</li>
+  <li><strong>Frontend (Web) com Angular:</strong> Foco em componentização clara e experiência de usuário fluida.</li>
+  <li><strong>Desktop com JavaFX:</strong> Foco em interações nativas e performance.</li>
+  <li><strong>Mobile com Android:</strong> Foco em padrões de UI modernos e arquitetura MVVM.</li>
+  <li><strong>Automação com PowerShell:</strong> Centralização do gerenciamento do ambiente.</li>
+  <li><strong>Análise Arquitetural e Conclusão:</strong> Revisão das melhorias e sugestões para o futuro.</li>
+</ol>
+
+<p>Continue para o próximo módulo para começar a refatoração do Backend.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

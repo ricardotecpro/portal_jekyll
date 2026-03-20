@@ -1,0 +1,516 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/17_linguagem_go.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linguagem Go (Golang) 🐹 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Linguagem Go (Golang) 🐹" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/17_linguagem_go.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/17_linguagem_go.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linguagem Go (Golang) 🐹" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Linguagem Go (Golang) 🐹","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/17_linguagem_go.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Linguagem go (golang) 🐹</span>
+          
+        
+      </nav>
+
+      <h1 id="linguagem-go-golang-">Linguagem Go (Golang) 🐹</h1>
+
+<p>Bem-vindo ao guia da linguagem Go, uma linguagem de programação de código aberto criada pelo Google. O Go foi projetado para ser simples, eficiente, legível e altamente performático, com um foco especial em programação concorrente (execução de múltiplas tarefas simultaneamente). É amplamente utilizado na construção de microsserviços, ferramentas de linha de comando, processamento de dados e infraestrutura de backend.</p>
+
+<h2 id="️-instalação-e-configuração-do-ambiente">🛠️ Instalação e Configuração do Ambiente</h2>
+
+<p>Para começar a programar em Go, você precisa do conjunto de ferramentas oficial da linguagem.</p>
+
+<ol>
+  <li>
+    <p><strong>Instale o Go</strong>:</p>
+
+    <ul>
+      <li>Faça o download do instalador apropriado para o seu sistema operacional a partir do <a href="https://go.dev/dl/">site oficial do Go</a>.</li>
+      <li>Execute o instalador. Ele cuidará da configuração das variáveis de ambiente necessárias, como <code class="language-plaintext highlighter-rouge">GOPATH</code> e a adição do Go ao <code class="language-plaintext highlighter-rouge">PATH</code> do sistema.</li>
+      <li>Para verificar se a instalação foi bem-sucedida, abra um novo terminal e execute o comando <code class="language-plaintext highlighter-rouge">go version</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Escolha uma IDE (Ambiente de Desenvolvimento Integrado)</strong>:</p>
+
+    <h3 id="opção-1-visual-studio-code-recomendado">Opção 1: Visual Studio Code (Recomendado)</h3>
+
+    <ul>
+      <li>Instale o <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+      <li>Na aba de extensões, instale a extensão <strong>“Go”</strong> oficial, publicada pela equipe do Go no Google. Ela oferece um suporte excelente, incluindo preenchimento automático, formatação e depuração.</li>
+    </ul>
+
+    <h3 id="opção-2-goland">Opção 2: GoLand</h3>
+
+    <ul>
+      <li>Baixe o <a href="https://www.jetbrains.com/go/">GoLand</a>, uma IDE da JetBrains totalmente dedicada ao desenvolvimento em Go. É uma ferramenta extremamente poderosa, com recursos avançados de análise de código e refatoração (similar ao PyCharm para Python ou IntelliJ para Java).</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-seu-primeiro-programa-em-go">🚀 Seu Primeiro Programa em Go</h3>
+
+<p>A estrutura de um programa Go é simples e organizada em pacotes. Todo programa executável deve ter um pacote <code class="language-plaintext highlighter-rouge">main</code> e uma função <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Todo arquivo Go pertence a um pacote. O pacote 'main' é especial: ele define um programa executável.</span>
+<span class="k">package</span> <span class="n">main</span>
+
+<span class="c">// A declaração 'import' lista os pacotes que o programa usará. "fmt" é o pacote para formatação de I/O.</span>
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="c">// A função 'main' é o ponto de entrada do programa.</span>
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c">// A função Println do pacote fmt imprime uma linha no console.</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Ola, Universo Go!"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-tipos-de-dados-e-variáveis">📊 Tipos de Dados e Variáveis</h2>
+
+<p>Go é uma linguagem <strong>estaticamente tipada</strong>, o que significa que o tipo de uma variável é conhecido em tempo de compilação.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Significado</th>
+      <th style="text-align: left">Tipo em Go</th>
+      <th style="text-align: left">Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Número Inteiro</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left">O tamanho (32 ou 64 bits) depende da arquitetura do sistema.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Número de Ponto Flutuante</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">float64</code></td>
+      <td style="text-align: left">O tipo padrão para números reais, oferecendo precisão dupla.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Texto</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td style="text-align: left">Representa uma sequência de caracteres. Strings em Go são imutáveis.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Valor Lógico</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bool</code></td>
+      <td style="text-align: left">Aceita apenas os valores <code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="formas-de-declaração">Formas de Declaração</h3>
+
+<p>Go oferece duas maneiras principais de declarar variáveis:</p>
+
+<ol>
+  <li><strong>Declaração com <code class="language-plaintext highlighter-rouge">var</code></strong>: <code class="language-plaintext highlighter-rouge">var nome string = "Mariana"</code></li>
+  <li><strong>Declaração Curta (<code class="language-plaintext highlighter-rouge">:=</code>)</strong>: <code class="language-plaintext highlighter-rouge">idade := 33</code></li>
+</ol>
+
+<p>A declaração curta é mais comum e idiomática em Go. Ela infere o tipo da variável a partir do valor atribuído e só pode ser usada dentro de funções.</p>
+
+<h2 id="-declaração-e-formatação-de-saída">📝 Declaração e Formatação de Saída</h2>
+
+<p>Para exibir dados formatados, o pacote <code class="language-plaintext highlighter-rouge">fmt</code> oferece funções semelhantes às da linguagem C.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fmt.Println()</code>: Imprime os itens e adiciona uma nova linha.</li>
+  <li><code class="language-plaintext highlighter-rouge">fmt.Printf()</code>: Imprime uma string formatada usando “verbos” de formatação.</li>
+</ul>
+
+<p><strong>Verbos de formatação comuns:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">%s</code> para strings</li>
+  <li><code class="language-plaintext highlighter-rouge">%d</code> para inteiros</li>
+  <li><code class="language-plaintext highlighter-rouge">%.2f</code> para floats com 2 casas decimais</li>
+  <li><code class="language-plaintext highlighter-rouge">%t</code> para booleanos</li>
+  <li><code class="language-plaintext highlighter-rouge">%v</code> para o valor em um formato padrão</li>
+</ul>
+
+<!-- end list -->
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c">// Usando a declaração curta (:=)</span>
+	<span class="n">nome</span> <span class="o">:=</span> <span class="s">"Mariana Rocha"</span>
+	<span class="n">idade</span> <span class="o">:=</span> <span class="m">33</span>
+	<span class="n">salario</span> <span class="o">:=</span> <span class="m">12500.00</span>
+	<span class="n">isRemoto</span> <span class="o">:=</span> <span class="no">true</span>
+
+	<span class="c">// Usando Printf para formatação controlada</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"NOME = %s
+"</span><span class="p">,</span> <span class="n">nome</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"IDADE = %d
+"</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"SALARIO = %.2f
+"</span><span class="p">,</span> <span class="n">salario</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"TRABALHO REMOTO? = %t
+"</span><span class="p">,</span> <span class="n">isRemoto</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-operadores">🔢 Operadores</h2>
+
+<p>Os operadores em Go são diretos e seguem o padrão da família de linguagens C.</p>
+
+<h3 id="aritméticos">Aritméticos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Resto da divisão (módulo)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="comparativos">Comparativos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left">Igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente de</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual a</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="lógicos">Lógicos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left">E</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left">OU</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left">NÃO</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-entrada-de-dados">📥 Entrada de Dados</h2>
+
+<p>A entrada de dados em Go é mais verbosa, pois exige o tratamento explícito de erros. A abordagem padrão usa os pacotes <code class="language-plaintext highlighter-rouge">bufio</code> para ler a entrada e <code class="language-plaintext highlighter-rouge">strconv</code> para converter a string para outros tipos.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"bufio"</span> <span class="c">// Para leitura de buffer</span>
+	<span class="s">"fmt"</span>
+	<span class="s">"os"</span>      <span class="c">// Para acessar a entrada padrão (teclado)</span>
+	<span class="s">"strconv"</span> <span class="c">// Para conversão de strings</span>
+	<span class="s">"strings"</span> <span class="c">// Para manipulação de strings</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c">// Cria um leitor para a entrada padrão (stdin).</span>
+	<span class="n">reader</span> <span class="o">:=</span> <span class="n">bufio</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">Stdin</span><span class="p">)</span>
+
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">"Digite seu nome completo: "</span><span class="p">)</span>
+	<span class="n">nome</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">reader</span><span class="o">.</span><span class="n">ReadString</span><span class="p">(</span><span class="err">'</span>
+<span class="err">'</span><span class="p">)</span> <span class="c">// Lê até a quebra de linha</span>
+	<span class="n">nome</span> <span class="o">=</span> <span class="n">strings</span><span class="o">.</span><span class="n">TrimSpace</span><span class="p">(</span><span class="n">nome</span><span class="p">)</span>     <span class="c">// Remove espaços em branco e a quebra de linha</span>
+
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">"Digite sua idade: "</span><span class="p">)</span>
+	<span class="n">idadeStr</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">reader</span><span class="o">.</span><span class="n">ReadString</span><span class="p">(</span><span class="err">'</span>
+<span class="err">'</span><span class="p">)</span>
+	<span class="n">idade</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">strconv</span><span class="o">.</span><span class="n">Atoi</span><span class="p">(</span><span class="n">strings</span><span class="o">.</span><span class="n">TrimSpace</span><span class="p">(</span><span class="n">idadeStr</span><span class="p">))</span> <span class="c">// Converte string para int</span>
+
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">"Digite seu salario: "</span><span class="p">)</span>
+	<span class="n">salarioStr</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">reader</span><span class="o">.</span><span class="n">ReadString</span><span class="p">(</span><span class="err">'</span>
+<span class="err">'</span><span class="p">)</span>
+	<span class="n">salario</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">strconv</span><span class="o">.</span><span class="n">ParseFloat</span><span class="p">(</span><span class="n">strings</span><span class="o">.</span><span class="n">TrimSpace</span><span class="p">(</span><span class="n">salarioStr</span><span class="p">),</span> <span class="m">64</span><span class="p">)</span> <span class="c">// Converte para float64</span>
+
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"
+--- DADOS REGISTRADOS ---"</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Nome: %s
+"</span><span class="p">,</span> <span class="n">nome</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Idade: %d
+"</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Salario: %.2f
+"</span><span class="p">,</span> <span class="n">salario</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Nota sobre Erros</strong>: O <code class="language-plaintext highlighter-rouge">_</code> nos exemplos acima está ignorando o valor de erro que as funções de leitura e conversão retornam. Em código de produção, é crucial tratar esses erros.</p>
+
+<h2 id="-estruturas-de-controle">🔀 Estruturas de Controle</h2>
+
+<p>Go usa chaves <code class="language-plaintext highlighter-rouge">{}</code> para delimitar blocos.</p>
+
+<h3 id="estrutura-condicional-ifelse-ifelse">Estrutura Condicional (<code class="language-plaintext highlighter-rouge">if/else if/else</code>)</h3>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">//...</span>
+<span class="k">if</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="m">18</span> <span class="p">{</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Menor de idade"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">idade</span> <span class="o">&gt;=</span> <span class="m">18</span> <span class="o">&amp;&amp;</span> <span class="n">idade</span> <span class="o">&lt;</span> <span class="m">60</span> <span class="p">{</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Adulto"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Idoso"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="estrutura-de-repetição-for">Estrutura de Repetição <code class="language-plaintext highlighter-rouge">for</code></h3>
+
+<p>Go possui apenas uma estrutura de laço: o <code class="language-plaintext highlighter-rouge">for</code>, que pode ser usado de três maneiras diferentes.</p>
+
+<p><strong>1. Laço <code class="language-plaintext highlighter-rouge">for</code> no estilo C:</strong></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">soma</span> <span class="o">:=</span> <span class="m">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="m">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+	<span class="n">soma</span> <span class="o">+=</span> <span class="n">i</span>
+<span class="p">}</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Soma (estilo C): %d
+"</span><span class="p">,</span> <span class="n">soma</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>2. Laço <code class="language-plaintext highlighter-rouge">for</code> no estilo <code class="language-plaintext highlighter-rouge">while</code>:</strong></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n</span> <span class="o">:=</span> <span class="m">5</span>
+<span class="k">for</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="p">{</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"n = %d
+"</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+	<span class="n">n</span><span class="o">--</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>3. Laço <code class="language-plaintext highlighter-rouge">for</code> para iteração (estilo <code class="language-plaintext highlighter-rouge">for-each</code>):</strong></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nomes</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">"Ana"</span><span class="p">,</span> <span class="s">"Carlos"</span><span class="p">,</span> <span class="s">"Beatriz"</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">indice</span><span class="p">,</span> <span class="n">nome</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">nomes</span> <span class="p">{</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Indice: %d, Nome: %s
+"</span><span class="p">,</span> <span class="n">indice</span><span class="p">,</span> <span class="n">nome</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-vetores-arrays-e-slices">📏 Vetores (Arrays e Slices)</h2>
+
+<p>Go faz uma distinção importante entre Arrays e Slices.</p>
+
+<ul>
+  <li><strong>Array</strong>: Uma coleção de tamanho <strong>fixo</strong>. Ex: <code class="language-plaintext highlighter-rouge">var meuArray [5]int</code>. É raramente usado diretamente.</li>
+  <li><strong>Slice</strong>: Uma visão dinâmica e flexível de um array subjacente. É a estrutura de dados mais comum em Go para listas.</li>
+</ul>
+
+<h3 id="slices">Slices</h3>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="n">n</span> <span class="kt">int</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="s">"Quantos numeros voce vai digitar? "</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span> <span class="c">// fmt.Scanln é outra forma de ler entrada simples.</span>
+
+	<span class="c">// Cria um slice de floats com tamanho e capacidade n.</span>
+	<span class="n">vetor</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">float64</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Digite o numero #%d: "</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="m">1</span><span class="p">)</span>
+		<span class="n">fmt</span><span class="o">.</span><span class="n">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="n">vetor</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="p">}</span>
+
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"
+NUMEROS DIGITADOS:"</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">numero</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">vetor</span> <span class="p">{</span> <span class="c">// _ ignora o índice</span>
+		<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"%.1f
+"</span><span class="p">,</span> <span class="n">numero</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="matrizes-slices-de-slices">Matrizes (Slices de Slices)</h3>
+
+<p>Uma matriz em Go é implementada como um slice, onde cada elemento é outro slice.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">//...</span>
+<span class="n">m</span> <span class="o">:=</span> <span class="m">2</span>
+<span class="n">n</span> <span class="o">:=</span> <span class="m">3</span>
+<span class="n">matriz</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">int</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="c">// Cria um slice com m "linhas"</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+	<span class="n">matriz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c">// Cria a "coluna" (um slice de n inteiros) para cada linha</span>
+	<span class="k">for</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">matriz</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Matriz:"</span><span class="p">,</span> <span class="n">matriz</span><span class="p">)</span> <span class="c">// Saída: [[0 1 2] [1 2 3]]</span>
+</code></pre></div></div>
+
+<h2 id="-depuração-debugging-em-go">🐞 Depuração (Debugging) em Go</h2>
+
+<p>A depuração em Go é feita com a ferramenta <strong>Delve</strong>, que se integra perfeitamente com as IDEs.</p>
+
+<h3 id="debugging-no-vs-code">Debugging no VS Code</h3>
+
+<ol>
+  <li>A extensão “Go” do VS Code pedirá para instalar o Delve na primeira vez que você tentar depurar. Aceite a instalação.</li>
+  <li>Abra seu arquivo <code class="language-plaintext highlighter-rouge">.go</code>.</li>
+  <li>Clique na margem à esquerda de uma linha para adicionar um <strong>breakpoint</strong>.</li>
+  <li>Pressione <code class="language-plaintext highlighter-rouge">F5</code> para iniciar o depurador.</li>
+  <li>O VS Code iniciará a sessão de depuração, pausando no breakpoint e permitindo que você inspecione variáveis, execute o código passo a passo (<code class="language-plaintext highlighter-rouge">F10</code>) e veja a pilha de chamadas.</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

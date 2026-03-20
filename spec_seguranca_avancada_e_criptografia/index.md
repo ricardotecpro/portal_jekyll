@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🔐 Segurança Avançada e Criptografia
+title: "🔐 Segurança Avançada e Criptografia"
 ---
 
 # 🔐 Segurança Avançada e Criptografia

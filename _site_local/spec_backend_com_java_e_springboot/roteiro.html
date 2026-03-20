@@ -1,0 +1,217 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/roteiro.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ROTEIRO | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="ROTEIRO" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/roteiro.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/roteiro.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ROTEIRO" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"ROTEIRO","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/roteiro.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Roteiro</span>
+          
+        
+      </nav>
+
+      <h2 id="-o-princípio-wora-escreva-uma-vez-rode-em-qualquer-lugar">📜 O Princípio “WORA”: Escreva Uma Vez, Rode em Qualquer Lugar</h2>
+
+<p>O famoso lema do Java é <strong>“Write Once, Run Anywhere” (WORA)</strong>. Essa portabilidade mágica é alcançada através da <strong>JVM (Java Virtual Machine)</strong>.</p>
+
+<h3 id="a-jvm-java-virtual-machine">A JVM (Java Virtual Machine)</h3>
+
+<p>Diferente de linguagens como C++, o compilador Java (<code class="language-plaintext highlighter-rouge">javac</code>) não converte o código-fonte diretamente para o código de máquina nativo do sistema operacional. Em vez disso, ele o compila para um formato intermediário e universal chamado <strong>bytecode</strong>.</p>
+
+<h3 id="bytecode">Bytecode</h3>
+
+<p>O bytecode é um conjunto de instruções altamente otimizado que não é específico de nenhum processador. A JVM atua como um “mini sistema operacional” ou um interpretador que traduz esse bytecode universal para as instruções de máquina nativas da plataforma em que está sendo executado (Windows, macOS, Linux, etc.).</p>
+
+<p>É essa camada de abstração (a JVM) que garante que o mesmo arquivo de bytecode (<code class="language-plaintext highlighter-rouge">.class</code>) possa ser executado em qualquer lugar que tenha uma JVM instalada, cumprindo a promessa do WORA.</p>
+
+<hr />
+
+<h2 id="️-compilação-e-execução-o-papel-da-jvm">⚙️ Compilação e Execução: O Papel da JVM</h2>
+
+<p>O fluxo de um programa Java, do código-fonte à execução, envolve duas etapas distintas, como ilustrado abaixo.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A[Código-Fonte: `MeuPrograma.java`] -- "1. Compilação (javac)" --&gt; B[Bytecode: `MeuPrograma.class`];
+    
+    subgraph "2. Execução (java)"
+        B --&gt; C{JVM no Windows};
+        B --&gt; D{JVM no macOS};
+        B --&gt; E{JVM no Linux};
+    end
+    
+    C --&gt; F[Instruções de Máquina Nativas do Windows];
+    D --&gt; G[Instruções de Máquina Nativas do macOS];
+    E --&gt; H[Instruções de Máquina Nativas do Linux];
+
+    style B fill:#f9f,stroke:#333,stroke-width:2px
+</code></pre>
+
+<hr />
+
+<h2 id="-características-principais">✨ Características Principais</h2>
+
+<h3 id="fortemente-orientado-a-objetos-oop">Fortemente Orientado a Objetos (OOP)</h3>
+
+<p>Java é uma das linguagens que mais rigorosamente implementa o paradigma de programação orientada a objetos. Praticamente tudo em Java é um objeto, e todo código reside dentro de uma classe. Os pilares de Encapsulamento, Herança e Polimorfismo são centrais para a linguagem.</p>
+
+<h3 id="fortemente-tipado-e-estático">Fortemente Tipado e Estático</h3>
+
+<p>Todas as variáveis e expressões têm um tipo que é verificado em tempo de compilação. Isso força o desenvolvedor a ser explícito sobre os tipos de dados, o que resulta em um código mais seguro e robusto, detectando muitos erros antes mesmo da execução do programa.</p>
+
+<h3 id="gerenciamento-automático-de-memória-garbage-collector">Gerenciamento Automático de Memória (Garbage Collector)</h3>
+
+<p>Desenvolvedores Java não precisam se preocupar em alocar e liberar memória manualmente, como em C/C++. A JVM possui um processo automático chamado <strong>Garbage Collector (GC)</strong>, que periodicamente identifica e libera a memória usada por objetos que não estão mais em uso, prevenindo a maioria dos vazamentos de memória.</p>
+
+<h3 id="verboso-mas-explícito">Verboso, mas Explícito</h3>
+
+<p>Java é conhecido por sua sintaxe verbosa. O famoso <code class="language-plaintext highlighter-rouge">public static void main(String[] args)</code> é um exemplo. No entanto, essa verbosidade é uma troca deliberada por clareza e legibilidade. O código Java tende a ser explícito, o que é altamente valorizado em grandes projetos corporativos mantidos por equipes ao longo de muitos anos.</p>
+
+<hr />
+
+<h2 id="-o-vasto-ecossistema-java">📦 O Vasto Ecossistema Java</h2>
+
+<p>O sucesso de Java também se deve ao seu ecossistema maduro e gigantesco.</p>
+
+<ul>
+  <li><strong>JDK, JRE e JVM</strong>:
+    <ul>
+      <li><strong>JVM (Java Virtual Machine)</strong>: O componente que executa o bytecode.</li>
+      <li><strong>JRE (Java Runtime Environment)</strong>: O ambiente necessário para <em>rodar</em> aplicações Java (inclui a JVM e bibliotecas padrão).</li>
+      <li><strong>JDK (Java Development Kit)</strong>: O kit completo para <em>desenvolver</em> em Java (inclui o JRE, o compilador <code class="language-plaintext highlighter-rouge">javac</code> e outras ferramentas).</li>
+    </ul>
+  </li>
+  <li><strong>Ferramentas de Build</strong>: <strong>Maven</strong> e <strong>Gradle</strong> são os gerenciadores de dependências e ferramentas de automação de build padrão do ecossistema, facilitando a gestão de bibliotecas e a compilação de projetos.</li>
+  <li><strong>Spring Framework</strong>: É o framework mais dominante no mundo Java, especialmente com o <strong>Spring Boot</strong>. Ele simplifica drasticamente a criação de aplicações web, APIs REST e microserviços robustos e de alto desempenho, sendo o padrão de fato para o desenvolvimento backend corporativo.</li>
+</ul>
+
+<hr />
+
+<h2 id="-onde-o-java-é-rei">🎯 Onde o Java é Rei?</h2>
+
+<p>Java é uma escolha popular para aplicações que exigem alta performance, estabilidade e escalabilidade.</p>
+
+<ul>
+  <li><strong>Aplicações Corporativas (Enterprise)</strong>: Este é o seu principal domínio. Grandes sistemas bancários, plataformas de e-commerce, sistemas de gestão de risco e aplicações de grande escala em corporações globais.</li>
+  <li><strong>Desenvolvimento Android</strong>: Por muitos anos, Java foi a linguagem principal para o desenvolvimento de aplicativos nativos para Android (hoje, divide o posto com Kotlin, que também roda na JVM).</li>
+  <li><strong>Sistemas de Big Data</strong>: Muitas ferramentas líderes no ecossistema de Big Data, como Hadoop, Spark e Kafka, são escritas em Java ou em outras linguagens da JVM.</li>
+  <li><strong>Aplicações Científicas e Financeiras</strong>: Usado em sistemas de simulação e plataformas de negociação de alta frequência (<em>high-frequency trading</em>) devido à sua performance otimizada pela JIT (compilação just-in-time) da JVM.</li>
+  <li><strong>Serviços Web e APIs de Larga Escala</strong>: Graças ao Spring Boot, construir APIs RESTful robustas e escaláveis é uma das maiores forças do Java hoje.</li>
+</ul>
+
+<hr />
+
+<h2 id="-começando-com-java">🚀 Começando com Java</h2>
+
+<ol>
+  <li><strong>Instale o JDK</strong>: Para desenvolver em Java, você precisa instalar o <strong>JDK (Java Development Kit)</strong>. Você pode baixar de fontes como a Oracle ou usar distribuições OpenJDK como a da Adoptium (Eclipse Temurin).</li>
+  <li><strong>Escreva o “Olá, Mundo!“</strong>: Crie um arquivo chamado <code class="language-plaintext highlighter-rouge">HelloWorld.java</code>. O nome do arquivo <strong>deve</strong> ser idêntico ao nome da classe pública.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// HelloWorld.java</span>
+
+<span class="c1">// Todo código Java deve estar dentro de uma classe.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+        
+    <span class="c1">// O método 'main' é o ponto de entrada de toda aplicação Java.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// System.out.println() imprime uma linha no console.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Olá, Mundo Robusto com Java!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Compile e Execute</strong> no terminal:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. Compila o código-fonte para bytecode</span>
+javac HelloWorld.java
+
+<span class="c"># 2. Executa o bytecode na JVM</span>
+java HelloWorld
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

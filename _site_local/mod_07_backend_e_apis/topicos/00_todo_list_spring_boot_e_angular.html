@@ -1,0 +1,114 @@
+<h1 id="todo-list-com-spring-boot"><strong>Todo-List com Spring Boot</strong></h1>
+
+<p>Este tutorial guiará você passo a passo na criação de um <strong>quadro de tarefas</strong> (todo-list) com <strong>Spring Boot</strong> e <strong>Angular</strong>, seguindo uma estrutura organizada em <strong>backend</strong> e <strong>frontend</strong>.</p>
+
+<h2 id="1-estrutura-do-projeto"><strong>1. Estrutura do Projeto</strong></h2>
+
+<p>O projeto será organizado da seguinte forma:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>todo-list/
+│── backend/ → (Spring Boot) 
+│── frontend/  → (Angular)`
+</code></pre></div></div>
+
+<h2 id="2-configurando-o-backend-spring-boot"><strong>2. Configurando o Backend (Spring Boot)</strong></h2>
+
+<h3 id="passo-1-criar-um-projeto-spring-boot"><strong>Passo 1: Criar um Projeto Spring Boot</strong></h3>
+
+<ol>
+  <li>
+    <p>Acesse o site <a href="https://start.spring.io/">Spring Initializr</a> e configure:</p>
+
+    <ul>
+      <li><strong>Project</strong>: Maven</li>
+      <li><strong>Language</strong>: Java</li>
+      <li><strong>Spring Boot Version</strong>: 3.x (ou a mais recente)</li>
+      <li><strong>Dependencies</strong>:
+        <ul>
+          <li>Spring Web</li>
+          <li>Spring Data JPA</li>
+          <li>H2 Database</li>
+          <li>Lombok</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Clique em <strong>Generate</strong> e extraia o arquivo <strong>zip</strong>.</p>
+  </li>
+  <li>
+    <p>No terminal, navegue até a pasta do backend e execute:</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean install
+</code></pre></div></div>
+
+<h3 id="passo-2-configurar-o-banco-de-dados-h2"><strong>Passo 2: Configurar o Banco de Dados H2</strong></h3>
+
+<p>No arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> dentro de <code class="language-plaintext highlighter-rouge">src/main/resources</code>, adicione:</p>
+
+<p>Configuração do banco de dados H2</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> spring.datasource.url=jdbc:h2:mem:todo_list_db spring.datasource.driverClassName=org.h2.Driver spring.datasource.username=sa spring.datasource.password= spring.h2.console.enabled=true spring.jpa.database-platform=org.hibernate.dialect.H2Dialect spring.jpa.hibernate.ddl-auto=update
+</code></pre></div></div>
+
+<p>Agora, o banco H2 estará acessível pelo navegador em:<br />
+🔗</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:8080/h2-console
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="passo-3-criar-a-entidade-tarefa"><strong>Passo 3: Criar a Entidade Tarefa</strong></h3>
+
+<p>Crie a classe <code class="language-plaintext highlighter-rouge">Task.java</code> em <code class="language-plaintext highlighter-rouge">src/main/java/org/brothers/listatarefas/model/</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`package org.brothers.listatarefas.model;  import jakarta.persistence.*; import lombok.*;  @Entity @Data @NoArgsConstructor @AllArgsConstructor public class Task {     @Id     @GeneratedValue(strategy = GenerationType.IDENTITY)     private Long id;      private String name;     private boolean completed; }`
+</code></pre></div></div>
+<h3 id="passo-4-criar-o-repositório"><strong>Passo 4: Criar o Repositório</strong></h3>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">TaskRepository.java</code> em `src/main/java/org/brothers/listatarefas/repository/</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package org.brothers.listatarefas.repository;  import org.brothers.listatarefas.model.Task; import org.springframework.data.jpa.repository.JpaRepository;  public interface TaskRepository extends JpaRepository&lt;Task, Long&gt; { }
+</code></pre></div></div>
+
+<h3 id="passo-5-criar-o-controller"><strong>Passo 5: Criar o Controller</strong></h3>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">TaskController.java</code> em <code class="language-plaintext highlighter-rouge">src/main/java/org/brothers/listatarefas/controller/</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package org.brothers.listatarefas.controller;  import org.brothers.listatarefas.model.Task; import org.brothers.listatarefas.repository.TaskRepository; import org.springframework.web.bind.annotation.*;  import java.util.List;  @RestController @RequestMapping("/api/tasks") @CrossOrigin(origins = "*") public class TaskController {      private final TaskRepository repository;      public TaskController(TaskRepository repository) {         this.repository = repository;     }      @GetMapping     public List&lt;Task&gt; getAllTasks() {         return repository.findAll();     }      @PostMapping     public Task createTask(@RequestBody Task task) {         return repository.save(task);     }      @PutMapping("/{id}")     public Task updateTask(@PathVariable Long id, @RequestBody Task task) {         task.setId(id);         return repository.save(task);     }      @DeleteMapping("/{id}")     public void deleteTask(@PathVariable Long id) {         repository.deleteById(id);     } }`
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="passo-6-testar-a-api"><strong>Passo 6: Testar a API</strong></h3>
+
+<ol>
+  <li>
+    <p>Inicie o backend com:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mvn spring-boot:run
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Teste no navegador ou Postman:</p>
+
+    <ul>
+      <li><strong>Listar tarefas:</strong> <code class="language-plaintext highlighter-rouge">GET http://localhost:8080/api/tasks</code></li>
+      <li>
+        <p><strong>Criar tarefa:</strong> <code class="language-plaintext highlighter-rouge">POST http://localhost:8080/api/tasks</code></p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        
+  `{ "name": "Aprender Spring Boot", "completed": false }`
+</code></pre></div>        </div>
+      </li>
+      <li><strong>Atualizar tarefa:</strong> <code class="language-plaintext highlighter-rouge">PUT http://localhost:8080/api/tasks/1</code></li>
+      <li><strong>Deletar tarefa:</strong> <code class="language-plaintext highlighter-rouge">DELETE http://localhost:8080/api/tasks/1</code></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 📱 Desenvolvimento Mobile Multiplataforma
+title: "📱 Desenvolvimento Mobile Multiplataforma"
 ---
 
 # 📱 Desenvolvimento Mobile Multiplataforma

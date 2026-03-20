@@ -1,0 +1,204 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_07_backend_e_apis/topicos/springboot/aula_10_spring_angular.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Todo List - API REST com Angular e Spring Boot | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Todo List - API REST com Angular e Spring Boot" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/aula_10_spring_angular.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/aula_10_spring_angular.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Todo List - API REST com Angular e Spring Boot" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Todo List - API REST com Angular e Spring Boot","url":"https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/aula_10_spring_angular.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/" style="margin-left: 0.5rem;">Mod 07 backend e apis</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/" style="margin-left: 0.5rem;">Springboot</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Todo list   api rest com angular e spring boot</span>
+          
+        
+      </nav>
+
+      <h1 id="todo-list---api-rest-com-angular-e-spring-boot">Todo List - API REST com Angular e Spring Boot</h1>
+
+<h2 id="introdução">Introdução</h2>
+
+<p>Este projeto é um sistema de lista de tarefas (<strong>Todo List</strong>) no estilo <strong>Kanban</strong>, onde o usuário pode adicionar tarefas, movê-las entre colunas (“A Fazer” e “Executadas”) e removê-las. A aplicação é composta por um <strong>backend</strong> em <strong>Spring Boot</strong> e um <strong>frontend</strong> em <strong>Angular</strong>.</p>
+
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
+
+<ul>
+  <li><strong>Backend:</strong> Java 21, Spring Boot, Spring Data JPA, H2 Database</li>
+  <li><strong>Frontend:</strong> Angular, TypeScript, Bootstrap</li>
+  <li><strong>Ferramentas:</strong> Docker, Postman (para testes), Node.js, npm</li>
+</ul>
+
+<hr />
+
+<h2 id="estrutura-de-arquivos">Estrutura de Arquivos</h2>
+
+<h3 id="backend-spring-boot">Backend (Spring Boot)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>backend/
+│── src/
+│   ├── main/
+│   │   ├── java/com/example/listatarefas/
+│   │   │   ├── model/Task.java
+│   │   │   ├── repository/TaskRepository.java
+│   │   │   ├── controller/TaskController.java
+│   │   │   ├── config/DataLoader.java
+│   │   ├── resources/
+│   │   │   ├── application.properties
+│   ├── test/
+│── pom.xml
+│── README.md
+</code></pre></div></div>
+
+<h3 id="configurando-o-applicationproperties">Configurando o <code class="language-plaintext highlighter-rouge">application.properties</code></h3>
+
+<p>No diretório <code class="language-plaintext highlighter-rouge">src/main/resources</code>, configure o arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> para usar apenas o H2:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configuração do banco de dados H2
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:listatarefas</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+</code></pre></div></div>
+
+<h3 id="adicionando-dados-de-exemplo">Adicionando Dados de Exemplo</h3>
+
+<p>Crie a classe <code class="language-plaintext highlighter-rouge">DataLoader.java</code> para popular o banco automaticamente:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataLoader</span> <span class="kd">implements</span> <span class="nc">CommandLineRunner</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TaskRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="nc">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="nc">Task</span><span class="o">(</span><span class="s">"Estudar Spring Boot"</span><span class="o">,</span> <span class="kc">false</span><span class="o">));</span>
+        <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="nc">Task</span><span class="o">(</span><span class="s">"Criar projeto Angular"</span><span class="o">,</span> <span class="kc">true</span><span class="o">));</span>
+        <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="nc">Task</span><span class="o">(</span><span class="s">"Testar integração API"</span><span class="o">,</span> <span class="kc">false</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="testando-o-banco-de-dados">Testando o Banco de Dados</h2>
+
+<p>Após iniciar a aplicação com:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<p>Acesse o console H2:</p>
+
+<ul>
+  <li>URL: <code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code></li>
+  <li>JDBC URL: <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:listatarefas</code></li>
+  <li>Usuário: <code class="language-plaintext highlighter-rouge">sa</code></li>
+  <li>Senha: (deixe em branco)</li>
+</ul>
+
+<p>Agora a aplicação está configurada para rodar apenas com o banco H2 e já inclui dados de exemplo no banco ao iniciar. 🚀</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

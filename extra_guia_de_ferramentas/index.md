@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🛠️ Guia de Ferramentas Essenciais para Desenvolvedores
+title: "🛠️ Guia de Ferramentas Essenciais para Desenvolvedores"
 ---
 
 # 🛠️ Guia de Ferramentas Essenciais para Desenvolvedores

@@ -1,0 +1,212 @@
+<h1 id="-capítulo-estruturas-repetitivas">🔄 Capítulo: Estruturas Repetitivas</h1>
+
+<p>As estruturas repetitivas, também conhecidas como laços ou <em>loops</em>, são um pilar da programação. Elas permitem que um bloco de comandos seja executado várias vezes, seja por um número definido de vezes ou enquanto uma determinada condição for atendida. Vamos explorar as três estruturas principais: “enquanto”, “para” e “repita-até”.</p>
+
+<h2 id="-estrutura-enquanto-while">🔁 Estrutura “Enquanto” (<em>while</em>)</h2>
+
+<h3 id="o-que-é">O que é?</h3>
+
+<p>[cite_start]A estrutura “enquanto” é um laço de repetição que executa um bloco de comandos continuamente <strong>enquanto uma condição específica for verdadeira</strong>[cite: 616].</p>
+
+<h3 id="quando-usar">Quando Usar?</h3>
+
+<p>[cite_start]É a escolha ideal quando <strong>não se sabe previamente a quantidade exata de repetições</strong> que o programa precisará executar[cite: 617]. A repetição depende de um evento externo, como a digitação de um valor específico pelo usuário (conhecido como <strong>valor de sentinela</strong>).</p>
+
+<h3 id="problema-exemplo">Problema Exemplo</h3>
+
+<blockquote>
+  <p>Fazer um programa que lê números inteiros até que um zero seja lido. Ao final, o programa deve mostrar a soma de todos os números digitados (exceto o zero).</p>
+</blockquote>
+
+<h4 id="exemplo-novo">Exemplo (Novo)</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite um numero: 10
+Digite outro numero: 7
+Digite outro numero: 3
+Digite outro numero: 0
+SOMA = 20
+</code></pre></div></div>
+
+<h3 id="sintaxe-e-regras">Sintaxe e Regras</h3>
+
+<pre><code class="language-portugol">enquanto &lt;condição&gt; faca
+   // bloco de comandos
+fimenquanto
+</code></pre>
+
+<ul>
+  <li><strong>Regra</strong>: Antes de cada repetição, a <code class="language-plaintext highlighter-rouge">&lt;condição&gt;</code> é testada.
+    <ul>
+      <li>[cite_start]Se for <strong>verdadeira (V)</strong>, o bloco de comandos executa, e o fluxo volta para o teste da condição[cite: 626].</li>
+      <li>[cite_start]Se for <strong>falsa (F)</strong>, o laço é encerrado, e o programa continua na linha seguinte ao <code class="language-plaintext highlighter-rouge">fimenquanto</code>[cite: 626].</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="código-em-portugol">Código em Portugol</h3>
+
+<pre><code class="language-portugol">algoritmo "SomaComEnquanto"
+var
+   x, soma: inteiro
+inicio
+   soma &lt;- 0
+
+   escreva("Digite um numero: ")
+   leia(x)
+
+   enquanto x &lt;&gt; 0 faca
+      soma &lt;- soma + x
+      escreva("Digite outro numero: ")
+      leia(x)
+   fimenquanto
+
+   escreval("SOMA = ", soma)
+fimalgoritmo
+</code></pre>
+
+<h2 id="-estrutura-para-for">🔢 Estrutura “Para” (<em>for</em>)</h2>
+
+<h3 id="o-que-é-1">O que é?</h3>
+
+<p>[cite_start]A estrutura “para” é um laço de repetição projetado para executar um bloco de comandos por um <strong>intervalo de valores predefinido</strong> ou um número específico de vezes[cite: 744].</p>
+
+<h3 id="quando-usar-1">Quando Usar?</h3>
+
+<p>[cite_start]É recomendada quando <strong>se sabe de antemão a quantidade de repetições necessárias</strong>[cite: 745]. É perfeita para tarefas baseadas em contagem.</p>
+
+<h3 id="problema-exemplo-1">Problema Exemplo</h3>
+
+<blockquote>
+  <p>Fazer um programa que primeiro lê um valor inteiro N e, depois, lê N números inteiros. Ao final, mostra a soma dos N números lidos.</p>
+</blockquote>
+
+<h4 id="exemplo-novo-1">Exemplo (Novo)</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos numeros serao digitados? 4
+Digite um numero: 10
+Digite um numero: 8
+Digite um numero: -3
+Digite um numero: 5
+SOMA = 20
+</code></pre></div></div>
+
+<h3 id="sintaxe-e-regras-1">Sintaxe e Regras</h3>
+
+<pre><code class="language-portugol">para &lt;variável&gt; de &lt;valor_inicial&gt; ate &lt;valor_final&gt; [passo &lt;incremento&gt;] faca
+   // bloco de comandos
+fimpara
+</code></pre>
+
+<ul>
+  <li><strong>Regras</strong>:
+    <ol>
+      <li>[cite_start]<strong>Inicialização</strong>: A <code class="language-plaintext highlighter-rouge">&lt;variável&gt;</code> de controle recebe o <code class="language-plaintext highlighter-rouge">&lt;valor_inicial&gt;</code> na primeira vez[cite: 756].</li>
+      <li>[cite_start]<strong>Condição</strong>: Se o valor da <code class="language-plaintext highlighter-rouge">&lt;variável&gt;</code> não ultrapassou o <code class="language-plaintext highlighter-rouge">&lt;valor_final&gt;</code>, o bloco executa[cite: 758]. Caso contrário, o laço termina.</li>
+      <li>[cite_start]<strong>Incremento</strong>: Ao final de cada repetição, a <code class="language-plaintext highlighter-rouge">&lt;variável&gt;</code> é incrementada em 1 (ou pelo valor definido em <code class="language-plaintext highlighter-rouge">passo</code>)[cite: 759].</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="exemplos-de-contagem">Exemplos de Contagem</h3>
+
+<p><strong>Contagem Progressiva</strong></p>
+
+<pre><code class="language-portugol">para i de 1 ate 3 faca
+   escreval("Valor de i: ", i)
+fimpara
+</code></pre>
+
+<p><em>Saída:</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Valor de i: 1
+Valor de i: 2
+Valor de i: 3
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>Contagem Regressiva</strong></p>
+
+<pre><code class="language-portugol">para i de 3 ate 1 passo -1 faca
+   escreval("Valor de i: ", i)
+fimpara
+</code></pre>
+
+<p><em>Saída:</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Valor de i: 3
+Valor de i: 2
+Valor de i: 1
+</code></pre></div></div>
+
+<h2 id="-estrutura-repita-até-do-while">🎬 Estrutura “Repita-Até” (<em>do-while</em>)</h2>
+
+<h3 id="o-que-é-2">O que é?</h3>
+
+<p>[cite_start]A estrutura “repita-até” é um laço de repetição que <strong>executa o bloco de comandos pelo menos uma vez</strong>, pois a condição de parada só é verificada no final[cite: 879].</p>
+
+<h3 id="quando-usar-2">Quando Usar?</h3>
+
+<p>É menos comum, mas muito útil em situações onde a ação deve ocorrer ao menos uma vez, como em menus interativos onde se pergunta ao usuário se ele deseja realizar a operação novamente.</p>
+
+<h3 id="problema-exemplo-2">Problema Exemplo</h3>
+
+<blockquote>
+  <p>Fazer um programa para ler uma temperatura em Celsius e mostrar o equivalente em Fahrenheit. Ao final, perguntar se o usuário deseja repetir (s/n). Caso digite “s”, o programa repete.</p>
+</blockquote>
+
+<h3 id="fórmula-de-conversão">Fórmula de Conversão</h3>
+
+\[F = \frac{9 \times C}{5} + 32\]
+
+<h4 id="exemplo-novo-2">Exemplo (Novo)</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite a temperatura em Celsius: 25.0
+Equivalente em Fahrenheit: 77.0
+Deseja repetir (s/n)? s
+Digite a temperatura em Celsius: 0.0
+Equivalente em Fahrenheit: 32.0
+Deseja repetir (s/n)? s
+Digite a temperatura em Celsius: -5.0
+Equivalente em Fahrenheit: 23.0
+Deseja repetir (s/n)? n
+</code></pre></div></div>
+
+<h3 id="sintaxe-e-regras-2">Sintaxe e Regras</h3>
+
+<pre><code class="language-portugol">repita
+   // bloco de comandos
+ate &lt;condição&gt;
+</code></pre>
+
+<ul>
+  <li><strong>Regra</strong>: O bloco de comandos é executado, e somente depois a <code class="language-plaintext highlighter-rouge">&lt;condição&gt;</code> é testada.
+    <ul>
+      <li>[cite_start]Se for <strong>falsa (F)</strong>, o laço executa novamente[cite: 885].</li>
+      <li>[cite_start]Se for <strong>verdadeira (V)</strong>, o laço é encerrado[cite: 885]. (Note que a lógica é o inverso da estrutura <code class="language-plaintext highlighter-rouge">enquanto</code>).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="código-em-portugol-1">Código em Portugol</h3>
+
+<pre><code class="language-portugol">algoritmo "ConversorDeTemperatura"
+var
+   C, F: real
+   resp: caractere
+inicio
+   repita
+      escreva("Digite a temperatura em Celsius: ")
+      leia(C)
+      F &lt;- 9.0 * C / 5.0 + 32.0
+      escreval("Equivalente em Fahrenheit: ", F:4:1)
+      escreva("Deseja repetir (s/n)? ")
+      leia(resp)
+   ate resp = "n"
+fimalgoritmo
+</code></pre>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,0 +1,268 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_05_javascript_fundamentos_e_dom/ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>⚡ JavaScript: A Linguagem da Web | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="⚡ JavaScript: A Linguagem da Web" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_05_javascript_fundamentos_e_dom/" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_05_javascript_fundamentos_e_dom/" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="⚡ JavaScript: A Linguagem da Web" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"⚡ JavaScript: A Linguagem da Web","url":"https://ricardotecpro.github.io/portal_jekyll/mod_05_javascript_fundamentos_e_dom/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / ⚡ javascript: a linguagem da web</span>
+          
+        
+      </nav>
+
+      <h1 id="-javascript-a-linguagem-da-web">⚡ JavaScript: A Linguagem da Web</h1>
+
+<p>JavaScript (frequentemente abreviado como JS) é uma linguagem de programação de alto nível, interpretada (ou compilada em tempo real, <em>just-in-time</em>), e multi-paradigma. É mais conhecida como a linguagem de script para páginas web, mas também é amplamente utilizada em muitos ambientes fora dos navegadores, como servidores (Node.js) e aplicações mobile.</p>
+
+<p>Junto com HTML e CSS, JavaScript é uma das três principais tecnologias da World Wide Web. Enquanto o <strong>HTML</strong> fornece a estrutura das páginas e o <strong>CSS</strong> o estilo visual, o <strong>JavaScript</strong> adiciona comportamento e interatividade, transformando documentos estáticos em aplicações dinâmicas e ricas.</p>
+
+<p>A linguagem é padronizada pela especificação <strong>ECMAScript</strong>. O que chamamos de JavaScript é, na verdade, uma implementação desse padrão, com recursos extras para interagir com o ambiente em que é executado (como o navegador ou um servidor).</p>
+
+<hr />
+
+<h2 id="️-o-coração-da-web-interativa">🖥️ O Coração da Web Interativa</h2>
+
+<p>No navegador, o JavaScript tem superpoderes para manipular dinamicamente o conteúdo da página.</p>
+
+<h3 id="manipulação-do-dom-document-object-model">Manipulação do DOM (Document Object Model)</h3>
+
+<p>O DOM é uma representação em árvore de um documento HTML. O JavaScript pode acessar, modificar, adicionar e remover elementos e atributos dessa árvore, alterando o que o usuário vê na tela em tempo real, sem a necessidade de recarregar a página.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Encontra um elemento pelo seu ID</span>
+<span class="kd">const</span> <span class="nx">titulo</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">titulo-principal</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Altera o conteúdo de texto do elemento</span>
+<span class="nx">titulo</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Olá, Mundo Dinâmico!</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">// Altera o estilo do elemento</span>
+<span class="nx">titulo</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">blue</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="programação-orientada-a-eventos-event-driven">Programação Orientada a Eventos (Event-Driven)</h3>
+
+<p>JavaScript opera em um modelo orientado a eventos. Ele “escuta” por ações do usuário, como cliques, movimentos do mouse, digitação no teclado, e executa funções específicas em resposta a esses eventos.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">botao</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">meu-botao</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Adiciona um "ouvinte" de evento de clique ao botão</span>
+<span class="nx">botao</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Botão foi clicado!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="assincronicidade-promises-e-asyncawait">Assincronicidade: Promises e <code class="language-plaintext highlighter-rouge">async/await</code></h3>
+
+<p>Por ser <em>single-threaded</em> (executa uma coisa de cada vez), o JavaScript depende fortemente de operações assíncronas para tarefas demoradas, como fazer uma requisição a uma API, para não travar a interface do usuário.</p>
+
+<ul>
+  <li><strong>Promises</strong>: São objetos que representam a eventual conclusão (ou falha) de uma operação assíncrona.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">async/await</code></strong>: É uma sintaxe moderna e mais legível para trabalhar com Promises, fazendo com que o código assíncrono se pareça com código síncrono.</li>
+</ul>
+
+<!-- end list -->
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">buscarDadosUsuario</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// 'await' pausa a função até que a Promise seja resolvida</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.github.com/users/google</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Falha ao buscar dados:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-a-evolução-es6-e-o-javascript-moderno">✨ A Evolução: ES6 e o JavaScript Moderno</h2>
+
+<p>A versão <strong>ECMAScript 2015 (ES6)</strong> foi uma atualização monumental que modernizou a linguagem. Desde então, novas versões são lançadas anualmente, adicionando recursos que tornam o código mais limpo, seguro e poderoso.</p>
+
+<p>Principais recursos do JavaScript Moderno:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">let</code> e <code class="language-plaintext highlighter-rouge">const</code></strong>: Para declaração de variáveis com escopo de bloco, substituindo o antigo <code class="language-plaintext highlighter-rouge">var</code>.</li>
+  <li><strong>Arrow Functions <code class="language-plaintext highlighter-rouge">=&gt;</code></strong>: Uma sintaxe mais concisa para escrever funções.</li>
+  <li><strong>Classes</strong>: Uma sintaxe de “açúcar sintático” sobre o sistema de protótipos do JavaScript para criar objetos e lidar com herança.</li>
+  <li><strong>Template Literals</strong>: Strings que permitem interpolação de variáveis e múltiplas linhas usando crases (<code class="language-plaintext highlighter-rouge">`</code>).</li>
+  <li><strong>Desestruturação (Destructuring)</strong>: Uma forma fácil de extrair valores de arrays ou propriedades de objetos.</li>
+  <li><strong>Módulos (<code class="language-plaintext highlighter-rouge">import</code>/<code class="language-plaintext highlighter-rouge">export</code>)</strong>: Um sistema nativo para organizar o código em múltiplos arquivos.</li>
+</ul>
+
+<hr />
+
+<h2 id="-javascript-no-servidor-nodejs">🚀 JavaScript no Servidor: Node.js</h2>
+
+<p><strong>Node.js</strong> é um ambiente de execução que permite que o JavaScript seja executado fora do navegador, no lado do servidor. Ele utiliza o mesmo motor V8 do Google Chrome e é construído em torno de um modelo de I/O (entrada/saída) não-bloqueante e orientado a eventos, o que o torna extremamente eficiente para construir APIs, microserviços e outras aplicações de rede escaláveis.</p>
+
+<p>Com o Node.js, nasceu o paradigma <strong>“JavaScript Everywhere”</strong>, permitindo que a mesma linguagem seja usada tanto no front-end quanto no back-end.</p>
+
+<p>O <strong>npm (Node Package Manager)</strong> é o gerenciador de pacotes do Node.js e o maior ecossistema de bibliotecas de código aberto do mundo, contendo milhões de pacotes prontos para serem usados.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A[Cliente (Navegador)] &lt;--&gt; B[Servidor (Node.js)];
+    
+    subgraph "Cliente"
+        C[Front-end em JavaScript&lt;br/&gt;(React, Angular, Vue)]
+    end
+    
+    subgraph "Servidor"
+        D[Back-end em JavaScript&lt;br/&gt;(Express.js, NestJS)] --&gt; E[Banco de Dados&lt;br/&gt;(MongoDB, PostgreSQL)];
+    end
+
+    A -- Requisição HTTP --&gt; B;
+    B -- Resposta (JSON/HTML) --&gt; A;
+
+    style C fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#ccf,stroke:#333,stroke-width:2px
+</code></pre>
+
+<hr />
+
+<h2 id="-o-ecossistema-de-frameworks-e-bibliotecas">🌐 O Ecossistema de Frameworks e Bibliotecas</h2>
+
+<p>O ecossistema JavaScript é vasto e dinâmico. Para construir interfaces de usuário complexas (<em>Single-Page Applications</em> - SPAs), os desenvolvedores geralmente utilizam frameworks e bibliotecas populares, como:</p>
+
+<ul>
+  <li><strong>React</strong>: Uma biblioteca do Meta para construir interfaces de usuário, focada em uma arquitetura de componentes.</li>
+  <li><strong>Angular</strong>: Um framework completo do Google, baseado em TypeScript, que fornece uma estrutura robusta para aplicações empresariais.</li>
+  <li><strong>Vue.js</strong>: Um framework progressivo conhecido por sua curva de aprendizado suave e excelente documentação.</li>
+</ul>
+
+<hr />
+
+<h2 id="-começando-com-javascript">🚀 Começando com JavaScript</h2>
+
+<p>A maneira mais fácil de começar é diretamente no seu navegador.</p>
+
+<ol>
+  <li>Abra qualquer página web.</li>
+  <li>Pressione <code class="language-plaintext highlighter-rouge">F12</code> para abrir as Ferramentas de Desenvolvedor.</li>
+  <li>Clique na aba <strong>Console</strong>.</li>
+  <li>Digite seu código JavaScript e pressione <code class="language-plaintext highlighter-rouge">Enter</code>.</li>
+</ol>
+
+<p>Para um exemplo mais prático de interação com HTML:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">index.html</code></strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Contador JS<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Contador<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Cliques: <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">"valor-contador"</span><span class="nt">&gt;</span>0<span class="nt">&lt;/span&gt;&lt;/p&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-incrementar"</span><span class="nt">&gt;</span>Incrementar<span class="nt">&lt;/button&gt;</span>
+
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">script.js</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Seleciona os elementos do DOM</span>
+<span class="kd">const</span> <span class="nx">valorContador</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">valor-contador</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">btnIncrementar</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">btn-incrementar</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Inicializa a variável do contador</span>
+<span class="kd">let</span> <span class="nx">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">// Adiciona um evento de clique ao botão</span>
+<span class="nx">btnIncrementar</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Incrementa o contador</span>
+  <span class="nx">contador</span><span class="o">++</span><span class="p">;</span>
+  
+  <span class="c1">// Atualiza o texto na tela com o novo valor</span>
+  <span class="nx">valorContador</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">contador</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🔗 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

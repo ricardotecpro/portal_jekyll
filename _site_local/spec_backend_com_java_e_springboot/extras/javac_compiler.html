@@ -1,0 +1,247 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/extras/javac_compiler.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Compilador Java com Estrutura de Pacotes | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Compilador Java com Estrutura de Pacotes" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/extras/javac_compiler.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/extras/javac_compiler.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Compilador Java com Estrutura de Pacotes" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Compilador Java com Estrutura de Pacotes","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/extras/javac_compiler.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/extras/" style="margin-left: 0.5rem;">Extras</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Compilador java com estrutura de pacotes</span>
+          
+        
+      </nav>
+
+      <h1 id="compilador-java-com-estrutura-de-pacotes">Compilador Java com Estrutura de Pacotes</h1>
+<h1>=============================</h1>
+<h1 id="este-guia-mostra-como-compilar-e-executar-um-projeto-java-com-uma-estrutura-de-pacotes-específica-utilizando-o-comando-javac-e-o-terminal">Este guia mostra como compilar e executar um projeto Java com uma estrutura de pacotes específica, utilizando o comando <code class="language-plaintext highlighter-rouge">javac</code> e o terminal.</h1>
+
+<h3 id="️-estrutura-com-femaedu">🗂️ Estrutura com <code class="language-plaintext highlighter-rouge">fema.edu</code>:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>meuprojeto/
+└── src/
+    └── fema/
+        └── edu/
+            ├── Main.java
+            └── Aluno.java
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-mainjava-atualizado">📄 <code class="language-plaintext highlighter-rouge">Main.java</code> atualizado:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">fema.edu</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Aluno</span> <span class="n">aluno</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Aluno</span><span class="o">(</span><span class="s">"João"</span><span class="o">,</span> <span class="mi">21</span><span class="o">);</span>
+        <span class="n">aluno</span><span class="o">.</span><span class="na">exibir</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-alunojava-atualizado">📄 <code class="language-plaintext highlighter-rouge">Aluno.java</code> atualizado:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">fema.edu</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Aluno</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Aluno</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">idade</span> <span class="o">=</span> <span class="n">idade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">exibir</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Aluno: "</span> <span class="o">+</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", Idade: "</span> <span class="o">+</span> <span class="n">idade</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-compilação-via-terminal">✅ Compilação via terminal:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javac <span class="nt">-d</span> out src/fema/edu/<span class="k">*</span>.java
+</code></pre></div></div>
+
+<h3 id="️-execução-via-terminal">▶️ Execução via terminal:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-cp</span> out fema.edu.Main
+</code></pre></div></div>
+
+<hr />
+
+<p>script <code class="language-plaintext highlighter-rouge">.sh</code> (Linux/macOS)</p>
+
+<p><strong>script <code class="language-plaintext highlighter-rouge">.sh</code> para Linux/macOS</strong> que compila e executa o projeto com a estrutura <code class="language-plaintext highlighter-rouge">fema.edu</code>:</p>
+
+<hr />
+
+<h3 id="-runsh">📝 <code class="language-plaintext highlighter-rouge">run.sh</code></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c"># Compila os arquivos Java</span>
+<span class="nb">echo</span> <span class="s2">"Compilando os arquivos..."</span>
+javac <span class="nt">-d</span> out src/fema/edu/<span class="k">*</span>.java
+
+<span class="c"># Verifica se a compilação foi bem-sucedida</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Compilação bem-sucedida. Executando programa..."</span>
+    java <span class="nt">-cp</span> out fema.edu.Main
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"Erro na compilação."</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-como-usar">✅ Como usar:</h3>
+
+<ol>
+  <li>
+    <p>Salve o script como <code class="language-plaintext highlighter-rouge">run.sh</code> na raiz do projeto.</p>
+  </li>
+  <li>
+    <p>Dê permissão de execução:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">chmod</span> +x run.sh
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Execute:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./run.sh
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>versão <code class="language-plaintext highlighter-rouge">.bat</code> também pro Windows?</p>
+
+<p>script para <strong>Windows</strong> em formato <code class="language-plaintext highlighter-rouge">.bat</code>:</p>
+
+<hr />
+
+<h3 id="-runbat">📝 <code class="language-plaintext highlighter-rouge">run.bat</code></h3>
+
+<div class="language-bat highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo <span class="na">off</span>
+<span class="nb">echo</span> <span class="kd">Compilando</span> <span class="kd">os</span> <span class="kd">arquivos</span> <span class="kd">Java</span>...
+<span class="kd">javac</span> <span class="na">-d </span><span class="kd">out</span> <span class="kd">src</span>\fema\edu\<span class="o">*</span>.java
+
+<span class="kd">IF</span> <span class="nv">%ERRORLEVEL%</span> <span class="kd">EQU</span> <span class="m">0</span> <span class="o">(</span>
+    <span class="nb">echo</span> <span class="kd">Compila</span>ção <span class="kd">bem</span><span class="na">-sucedida</span>. <span class="kd">Executando</span> <span class="kd">programa</span>...
+    <span class="kd">java</span> <span class="na">-cp </span><span class="kd">out</span> <span class="kd">fema</span>.edu.Main
+<span class="o">)</span> <span class="kd">ELSE</span> <span class="o">(</span>
+    <span class="nb">echo</span> <span class="kd">Erro</span> <span class="kd">na</span> <span class="kd">compila</span>ção.
+<span class="o">)</span>
+<span class="nb">pause</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-como-usar-1">✅ Como usar:</h3>
+
+<ol>
+  <li>
+    <p>Salve esse conteúdo como <code class="language-plaintext highlighter-rouge">run.bat</code> na raiz do projeto.</p>
+  </li>
+  <li>
+    <p>Clique duas vezes no arquivo para rodar, ou execute no terminal (<code class="language-plaintext highlighter-rouge">cmd</code>).</p>
+  </li>
+</ol>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

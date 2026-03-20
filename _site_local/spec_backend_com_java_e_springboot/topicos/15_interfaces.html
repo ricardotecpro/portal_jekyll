@@ -1,0 +1,869 @@
+<h1 id="-java-interfaces">☕ Java: Interfaces</h1>
+
+<h2 id="-aviso">📢 Aviso</h2>
+
+<ul>
+  <li>A partir do Java 8, interfaces podem ter “default methods” ou “defender methods”.</li>
+  <li>Isso possui implicações conceituais e práticas, que serão discutidas mais à frente neste capítulo.</li>
+  <li>Primeiro vamos trabalhar com a definição “clássica” de interfaces. Depois vamos acrescentar o conceito de default methods.</li>
+</ul>
+
+<h2 id="-o-que-é-uma-interface">❔ O que é uma Interface?</h2>
+
+<p>Interface é um tipo que define um conjunto de operações que uma classe deve implementar. A interface estabelece um <strong>contrato</strong> que a classe deve cumprir.</p>
+
+<p>Uma interface define um conjunto de métodos abstratos que as classes concretas devem fornecer. Ela especifica <em>o quê</em> uma classe deve fazer, mas não <em>como</em> ela deve fazer.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">area</span><span class="o">();</span>
+    <span class="kt">double</span> <span class="nf">perimetro</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Pra quê interfaces?</strong></p>
+
+<ul>
+  <li>Para criar sistemas com <strong>baixo acoplamento</strong> e <strong>flexíveis</strong>.</li>
+  <li>Para permitir que diferentes classes possam ser tratadas de forma polimórfica, desde que implementem a mesma interface.</li>
+  <li>Para facilitar a testabilidade, permitindo a criação de mocks (objetos falsos) para dependências.</li>
+</ul>
+
+<h2 id="-problema-exemplo-locadora-de-veículos">🚗 Problema Exemplo: Locadora de Veículos</h2>
+
+<p>Uma locadora brasileira de carros cobra um valor por hora para locações de até 12 horas. Porém, se a duração da locação ultrapassar 12 horas, a locação será cobrada com base em um valor diário. Além do valor da locação, é acrescido no preço o valor do imposto conforme regras do país que, no caso do Brasil, é 20% para valores até 100.00, ou 15% para valores acima de 100.00.</p>
+
+<p>Fazer um programa que lê os dados da locação (modelo do carro, instante inicial e final da locação), bem como o valor por hora e o valor diário de locação. O programa deve então gerar a nota de pagamento (contendo valor da locação, valor do imposto e valor total do pagamento) e informar os dados na tela.</p>
+
+<p><strong>Exemplo 1:</strong></p>
+
+<p>Dados da locação:
+Modelo do carro: Civic
+Retirada (dd/MM/yyyy hh:mm): 25/06/2018 10:30
+Devolução (dd/MM/yyyy hh:mm): 25/06/2018 14:40
+Preço por hora: 10.00
+Preço por dia: 130.00</p>
+
+<p>FATURA:
+Pagamento básico: 50.00
+Imposto: 10.00
+Pagamento total: 60.00</p>
+
+<p>Cálculos:
+Duração = (25/06/2018 14:40) - (25/06/2018 10:30) = 4:10 ≈ 5 horas
+Pagamento básico = 5 * 10.00 = 50.00
+Imposto = 50.00 * 20% = 50.00 * 0.2 = 10.00</p>
+
+<p><strong>Exemplo 2:</strong></p>
+
+<p>Dados da locação:
+Modelo do carro: Civic
+Retirada (dd/MM/yyyy hh:mm): 25/06/2018 10:30
+Devolução (dd/MM/yyyy hh:mm): 27/06/2018 11:40
+Preço por hora: 10.00
+Preço por dia: 130.00</p>
+
+<p>FATURA:
+Pagamento básico: 390.00
+Imposto: 58.50
+Pagamento total: 448.50</p>
+
+<p>Cálculos:
+Duração = (27/06/2018 11:40) - (25/06/2018 10:30) = 2 dias + 1:10 ≈ 3 dias
+Pagamento básico = 3 * 130.00 = 390.00
+Imposto = 390.00 * 15% = 390.00 * 0.15 = 58.50</p>
+
+<h3 id="️-solução-do-problema-estrutura-de-camadas">🏗️ Solução do Problema (Estrutura de Camadas)</h3>
+
+<p>Recordando o capítulo de Composição, um sistema pode ser organizado em camadas:</p>
+
+<ul>
+  <li><strong>Views</strong>: Interface com o usuário.</li>
+  <li><strong>Controllers</strong>: Orquestram as requisições, interagindo com os Services.</li>
+  <li><strong>Services</strong>: Contêm as regras de negócio.</li>
+  <li><strong>Repositories</strong>: Responsáveis pelo acesso e persistência de dados.</li>
+  <li><strong>Entities</strong>: Representam os objetos do domínio do problema.</li>
+</ul>
+
+<h4 id="diagrama-de-entidades-exemplo-genérico">Diagrama de Entidades (Exemplo Genérico)</h4>
+
+<pre><code class="language-mermaid">classDiagram
+    Order --|&gt; Client : 1 "client"
+    Order --|&gt; OrderItem : "*" "items"
+    OrderItem --|&gt; Product : 1 "product"
+    Order : +Date moment
+    Order : +OrderStatus status
+    Order : +addItem(OrderItem item) void
+    Order : +removeItem(OrderItem item) void
+    Order : +total() Double
+    Client : -String name
+    Client : -String email
+    Client : -Date birthDate
+    OrderItem : -Integer quantity
+    OrderItem : -Double price
+    OrderItem : +subTotal() Double
+    Product : -String name
+    Product : -Double price
+    OrderStatus : &lt;&lt;enumeration&gt;&gt;
+    OrderStatus : PENDING_PAYMENT
+    OrderStatus : PROCESSING
+    OrderStatus : SHIPPED
+    OrderStatus : DELIVERED
+</code></pre>
+
+<h4 id="diagrama-de-serviços-exemplo-genérico">Diagrama de Serviços (Exemplo Genérico)</h4>
+
+<pre><code class="language-mermaid">classDiagram
+    &lt;&lt;interface&gt;&gt; CrudRepository
+    CrudRepository : +save(T obj) T
+    CrudRepository : +delete(T obj) void
+    CrudRepository : +findById(ID id) T
+    CrudRepository : +findAll() List~T~
+    OrderRepository --|&gt; CrudRepository
+    OrderRepository : +findByDate(Date minDate, Date maxDate) List~Order~
+    OrderService ..&gt; OrderRepository : -repository
+    OrderService : +save(Order order) void
+    OrderService : +search(Date minDate, Date maxDate) List~Order~
+    AuthService ..&gt; EmailService : -emailService
+    AuthService : +getToken(String username, String password) String
+    AuthService : +refreshToken(String token) String
+    AuthService : +sendNewPassword(String email) void
+    EmailService : +sendEmail(String sender, String recipient, String subject, String message) void
+</code></pre>
+
+<h4 id="design-da-camada-de-domínio-problema-da-locadora">Design da Camada de Domínio (Problema da Locadora)</h4>
+
+<pre><code class="language-mermaid">classDiagram
+    CarRental "1" -- "1" Vehicle : -vehicle
+    CarRental "1" -- "0..1" Invoice : -invoice
+    Vehicle : -String model
+    CarRental : -Date start
+    CarRental : -Date finish
+    Invoice : -Double basicPayment
+    Invoice : -Double tax
+    Invoice : +Double totalPayment()
+</code></pre>
+
+<h4 id="design-da-camada-de-serviço-sem-interface">Design da Camada de Serviço (Sem Interface)</h4>
+
+<p>Nesta abordagem, <code class="language-plaintext highlighter-rouge">ServicoAluguel</code> depende diretamente de uma classe concreta <code class="language-plaintext highlighter-rouge">ServicoImpostoBrasil</code>.</p>
+
+<pre><code class="language-mermaid">classDiagram
+    ServicoAluguel --&gt; ServicoImpostoBrasil
+    ServicoAluguel : -Double precoPorHora
+    ServicoAluguel : -Double precoPorDia
+    ServicoAluguel : +processarFatura(AluguelCarro aluguelCarro) void
+    ServicoImpostoBrasil : +imposto(Double quantia) Double
+</code></pre>
+
+<p>Isso leva a um <strong>acoplamento forte</strong>:</p>
+
+<ul>
+  <li>A classe <code class="language-plaintext highlighter-rouge">ServicoAluguel</code> conhece a dependência concreta (<code class="language-plaintext highlighter-rouge">ServicoImpostoBrasil</code>).</li>
+  <li>Se a classe concreta mudar (por exemplo, para <code class="language-plaintext highlighter-rouge">ServicoImpostoEUA</code>), é preciso mudar a classe <code class="language-plaintext highlighter-rouge">ServicoAluguel</code>.</li>
+</ul>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Exemplo de acoplamento forte</span>
+<span class="kd">class</span> <span class="nc">ServicoAluguel</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="kd">private</span> <span class="nc">ServicoImpostoBrasil</span> <span class="n">servicoImposto</span><span class="o">;</span> <span class="c1">// Dependência concreta</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="design-da-camada-de-serviço-com-interface">Design da Camada de Serviço (Com Interface)</h4>
+
+<p>Aqui, <code class="language-plaintext highlighter-rouge">ServicoAluguel</code> depende de uma abstração (interface <code class="language-plaintext highlighter-rouge">ServicoImposto</code>). <code class="language-plaintext highlighter-rouge">ServicoImpostoBrasil</code> é uma implementação dessa interface.</p>
+
+<pre><code class="language-mermaid">classDiagram
+    ServicoAluguel --&gt; ServicoImposto
+    ServicoImpostoBrasil ..|&gt; ServicoImposto : implements
+    ServicoAluguel : -Double precoPorHora
+    ServicoAluguel : -Double precoPorDia
+    ServicoAluguel : +processarFatura(AluguelCarro aluguelCarro) void
+    &lt;&lt;interface&gt;&gt; ServicoImposto
+    ServicoImposto : +imposto(Double quantia) Double
+    ServicoImpostoBrasil : +imposto(Double quantia) Double
+</code></pre>
+
+<p>Isso promove um <strong>acoplamento fraco</strong>:</p>
+
+<ul>
+  <li>A classe <code class="language-plaintext highlighter-rouge">ServicoAluguel</code> não conhece a dependência concreta, apenas a interface <code class="language-plaintext highlighter-rouge">ServicoImposto</code>.</li>
+  <li>Se a classe concreta mudar (por exemplo, introduzindo <code class="language-plaintext highlighter-rouge">ServicoImpostoEUA</code>), a classe <code class="language-plaintext highlighter-rouge">ServicoAluguel</code> não muda nada, desde que a nova classe implemente <code class="language-plaintext highlighter-rouge">ServicoImposto</code>.</li>
+</ul>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Exemplo de acoplamento fraco</span>
+<span class="kd">class</span> <span class="nc">ServicoAluguel</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="kd">private</span> <span class="nc">ServicoImposto</span> <span class="n">servicoImposto</span><span class="o">;</span> <span class="c1">// Dependência via interface</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-inversão-de-controle-e-injeção-de-dependência">🔄 Inversão de Controle e Injeção de Dependência</h2>
+
+<h3 id="inversão-de-controle-ioc">Inversão de Controle (IoC)</h3>
+
+<p>É um padrão de desenvolvimento que consiste em <strong>retirar da classe a responsabilidade de instanciar suas dependências</strong>. Em vez da classe controlar a criação e o ciclo de vida de seus objetos dependentes, essa responsabilidade é delegada a um contêiner ou a um componente externo.</p>
+
+<h3 id="injeção-de-dependência-id">Injeção de Dependência (ID)</h3>
+
+<p>É uma forma de realizar a inversão de controle: um componente externo instancia a dependência, que é então <strong>injetada</strong> no objeto “pai”. A injeção de dependência permite que o acoplamento entre os componentes seja reduzido.</p>
+
+<p>Pode ser implementada de várias formas:</p>
+
+<ul>
+  <li><strong>Construtor</strong>: As dependências são passadas como parâmetros para o construtor da classe.</li>
+  <li><strong>Métodos Setters</strong>: As dependências são injetadas através de métodos <code class="language-plaintext highlighter-rouge">set</code>.</li>
+  <li><strong>Interface</strong>: A classe implementa uma interface com um método para injetar a dependência.</li>
+  <li><strong>Classe de instanciação (Builder / Factory)</strong>: Padrões de projeto que encapsulam a lógica de criação de objetos.</li>
+  <li><strong>Container/Framework</strong>: Frameworks como Spring IoC Container gerenciam automaticamente a criação e injeção de dependências.</li>
+</ul>
+
+<h4 id="injeção-de-dependência-por-meio-de-construtor">Injeção de Dependência por Meio de Construtor</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">programa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">servicos.ServicoAluguel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">servicos.ServicoImpostoBrasil</span><span class="o">;</span> <span class="c1">// Implementação concreta</span>
+
+<span class="c1">// Supondo que as classes estão em pacotes apropriados</span>
+<span class="c1">// import entidades.AluguelCarro;</span>
+<span class="c1">// import java.time.LocalDateTime;</span>
+<span class="c1">// import java.time.format.DateTimeFormatter;</span>
+<span class="c1">// import java.util.Locale;</span>
+<span class="c1">// import java.util.Scanner;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// ... leitura de dados ...</span>
+        <span class="kt">double</span> <span class="n">precoPorHora</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">precoPorDia</span> <span class="o">=</span> <span class="mf">130.0</span><span class="o">;</span>
+
+        <span class="c1">// A dependência ServicoImpostoBrasil é explicitamente instanciada</span>
+        <span class="c1">// e injetada no construtor de ServicoAluguel.</span>
+        <span class="c1">// Ocorre um UPCASTING: ServicoImpostoBrasil é um ServicoImposto.</span>
+        <span class="nc">ServicoAluguel</span> <span class="n">servicoAluguel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServicoAluguel</span><span class="o">(</span><span class="n">precoPorHora</span><span class="o">,</span> <span class="n">precoPorDia</span><span class="o">,</span> <span class="k">new</span> <span class="nc">ServicoImpostoBrasil</span><span class="o">());</span>
+
+        <span class="c1">// ... resto do código para processar a fatura ...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">servicos</span><span class="o">;</span>
+
+<span class="c1">// import entidades.AluguelCarro;</span>
+<span class="c1">// import entidades.Fatura;</span>
+<span class="c1">// import java.time.Duration;</span>
+
+<span class="c1">// Interface para o serviço de imposto</span>
+<span class="kd">interface</span> <span class="nc">ServicoImposto</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">imposto</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// Implementação brasileira do serviço de imposto</span>
+<span class="kd">class</span> <span class="nc">ServicoImpostoBrasil</span> <span class="kd">implements</span> <span class="nc">ServicoImposto</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">imposto</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&lt;=</span> <span class="mf">100.0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">quantia</span> <span class="o">*</span> <span class="mf">0.20</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">quantia</span> <span class="o">*</span> <span class="mf">0.15</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServicoAluguel</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">precoPorHora</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">precoPorDia</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">ServicoImposto</span> <span class="n">servicoImposto</span><span class="o">;</span> <span class="c1">// Depende da interface</span>
+
+    <span class="c1">// A dependência é injetada via construtor</span>
+    <span class="kd">public</span> <span class="nf">ServicoAluguel</span><span class="o">(</span><span class="kt">double</span> <span class="n">precoPorHora</span><span class="o">,</span> <span class="kt">double</span> <span class="n">precoPorDia</span><span class="o">,</span> <span class="nc">ServicoImposto</span> <span class="n">servicoImposto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">precoPorHora</span> <span class="o">=</span> <span class="n">precoPorHora</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">precoPorDia</span> <span class="o">=</span> <span class="n">precoPorDia</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">servicoImposto</span> <span class="o">=</span> <span class="n">servicoImposto</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/*
+    public void processarFatura(AluguelCarro aluguelCarro) {
+        long minutos = Duration.between(aluguelCarro.getInicio(), aluguelCarro.getFim()).toMinutes();
+        double horas = (double) minutos / 60.0;
+        double pagamentoBasico;
+
+        if (horas &lt;= 12.0) {
+            pagamentoBasico = Math.ceil(horas) * precoPorHora;
+        } else {
+            pagamentoBasico = Math.ceil(horas / 24.0) * precoPorDia;
+        }
+
+        double imposto = servicoImposto.imposto(pagamentoBasico);
+        aluguelCarro.setFatura(new Fatura(pagamentoBasico, imposto));
+    }
+    */</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-exercício-de-fixação-processamento-de-contratos">📝 Exercício de Fixação: Processamento de Contratos</h2>
+
+<p>Uma empresa deseja automatizar o processamento de seus contratos. O processamento de um contrato consiste em gerar as parcelas a serem pagas para aquele contrato, com base no número de meses desejado.</p>
+
+<p>A empresa utiliza um serviço de pagamento online para realizar o pagamento das parcelas. Os serviços de pagamento online tipicamente cobram um juro mensal, bem como uma taxa por pagamento. Por enquanto, o serviço contratado pela empresa é o do Paypal, que aplica juros simples de 1% a cada parcela, mais uma taxa de pagamento de 2%.</p>
+
+<p>Fazer um programa para ler os dados de um contrato (número do contrato, data do contrato, e valor total do contrato). Em seguida, o programa deve ler o número de meses para parcelamento do contrato, e daí gerar os registros de parcelas a serem pagas (data e valor), sendo a primeira parcela a ser paga um mês após a data do contrato, a segunda parcela dois meses após o contrato e assim por diante. Mostrar os dados das parcelas na tela.</p>
+
+<p><strong>Exemplo:</strong></p>
+
+<p>Dados do contrato:
+Número: 8028
+Data (dd/MM/yyyy): 25/06/2018
+Valor do contrato: 600.00
+Número de parcelas: 3</p>
+
+<p>Parcelas:
+25/07/2018 - 206.04
+25/08/2018 - 208.08
+25/09/2018 - 210.12</p>
+
+<p>Cálculos (1% de juro simples mensal + 2% de taxa de pagamento):
+Valor base da parcela = 600.00 / 3 = 200.00</p>
+
+<p>Parcela #1:
+Juro = 200.00 * 1% * 1 = 2.00
+Valor com juro = 200.00 + 2.00 = 202.00
+Taxa de pagamento = 202.00 * 2% = 4.04
+Valor final Parcela #1 = 202.00 + 4.04 = 206.04</p>
+
+<p>Parcela #2:
+Juro = 200.00 * 1% * 2 = 4.00
+Valor com juro = 200.00 + 4.00 = 204.00
+Taxa de pagamento = 204.00 * 2% = 4.08
+Valor final Parcela #2 = 204.00 + 4.08 = 208.08</p>
+
+<p>Parcela #3:
+Juro = 200.00 * 1% * 3 = 6.00
+Valor com juro = 200.00 + 6.00 = 206.00
+Taxa de pagamento = 206.00 * 2% = 4.12
+Valor final Parcela #3 = 206.00 + 4.12 = 210.12</p>
+
+<h3 id="design-da-camada-de-domínio-entidades">Design da Camada de Domínio (Entidades)</h3>
+
+<pre><code class="language-mermaid">classDiagram
+    Contrato "1" -- "*" Parcela : -parcelas
+    Contrato : -Integer numero
+    Contrato : -Date data
+    Contrato : -Double valorTotal
+    Parcela : -Date dataVencimento
+    Parcela : -Double valor
+</code></pre>
+
+<h3 id="projeto-dos-serviços">Projeto dos Serviços</h3>
+
+<pre><code class="language-mermaid">classDiagram
+    ServicoContrato --&gt; ServicoPagamentoOnline
+    ServicoPagamentoPaypal ..|&gt; ServicoPagamentoOnline : implements
+    ServicoContrato : +processarContrato(Contrato contrato, Integer meses) void
+    &lt;&lt;interface&gt;&gt; ServicoPagamentoOnline
+    ServicoPagamentoOnline : +taxaPagamento(Double quantia) Double
+    ServicoPagamentoOnline : +juros(Double quantia, Integer meses) Double
+    ServicoPagamentoPaypal : +taxaPagamento(Double quantia) Double
+    ServicoPagamentoPaypal : +juros(Double quantia, Integer meses) Double
+</code></pre>
+
+<p><strong>O que o método <code class="language-plaintext highlighter-rouge">processarContrato</code> deve fazer?</strong>
+Para cada mês de parcelamento:</p>
+
+<ol>
+  <li>Calcular o valor base da parcela (valor total do contrato / número de meses).</li>
+  <li>Calcular o juro mensal sobre o valor base da parcela (usando o <code class="language-plaintext highlighter-rouge">ServicoPagamentoOnline</code>).</li>
+  <li>Somar o juro ao valor base.</li>
+  <li>Calcular a taxa de pagamento sobre o valor com juro (usando o <code class="language-plaintext highlighter-rouge">ServicoPagamentoOnline</code>).</li>
+  <li>Somar a taxa de pagamento para obter o valor final da parcela.</li>
+  <li>Adicionar a nova parcela (com data de vencimento e valor) à lista de parcelas do contrato.</li>
+</ol>
+
+<h2 id="-herdar-vs-cumprir-contrato-interface">🆚 Herdar vs. Cumprir Contrato (Interface)</h2>
+
+<p><strong>Aspectos em comum entre herança (classes) e interfaces:</strong></p>
+
+<ul>
+  <li><strong>Relação “é-um”</strong>: Um <code class="language-plaintext highlighter-rouge">Retangulo</code> <em>é uma</em> <code class="language-plaintext highlighter-rouge">Forma</code>, um <code class="language-plaintext highlighter-rouge">ServicoImpostoBrasil</code> <em>é um</em> <code class="language-plaintext highlighter-rouge">ServicoImposto</code>.</li>
+  <li><strong>Generalização/Especialização</strong>: <code class="language-plaintext highlighter-rouge">Forma</code> é uma generalização, <code class="language-plaintext highlighter-rouge">Retangulo</code> é uma especialização. <code class="language-plaintext highlighter-rouge">ServicoImposto</code> é uma generalização, <code class="language-plaintext highlighter-rouge">ServicoImpostoBrasil</code> é uma especialização de comportamento.</li>
+  <li><strong>Polimorfismo</strong>: Capacidade de um objeto assumir diferentes formas. Podemos tratar objetos de <code class="language-plaintext highlighter-rouge">Retangulo</code> e <code class="language-plaintext highlighter-rouge">Circulo</code> genericamente como <code class="language-plaintext highlighter-rouge">Forma</code>. Da mesma forma, podemos tratar <code class="language-plaintext highlighter-rouge">ServicoImpostoBrasil</code> ou <code class="language-plaintext highlighter-rouge">ServicoImpostoEUA</code> genericamente como <code class="language-plaintext highlighter-rouge">ServicoImposto</code>.</li>
+</ul>
+
+<p><strong>Diagrama de Herança (Classes):</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    Forma &lt;|-- Retangulo
+    Forma &lt;|-- Circulo
+    Forma : -Cor cor
+    Forma : +area() Double
+    Retangulo : -Double largura
+    Retangulo : -Double altura
+    Retangulo : +area() Double
+    Circulo : -Double raio
+    Circulo : +area() Double
+</code></pre>
+
+<p><strong>Diagrama de Implementação (Interfaces):</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    ServicoImposto &lt;|.. ServicoImpostoBrasil
+    ServicoImposto &lt;|.. ServicoImpostoEUA
+    &lt;&lt;interface&gt;&gt; ServicoImposto
+    ServicoImposto : +imposto(Double quantia) Double
+    ServicoImpostoBrasil : +imposto(Double quantia) Double
+    ServicoImpostoEUA : +imposto(Double quantia) Double
+</code></pre>
+
+<h3 id="️-diferença-fundamental">⚖️ Diferença Fundamental</h3>
+
+<ul>
+  <li><strong>Herança (de classe):</strong> Principal objetivo é o <strong>reuso de código</strong> (atributos e métodos) e o estabelecimento de uma hierarquia de tipos forte. Uma classe pode herdar de apenas uma superclasse em Java (herança simples).</li>
+  <li><strong>Interface:</strong> Principal objetivo é definir um <strong>contrato a ser cumprido</strong>. Especifica um conjunto de métodos que uma classe deve implementar. Uma classe pode implementar múltiplas interfaces. Não há reuso de implementação (antes do Java 8).</li>
+</ul>
+
+<p><strong>E se eu precisar implementar <code class="language-plaintext highlighter-rouge">Forma</code> como interface, porém também quiser definir uma estrutura comum reutilizável para todas as figuras (ex: um atributo <code class="language-plaintext highlighter-rouge">cor</code>)?</strong></p>
+
+<p>Pode-se usar uma combinação: uma interface para o contrato e uma classe abstrata para o reuso comum.</p>
+
+<pre><code class="language-mermaid">classDiagram
+    &lt;&lt;interface&gt;&gt; IForma
+    IForma : +area() Double
+    AbstractForma ..|&gt; IForma : implements
+    AbstractForma &lt;|-- Retangulo
+    AbstractForma &lt;|-- Circulo
+    AbstractForma : -Cor cor
+    Retangulo : -Double largura
+    Retangulo : -Double altura
+    Retangulo : +area() Double
+    Circulo : -Double raio
+    Circulo : +area() Double
+</code></pre>
+
+<p>Neste caso, <code class="language-plaintext highlighter-rouge">AbstractForma</code> implementaria <code class="language-plaintext highlighter-rouge">IForma</code> e forneceria o atributo <code class="language-plaintext highlighter-rouge">cor</code>. <code class="language-plaintext highlighter-rouge">Retangulo</code> e <code class="language-plaintext highlighter-rouge">Circulo</code> herdariam de <code class="language-plaintext highlighter-rouge">AbstractForma</code> e implementariam o método <code class="language-plaintext highlighter-rouge">area()</code>.</p>
+
+<h3 id="-outro-exemplo-serviço-de-email">📧 Outro Exemplo: Serviço de Email</h3>
+
+<pre><code class="language-mermaid">classDiagram
+    &lt;&lt;interface&gt;&gt; ServicoEmail
+    ServicoEmail : +enviarEmail(MensagemEmailSimples mensagem) void
+    ServicoEmail : +enviarEmailConfirmacaoPedido(Pedido pedido) void
+    AbstractServicoEmail ..|&gt; ServicoEmail
+    AbstractServicoEmail &lt;|-- ServicoEmailMock
+    AbstractServicoEmail &lt;|-- ServicoEmailSmtp
+    AbstractServicoEmail : +prepararMensagemEmailSimplesDePedido(Pedido pedido) MensagemEmailSimples
+    AbstractServicoEmail : +enviarEmailConfirmacaoPedido(Pedido pedido) void
+    ServicoEmailMock : +enviarEmail(MensagemEmailSimples mensagem) void
+    ServicoEmailSmtp : +enviarEmail(MensagemEmailSimples mensagem) void
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ServicoEmail</code>: Interface definindo o contrato para envio de emails.</li>
+  <li><code class="language-plaintext highlighter-rouge">AbstractServicoEmail</code>: Classe abstrata que implementa <code class="language-plaintext highlighter-rouge">ServicoEmail</code>. Pode fornecer implementações comuns, como <code class="language-plaintext highlighter-rouge">enviarEmailConfirmacaoPedido</code> que usa <code class="language-plaintext highlighter-rouge">prepararMensagemEmailSimplesDePedido</code> e depois chama o método abstrato <code class="language-plaintext highlighter-rouge">enviarEmail</code> (a ser implementado pelas subclasses).</li>
+  <li><code class="language-plaintext highlighter-rouge">ServicoEmailMock</code>: Implementação para testes, não envia emails reais.</li>
+  <li><code class="language-plaintext highlighter-rouge">ServicoEmailSmtp</code>: Implementação real que envia emails via SMTP.</li>
+</ul>
+
+<h2 id="-herança-múltipla-e-o-problema-do-diamante">💎 Herança Múltipla e o Problema do Diamante</h2>
+
+<p>A <strong>herança múltipla</strong> (uma classe herdando de múltiplas superclasses) pode gerar o <strong>problema do diamante</strong>: uma ambiguidade causada pela existência do mesmo método (com a mesma assinatura) em mais de uma superclasse.</p>
+
+<pre><code class="language-mermaid">classDiagram
+    Dispositivo &lt;|-- Scanner
+    Dispositivo &lt;|-- Impressora
+    Scanner &lt;|-- DispositivoCombo
+    Impressora &lt;|-- DispositivoCombo
+    Dispositivo : +processarDoc(String doc) void
+    Scanner : +processarDoc(String doc) void
+    Scanner : +scan() String
+    Impressora : +processarDoc(String doc) void
+    Impressora : +print(String doc) void
+    DispositivoCombo : // qual processarDoc() herdar?
+</code></pre>
+
+<p>Se <code class="language-plaintext highlighter-rouge">DispositivoCombo</code> herda de <code class="language-plaintext highlighter-rouge">Scanner</code> e <code class="language-plaintext highlighter-rouge">Impressora</code>, e ambas têm um método <code class="language-plaintext highlighter-rouge">processarDoc</code>, qual versão <code class="language-plaintext highlighter-rouge">DispositivoCombo</code> usaria?</p>
+
+<p><strong>A herança múltipla de classes não é permitida na maioria das linguagens orientadas a objetos, incluindo Java, justamente para evitar este e outros problemas de complexidade.</strong></p>
+
+<h3 id="implementando-múltiplas-interfaces">Implementando Múltiplas Interfaces</h3>
+
+<p>Porém, <strong>uma classe pode implementar mais de uma interface</strong>.</p>
+
+<pre><code class="language-mermaid">classDiagram
+    Dispositivo : -String numeroSerial
+    Dispositivo : +processarDoc(String doc) void
+    Dispositivo &lt;|-- DispositivoCombo
+    DispositivoCombo ..|&gt; IScanner : implements
+    DispositivoCombo ..|&gt; IImpressora : implements
+    &lt;&lt;interface&gt;&gt; IScanner
+    IScanner : +scan() String
+    &lt;&lt;interface&gt;&gt; IImpressora
+    IImpressora : +print(String doc) void
+    DispositivoCombo : +processarDoc(String doc) void // herdado de Dispositivo
+    DispositivoCombo : +scan() String // implementado de IScanner
+    DispositivoCombo : +print(String doc) void // implementado de IImpressora
+</code></pre>
+
+<p><strong>ATENÇÃO:</strong>
+Isso <strong>NÃO é herança múltipla de implementação</strong>, pois NÃO HÁ REUSO de código das interfaces <code class="language-plaintext highlighter-rouge">IScanner</code> e <code class="language-plaintext highlighter-rouge">IImpressora</code> (antes do Java 8 com default methods). <code class="language-plaintext highlighter-rouge">DispositivoCombo</code> não <em>herda</em> implementação das interfaces, mas sim <em>implementa</em> os métodos definidos por elas (cumpre o contrato). Se as interfaces tivessem métodos default com a mesma assinatura, a classe <code class="language-plaintext highlighter-rouge">DispositivoCombo</code> seria obrigada a sobrescrever o método para resolver a ambiguidade.</p>
+
+<h2 id="️-interface-comparable">⚖️ Interface <code class="language-plaintext highlighter-rouge">Comparable</code></h2>
+
+<p>A interface <code class="language-plaintext highlighter-rouge">java.lang.Comparable&lt;T&gt;</code> é usada para impor uma ordem natural aos objetos de uma classe que a implementa.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="no">T</span> <span class="n">outroObjeto</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>O método <code class="language-plaintext highlighter-rouge">compareTo(T outroObjeto)</code> compara este objeto com o <code class="language-plaintext highlighter-rouge">outroObjeto</code> especificado.
+<strong>Retorna:</strong></p>
+
+<ul>
+  <li>Um <strong>inteiro negativo</strong> se este objeto for menor que <code class="language-plaintext highlighter-rouge">outroObjeto</code>.</li>
+  <li><strong>Zero</strong> se este objeto for igual a <code class="language-plaintext highlighter-rouge">outroObjeto</code>.</li>
+  <li>Um <strong>inteiro positivo</strong> se este objeto for maior que <code class="language-plaintext highlighter-rouge">outroObjeto</code>.</li>
+</ul>
+
+<p>Classes como <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">Integer</code>, <code class="language-plaintext highlighter-rouge">Double</code>, <code class="language-plaintext highlighter-rouge">Date</code> já implementam <code class="language-plaintext highlighter-rouge">Comparable</code>. Isso permite que listas ou arrays desses objetos sejam facilmente ordenados usando <code class="language-plaintext highlighter-rouge">Collections.sort()</code> ou <code class="language-plaintext highlighter-rouge">Arrays.sort()</code>.</p>
+
+<p><strong>Exemplo com Strings:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"maria"</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">"alex"</span><span class="o">));</span>   <span class="c1">// Saída: 12 (m vem depois de a)</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"alex"</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">"maria"</span><span class="o">));</span>   <span class="c1">// Saída: -12 (a vem antes de m)</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"maria"</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">"maria"</span><span class="o">));</span> <span class="c1">// Saída: 0 (iguais)</span>
+</code></pre></div></div>
+
+<h3 id="-problema-motivador-ordenar-nomes-de-um-arquivo">📂 Problema Motivador: Ordenar Nomes de um Arquivo</h3>
+
+<p>Faça um programa para ler um arquivo contendo nomes de pessoas (um nome por linha), armazenando-os em uma lista. Depois, ordenar os dados dessa lista e mostrá-los ordenadamente na tela.
+Nota: o caminho do arquivo pode ser informado “hardcoded”.</p>
+
+<p><strong>Arquivo <code class="language-plaintext highlighter-rouge">entrada.txt</code> (exemplo):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Maria Brown
+Alex Green
+Bob Grey
+Anna White
+Alex Black
+Eduardo Rose
+Willian Red
+Marta Blue
+Alex Brown
+</code></pre></div></div>
+
+<p><strong>Código Java:</strong>
+Este código funcionará em qualquer IDE Java como VS Code ou IntelliJ IDEA. Certifique-se de que o arquivo <code class="language-plaintext highlighter-rouge">entrada.txt</code> exista no caminho especificado ou ajuste o caminho.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span> <span class="c1">// Para o método sort</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">listaNomes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="nc">String</span> <span class="n">caminhoArquivo</span> <span class="o">=</span> <span class="s">"C:\\temp\\entrada.txt"</span><span class="o">;</span> <span class="c1">// Adapte este caminho</span>
+
+        <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">caminhoArquivo</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">nome</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">nome</span><span class="o">);</span>
+                <span class="n">nome</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">listaNomes</span><span class="o">);</span> <span class="c1">// String implementa Comparable</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">listaNomes</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada (ordenada):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Alex Black
+Alex Brown
+Alex Green
+Anna White
+Bob Grey
+Eduardo Rose
+Maria Brown
+Marta Blue
+Willian Red
+</code></pre></div></div>
+
+<h3 id="-outro-problema-ordenar-funcionários-de-um-csv">🧑‍💼 Outro Problema: Ordenar Funcionários de um CSV</h3>
+
+<p>Faça um programa para ler um arquivo contendo funcionários (nome e salário) no formato .csv, armazenando-os em uma lista. Depois, ordenar a lista por nome e mostrar o resultado na tela.
+Nota: o caminho do arquivo pode ser informado “hardcoded”.</p>
+
+<p><strong>Arquivo <code class="language-plaintext highlighter-rouge">funcionarios.csv</code> (exemplo):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Maria Brown,4300.00
+Alex Green,3100.00
+Bob Grey,3100.00
+Anna White,3500.00
+Alex Black,2450.00
+Eduardo Rose,4390.00
+Willian Red,2900.00
+Marta Blue,6100.00
+Alex Brown,5000.00
+</code></pre></div></div>
+
+<p>Para ordenar uma lista de objetos <code class="language-plaintext highlighter-rouge">Funcionario</code> por nome, a classe <code class="language-plaintext highlighter-rouge">Funcionario</code> deve implementar <code class="language-plaintext highlighter-rouge">Comparable&lt;Funcionario&gt;</code>.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Funcionario</code>:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Funcionario</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">salario</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Funcionario</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">salario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">salario</span> <span class="o">=</span> <span class="n">salario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSalario</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">salario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalario</span><span class="o">(</span><span class="nc">Double</span> <span class="n">salario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">salario</span> <span class="o">=</span> <span class="n">salario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Implementação do método compareTo para ordenar por nome</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Funcionario</span> <span class="n">outro</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">outro</span><span class="o">.</span><span class="na">getNome</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">salario</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Programa Principal:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Funcionario</span><span class="o">;</span> <span class="c1">// Importa a classe Funcionario</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaLeituraFuncionarios</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">listaFuncionarios</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="nc">String</span> <span class="n">caminhoArquivo</span> <span class="o">=</span> <span class="s">"C:\\temp\\funcionarios.csv"</span><span class="o">;</span> <span class="c1">// Adapte este caminho</span>
+
+        <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">caminhoArquivo</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">linhaCsvFuncionario</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">linhaCsvFuncionario</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">String</span><span class="o">[]</span> <span class="n">campos</span> <span class="o">=</span> <span class="n">linhaCsvFuncionario</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">","</span><span class="o">);</span>
+                <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">campos</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+                <span class="kt">double</span> <span class="n">salario</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">campos</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+                <span class="n">listaFuncionarios</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Funcionario</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">salario</span><span class="o">));</span>
+                <span class="n">linhaCsvFuncionario</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">listaFuncionarios</span><span class="o">);</span> <span class="c1">// Funcionario agora é Comparable</span>
+
+            <span class="k">for</span> <span class="o">(</span><span class="nc">Funcionario</span> <span class="n">func</span> <span class="o">:</span> <span class="n">listaFuncionarios</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">func</span><span class="o">);</span> <span class="c1">// Usa o toString() de Funcionario</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-default-methods-métodos-padrão">🆕 Default Methods (Métodos Padrão)</h2>
+
+<p>A partir do <strong>Java 8</strong>, interfaces podem conter <strong>métodos concretos</strong>, chamados de <em>default methods</em> (ou <em>defender methods</em>).</p>
+
+<p><strong>Intenção básica:</strong>
+Prover implementação padrão para métodos, de modo a evitar:</p>
+
+<ol>
+  <li>Repetição de implementação em toda classe que implemente a interface.</li>
+  <li>A necessidade de se criar classes abstratas apenas para prover reuso de implementação de alguns métodos.</li>
+</ol>
+
+<p><strong>Outras Vantagens:</strong></p>
+
+<ul>
+  <li><strong>Manter a retrocompatibilidade</strong>: Adicionar novos métodos a interfaces existentes sem quebrar o código das classes que já as implementam. As classes existentes herdarão a implementação padrão.</li>
+  <li><strong>Permitir que “interfaces funcionais”</strong> (que devem conter apenas um método abstrato para serem usadas com expressões lambda) possam prover outras operações padrão reutilizáveis. Exemplo: <code class="language-plaintext highlighter-rouge">java.util.function.Predicate</code> possui métodos default como <code class="language-plaintext highlighter-rouge">and()</code>, <code class="language-plaintext highlighter-rouge">or()</code>, <code class="language-plaintext highlighter-rouge">negate()</code>.</li>
+</ul>
+
+<h3 id="-problema-exemplo-serviço-de-juros">🏦 Problema Exemplo: Serviço de Juros</h3>
+
+<p>Fazer um programa para ler uma quantia e a duração em meses de um empréstimo. Informar o valor a ser pago depois de decorrido o prazo do empréstimo, conforme regras de juros do Brasil. A regra de cálculo de juros do Brasil é juro composto padrão de 2% ao mês.</p>
+
+<p><strong>Exemplo:</strong>
+Quantia: 200.00
+Meses: 3
+Pagamento após 3 meses: 212.2416 (aproximadamente 212.24)</p>
+
+<p>Cálculos: Pagamento = Quantia * (1 + taxaDeJuros / 100)&lt;sup&gt;Meses&lt;/sup&gt;
+Pagamento = 200.00 * (1 + 2/100)&lt;sup&gt;3&lt;/sup&gt; = 200.00 * (1.02)&lt;sup&gt;3&lt;/sup&gt; = 200.00 * 1.061208 = 212.2416</p>
+
+<p><strong>Design Inicial (Sem Default Method):</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    ServicoJurosBrasil : -double taxaDeJuros
+    ServicoJurosBrasil : +pagamento(double quantia, int meses) double
+</code></pre>
+
+<p>Se quisermos adicionar um serviço de juros de outro país (EUA, com 1% ao mês):</p>
+
+<pre><code class="language-mermaid">classDiagram
+    ServicoJurosEUA : -double taxaDeJuros
+    ServicoJurosEUA : +pagamento(double quantia, int meses) double
+</code></pre>
+
+<p>A lógica do método <code class="language-plaintext highlighter-rouge">pagamento</code> é a mesma, apenas a <code class="language-plaintext highlighter-rouge">taxaDeJuros</code> muda. Podemos usar uma interface com um método <code class="language-plaintext highlighter-rouge">getTaxaDeJuros()</code> e um método <code class="language-plaintext highlighter-rouge">pagamento()</code>.</p>
+
+<pre><code class="language-mermaid">classDiagram
+    &lt;&lt;interface&gt;&gt; ServicoJuros
+    ServicoJuros : +getTaxaDeJuros() double
+    ServicoJuros : +pagamento(double quantia, int meses) double
+    ServicoJurosBrasil ..|&gt; ServicoJuros
+    ServicoJurosEUA ..|&gt; ServicoJuros
+</code></pre>
+
+<p>Neste caso, tanto <code class="language-plaintext highlighter-rouge">ServicoJurosBrasil</code> quanto <code class="language-plaintext highlighter-rouge">ServicoJurosEUA</code> teriam que implementar o método <code class="language-plaintext highlighter-rouge">pagamento</code> de forma idêntica.</p>
+
+<h3 id="utilizando-default-method-na-interface-servicojuros">Utilizando Default Method na Interface <code class="language-plaintext highlighter-rouge">ServicoJuros</code></h3>
+
+<p>Com default methods, podemos fornecer uma implementação padrão para o método <code class="language-plaintext highlighter-rouge">pagamento</code> diretamente na interface.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">servicos</span><span class="o">;</span>
+
+<span class="c1">// Interface com default method</span>
+<span class="kd">interface</span> <span class="nc">ServicoJuros</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="nf">getTaxaDeJuros</span><span class="o">();</span> <span class="c1">// Método abstrato a ser implementado</span>
+
+    <span class="c1">// Default method com implementação padrão</span>
+    <span class="k">default</span> <span class="kt">double</span> <span class="nf">pagamento</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">,</span> <span class="kt">int</span> <span class="n">meses</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">meses</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"Meses deve ser maior ou igual a 1"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">quantia</span> <span class="o">*</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">getTaxaDeJuros</span><span class="o">()</span> <span class="o">/</span> <span class="mf">100.0</span><span class="o">,</span> <span class="n">meses</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Implementação para o Brasil</span>
+<span class="kd">class</span> <span class="nc">ServicoJurosBrasil</span> <span class="kd">implements</span> <span class="nc">ServicoJuros</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">taxaDeJuros</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ServicoJurosBrasil</span><span class="o">(</span><span class="kt">double</span> <span class="n">taxaDeJuros</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">taxaDeJuros</span> <span class="o">=</span> <span class="n">taxaDeJuros</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getTaxaDeJuros</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">taxaDeJuros</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Implementação para os EUA</span>
+<span class="kd">class</span> <span class="nc">ServicoJurosEUA</span> <span class="kd">implements</span> <span class="nc">ServicoJuros</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">taxaDeJuros</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ServicoJurosEUA</span><span class="o">(</span><span class="kt">double</span> <span class="n">taxaDeJuros</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">taxaDeJuros</span> <span class="o">=</span> <span class="n">taxaDeJuros</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getTaxaDeJuros</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">taxaDeJuros</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaJuros</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ServicoJuros</span> <span class="n">sjBrasil</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServicoJurosBrasil</span><span class="o">(</span><span class="mf">2.0</span><span class="o">);</span> <span class="c1">// 2%</span>
+        <span class="nc">ServicoJuros</span> <span class="n">sjEUA</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServicoJurosEUA</span><span class="o">(</span><span class="mf">1.0</span><span class="o">);</span>    <span class="c1">// 1%</span>
+
+        <span class="kt">double</span> <span class="n">quantia</span> <span class="o">=</span> <span class="mf">200.00</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">meses</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Pagamento Brasil (quantia: %.2f, meses: %d): %.2f%n"</span><span class="o">,</span>
+                <span class="n">quantia</span><span class="o">,</span> <span class="n">meses</span><span class="o">,</span> <span class="n">sjBrasil</span><span class="o">.</span><span class="na">pagamento</span><span class="o">(</span><span class="n">quantia</span><span class="o">,</span> <span class="n">meses</span><span class="o">));</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Pagamento EUA (quantia: %.2f, meses: %d): %.2f%n"</span><span class="o">,</span>
+                <span class="n">quantia</span><span class="o">,</span> <span class="n">meses</span><span class="o">,</span> <span class="n">sjEUA</span><span class="o">.</span><span class="na">pagamento</span><span class="o">(</span><span class="n">quantia</span><span class="o">,</span> <span class="n">meses</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída do <code class="language-plaintext highlighter-rouge">ProgramaJuros</code>:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Pagamento Brasil (quantia: 200.00, meses: 3): 212.24
+Pagamento EUA (quantia: 200.00, meses: 3): 206.06
+</code></pre></div></div>
+
+<p>As classes <code class="language-plaintext highlighter-rouge">ServicoJurosBrasil</code> e <code class="language-plaintext highlighter-rouge">ServicoJurosEUA</code> só precisam implementar <code class="language-plaintext highlighter-rouge">getTaxaDeJuros()</code>, herdando a lógica de <code class="language-plaintext highlighter-rouge">pagamento()</code> da interface.</p>
+
+<h3 id="-considerações-importantes-sobre-default-methods">🤔 Considerações Importantes sobre Default Methods</h3>
+
+<ul>
+  <li><strong>Reuso</strong>: Sim, agora as interfaces podem prover reuso de código (comportamento).</li>
+  <li><strong>“Herança Múltipla”</strong>: Sim, agora temos uma forma de “herança múltipla” de comportamento (uma classe pode implementar múltiplas interfaces e herdar default methods de cada uma).
+    <ul>
+      <li><strong>Conflitos</strong>: O compilador reclama se houver mais de um default method com a <strong>mesma assinatura</strong> vindo de diferentes interfaces implementadas pela classe. Nesse caso, a classe é <strong>obrigada a sobrescrever</strong> o método para resolver a ambiguidade e especificar qual implementação usar, ou fornecer uma nova.</li>
+    </ul>
+  </li>
+  <li><strong>Diferença para Classes Abstratas</strong>: Interfaces ainda são bem diferentes de classes abstratas.
+    <ul>
+      <li>Interfaces <strong>não possuem atributos de instância</strong> (campos). Elas podem ter constantes ( <code class="language-plaintext highlighter-rouge">static final</code> ).</li>
+      <li>Interfaces <strong>não possuem construtores</strong>.</li>
+      <li>Uma classe pode herdar de apenas uma classe (abstrata ou concreta), mas pode implementar múltiplas interfaces.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Default methods são um recurso poderoso para a evolução de APIs e para a escrita de código mais conciso e reutilizável, especialmente quando combinados com interfaces funcionais e expressões lambda.</p>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

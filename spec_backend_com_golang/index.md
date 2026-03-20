@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🐹 Go (Golang): Uma Visão Geral
+title: "🐹 Go (Golang): Uma Visão Geral"
 ---
 
 # 🐹 Go (Golang): Uma Visão Geral

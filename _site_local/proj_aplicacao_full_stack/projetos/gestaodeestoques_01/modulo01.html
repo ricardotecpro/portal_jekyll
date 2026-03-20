@@ -1,0 +1,376 @@
+<h1 id="-guia-didático-gestão-de-estoques-com-spring-boot">💎 Guia Didático: Gestão de Estoques com Spring Boot</h1>
+
+<hr />
+
+<h2 id="módulo-1-️-fundamentos-e-persistência-de-dados">Módulo 1: 🏛️ Fundamentos e Persistência de Dados</h2>
+
+<p><strong>Objetivo:</strong> Construir a base da aplicação. Ao final deste módulo, o aluno terá uma aplicação Spring Boot funcional que se conecta a um banco de dados em memória, com todo o modelo de dados definido e pronto para ser manipulado.</p>
+
+<hr />
+
+<h3 id="-aula-11-gênese-do-projeto-configuração-no-spring-initializr">### Aula 1.1: Gênese do Projeto (Configuração no Spring Initializr)</h3>
+
+<p><strong>Conceito-Chave:</strong> O <strong>Spring Initializr</strong> é uma ferramenta que automatiza a criação da estrutura de projetos Spring, garantindo que todas as dependências e configurações iniciais estejam corretas.</p>
+
+<p><strong>Ação:</strong> Siga os passos abaixo para criar o esqueleto da nossa aplicação.</p>
+
+<ol>
+  <li>
+    <p><strong>Acesse o site:</strong> Abra o seu navegador e vá para <a href="https://start.spring.io"><strong>start.spring.io</strong></a>.</p>
+  </li>
+  <li>
+    <p><strong>Configure os Metadados do Projeto:</strong> Preencha a seção à esquerda com as seguintes informações.</p>
+
+    <ul>
+      <li><strong>Project:</strong> <code class="language-plaintext highlighter-rouge">Maven</code></li>
+      <li><strong>Language:</strong> <code class="language-plaintext highlighter-rouge">Java</code></li>
+      <li><strong>Spring Boot:</strong> <code class="language-plaintext highlighter-rouge">3.2.x</code> (use a versão estável mais recente)</li>
+      <li><strong>Project Metadata:</strong>
+        <ul>
+          <li><strong>Group:</strong> <code class="language-plaintext highlighter-rouge">br.com.aula</code></li>
+          <li><strong>Artifact:</strong> <code class="language-plaintext highlighter-rouge">gestaodeestoques</code></li>
+          <li><strong>Name:</strong> <code class="language-plaintext highlighter-rouge">gestaodeestoques</code></li>
+          <li><strong>Description:</strong> <code class="language-plaintext highlighter-rouge">API REST para Gestão de Estoques</code></li>
+          <li><strong>Package name:</strong> <code class="language-plaintext highlighter-rouge">br.com.aula.gestaodeestoques</code></li>
+        </ul>
+      </li>
+      <li><strong>Packaging:</strong> <code class="language-plaintext highlighter-rouge">Jar</code></li>
+      <li><strong>Java:</strong> <code class="language-plaintext highlighter-rouge">21</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Adicione as Dependências:</strong> No lado direito, em “Dependencies”, adicione as seguintes bibliotecas. Para a API REST que estamos construindo, <strong>não precisaremos</strong> do <code class="language-plaintext highlighter-rouge">Thymeleaf</code>.</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code>: Essencial para criar APIs REST.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Data JDBC</code>: Para acesso simplificado ao banco de dados.</li>
+      <li><code class="language-plaintext highlighter-rouge">H2 Database</code>: Nosso banco de dados em memória para desenvolvimento.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Security</code>: Para proteger nossa API.</li>
+      <li><code class="language-plaintext highlighter-rouge">Validation</code>: Para validar os dados que recebemos.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Boot DevTools</code>: Para reinicializações automáticas durante o desenvolvimento.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Gere e Importe:</strong> Clique em <strong>“GENERATE”</strong>, descompacte o arquivo <code class="language-plaintext highlighter-rouge">.zip</code> e abra o projeto na sua IDE.</p>
+  </li>
+</ol>
+
+<p>O resultado será um arquivo <code class="language-plaintext highlighter-rouge">pom.xml</code> que define nosso projeto.</p>
+
+<h4 id="código-pomxml-arquivo-completo">Código: <code class="language-plaintext highlighter-rouge">pom.xml</code> (Arquivo Completo)</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+	<span class="nt">&lt;parent&gt;</span>
+		<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+		<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;version&gt;</span>3.2.5<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;relativePath/&gt;</span>
+	<span class="nt">&lt;/parent&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>br.com.aula<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>gestaodeestoques<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;name&gt;</span>gestaodeestoques<span class="nt">&lt;/name&gt;</span>
+	<span class="nt">&lt;description&gt;</span>API REST para Gestão de Estoques<span class="nt">&lt;/description&gt;</span>
+	<span class="nt">&lt;properties&gt;</span>
+		<span class="nt">&lt;java.version&gt;</span>21<span class="nt">&lt;/java.version&gt;</span>
+	<span class="nt">&lt;/properties&gt;</span>
+	<span class="nt">&lt;dependencies&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-security<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-validation<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-devtools<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+			<span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-test<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.springframework.security<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>spring-security-test<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>io.jsonwebtoken<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>jjwt-api<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>0.11.5<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>io.jsonwebtoken<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>jjwt-impl<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>0.11.5<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>io.jsonwebtoken<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>jjwt-jackson<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>0.11.5<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+	<span class="nt">&lt;/dependencies&gt;</span>
+	<span class="nt">&lt;build&gt;</span>
+		<span class="nt">&lt;plugins&gt;</span>
+			<span class="nt">&lt;plugin&gt;</span>
+				<span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+				<span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;/plugin&gt;</span>
+		<span class="nt">&lt;/plugins&gt;</span>
+	<span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-12-modelagem-do-banco-de-dados">### Aula 1.2: Modelagem do Banco de Dados</h3>
+
+<p><strong>Conceito-Chave:</strong> O <strong>Diagrama de Entidade-Relacionamento (ER)</strong> é o mapa que guia a construção do nosso banco de dados. Ele define as entidades (tabelas) e como elas se conectam.</p>
+
+<h4 id="diagrama-er">Diagrama ER</h4>
+
+<pre><code class="language-mermaid">erDiagram
+    CATEGORIA { int id PK, varchar nome }
+    FORNECEDOR { int id PK, varchar nome, varchar cnpj }
+    PRODUTO { int id PK, varchar nome, int categoria_id FK, int fornecedor_id FK }
+    USUARIO { bigint id PK, varchar login }
+    PAPEL { bigint id PK, varchar nome }
+    "USUARIO_PAPEL" { bigint usuario_id PK, FK, bigint papel_id PK, FK }
+
+    CATEGORIA ||--|{ PRODUTO : "classifica"
+    FORNECEDOR ||--|{ PRODUTO : "fornece"
+    USUARIO }o--o{ PAPEL : "possui"
+</code></pre>
+
+<p><strong>Ação:</strong> Para traduzir este diagrama em um banco de dados, criaremos um arquivo <code class="language-plaintext highlighter-rouge">schema.sql</code>. O Spring Boot irá executá-lo automaticamente na inicialização. Também configuraremos o <code class="language-plaintext highlighter-rouge">application.properties</code> para habilitar o console do H2.</p>
+
+<h4 id="código-srcmainresourcesapplicationproperties">Código: <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code></h4>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configuração do Banco de Dados H2 em Memória
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+
+<span class="c"># Habilita o console do H2 para visualização no navegador
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Garante que o schema.sql seja sempre executado na inicialização
+</span><span class="py">spring.sql.init.mode</span><span class="p">=</span><span class="s">always</span>
+</code></pre></div></div>
+
+<h4 id="código-srcmainresourcesschemasql">Código: <code class="language-plaintext highlighter-rouge">src/main/resources/schema.sql</code></h4>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Garante que o banco seja recriado a cada reinicialização, ótimo para desenvolvimento</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">produto</span><span class="p">,</span> <span class="n">categoria</span><span class="p">,</span> <span class="n">fornecedor</span><span class="p">,</span> <span class="n">usuario_papel</span><span class="p">,</span> <span class="n">usuario</span><span class="p">,</span> <span class="n">papel</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">categoria</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">UNIQUE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">fornecedor</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">cnpj</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">UNIQUE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">usuario</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">BIGINT</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">login</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">UNIQUE</span><span class="p">,</span>
+    <span class="n">senha</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">ativo</span> <span class="nb">BOOLEAN</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">TRUE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">papel</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">BIGINT</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">UNIQUE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">usuario_papel</span> <span class="p">(</span>
+    <span class="n">usuario_id</span> <span class="nb">BIGINT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">papel_id</span> <span class="nb">BIGINT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">usuario_id</span><span class="p">,</span> <span class="n">papel_id</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">usuario_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">usuario</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">papel_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">papel</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">produto</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span> <span class="n">AUTO_INCREMENT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">quantidade</span> <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">preco</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">categoria_id</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">fornecedor_id</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">categoria_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">categoria</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">fornecedor_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">fornecedor</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-13-mapeamento-objeto-relacional">### Aula 1.3: Mapeamento Objeto-Relacional</h3>
+
+<p><strong>Conceito-Chave:</strong> Usaremos <code class="language-plaintext highlighter-rouge">records</code> do Java para criar representações imutáveis e concisas das nossas tabelas. As anotações <code class="language-plaintext highlighter-rouge">@Table</code> e <code class="language-plaintext highlighter-rouge">@Id</code> do Spring Data conectam a classe Java à tabela e sua chave primária correspondente.</p>
+
+<p><strong>Ação:</strong> Crie o pacote <code class="language-plaintext highlighter-rouge">br.com.aula.gestaodeestoques.model</code> e adicione um arquivo <code class="language-plaintext highlighter-rouge">.java</code> para cada entidade.</p>
+
+<h4 id="código-modelcategoriajava">Código: <code class="language-plaintext highlighter-rouge">model/Categoria.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.annotation.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.relational.core.mapping.Table</span><span class="o">;</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="s">"CATEGORIA"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">Categoria</span><span class="o">(</span><span class="nd">@Id</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-modelfornecedorjava">Código: <code class="language-plaintext highlighter-rouge">model/Fornecedor.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.annotation.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.relational.core.mapping.Table</span><span class="o">;</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="s">"FORNECEDOR"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">Fornecedor</span><span class="o">(</span><span class="nd">@Id</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">String</span> <span class="n">cnpj</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-modelpapeljava">Código: <code class="language-plaintext highlighter-rouge">model/Papel.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.annotation.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.relational.core.mapping.Table</span><span class="o">;</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="s">"PAPEL"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">Papel</span><span class="o">(</span><span class="nd">@Id</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-modelusuariojava">Código: <code class="language-plaintext highlighter-rouge">model/Usuario.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.annotation.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.relational.core.mapping.Table</span><span class="o">;</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="s">"USUARIO"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">Usuario</span><span class="o">(</span><span class="nd">@Id</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">login</span><span class="o">,</span> <span class="nc">String</span> <span class="n">senha</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">ativo</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-modelprodutojava">Código: <code class="language-plaintext highlighter-rouge">model/Produto.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.annotation.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.relational.core.mapping.Table</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="s">"PRODUTO"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">Produto</span><span class="o">(</span><span class="nd">@Id</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">,</span> <span class="nc">BigDecimal</span> <span class="n">preco</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">categoria_id</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">fornecedor_id</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-14-a-camada-de-acesso-a-dados">### Aula 1.4: A Camada de Acesso a Dados</h3>
+
+<p><strong>Conceito-Chave:</strong> O padrão <strong>Repository</strong> provê uma abstração para a fonte de dados. O Spring Data eleva isso a outro nível: ao estender <code class="language-plaintext highlighter-rouge">CrudRepository</code>, ganhamos todos os métodos de CRUD (salvar, buscar, deletar) sem precisar implementá-los.</p>
+
+<p><strong>Ação:</strong> Crie o pacote <code class="language-plaintext highlighter-rouge">br.com.aula.gestaodeestoques.repository</code> e adicione as interfaces para cada entidade.</p>
+
+<h4 id="código-repositorycategoriarepositoryjava">Código: <code class="language-plaintext highlighter-rouge">repository/CategoriaRepository.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Categoria</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.repository.CrudRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CategoriaRepository</span> <span class="kd">extends</span> <span class="nc">Cr</span><span class="o">.</span><span class="na">CrudRepository</span><span class="o">&lt;</span><span class="nc">Categoria</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-repositoryfornecedorrepositoryjava">Código: <code class="language-plaintext highlighter-rouge">repository/FornecedorRepository.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Fornecedor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.repository.CrudRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">FornecedorRepository</span> <span class="kd">extends</span> <span class="nc">CrudRepository</span><span class="o">&lt;</span><span class="nc">Fornecedor</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-repositorypapelrepositoryjava">Código: <code class="language-plaintext highlighter-rouge">repository/PapelRepository.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Papel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.repository.CrudRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PapelRepository</span> <span class="kd">extends</span> <span class="nc">CrudRepository</span><span class="o">&lt;</span><span class="nc">Papel</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-repositoryprodutorepositoryjava">Código: <code class="language-plaintext highlighter-rouge">repository/ProdutoRepository.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.repository.CrudRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProdutoRepository</span> <span class="kd">extends</span> <span class="nc">CrudRepository</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-repositoryusuariorepositoryjava">Código: <code class="language-plaintext highlighter-rouge">repository/UsuarioRepository.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Papel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Usuario</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jdbc.repository.query.Modifying</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jdbc.repository.query.Query</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.repository.CrudRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.repository.query.Param</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UsuarioRepository</span> <span class="kd">extends</span> <span class="nc">CrudRepository</span><span class="o">&lt;</span><span class="nc">Usuario</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Usuario</span><span class="o">&gt;</span> <span class="nf">findByLogin</span><span class="o">(</span><span class="nc">String</span> <span class="n">login</span><span class="o">);</span>
+
+    <span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT p.* FROM papel p JOIN usuario_papel up ON p.id = up.papel_id WHERE up.usuario_id = :usuarioId"</span><span class="o">)</span>
+    <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Papel</span><span class="o">&gt;</span> <span class="nf">findPapeisByUsuarioId</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"usuarioId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">usuarioId</span><span class="o">);</span>
+
+    <span class="nd">@Modifying</span>
+    <span class="nd">@Query</span><span class="o">(</span><span class="s">"INSERT INTO usuario_papel (usuario_id, papel_id) VALUES (:usuarioId, :papelId)"</span><span class="o">)</span>
+    <span class="kt">void</span> <span class="nf">adicionarPapel</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"usuarioId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">usuarioId</span><span class="o">,</span> <span class="nd">@Param</span><span class="o">(</span><span class="s">"papelId"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">papelId</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="conclusão-do-módulo-1-e-próximos-passos">Conclusão do Módulo 1 e Próximos Passos</h3>
+
+<p><strong>Parabéns!</strong> Você construiu a espinha dorsal da nossa aplicação. Neste ponto, temos:</p>
+
+<ul>
+  <li>Um projeto Spring Boot configurado.</li>
+  <li>Um esquema de banco de dados completo.</li>
+  <li>Classes Java que representam nossas tabelas.</li>
+  <li>Uma camada de acesso a dados poderosa e pronta para uso.</li>
+</ul>
+
+<p>Se você executar a aplicação agora (<code class="language-plaintext highlighter-rouge">GestaodeestoquesApplication.java</code>) e acessar <code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code>, você poderá se conectar ao banco (<code class="language-plaintext highlighter-rouge">JDBC URL: jdbc:h2:mem:testdb</code>, <code class="language-plaintext highlighter-rouge">User Name: sa</code>) e ver todas as tabelas que criamos, prontas para receber dados.</p>
+
+<p>No <strong>próximo módulo</strong>, vamos dar vida a essa estrutura, criando a <strong>camada de serviço</strong> onde a lógica de negócio da nossa aplicação irá residir.</p>
+

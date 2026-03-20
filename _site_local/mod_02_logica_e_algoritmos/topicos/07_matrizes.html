@@ -1,0 +1,343 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/07_matrizes.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🎛️ Matrizes (Arrays Bidimensionais) em Programação | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🎛️ Matrizes (Arrays Bidimensionais) em Programação" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/07_matrizes.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/07_matrizes.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🎛️ Matrizes (Arrays Bidimensionais) em Programação" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🎛️ Matrizes (Arrays Bidimensionais) em Programação","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/07_matrizes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🎛️ matrizes (arrays bidimensionais) em programação</span>
+          
+        
+      </nav>
+
+      <h1 id="️-matrizes-arrays-bidimensionais-em-programação">🎛️ Matrizes (Arrays Bidimensionais) em Programação</h1>
+
+<p>Dando um passo além dos vetores (arrays de uma dimensão), as <strong>matrizes</strong> nos permitem trabalhar com dados estruturados em duas dimensões, como tabelas, planilhas ou tabuleiros.</p>
+
+<h2 id="-o-que-são-matrizes">🤔 O que são Matrizes?</h2>
+
+<p>[cite_start]Uma matriz é uma coleção de dados que pode ser entendida como um <strong>array bidimensional</strong>[cite: 27]. Ela possui um conjunto de características fundamentais:</p>
+
+<ul>
+  <li>[cite_start]<strong>Indexada</strong>: Os elementos são acessados por meio de um par de índices: um para a linha e outro para a coluna[cite: 18]. Em Java, a sintaxe é <code class="language-plaintext highlighter-rouge">matriz[linha][coluna]</code>.</li>
+  <li>[cite_start]<strong>Bidimensional</strong>: Organiza os dados em uma estrutura de duas dimensões, composta por linhas e colunas[cite: 21].</li>
+  <li>[cite_start]<strong>Homogênea</strong>: Todos os dados armazenados na matriz devem ser do mesmo tipo (<code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">double</code>, <code class="language-plaintext highlighter-rouge">String</code>, etc.)[cite: 24].</li>
+  <li>[cite_start]<strong>Tamanho Fixo</strong>: Uma vez que a matriz é criada (alocada na memória), seu tamanho (número de linhas e colunas) não pode ser alterado[cite: 26].</li>
+</ul>
+
+<p>Visualmente, podemos imaginar uma matriz como uma grade:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      Col 0  Col 1  Col 2
+Linha 0 [  ]   [  ]   [  ]
+Linha 1 [  ]   [  ]   [  ]
+Linha 2 [  ]   [  ]   [  ]
+Linha 3 [  ]   [  ]   [  ]
+</code></pre></div></div>
+
+<h2 id="️-trabalhando-com-matrizes-em-java">🛠️ Trabalhando com Matrizes em Java</h2>
+
+<p>Vamos ver como declarar, instanciar e manipular matrizes na linguagem Java.</p>
+
+<h3 id="declaração-e-instanciação">Declaração e Instanciação</h3>
+
+<p>Para criar uma matriz, você precisa declarar seu tipo e, em seguida, instanciá-la, definindo seu número de linhas e colunas.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Sintaxe: tipo[][] nomeDaMatriz = new tipo[numeroDeLinhas][numeroDeColunas];</span>
+
+<span class="c1">// Exemplo: Criando uma matriz de inteiros com 3 linhas e 4 colunas.</span>
+<span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">4</span><span class="o">];</span>
+</code></pre></div></div>
+
+<p>Isso aloca um espaço na memória para 12 números inteiros (3 linhas x 4 colunas).</p>
+
+<h3 id="acessando-elementos">Acessando Elementos</h3>
+
+<p>Para atribuir ou ler um valor, você utiliza os índices da linha e da coluna. Lembre-se que em Java, <strong>os índices sempre começam em zero</strong>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Atribuindo o valor 10 à segunda linha (índice 1), terceira coluna (índice 2)</span>
+<span class="n">matriz</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="o">[</span><span class="n">cite_start</span><span class="o">]</span><span class="c1">// Equivalente ao A[1, 2] &lt;- 10 do pseudocódigo [cite: 41]</span>
+
+<span class="c1">// Lendo e imprimindo o valor</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">2</span><span class="o">]);</span> <span class="c1">// Saída: 10</span>
+</code></pre></div></div>
+
+<h2 id="️-exemplo-prático-lendo-e-imprimindo-uma-matriz">✍️ Exemplo Prático: Lendo e Imprimindo uma Matriz</h2>
+
+<p>Vamos criar um programa que pergunta ao usuário as dimensões de uma matriz, lê cada um de seus elementos e, ao final, a imprime na tela de forma organizada.</p>
+
+<p><strong>Problema:</strong> Fazer um programa para ler dois números inteiros <code class="language-plaintext highlighter-rouge">M</code> e <code class="language-plaintext highlighter-rouge">N</code> e depois ler uma matriz de <code class="language-plaintext highlighter-rouge">M</code> linhas por <code class="language-plaintext highlighter-rouge">N</code> colunas contendo números inteiros. [cite_start]Em seguida, mostrar a matriz lida[cite: 66, 67].</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LerMatriz</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantas linhas vai ter a matriz? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantas colunas vai ter a matriz? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="c1">// Instanciando a matriz com as dimensões informadas</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">mat</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">M</span><span class="o">][</span><span class="no">N</span><span class="o">];</span>
+
+        <span class="c1">// Usando laços aninhados para ler os dados</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite os elementos da matriz:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// Laço para percorrer as linhas</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// Laço para percorrer as colunas</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Elemento [%d,%d]: "</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+                <span class="n">mat</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Usando laços aninhados para imprimir a matriz</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+MATRIZ DIGITADA:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">mat</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span> <span class="c1">// Imprime o elemento e um espaço</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="c1">// Pula para a próxima linha ao final de cada linha da matriz</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplo de Execução:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantas linhas vai ter a matriz? 2
+Quantas colunas vai ter a matriz? 3
+Digite os elementos da matriz:
+Elemento [0,0]: 5
+Elemento [0,1]: 8
+Elemento [0,2]: 10
+Elemento [1,0]: -2
+Elemento [1,1]: 9
+Elemento [1,2]: 7
+
+MATRIZ DIGITADA:
+5 8 10 
+-2 9 7 
+</code></pre></div></div>
+
+<h2 id="-exercícios-de-lógica-com-matrizes">🧠 Exercícios de Lógica com Matrizes</h2>
+
+<p>Vamos transformar alguns dos “testes de mesa” do material de estudo em programas Java funcionais para ver a lógica em ação.</p>
+
+<h3 id="exercício-1-populando-com-uma-regra">Exercício 1: Populando com uma Regra</h3>
+
+<p><strong>Problema:</strong> Crie um programa que preenche uma matriz 3x3 onde o valor de cada elemento é a soma de seus índices (<code class="language-plaintext highlighter-rouge">linha + coluna</code>).</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PopularMatrizRegra</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">][</span><span class="no">N</span><span class="o">];</span>
+
+        <span class="c1">// Populando a matriz com a regra mat[i][j] = i + j</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">;</span> <span class="c1">// Regra de população</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Imprimindo a matriz resultante</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Matriz gerada:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Matriz gerada:
+0 1 2 
+1 2 3 
+2 3 4 
+</code></pre></div></div>
+
+<h3 id="exercício-2-soma-dos-elementos-de-cada-linha">Exercício 2: Soma dos Elementos de Cada Linha</h3>
+
+<p><strong>Problema:</strong> Faça um programa que crie uma matriz 3x4, popule-a com valores, e em seguida, crie um <strong>vetor</strong> onde cada posição armazena a soma dos elementos da linha correspondente da matriz.</p>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SomaLinhasMatriz</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="c1">// Linhas</span>
+        <span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span> <span class="c1">// Colunas</span>
+
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span> <span class="o">=</span> <span class="o">{</span>
+            <span class="o">{</span><span class="mi">5</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">8</span><span class="o">},</span>
+            <span class="o">{</span><span class="mi">4</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">1</span><span class="o">},</span>
+            <span class="o">{</span><span class="mi">7</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">2</span><span class="o">}</span>
+        <span class="o">};</span>
+
+        <span class="c1">// Vetor para armazenar a soma de cada linha</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">vetorSomas</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">M</span><span class="o">];</span>
+
+        <span class="c1">// Calculando a soma de cada linha</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">soma</span> <span class="o">+=</span> <span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+            <span class="o">}</span>
+            <span class="n">vetorSomas</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">soma</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Imprimindo o vetor com as somas</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Soma de cada linha:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Linha %d: %d
+"</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">vetorSomas</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Soma de cada linha:
+Linha 0: 25
+Linha 1: 17
+Linha 2: 20
+</code></pre></div></div>
+
+<h3 id="️-como-executar-no-vs-code-e-intellij-idea">🛠️ Como Executar no VS Code e IntelliJ IDEA</h3>
+
+<p>Você pode compilar e executar todos os exemplos de código acima em qualquer uma das IDEs modernas.</p>
+
+<h4 id="no-visual-studio-code">No Visual Studio Code</h4>
+
+<ol>
+  <li><strong>Instale o Pacote de Extensões para Java</strong>: Na aba de Extensões (<code class="language-plaintext highlighter-rouge">Ctrl+Shift+X</code>), procure por <code class="language-plaintext highlighter-rouge">Extension Pack for Java</code> da Microsoft e instale-o.</li>
+  <li><strong>Crie o Arquivo</strong>: Crie um novo arquivo com a extensão <code class="language-plaintext highlighter-rouge">.java</code> (ex: <code class="language-plaintext highlighter-rouge">LerMatriz.java</code>).</li>
+  <li><strong>Cole o Código</strong>: Copie e cole um dos exemplos no arquivo.</li>
+  <li><strong>Execute</strong>: Um botão <strong>“Run”</strong> aparecerá acima do método <code class="language-plaintext highlighter-rouge">main</code>. Clique nele para compilar e executar o código. A saída aparecerá no terminal integrado.</li>
+</ol>
+
+<h4 id="na-intellij-idea">Na IntelliJ IDEA</h4>
+
+<ol>
+  <li><strong>Crie um Novo Projeto</strong>: Vá em <code class="language-plaintext highlighter-rouge">File &gt; New &gt; Project</code>. Escolha <code class="language-plaintext highlighter-rouge">Java</code> e a versão do JDK.</li>
+  <li><strong>Crie uma Nova Classe</strong>: Na janela de projeto, clique com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code>, vá em <code class="language-plaintext highlighter-rouge">New &gt; Java Class</code> e dê um nome à classe (ex: <code class="language-plaintext highlighter-rouge">SomaLinhasMatriz</code>).</li>
+  <li><strong>Cole o Código</strong>: Copie e cole o código correspondente na classe criada.</li>
+  <li><strong>Execute</strong>: Clique com o botão direito do mouse em qualquer lugar dentro do editor de código e selecione <strong>Run ‘NomeDaClasse.main()’</strong>. A saída aparecerá na aba “Run” na parte inferior da IDE.</li>
+</ol>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

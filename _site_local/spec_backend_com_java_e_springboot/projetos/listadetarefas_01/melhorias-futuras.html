@@ -1,0 +1,229 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/projetos/listadetarefas_01/melhorias-futuras.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MELHORIAS-FUTURAS | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MELHORIAS-FUTURAS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/melhorias-futuras.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/melhorias-futuras.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MELHORIAS-FUTURAS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MELHORIAS-FUTURAS","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/melhorias-futuras.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/listadetarefas_01/" style="margin-left: 0.5rem;">Listadetarefas 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Melhorias futuras</span>
+          
+        
+      </nav>
+
+      <p>Remover o <code class="language-plaintext highlighter-rouge">/web</code> estava incompleto, pois temos o cliente JavaFX.</p>
+
+<p>** Remover o <code class="language-plaintext highlighter-rouge">/web</code> quebraria tudo, pois seu App Web e seu App Desktop entrariam em conflito, ambos tentando usar a mesma URL <code class="language-plaintext highlighter-rouge">/tarefas</code>.</p>
+
+<p>No arquivo <code class="language-plaintext highlighter-rouge">TarefaApiService.java</code>, seu App Desktop está configurado para se comunicar com esta URL:
+<code class="language-plaintext highlighter-rouge">private final String API_URL = "http://localhost:8080/tarefas";</code></p>
+
+<p>Isso explica por que sua aplicação “está funcionando”. Seu app desktop está, por acidente, conversando com os endpoints do <code class="language-plaintext highlighter-rouge">TarefaWebController</code> (o do HTML), e não com o <code class="language-plaintext highlighter-rouge">TarefaApiController</code> (o do JSON).</p>
+
+<h3 id="a-solução-correta-a-arquitetura-de-3-vias">A Solução Correta: A Arquitetura de 3 Vias</h3>
+
+<p>Para que tudo funcione de forma limpa, profissional e sem conflitos, precisamos de 3 endereços distintos:</p>
+
+<ol>
+  <li><strong>API (JSON):</strong> <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/v1/tarefas</code> (Para o App Desktop)</li>
+  <li><strong>App Web (HTML):</strong> <code class="language-plaintext highlighter-rouge">http://localhost:8080/web/tarefas</code> (Para o Navegador/HTMX)</li>
+  <li><strong>Raiz (HTML):</strong> <code class="language-plaintext highlighter-rouge">http://localhost:8080/</code> (Para carregar a página <code class="language-plaintext highlighter-rouge">index.html</code> inicial)</li>
+</ol>
+
+<p>O seu <code class="language-plaintext highlighter-rouge">TarefaWebController</code> (do post anterior) já está usando <code class="language-plaintext highlighter-rouge">/web/tarefas</code>. <strong>Isso está CORRETO!</strong></p>
+
+<p>O que está <strong>INCORRETO</strong> são os clientes (o HTML e o JavaFX) que não estão chamando as rotas certas.</p>
+
+<hr />
+
+<h3 id="plano-de-ação-a-correção-definitiva">Plano de Ação (A Correção Definitiva)</h3>
+
+<p>Aqui está o que você precisa fazer.</p>
+
+<h4 id="1-corrigir-o-cliente-javafx-app-desktop">1. Corrigir o Cliente JavaFX (App Desktop)</h4>
+
+<p>Seu app desktop deve falar com a <strong>API (JSON)</strong>, não com o app Web (HTML).</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">TarefaApiService.java</code>
+<strong>Ação:</strong> Mude a <code class="language-plaintext highlighter-rouge">API_URL</code> para apontar para sua API verdadeira (que deve ser <code class="language-plaintext highlighter-rouge">/api/v1/tarefas</code> de acordo com nossa refatoração anterior).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ...</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaApiService</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">();</span>
+    
+    <span class="c1">// MUDE ESTA LINHA:</span>
+    <span class="c1">// DE: private final String API_URL = "http://localhost:8080/tarefas";</span>
+    <span class="c1">// PARA:</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">API_URL</span> <span class="o">=</span> <span class="s">"http://localhost:8080/api/v1/tarefas"</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTarefas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">HttpRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">HttpRequest</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+                <span class="o">[</span><span class="n">cite_start</span><span class="o">].</span><span class="na">uri</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="no">API_URL</span><span class="o">))</span> <span class="c1">// [cite: 3]</span>
+                <span class="c1">// ...</span>
+</code></pre></div></div>
+
+<p><em>(Certifique-se de que seu <code class="language-plaintext highlighter-rouge">TarefaApiController.java</code> responde em <code class="language-plaintext highlighter-rouge">@RequestMapping("/api/v1/tarefas")</code>)</em></p>
+
+<hr />
+
+<h4 id="2-corrigir-o-cliente-web-html">2. Corrigir o Cliente Web (HTML)</h4>
+
+<p>Seu app web deve falar com o <code class="language-plaintext highlighter-rouge">TarefaWebController</code>. Portanto, <strong>PRECISAMOS</strong> adicionar o prefixo <code class="language-plaintext highlighter-rouge">/web/</code> em todos os seus arquivos HTML, para que eles correspondam às rotas do controller.</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">index.html</code>
+<strong>Ação:</strong> Adicione <code class="language-plaintext highlighter-rouge">/web</code> aos atributos <code class="language-plaintext highlighter-rouge">hx-get</code> e <code class="language-plaintext highlighter-rouge">hx-post</code>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"header-container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Minha Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-refresh"</span> <span class="na">hx-get=</span><span class="s">"/web/tarefas/list"</span> <span class="na">hx-target=</span><span class="s">"#tabela-tarefas"</span> <span class="na">hx-swap=</span><span class="s">"innerHTML"</span><span class="nt">&gt;</span>Atualizar<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;h2&gt;</span>Nova Tarefa<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"new-task-form"</span> <span class="na">hx-post=</span><span class="s">"/web/tarefas"</span>
+      <span class="na">hx-target=</span><span class="s">"#tabela-tarefas"</span>
+      <span class="na">hx-swap=</span><span class="s">"beforeend"</span>
+      <span class="na">hx-on::after-request=</span><span class="s">"this.reset()"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">fragments.html</code>
+<strong>Ação:</strong> Adicione <code class="language-plaintext highlighter-rouge">/web</code> a <strong>TODOS</strong> os atributos <code class="language-plaintext highlighter-rouge">hx-*</code> que usam <code class="language-plaintext highlighter-rouge">th:hx-</code>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;tr</span> <span class="na">th:fragment=</span><span class="s">"linha-tarefa(tarefa)"</span> <span class="na">th:id=</span><span class="s">"'tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">th:classappend=</span><span class="s">"${tarefa.concluida} ? 'concluida-texto' : ''"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">th:checked=</span><span class="s">"${tarefa.concluida}"</span>
+               <span class="na">th:hx-post=</span><span class="s">"'/web/tarefas/' + ${tarefa.id} + '/toggle'"</span>
+               <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span>
+               <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">"actions"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-edit"</span>
+                <span class="na">th:hx-get=</span><span class="s">"'/web/tarefas/' + ${tarefa.id} + '/edit'"</span>
+                <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span>
+                <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>Editar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn-delete"</span>
+                <span class="na">th:hx-delete=</span><span class="s">"'/web/tarefas/' + ${tarefa.id}"</span>
+                <span class="na">hx-target=</span><span class="s">"closest tr"</span>
+                <span class="na">hx-swap=</span><span class="s">"outerHTML"</span>
+                <span class="na">hx-confirm=</span><span class="s">"Tem certeza que deseja apagar esta tarefa?"</span><span class="nt">&gt;</span>Deletar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+
+<span class="nt">&lt;tr</span> <span class="na">th:fragment=</span><span class="s">"edit-form(tarefa)"</span> <span class="na">th:id=</span><span class="s">"'tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;td</span> <span class="na">colspan=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"edit-form"</span> <span class="na">th:hx-put=</span><span class="s">"'/web/tarefas/' + ${tarefa.id}"</span> <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span> <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"btn-cancel"</span> 
+                    <span class="na">th:hx-get=</span><span class="s">"'/web/tarefas/' + ${tarefa.id}"</span> 
+                    <span class="na">th:hx-target=</span><span class="s">"'#tarefa-' + ${tarefa.id}"</span><span class="nt">&gt;</span>Cancelar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/td&gt;</span>
+<span class="nt">&lt;/tr&gt;</span>
+</code></pre></div></div>
+
+<h3 id="resumo-da-solução">Resumo da Solução</h3>
+
+<ol>
+  <li><strong>Mantenha</strong> seu <code class="language-plaintext highlighter-rouge">TarefaWebController</code> com os prefixos <code class="language-plaintext highlighter-rouge">/web/</code> (do post anterior).</li>
+  <li><strong>Corrija</strong> seu <code class="language-plaintext highlighter-rouge">index.html</code> e <code class="language-plaintext highlighter-rouge">fragments.html</code> para <strong>adicionar</strong> o prefixo <code class="language-plaintext highlighter-rouge">/web/</code> em todas as chamadas <code class="language-plaintext highlighter-rouge">hx-*</code>.</li>
+  <li><strong>Corrija</strong> seu <code class="language-plaintext highlighter-rouge">TarefaApiService.java</code> (JavaFX) para apontar para a API correta: <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/v1/tarefas</code>.</li>
+</ol>
+
+<p>Seguindo estes 3 passos, você terá uma arquitetura limpa e robusta onde todos os seus clientes (Web e Desktop) funcionarão corretamente sem conflitos.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

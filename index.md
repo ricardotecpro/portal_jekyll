@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Índice de Conteúdos
+title: "Índice de Conteúdos"
 ---
 
 # 📚 Índice Mestre de Aprendizagem

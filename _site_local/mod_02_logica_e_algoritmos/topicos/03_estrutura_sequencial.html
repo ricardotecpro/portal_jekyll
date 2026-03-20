@@ -1,0 +1,607 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/03_estrutura_sequencial.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Estrutura Sequencial em Programação | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Estrutura Sequencial em Programação" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/03_estrutura_sequencial.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/03_estrutura_sequencial.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Estrutura Sequencial em Programação" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Estrutura Sequencial em Programação","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/03_estrutura_sequencial.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 estrutura sequencial em programação</span>
+          
+        
+      </nav>
+
+      <h1 id="-estrutura-sequencial-em-programação">🚀 Estrutura Sequencial em Programação</h1>
+
+<p>Este capítulo aborda os conceitos fundamentais da <strong>estrutura sequencial</strong>, a base para a construção de qualquer algoritmo. Nela, os comandos são executados em uma sequência lógica, um após o outro, de cima para baixo.</p>
+
+<h2 id="-o-que-é-a-estrutura-sequencial">🤔 O que é a Estrutura Sequencial?</h2>
+
+<p>A “estrutura sequencial” recebe esse nome para destacar que as instruções de um algoritmo são executadas em uma ordem predefinida, passo a passo. Um algoritmo só funciona corretamente se seus comandos seguirem uma sequência lógica.</p>
+
+<p>Imagine que você precisa calcular a soma de dois números. Primeiro, você precisa conhecer esses números e, só depois, realizar a soma.</p>
+
+<p><strong>Exemplo da ordem correta:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. Atribui o valor 15 à variável x</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span><span class="o">;</span>
+
+<span class="c1">// 2. Atribui o valor 25 à variável y</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">25</span><span class="o">;</span>
+
+<span class="c1">// 3. Soma x e y e guarda o resultado</span>
+<span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span> <span class="c1">// Correto!</span>
+</code></pre></div></div>
+
+<p>Se a ordem for invertida, o programa tentará somar variáveis que ainda não têm valor, resultando em um erro.</p>
+
+<p><strong>Exemplo da ordem incorreta:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. Tenta somar x e y, que ainda não foram definidos</span>
+<span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span> <span class="c1">// Errado!</span>
+
+<span class="c1">// 2. Só depois define os valores</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">25</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h2 id="-as-três-operações-fundamentais">💻 As Três Operações Fundamentais</h2>
+
+<p>Um programa de computador, em sua essência, realiza três operações básicas:</p>
+
+<ul>
+  <li><strong>Entrada de dados</strong>: Receber informações do usuário ou de outra fonte.</li>
+  <li><strong>Processamento de dados</strong>: Realizar cálculos e manipular as informações recebidas.</li>
+  <li><strong>Saída de dados</strong>: Apresentar os resultados para o usuário.</li>
+</ul>
+
+<h2 id="-variáveis-e-tipos-de-dados">📦 Variáveis e Tipos de Dados</h2>
+
+<p>Para um programa funcionar, ele precisa armazenar e manipular dados. Esses dados são guardados em <strong>variáveis</strong>.</p>
+
+<p>De forma simplificada, uma variável é um “espaço” na memória RAM do computador reservado para armazenar um dado durante a execução do programa.</p>
+
+<h3 id="-declaração-de-variáveis">📜 Declaração de Variáveis</h3>
+
+<p>Cada variável possui:</p>
+
+<ul>
+  <li><strong>Nome</strong> (ou identificador): Para que possamos nos referir a ela.</li>
+  <li><strong>Tipo</strong>: Define que tipo de dado ela pode armazenar (número, texto, etc.).</li>
+  <li><strong>Valor</strong>: O dado que está armazenado nela.</li>
+  <li><strong>Endereço</strong>: Sua localização na memória.</li>
+</ul>
+
+<p>Em Java, a sintaxe de declaração é:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">tipo</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">nome</span><span class="o">&gt;;</span>
+
+<span class="c1">// Exemplos</span>
+<span class="kt">int</span> <span class="n">idade</span><span class="o">;</span>
+<span class="kt">double</span> <span class="n">altura</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="️-nomenclatura-de-variáveis-boas-práticas">🏷️ Nomenclatura de Variáveis (Boas Práticas)</h3>
+
+<p>Para manter o código legível e funcional, siga estas regras ao nomear variáveis:</p>
+
+<ul>
+  <li><strong>Não pode começar com dígito</strong>: Use uma letra ou o caractere <code class="language-plaintext highlighter-rouge">_</code>.</li>
+  <li><strong>Não pode ter espaços em branco</strong>.</li>
+  <li><strong>Não use acentos ou caracteres especiais</strong> (como <code class="language-plaintext highlighter-rouge">ç</code> ou <code class="language-plaintext highlighter-rouge">~</code>).</li>
+  <li><strong>Use o padrão “Camel Case”</strong>: A primeira palavra começa com letra minúscula e as palavras seguintes começam com maiúscula.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Errado</th>
+      <th style="text-align: left">Correto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int 5minutos;</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int cincoMinutos;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double salário;</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double salario;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">String nome do funcionario;</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">String nomeDoFuncionario;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-tipos-de-dados-primitivos-em-java">📊 Tipos de Dados Primitivos em Java</h3>
+
+<p>Estes são os tipos de dados mais comuns que você usará:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Tipo</th>
+      <th style="text-align: left">Descrição</th>
+      <th>Exemplo de Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left">Armazena números inteiros.</td>
+      <td><code class="language-plaintext highlighter-rouge">35</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td style="text-align: left">Armazena números com ponto flutuante (decimais).</td>
+      <td><code class="language-plaintext highlighter-rouge">1.75</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td style="text-align: left">Armazena um único caractere.</td>
+      <td><code class="language-plaintext highlighter-rouge">'M'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">String</code></td>
+      <td style="text-align: left">Armazena sequências de caracteres (texto).</td>
+      <td><code class="language-plaintext highlighter-rouge">"Maria da Silva"</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td style="text-align: left">Armazena um valor lógico de verdade.</td>
+      <td><code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="️-processamento-de-dados">⚙️ Processamento de Dados</h2>
+
+<p>O processamento ocorre quando o programa realiza cálculos ou manipula dados. A principal ferramenta para isso é o <strong>comando de atribuição</strong>, representado pelo sinal de igual (<code class="language-plaintext highlighter-rouge">=</code>) em Java.</p>
+
+<p><strong>Sintaxe:</strong> <code class="language-plaintext highlighter-rouge">&lt;variável&gt; = &lt;expressão&gt;;</code></p>
+
+<p>A regra é simples:</p>
+
+<ol>
+  <li>A expressão à direita do <code class="language-plaintext highlighter-rouge">=</code> é totalmente calculada.</li>
+  <li>O resultado final é armazenado na variável à esquerda.</li>
+</ol>
+
+<h3 id="-expressões-aritméticas">➕ Expressões Aritméticas</h3>
+
+<p>São combinações de números, variáveis e operadores que resultam em um valor numérico.</p>
+
+<p><strong>Operadores Aritméticos em Java:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Módulo (resto da divisão inteira)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Ordem de Precedência:</strong></p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">*</code>, <code class="language-plaintext highlighter-rouge">/</code>, <code class="language-plaintext highlighter-rouge">%</code> (são avaliados primeiro, da esquerda para a direita)</li>
+  <li><code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code> (são avaliados por último, da esquerda para a direita)</li>
+</ol>
+
+<p><em>Use parênteses <code class="language-plaintext highlighter-rouge">()</code> para forçar uma ordem de cálculo diferente.</em></p>
+
+<p><strong>Exemplos de Expressões:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">5 + 3 * 2</code> → <code class="language-plaintext highlighter-rouge">5 + 6</code> → <strong>Resultado: 11</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">(5 + 3) * 2</code> → <code class="language-plaintext highlighter-rouge">8 * 2</code> → <strong>Resultado: 16</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">70 / (5 + 2) * 4</code> → <code class="language-plaintext highlighter-rouge">70 / 7 * 4</code> → <code class="language-plaintext highlighter-rouge">10 * 4</code> → <strong>Resultado: 40</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">15 % 4</code> (15 dividido por 4 dá 3 e sobra 3) → <strong>Resultado: 3</strong></li>
+</ul>
+
+<h2 id="️-saída-de-dados">🖥️ Saída de Dados</h2>
+
+<p>A saída de dados é como o programa apresenta informações e resultados ao usuário, geralmente na tela (console). Em Java, usamos os seguintes comandos:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">System.out.println()</code>: Escreve o conteúdo na tela e <strong>salta para a próxima linha</strong>.</li>
+  <li><code class="language-plaintext highlighter-rouge">System.out.print()</code>: Escreve o conteúdo na tela e <strong>permanece na mesma linha</strong>.</li>
+</ul>
+
+<h3 id="exemplo-prático-ficha-de-cadastro">Exemplo Prático: Ficha de Cadastro</h3>
+
+<p>Vamos criar variáveis, atribuir valores e exibi-las de forma organizada.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Declarando e inicializando as variáveis</span>
+<span class="nc">String</span> <span class="n">produto1</span> <span class="o">=</span> <span class="s">"Smartphone"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">produto2</span> <span class="o">=</span> <span class="s">"Notebook"</span><span class="o">;</span>
+
+<span class="kt">double</span> <span class="n">preco1</span> <span class="o">=</span> <span class="mf">2500.99</span><span class="o">;</span>
+<span class="kt">double</span> <span class="n">preco2</span> <span class="o">=</span> <span class="mf">4250.00</span><span class="o">;</span>
+
+<span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">25</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">codigo</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">;</span>
+<span class="kt">char</span> <span class="n">genero</span> <span class="o">=</span> <span class="sc">'M'</span><span class="o">;</span>
+
+<span class="c1">// Exibindo os dados na tela</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Produtos:"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"O produto %s custa R$ %.2f
+"</span><span class="o">,</span> <span class="n">produto1</span><span class="o">,</span> <span class="n">preco1</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"O produto %s custa R$ %.2f
+"</span><span class="o">,</span> <span class="n">produto2</span><span class="o">,</span> <span class="n">preco2</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="c1">// Pula uma linha em branco</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Código = "</span> <span class="o">+</span> <span class="n">codigo</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="c1">// Pula uma linha em branco</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados da pessoa: gênero "</span> <span class="o">+</span> <span class="n">genero</span> <span class="o">+</span> <span class="s">" e idade "</span> <span class="o">+</span> <span class="n">idade</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Produtos:
+O produto Smartphone custa R$ 2500,99
+O produto Notebook custa R$ 4250,00
+
+Código = 1024
+
+Dados da pessoa: gênero M e idade 25
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Nota:</strong> Usamos <code class="language-plaintext highlighter-rouge">System.out.printf()</code> para formatar os preços com duas casas decimais. <code class="language-plaintext highlighter-rouge">%.2f</code> é um especificador que formata um número de ponto flutuante (<code class="language-plaintext highlighter-rouge">f</code>) com duas casas decimais (<code class="language-plaintext highlighter-rouge">.2</code>), e `
+` quebra a linha.</p>
+</blockquote>
+
+<h2 id="️-entrada-de-dados">⌨️ Entrada de Dados</h2>
+
+<p>A entrada de dados permite que o programa se torne interativo, lendo informações digitadas pelo usuário no teclado. Em Java, a forma mais comum de fazer isso é usando a classe <code class="language-plaintext highlighter-rouge">Scanner</code>.</p>
+
+<p>Primeiro, você precisa importar a classe e criar um objeto <code class="language-plaintext highlighter-rouge">Scanner</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span> <span class="c1">// Importação necessária</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span> <span class="c1">// Cria o objeto Scanner</span>
+
+        <span class="c1">// Agora você pode ler os dados</span>
+        <span class="c1">// ...</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">// Boa prática: fechar o scanner ao final</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="lendo-diferentes-tipos-de-dados">Lendo Diferentes Tipos de Dados</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite seu nome: "</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Lê uma linha de texto</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite sua idade: "</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span> <span class="c1">// Lê um número inteiro</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite seu salário: "</span><span class="o">);</span>
+<span class="kt">double</span> <span class="n">salario</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span> <span class="c1">// Lê um número double</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"DADOS DIGITADOS:"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome: "</span> <span class="o">+</span> <span class="n">nome</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Idade: "</span> <span class="o">+</span> <span class="n">idade</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Salário: R$ %.2f
+"</span><span class="o">,</span> <span class="n">salario</span><span class="o">);</span>
+
+<span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Atenção:</strong> Ao ler um número (<code class="language-plaintext highlighter-rouge">nextInt</code> ou <code class="language-plaintext highlighter-rouge">nextDouble</code>) e depois um texto com <code class="language-plaintext highlighter-rouge">nextLine</code>, uma quebra de linha “invisível” pode ser consumida pelo <code class="language-plaintext highlighter-rouge">nextLine</code>, causando um pulo indesejado. Para corrigir, consuma essa quebra de linha extra com um <code class="language-plaintext highlighter-rouge">sc.nextLine()</code> adicional antes de ler o texto.</p>
+</blockquote>
+
+<h2 id="-funções-matemáticas-em-java">🧮 Funções Matemáticas em Java</h2>
+
+<p>Java oferece a classe <code class="language-plaintext highlighter-rouge">Math</code> com diversas funções matemáticas prontas para uso.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Exemplo em Java</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">A = Math.sqrt(x);</code></td>
+      <td style="text-align: left">A variável <code class="language-plaintext highlighter-rouge">A</code> recebe a raiz quadrada de <code class="language-plaintext highlighter-rouge">x</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">A = Math.pow(x, y);</code></td>
+      <td style="text-align: left">A variável <code class="language-plaintext highlighter-rouge">A</code> recebe o resultado de <code class="language-plaintext highlighter-rouge">x</code> elevado a <code class="language-plaintext highlighter-rouge">y</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">A = Math.abs(x);</code></td>
+      <td style="text-align: left">A variável <code class="language-plaintext highlighter-rouge">A</code> recebe o valor absoluto (positivo) de <code class="language-plaintext highlighter-rouge">x</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">A = Math.PI;</code></td>
+      <td style="text-align: left">A variável <code class="language-plaintext highlighter-rouge">A</code> recebe o valor de Pi (3.14159…).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="exemplo-fórmula-de-bhaskara">Exemplo: Fórmula de Bhaskara</h3>
+
+<p>Para calcular as raízes de uma equação de segundo grau (\(ax^2 + bx + c = 0\)), usamos as funções da classe <code class="language-plaintext highlighter-rouge">Math</code>.</p>
+
+<p>\(\Delta = b^2 - 4ac\)
+\(x = \frac{-b \pm \sqrt{\Delta}}{2a}\)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.0</span><span class="o">,</span> <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.0</span><span class="o">;</span>
+
+<span class="kt">double</span> <span class="n">delta</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">)</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="o">;</span>
+<span class="kt">double</span> <span class="n">x1</span> <span class="o">=</span> <span class="o">(-</span><span class="n">b</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">delta</span><span class="o">))</span> <span class="o">/</span> <span class="o">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">a</span><span class="o">);</span>
+<span class="kt">double</span> <span class="n">x2</span> <span class="o">=</span> <span class="o">(-</span><span class="n">b</span> <span class="o">-</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">delta</span><span class="o">))</span> <span class="o">/</span> <span class="o">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">a</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Delta = "</span> <span class="o">+</span> <span class="n">delta</span><span class="o">);</span>   <span class="c1">// Saída: Delta = 25.0</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x1 = "</span> <span class="o">+</span> <span class="n">x1</span><span class="o">);</span>       <span class="c1">// Saída: x1 = 4.0</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"x2 = "</span> <span class="o">+</span> <span class="n">x2</span><span class="o">);</span>       <span class="c1">// Saída: x2 = -1.0</span>
+</code></pre></div></div>
+
+<h2 id="️-exercícios-práticos-resolvidos-em-java">✍️ Exercícios Práticos Resolvidos em Java</h2>
+
+<p>Vamos aplicar tudo o que aprendemos em alguns problemas práticos.</p>
+
+<h3 id="exercício-1-cálculo-de-área-de-terreno">Exercício 1: Cálculo de Área de Terreno</h3>
+
+<p><strong>Problema:</strong> Fazer um programa que leia a largura e o comprimento de um terreno retangular, e também o valor do metro quadrado. Em seguida, o programa deve mostrar o valor da área do terreno e o valor do preço do terreno, ambos com duas casas decimais.</p>
+
+<p><strong>Fórmulas:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">área = largura × comprimento</code></li>
+  <li><code class="language-plaintext highlighter-rouge">preço = área × preço do metro quadrado</code></li>
+</ul>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Terreno</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span> <span class="c1">// Para usar o ponto como separador decimal</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a largura do terreno: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">largura</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o comprimento do terreno: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">comprimento</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o valor do metro quadrado: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">valorMetroQuadrado</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="kt">double</span> <span class="n">area</span> <span class="o">=</span> <span class="n">largura</span> <span class="o">*</span> <span class="n">comprimento</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">preco</span> <span class="o">=</span> <span class="n">area</span> <span class="o">*</span> <span class="n">valorMetroQuadrado</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Área do terreno = %.2f
+"</span><span class="o">,</span> <span class="n">area</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Preço do terreno = %.2f
+"</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplo de Execução:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite a largura do terreno: 15.0
+Digite o comprimento do terreno: 40.0
+Digite o valor do metro quadrado: 500.0
+Área do terreno = 600.00
+Preço do terreno = 300000.00
+</code></pre></div></div>
+
+<h3 id="exercício-2-medidas-de-um-retângulo">Exercício 2: Medidas de um Retângulo</h3>
+
+<p><strong>Problema:</strong> Fazer um programa para ler as medidas da base e da altura de um retângulo. Em seguida, mostrar o valor da área, do perímetro e da diagonal deste retângulo, com quatro casas decimais.</p>
+
+<p><strong>Fórmulas:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">área = base × altura</code></li>
+  <li><code class="language-plaintext highlighter-rouge">perímetro = 2 × (base + altura)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">diagonal = √(base² + altura²)</code></li>
+</ul>
+
+<p><strong>Solução em Java:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Retangulo</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a base do retângulo: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">base</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a altura do retângulo: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">altura</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="kt">double</span> <span class="n">area</span> <span class="o">=</span> <span class="n">base</span> <span class="o">*</span> <span class="n">altura</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">perimetro</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">(</span><span class="n">base</span> <span class="o">+</span> <span class="n">altura</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">diagonal</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">)</span> <span class="o">+</span> <span class="nc">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">altura</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">));</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"ÁREA = %.4f
+"</span><span class="o">,</span> <span class="n">area</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"PERÍMETRO = %.4f
+"</span><span class="o">,</span> <span class="n">perimetro</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"DIAGONAL = %.4f
+"</span><span class="o">,</span> <span class="n">diagonal</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplo de Execução:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite a base do retângulo: 6.0
+Digite a altura do retângulo: 8.0
+ÁREA = 48.0000
+PERÍMETRO = 28.0000
+DIAGONAL = 10.0000
+</code></pre></div></div>
+
+<h3 id="️-como-executar-no-vs-code-e-intellij-idea">🛠️ Como Executar no VS Code e IntelliJ IDEA</h3>
+
+<p>Você pode compilar e executar todos os exemplos de código acima em qualquer uma das IDEs modernas.</p>
+
+<h4 id="no-visual-studio-code">No Visual Studio Code</h4>
+
+<ol>
+  <li><strong>Instale o Pacote de Extensões para Java</strong>: Na aba de Extensões (<code class="language-plaintext highlighter-rouge">Ctrl+Shift+X</code>), procure por <code class="language-plaintext highlighter-rouge">Extension Pack for Java</code> da Microsoft e instale-o.</li>
+  <li><strong>Crie o Arquivo</strong>: Crie um novo arquivo com a extensão <code class="language-plaintext highlighter-rouge">.java</code> (ex: <code class="language-plaintext highlighter-rouge">Terreno.java</code>).</li>
+  <li><strong>Cole o Código</strong>: Copie e cole um dos exemplos no arquivo.</li>
+  <li><strong>Execute</strong>: Um botão <strong>“Run”</strong> aparecerá acima do método <code class="language-plaintext highlighter-rouge">main</code>. Clique nele para compilar e executar o código. A saída aparecerá no terminal integrado.</li>
+</ol>
+
+<h4 id="na-intellij-idea">Na IntelliJ IDEA</h4>
+
+<ol>
+  <li><strong>Crie um Novo Projeto</strong>: Vá em <code class="language-plaintext highlighter-rouge">File &gt; New &gt; Project</code>. Escolha <code class="language-plaintext highlighter-rouge">Java</code> e a versão do JDK.</li>
+  <li><strong>Crie uma Nova Classe</strong>: Na janela de projeto, clique com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code>, vá em <code class="language-plaintext highlighter-rouge">New &gt; Java Class</code> e dê um nome à classe (ex: <code class="language-plaintext highlighter-rouge">Retangulo</code>).</li>
+  <li><strong>Cole o Código</strong>: Copie e cole o código correspondente na classe criada.</li>
+  <li><strong>Execute</strong>: Clique com o botão direito do mouse em qualquer lugar dentro do editor de código e selecione <strong>Run ‘NomeDaClasse.main()’</strong>. A saída aparecerá na aba “Run” na parte inferior da IDE.</li>
+</ol>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

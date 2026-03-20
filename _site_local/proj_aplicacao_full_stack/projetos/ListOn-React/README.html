@@ -1,0 +1,917 @@
+<h1 id="-guia-completo-projeto-lista-de-tarefas--liston">📘 Guia Completo: Projeto “Lista de tarefas – ListOn”</h1>
+
+<p>Este guia aborda a criação de um sistema completo de lista de tarefas, cobrindo o back-end, um cliente web e um aplicativo mobile.</p>
+
+<h2 id="️-stack-tecnológica-confirmada">⚙️ Stack Tecnológica (Confirmada)</h2>
+
+<ul>
+  <li><strong>Back-end:</strong> Java 21, Spring Boot (Web, Data JPA, Security), Lombok, PostgreSQL, H2, SpringDoc (Swagger)</li>
+  <li><strong>Front-end Web:</strong> React (com Vite) + MUI (Material-UI)</li>
+  <li><strong>App Mobile:</strong> React Native (com Expo)</li>
+  <li><strong>Banco de Dados:</strong> H2 (Dev) e PostgreSQL (Prod)</li>
+</ul>
+
+<hr />
+
+<h2 id="-parte-1-preparação-do-ambiente">🌎 Parte 1: Preparação do Ambiente</h2>
+
+<p>Antes de começar, garanta que você tenha as seguintes ferramentas instaladas:</p>
+
+<ul>
+  <li><strong>JDK 21:</strong> O kit de desenvolvimento Java.</li>
+  <li><strong>Maven 3.8+:</strong> Para gerenciamento de dependências do back-end.</li>
+  <li><strong>Node.js 18+:</strong> Incluindo <code class="language-plaintext highlighter-rouge">npm</code> (gerenciador de pacotes).</li>
+  <li><strong>IDE de sua preferência:</strong> IntelliJ IDEA, VS Code ou Eclipse.</li>
+  <li><strong>Cliente SQL:</strong> DBeaver, pgAdmin ou similar.</li>
+  <li><strong>Expo CLI (para mobile):</strong> Instale com <code class="language-plaintext highlighter-rouge">npm install -g expo-cli</code>.</li>
+</ul>
+
+<hr />
+
+<h2 id="-parte-2-back-end-spring-boot-api">🧠 Parte 2: Back-end (Spring Boot API)</h2>
+
+<p>Nosso back-end será o cérebro da aplicação, uma API RESTful responsável por todas as regras de negócio e persistência.</p>
+
+<h3 id="21-geração-do-projeto">2.1. Geração do Projeto</h3>
+
+<p>Vamos usar o <strong>Spring Initializr</strong> (start.spring.io) com as seguintes configurações:</p>
+
+<ul>
+  <li><strong>Project:</strong> Maven</li>
+  <li><strong>Language:</strong> Java</li>
+  <li><strong>Spring Boot:</strong> 3.x.x (use a versão estável mais recente)</li>
+  <li><strong>Java:</strong> 21</li>
+  <li><strong>Dependencies:</strong>
+    <ul>
+      <li>Spring Web</li>
+      <li>Spring Data JPA</li>
+      <li>Spring Security</li>
+      <li>Spring Boot DevTools</li>
+      <li>PostgreSQL Driver</li>
+      <li>H2 Database</li>
+      <li>Lombok</li>
+      <li>SpringDoc OpenAPI (substitui o antigo Swagger)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Clique em “Generate” e extraia o projeto.</p>
+
+<h3 id="22-estrutura-do-projeto-back-end">2.2. Estrutura do Projeto (Back-end)</h3>
+
+<p>Após abrir na sua IDE, a estrutura principal (dentro de <code class="language-plaintext highlighter-rouge">src/main/java</code>) ficará assim:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>com.liston
+├── ListonApplication.java
+├── config
+│   ├── CorsConfig.java
+│   └── SecurityConfig.java
+├── controller
+│   └── TaskController.java
+├── model
+│   └── Task.java
+└── repository
+    └── TaskRepository.java
+</code></pre></div></div>
+
+<h3 id="23-configurando-o-pomxml">2.3. Configurando o <code class="language-plaintext highlighter-rouge">pom.xml</code></h3>
+
+<p>Apenas para confirmar, seu <code class="language-plaintext highlighter-rouge">pom.xml</code> deve conter estas dependências:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-security<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springdoc<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>springdoc-openapi-starter-webmvc-ui<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>2.5.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-devtools<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.postgresql<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<h3 id="24-configuração-da-aplicação-h2-e-postgresql">2.4. Configuração da Aplicação (H2 e PostgreSQL)</h3>
+
+<p>Vamos configurar o <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code>. Usaremos “perfis” (profiles) do Spring para alternar entre H2 (desenvolvimento) e PostgreSQL (produção).</p>
+
+<p>Por padrão, usaremos o perfil <code class="language-plaintext highlighter-rouge">dev</code>.</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Perfil ativo padrão
+</span><span class="py">spring.profiles.active</span><span class="p">=</span><span class="s">dev</span>
+
+<span class="c"># Configurações do SpringDoc (Swagger)
+</span><span class="py">springdoc.swagger-ui.path</span><span class="p">=</span><span class="s">/swagger-ui.html</span>
+<span class="py">springdoc.api-docs.path</span><span class="p">=</span><span class="s">/v3/api-docs</span>
+
+<span class="err">---</span>
+<span class="c"># Perfil de Desenvolvimento (H2)
+</span><span class="py">spring.profiles</span><span class="p">=</span><span class="s">dev</span>
+<span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:listondb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">password</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+
+<span class="err">---</span>
+<span class="c"># Perfil de Produção (PostgreSQL)
+</span><span class="py">spring.profiles</span><span class="p">=</span><span class="s">prod</span>
+<span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:postgresql://localhost:5432/listondb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.postgresql.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">postgres</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">admin # &lt;-- Mude para sua senha</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.PostgreSQLDialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">validate # Em produção, nunca use 'create' ou 'update'</span>
+</code></pre></div></div>
+
+<h3 id="25-model-a-entidade-task">2.5. Model (A Entidade <code class="language-plaintext highlighter-rouge">Task</code>)</h3>
+
+<p>Vamos criar nossa entidade JPA.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/com/liston/model/Task.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.liston.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Table</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.NoArgsConstructor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.AllArgsConstructor</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.time.LocalDateTime</span><span class="o">;</span>
+
+<span class="nd">@Data</span> <span class="c1">// Gera Getters, Setters, toString, equals, hashCode</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tasks"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Task</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">description</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">completed</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">LocalDateTime</span> <span class="n">createdAt</span> <span class="o">=</span> <span class="nc">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="26-repository-a-camada-de-dados">2.6. Repository (A Camada de Dados)</h3>
+
+<p>O Spring Data JPA facilita isso.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/com/liston/repository/TaskRepository.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.liston.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.liston.model.Task</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TaskRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="c1">// Nossos métodos CRUD básicos (save, findById, findAll, deleteById)</span>
+    <span class="c1">// já estão incluídos aqui pelo JpaRepository.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="27-controller-a-api-rest">2.7. Controller (A API REST)</h3>
+
+<p>Criamos o <em>endpoint</em> para o front-end consumir. Para este CRUD simples, podemos pular a camada de <em>Service</em> e injetar o repositório diretamente no <em>Controller</em>.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/com/liston/controller/TaskController.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.liston.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.liston.model.Task</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.liston.repository.TaskRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tasks"</span><span class="o">)</span> <span class="c1">// Define o prefixo para todos os endpoints</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TaskController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TaskRepository</span> <span class="n">taskRepository</span><span class="o">;</span>
+
+    <span class="c1">// 1. CREATE</span>
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">&gt;</span> <span class="nf">createTask</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Task</span> <span class="n">task</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Remove o ID para garantir que é uma criação</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        <span class="nc">Task</span> <span class="n">newTask</span> <span class="o">=</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="n">newTask</span><span class="o">,</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 2. READ (All)</span>
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">&gt;&gt;</span> <span class="nf">getAllTasks</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">&gt;</span> <span class="n">tasks</span> <span class="o">=</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">tasks</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 3. READ (By ID)</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">&gt;</span> <span class="nf">getTaskById</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">ResponseEntity:</span><span class="o">:</span><span class="n">ok</span><span class="o">)</span> <span class="c1">// Se achar, retorna 200 OK</span>
+                <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">());</span> <span class="c1">// Se não, retorna 404</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 4. UPDATE</span>
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">&gt;</span> <span class="nf">updateTask</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Task</span> <span class="n">taskDetails</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">existingTask</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="n">existingTask</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="n">taskDetails</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+                    <span class="n">existingTask</span><span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="n">taskDetails</span><span class="o">.</span><span class="na">getDescription</span><span class="o">());</span>
+                    <span class="n">existingTask</span><span class="o">.</span><span class="na">setCompleted</span><span class="o">(</span><span class="n">taskDetails</span><span class="o">.</span><span class="na">isCompleted</span><span class="o">());</span>
+                    <span class="nc">Task</span> <span class="n">updatedTask</span> <span class="o">=</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">existingTask</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">updatedTask</span><span class="o">);</span>
+                <span class="o">})</span>
+                <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 5. DELETE</span>
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deleteTask</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">taskRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">task</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                    <span class="n">taskRepository</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span> <span class="c1">// Retorna 204 No Content</span>
+                <span class="o">})</span>
+                <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">notFound</span><span class="o">().</span><span class="na">build</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="28-configuração-de-segurança-e-cors">2.8. Configuração de Segurança e CORS</h3>
+
+<p>Precisamos configurar o CORS (Cross-Origin Resource Sharing) para que o React e o React Native possam acessar a API. Também configuramos o Spring Security (que solicitamos) para ser permissivo por enquanto e habilitar o H2 Console.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/com/liston/config/CorsConfig.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.liston.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.CorsRegistry</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.WebMvcConfigurer</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CorsConfig</span> <span class="kd">implements</span> <span class="nc">WebMvcConfigurer</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCorsMappings</span><span class="o">(</span><span class="nc">CorsRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">addMapping</span><span class="o">(</span><span class="s">"/api/**"</span><span class="o">)</span> <span class="c1">// Permite CORS para nossa API</span>
+                <span class="o">.</span><span class="na">allowedOrigins</span><span class="o">(</span><span class="s">"http://localhost:5173"</span><span class="o">,</span> <span class="s">"http://localhost:3000"</span><span class="o">)</span> <span class="c1">// Origem do React (Vite/CRA)</span>
+                <span class="o">.</span><span class="na">allowedMethods</span><span class="o">(</span><span class="s">"GET"</span><span class="o">,</span> <span class="s">"POST"</span><span class="o">,</span> <span class="s">"PUT"</span><span class="o">,</span> <span class="s">"DELETE"</span><span class="o">,</span> <span class="s">"OPTIONS"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">allowedHeaders</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">allowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/com/liston/config/SecurityConfig.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.liston.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.builders.HttpSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.http.SessionCreationPolicy</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.web.SecurityFilterChain</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">.</span><span class="na">autoconfigure</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">PathRequest</span><span class="o">.</span><span class="na">toH2Console</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">http</span>
+            <span class="c1">// Desabilita CSRF (comum em APIs stateless)</span>
+            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span><span class="o">.</span><span class="na">disable</span><span class="o">())</span>
+
+            <span class="c1">// Configura o CORS (usará o @Bean de CorsConfig)</span>
+            <span class="o">.</span><span class="na">cors</span><span class="o">(</span><span class="n">cors</span> <span class="o">-&gt;</span> <span class="o">{})</span>
+
+            <span class="c1">// Define a política de sessão como STATELESS (não guarda estado)</span>
+            <span class="o">.</span><span class="na">sessionManagement</span><span class="o">(</span><span class="n">session</span> <span class="o">-&gt;</span>
+                <span class="n">session</span><span class="o">.</span><span class="na">sessionCreationPolicy</span><span class="o">(</span><span class="nc">SessionCreationPolicy</span><span class="o">.</span><span class="na">STATELESS</span><span class="o">)</span>
+            <span class="o">)</span>
+
+            <span class="c1">// Regras de autorização</span>
+            <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">authorize</span> <span class="o">-&gt;</span> <span class="n">authorize</span>
+                <span class="c1">// Permite acesso ao H2 console</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="n">toH2Console</span><span class="o">()).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="c1">// Permite acesso ao Swagger</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="s">"/swagger-ui.html"</span><span class="o">,</span> <span class="s">"/swagger-ui/**"</span><span class="o">,</span> <span class="s">"/v3/api-docs/**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="c1">// Permite acesso à nossa API de tarefas (sem autenticação por enquanto)</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="s">"/api/tasks/**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="c1">// Qualquer outra requisição precisa de autenticação</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+            <span class="o">)</span>
+
+            <span class="c1">// Configuração específica para o H2 Console funcionar em frames</span>
+            <span class="o">.</span><span class="na">headers</span><span class="o">(</span><span class="n">headers</span> <span class="o">-&gt;</span> <span class="n">headers</span>
+                <span class="o">.</span><span class="na">addHeaderWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">XFrameOptionsHeaderWriter</span><span class="o">(</span>
+                    <span class="nc">XFrameOptionsHeaderWriter</span><span class="o">.</span><span class="na">XFrameOptionsMode</span><span class="o">.</span><span class="na">SAMEORIGIN</span>
+                <span class="o">))</span>
+            <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="29-rodando-o-back-end">2.9. Rodando o Back-end</h3>
+
+<p>Neste ponto, seu back-end está pronto.</p>
+
+<ol>
+  <li>Execute a classe <code class="language-plaintext highlighter-rouge">ListonApplication.java</code> na sua IDE.</li>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080/swagger-ui.html</code> para ver a documentação da API (Swagger).</li>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code> (JDBC URL: <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:listondb</code>, User: <code class="language-plaintext highlighter-rouge">sa</code>, Pass: <code class="language-plaintext highlighter-rouge">password</code>) para ver o banco H2.</li>
+</ol>
+
+<p>Seu back-end está 100% funcional.</p>
+
+<hr />
+
+<h2 id="️-parte-3-front-end-web-react--mui">⚛️ Parte 3: Front-end Web (React + MUI)</h2>
+
+<p>Vamos construir a interface web. Usaremos o <strong>Vite</strong> por ser mais rápido que o <code class="language-plaintext highlighter-rouge">create-react-app</code>.</p>
+
+<h3 id="31-geração-do-projeto-vite">3.1. Geração do Projeto (Vite)</h3>
+
+<p>No seu terminal, navegue até a pasta raiz do seu projeto (onde está o back-end) e execute:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cria um novo projeto React com Vite</span>
+npm create vite@latest liston-web <span class="nt">--</span> <span class="nt">--template</span> react-swc
+
+<span class="c"># Entre na pasta</span>
+<span class="nb">cd </span>liston-web
+
+<span class="c"># Instale as dependências</span>
+npm <span class="nb">install</span>
+
+<span class="c"># Instale as dependências do projeto: Axios (para API) e MUI (para UI)</span>
+npm <span class="nb">install </span>axios @mui/material @emotion/react @emotion/styled @mui/icons-material
+</code></pre></div></div>
+
+<h3 id="32-estrutura-do-projeto-front-end">3.2. Estrutura do Projeto (Front-end)</h3>
+
+<p>Dentro de <code class="language-plaintext highlighter-rouge">liston-web/src/</code>, vamos criar esta estrutura:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/
+├── api
+│   └── apiService.js   (Nosso cliente Axios)
+├── components
+│   ├── TaskForm.jsx
+│   └── TaskList.jsx
+├── App.jsx             (Componente principal)
+└── main.jsx            (Ponto de entrada)
+</code></pre></div></div>
+
+<h3 id="33-configurando-o-apiservicejs">3.3. Configurando o <code class="language-plaintext highlighter-rouge">apiService.js</code></h3>
+
+<p>Este arquivo centraliza a configuração do Axios.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/api/apiService.js</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Cria uma instância do Axios com a URL base da nossa API</span>
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:8080/api</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="c1">// Funções de CRUD para Tarefas</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getTasks</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tasks</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">createTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tasks</span><span class="dl">"</span><span class="p">,</span> <span class="nx">task</span><span class="p">);</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">updateTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">`/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">task</span><span class="p">);</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">deleteTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">api</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="34-o-componente-principal-appjsx">3.4. O Componente Principal <code class="language-plaintext highlighter-rouge">App.jsx</code></h3>
+
+<p>Este componente vai gerenciar o estado principal da aplicação (a lista de tarefas).</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/App.jsx</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span>
+  <span class="nx">Container</span><span class="p">,</span>
+  <span class="nx">Typography</span><span class="p">,</span>
+  <span class="nx">Box</span><span class="p">,</span>
+  <span class="nx">CssBaseline</span><span class="p">,</span>
+  <span class="nx">AppBar</span><span class="p">,</span>
+  <span class="nx">Toolbar</span><span class="p">,</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@mui/material</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">TaskList</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./components/TaskList</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">TaskForm</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./components.TaskForm</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getTasks</span><span class="p">,</span> <span class="nx">createTask</span><span class="p">,</span> <span class="nx">updateTask</span><span class="p">,</span> <span class="nx">deleteTask</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./api/apiService</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">tasks</span><span class="p">,</span> <span class="nx">setTasks</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">([]);</span>
+
+  <span class="c1">// Função para carregar as tarefas da API</span>
+  <span class="kd">const</span> <span class="nx">fetchTasks</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">getTasks</span><span class="p">();</span>
+      <span class="nf">setTasks</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao buscar tarefas:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="c1">// useEffect para carregar as tarefas quando o componente montar</span>
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">fetchTasks</span><span class="p">();</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="c1">// --- Funções de Manipulação de Dados ---</span>
+
+  <span class="kd">const</span> <span class="nx">handleAddTask</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">description</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">newTask</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">description</span><span class="p">,</span> <span class="na">completed</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+      <span class="k">await</span> <span class="nf">createTask</span><span class="p">(</span><span class="nx">newTask</span><span class="p">);</span>
+      <span class="nf">fetchTasks</span><span class="p">();</span> <span class="c1">// Recarrega a lista</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao adicionar tarefa:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">handleToggleTask</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">updatedTask</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">task</span><span class="p">,</span> <span class="na">completed</span><span class="p">:</span> <span class="o">!</span><span class="nx">task</span><span class="p">.</span><span class="nx">completed</span> <span class="p">};</span>
+      <span class="k">await</span> <span class="nf">updateTask</span><span class="p">(</span><span class="nx">task</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">updatedTask</span><span class="p">);</span>
+      <span class="nf">fetchTasks</span><span class="p">();</span> <span class="c1">// Recarrega a lista</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao atualizar tarefa:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">handleDeleteTask</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="k">await</span> <span class="nf">deleteTask</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+      <span class="nf">fetchTasks</span><span class="p">();</span> <span class="c1">// Recarrega a lista</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao deletar tarefa:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">CssBaseline</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">AppBar</span> <span class="nx">position</span><span class="o">=</span><span class="dl">"</span><span class="s2">static</span><span class="dl">"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Toolbar</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">Typography</span> <span class="nx">variant</span><span class="o">=</span><span class="dl">"</span><span class="s2">h6</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">ListOn</span> <span class="o">-</span> <span class="nx">Lista</span> <span class="nx">de</span> <span class="nx">Tarefas</span><span class="o">&lt;</span><span class="sr">/Typography</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/Toolbar</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/AppBar</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Container</span> <span class="nx">maxWidth</span><span class="o">=</span><span class="dl">"</span><span class="s2">md</span><span class="dl">"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Box</span> <span class="nx">mt</span><span class="o">=</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">Typography</span> <span class="nx">variant</span><span class="o">=</span><span class="dl">"</span><span class="s2">h4</span><span class="dl">"</span> <span class="nx">gutterBottom</span><span class="o">&gt;</span>
+            <span class="nx">Nova</span> <span class="nx">Tarefa</span>
+          <span class="o">&lt;</span><span class="sr">/Typography</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">TaskForm</span> <span class="nx">onAddTask</span><span class="o">=</span><span class="p">{</span><span class="nx">handleAddTask</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/Box</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Box</span> <span class="nx">mt</span><span class="o">=</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">Typography</span> <span class="nx">variant</span><span class="o">=</span><span class="dl">"</span><span class="s2">h4</span><span class="dl">"</span> <span class="nx">gutterBottom</span><span class="o">&gt;</span>
+            <span class="nx">Tarefas</span>
+          <span class="o">&lt;</span><span class="sr">/Typography</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">TaskList</span>
+            <span class="nx">tasks</span><span class="o">=</span><span class="p">{</span><span class="nx">tasks</span><span class="p">}</span>
+            <span class="nx">onToggle</span><span class="o">=</span><span class="p">{</span><span class="nx">handleToggleTask</span><span class="p">}</span>
+            <span class="nx">onDelete</span><span class="o">=</span><span class="p">{</span><span class="nx">handleDeleteTask</span><span class="p">}</span>
+          <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/Box</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/Container</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="35-componente-taskformjsx">3.5. Componente <code class="language-plaintext highlighter-rouge">TaskForm.jsx</code></h3>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/components/TaskForm.jsx</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TextField</span><span class="p">,</span> <span class="nx">Button</span><span class="p">,</span> <span class="nx">Box</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@mui/material</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">TaskForm</span><span class="p">({</span> <span class="nx">onAddTask</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">title</span><span class="p">,</span> <span class="nx">setTitle</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">description</span><span class="p">,</span> <span class="nx">setDescription</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">title</span><span class="p">.</span><span class="nf">trim</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// Não adiciona se o título estiver vazio</span>
+
+    <span class="nf">onAddTask</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="nx">description</span><span class="p">);</span>
+    <span class="nf">setTitle</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+    <span class="nf">setDescription</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Box</span> <span class="nx">component</span><span class="o">=</span><span class="dl">"</span><span class="s2">form</span><span class="dl">"</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSubmit</span><span class="p">}</span> <span class="nx">noValidate</span> <span class="nx">sx</span><span class="o">=&gt;</span>
+      <span class="o">&lt;</span><span class="nx">TextField</span>
+        <span class="nx">margin</span><span class="o">=</span><span class="dl">"</span><span class="s2">normal</span><span class="dl">"</span>
+        <span class="nx">required</span>
+        <span class="nx">fullWidth</span>
+        <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">title</span><span class="dl">"</span>
+        <span class="nx">label</span><span class="o">=</span><span class="dl">"</span><span class="s2">Título da Tarefa</span><span class="dl">"</span>
+        <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">title</span><span class="dl">"</span>
+        <span class="nx">autoFocus</span>
+        <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span>
+        <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">setTitle</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">TextField</span>
+        <span class="nx">margin</span><span class="o">=</span><span class="dl">"</span><span class="s2">normal</span><span class="dl">"</span>
+        <span class="nx">fullWidth</span>
+        <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">description</span><span class="dl">"</span>
+        <span class="nx">label</span><span class="o">=</span><span class="dl">"</span><span class="s2">Descrição (Opcional)</span><span class="dl">"</span>
+        <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">description</span><span class="dl">"</span>
+        <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">description</span><span class="p">}</span>
+        <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">setDescription</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span> <span class="nx">variant</span><span class="o">=</span><span class="dl">"</span><span class="s2">contained</span><span class="dl">"</span> <span class="nx">sx</span><span class="o">=&gt;</span>
+        <span class="nx">Adicionar</span> <span class="nx">Tarefa</span>
+      <span class="o">&lt;</span><span class="sr">/Button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/Box</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">TaskForm</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="36-componente-tasklistjsx">3.6. Componente <code class="language-plaintext highlighter-rouge">TaskList.jsx</code></h3>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/components/TaskList.jsx</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">List</span><span class="p">,</span>
+  <span class="nx">ListItem</span><span class="p">,</span>
+  <span class="nx">ListItemText</span><span class="p">,</span>
+  <span class="nx">IconButton</span><span class="p">,</span>
+  <span class="nx">Checkbox</span><span class="p">,</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@mui/material</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">DeleteIcon</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@mui/icons-material/Delete</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">TaskList</span><span class="p">({</span> <span class="nx">tasks</span><span class="p">,</span> <span class="nx">onToggle</span><span class="p">,</span> <span class="nx">onDelete</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">List</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">?</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">ListItem</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">ListItemText</span> <span class="nx">primary</span><span class="o">=</span><span class="dl">"</span><span class="s2">Nenhuma tarefa encontrada.</span><span class="dl">"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="sr">/ListItem</span><span class="err">&gt;
+</span>      <span class="p">)</span> <span class="p">:</span> <span class="p">(</span>
+        <span class="nx">tasks</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">ListItem</span>
+            <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span>
+            <span class="nx">secondaryAction</span><span class="o">=</span><span class="p">{</span>
+              <span class="o">&lt;</span><span class="nx">IconButton</span>
+                <span class="nx">edge</span><span class="o">=</span><span class="dl">"</span><span class="s2">end</span><span class="dl">"</span>
+                <span class="nx">aria</span><span class="o">-</span><span class="nx">label</span><span class="o">=</span><span class="dl">"</span><span class="s2">delete</span><span class="dl">"</span>
+                <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nf">onDelete</span><span class="p">(</span><span class="nx">task</span><span class="p">.</span><span class="nx">id</span><span class="p">)}</span>
+              <span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">DeleteIcon</span> <span class="o">/&gt;</span>
+              <span class="o">&lt;</span><span class="sr">/IconButton</span><span class="err">&gt;
+</span>            <span class="p">}</span>
+            <span class="nx">disablePadding</span>
+          <span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Checkbox</span>
+              <span class="nx">edge</span><span class="o">=</span><span class="dl">"</span><span class="s2">start</span><span class="dl">"</span>
+              <span class="nx">checked</span><span class="o">=</span><span class="p">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">completed</span><span class="p">}</span>
+              <span class="nx">tabIndex</span><span class="o">=</span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+              <span class="nx">disableRipple</span>
+              <span class="nx">onChange</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nf">onToggle</span><span class="p">(</span><span class="nx">task</span><span class="p">)}</span>
+            <span class="sr">/</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="nx">ListItemText</span>
+              <span class="nx">primary</span><span class="o">=</span><span class="p">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span>
+              <span class="nx">secondary</span><span class="o">=</span><span class="p">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">description</span><span class="p">}</span>
+              <span class="nx">style</span><span class="o">=</span>
+            <span class="sr">/</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/ListItem</span><span class="err">&gt;
+</span>        <span class="p">))</span>
+      <span class="p">)}</span>
+    <span class="o">&lt;</span><span class="sr">/List</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">TaskList</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="37-rodando-o-front-end-web">3.7. Rodando o Front-end Web</h3>
+
+<ol>
+  <li>Certifique-se de que seu back-end (Parte 2) esteja rodando em <code class="language-plaintext highlighter-rouge">localhost:8080</code>.</li>
+  <li>Na pasta <code class="language-plaintext highlighter-rouge">liston-web</code>, rode:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div>    </div>
+  </li>
+  <li>Abra seu navegador em <code class="language-plaintext highlighter-rouge">http://localhost:5173</code>. Você verá sua aplicação web funcionando.</li>
+</ol>
+
+<hr />
+
+<h2 id="-parte-4-aplicativo-mobile-react-native">📱 Parte 4: Aplicativo Mobile (React Native)</h2>
+
+<p>Agora, vamos criar o cliente mobile usando <strong>Expo</strong>, que facilita o desenvolvimento.</p>
+
+<h3 id="41-geração-do-projeto-expo">4.1. Geração do Projeto (Expo)</h3>
+
+<p>Na pasta raiz do projeto (ao lado do back-end e da web), rode:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cria um novo projeto Expo</span>
+npx create-expo-app liston-mobile
+
+<span class="c"># Entre na pasta</span>
+<span class="nb">cd </span>liston-mobile
+
+<span class="c"># Instale o Axios</span>
+npm <span class="nb">install </span>axios
+</code></pre></div></div>
+
+<h3 id="42-estrutura-do-projeto-mobile">4.2. Estrutura do Projeto (Mobile)</h3>
+
+<p>A estrutura será mais simples. Vamos editar o <code class="language-plaintext highlighter-rouge">App.js</code> e criar um <code class="language-plaintext highlighter-rouge">apiService.js</code> específico.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>liston-mobile/
+├── api
+│   └── apiService.js   (Cliente Axios Mobile)
+└── App.js              (Componente principal)
+</code></pre></div></div>
+
+<h3 id="43-configurando-o-apiservicejs-mobile">4.3. Configurando o <code class="language-plaintext highlighter-rouge">apiService.js</code> (Mobile)</h3>
+
+<p><strong>⚠️ Ponto Crítico:</strong> No mobile, <code class="language-plaintext highlighter-rouge">localhost</code> não funciona (ele aponta para o próprio dispositivo). Você deve usar o <strong>endereço IP local</strong> da sua máquina que está rodando o back-end (ex: <code class="language-plaintext highlighter-rouge">192.168.1.10</code>).</p>
+
+<blockquote>
+  <p><strong>Como achar seu IP (Windows):</strong> No terminal (cmd), digite <code class="language-plaintext highlighter-rouge">ipconfig</code> e procure pelo “Endereço IPv4”.</p>
+</blockquote>
+
+<p><strong><code class="language-plaintext highlighter-rouge">api/apiService.js</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// 🚨 MUDE ESTE IP para o IP local da sua máquina!</span>
+<span class="kd">const</span> <span class="nx">API_URL</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">http://192.168.1.10:8080/api</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="nx">API_URL</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getTasks</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tasks</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">createTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tasks</span><span class="dl">"</span><span class="p">,</span> <span class="nx">task</span><span class="p">);</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">updateTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">`/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">task</span><span class="p">);</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">deleteTask</span> <span class="o">=</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`/tasks/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="44-o-componente-principal-appjs">4.4. O Componente Principal <code class="language-plaintext highlighter-rouge">App.js</code></h3>
+
+<p>Vamos reescrever o <code class="language-plaintext highlighter-rouge">App.js</code> padrão do Expo para ser nossa aplicação.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">App.js</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span>
+  <span class="nx">StyleSheet</span><span class="p">,</span>
+  <span class="nx">Text</span><span class="p">,</span>
+  <span class="nx">View</span><span class="p">,</span>
+  <span class="nx">TextInput</span><span class="p">,</span>
+  <span class="nx">Button</span><span class="p">,</span>
+  <span class="nx">FlatList</span><span class="p">,</span>
+  <span class="nx">SafeAreaView</span><span class="p">,</span>
+  <span class="nx">StatusBar</span><span class="p">,</span>
+  <span class="nx">TouchableOpacity</span><span class="p">,</span>
+  <span class="nx">Platform</span><span class="p">,</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-native</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getTasks</span><span class="p">,</span> <span class="nx">createTask</span><span class="p">,</span> <span class="nx">updateTask</span><span class="p">,</span> <span class="nx">deleteTask</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./api/apiService</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Um componente simples de "Checkbox" (React Native não tem um nativo)</span>
+<span class="kd">const</span> <span class="nx">Checkbox</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">isChecked</span><span class="p">,</span> <span class="nx">onToggle</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">TouchableOpacity</span> <span class="nx">onPress</span><span class="o">=</span><span class="p">{</span><span class="nx">onToggle</span><span class="p">}</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">checkbox</span><span class="p">}</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="nx">isChecked</span> <span class="o">&amp;&amp;</span> <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">checkmark</span><span class="p">}</span><span class="o">&gt;</span><span class="err">✓</span><span class="o">&lt;</span><span class="sr">/Text&gt;</span><span class="err">}
+</span>  <span class="o">&lt;</span><span class="sr">/TouchableOpacity</span><span class="err">&gt;
+</span><span class="p">);</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">tasks</span><span class="p">,</span> <span class="nx">setTasks</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">([]);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">title</span><span class="p">,</span> <span class="nx">setTitle</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">fetchTasks</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">getTasks</span><span class="p">();</span>
+      <span class="nf">setTasks</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao buscar tarefas (Mobile):</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">fetchTasks</span><span class="p">();</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="kd">const</span> <span class="nx">handleAddTask</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">title</span><span class="p">.</span><span class="nf">trim</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="k">await</span> <span class="nf">createTask</span><span class="p">({</span> <span class="nx">title</span><span class="p">,</span> <span class="na">description</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span> <span class="na">completed</span><span class="p">:</span> <span class="kc">false</span> <span class="p">});</span>
+      <span class="nf">fetchTasks</span><span class="p">();</span>
+      <span class="nf">setTitle</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao adicionar:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">handleToggleTask</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">updatedTask</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">task</span><span class="p">,</span> <span class="na">completed</span><span class="p">:</span> <span class="o">!</span><span class="nx">task</span><span class="p">.</span><span class="nx">completed</span> <span class="p">};</span>
+      <span class="k">await</span> <span class="nf">updateTask</span><span class="p">(</span><span class="nx">task</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">updatedTask</span><span class="p">);</span>
+      <span class="nf">fetchTasks</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao atualizar:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">handleDeleteTask</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="k">await</span> <span class="nf">deleteTask</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+      <span class="nf">fetchTasks</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Erro ao deletar:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">renderTask</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">item</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">taskItem</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Checkbox</span>
+        <span class="nx">isChecked</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">completed</span><span class="p">}</span>
+        <span class="nx">onToggle</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nf">handleToggleTask</span><span class="p">(</span><span class="nx">item</span><span class="p">)}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{[</span><span class="nx">styles</span><span class="p">.</span><span class="nx">taskTitle</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">completed</span> <span class="o">&amp;&amp;</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">taskCompleted</span><span class="p">]}</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">title</span><span class="o">=</span><span class="dl">"</span><span class="s2">X</span><span class="dl">"</span> <span class="nx">color</span><span class="o">=</span><span class="dl">"</span><span class="s2">red</span><span class="dl">"</span> <span class="nx">onPress</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nf">handleDeleteTask</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">)}</span> <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">SafeAreaView</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">header</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">ListOn</span> <span class="nx">Mobile</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>
+      <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">form</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">TextInput</span>
+          <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">input</span><span class="p">}</span>
+          <span class="nx">placeholder</span><span class="o">=</span><span class="dl">"</span><span class="s2">Nova Tarefa</span><span class="dl">"</span>
+          <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">title</span><span class="p">}</span>
+          <span class="nx">onChangeText</span><span class="o">=</span><span class="p">{</span><span class="nx">setTitle</span><span class="p">}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">title</span><span class="o">=</span><span class="dl">"</span><span class="s2">Adicionar</span><span class="dl">"</span> <span class="nx">onPress</span><span class="o">=</span><span class="p">{</span><span class="nx">handleAddTask</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>
+      <span class="o">&lt;</span><span class="nx">FlatList</span>
+        <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">tasks</span><span class="p">}</span>
+        <span class="nx">renderItem</span><span class="o">=</span><span class="p">{</span><span class="nx">renderTask</span><span class="p">}</span>
+        <span class="nx">keyExtractor</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nf">toString</span><span class="p">()}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/SafeAreaView</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Estilos</span>
+<span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">StyleSheet</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">container</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#f5f5f5</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">marginTop</span><span class="p">:</span> <span class="nx">StatusBar</span><span class="p">.</span><span class="nx">currentHeight</span> <span class="o">||</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">paddingHorizontal</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">header</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span>
+    <span class="na">fontWeight</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bold</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">marginVertical</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="na">textAlign</span><span class="p">:</span> <span class="dl">"</span><span class="s2">center</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">form</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">flexDirection</span><span class="p">:</span> <span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">marginBottom</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">input</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ccc</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">padding</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">marginRight</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">borderRadius</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#fff</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">taskItem</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">flexDirection</span><span class="p">:</span> <span class="dl">"</span><span class="s2">row</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">alignItems</span><span class="p">:</span> <span class="dl">"</span><span class="s2">center</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#fff</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">padding</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="na">marginBottom</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">borderRadius</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="na">elevation</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">taskTitle</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="na">marginLeft</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">taskCompleted</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">textDecorationLine</span><span class="p">:</span> <span class="dl">"</span><span class="s2">line-through</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">grey</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">checkbox</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">width</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+    <span class="na">borderWidth</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="na">borderColor</span><span class="p">:</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">borderRadius</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="na">justifyContent</span><span class="p">:</span> <span class="dl">"</span><span class="s2">center</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">alignItems</span><span class="p">:</span> <span class="dl">"</span><span class="s2">center</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">checkmark</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">fontSize</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="na">fontWeight</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bold</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="45-rodando-o-app-mobile">4.5. Rodando o App Mobile</h3>
+
+<ol>
+  <li>Certifique-se de que seu back-end (Parte 2) esteja rodando e acessível pelo IP local que você configurou em <code class="language-plaintext highlighter-rouge">apiService.js</code>.</li>
+  <li>Instale o app “Expo Go” no seu celular (Android ou iOS).</li>
+  <li>Na pasta <code class="language-plaintext highlighter-rouge">liston-mobile</code>, rode:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm start
+</code></pre></div>    </div>
+  </li>
+  <li>Um QR Code aparecerá no seu terminal. Escaneie este QR Code usando o app Expo Go no seu celular.</li>
+</ol>
+
+<p>Sua aplicação mobile será carregada no seu dispositivo, conectada ao seu back-end local.</p>
+
+<hr />
+
+<h2 id="-parte-5-próximos-passos-deploy">🚀 Parte 5: Próximos Passos (Deploy)</h2>
+
+<ul>
+  <li><strong>Back-end:</strong> Você pode fazer o deploy da API Spring Boot no <strong>Render</strong> (que oferece um plano gratuito para PostgreSQL) ou <strong>Heroku</strong>. Lembre-se de mudar o perfil do Spring para <code class="language-plaintext highlighter-rouge">prod</code>.</li>
+  <li><strong>Front-end Web:</strong> O app React pode ser “deployado” gratuitamente em segundos na <strong>Vercel</strong> ou <strong>Netlify</strong>.</li>
+  <li><strong>Front-end Mobile:</strong> Para publicar na Play Store ou App Store, você usará os comandos <code class="language-plaintext highlighter-rouge">eas build</code> do Expo, seguindo a documentação oficial.</li>
+</ul>
+

@@ -1,0 +1,72 @@
+<h3 id="-etapa-1-renomear-o-repositório-no-github">📝 Etapa 1: Renomear o Repositório no GitHub</h3>
+
+<ul>
+  <li><strong>Siga exatamente os mesmos passos da resposta anterior.</strong> Vá para a página do seu repositório &gt; <code class="language-plaintext highlighter-rouge">Settings</code> &gt; e renomeie o repositório no campo “Repository name”. O protocolo (SSH ou HTTPS) não interfere nesta etapa.</li>
+</ul>
+
+<hr />
+
+<h3 id="-etapa-2-atualizar-seu-repositório-local-com-ssh">💻 Etapa 2: Atualizar seu Repositório Local (com SSH)</h3>
+
+<h4 id="parte-a-renomear-a-pasta-local-idêntico">Parte A: Renomear a Pasta Local (Idêntico)</h4>
+
+<ul>
+  <li>Se desejar, renomeie a pasta local para corresponder ao novo nome do repositório.
+    <ul>
+      <li>No <strong>Windows</strong>: <code class="language-plaintext highlighter-rouge">ren repo-antigo repo-novo</code></li>
+      <li>No <strong>macOS/Linux</strong>: <code class="language-plaintext highlighter-rouge">mv repo-antigo repo-novo</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="parte-b-atualizar-a-conexão-remota-ssh-do-git-a-parte-que-muda">Parte B: Atualizar a Conexão Remota SSH do Git (A Parte que Muda)</h4>
+
+<p>Esta é a etapa crucial. Você precisa atualizar a URL remota para o novo formato SSH.</p>
+
+<ol>
+  <li>
+    <p><strong>Entre na pasta do seu projeto:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>repo-novo
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Verifique o remote atual:</strong> O comando é o mesmo.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote <span class="nt">-v</span>
+</code></pre></div>    </div>
+
+    <p>A saída mostrará a sua URL SSH antiga:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>origin  git@github.com:SEU_USUARIO/repo-antigo.git (fetch)
+origin  git@github.com:SEU_USUARIO/repo-antigo.git (push)
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Atualize a URL do remote para a nova URL SSH:</strong> Aqui está a diferença. O formato da URL muda.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote set-url origin git@github.com:SEU_USUARIO/repo-novo.git
+</code></pre></div>    </div>
+
+    <p><strong>Substitua <code class="language-plaintext highlighter-rouge">SEU_USUARIO</code> e <code class="language-plaintext highlighter-rouge">repo-novo</code></strong> pelos seus dados. Note o formato <code class="language-plaintext highlighter-rouge">git@github.com:</code> em vez de <code class="language-plaintext highlighter-rouge">https://github.com/</code>.</p>
+  </li>
+  <li>
+    <p><strong>Verifique a alteração:</strong> Confirme que a URL foi atualizada corretamente.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote <span class="nt">-v</span>
+</code></pre></div>    </div>
+
+    <p>A nova saída deve ser:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>origin  git@github.com:SEU_USUARIO/repo-novo.git (fetch)
+origin  git@github.com:SEU_USUARIO/repo-novo.git (push)
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>E é isso! O processo manual é robusto e funciona perfeitamente com SSH. A única coisa que você precisa lembrar é de usar o formato correto da URL do Git (<code class="language-plaintext highlighter-rouge">git@github.com:usuario/repo.git</code>) ao executar o comando <code class="language-plaintext highlighter-rouge">set-url</code>.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

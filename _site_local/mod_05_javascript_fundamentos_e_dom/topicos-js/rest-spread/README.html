@@ -1,0 +1,58 @@
+<h1 id="-curso-nivelamento-javascript"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png" alt="curso logo" /> Curso Nivelamento JavaScript</h1>
+<blockquote>
+  <p>Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end</p>
+</blockquote>
+
+<h2 id="realização">Realização</h2>
+<p><a href="https://curso.com.br">curso - Escola de programação</a></p>
+
+<p><a href="https://instagram.com/curso.ig"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/ig-icon.png" alt="curso no Instagram" /></a>
+<a href="https://youtube.com/curso"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/yt-icon.png" alt="curso no Youtube" /></a></p>
+
+<h2 id="javascript---rest--spread">JavaScript - rest / spread</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// REST: valores passados com virgula =&gt; array</span>
+
+<span class="kd">function</span> <span class="nf">sum</span><span class="p">(...</span><span class="nx">numbers</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">total</span> <span class="o">=</span> <span class="nx">total</span> <span class="o">+</span> <span class="nx">numbers</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">result1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result1</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">result2</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result2</span><span class="p">);</span>
+
+<span class="c1">// SPREAD: array =&gt; valores separados por virgula</span>
+
+<span class="kd">const</span> <span class="nx">result3</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result3</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">myNumbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+
+<span class="c1">//const result4 = Math.max(myNumbers); // Nao funciona</span>
+
+<span class="kd">const</span> <span class="nx">result4</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">max</span><span class="p">(...</span><span class="nx">myNumbers</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result4</span><span class="p">);</span>
+
+<span class="c1">// SPREAD: objeto =&gt; membros separados por virgula</span>
+
+<span class="kd">const</span> <span class="nx">item</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">description</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Celular</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mf">1499.99</span><span class="p">,</span>
+    <span class="na">quantity</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">cloneItem</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">item</span> <span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">cloneItemPlus</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">item</span><span class="p">,</span> <span class="na">weigth</span><span class="p">:</span> <span class="mi">10</span> <span class="p">};</span>
+</code></pre></div></div>
+

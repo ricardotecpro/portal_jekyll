@@ -1,0 +1,202 @@
+<h3 id="tutorial-como-criar-e-gerenciar-um-keyspace-e-tabela-no-cassandra-usando-docker"><strong>Tutorial: Como Criar e Gerenciar um Keyspace e Tabela no Cassandra usando Docker</strong></h3>
+
+<hr />
+
+<h4 id="1-preparação-do-ambiente"><strong>1. Preparação do Ambiente</strong></h4>
+
+<p>Antes de tudo, você precisa ter o Docker configurado e o Cassandra rodando em um container. Aqui estão os passos básicos:</p>
+
+<ol>
+  <li>
+    <p><strong>Verifique a versão do Docker</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker <span class="nt">--version</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Baixe a imagem do Cassandra</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker pull cassandra
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie um diretório local para persistência dos dados</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo mkdir</span> <span class="nt">-p</span> /opt/cassandra
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Inicie o container Cassandra</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker run <span class="nt">--name</span> cassandra <span class="nt">-p</span> 9042:9042 <span class="nt">-v</span> /opt/cassandra:/var/lib/cassandra <span class="nt">-d</span> cassandra
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Acesse o container</strong>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker <span class="nb">exec</span> <span class="nt">-it</span> cassandra bash
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="2-conectando-ao-cassandra-via-cqlsh"><strong>2. Conectando ao Cassandra via CQLSH</strong></h4>
+
+<ol>
+  <li>
+    <p><strong>Entre no <code class="language-plaintext highlighter-rouge">cqlsh</code></strong> (shell interativo do Cassandra):</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cqlsh
+</code></pre></div>    </div>
+
+    <p>Isso abrirá o prompt do Cassandra, onde você pode executar comandos SQL para interagir com o banco de dados.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="3-criando-o-keyspace"><strong>3. Criando o Keyspace</strong></h4>
+
+<p>Agora, vamos criar o <strong>keyspace</strong>, que é como um banco de dados no Cassandra.</p>
+
+<ol>
+  <li>
+    <p><strong>Comando para criar o Keyspace</strong>:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">CREATE</span> <span class="n">KEYSPACE</span> <span class="n">minhakeyspaceCetec</span>
+ <span class="k">WITH</span> <span class="n">replication</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s1">'class'</span><span class="p">:</span> <span class="s1">'SimpleStrategy'</span><span class="p">,</span>
+   <span class="s1">'replication_factor'</span><span class="p">:</span> <span class="mi">1</span>
+ <span class="p">};</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p><strong>SimpleStrategy</strong> é uma boa escolha para ambientes de desenvolvimento.</p>
+      </li>
+      <li>
+        <p><strong>replication_factor: 1</strong> indica que há uma cópia dos dados no cluster.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Verifique se o Keyspace foi criado</strong>:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">DESCRIBE</span> <span class="n">KEYSPACES</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="4-usando-o-keyspace-criado"><strong>4. Usando o Keyspace Criado</strong></h4>
+
+<p>Agora que o keyspace está criado, precisamos definir que iremos utilizá-lo.</p>
+
+<ol>
+  <li>
+    <p><strong>Comando para usar o Keyspace</strong>:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">USE</span> <span class="n">minhakeyspaceCetec</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="5-criando-a-tabela-alunos"><strong>5. Criando a Tabela <code class="language-plaintext highlighter-rouge">alunos</code></strong></h4>
+
+<p>Vamos criar uma tabela para cadastrar os alunos, com os seguintes campos: <code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">nome</code>, <code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">idade</code>, e <code class="language-plaintext highlighter-rouge">curso</code>.</p>
+
+<ol>
+  <li>
+    <p><strong>Comando para criar a tabela <code class="language-plaintext highlighter-rouge">alunos</code></strong>:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">alunos</span> <span class="p">(</span>
+     <span class="n">id</span> <span class="n">UUID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+     <span class="n">nome</span> <span class="nb">TEXT</span><span class="p">,</span>
+     <span class="n">email</span> <span class="nb">TEXT</span><span class="p">,</span>
+     <span class="n">idade</span> <span class="nb">INT</span><span class="p">,</span>
+     <span class="n">curso</span> <span class="nb">TEXT</span>
+ <span class="p">);</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>
+        <p><strong>id</strong>: <code class="language-plaintext highlighter-rouge">UUID</code> (identificador único) para garantir que cada aluno tenha um ID único.</p>
+      </li>
+      <li>
+        <p><strong>nome, email, idade, curso</strong>: campos típicos para cadastro de alunos.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="6-inserindo-dados-na-tabela"><strong>6. Inserindo Dados na Tabela</strong></h4>
+
+<p>Agora que a tabela está pronta, podemos inserir alguns dados de exemplo.</p>
+
+<ol>
+  <li>
+    <p><strong>Comando para inserir um aluno</strong>:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">,</span> <span class="n">curso</span><span class="p">)</span>
+ <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'João Silva'</span><span class="p">,</span> <span class="s1">'joao.silva@cetec.edu'</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="s1">'Engenharia de Software'</span><span class="p">);</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Usamos o <code class="language-plaintext highlighter-rouge">uuid()</code> para gerar um identificador único para o aluno João Silva.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="7-consultando-os-dados"><strong>7. Consultando os Dados</strong></h4>
+
+<p>Por fim, vamos consultar todos os alunos cadastrados na tabela.</p>
+
+<ol>
+  <li>
+    <p><strong>Comando para consultar todos os alunos</strong>:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">alunos</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="conclusão"><strong>Conclusão</strong></h3>
+
+<p>Com esses passos, você aprendeu a:</p>
+
+<ol>
+  <li>
+    <p>Configurar o Cassandra no Docker.</p>
+  </li>
+  <li>
+    <p>Criar um keyspace e uma tabela no Cassandra.</p>
+  </li>
+  <li>
+    <p>Inserir e consultar dados na tabela de alunos.</p>
+  </li>
+</ol>
+
+<hr />
+<h3 id="dicas-finais"><strong>Dicas Finais</strong></h3>
+<ul>
+  <li>Sempre verifique os logs do container Cassandra para diagnosticar problemas.</li>
+  <li>Use o comando <code class="language-plaintext highlighter-rouge">docker logs cassandra</code> para ver os logs do container.</li>
+  <li>Para parar o container, use <code class="language-plaintext highlighter-rouge">docker stop cassandra</code>.</li>
+  <li>Para remover o container, use <code class="language-plaintext highlighter-rouge">docker rm cassandra</code> após parar.</li>
+  <li>Considere usar ferramentas como DataStax Studio para uma interface gráfica mais amigável ao trabalhar com Cassandra.</li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

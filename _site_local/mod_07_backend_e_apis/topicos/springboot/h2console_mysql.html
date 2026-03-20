@@ -1,0 +1,316 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_07_backend_e_apis/topicos/springboot/h2console_mysql.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Guia para o H2 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Guia para o H2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/h2console_mysql.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/h2console_mysql.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Guia para o H2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Guia para o H2","url":"https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/h2console_mysql.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/" style="margin-left: 0.5rem;">Mod 07 backend e apis</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/" style="margin-left: 0.5rem;">Springboot</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Guia para o h2</span>
+          
+        
+      </nav>
+
+      <h3 id="guia-para-o-h2">Guia para o H2</h3>
+
+<p>Seguido por uma nova seção detalhando como configurar seu projeto Spring Boot para se conectar a um banco de dados MySQL. Por fim, mostrarei a abordagem recomendada para gerenciar ambas as configurações usando <strong>Spring Profiles</strong>.</p>
+
+<h2 id="etapa-7-guia-de-conexão-de-banco-de-dados-no-spring-boot">**Etapa 7: Guia de Conexão de Banco de Dados no Spring Boot</h2>
+
+<h3 id="opção-1-h2-database-para-desenvolvimento-e-testes">Opção 1: H2 Database (Para Desenvolvimento e Testes)</h3>
+
+<p>Para desenvolvedores que utilizam o Spring Boot, o banco de dados em memória H2 é uma ferramenta extremamente útil. Ele permite a criação de um banco de dados relacional que existe apenas durante a execução da aplicação, sem a necessidade de configurar um servidor externo. Uma de suas grandes vantagens é o console web, que oferece uma interface gráfica para interagir diretamente com o banco de dados.</p>
+
+<h4 id="1-adicionando-as-dependências-necessárias">1. Adicionando as Dependências Necessárias</h4>
+
+<p>Garanta que as dependências do Spring Data JPA e do H2 estejam em seu arquivo <code class="language-plaintext highlighter-rouge">pom.xml</code> (Maven) ou <code class="language-plaintext highlighter-rouge">build.gradle</code> (Gradle).</p>
+
+<p><strong>Maven (<code class="language-plaintext highlighter-rouge">pom.xml</code>):</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.h2database<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>h2<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Gradle (<code class="language-plaintext highlighter-rouge">build.gradle</code>):</strong></p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-data-jpa'</span>
+<span class="n">runtimeOnly</span> <span class="s1">'com.h2database:h2'</span>
+</code></pre></div></div>
+
+<h4 id="2-configurando-o-applicationproperties">2. Configurando o <code class="language-plaintext highlighter-rouge">application.properties</code></h4>
+
+<p>Adicione as seguintes propriedades ao seu arquivo <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code> para habilitar o console e configurar a conexão.</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Habilita o console web do H2
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="c"># Define o caminho para acessar o console
+</span><span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+
+<span class="c"># Configurações do Datasource para H2
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+</code></pre></div></div>
+
+<h4 id="3-configurando-o-spring-security-se-aplicável">3. Configurando o Spring Security (Se aplicável)</h4>
+
+<p>Se o seu projeto utiliza Spring Security, é necessário permitir o acesso ao console do H2. Crie ou modifique sua classe de configuração de segurança:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.builders.HttpSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.web.SecurityFilterChain</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">.</span><span class="na">autoconfigure</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">PathRequest</span><span class="o">.</span><span class="na">toH2Console</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">http</span>
+            <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">auth</span> <span class="o">-&gt;</span> <span class="n">auth</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="n">toH2Console</span><span class="o">()).</span><span class="na">permitAll</span><span class="o">()</span> <span class="c1">// Permite acesso ao console H2</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+            <span class="o">)</span>
+            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span>
+                <span class="o">.</span><span class="na">ignoringRequestMatchers</span><span class="o">(</span><span class="n">toH2Console</span><span class="o">())</span> <span class="c1">// Desabilita CSRF para o console H2</span>
+            <span class="o">)</span>
+            <span class="o">.</span><span class="na">headers</span><span class="o">(</span><span class="n">headers</span> <span class="o">-&gt;</span> <span class="n">headers</span>
+                <span class="o">.</span><span class="na">frameOptions</span><span class="o">(</span><span class="n">frameOptions</span> <span class="o">-&gt;</span> <span class="n">frameOptions</span><span class="o">.</span><span class="na">sameOrigin</span><span class="o">())</span> <span class="c1">// Permite frames do H2</span>
+            <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="4-acessando-o-console-h2">4. Acessando o Console H2</h4>
+
+<p>Inicie sua aplicação e acesse <strong><code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code></strong>. Use a URL JDBC <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:testdb</code>, usuário <code class="language-plaintext highlighter-rouge">sa</code> e senha em branco para conectar.</p>
+
+<hr />
+
+<h3 id="opção-2-conectando-a-um-banco-de-dados-mysql">Opção 2: Conectando a um Banco de Dados MySQL</h3>
+
+<p>Para ambientes de produção ou quando você precisa de um banco de dados persistente, o MySQL é uma escolha popular. A configuração é igualmente simples.</p>
+
+<h4 id="1-adicionando-a-dependência-do-mysql">1. Adicionando a Dependência do MySQL</h4>
+
+<p>Primeiro, remova ou comente a dependência do H2 e adicione o conector JDBC do MySQL.</p>
+
+<p><strong>Maven (<code class="language-plaintext highlighter-rouge">pom.xml</code>):</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-data-jpa<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.mysql<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>mysql-connector-j<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Gradle (<code class="language-plaintext highlighter-rouge">build.gradle</code>):</strong></p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-data-jpa'</span>
+<span class="c1">// runtimeOnly 'com.h2database:h2' // Remova ou comente</span>
+<span class="n">runtimeOnly</span> <span class="s1">'com.mysql:mysql-connector-j'</span>
+</code></pre></div></div>
+
+<h4 id="2-configurando-o-applicationproperties-para-mysql">2. Configurando o <code class="language-plaintext highlighter-rouge">application.properties</code> para MySQL</h4>
+
+<p>Agora, altere as propriedades do <code class="language-plaintext highlighter-rouge">datasource</code> no seu arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> para apontar para o seu servidor MySQL.</p>
+
+<p><strong>Certifique-se de que você tenha um banco de dados chamado <code class="language-plaintext highlighter-rouge">meu_banco</code> criado no seu servidor MySQL antes de continuar.</strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do Datasource para MySQL
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:mysql://localhost:3306/meu_banco?useSSL=false&amp;serverTimezone=UTC</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">seu_usuario # Ex: root</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">sua_senha</span>
+
+<span class="c"># O Spring Boot geralmente detecta o driver, mas é boa prática especificar
+# spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+</span>
+<span class="c"># Dialeto do Hibernate para MySQL
+</span><span class="py">spring.jpa.properties.hibernate.dialect</span><span class="p">=</span><span class="s">org.hibernate.dialect.MySQLDialect</span>
+
+<span class="c"># Estratégia de geração do schema (DDL)
+# 'update': atualiza o schema com base nas suas entidades. Ótimo para desenvolvimento.
+# 'validate': valida se o schema corresponde às entidades.
+# 'create-drop': cria o schema na inicialização e o destrói no final.
+# 'none': não faz nada. Recomendado para produção.
+</span><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div></div>
+
+<p><strong>Observação:</strong> Ao usar MySQL, as propriedades <code class="language-plaintext highlighter-rouge">spring.h2.console.enabled</code> e a configuração de segurança para o console H2 não são mais necessárias.</p>
+
+<hr />
+
+<h3 id="gerenciando-múltiplas-configurações-com-spring-profiles-recomendado">Gerenciando Múltiplas Configurações com Spring Profiles (Recomendado)</h3>
+
+<p>A melhor abordagem é manter as duas configurações e alternar entre elas usando <strong>Spring Profiles</strong>. Isso permite usar o H2 para desenvolvimento e testes rápidos e o MySQL para produção ou homologação.</p>
+
+<ol>
+  <li>
+    <p><strong>Renomeie e divida seus arquivos de configuração:</strong></p>
+
+    <ul>
+      <li>Crie um arquivo chamado <code class="language-plaintext highlighter-rouge">src/main/resources/application-dev.properties</code> para a configuração do H2.</li>
+      <li>Crie um arquivo chamado <code class="language-plaintext highlighter-rouge">src/main/resources/application-prod.properties</code> para a configuração do MySQL.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Conteúdo do <code class="language-plaintext highlighter-rouge">application-dev.properties</code> (Perfil de Desenvolvimento - H2):</strong></p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do H2
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+
+<span class="c"># Datasource H2
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">create-drop</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Conteúdo do <code class="language-plaintext highlighter-rouge">application-prod.properties</code> (Perfil de Produção - MySQL):</strong></p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Datasource MySQL
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:mysql://localhost:3306/meu_banco?useSSL=false&amp;serverTimezone=UTC</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">seu_usuario</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">sua_senha</span>
+
+<span class="c"># Dialeto e DDL
+</span><span class="py">spring.jpa.properties.hibernate.dialect</span><span class="p">=</span><span class="s">org.hibernate.dialect.MySQLDialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">validate</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Ative o Perfil Desejado:</strong>
+No seu arquivo principal <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code>, adicione a seguinte linha para definir o perfil padrão:</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Define o perfil ativo. Mude para 'prod' quando for para produção.
+</span><span class="py">spring.profiles.active</span><span class="p">=</span><span class="s">dev</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Agora, ao iniciar a aplicação, o Spring Boot carregará as configurações de <code class="language-plaintext highlighter-rouge">application-dev.properties</code>. Para usar a configuração de produção, basta alterar <code class="language-plaintext highlighter-rouge">spring.profiles.active</code> para <code class="language-plaintext highlighter-rouge">prod</code> e reiniciar. Você também pode ativar perfis através de variáveis de ambiente ou argumentos de linha de comando, o que é ideal para pipelines de CI/CD.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

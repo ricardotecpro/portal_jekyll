@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 📊 Estruturas de Dados: Organizando a Informação
+title: "📊 Estruturas de Dados: Organizando a Informação"
 ---
 
 # 📊 Estruturas de Dados: Organizando a Informação

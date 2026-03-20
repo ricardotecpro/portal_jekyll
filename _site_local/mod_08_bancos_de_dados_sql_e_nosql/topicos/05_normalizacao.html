@@ -1,0 +1,181 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/05_normalizacao.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>05 NORMALIZACAO | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="05 NORMALIZACAO" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/05_normalizacao.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/05_normalizacao.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="05 NORMALIZACAO" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"05 NORMALIZACAO","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/05_normalizacao.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 05 normalizacao</span>
+          
+        
+      </nav>
+
+      <p>A Normalização ✨ é um processo formal e passo a passo para adequar as tabelas de um banco de dados a um conjunto de regras, conhecidas como <strong>Formas Normais</strong>. O objetivo é simplificar a estrutura das tabelas para criar um esquema de banco de dados bem projetado.</p>
+
+<p>A principal importância da normalização é evitar problemas críticos como:</p>
+<ul>
+  <li><strong>Redundância</strong> 🔁: Repetição desnecessária de dados.</li>
+  <li><strong>Inconsistência</strong> 😵: Quando a mesma informação possui valores diferentes em locais distintos.</li>
+  <li><strong>Anomalias de Dados</strong> ⚠️: Erros que podem ocorrer durante a inserção, alteração ou exclusão de informações.</li>
+</ul>
+
+<h3 id="anomalias-de-dados">Anomalias de Dados</h3>
+
+<p>Esquemas de tabelas mal projetados podem sofrer com três tipos de anomalias:</p>
+
+<ol>
+  <li><strong>Anomalia de Inserção</strong> 📥: Ocorre quando não é possível adicionar um registro sobre uma entidade sem que ele esteja associado a outra. Por exemplo, não seria possível cadastrar um novo produto se ele ainda não tiver sido vendido para nenhum cliente.</li>
+  <li><strong>Anomalia de Alteração (Atualização)</strong> 📝: Acontece quando a alteração de um dado redundante exige a atualização de múltiplos registros. Se o nome de um produto que aparece em várias vendas for alterado, seria necessário modificar todas as linhas correspondentes, correndo o risco de deixar alguma inconsistente.</li>
+  <li><strong>Anomalia de Exclusão</strong> 🗑️: Ocorre quando a exclusão de um registro leva à perda de outras informações que não deveriam ser eliminadas. Por exemplo, se o único cliente que comprou um determinado produto for removido, as informações sobre aquele produto também seriam perdidas.</li>
+</ol>
+
+<p>A forma correta de evitar essas anomalias é através da definição de um bom modelo conceitual e sua correta transformação para o modelo lógico. Para bancos de dados já existentes, aplica-se o processo de normalização.</p>
+
+<h3 id="as-formas-normais-fn-">As Formas Normais (FN) 📜</h3>
+
+<p>As formas normais são um conjunto progressivo de regras. As três primeiras são as mais essenciais para a maioria dos sistemas.</p>
+
+<h4 id="primeira-forma-normal-1fn-1️⃣">Primeira Forma Normal (1FN) 1️⃣</h4>
+
+<p>A 1FN é a regra mais básica e é considerada parte da própria definição de uma tabela relacional.</p>
+
+<ul>
+  <li><strong>Regra:</strong> Todos os atributos (colunas) de uma tabela devem ser <strong>atômicos</strong>.</li>
+  <li><strong>Isso significa que:</strong>
+    <ul>
+      <li><strong>Atributos Compostos são proibidos:</strong> Um campo não pode conter múltiplos valores que poderiam ser divididos (ex: “Uberlândia, MG, Brasil” deve ser separado em colunas <code class="language-plaintext highlighter-rouge">cidade</code>, <code class="language-plaintext highlighter-rouge">estado</code>, <code class="language-plaintext highlighter-rouge">pais</code>).</li>
+      <li><strong>Atributos Multivalorados são proibidos:</strong> Um campo não pode conter uma lista de valores (ex: um único campo <code class="language-plaintext highlighter-rouge">telefone</code> com vários números). Para resolver isso, cria-se uma nova tabela para armazenar os múltiplos valores (ex: uma tabela <code class="language-plaintext highlighter-rouge">telefone_cliente</code>).</li>
+      <li><strong>Relações Aninhadas são proibidas:</strong> Uma coluna não pode conter outra relação (uma tabela dentro de outra). Nesses casos, a relação aninhada deve ser extraída para uma nova tabela.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="dependência-funcional-">Dependência Funcional 🔗</h4>
+
+<p>Para entender a 2FN e a 3FN, é crucial o conceito de <strong>dependência funcional</strong>. Um atributo Y é funcionalmente dependente de um atributo X se, para cada valor de X, existe exatamente um único valor de Y. A notação é <code class="language-plaintext highlighter-rouge">X -&gt; Y</code> (lê-se “X determina Y”). Por exemplo, <code class="language-plaintext highlighter-rouge">CPF -&gt; nomeC</code>, pois um CPF determina um único nome de cliente.</p>
+
+<h4 id="segunda-forma-normal-2fn-2️⃣">Segunda Forma Normal (2FN) 2️⃣</h4>
+
+<p>A 2FN visa eliminar dependências parciais em chaves primárias compostas.</p>
+
+<ul>
+  <li><strong>Regras:</strong>
+    <ol>
+      <li>A tabela deve estar na 1FN.</li>
+      <li>Todos os atributos não-chave devem ser <strong>totalmente dependentes</strong> de toda a chave primária.</li>
+    </ol>
+  </li>
+  <li><strong>Em outras palavras:</strong> Se a chave primária for composta por mais de uma coluna, nenhum atributo pode depender de apenas uma parte dessa chave. Caso isso ocorra, a dependência parcial deve ser extraída para uma nova tabela.</li>
+</ul>
+
+<h4 id="terceira-forma-normal-3fn-3️⃣">Terceira Forma Normal (3FN) 3️⃣</h4>
+
+<p>A 3FN visa eliminar dependências transitivas.</p>
+
+<ul>
+  <li><strong>Regras:</strong>
+    <ol>
+      <li>A tabela deve estar na 2FN.</li>
+      <li>Não deve existir dependência funcional entre atributos não-chave.</li>
+    </ol>
+  </li>
+  <li><strong>Em outras palavras:</strong> Nenhum atributo que não faz parte da chave primária pode depender de outro atributo que também não faz parte da chave primária. Um atributo não-chave deve depender exclusivamente da chave. Se houver uma dependência transitiva (ex: <code class="language-plaintext highlighter-rouge">CPF -&gt; codDepto</code> e <code class="language-plaintext highlighter-rouge">codDepto -&gt; nomeDepto</code>), a dependência deve ser movida para uma nova tabela.</li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

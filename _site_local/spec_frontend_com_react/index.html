@@ -1,0 +1,299 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_frontend_com_react/ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>⚛️ React: A Biblioteca para Interfaces de Usuário | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="⚛️ React: A Biblioteca para Interfaces de Usuário" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_frontend_com_react/" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_frontend_com_react/" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="⚛️ React: A Biblioteca para Interfaces de Usuário" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"⚛️ React: A Biblioteca para Interfaces de Usuário","url":"https://ricardotecpro.github.io/portal_jekyll/spec_frontend_com_react/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / ⚛️ react: a biblioteca para interfaces de usuário</span>
+          
+        
+      </nav>
+
+      <h1 id="️-react-a-biblioteca-para-interfaces-de-usuário">⚛️ React: A Biblioteca para Interfaces de Usuário</h1>
+
+<p>React, desenvolvida e mantida pelo Meta (anteriormente Facebook), é uma biblioteca JavaScript de código aberto utilizada para construir interfaces de usuário (<em>User Interfaces</em> - UI) interativas e dinâmicas. Seu principal objetivo é permitir que desenvolvedores criem UIs complexas a partir de pequenas e isoladas peças de código chamadas “componentes”.</p>
+
+<hr />
+
+<h2 id="-conceitos-fundamentais">🧠 Conceitos Fundamentais</h2>
+
+<p>O poder do React reside em sua abordagem declarativa e baseada em componentes.</p>
+
+<h3 id="componentes-os-blocos-de-construção">Componentes: Os Blocos de Construção</h3>
+
+<p>Tudo em React é um componente. Um componente é uma função JavaScript ou uma classe que, opcionalmente, aceita entradas (chamadas de <code class="language-plaintext highlighter-rouge">props</code>) e retorna um elemento React que descreve o que deve aparecer na tela. A componentização permite dividir a UI em partes independentes e reutilizáveis.</p>
+
+<p><strong>Exemplo de Componente Funcional:</strong></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Greeting.jsx</span>
+<span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="c1">// Um componente funcional simples que recebe 'name' via props.</span>
+<span class="kd">function</span> <span class="nf">Greeting</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Olá, <span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span>!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Greeting</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="jsx-javascript-e-xml">JSX: JavaScript e XML</h3>
+
+<p>JSX é uma extensão de sintaxe para JavaScript que se assemelha a HTML ou XML. Ele permite escrever a estrutura da UI de forma declarativa dentro do próprio código JavaScript. JSX não é executado diretamente no navegador; ele é transpilado (convertido) para chamadas de funções JavaScript puras por ferramentas como o Babel.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Sem JSX</span>
+<span class="nx">React</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">h1</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span><span class="na">className</span><span class="p">:</span> <span class="dl">'</span><span class="s1">title</span><span class="dl">'</span><span class="p">},</span> <span class="dl">'</span><span class="s1">Olá, Mundo!</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Com JSX (mais legível)</span>
+<span class="p">&lt;</span><span class="nt">h1</span> <span class="na">className</span><span class="p">=</span><span class="s">"title"</span><span class="p">&gt;</span>Olá, Mundo!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="props-passando-dados-para-componentes">Props: Passando Dados para Componentes</h3>
+
+<p><em>Props</em> (abreviação de “properties”) são usadas para passar dados de um componente pai para um componente filho. Elas são somente leitura, o que significa que um componente filho nunca deve modificar as <code class="language-plaintext highlighter-rouge">props</code> que recebe.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// App.jsx (Componente Pai)</span>
+<span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Greeting</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Greeting</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Greeting</span> <span class="na">name</span><span class="p">=</span><span class="s">"Alice"</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Greeting</span> <span class="na">name</span><span class="p">=</span><span class="s">"Beto"</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="state-gerenciando-o-estado-interno">State: Gerenciando o Estado Interno</h3>
+
+<p>Enquanto <code class="language-plaintext highlighter-rouge">props</code> são dados externos, o <code class="language-plaintext highlighter-rouge">state</code> é um objeto que armazena dados internos de um componente. Quando o <code class="language-plaintext highlighter-rouge">state</code> de um componente muda, o React o re-renderiza automaticamente para refletir essa mudança na UI.</p>
+
+<p>O <code class="language-plaintext highlighter-rouge">Hook useState</code> é a forma moderna de adicionar estado a componentes funcionais.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Counter.jsx</span>
+<span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">Counter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Declara uma nova variável de estado chamada 'count'</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Você clicou <span class="si">{</span><span class="nx">count</span><span class="si">}</span> vezes<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="cm">/* Ao clicar, chama setCount para atualizar o estado */</span><span class="si">}</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>
+        Clique aqui
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-hooks-superpoderes-para-componentes-funcionais">🎣 Hooks: Superpoderes para Componentes Funcionais</h2>
+
+<p>Introduzidos no React 16.8, os <em>Hooks</em> permitem que você use o <code class="language-plaintext highlighter-rouge">state</code> e outros recursos do React em componentes funcionais, sem a necessidade de escrever classes.</p>
+
+<h3 id="usestate-gerenciamento-de-estado"><code class="language-plaintext highlighter-rouge">useState</code>: Gerenciamento de Estado</h3>
+
+<p>Como visto no exemplo do contador, <code class="language-plaintext highlighter-rouge">useState</code> retorna um valor com estado e uma função para atualizá-lo.</p>
+
+<h3 id="useeffect-sincronizando-com-efeitos-colaterais"><code class="language-plaintext highlighter-rouge">useEffect</code>: Sincronizando com Efeitos Colaterais</h3>
+
+<p>O <em>Hook</em> <code class="language-plaintext highlighter-rouge">useEffect</code> é usado para executar “efeitos colaterais” (<em>side effects</em>) em componentes. Efeitos colaterais são operações que não estão relacionadas à renderização, como:</p>
+
+<ul>
+  <li>Requisições a uma API (fetch de dados).</li>
+  <li>Manipulação manual do DOM.</li>
+  <li>Inscrição em eventos (<em>subscriptions</em>).</li>
+</ul>
+
+<!-- end list -->
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UserData.jsx</span>
+<span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">UserData</span><span class="p">({</span> <span class="nx">userId</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">user</span><span class="p">,</span> <span class="nx">setUser</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+  <span class="c1">// O useEffect será executado após a renderização do componente</span>
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Função para buscar dados do usuário</span>
+    <span class="nf">fetch</span><span class="p">(</span><span class="s2">`https://api.example.com/users/</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nf">setUser</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+
+  <span class="c1">// O array [userId] garante que o efeito só será executado</span>
+  <span class="c1">// novamente se o `userId` mudar.</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">userId</span><span class="p">]);</span>
+
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Carregando...<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Nome do usuário: <span class="si">{</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="outros-hooks-comuns">Outros Hooks Comuns</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">useContext</code></strong>: Acessa dados de um “contexto” global sem precisar passar <code class="language-plaintext highlighter-rouge">props</code> por múltiplos níveis.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">useReducer</code></strong>: Uma alternativa ao <code class="language-plaintext highlighter-rouge">useState</code> para gerenciar lógicas de estado mais complexas.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">useMemo</code></strong> e <strong><code class="language-plaintext highlighter-rouge">useCallback</code></strong>: Otimizam a performance ao memorizar valores e funções.</li>
+</ul>
+
+<hr />
+
+<h2 id="-fluxo-de-dados-e-ciclo-de-vida">🔄 Fluxo de Dados e Ciclo de Vida</h2>
+
+<h3 id="fluxo-de-dados-unidirecional">Fluxo de Dados Unidirecional</h3>
+
+<p>Em React, os dados fluem em uma única direção: de cima para baixo (do componente pai para o filho). Isso é conhecido como <em>one-way data flow</em>. Essa arquitetura torna o estado da aplicação mais previsível e fácil de depurar.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A[Componente Pai (com State)] -- Passa `props` --&gt; B[Componente Filho A];
+    A -- Passa `props` --&gt; C[Componente Filho B];
+    B --&gt; D{Renderiza UI};
+    C --&gt; E{Renderiza UI};
+</code></pre>
+
+<h3 id="ciclo-de-vida-do-componente">Ciclo de Vida do Componente</h3>
+
+<p>Um componente React passa por três fases principais:</p>
+
+<ol>
+  <li><strong>Montagem (Mounting)</strong>: O componente é criado e inserido no DOM.</li>
+  <li><strong>Atualização (Updating)</strong>: O componente é re-renderizado devido a mudanças em suas <code class="language-plaintext highlighter-rouge">props</code> ou <code class="language-plaintext highlighter-rouge">state</code>.</li>
+  <li><strong>Desmontagem (Unmounting)</strong>: O componente é removido do DOM.</li>
+</ol>
+
+<p>Com <em>Hooks</em>, o <code class="language-plaintext highlighter-rouge">useEffect</code> gerencia todas essas fases.</p>
+
+<hr />
+
+<h2 id="-começando-com-react">🚀 Começando com React</h2>
+
+<p>A maneira mais moderna e recomendada de iniciar um novo projeto React é usando ferramentas de <em>build</em> como o <strong>Vite</strong>.</p>
+
+<ol>
+  <li><strong>Crie um novo projeto</strong> (é necessário ter o Node.js instalado):
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm create vite@latest meu-app-react <span class="nt">--</span> <span class="nt">--template</span> react
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Navegue até a pasta do projeto:</strong>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>meu-app-react
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Instale as dependências:</strong>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Inicie o servidor de desenvolvimento:</strong>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Isso iniciará um servidor local, geralmente em <code class="language-plaintext highlighter-rouge">http://localhost:5173</code>, com <em>hot-reloading</em> ativado.</p>
+
+<hr />
+
+<h2 id="-por-que-usar-react">🎯 Por que Usar React?</h2>
+
+<ul>
+  <li><strong>Arquitetura Baseada em Componentes</strong>: Promove a reutilização de código e a organização do projeto.</li>
+  <li><strong>Virtual DOM</strong>: React usa uma representação em memória do DOM real (o <em>Virtual DOM</em>) para otimizar as atualizações, resultando em alta performance.</li>
+  <li><strong>Ecossistema Vasto</strong>: Uma enorme quantidade de bibliotecas, ferramentas e frameworks construídos em torno do React, como Next.js, React Native, Redux e Material-UI.</li>
+  <li><strong>Comunidade Forte e Apoio Corporativo</strong>: Mantido ativamente pelo Meta e com uma das maiores comunidades de desenvolvedores do mundo.</li>
+  <li><strong>Declarativo</strong>: Você descreve <em>o que</em> a UI deve parecer para cada estado, e o React cuida de como atualizá-la, tornando o código mais previsível e fácil de entender.</li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🔗 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,465 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo02.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MODULO02 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MODULO02" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo02.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo02.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MODULO02" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MODULO02","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo02.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/" style="margin-left: 0.5rem;">Gestaodeestoques 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Modulo02</span>
+          
+        
+      </nav>
+
+      <p>Nesta fase crucial, vamos construir o “cérebro” da nossa aplicação. Deixaremos de apenas armazenar dados para começar a aplicar regras de negócio e a organizar nosso código de forma profissional, seguindo os princípios que definem um software de alta qualidade.</p>
+
+<h1 id="-guia-didático-definitivo-gestão-de-estoques-com-spring-boot">💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot</h1>
+
+<hr />
+
+<h2 id="módulo-2--lógica-de-negócio-e-arquitetura-de-serviços">Módulo 2: 🧠 Lógica de Negócio e Arquitetura de Serviços</h2>
+
+<p><strong>Objetivo:</strong> Isolar as regras de negócio do resto do código, aplicando princípios de design de software (SOLID). Ao final deste módulo, o aluno terá implementado toda a lógica central da aplicação em uma camada de serviço desacoplada e organizada.</p>
+
+<hr />
+
+<h3 id="-aula-21-a-importância-da-camada-de-serviço">### Aula 2.1: A Importância da Camada de Serviço</h3>
+
+<p>Até agora, temos a camada de dados (<code class="language-plaintext highlighter-rouge">Repository</code>). Poderíamos ser tentados a usar os repositórios diretamente nos <code class="language-plaintext highlighter-rouge">Controllers</code> (que criaremos no próximo módulo). Por que não devemos fazer isso?</p>
+
+<p><strong>Conceito-Chave: Princípio da Responsabilidade Única (SRP - Single Responsibility Principle)</strong>
+Este princípio do SOLID afirma que uma classe deve ter <strong>um, e apenas um, motivo para mudar</strong>.</p>
+
+<ul>
+  <li>A responsabilidade de um <strong>Controller</strong> é gerenciar requisições e respostas HTTP (o “o quê” e “de onde” da web).</li>
+  <li>A responsabilidade de um <strong>Repository</strong> é gerenciar a persistência com o banco de dados (ler e escrever dados).</li>
+  <li>A responsabilidade de um <strong>Service</strong> é orquestrar as operações e aplicar a lógica de negócio (o “como” e “porquê” das regras da aplicação).</li>
+</ul>
+
+<p>Misturar essas responsabilidades cria um código frágil, difícil de testar e de dar manutenção. A <strong>Camada de Serviço</strong> é a solução para essa separação.</p>
+
+<h4 id="arquitetura-em-camadas">Arquitetura em Camadas</h4>
+
+<pre><code class="language-mermaid">graph TD
+    A[🌐 Cliente] --&gt; B[🎮 Controller];
+    B --&gt; C[🛠️ Service];
+    C --&gt; D[💾 Repository];
+</code></pre>
+
+<p>Neste módulo, nosso foco é construir a camada <code class="language-plaintext highlighter-rouge">🛠️ Service</code>.</p>
+
+<hr />
+
+<h3 id="-aula-22-desacoplando-as-camadas-com-dtos-data-transfer-objects-e-mappers">### Aula 2.2: Desacoplando as Camadas com DTOs (Data Transfer Objects) e Mappers</h3>
+
+<p><strong>Conceito-Chave:</strong> Expor diretamente nossas entidades do banco de dados (<code class="language-plaintext highlighter-rouge">model</code>) para o mundo exterior é uma má prática. Isso acopla fortemente a interface do usuário à estrutura do banco e pode expor dados sensíveis. A solução é o padrão <strong>DTO (Data Transfer Object)</strong>.</p>
+
+<ul>
+  <li><strong>DTOs:</strong> São classes simples, como “contratos”, que definem exatamente quais dados entram e saem da nossa API.</li>
+  <li><strong>Mappers:</strong> São classes utilitárias responsáveis por converter nossas Entidades em DTOs e vice-versa.</li>
+</ul>
+
+<p><strong>Ação:</strong> Crie os pacotes <code class="language-plaintext highlighter-rouge">dto</code> e <code class="language-plaintext highlighter-rouge">mapper</code> dentro de <code class="language-plaintext highlighter-rouge">br.com.aula.gestaodeestoques</code>. Em seguida, crie os arquivos abaixo. Faremos isso para todas as nossas entidades para manter a consistência.</p>
+
+<h4 id="código-dtocategoriadtojava">Código: <code class="language-plaintext highlighter-rouge">dto/CategoriaDTO.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotBlank</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Size</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">CategoriaDTO</span><span class="o">(</span>
+    <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span>
+    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"Nome da categoria é obrigatório"</span><span class="o">)</span>
+    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">3</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"Nome deve ter no mínimo 3 caracteres"</span><span class="o">)</span>
+    <span class="nc">String</span> <span class="n">nome</span>
+<span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-dtofornecedordtojava">Código: <code class="language-plaintext highlighter-rouge">dto/FornecedorDTO.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotBlank</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Pattern</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">FornecedorDTO</span><span class="o">(</span>
+    <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span>
+    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"Nome do fornecedor é obrigatório"</span><span class="o">)</span>
+    <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span>
+    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"CNPJ é obrigatório"</span><span class="o">)</span>
+    <span class="nd">@Pattern</span><span class="o">(</span><span class="n">regexp</span> <span class="o">=</span> <span class="s">"\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}"</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"CNPJ inválido"</span><span class="o">)</span>
+    <span class="nc">String</span> <span class="n">cnpj</span>
+<span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-dtoprodutodtojava">Código: <code class="language-plaintext highlighter-rouge">dto/ProdutoDTO.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="c1">// DTO para exibir dados de produto, enriquecido com nomes.</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">ProdutoDTO</span><span class="o">(</span>
+    <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span>
+    <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span>
+    <span class="kt">int</span> <span class="n">quantidade</span><span class="o">,</span>
+    <span class="nc">BigDecimal</span> <span class="n">preco</span><span class="o">,</span>
+    <span class="nc">String</span> <span class="n">nomeCategoria</span><span class="o">,</span>
+    <span class="nc">String</span> <span class="n">nomeFornecedor</span>
+<span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-dtoprodutoformdtojava">Código: <code class="language-plaintext highlighter-rouge">dto/ProdutoFormDTO.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="c1">// DTO para receber dados de formulários de produto (criação/atualização).</span>
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">ProdutoFormDTO</span><span class="o">(</span>
+    <span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span>
+    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"O nome do produto não pode ser vazio."</span><span class="o">)</span>
+    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">3</span><span class="o">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">100</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"O nome deve ter entre 3 e 100 caracteres."</span><span class="o">)</span>
+    <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span>
+    <span class="nd">@NotNull</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"A quantidade é obrigatória."</span><span class="o">)</span>
+    <span class="nd">@PositiveOrZero</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"A quantidade não pode ser negativa."</span><span class="o">)</span>
+    <span class="nc">Integer</span> <span class="n">quantidade</span><span class="o">,</span>
+    <span class="nd">@NotNull</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"O preço é obrigatório."</span><span class="o">)</span>
+    <span class="nd">@DecimalMin</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"0.01"</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"O preço deve ser maior que zero."</span><span class="o">)</span>
+    <span class="nc">BigDecimal</span> <span class="n">preco</span><span class="o">,</span>
+    <span class="nd">@NotNull</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"A categoria é obrigatória."</span><span class="o">)</span>
+    <span class="nc">Integer</span> <span class="n">categoria_id</span><span class="o">,</span>
+    <span class="nd">@NotNull</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"O fornecedor é obrigatório."</span><span class="o">)</span>
+    <span class="nc">Integer</span> <span class="n">fornecedor_id</span>
+<span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="código-mappercategoriamapperjava">Código: <code class="language-plaintext highlighter-rouge">mapper/CategoriaMapper.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.mapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.CategoriaDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Categoria</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CategoriaMapper</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">CategoriaDTO</span> <span class="nf">toDTO</span><span class="o">(</span><span class="nc">Categoria</span> <span class="n">categoria</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">CategoriaDTO</span><span class="o">(</span><span class="n">categoria</span><span class="o">.</span><span class="na">id</span><span class="o">(),</span> <span class="n">categoria</span><span class="o">.</span><span class="na">nome</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Categoria</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">CategoriaDTO</span> <span class="n">categoriaDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Categoria</span><span class="o">(</span><span class="n">categoriaDTO</span><span class="o">.</span><span class="na">id</span><span class="o">(),</span> <span class="n">categoriaDTO</span><span class="o">.</span><span class="na">nome</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>(Implemente <code class="language-plaintext highlighter-rouge">FornecedorMapper.java</code> e <code class="language-plaintext highlighter-rouge">ProdutoMapper.java</code> seguindo o mesmo padrão)</em></p>
+
+<hr />
+
+<h3 id="-aula-23-programando-para-interfaces">### Aula 2.3: Programando para Interfaces</h3>
+
+<p><strong>Conceito-Chave: Princípio da Inversão de Dependência (DIP - Dependency Inversion Principle)</strong>
+Este princípio do SOLID nos orienta a depender de <strong>abstrações (interfaces)</strong>, e não de <strong>implementações (classes concretas)</strong>. Isso torna nosso código flexível e muito mais fácil de testar.</p>
+
+<p><strong>Ação:</strong> Crie o pacote <code class="language-plaintext highlighter-rouge">br.com.aula.gestaodeestoques.service</code> e defina as interfaces que serão o “contrato” da nossa lógica de negócio.</p>
+
+<h4 id="código-servicecategoriaservicejava">Código: <code class="language-plaintext highlighter-rouge">service/CategoriaService.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.CategoriaDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">CategoriaService</span> <span class="o">{</span>
+    <span class="nc">CategoriaDTO</span> <span class="nf">create</span><span class="o">(</span><span class="nc">CategoriaDTO</span> <span class="n">categoriaDTO</span><span class="o">);</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CategoriaDTO</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">();</span>
+    <span class="nc">CategoriaDTO</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">);</span>
+    <span class="nc">CategoriaDTO</span> <span class="nf">update</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">CategoriaDTO</span> <span class="n">categoriaDTO</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="código-servicefornecedorservicejava">Código: <code class="language-plaintext highlighter-rouge">service/FornecedorService.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.FornecedorDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">FornecedorService</span> <span class="o">{</span>
+    <span class="nc">FornecedorDTO</span> <span class="nf">create</span><span class="o">(</span><span class="nc">FornecedorDTO</span> <span class="n">fornecedorDTO</span><span class="o">);</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">FornecedorDTO</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">();</span>
+    <span class="c1">// ... outros métodos ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="código-serviceprodutoservicejava">Código: <code class="language-plaintext highlighter-rouge">service/ProdutoService.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoFormDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ProdutoService</span> <span class="o">{</span>
+    <span class="nc">ProdutoDTO</span> <span class="nf">create</span><span class="o">(</span><span class="nc">ProdutoFormDTO</span> <span class="n">produtoFormDTO</span><span class="o">);</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ProdutoDTO</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">();</span>
+    <span class="nc">ProdutoDTO</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">);</span>
+    <span class="nc">ProdutoDTO</span> <span class="nf">update</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">ProdutoFormDTO</span> <span class="n">produtoFormDTO</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-24-implementando-a-lógica-de-negócio">### Aula 2.4: Implementando a Lógica de Negócio</h3>
+
+<p>Agora que temos os contratos (interfaces), vamos criar as implementações concretas que contêm a lógica real.</p>
+
+<p><strong>Ação:</strong> Crie o subpacote <code class="language-plaintext highlighter-rouge">service.impl</code> e adicione as classes que implementam as interfaces de serviço.</p>
+
+<h4 id="código-serviceimplcategoriaserviceimpljava">Código: <code class="language-plaintext highlighter-rouge">service/impl/CategoriaServiceImpl.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.service.impl</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.CategoriaDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.exception.ResourceNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.mapper.CategoriaMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Categoria</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.repository.CategoriaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.service.CategoriaService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.StreamSupport</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CategoriaServiceImpl</span> <span class="kd">implements</span> <span class="nc">CategoriaService</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">CategoriaRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">CategoriaMapper</span> <span class="n">mapper</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">CategoriaDTO</span> <span class="nf">create</span><span class="o">(</span><span class="nc">CategoriaDTO</span> <span class="n">categoriaDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Categoria</span> <span class="n">categoria</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">toEntity</span><span class="o">(</span><span class="n">categoriaDTO</span><span class="o">);</span>
+        <span class="nc">Categoria</span> <span class="n">savedCategoria</span> <span class="o">=</span> <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">categoria</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">mapper</span><span class="o">.</span><span class="na">toDTO</span><span class="o">(</span><span class="n">savedCategoria</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CategoriaDTO</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">StreamSupport</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">().</span><span class="na">spliterator</span><span class="o">(),</span> <span class="kc">false</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">mapper:</span><span class="o">:</span><span class="n">toDTO</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">CategoriaDTO</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">mapper:</span><span class="o">:</span><span class="n">toDTO</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">ResourceNotFoundException</span><span class="o">(</span><span class="s">"Categoria não encontrada com o ID: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="c1">// ... Implementação dos métodos update e delete ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="código-serviceimplprodutoserviceimpljava">Código: <code class="language-plaintext highlighter-rouge">service/impl/ProdutoServiceImpl.java</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.service.impl</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoFormDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.exception.ResourceNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.mapper.ProdutoMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Categoria</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Fornecedor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.repository.CategoriaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.repository.FornecedorRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.repository.ProdutoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.service.ProdutoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.annotation.Transactional</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.StreamSupport</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoServiceImpl</span> <span class="kd">implements</span> <span class="nc">ProdutoService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ProdutoRepository</span> <span class="n">produtoRepository</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">CategoriaRepository</span> <span class="n">categoriaRepository</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">FornecedorRepository</span> <span class="n">fornecedorRepository</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ProdutoMapper</span> <span class="n">produtoMapper</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ProdutoServiceImpl</span><span class="o">(</span><span class="nc">ProdutoRepository</span> <span class="n">produtoRepository</span><span class="o">,</span> <span class="nc">CategoriaRepository</span> <span class="n">categoriaRepository</span><span class="o">,</span> <span class="nc">FornecedorRepository</span> <span class="n">fornecedorRepository</span><span class="o">,</span> <span class="nc">ProdutoMapper</span> <span class="n">produtoMapper</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">produtoRepository</span> <span class="o">=</span> <span class="n">produtoRepository</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">categoriaRepository</span> <span class="o">=</span> <span class="n">categoriaRepository</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">fornecedorRepository</span> <span class="o">=</span> <span class="n">fornecedorRepository</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">produtoMapper</span> <span class="o">=</span> <span class="n">produtoMapper</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="nc">ProdutoDTO</span> <span class="nf">create</span><span class="o">(</span><span class="nc">ProdutoFormDTO</span> <span class="n">produtoFormDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Valida se as entidades relacionadas existem</span>
+        <span class="n">findCategoriaOrThrow</span><span class="o">(</span><span class="n">produtoFormDTO</span><span class="o">.</span><span class="na">categoria_id</span><span class="o">());</span>
+        <span class="n">findFornecedorOrThrow</span><span class="o">(</span><span class="n">produtoFormDTO</span><span class="o">.</span><span class="na">fornecedor_id</span><span class="o">());</span>
+
+        <span class="nc">Produto</span> <span class="n">produto</span> <span class="o">=</span> <span class="n">produtoMapper</span><span class="o">.</span><span class="na">toEntity</span><span class="o">(</span><span class="n">produtoFormDTO</span><span class="o">);</span>
+        <span class="nc">Produto</span> <span class="n">savedProduto</span> <span class="o">=</span> <span class="n">produtoRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">produto</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nf">mapToProdutoDTO</span><span class="o">(</span><span class="n">savedProduto</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Override</span>
+    <span class="nd">@Transactional</span><span class="o">(</span><span class="n">readOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ProdutoDTO</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">StreamSupport</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">produtoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">().</span><span class="na">spliterator</span><span class="o">(),</span> <span class="kc">false</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">mapToProdutoDTO</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Transactional</span><span class="o">(</span><span class="n">readOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ProdutoDTO</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Produto</span> <span class="n">produto</span> <span class="o">=</span> <span class="n">findProdutoOrThrow</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nf">mapToProdutoDTO</span><span class="o">(</span><span class="n">produto</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">produtoRepository</span><span class="o">.</span><span class="na">existsById</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ResourceNotFoundException</span><span class="o">(</span><span class="s">"Produto não encontrado com o ID: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">produtoRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Métodos auxiliares privados para evitar duplicação</span>
+    <span class="kd">private</span> <span class="nc">ProdutoDTO</span> <span class="nf">mapToProdutoDTO</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">produto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Categoria</span> <span class="n">categoria</span> <span class="o">=</span> <span class="n">findCategoriaOrThrow</span><span class="o">(</span><span class="n">produto</span><span class="o">.</span><span class="na">categoria_id</span><span class="o">());</span>
+        <span class="nc">Fornecedor</span> <span class="n">fornecedor</span> <span class="o">=</span> <span class="n">findFornecedorOrThrow</span><span class="o">(</span><span class="n">produto</span><span class="o">.</span><span class="na">fornecedor_id</span><span class="o">());</span>
+        <span class="k">return</span> <span class="n">produtoMapper</span><span class="o">.</span><span class="na">toDTO</span><span class="o">(</span><span class="n">produto</span><span class="o">,</span> <span class="n">categoria</span><span class="o">,</span> <span class="n">fornecedor</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">Produto</span> <span class="nf">findProdutoOrThrow</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">produtoRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">ResourceNotFoundException</span><span class="o">(</span><span class="s">"Produto não encontrado com o ID: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="nc">Categoria</span> <span class="nf">findCategoriaOrThrow</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">categoriaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">ResourceNotFoundException</span><span class="o">(</span><span class="s">"Categoria não encontrada com o ID: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="nc">Fornecedor</span> <span class="nf">findFornecedorOrThrow</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">fornecedorRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">ResourceNotFoundException</span><span class="o">(</span><span class="s">"Fornecedor não encontrado com o ID: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="c1">// ... Implementação do método update ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="conclusão-do-módulo-2-e-próximos-passos">Conclusão do Módulo 2 e Próximos Passos</h3>
+
+<p><strong>Parabéns!</strong> O cérebro da nossa aplicação está construído. Neste ponto, temos:</p>
+
+<ul>
+  <li>Uma <strong>camada de serviço</strong> limpa e organizada.</li>
+  <li>Uma clara separação entre os dados da web (DTOs) e os dados do banco (Entidades).</li>
+  <li>Toda a lógica de negócio implementada e pronta para ser usada.</li>
+</ul>
+
+<p>A aplicação ainda não tem uma “cara” ou uma “porta de entrada”, mas sua inteligência central está completa.</p>
+
+<p>No <strong>próximo módulo</strong>, vamos finalmente expor essa lógica para o mundo exterior, construindo os <strong>endpoints da nossa API REST</strong> na camada de Controller.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

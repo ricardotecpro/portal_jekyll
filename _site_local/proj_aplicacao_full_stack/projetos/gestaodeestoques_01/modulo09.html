@@ -1,0 +1,346 @@
+<h1 id="-guia-didático-gestão-de-estoques-com-spring-boot">💎 Guia Didático: Gestão de Estoques com Spring Boot</h1>
+
+<hr />
+
+<h2 id="módulo-7-continuação--completando-o-crud-da-single-page-application">Módulo 7 (Continuação): 🎨 Completando o CRUD da Single Page Application</h2>
+
+<p><strong>Objetivo:</strong> Aplicar os padrões de consumo de API e renderização dinâmica que aprendemos para Produtos, implementando agora o CRUD completo (Criar, Ler, Deletar) para as páginas de <strong>Categorias</strong> e <strong>Fornecedores</strong>.</p>
+
+<hr />
+
+<h3 id="pré-requisito-api-backend-pronta">Pré-requisito: API Backend Pronta</h3>
+
+<p>Este guia assume que seu backend Spring Boot já possui os <code class="language-plaintext highlighter-rouge">Controllers</code>, <code class="language-plaintext highlighter-rouge">Services</code>, <code class="language-plaintext highlighter-rouge">DTOs</code> e <code class="language-plaintext highlighter-rouge">Mappers</code> para <code class="language-plaintext highlighter-rouge">Categoria</code> e <code class="language-plaintext highlighter-rouge">Fornecedor</code>, expondo os seguintes endpoints:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GET /api/categorias</code>, <code class="language-plaintext highlighter-rouge">POST /api/categorias</code>, <code class="language-plaintext highlighter-rouge">DELETE /api/categorias/{id}</code></li>
+  <li><code class="language-plaintext highlighter-rouge">GET /api/fornecedores</code>, <code class="language-plaintext highlighter-rouge">POST /api/fornecedores</code>, <code class="language-plaintext highlighter-rouge">DELETE /api/fornecedores/{id}</code></li>
+</ul>
+
+<p>Nosso foco será 100% no código frontend que vive em <code class="language-plaintext highlighter-rouge">src/main/resources/static/js/</code>.</p>
+
+<hr />
+
+<h3 id="-aula-76-expandindo-o-cliente-de-api-apijs">### Aula 7.6: Expandindo o Cliente de API (<code class="language-plaintext highlighter-rouge">api.js</code>)</h3>
+
+<p><strong>Conceito-Chave:</strong> Nosso arquivo <code class="language-plaintext highlighter-rouge">api.js</code> é o nosso “conector” universal com o backend. Antes de criar as telas, precisamos ensinar a ele como se comunicar com os novos endpoints de categorias e fornecedores.</p>
+
+<p><strong>Ação:</strong> Substitua o conteúdo do seu arquivo <code class="language-plaintext highlighter-rouge">api.js</code> por esta versão completa, que agora inclui métodos para todas as nossas entidades.</p>
+
+<h4 id="código-completo-staticjsapijs">Código Completo: <code class="language-plaintext highlighter-rouge">static/js/api.js</code></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Módulo para centralizar todas as chamadas à API</span>
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="cm">/**
+     * Função auxiliar genérica para realizar requisições à API.
+     * Ela automaticamente adiciona o token JWT e trata erros comuns.
+     */</span>
+    <span class="na">fetch</span><span class="p">:</span> <span class="k">async </span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">method</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span> <span class="nx">body</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">auth</span><span class="p">.</span><span class="nf">getToken</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="p">};</span>
+
+        <span class="k">if </span><span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">headers</span><span class="p">[</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">method</span><span class="p">:</span> <span class="nx">method</span><span class="p">,</span>
+            <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+        <span class="p">};</span>
+
+        <span class="k">if </span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">config</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="s2">`/api</span><span class="p">${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+
+        <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">401</span> <span class="o">||</span> <span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">403</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">auth</span><span class="p">.</span><span class="nf">handleLogout</span><span class="p">();</span> <span class="c1">// Se o token for inválido ou expirado, desloga o usuário.</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="nx">errorData</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="s2">`Erro na API: </span><span class="p">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">204</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// No Content</span>
+            <span class="k">return</span> <span class="p">{};</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="c1">// --- PRODUTOS ---</span>
+    <span class="na">getProdutos</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/produtos</span><span class="dl">'</span><span class="p">),</span>
+    <span class="na">createProduto</span><span class="p">:</span> <span class="p">(</span><span class="nx">produtoData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/produtos</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span> <span class="nx">produtoData</span><span class="p">),</span>
+    <span class="na">deleteProduto</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">`/produtos/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">),</span>
+
+    <span class="c1">// --- CATEGORIAS ---</span>
+    <span class="na">getCategorias</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/categorias</span><span class="dl">'</span><span class="p">),</span>
+    <span class="na">createCategoria</span><span class="p">:</span> <span class="p">(</span><span class="nx">categoriaData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/categorias</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span> <span class="nx">categoriaData</span><span class="p">),</span>
+    <span class="na">deleteCategoria</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">`/categorias/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">),</span>
+
+    <span class="c1">// --- FORNECEDORES ---</span>
+    <span class="na">getFornecedores</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/fornecedores</span><span class="dl">'</span><span class="p">),</span>
+    <span class="na">createFornecedor</span><span class="p">:</span> <span class="p">(</span><span class="nx">fornecedorData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/fornecedores</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span> <span class="nx">fornecedorData</span><span class="p">),</span>
+    <span class="na">deleteFornecedor</span><span class="p">:</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">api</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">`/fornecedores/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">),</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-77-implementando-o-crud-de-categorias-e-fornecedores">### Aula 7.7: Implementando o CRUD de Categorias e Fornecedores</h3>
+
+<p><strong>Conceito-Chave:</strong> A beleza de uma arquitetura baseada em componentes (mesmo em JS puro) é a <strong>reutilização de padrões</strong>. A lógica para buscar, exibir e deletar <code class="language-plaintext highlighter-rouge">Categorias</code> será muito similar à de <code class="language-plaintext highlighter-rouge">Produtos</code>, o que reforça o aprendizado.</p>
+
+<p><strong>Ação:</strong> Agora, vamos substituir as funções de renderização provisórias em <code class="language-plaintext highlighter-rouge">router.js</code> pelas implementações completas, e adicionar a lógica para lidar com os novos formulários.</p>
+
+<h4 id="código-completo-staticjsrouterjs">Código Completo: <code class="language-plaintext highlighter-rouge">static/js/router.js</code></h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">appContent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">app-content</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// ===================================================================================</span>
+<span class="c1">// FUNÇÕES DE RENDERIZAÇÃO DE PÁGINA</span>
+<span class="c1">// ===================================================================================</span>
+
+<span class="cm">/**
+ * Renderiza a página de Produtos.
+ */</span>
+<span class="kd">const</span> <span class="nx">renderProdutos</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">produtos</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">getProdutos</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">tableRows</span> <span class="o">=</span> <span class="nx">produtos</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="s2">`
+            &lt;tr&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;&lt;strong&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">nome</span><span class="p">}</span><span class="s2">&lt;/strong&gt;&lt;/td&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">quantidade</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;R$ </span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">preco</span><span class="p">.</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">)}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;&lt;span class="badge badge-primary rounded-pill d-inline"&gt;</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">nomeCategoria</span><span class="p">}</span><span class="s2">&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;button class="btn btn-sm btn-danger btn-floating" data-id="</span><span class="p">${</span><span class="nx">p</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">" data-action="delete-produto" title="Excluir"&gt;&lt;i class="fas fa-trash"&gt;&lt;/i&gt;&lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        `</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+        <span class="k">return</span> <span class="s2">`
+            &lt;div class="d-flex justify-content-between align-items-center mb-4"&gt;
+                &lt;h1 class="h2"&gt;Produtos em Estoque&lt;/h1&gt;
+                &lt;a href="#/produtos/novo" class="btn btn-primary btn-rounded"&gt;&lt;i class="fas fa-plus me-2"&gt;&lt;/i&gt;Adicionar Produto&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="card"&gt;&lt;div class="card-body"&gt;
+                &lt;table class="table align-middle mb-0 bg-white table-hover"&gt;
+                    &lt;thead class="bg-light"&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Qtd.&lt;/th&gt;&lt;th&gt;Preço&lt;/th&gt;&lt;th&gt;Categoria&lt;/th&gt;&lt;th&gt;Ações&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                    &lt;tbody&gt;</span><span class="p">${</span><span class="nx">tableRows</span><span class="p">}</span><span class="s2">&lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;&lt;/div&gt;`</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">`&lt;div class="alert alert-danger"&gt;Erro ao carregar produtos.&lt;/div&gt;`</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cm">/**
+ * Renderiza a página de Categorias.
+ */</span>
+<span class="kd">const</span> <span class="nx">renderCategorias</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">categorias</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">getCategorias</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">listItems</span> <span class="o">=</span> <span class="nx">categorias</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="s2">`
+            &lt;li class="list-group-item d-flex justify-content-between align-items-center"&gt;
+                &lt;span&gt;</span><span class="p">${</span><span class="nx">c</span><span class="p">.</span><span class="nx">nome</span><span class="p">}</span><span class="s2"> (ID: </span><span class="p">${</span><span class="nx">c</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">)&lt;/span&gt;
+                &lt;button class="btn btn-sm btn-danger btn-floating" data-id="</span><span class="p">${</span><span class="nx">c</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">" data-action="delete-categoria" title="Excluir"&gt;&lt;i class="fas fa-trash"&gt;&lt;/i&gt;&lt;/button&gt;
+            &lt;/li&gt;
+        `</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+        <span class="k">return</span> <span class="s2">`
+            &lt;h1 class="h2 mb-4"&gt;Gerenciar Categorias&lt;/h1&gt;
+            &lt;div class="row"&gt;
+                &lt;div class="col-md-7"&gt;
+                    &lt;div class="card"&gt;&lt;div class="card-body"&gt;
+                        &lt;ul class="list-group list-group-light"&gt;</span><span class="p">${</span><span class="nx">listItems</span><span class="p">}</span><span class="s2">&lt;/ul&gt;
+                    &lt;/div&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="col-md-5"&gt;
+                    &lt;div class="card"&gt;
+                        &lt;div class="card-header bg-dark text-white"&gt;Adicionar Nova Categoria&lt;/div&gt;
+                        &lt;div class="card-body"&gt;
+                            &lt;form id="categoria-form"&gt;
+                                &lt;div class="form-outline mb-4" data-mdb-input-init&gt;
+                                    &lt;input type="text" id="nome" name="nome" class="form-control" required /&gt;
+                                    &lt;label class="form-label" for="nome"&gt;Nome da Categoria&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;button type="submit" class="btn btn-primary btn-block" data-mdb-ripple-init&gt;Salvar&lt;/button&gt;
+                            &lt;/form&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;`</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">`&lt;div class="alert alert-danger"&gt;Erro ao carregar categorias.&lt;/div&gt;`</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cm">/**
+ * Renderiza a página de Fornecedores.
+ */</span>
+<span class="kd">const</span> <span class="nx">renderFornecedores</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">fornecedores</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">getFornecedores</span><span class="p">();</span>
+        <span class="kd">const</span> <span class="nx">tableRows</span> <span class="o">=</span> <span class="nx">fornecedores</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">f</span> <span class="o">=&gt;</span> <span class="s2">`
+            &lt;tr&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">f</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">f</span><span class="p">.</span><span class="nx">nome</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;</span><span class="p">${</span><span class="nx">f</span><span class="p">.</span><span class="nx">cnpj</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                &lt;td&gt;&lt;button class="btn btn-sm btn-danger btn-floating" data-id="</span><span class="p">${</span><span class="nx">f</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">" data-action="delete-fornecedor" title="Excluir"&gt;&lt;i class="fas fa-trash"&gt;&lt;/i&gt;&lt;/button&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        `</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+        <span class="k">return</span> <span class="s2">`
+            &lt;h1 class="h2 mb-4"&gt;Gerenciar Fornecedores&lt;/h1&gt;
+            &lt;div class="row"&gt;
+                &lt;div class="col-md-7"&gt;
+                    &lt;div class="card"&gt;&lt;div class="card-body"&gt;
+                        &lt;table class="table align-middle mb-0 bg-white"&gt;
+                            &lt;thead class="bg-light"&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;CNPJ&lt;/th&gt;&lt;th&gt;Ações&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+                            &lt;tbody&gt;</span><span class="p">${</span><span class="nx">tableRows</span><span class="p">}</span><span class="s2">&lt;/tbody&gt;
+                        &lt;/table&gt;
+                    &lt;/div&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="col-md-5"&gt;
+                    &lt;div class="card"&gt;
+                        &lt;div class="card-header bg-dark text-white"&gt;Adicionar Novo Fornecedor&lt;/div&gt;
+                        &lt;div class="card-body"&gt;
+                            &lt;form id="fornecedor-form"&gt;
+                                &lt;div class="form-outline mb-4" data-mdb-input-init&gt;
+                                    &lt;input type="text" id="nome" name="nome" class="form-control" required /&gt;
+                                    &lt;label class="form-label" for="nome"&gt;Nome do Fornecedor&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class="form-outline mb-4" data-mdb-input-init&gt;
+                                    &lt;input type="text" id="cnpj" name="cnpj" class="form-control" required pattern="</span><span class="se">\\</span><span class="s2">d{2}</span><span class="se">\\</span><span class="s2">.</span><span class="se">\\</span><span class="s2">d{3}</span><span class="se">\\</span><span class="s2">.</span><span class="se">\\</span><span class="s2">d{3}/</span><span class="se">\\</span><span class="s2">d{4}-</span><span class="se">\\</span><span class="s2">d{2}" /&gt;
+                                    &lt;label class="form-label" for="cnpj"&gt;CNPJ (xx.xxx.xxx/xxxx-xx)&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;button type="submit" class="btn btn-primary btn-block" data-mdb-ripple-init&gt;Salvar&lt;/button&gt;
+                            &lt;/form&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;`</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">`&lt;div class="alert alert-danger"&gt;Erro ao carregar fornecedores.&lt;/div&gt;`</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cm">/**
+ * Renderiza o formulário de produto (sem alterações, mas incluído para completude).
+ */</span>
+<span class="kd">const</span> <span class="nx">renderProdutoForm</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">categorias</span><span class="p">,</span> <span class="nx">fornecedores</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nf">all</span><span class="p">([</span><span class="nx">api</span><span class="p">.</span><span class="nf">getCategorias</span><span class="p">(),</span> <span class="nx">api</span><span class="p">.</span><span class="nf">getFornecedores</span><span class="p">()]);</span>
+    <span class="kd">const</span> <span class="nx">categoriaOptions</span> <span class="o">=</span> <span class="nx">categorias</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="s2">`&lt;option value="</span><span class="p">${</span><span class="nx">c</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">"&gt;</span><span class="p">${</span><span class="nx">c</span><span class="p">.</span><span class="nx">nome</span><span class="p">}</span><span class="s2">&lt;/option&gt;`</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">fornecedorOptions</span> <span class="o">=</span> <span class="nx">fornecedores</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">f</span> <span class="o">=&gt;</span> <span class="s2">`&lt;option value="</span><span class="p">${</span><span class="nx">f</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">"&gt;</span><span class="p">${</span><span class="nx">f</span><span class="p">.</span><span class="nx">nome</span><span class="p">}</span><span class="s2">&lt;/option&gt;`</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s2">`
+        &lt;div class="row justify-content-center"&gt;&lt;div class="col-md-8"&gt;&lt;div class="card"&gt;
+            &lt;div class="card-header bg-dark text-white"&gt;&lt;h2 class="h4"&gt;Novo Produto&lt;/h2&gt;&lt;/div&gt;
+            &lt;div class="card-body"&gt;
+                &lt;form id="produto-form"&gt;
+                    &lt;div class="form-outline mb-4" data-mdb-input-init&gt;&lt;input type="text" id="nome" name="nome" class="form-control" required /&gt;&lt;label class="form-label" for="nome"&gt;Nome do Produto&lt;/label&gt;&lt;/div&gt;
+                    &lt;div class="row mb-4"&gt;&lt;div class="col-md-6"&gt;&lt;div class="form-outline" data-mdb-input-init&gt;&lt;input type="number" id="quantidade" name="quantidade" class="form-control" required /&gt;&lt;label class="form-label" for="quantidade"&gt;Quantidade&lt;/label&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="col-md-6"&gt;&lt;div class="form-outline" data-mdb-input-init&gt;&lt;input type="number" step="0.01" id="preco" name="preco" class="form-control" required /&gt;&lt;label class="form-label" for="preco"&gt;Preço&lt;/label&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+                    &lt;select class="form-select mb-4" name="categoria_id" required&gt;&lt;option value="" disabled selected&gt;Selecione a Categoria&lt;/option&gt;</span><span class="p">${</span><span class="nx">categoriaOptions</span><span class="p">}</span><span class="s2">&lt;/select&gt;
+                    &lt;select class="form-select mb-4" name="fornecedor_id" required&gt;&lt;option value="" disabled selected&gt;Selecione o Fornecedor&lt;/option&gt;</span><span class="p">${</span><span class="nx">fornecedorOptions</span><span class="p">}</span><span class="s2">&lt;/select&gt;
+                    &lt;div class="float-end"&gt;&lt;a href="#/produtos" class="btn btn-light"&gt;Cancelar&lt;/a&gt;&lt;button type="submit" class="btn btn-primary"&gt;Salvar&lt;/button&gt;&lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;`</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="c1">// ===================================================================================</span>
+<span class="c1">// ROTEADOR E GERENCIADORES DE EVENTOS</span>
+<span class="c1">// ===================================================================================</span>
+
+<span class="kd">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">/produtos</span><span class="dl">'</span><span class="p">:</span> <span class="nx">renderProdutos</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">/produtos/novo</span><span class="dl">'</span><span class="p">:</span> <span class="nx">renderProdutoForm</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">/categorias</span><span class="dl">'</span><span class="p">:</span> <span class="nx">renderCategorias</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">/fornecedores</span><span class="dl">'</span><span class="p">:</span> <span class="nx">renderFornecedores</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">auth</span><span class="p">.</span><span class="nf">isLoggedIn</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">/login.html</span><span class="dl">'</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">.</span><span class="nf">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">/produtos</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">renderFunction</span> <span class="o">=</span> <span class="nx">routes</span><span class="p">[</span><span class="nx">path</span><span class="p">]</span> <span class="o">||</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="dl">'</span><span class="s1">&lt;h2&gt;Página não encontrada&lt;/h2&gt;</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">appContent</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">renderFunction</span><span class="p">();</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nf">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-mdb-input-init]</span><span class="dl">'</span><span class="p">).</span><span class="nf">forEach</span><span class="p">((</span><span class="nx">input</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">new</span> <span class="nx">mdb</span><span class="p">.</span><span class="nc">Input</span><span class="p">(</span><span class="nx">input</span><span class="p">).</span><span class="nf">init</span><span class="p">();</span> <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">load</span><span class="dl">'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+<span class="nb">window</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">hashchange</span><span class="dl">'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+
+<span class="c1">// Gerenciador de eventos centralizado para Ações (deletar)</span>
+<span class="nx">appContent</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="k">async </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nf">closest</span><span class="p">(</span><span class="dl">'</span><span class="s1">button[data-action]</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">target</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">action</span><span class="p">;</span>
+
+    <span class="k">if </span><span class="p">(</span><span class="nf">confirm</span><span class="p">(</span><span class="s2">`Tem certeza que deseja deletar o item ID </span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">?`</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">switch </span><span class="p">(</span><span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="dl">'</span><span class="s1">delete-produto</span><span class="dl">'</span><span class="p">:</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">deleteProduto</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="dl">'</span><span class="s1">delete-categoria</span><span class="dl">'</span><span class="p">:</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">deleteCategoria</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="dl">'</span><span class="s1">delete-fornecedor</span><span class="dl">'</span><span class="p">:</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">deleteFornecedor</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nf">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Item deletado com sucesso!</span><span class="dl">'</span><span class="p">);</span>
+            <span class="nf">router</span><span class="p">();</span> <span class="c1">// Recarrega a view atual</span>
+        <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">alert</span><span class="p">(</span><span class="s2">`Erro ao deletar: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">. Você tem permissão de ADMIN?`</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Gerenciador de eventos centralizado para Forms (criar)</span>
+<span class="nx">appContent</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span><span class="p">,</span> <span class="k">async </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FormData</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nf">fromEntries</span><span class="p">(</span><span class="nx">formData</span><span class="p">.</span><span class="nf">entries</span><span class="p">());</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">successMessage</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+        <span class="k">if </span><span class="p">(</span><span class="nx">form</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">produto-form</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Converte os campos para os tipos corretos</span>
+            <span class="nx">data</span><span class="p">.</span><span class="nx">quantidade</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">quantidade</span><span class="p">);</span>
+            <span class="nx">data</span><span class="p">.</span><span class="nx">preco</span> <span class="o">=</span> <span class="nf">parseFloat</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">preco</span><span class="p">);</span>
+            <span class="nx">data</span><span class="p">.</span><span class="nx">categoria_id</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">categoria_id</span><span class="p">);</span>
+            <span class="nx">data</span><span class="p">.</span><span class="nx">fornecedor_id</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">fornecedor_id</span><span class="p">);</span>
+            <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">createProduto</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="nx">successMessage</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Produto criado com sucesso!</span><span class="dl">'</span><span class="p">;</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#/produtos</span><span class="dl">'</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">form</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">categoria-form</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">createCategoria</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="nx">successMessage</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Categoria criada com sucesso!</span><span class="dl">'</span><span class="p">;</span>
+            <span class="nf">router</span><span class="p">();</span> <span class="c1">// Recarrega a página de categorias</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">form</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">fornecedor-form</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="nf">createFornecedor</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="nx">successMessage</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Fornecedor criado com sucesso!</span><span class="dl">'</span><span class="p">;</span>
+            <span class="nf">router</span><span class="p">();</span> <span class="c1">// Recarrega a página de fornecedores</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">successMessage</span><span class="p">)</span> <span class="nf">alert</span><span class="p">(</span><span class="nx">successMessage</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">alert</span><span class="p">(</span><span class="s2">`Erro ao salvar: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">. Verifique os dados e suas permissões.`</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="conclusão-da-implementação">Conclusão da Implementação</h3>
+
+<p><strong>Parabéns!</strong> Com as atualizações nos arquivos <code class="language-plaintext highlighter-rouge">api.js</code> e <code class="language-plaintext highlighter-rouge">router.js</code>, sua Single Page Application agora possui funcionalidades de Criar, Ler e Deletar para todas as entidades principais. Você aplicou com sucesso o mesmo padrão arquitetural em diferentes contextos, o que é uma etapa fundamental para a maestria do desenvolvimento de software.</p>
+
+<p><strong>Próximo Desafio (Para o Aluno):</strong> A funcionalidade de <strong>Editar</strong> ainda não foi implementada. O desafio agora é:</p>
+
+<ol>
+  <li>Adicionar uma rota no <code class="language-plaintext highlighter-rouge">router.js</code> para <code class="language-plaintext highlighter-rouge">/#/produtos/editar/:id</code>.</li>
+  <li>Criar uma função <code class="language-plaintext highlighter-rouge">renderEditProdutoForm(id)</code> que busca os dados de um produto específico com <code class="language-plaintext highlighter-rouge">api.getProdutoById(id)</code>.</li>
+  <li>Preencher o formulário com os dados retornados.</li>
+  <li>No <code class="language-plaintext highlighter-rouge">submit</code> do formulário, chamar a função <code class="language-plaintext highlighter-rouge">api.updateProduto(id, data)</code>.</li>
+</ol>
+

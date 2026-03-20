@@ -1,0 +1,121 @@
+<h3 id="arquivo-3-modulo-03-desenvolvimento-webmd"><strong>Arquivo 3: <code class="language-plaintext highlighter-rouge">modulo-03-desenvolvimento-web.md</code></strong></h3>
+
+<h1 id="-módulo-3-desenvolvimento-de-aplicações-web---frontend-e-backend">💻 Módulo 3: Desenvolvimento de Aplicações Web - Frontend e Backend</h1>
+
+<p>Com a infraestrutura pronta, vamos conectar o código. Este módulo foca na arquitetura de aplicações web modernas e como elas interagem com os servidores.</p>
+
+<h2 id="️-aula-1-a-arquitetura-frontend-backend">🏗️ Aula 1: A Arquitetura Frontend-Backend</h2>
+
+<p>Aplicações modernas seguem o princípio da <strong>separação de responsabilidades</strong>.</p>
+
+<ul>
+  <li><strong>Frontend:</strong> É a camada de apresentação, tudo que roda no navegador do usuário.
+    <ul>
+      <li><strong>Tecnologias:</strong> HTML (estrutura), CSS (estilo), JavaScript (interatividade).</li>
+      <li><strong>Frameworks Populares:</strong> React, Angular, Vue.js.</li>
+    </ul>
+  </li>
+  <li><strong>Backend:</strong> É a camada de lógica de negócios, que roda no servidor.
+    <ul>
+      <li><strong>Responsabilidades:</strong> Processar regras de negócio, acessar o banco de dados, gerenciar autenticação.</li>
+      <li><strong>Tecnologias:</strong> Node.js, Python, Java, PHP, Ruby.</li>
+    </ul>
+  </li>
+  <li><strong>Comunicação via APIs:</strong> O frontend e o backend se comunicam através de uma <strong>API</strong> (Application Programming Interface), geralmente seguindo o padrão <strong>RESTful</strong>. Os dados são trocados no formato <strong>JSON</strong>.</li>
+</ul>
+
+<pre><code class="language-mermaid">classDiagram
+    direction LR
+    class BrowserClient {
+        +HTML/CSS/JS
+        +realizarRequisicaoAPI()
+    }
+    class APIGateway {
+        +String endpoint
+        +autenticarRequisicao()
+        +rotearParaServico()
+    }
+    class BackendService {
+        -String logicaNegocio
+        -DatabaseDriver dbDriver
+        +processarDados()
+        +acessarBancoDeDados()
+    }
+    class Database {
+        +CRUD()
+    }
+
+    BrowserClient --|&gt; APIGateway : "Faz requisição HTTP"
+    APIGateway --|&gt; BackendService : "Encaminha requisição"
+    BackendService --|&gt; Database : "Consulta/Modifica dados"
+</code></pre>
+
+<h2 id="️-aula-2-o-papel-do-backend-na-infraestrutura">⚙️ Aula 2: O Papel do Backend na Infraestrutura</h2>
+
+<p>O backend não vive isolado. Ele precisa de um ambiente para ser executado e de um servidor web para receber as requisições do mundo exterior.</p>
+
+<h3 id="servidor-web--aplicação-backend">Servidor Web + Aplicação Backend</h3>
+
+<p>O servidor web (Nginx/Apache) atua como um <strong>proxy reverso</strong> para a aplicação backend.</p>
+
+<p><strong>Fluxo:</strong></p>
+
+<ol>
+  <li>Requisição chega no Nginx (porta 80/443).</li>
+  <li>Nginx identifica que a requisição é para a aplicação dinâmica.</li>
+  <li>Nginx encaminha a requisição para o processo da aplicação (ex: um servidor Node.js na porta 3000).</li>
+  <li>A aplicação processa a lógica e retorna a resposta para o Nginx.</li>
+  <li>Nginx retorna a resposta para o cliente.</li>
+</ol>
+
+<p><strong>Interface de comunicação:</strong></p>
+
+<ul>
+  <li><strong>Python:</strong> WSGI (Web Server Gateway Interface), com servidores como <code class="language-plaintext highlighter-rouge">Gunicorn</code> ou <code class="language-plaintext highlighter-rouge">uWSGI</code>.</li>
+  <li><strong>PHP:</strong> <code class="language-plaintext highlighter-rouge">PHP-FPM</code> (FastCGI Process Manager).</li>
+  <li><strong>Node.js:</strong> O próprio Node.js possui um servidor HTTP embutido.</li>
+</ul>
+
+<h3 id="interação-com-bancos-de-dados">Interação com Bancos de Dados</h3>
+
+<ul>
+  <li><strong>SQL:</strong> Bancos de dados relacionais (PostgreSQL, MySQL). Estrutura rígida de tabelas e colunas.</li>
+  <li><strong>NoSQL:</strong> Bancos não-relacionais (MongoDB, Redis). Flexíveis, baseados em documentos, chave-valor, etc.</li>
+</ul>
+
+<h2 id="-aula-3-frontend-e-a-rede">🎨 Aula 3: Frontend e a Rede</h2>
+
+<p>O frontend é responsável por carregar rápido e proporcionar uma experiência fluida, e isso depende muito de otimizações de rede.</p>
+
+<h3 id="o-processo-de-renderização">O Processo de Renderização</h3>
+
+<ol>
+  <li>Navegador recebe o HTML.</li>
+  <li>Parseia o HTML e encontra referências a outros arquivos (<code class="language-plaintext highlighter-rouge">.css</code>, <code class="language-plaintext highlighter-rouge">.js</code>, imagens).</li>
+  <li>Faz novas requisições para cada um desses arquivos (assets).</li>
+  <li>Monta a página (DOM), aplica os estilos (CSSOM) e executa os scripts.</li>
+</ol>
+
+<h3 id="otimizações-de-performance">Otimizações de Performance</h3>
+
+<ul>
+  <li><strong>Minificação:</strong> Remove espaços em branco e comentários de arquivos CSS e JS para reduzir seu tamanho.</li>
+  <li><strong>Concatenação (Bundling):</strong> Agrupa múltiplos arquivos CSS ou JS em um único arquivo para diminuir o número de requisições HTTP.</li>
+  <li><strong>Requisições Assíncronas:</strong> Usando a <strong>Fetch API</strong> ou <code class="language-plaintext highlighter-rouge">XMLHttpRequest</code> (AJAX), o JavaScript pode buscar dados do backend sem precisar recarregar a página inteira, melhorando drasticamente a experiência do usuário.</li>
+</ul>
+
+<p><strong>Exemplo de uma resposta de API em JSON:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alex"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alex@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"admin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"editor"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+

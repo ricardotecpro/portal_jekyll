@@ -1,0 +1,191 @@
+<h1 id="-módulo-7-containerização-com-docker-e-mysql">🐳 Módulo 7: Containerização com Docker e MySQL</h1>
+
+<p><strong>Objetivo:</strong> Empacotar nossa API Spring Boot em um container Docker para garantir portabilidade e consistência entre ambientes. Em seguida, usar o Docker Compose para orquestrar a execução da nossa API junto com um banco de dados MySQL persistente, substituindo o H2 em memória.</p>
+
+<h3 id="--por-que-usar-docker">### 🤔 Por que usar Docker?</h3>
+<ul>
+  <li><strong>Consistência:</strong> Garante que a aplicação rode da mesma forma no ambiente de desenvolvimento, teste e produção. “Funciona na minha máquina” deixa de ser um problema.</li>
+  <li><strong>Isolamento:</strong> Cada serviço (API, banco de dados) roda em seu próprio container isolado, com suas próprias dependências, evitando conflitos.</li>
+  <li><strong>Portabilidade:</strong> Um container Docker pode ser executado em qualquer máquina que tenha o Docker instalado, seja ela Windows, macOS, Linux ou um servidor na nuvem.</li>
+  <li><strong>Escalabilidade:</strong> É muito mais fácil criar múltiplas instâncias da sua API para lidar com mais tráfego quando ela está containerizada.</li>
+</ul>
+
+<h3 id="-️-ferramentas-necessárias">### 🛠️ Ferramentas Necessárias</h3>
+<ul>
+  <li><strong>Docker Desktop:</strong> Instale o Docker Desktop para Windows, macOS ou Linux. Ele já inclui o Docker Engine e o Docker Compose.</li>
+</ul>
+
+<hr />
+<h3 id="--passo-1-criando-o-dockerfile-para-a-api">### 📦 Passo 1: Criando o <code class="language-plaintext highlighter-rouge">Dockerfile</code> para a API</h3>
+
+<p>O <code class="language-plaintext highlighter-rouge">Dockerfile</code> é uma “receita” de como construir a imagem do nosso container. Ele define o sistema operacional base, o ambiente Java, copia nosso código e especifica como executar a aplicação.</p>
+
+<ol>
+  <li>Na <strong>raiz do projeto da API</strong> (<code class="language-plaintext highlighter-rouge">listadetarefas-api/</code>), crie um novo arquivo chamado <code class="language-plaintext highlighter-rouge">Dockerfile</code> (sem extensão).</li>
+</ol>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Dockerfile</code></strong></p>
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Estágio 1: Build - Usamos uma imagem do Maven com JDK 17 para compilar nosso projeto.</span>
+<span class="c"># Esta imagem contém todas as ferramentas necessárias para o build, mas é grande,</span>
+<span class="c"># por isso a usamos apenas temporariamente.</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">maven:3.9.6-eclipse-temurin-17</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+
+<span class="c"># Define o diretório de trabalho dentro do container.</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># Copia o pom.xml primeiro para aproveitar o cache do Docker.</span>
+<span class="c"># Se o pom.xml não mudar, o Docker não precisará baixar as dependências novamente.</span>
+<span class="k">COPY</span><span class="s"> pom.xml .</span>
+
+<span class="c"># Baixa todas as dependências do projeto.</span>
+<span class="k">RUN </span>mvn dependency:go-offline
+
+<span class="c"># Copia o restante do código-fonte da aplicação.</span>
+<span class="k">COPY</span><span class="s"> src ./src</span>
+
+<span class="c"># Executa o build do Maven para gerar o arquivo .jar.</span>
+<span class="c"># O -DskipTests pula a execução dos testes durante o build da imagem.</span>
+<span class="k">RUN </span>mvn clean package <span class="nt">-DskipTests</span>
+
+
+<span class="c"># Estágio 2: Run - Usamos uma imagem base muito menor, apenas com o Java (JRE),</span>
+<span class="c"># para executar nossa aplicação. Isso resulta em uma imagem final mais leve e segura.</span>
+<span class="k">FROM</span><span class="s"> eclipse-temurin:17-jre-jammy</span>
+
+<span class="c"># Define o diretório de trabalho.</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># Copia apenas o .jar gerado no estágio de build para a imagem final.</span>
+<span class="k">COPY</span><span class="s"> --from=build /app/target/listadetarefas-api-*.jar app.jar</span>
+
+<span class="c"># Expõe a porta 8080 do container para que possamos nos conectar a ela.</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+
+<span class="c"># Comando que será executado quando o container iniciar.</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>Boas Práticas (Multi-stage build):</strong> Usamos um <em>multi-stage build</em> para criar uma imagem Docker final otimizada. O primeiro estágio (<code class="language-plaintext highlighter-rouge">build</code>) tem todas as ferramentas pesadas (Maven, JDK completo), mas o estágio final (<code class="language-plaintext highlighter-rouge">run</code>) contém apenas o mínimo necessário (JRE e nosso JAR), resultando em uma imagem menor e mais segura.</li>
+</ul>
+
+<hr />
+<h3 id="--passo-2-adaptando-a-aplicação-para-o-mysql">### 🔄 Passo 2: Adaptando a Aplicação para o MySQL</h3>
+
+<p>Para que nossa API Spring Boot se conecte ao MySQL em vez do H2, precisamos fazer duas pequenas alterações.</p>
+
+<ol>
+  <li><strong>Adicionar a Dependência do MySQL no <code class="language-plaintext highlighter-rouge">pom.xml</code>:</strong>
+Abra o <code class="language-plaintext highlighter-rouge">pom.xml</code> do projeto <code class="language-plaintext highlighter-rouge">listadetarefas-api</code> e adicione a dependência do driver MySQL.
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.mysql<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>mysql-connector-j<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Atualizar o <code class="language-plaintext highlighter-rouge">application.properties</code>:</strong>
+Altere as configurações de datasource para apontar para o nosso futuro container MySQL.
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Permite que o servidor aceite conexões de qualquer endereço de rede da máquina.
+</span><span class="py">server.address</span><span class="p">=</span><span class="s">0.0.0.0</span>
+
+<span class="c"># ------ REMOVA OU COMENTE AS CONFIGURAÇÕES DO H2 ------
+# spring.h2.console.enabled=true
+# spring.h2.console.path=/h2-console
+# spring.datasource.url=jdbc:h2:mem:testdb
+# spring.datasource.driverClassName=org.h2.Driver
+# spring.datasource.username=sa
+# spring.datasource.password=
+</span>
+<span class="c"># ------ ADICIONE AS NOVAS CONFIGURAÇÕES DO MYSQL ------
+# A URL aponta para o nome do serviço 'db' que definiremos no docker-compose.
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:mysql://db:3306/tarefasdb</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">user</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">secret</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.MySQLDialect</span>
+</code></pre></div>    </div>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    * **`spring.jpa.hibernate.ddl-auto=update`**: Esta linha instrui o Hibernate a verificar o estado do banco de dados e criar ou atualizar as tabelas automaticamente com base na sua entidade `Tarefa`, o que é muito útil para desenvolvimento.
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+<h3 id="--passo-3-orquestrando-com-docker-composeyml">### 🐳 Passo 3: Orquestrando com <code class="language-plaintext highlighter-rouge">docker-compose.yml</code></h3>
+
+<p>O Docker Compose nos permite definir e executar aplicações com múltiplos containers. Vamos criar um arquivo para orquestrar nossa API e nosso banco de dados MySQL.</p>
+
+<ol>
+  <li>Na <strong>raiz do projeto da API</strong> (<code class="language-plaintext highlighter-rouge">listadetarefas-api/</code>), crie um novo arquivo chamado <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>.</li>
+</ol>
+
+<p><strong><code class="language-plaintext highlighter-rouge">docker-compose.yml</code></strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span> <span class="c1"># Especifica a versão da sintaxe do Docker Compose</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="c1"># Serviço 1: Nosso banco de dados MySQL</span>
+  <span class="na">db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mysql:8.0</span> <span class="c1"># Usa a imagem oficial do MySQL versão 8.0</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">mysql_db</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">MYSQL_DATABASE</span><span class="pi">:</span> <span class="s1">'</span><span class="s">tarefasdb'</span> <span class="c1"># Cria um banco de dados com este nome</span>
+      <span class="na">MYSQL_USER</span><span class="pi">:</span> <span class="s1">'</span><span class="s">user'</span>         <span class="c1"># Cria um usuário</span>
+      <span class="na">MYSQL_PASSWORD</span><span class="pi">:</span> <span class="s1">'</span><span class="s">secret'</span>   <span class="c1"># Define a senha para o usuário</span>
+      <span class="na">MYSQL_ROOT_PASSWORD</span><span class="pi">:</span> <span class="s1">'</span><span class="s">root'</span> <span class="c1"># Define a senha para o usuário root</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">3306:3306"</span> <span class="c1"># Mapeia a porta 3306 do container para a porta 3306 da sua máquina</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mysql_data:/var/lib/mysql</span> <span class="c1"># Monta um volume para persistir os dados do banco</span>
+
+  <span class="c1"># Serviço 2: Nossa API Spring Boot</span>
+  <span class="na">api</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span> <span class="c1"># Constrói a imagem usando o Dockerfile na pasta atual</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">todolist_api</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">db</span> <span class="c1"># Garante que o container da API só inicie depois do container do banco</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span> <span class="c1"># Mapeia a porta 8080 do container para a porta 8080 da sua máquina</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="c1"># Passa a URL do banco de dados para a aplicação. O nome 'db' é resolvido</span>
+      <span class="c1"># pelo Docker Compose para o IP interno do container do MySQL.</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/tarefasdb</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_USERNAME=user</span>
+      <span class="pi">-</span> <span class="s">SPRING_DATASOURCE_PASSWORD=secret</span>
+
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">mysql_data</span><span class="pi">:</span> <span class="c1"># Define o volume que será usado para persistir os dados do MySQL</span>
+</code></pre></div></div>
+
+<h3 id="--passo-4-execução-e-teste">### ✅ Passo 4: Execução e Teste</h3>
+
+<ol>
+  <li><strong>Abra um terminal na raiz do projeto <code class="language-plaintext highlighter-rouge">listadetarefas-api</code></strong> (onde estão o <code class="language-plaintext highlighter-rouge">Dockerfile</code> e o <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>).</li>
+  <li><strong>Execute o Docker Compose:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div>    </div>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">up</code></strong>: Inicia os containers definidos no arquivo.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">--build</code></strong>: Força o Docker a reconstruir a imagem da sua API usando o <code class="language-plaintext highlighter-rouge">Dockerfile</code>. Você só precisa usar <code class="language-plaintext highlighter-rouge">--build</code> na primeira vez ou quando fizer alterações no código da API.</li>
+    </ul>
+  </li>
+  <li><strong>Acompanhe os Logs:</strong> O terminal mostrará os logs de ambos os containers (MySQL e a API). Espere até ver a mensagem de que o servidor Tomcat iniciou (<code class="language-plaintext highlighter-rouge">Tomcat started on port(s): 8080</code>).</li>
+  <li><strong>Teste a Aplicação:</strong>
+    <ul>
+      <li>Sua API agora está rodando em <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> como antes, mas dentro de um container Docker.</li>
+      <li>Use o seu <strong>Cliente REST</strong> (Postman/Insomnia) para criar, listar e deletar tarefas.</li>
+      <li><strong>Teste de Persistência:</strong>
+        <ol>
+          <li>Crie algumas tarefas.</li>
+          <li>Pare os containers pressionando <code class="language-plaintext highlighter-rouge">Ctrl+C</code> no terminal.</li>
+          <li>Inicie os containers novamente com <code class="language-plaintext highlighter-rouge">docker-compose up</code>.</li>
+          <li>Faça uma requisição <code class="language-plaintext highlighter-rouge">GET</code> para <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/tarefas</code>. As tarefas que você criou anteriormente ainda devem estar lá, provando que os dados foram persistidos no volume do Docker.
+```</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

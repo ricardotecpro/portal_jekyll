@@ -1,0 +1,117 @@
+<h2 id="-guia-de-execução-do-vs-code-para-o-mundo">🚀 Guia de Execução: Do VS Code para o Mundo</h2>
+<p>v3.1</p>
+<h3 id="1-o-pré-requisito-a-caixa-de-ferramentas-do-java">1. O Pré-requisito: A “Caixa de Ferramentas” do Java</h3>
+
+<p>Para o VS Code se tornar uma ferramenta poderosa para Java e Spring Boot, você precisa de UMA extensão essencial.</p>
+
+<ol>
+  <li>Vá até a aba de <strong>Extensões</strong> (ícone de blocos 🧩).</li>
+  <li>Procure por: <strong>“Extension Pack for Java”</strong> (publicado pela Microsoft).</li>
+  <li>Clique em <strong>Instalar</strong>.</li>
+  <li>(Opcional, mas recomendado) Instale também o <strong>“Spring Boot Extension Pack”</strong>.</li>
+</ol>
+
+<p>Isso lhe dará os botões de “Run” sobre os métodos <code class="language-plaintext highlighter-rouge">main</code> e o painel do Spring Boot.</p>
+
+<h3 id="2-a-melhor-forma-de-abrir-seu-projeto-workspace">2. A Melhor Forma de Abrir seu Projeto (Workspace)</h3>
+
+<p>Como você tem dois projetos separados (<code class="language-plaintext highlighter-rouge">.api</code> e <code class="language-plaintext highlighter-rouge">.desktop</code>), a melhor forma de trabalhar é com um “Workspace” (Área de Trabalho) do VS Code.</p>
+
+<ol>
+  <li>Abra o VS Code.</li>
+  <li>Vá em <strong>“Arquivo” &gt; “Abrir Pasta…“</strong> e abra a pasta <code class="language-plaintext highlighter-rouge">listadetarefas.api</code>.</li>
+  <li>Depois, vá em <strong>“Arquivo” &gt; “Adicionar Pasta à Área de Trabalho…“</strong>.</li>
+  <li>Selecione a pasta <code class="language-plaintext highlighter-rouge">listadetarefas.desktop</code>.</li>
+  <li>Pronto! Agora você verá as duas pastas no seu explorador de arquivos, lado a lado.</li>
+  <li>(Opcional) Salve esta configuração: <strong>“Arquivo” &gt; “Salvar Área de Trabalho como…“</strong> e dê um nome (ex: <code class="language-plaintext highlighter-rouge">ProjetoTarefas.code-workspace</code>). Da próxima vez, é só abrir esse arquivo.</li>
+</ol>
+
+<h3 id="3-parte-1-executando-a-api-e-o-app-web-spring-boot">3. Parte 1: Executando a API e o App Web (Spring Boot)</h3>
+
+<p>Há duas formas fáceis de fazer isso no VS Code:</p>
+
+<h4 id="método-a-o-botão-run-mais-simples">Método A: O Botão “Run” (Mais Simples)</h4>
+
+<ol>
+  <li>No explorador de arquivos, navegue até o seu projeto <code class="language-plaintext highlighter-rouge">listadetarefas.api</code>.</li>
+  <li>Encontre o arquivo da sua aplicação principal:
+<code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/listadetarefas/Application.java</code></li>
+  <li>Abra o arquivo. Você verá um pequeno link <strong>“Run”</strong> (Executar) aparecer logo acima da linha <code class="language-plaintext highlighter-rouge">public static void main(String[] args)</code>.</li>
+  <li><strong>Clique em “Run”</strong>.</li>
+</ol>
+
+<p>[Imagem de um botão “Run” acima do método main em um arquivo Java no VS Code]</p>
+
+<p>É só isso! O VS Code vai iniciar seu servidor Spring Boot no painel “Terminal” ou “Debug Console”.</p>
+
+<h4 id="método-b-o-painel-do-spring-boot-mais-completo">Método B: O Painel do Spring Boot (Mais Completo)</h4>
+
+<ol>
+  <li>Na barra lateral do VS Code, procure por um ícone do Spring (um ‘S’ verde). Se não o vir, clique no ícone do Explorer (pastas) e você verá uma seção chamada “SPRING BOOT”.</li>
+  <li>Expanda essa seção. Você verá seu projeto <code class="language-plaintext highlighter-rouge">listadetarefas.api</code>.</li>
+  <li>Clique no <strong>ícone de “Play” (▶)</strong> ao lado do nome do projeto.</li>
+</ol>
+
+<p>[Imagem do painel Spring Boot no VS Code com um projeto e um botão de play ao lado]</p>
+
+<hr />
+
+<h3 id="4-parte-2-acessando-o-app-web-no-navegador">4. Parte 2: Acessando o App Web no Navegador</h3>
+
+<p>Agora que sua API está rodando, você pode testar o aplicativo web.</p>
+
+<ol>
+  <li><strong>Abra seu navegador</strong> (Chrome, Firefox, etc.).</li>
+  <li><strong>Digite a URL:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:8080/tarefas
+</code></pre></div>    </div>
+    <ul>
+      <li><strong>Por quê?</strong> <code class="language-plaintext highlighter-rouge">localhost:8080</code> é o endereço padrão do servidor Spring. <code class="language-plaintext highlighter-rouge">/tarefas</code> é o caminho que você definiu no <code class="language-plaintext highlighter-rouge">@RequestMapping</code> da sua classe <code class="language-plaintext highlighter-rouge">TarefaWebController.java</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Você deverá ver sua aplicação web com HTMX funcionando!</p>
+
+<hr />
+
+<h3 id="5-parte-3-executando-o-app-desktop-javafx">5. Parte 3: Executando o App Desktop (JavaFX)</h3>
+
+<p><strong>IMPORTANTE:</strong> Para o aplicativo desktop funcionar, a <strong>API (Parte 1) deve estar em execução</strong>. O desktop precisa da API para buscar e salvar os dados.</p>
+
+<ol>
+  <li>Com a API já rodando, vá até o explorador de arquivos do VS Code.</li>
+  <li>Navegue até o seu projeto <code class="language-plaintext highlighter-rouge">listadetarefas.desktop</code>.</li>
+  <li>Encontre o arquivo que tem o método <code class="language-plaintext highlighter-rouge">main</code> para o JavaFX. Com base nos seus arquivos, este é o <code class="language-plaintext highlighter-rouge">Launcher.java</code>:
+<code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/listadetarefas/desktop/Launcher.java</code></li>
+  <li>Abra o arquivo.</li>
+  <li>Assim como antes, clique no botão <strong>“Run”</strong> que aparece acima do <code class="language-plaintext highlighter-rouge">public static void main(String[] args)</code>.</li>
+</ol>
+
+<p>A janela do seu aplicativo JavaFX deverá abrir e, como a API está no ar, ela conseguirá carregar a lista de tarefas.</p>
+
+<h3 id="-resumo-a-cola-rápida">✅ Resumo (A “Cola” Rápida)</h3>
+
+<ol>
+  <li><strong>Abra o Workspace</strong> do VS Code que contém os dois projetos.</li>
+  <li><strong>Inicie a API:</strong>
+    <ul>
+      <li>Abra <code class="language-plaintext highlighter-rouge">listadetarefas.api</code> &gt; <code class="language-plaintext highlighter-rouge">.../Application.java</code></li>
+      <li>Clique em <strong>Run</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Acesse o App Web:</strong>
+    <ul>
+      <li>Abra o navegador em <code class="language-plaintext highlighter-rouge">http://localhost:8080/tarefas</code></li>
+    </ul>
+  </li>
+  <li><strong>Inicie o App Desktop:</strong>
+    <ul>
+      <li>Abra <code class="language-plaintext highlighter-rouge">listadetarefas.desktop</code> &gt; <code class="language-plaintext highlighter-rouge">.../Launcher.java</code></li>
+      <li>Clique em <strong>Run</strong>.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+

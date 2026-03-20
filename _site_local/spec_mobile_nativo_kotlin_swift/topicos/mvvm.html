@@ -1,0 +1,420 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_mobile_nativo_kotlin_swift/topicos/mvvm.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MVVM | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MVVM" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_mobile_nativo_kotlin_swift/topicos/mvvm.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_mobile_nativo_kotlin_swift/topicos/mvvm.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MVVM" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MVVM","url":"https://ricardotecpro.github.io/portal_jekyll/spec_mobile_nativo_kotlin_swift/topicos/mvvm.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_mobile_nativo_kotlin_swift/" style="margin-left: 0.5rem;">Spec mobile nativo kotlin swift</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_mobile_nativo_kotlin_swift/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Mvvm</span>
+          
+        
+      </nav>
+
+      <p>📱 Módulo 4: Guia Completo do Cliente Android com Jetpack Compose
+Objetivo: Construir um cliente Android nativo, moderno e robusto, seguindo a arquitetura recomendada pelo Google (MVVM com Repositório) e utilizando as melhores práticas com Jetpack Compose, ViewModel e Material 3.</p>
+
+<p>🛠️ Ferramentas Necessárias
+Android Studio: A IDE oficial para desenvolvimento Android (versão “Hedgehog” ou mais recente).</p>
+
+<p>Android SDK: Instalado via Android Studio.</p>
+
+<p>Emulador Android (AVD) ou um dispositivo físico.</p>
+
+<p>📂 Passo 1: Criação do Projeto
+No Android Studio, vá em File &gt; New &gt; New Project….</p>
+
+<p>Selecione o template Empty Activity (com o logo do Compose).</p>
+
+<p>Configure o projeto:</p>
+
+<p>Name: listadetarefas-android</p>
+
+<p>Package name: br.com.curso.listadetarefas.android</p>
+
+<p>Minimum SDK: API 26: Android 8.0 (Oreo) (Necessário para os ícones adaptativos padrão).</p>
+
+<p>Clique em Finish.</p>
+
+<p>🌳 Estrutura Inicial de Pastas
+O Android Studio gerará a estrutura do projeto. Nosso código-fonte estará em:</p>
+
+<p>listadetarefas-android/
+└── app/
+    └── src/
+        └── main/
+            └── java/
+                └── br/com/curso/listadetarefas/android/
+                    └── MainActivity.kt</p>
+
+<p>⚙️ Passo 2: Configuração do Projeto e Dependências
+Antes de codificar, vamos preparar nosso ambiente com as permissões e bibliotecas necessárias.</p>
+
+<p>Permissões de Rede: Abra o arquivo app/src/main/AndroidManifest.xml para permitir que o app acesse a internet.</p>
+
+<p>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissão para acessar a internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/Theme.Listadetarefasandroid" android:usesCleartextTraffic="true">
+        <activity android:name=".MainActivity" android:exported="true" android:theme="@style/Theme.Listadetarefasandroid">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+<p>Adicionar Dependências: Substitua o conteúdo do seu arquivo app/build.gradle.kts pelo código abaixo. Ele contém as bibliotecas para Compose, ViewModel, Retrofit e Coroutines.</p>
+
+<p>plugins {
+    id(“com.android.application”)
+    id(“org.jetbrains.kotlin.android”)
+    id(“org.jetbrains.kotlin.plugin.compose”)
+}</p>
+
+<p>android {
+    namespace = “br.com.curso.listadetarefas.android”
+    compileSdk = 34</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>defaultConfig {
+    applicationId = "br.com.curso.listadetarefas.android"
+    minSdk = 26
+    targetSdk = 34
+    versionCode = 1
+    versionName = "1.0"
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+}
+
+buildFeatures {
+    compose = true
+}
+// ... (demais configurações) }
+</code></pre></div></div>
+
+<p>dependencies {
+    // Core e Activity
+    implementation(“androidx.core:core-ktx:1.12.0”)
+    implementation(“androidx.activity:activity-compose:1.8.2”)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Jetpack Compose (BoM gerencia as versões)
+val composeBom = platform("androidx.compose:compose-bom:2024.02.01")
+implementation(composeBom)
+implementation("androidx.compose.material3:material3")
+implementation("androidx.compose.ui:ui-tooling-preview")
+debugImplementation("androidx.compose.ui:ui-tooling")
+
+// ViewModel e State Management
+implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
+// Networking
+implementation("com.squareup.retrofit2:retrofit:2.9.0")
+implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+implementation("com.squareup.okhttp3:logging-interceptor:4.12.0") }
+</code></pre></div></div>
+
+<p>🏛️ Passo 3: Definindo a Arquitetura MVVM
+Vamos organizar nosso código seguindo o padrão MVVM (Model-View-ViewModel) com uma camada de Repositório, que promove a separação de responsabilidades e facilita testes.</p>
+
+<p>📊 Diagrama de Arquitetura
+classDiagram
+    direction LR
+    MainActivity –|&gt; TarefaViewModel : observa
+    TarefaViewModel –|&gt; TarefaRepository : solicita dados
+    TarefaRepository –|&gt; TarefaApiService : busca dados da rede
+    TarefaApiService –|&gt; RetrofitClient : realiza a chamada HTTP</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class MainActivity {
+ &lt;&lt;View&gt;&gt;
+ + Composable TarefaApp()
+}
+class TarefaViewModel {
+ &lt;&lt;ViewModel&gt;&gt;
+ + StateFlow~TarefaUiState~ uiState
+ + carregarTarefas()
+}
+class TarefaRepository {
+ &lt;&lt;Repository&gt;&gt;
+ + getTarefas()
+}
+class TarefaApiService {
+ &lt;&lt;Interface&gt;&gt;
+ + getTarefas()
+}
+class RetrofitClient {
+ &lt;&lt;Object&gt;&gt;
+}
+</code></pre></div></div>
+
+<p>💾 Passo 4: Construindo a Camada de Dados (Data Layer)
+Esta camada é responsável por buscar e gerenciar os dados, seja de uma API ou de um banco de dados local.</p>
+
+<p>Crie os pacotes:</p>
+
+<p>data.model para nossas classes de dados (POJOs/data classes).</p>
+
+<p>data.network para o código relacionado ao Retrofit.</p>
+
+<p>data.repository para a classe que abstrai a fonte de dados.</p>
+
+<p>Estrutura de Pastas da Camada de Dados:</p>
+
+<p>java/br/com/curso/listadetarefas/android/
+└── data/
+    ├── model/
+    │   └── Tarefa.kt
+    ├── network/
+    │   ├── RetrofitClient.kt
+    │   └── TarefaApiService.kt
+    └── repository/
+        └── TarefaRepository.kt</p>
+
+<p>Crie os arquivos:</p>
+
+<p>data/model/Tarefa.kt</p>
+
+<p>package br.com.curso.listadetarefas.android.data.model</p>
+
+<p>data class Tarefa(
+    val id: Long?,
+    var descricao: String?,
+    var concluida: Boolean
+)</p>
+
+<p>data/network/TarefaApiService.kt</p>
+
+<p>package br.com.curso.listadetarefas.android.data.network
+// … (código da interface TarefaApiService)</p>
+
+<p>data/network/RetrofitClient.kt</p>
+
+<p>package br.com.curso.listadetarefas.android.data.network</p>
+
+<p>object RetrofitClient {
+    // CORREÇÃO: Usando 10.0.2.2 para o emulador acessar o localhost da máquina.
+    private const val BASE_URL = “http://10.0.2.2:8080/api/”
+    // … (código do objeto RetrofitClient)
+}</p>
+
+<p>data/repository/TarefaRepository.kt (Nova Classe)</p>
+
+<p>Motivação: O Repositório desacopla o ViewModel da fonte de dados. O ViewModel não precisa saber se os dados vêm de uma API ou de um cache; ele apenas pede os dados ao Repositório.</p>
+
+<p>package br.com.curso.listadetarefas.android.data.repository</p>
+
+<p>import br.com.curso.listadetarefas.android.data.model.Tarefa
+import br.com.curso.listadetarefas.android.data.network.RetrofitClient</p>
+
+<p>class TarefaRepository {
+    private val apiService = RetrofitClient.instance</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>suspend fun getTarefas(): List&lt;Tarefa&gt; = apiService.getTarefas()
+suspend fun addTarefa(tarefa: Tarefa): Tarefa = apiService.addTarefa(tarefa)
+suspend fun updateTarefa(id: Long, tarefa: Tarefa): Tarefa = apiService.updateTarefa(id, tarefa)
+suspend fun deleteTarefa(id: Long) = apiService.deleteTarefa(id) }
+</code></pre></div></div>
+
+<p>🎨 Passo 5: Construindo a Camada de UI (UI Layer)
+Esta camada contém tudo relacionado à interface do usuário: estado, lógica de apresentação e os componentes visuais.</p>
+
+<p>Crie os pacotes:</p>
+
+<p>ui.theme para os arquivos de tema (Color.kt, Type.kt, Theme.kt).</p>
+
+<p>ui.viewmodel para a nossa classe TarefaViewModel.</p>
+
+<p>Estrutura de Pastas da Camada de UI:</p>
+
+<p>java/br/com/curso/listadetarefas/android/
+└── ui/
+    ├── theme/
+    │   ├── Color.kt
+    │   ├── Theme.kt
+    │   └── Type.kt
+    └── viewmodel/
+        └── TarefaViewModel.kt</p>
+
+<p>Crie os arquivos:</p>
+
+<p>ui/theme/Theme.kt</p>
+
+<p>Use o código corrigido que já criamos, garantindo que o nome da função seja listadetarefasAndroidTheme.</p>
+
+<p>ui/viewmodel/TarefaViewModel.kt (Refatorado)</p>
+
+<p>Melhoria: O ViewModel agora depende do TarefaRepository, não mais do RetrofitClient diretamente. Isso o torna mais limpo e fácil de testar (podemos “mockar” o repositório em testes unitários).</p>
+
+<p>package br.com.curso.listadetarefas.android.ui.viewmodel</p>
+
+<p>import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import br.com.curso.listadetarefas.android.data.model.Tarefa
+import br.com.curso.listadetarefas.android.data.repository.TarefaRepository
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch</p>
+
+<p>// … (código da data class TarefaUiState)</p>
+
+<p>class TarefaViewModel : ViewModel() {
+    private val repository = TarefaRepository()
+    // … (código do _uiState e uiState)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init { carregarTarefas() }
+
+fun carregarTarefas() {
+    // ... (lógica de carregamento usando repository.getTarefas())
+}
+// ... (demais métodos usando o repository) }
+</code></pre></div></div>
+
+<p>🖼️ Passo 6: Montando a View e a Interação do Usuário
+Finalmente, vamos conectar nossa lógica de UI e ViewModel na MainActivity.</p>
+
+<p>Substitua o código da MainActivity.kt:</p>
+
+<p>Melhoria: O código abaixo já inclui a implementação do PullToRefresh do Material 3 e segue as melhores práticas para coletar o estado do ViewModel.</p>
+
+<p>@file:OptIn(ExperimentalMaterial3Api::class)
+package br.com.curso.listadetarefas.android</p>
+
+<p>import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.*
+import br.com.curso.listadetarefas.android.ui.theme.listadetarefasAndroidTheme
+import br.com.curso.listadetarefas.android.ui.viewmodel.TarefaViewModel</p>
+
+<p>class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            listadetarefasAndroidTheme {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    TarefaApp() // Passando o ViewModel
+                }
+            }
+        }
+    }
+}</p>
+
+<p>// … (código dos Composables: TarefaApp, TarefaScreen, TarefaItem, EditTaskDialog)</p>
+
+<p>🚀 Passo 7: Execução e Verificação Final
+Estrutura Final do Projeto:</p>
+
+<p>java/br/com/curso/listadetarefas/android/
+├── data/
+│   ├── model/
+│   ├── network/
+│   └── repository/
+├── ui/
+│   ├── theme/
+│   └── viewmodel/
+└── MainActivity.kt</p>
+
+<p>Execute o App: Com seu backend Spring Boot rodando, execute o aplicativo no emulador. A lista de tarefas deve ser carregada.</p>
+
+<p>Teste as Funcionalidades: Verifique se adicionar, editar, marcar como concluída e deletar tarefas está funcionando. Teste também o gesto de “puxar para atualizar”.</p>
+
+<p>💡 Sugestões para o Futuro
+Injeção de Dependência: Para projetos maiores, considere usar uma biblioteca como Hilt ou Koin para gerenciar a criação de dependências (como o TarefaRepository), em vez de instanciá-las manualmente.</p>
+
+<p>Testes Unitários: Escreva testes para o TarefaViewModel, substituindo o TarefaRepository por uma versão “fake” (mock) para testar a lógica de negócios sem depender da rede.</p>
+
+<p>Melhoria de UX: Implemente gestos de “swipe” para deletar ou editar tarefas, seguindo a convenção recomendada para ambientes mobile.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

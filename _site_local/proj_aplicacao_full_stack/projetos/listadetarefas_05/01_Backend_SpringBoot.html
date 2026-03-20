@@ -1,0 +1,181 @@
+<h1 id="️-módulo-1-backend-api---aderindo-aos-princípios-solid">⚙️ Módulo 1: Backend (API) - Aderindo aos Princípios SOLID</h1>
+
+<p><strong>Objetivo:</strong> Refatorar a API para ser mais robusta e desacoplada, utilizando DTOs, tratamento de exceções centralizado e validação de entrada.</p>
+
+<h3 id="--passo-1-introduzindo-dtos-data-transfer-objects">### 📦 Passo 1: Introduzindo DTOs (Data Transfer Objects)</h3>
+
+<ul>
+  <li><strong>Problema:</strong> A API expõe a entidade JPA (<code class="language-plaintext highlighter-rouge">Tarefa</code>) diretamente. Isso é uma má prática, pois acopla o contrato da sua API à estrutura do seu banco de dados.</li>
+  <li><strong>Solução (Princípio da Responsabilidade Única - SOLID):</strong> Criaremos DTOs, classes simples que representam os dados que entram e saem da API. Isso desacopla a camada da API da camada de persistência.</li>
+</ul>
+
+<h4 id="diagrama-de-classes-com-dtos">Diagrama de Classes com DTOs</h4>
+<pre><code class="language-mermaid">classDiagram
+    direction LR
+    TarefaController ..&gt; TarefaService : delega para
+    TarefaService ..&gt; TarefaRepository : usa
+    TarefaRepository ..&gt; Tarefa : gerencia
+    TarefaService ..&gt; TarefaRequestDTO : recebe
+    TarefaService ..&gt; TarefaResponseDTO : retorna
+    class TarefaController {
+        +criar(TarefaRequestDTO) TarefaResponseDTO
+        +atualizar(Long, TarefaRequestDTO) TarefaResponseDTO
+    }
+    class TarefaService {
+        +criar(TarefaRequestDTO) TarefaResponseDTO
+    }
+    class Tarefa {
+        &lt;&lt;Entity&gt;&gt;
+        -Long id
+        -String descricao
+        -boolean concluida
+    }
+    class TarefaRequestDTO {
+        &lt;&lt;DTO&gt;&gt;
+        -String descricao
+        -Boolean concluida
+    }
+    class TarefaResponseDTO {
+        &lt;&lt;DTO&gt;&gt;
+        +Long id
+        +String descricao
+        +boolean concluida
+    }
+</code></pre>
+<ol>
+  <li>Dentro de <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/listadetarefas/api</code>, crie um novo pacote <code class="language-plaintext highlighter-rouge">dto</code>.</li>
+  <li>Dentro de <code class="language-plaintext highlighter-rouge">dto</code>, crie as classes <code class="language-plaintext highlighter-rouge">TarefaRequestDTO.java</code> e <code class="language-plaintext highlighter-rouge">TarefaResponseDTO.java</code>.</li>
+</ol>
+
+<p><strong><code class="language-plaintext highlighter-rouge">TarefaRequestDTO.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotBlank</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotNull</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Size</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">TarefaRequestDTO</span><span class="o">(</span>
+    <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"A descrição não pode ser vazia."</span><span class="o">)</span>
+    <span class="nd">@Size</span><span class="o">(</span><span class="n">min</span> <span class="o">=</span> <span class="mi">3</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"A descrição deve ter no mínimo 3 caracteres."</span><span class="o">)</span>
+    <span class="nc">String</span> <span class="n">descricao</span><span class="o">,</span>
+    
+    <span class="nd">@NotNull</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"O campo 'concluida' é obrigatório."</span><span class="o">)</span>
+    <span class="nc">Boolean</span> <span class="n">concluida</span>
+<span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">TarefaResponseDTO.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.dto</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">TarefaResponseDTO</span><span class="o">(</span>
+    <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span>
+    <span class="nc">String</span> <span class="n">descricao</span><span class="o">,</span>
+    <span class="kt">boolean</span> <span class="n">concluida</span>
+<span class="o">)</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="estrutura-de-pastas-com-dtos">Estrutura de Pastas com DTOs</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas-api/
+└── src/main/java/br/com/curso/listadetarefas/api/
+    ├── dto/
+    │   ├── TarefaRequestDTO.java
+    │   └── TarefaResponseDTO.java
+    ├── tarefa/
+    │   └── ... (classes existentes)
+    └── ListadetarefasApiApplication.java
+</code></pre></div></div>
+
+<h3 id="--passo-2-refatorando-as-camadas-de-serviço-e-controle">### 🔄 Passo 2: Refatorando as Camadas de Serviço e Controle</h3>
+
+<p>Agora, adaptamos o <code class="language-plaintext highlighter-rouge">Service</code> e o <code class="language-plaintext highlighter-rouge">Controller</code> para usar os novos DTOs.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">TarefaService.java</code> (Refatorado)</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.listadetarefas.api.dto.TarefaRequestDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.listadetarefas.api.dto.TarefaResponseDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span> <span class="kd">private</span> <span class="nc">TarefaRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">TarefaResponseDTO</span><span class="o">&gt;</span> <span class="nf">listarTodas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">toResponseDTO</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">TarefaResponseDTO</span> <span class="nf">criar</span><span class="o">(</span><span class="nc">TarefaRequestDTO</span> <span class="n">requestDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Tarefa</span> <span class="n">tarefa</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">tarefa</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="n">requestDTO</span><span class="o">.</span><span class="na">descricao</span><span class="o">());</span>
+        <span class="n">tarefa</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="n">requestDTO</span><span class="o">.</span><span class="na">concluida</span><span class="o">());</span>
+        <span class="k">return</span> <span class="nf">toResponseDTO</span><span class="o">(</span><span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="c1">// ... outros métodos (atualizar, deletar) devem ser adaptados da mesma forma ...</span>
+
+    <span class="kd">private</span> <span class="nc">TarefaResponseDTO</span> <span class="nf">toResponseDTO</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">TarefaResponseDTO</span><span class="o">(</span><span class="n">tarefa</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">tarefa</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">(),</span> <span class="n">tarefa</span><span class="o">.</span><span class="na">isConcluida</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">TarefaController.java</code> (Refatorado)</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.listadetarefas.api.dto.TarefaRequestDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.listadetarefas.api.dto.TarefaResponseDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.Valid</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tarefas"</span><span class="o">)</span>
+<span class="nd">@CrossOrigin</span><span class="o">(</span><span class="n">origins</span> <span class="o">=</span> <span class="s">"*"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span> <span class="kd">private</span> <span class="nc">TarefaService</span> <span class="n">service</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">TarefaResponseDTO</span><span class="o">&gt;</span> <span class="nf">listarTarefas</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">service</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">();</span> <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">TarefaResponseDTO</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">TarefaRequestDTO</span> <span class="n">tarefaDTO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">service</span><span class="o">.</span><span class="na">criar</span><span class="o">(</span><span class="n">tarefaDTO</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// ... outros endpoints adaptados ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-️-passo-3-centralizando-tratamento-de-exceções">### 🛡️ Passo 3: Centralizando Tratamento de Exceções</h3>
+
+<ul>
+  <li><strong>Solução (Princípio Don’t Repeat Yourself - DRY):</strong> Usamos um <code class="language-plaintext highlighter-rouge">@RestControllerAdvice</code> para capturar exceções globalmente, limpando o controlador.</li>
+</ul>
+
+<ol>
+  <li>Crie o pacote <code class="language-plaintext highlighter-rouge">exception</code> e a classe <code class="language-plaintext highlighter-rouge">RestExceptionHandler.java</code>.</li>
+</ol>
+
+<p><strong><code class="language-plaintext highlighter-rouge">RestExceptionHandler.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.listadetarefas.api.exception</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ExceptionHandler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ResponseStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestControllerAdvice</span><span class="o">;</span>
+
+<span class="nd">@RestControllerAdvice</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RestExceptionHandler</span> <span class="o">{</span>
+    <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="nc">RuntimeException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">handleNotFound</span><span class="o">(</span><span class="nc">RuntimeException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ex</span><span class="o">.</span><span class="na">getMessage</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<ul>
+  <li>Agora, os blocos <code class="language-plaintext highlighter-rouge">try-catch</code> podem ser removidos do <code class="language-plaintext highlighter-rouge">TarefaController</code>.</li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

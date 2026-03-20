@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🏅 Desenvolvimento Mobile Nativo
+title: "🏅 Desenvolvimento Mobile Nativo"
 ---
 
 # 🏅 Desenvolvimento Mobile Nativo

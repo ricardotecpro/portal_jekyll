@@ -1,0 +1,610 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/topicos/05_outros_topicos_basicos_sobre_java.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Outros Tópicos Básicos sobre Java ☕ | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Outros Tópicos Básicos sobre Java ☕" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/05_outros_topicos_basicos_sobre_java.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/05_outros_topicos_basicos_sobre_java.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Outros Tópicos Básicos sobre Java ☕" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Outros Tópicos Básicos sobre Java ☕","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/05_outros_topicos_basicos_sobre_java.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Outros tópicos básicos sobre java ☕</span>
+          
+        
+      </nav>
+
+      <h1 id="outros-tópicos-básicos-sobre-java-">Outros Tópicos Básicos sobre Java ☕</h1>
+
+<p>Este documento aborda conceitos fundamentais em Java, incluindo convenções de nomenclatura, manipulação de strings, uso de funções (métodos) e exemplos práticos.</p>
+
+<h2 id="restrições-e-convenções-para-nomes-️">Restrições e Convenções para Nomes 🏷️</h2>
+
+<p>Ao nomear variáveis, classes e outros elementos em Java, é importante seguir certas regras e convenções para garantir que o código seja legível e funcional.</p>
+
+<h3 id="restrições-para-nomes-de-variáveis">Restrições para Nomes de Variáveis</h3>
+<p>Existem algumas regras estritas para nomear identificadores (como variáveis) em Java:</p>
+<ul>
+  <li><strong>Não pode começar com dígito:</strong> Um nome de variável deve iniciar com uma letra, cifrão (<code class="language-plaintext highlighter-rouge">$</code>) ou sublinhado (<code class="language-plaintext highlighter-rouge">_</code>). Por convenção, geralmente se inicia com uma letra.</li>
+  <li><strong>Não usar acentos ou til:</strong> Embora o Java tecnicamente permita alguns caracteres Unicode, a convenção é usar apenas letras do alfabeto inglês (a-z, A-Z), dígitos (0-9) e o sublinhado (<code class="language-plaintext highlighter-rouge">_</code>).</li>
+  <li><strong>Não pode ter espaço em branco:</strong> Nomes de variáveis não podem conter espaços.</li>
+  <li><strong>Nomes significativos:</strong> É uma boa prática usar nomes que descrevam o propósito da variável.</li>
+</ul>
+
+<p><strong>Exemplos:</strong></p>
+
+<p><strong>Errado:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// int 5minutes; // Erro: começa com dígito</span>
+<span class="c1">// int salário; // Evitar acentos</span>
+<span class="c1">// int salario do funcionario; // Erro: contém espaços</span>
+</code></pre></div></div>
+
+<p><strong>Correto:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">cincoMinutos</span><span class="o">;</span> <span class="c1">// ou _5minutes, mas menos comum para iniciar</span>
+<span class="kt">int</span> <span class="n">salario</span><span class="o">;</span> <span class="c1">// Sem acento</span>
+<span class="kt">int</span> <span class="n">salarioDoFuncionario</span><span class="o">;</span> <span class="c1">// Usando Camel Case</span>
+</code></pre></div></div>
+
+<h3 id="convenções-de-nomenclatura">Convenções de Nomenclatura</h3>
+<p>As convenções ajudam a manter o código consistente e fácil de ler por outros desenvolvedores.</p>
+
+<ul>
+  <li><strong>Camel Case:</strong> Inicia com letra minúscula, e cada nova palavra subsequente começa com letra maiúscula.
+    <ul>
+      <li><strong>Usado para:</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">pacotes</code> (ex: <code class="language-plaintext highlighter-rouge">com.minhaempresa.projeto.utilitarios</code>)</li>
+          <li><code class="language-plaintext highlighter-rouge">atributos</code> (variáveis de instância, ex: <code class="language-plaintext highlighter-rouge">nomeCliente</code>)</li>
+          <li><code class="language-plaintext highlighter-rouge">métodos</code> (ex: <code class="language-plaintext highlighter-rouge">calcularTotalPedido()</code>)</li>
+          <li><code class="language-plaintext highlighter-rouge">variáveis</code> locais e <code class="language-plaintext highlighter-rouge">parâmetros</code> (ex: <code class="language-plaintext highlighter-rouge">contador</code>, <code class="language-plaintext highlighter-rouge">nomeUsuario</code>)</li>
+        </ul>
+      </li>
+      <li><strong>Exemplo:</strong> <code class="language-plaintext highlighter-rouge">lastName</code> (traduzido: <code class="language-plaintext highlighter-rouge">ultimoNome</code>)</li>
+    </ul>
+  </li>
+  <li><strong>Pascal Case (ou Upper Camel Case):</strong> Similar ao Camel Case, mas a primeira letra também é maiúscula.
+    <ul>
+      <li><strong>Usado para:</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">classes</code> (ex: <code class="language-plaintext highlighter-rouge">ClientePremium</code>)</li>
+          <li><code class="language-plaintext highlighter-rouge">interfaces</code> (ex: <code class="language-plaintext highlighter-rouge">ServicoDePagamento</code>)</li>
+          <li><code class="language-plaintext highlighter-rouge">enums</code> (ex: <code class="language-plaintext highlighter-rouge">DiaDaSemana</code>)</li>
+        </ul>
+      </li>
+      <li><strong>Exemplo:</strong> <code class="language-plaintext highlighter-rouge">ProductService</code> (traduzido: <code class="language-plaintext highlighter-rouge">ServicoProduto</code>)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Seguir estas convenções melhora a legibilidade e a manutenção do código, facilitando a colaboração em projetos.</p>
+
+<h2 id="estrutura-básica-de-uma-classe-e-métodos-exemplo-conta-️">Estrutura Básica de uma Classe e Métodos (Exemplo <code class="language-plaintext highlighter-rouge">Conta</code>) 🏛️</h2>
+
+<p>Classes são os blocos de construção fundamentais na Programação Orientada a Objetos (POO). Elas encapsulam dados (atributos) e comportamentos (métodos).</p>
+
+<p>Abaixo, um exemplo de uma classe <code class="language-plaintext highlighter-rouge">Conta</code> em Java, com atributos para <code class="language-plaintext highlighter-rouge">titular</code> e <code class="language-plaintext highlighter-rouge">saldo</code>, e métodos para <code class="language-plaintext highlighter-rouge">depositar</code> e <code class="language-plaintext highlighter-rouge">sacar</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTitular</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Não há um setTitular neste exemplo, o titular é definido no construtor.</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// O saldo não deve ter um setter público direto para proteger a consistência dos dados.</span>
+    <span class="c1">// Modificações no saldo devem ser feitas através de depósitos e saques.</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span> <span class="c1">// Adiciona o valor ao saldo</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Valor de depósito deve ser positivo."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">saldo</span> <span class="o">&gt;=</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span> <span class="c1">// Subtrai o valor do saldo</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo insuficiente para saque."</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Valor de saque deve ser positivo."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<!-- commentario
+**Nota sobre o código original:**
+- O código original `balance + amount;` e `balance amount;` nos métodos `deposit` e `withdraw` respectivamente, não alterariam o saldo. Foram corrigidos para `saldo += valor;` e `saldo -= valor;`.
+- Foram adicionadas verificações básicas nos métodos `depositar` e `sacar` para melhorar a robustez.
+-->
+
+<h2 id="funções-interessantes-para-string-">Funções Interessantes para <code class="language-plaintext highlighter-rouge">String</code> 🧵</h2>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">String</code> em Java oferece uma variedade de métodos úteis para manipulação de texto.</p>
+
+<h3 id="checklist-de-métodos-comuns">Checklist de Métodos Comuns:</h3>
+<ul>
+  <li><strong>Formatar:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">toLowerCase()</code>: Converte todos os caracteres da string para minúsculas.</li>
+      <li><code class="language-plaintext highlighter-rouge">toUpperCase()</code>: Converte todos os caracteres da string para maiúsculas.</li>
+      <li><code class="language-plaintext highlighter-rouge">trim()</code>: Remove espaços em branco no início e no fim da string.</li>
+    </ul>
+  </li>
+  <li><strong>Recortar:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">substring(int inicio)</code>: Retorna uma nova string que é uma substring da string original, começando do índice <code class="language-plaintext highlighter-rouge">inicio</code> até o final.</li>
+      <li><code class="language-plaintext highlighter-rouge">substring(int inicio, int fim)</code>: Retorna uma nova string que é uma substring da string original, começando do índice <code class="language-plaintext highlighter-rouge">inicio</code> até o índice <code class="language-plaintext highlighter-rouge">fim - 1</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Substituir:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">replace(char antigoChar, char novoChar)</code>: Substitui todas as ocorrências de <code class="language-plaintext highlighter-rouge">antigoChar</code> por <code class="language-plaintext highlighter-rouge">novoChar</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">replace(CharSequence antigaString, CharSequence novaString)</code>: Substitui todas as ocorrências da <code class="language-plaintext highlighter-rouge">antigaString</code> pela <code class="language-plaintext highlighter-rouge">novaString</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Buscar:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">indexOf(String str)</code>: Retorna o índice da primeira ocorrência da substring <code class="language-plaintext highlighter-rouge">str</code>. Retorna -1 se não encontrada.</li>
+      <li><code class="language-plaintext highlighter-rouge">lastIndexOf(String str)</code>: Retorna o índice da última ocorrência da substring <code class="language-plaintext highlighter-rouge">str</code>. Retorna -1 se não encontrada.</li>
+    </ul>
+  </li>
+  <li><strong>Dividir:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">split(String regex)</code>: Divide a string em um array de substrings com base em um delimitador (expressão regular <code class="language-plaintext highlighter-rouge">regex</code>).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exemplo-prático-com-métodos-de-string">Exemplo Prático com Métodos de <code class="language-plaintext highlighter-rouge">String</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploStrings</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">original</span> <span class="o">=</span> <span class="s">"   abcde FGHIJ ABC abc DEFG   "</span><span class="o">;</span>
+
+        <span class="nc">String</span> <span class="n">str01</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">str02</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">str03</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">trim</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">str04</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span> <span class="c1">// Considerando o trim, ou original.trim().substring(2)</span>
+        <span class="nc">String</span> <span class="n">str05</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">trim</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">9</span><span class="o">);</span> <span class="c1">// Aplicando trim antes para consistência com os índices esperados</span>
+
+        <span class="nc">String</span> <span class="n">str06</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="sc">'a'</span><span class="o">,</span> <span class="sc">'x'</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">str07</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">"abc"</span><span class="o">,</span> <span class="s">"xy"</span><span class="o">);</span>
+
+        <span class="kt">int</span> <span class="n">indice1</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">"bc"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">ultimoIndiceBC</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">"bc"</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Original: -"</span> <span class="o">+</span> <span class="n">original</span> <span class="o">+</span> <span class="s">"-"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"toLowerCase: -"</span> <span class="o">+</span> <span class="n">str01</span> <span class="o">+</span> <span class="s">"-"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"toUpperCase: -"</span> <span class="o">+</span> <span class="n">str02</span> <span class="o">+</span> <span class="s">"-"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"trim: -"</span> <span class="o">+</span> <span class="n">str03</span> <span class="o">+</span> <span class="s">"-"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"substring(inicio): -"</span> <span class="o">+</span> <span class="n">str04</span> <span class="o">+</span> <span class="s">"- (a partir do 5º caractere da original com espaços)"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"substring(inicio, fim) após trim: -"</span> <span class="o">+</span> <span class="n">str05</span> <span class="o">+</span> <span class="s">"- ('cde FGH')"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"replace('a', 'x'): -"</span> <span class="o">+</span> <span class="n">str06</span> <span class="o">+</span> <span class="s">"-"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"replace(\"abc\", \"xy\"): -"</span> <span class="o">+</span> <span class="n">str07</span> <span class="o">+</span> <span class="s">"-"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Primeiro índice de 'bc': "</span> <span class="o">+</span> <span class="n">indice1</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Último índice de 'bc': "</span> <span class="o">+</span> <span class="n">ultimoIndiceBC</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="operação-split">Operação <code class="language-plaintext highlighter-rouge">split</code></h2>
+
+<p>O método <code class="language-plaintext highlighter-rouge">split()</code> é muito útil para quebrar uma string em várias partes (tokens) com base em um delimitador. Ele retorna um array de strings.</p>
+
+<p><strong>Exemplo:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploSplit</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"batata maçã limão laranja"</span><span class="o">;</span>
+        <span class="nc">String</span><span class="o">[]</span> <span class="n">vetorDePalavras</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span> <span class="c1">// Divide a string usando o espaço como delimitador</span>
+
+        <span class="nc">String</span> <span class="n">palavra1</span> <span class="o">=</span> <span class="n">vetorDePalavras</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span> <span class="c1">// "batata"</span>
+        <span class="nc">String</span> <span class="n">palavra2</span> <span class="o">=</span> <span class="n">vetorDePalavras</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span> <span class="c1">// "maçã"</span>
+        <span class="nc">String</span> <span class="n">palavra3</span> <span class="o">=</span> <span class="n">vetorDePalavras</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span> <span class="c1">// "limão"</span>
+        <span class="nc">String</span> <span class="n">palavra4</span> <span class="o">=</span> <span class="n">vetorDePalavras</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span> <span class="c1">// "laranja"</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Palavra 1: "</span> <span class="o">+</span> <span class="n">palavra1</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Palavra 2: "</span> <span class="o">+</span> <span class="n">palavra2</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Palavra 3: "</span> <span class="o">+</span> <span class="n">palavra3</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Palavra 4: "</span> <span class="o">+</span> <span class="n">palavra4</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Todas as palavras do vetor:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">palavra</span> <span class="o">:</span> <span class="n">vetorDePalavras</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"- "</span> <span class="o">+</span> <span class="n">palavra</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Visualização do processo <code class="language-plaintext highlighter-rouge">split</code>:</strong></p>
+
+<p>String <code class="language-plaintext highlighter-rouge">s</code>: <code class="language-plaintext highlighter-rouge">"batata maçã limão laranja"</code></p>
+
+<p>Após <code class="language-plaintext highlighter-rouge">s.split(" ")</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">vetorDePalavras</code> (array):</p>
+<ul>
+  <li>Índice <code class="language-plaintext highlighter-rouge">0</code>: <code class="language-plaintext highlighter-rouge">"batata"</code></li>
+  <li>Índice <code class="language-plaintext highlighter-rouge">1</code>: <code class="language-plaintext highlighter-rouge">"maçã"</code></li>
+  <li>Índice <code class="language-plaintext highlighter-rouge">2</code>: <code class="language-plaintext highlighter-rouge">"limão"</code></li>
+  <li>Índice <code class="language-plaintext highlighter-rouge">3</code>: <code class="language-plaintext highlighter-rouge">"laranja"</code></li>
+</ul>
+
+<h2 id="comentários-em-java-básico-">Comentários em Java (Básico) 📝</h2>
+
+<p>Comentários são trechos de código que o compilador Java ignora. Eles são usados para adicionar explicações, notas ou desabilitar temporariamente partes do código, tornando-o mais compreensível para você e outros desenvolvedores.</p>
+
+<ul>
+  <li><strong>Comentário de Linha Única:</strong> Começa com <code class="language-plaintext highlighter-rouge">//</code> e se estende até o final da linha.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Este é um comentário de linha única</span>
+<span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span> <span class="c1">// Este comentário explica o propósito da variável 'idade'</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Comentário de Múltiplas Linhas:</strong> Começa com <code class="language-plaintext highlighter-rouge">/*</code> e termina com <code class="language-plaintext highlighter-rouge">*/</code>. Pode abranger várias linhas e é útil para explicações mais longas.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ Este é um exemplo
+ de um comentário
+ que ocupa várias linhas.
+*/</span>
+<span class="kt">double</span> <span class="n">precoProduto</span> <span class="o">=</span> <span class="mf">19.99</span><span class="o">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Comentário Javadoc (Documentação):</strong> Começa com <code class="language-plaintext highlighter-rouge">/**</code> e termina com <code class="language-plaintext highlighter-rouge">*/</code>. Este tipo especial de comentário é usado para gerar documentação da API automaticamente.
+```java
+/**
+    <ul>
+      <li>Esta classe representa um Produto em um sistema de e-commerce.
+ *</li>
+      <li>@author Seu Nome</li>
+      <li>
+        <p>@version 1.0
+ */
+public class Produto {
+ // … corpo da classe …</p>
+
+        <p>/**</p>
+        <ul>
+          <li>Calcula o preço final do produto com desconto.
+  *</li>
+          <li>@param descontoPercentual O percentual de desconto a ser aplicado (ex: 0.10 para 10%).</li>
+          <li>@return O preço final após o desconto.
+  */
+ public double calcularPrecoComDesconto(double descontoPercentual) {
+ // … lógica do método …
+ return 0.0; // Exemplo
+ }
+}
+```</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="funções-sintaxe-️">Funções (Sintaxe) ⚙️</h2>
+
+<p>Em Java, funções são geralmente chamadas de <strong>métodos</strong> quando estão dentro de classes. Eles são blocos de código que realizam uma tarefa específica e podem ser chamados (invocados) quando necessário.</p>
+
+<h3 id="exemplo-programa-para-cálculo-de-delta-em-equação-de-segundo-grau">Exemplo: Programa para Cálculo de Delta em Equação de Segundo Grau</h3>
+
+<p>O código abaixo demonstra a estrutura básica de um programa Java que lê os coeficientes de uma equação de segundo grau ($ax^2 + bx + c = 0$) e calcula o valor de delta ($\Delta = b^2 - 4ac$).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="c1">// Este programa calcula as raízes de uma equação do segundo grau</span>
+<span class="c1">// Os valores dos coeficientes devem ser digitados um por linha</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaEquacao</span> <span class="o">{</span> <span class="c1">// Nome da classe alterado para ser mais descritivo</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span> <span class="c1">// Para usar o ponto como separador decimal</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">delta</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite os valores dos coeficientes (a, b, c):"</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Coeficiente a: "</span><span class="o">);</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Coeficiente b: "</span><span class="o">);</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Coeficiente c: "</span><span class="o">);</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="o">;</span> <span class="c1">// Cálculo do valor de delta</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"O valor de Delta é: "</span> <span class="o">+</span> <span class="n">delta</span><span class="o">);</span>
+
+        <span class="c1">// Aqui, poderíamos adicionar a lógica para calcular as raízes x' e x''</span>
+        <span class="c1">// com base no valor de delta.</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="o-que-são-funções-ou-métodos-em-java-">O que são Funções (ou Métodos em Java)? 📜</h3>
+<ul>
+  <li><strong>Representam um processamento que possui um significado:</strong> Um método agrupa uma sequência de instruções para realizar uma operação específica, como <code class="language-plaintext highlighter-rouge">Math.sqrt()</code> para calcular a raiz quadrada ou <code class="language-plaintext highlighter-rouge">System.out.println()</code> para imprimir no console.</li>
+  <li><strong>Principais vantagens:</strong>
+    <ul>
+      <li><strong>Modularização:</strong> Dividir um programa complexo em partes menores e gerenciáveis.</li>
+      <li><strong>Delegação:</strong> Atribuir responsabilidades específicas a diferentes métodos.</li>
+      <li><strong>Reaproveitamento:</strong> Escrever um método uma vez e usá-lo várias vezes em diferentes partes do programa ou em outros programas.</li>
+    </ul>
+  </li>
+  <li><strong>Dados de entrada e saída:</strong>
+    <ul>
+      <li>Métodos podem receber dados de entrada, chamados <strong>parâmetros</strong> ou <strong>argumentos</strong>.</li>
+      <li>Métodos podem ou não retornar uma <strong>saída</strong> (um valor resultante do processamento). Se um método não retorna um valor, seu tipo de retorno é <code class="language-plaintext highlighter-rouge">void</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Em programação orientada a objetos (POO):</strong> Funções definidas dentro de classes são chamadas de <strong>métodos</strong>.</li>
+</ul>
+
+<h2 id="problema-exemplo-encontrar-o-maior-de-três-números-">Problema Exemplo: Encontrar o Maior de Três Números 🤔</h2>
+
+<p><strong>Tarefa:</strong> Fazer um programa para ler três números inteiros e mostrar na tela o maior deles.</p>
+
+<p><strong>Exemplo de Execução:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite três números:
+5
+8
+3
+Maior = 8
+</code></pre></div></div>
+
+<h3 id="solução-1-lógica-direto-no-main">Solução 1: Lógica Direto no <code class="language-plaintext highlighter-rouge">main</code></h3>
+
+<p>Nesta abordagem, toda a lógica para encontrar o maior número está contida diretamente no método <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaMaiorNumeroV1</span> <span class="o">{</span> <span class="c1">// Classe renomeada para Solução 1</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite três números:"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Maior = "</span> <span class="o">+</span> <span class="n">a</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Se 'a' não é o maior, e 'b' é maior que 'c', então 'b' é o maior</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Maior = "</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// Se 'a' não é o maior e 'b' não é o maior, então 'c' é o maior</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Maior = "</span> <span class="o">+</span> <span class="n">c</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="solução-2-usando-métodos-auxiliares">Solução 2: Usando Métodos Auxiliares</h3>
+
+<p>Esta abordagem utiliza métodos auxiliares para tornar o código mais modular e legível. Um método <code class="language-plaintext highlighter-rouge">encontrarMaior</code> calcula o maior número, e um método <code class="language-plaintext highlighter-rouge">mostrarResultado</code> exibe o resultado.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaMaiorNumeroV2</span> <span class="o">{</span> <span class="c1">// Classe renomeada para Solução 2</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite três números:"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span> <span class="c1">// Variáveis renomeadas para clareza</span>
+        <span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">num3</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="kt">int</span> <span class="n">maiorNumero</span> <span class="o">=</span> <span class="n">encontrarMaior</span><span class="o">(</span><span class="n">num1</span><span class="o">,</span> <span class="n">num2</span><span class="o">,</span> <span class="n">num3</span><span class="o">);</span>
+        <span class="n">mostrarResultado</span><span class="o">(</span><span class="n">maiorNumero</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Encontra o maior entre três números inteiros.
+     * @param x O primeiro número.
+     * @param y O segundo número.
+     * @param z O terceiro número.
+     * @return O maior dos três números.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">encontrarMaior</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">auxiliar</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">auxiliar</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">z</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Corrigido de y+z para y &gt; z</span>
+            <span class="n">auxiliar</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">auxiliar</span> <span class="o">=</span> <span class="n">z</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">auxiliar</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Exibe o resultado (o maior número).
+     * @param valor O valor a ser exibido.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mostrarResultado</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Maior = "</span> <span class="o">+</span> <span class="n">valor</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<!-- comentario 
+**Nota sobre o código original:**
+- O `else if (y+z)` no método `max` (agora `encontrarMaior`) foi corrigido para `else if (y > z)`, que é a lógica correta para encontrar o maior número.
+
+
+## Executando os Exemplos em IDEs Populares 💻
+
+Os exemplos de código Java fornecidos podem ser compilados e executados em qualquer ambiente de desenvolvimento Java configurado. Abaixo estão algumas dicas para duas IDEs populares: IntelliJ IDEA e Visual Studio Code.
+
+### IntelliJ IDEA (Community Edition ou Ultimate)
+1.  **Instalação:** Baixe e instale o IntelliJ IDEA do site da JetBrains. A Community Edition é gratuita.
+2.  **JDK:** Certifique-se de ter um JDK (Java Development Kit) instalado e configurado no IntelliJ (normalmente detectado automaticamente ou pode ser configurado em `File > Project Structure > SDKs`).
+3.  **Novo Projeto:**
+    - Clique em `File > New > Project...`.
+    - Selecione `Java` no painel esquerdo.
+    - Escolha o seu JDK em `Project SDK`.
+    - Clique em `Next`, `Next` (sem selecionar templates), dê um nome ao projeto e clique em `Finish`.
+4.  **Criar Classe:**
+    - Na janela `Project`, clique com o botão direito na pasta `src`.
+    - Selecione `New > Java Class`.
+    - Digite o nome da classe (ex: `ProgramaMaiorNumeroV1`) e pressione Enter.
+5.  **Escrever o Código:** Copie e cole o código do exemplo na classe criada.
+6.  **Executar:**
+    - Clique com o botão direito do mouse dentro da classe que contém o método `main`.
+    - Selecione `Run 'NomeDaClasse.main()'`.
+    - Alternativamente, clique na seta verde ao lado da declaração do método `main`.
+
+### Visual Studio Code (VS Code)
+1.  **Instalação:** Baixe e instale o VS Code do site oficial.
+2.  **JDK:** Certifique-se de ter um JDK (Java Development Kit) instalado em seu sistema e que o `JAVA_HOME` esteja configurado, ou que o VS Code consiga localizá-lo.
+3.  **Extensões Java:** Instale o "Extension Pack for Java" da Microsoft a partir do painel de Extensões do VS Code (Ctrl+Shift+X). Este pacote inclui suporte à linguagem, depuração, Maven, etc.
+4.  **Abrir Projeto/Pasta:**
+    - Crie uma pasta para o seu projeto (ex: `MeusProjetosJava`).
+    - No VS Code, clique em `File > Open Folder...` e selecione a pasta criada.
+5.  **Criar Arquivo `.java`:**
+    - Clique com o botão direito no painel `Explorer` (dentro da sua pasta de projeto) e selecione `New File`.
+    - Nomeie o arquivo com o mesmo nome da classe pública e a extensão `.java` (ex: `ProgramaMaiorNumeroV1.java`).
+    - É uma boa prática organizar os arquivos `.java` em uma subpasta `src`.
+6.  **Escrever o Código:** Copie e cole o código do exemplo no arquivo `.java` criado.
+7.  **Executar:**
+    - Com o arquivo Java aberto, você verá links "Run" e "Debug" acima do método `main` (fornecidos pela extensão Java). Clique em "Run".
+    - Alternativamente, clique com o botão direito no arquivo no Explorer ou no editor e selecione `Run Java`.
+    - A saída será exibida no painel `TERMINAL` ou `DEBUG CONSOLE`.
+
+Lembre-se de que o nome do arquivo `.java` deve corresponder exatamente ao nome da classe `public` declarada dentro dele. Os pacotes (`package curso;`) implicam uma estrutura de pastas (ex: `src/curso/NomeDaClasse.java`). Se você não estiver usando essa estrutura de pastas, pode remover a declaração de `package` para exemplos simples que estão na raiz do `src` ou da pasta do projeto.
+
+-->
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

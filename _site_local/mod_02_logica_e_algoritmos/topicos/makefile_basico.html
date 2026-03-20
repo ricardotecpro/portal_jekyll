@@ -1,0 +1,105 @@
+<h1 id="makefile-cc-compilando-projetos-profissionalmente">Makefile C/C++: Compilando Projetos Profissionalmente</h1>
+
+<p>Usar <code class="language-plaintext highlighter-rouge">Makefile</code> é o jeito profissional de compilar projetos em C (e outras linguagens).</p>
+
+<h3 id="vantagens-de-usar-makefile">Vantagens de usar Makefile:</h3>
+
+<ul>
+  <li>
+    <p>Automatiza o build</p>
+  </li>
+  <li>
+    <p>Facilita compilar projetos grandes</p>
+  </li>
+  <li>
+    <p>Fica padrão pra qualquer dev C/C++</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="exemplo-simples-de-makefile">Exemplo simples de Makefile</h2>
+
+<p>Suponha que você tem um arquivo <code class="language-plaintext highlighter-rouge">main.c</code>:</p>
+
+<h3 id="estrutura-dos-arquivos">Estrutura dos arquivos:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>meu_projeto/
+├── main.c
+└── Makefile
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="exemplo-de-conteúdo-do-makefile">Exemplo de conteúdo do <code class="language-plaintext highlighter-rouge">Makefile</code>:</h3>
+
+<pre><code class="language-Makefile"># Nome do executável
+PROG = programa
+
+# Compilador
+CC = gcc
+
+# Flags de compilação (avisos extras)
+CFLAGS = -Wall -Wextra -g
+
+# Alvo padrão
+all: $(PROG)
+
+# Como compilar
+$(PROG): main.c
+	$(CC) $(CFLAGS) main.c -o $(PROG)
+
+# Limpar arquivos gerados
+clean:
+	rm -f $(PROG)
+</code></pre>
+
+<hr />
+
+<h2 id="como-usar">Como usar:</h2>
+
+<p>Dentro da pasta do projeto:</p>
+
+<h3 id="compilar">Compilar:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+</code></pre></div></div>
+
+<p>Ele vai criar o executável <code class="language-plaintext highlighter-rouge">programa</code>.</p>
+
+<h3 id="rodar">Rodar:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./programa
+</code></pre></div></div>
+
+<h3 id="limpar-arquivos-gerados">Limpar arquivos gerados:</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make clean
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="automatizando-dentro-do-vim">Automatizando dentro do Vim</h2>
+
+<p>Dentro do Vim:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">:!</span><span class="k">make</span> &amp;&amp; <span class="p">.</span>/programa
+</code></pre></div></div>
+
+<p>Ou cria no <code class="language-plaintext highlighter-rouge">~/.vimrc</code> um atalho:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nnoremap <span class="p">&lt;</span>F5<span class="p">&gt;</span> <span class="p">:</span><span class="k">w</span><span class="p">&lt;</span>CR<span class="p">&gt;:!</span><span class="k">make</span> &amp;&amp; <span class="p">.</span>/programa<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>Agora dentro do Vim:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">F5</code> → Salva, compila com Makefile e executa.</li>
+</ul>
+
+<hr />
+
+<p>Montar um Makefile mais avançado</p>
+
+<p>Tipo separando arquivos <code class="language-plaintext highlighter-rouge">.h</code> e <code class="language-plaintext highlighter-rouge">.c</code> em pastas diferentes (src/, include/)</p>
+

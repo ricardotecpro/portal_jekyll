@@ -1,0 +1,368 @@
+<h3 id="visão-arquitetural-integrando-javafx-camada-de-serviço-e-dao"><strong>Visão Arquitetural: Integrando JavaFX, Camada de Serviço e DAO</strong></h3>
+
+<p>Este projeto representa uma aplicação desktop completa, integrando uma interface gráfica moderna com um banco de dados relacional. A arquitetura é projetada em camadas para garantir baixo acoplamento e alta coesão, facilitando a manutenção e a escalabilidade.</p>
+
+<ol>
+  <li><strong>Camada de Visão (GUI - JavaFX)</strong>: Composta por arquivos FXML que definem a estrutura visual e Controllers Java que gerenciam a interação do usuário. Esta camada não conhece os detalhes do banco de dados.</li>
+  <li><strong>Camada de Serviço (Service Layer)</strong>: Atua como um intermediário crucial. Os Controllers da GUI dependem dos serviços para obter e manipular dados. Esta camada encapsula a lógica de negócio e orquestra as operações, decidindo quais DAOs chamar.</li>
+  <li><strong>Camada de Acesso a Dados (DAO - JDBC)</strong>: Implementa o padrão Data Access Object. É a única camada que interage diretamente com o banco de dados via JDBC. Ela é responsável por executar as queries SQL e mapear os resultados para os objetos de entidade.</li>
+</ol>
+
+<p>Essa separação clara de responsabilidades é a chave para um software robusto e profissional.</p>
+
+<h3 id="estrutura-do-projeto-organização-para-um-crud-completo"><strong>Estrutura do Projeto: Organização para um CRUD Completo</strong></h3>
+
+<p>A organização dos pacotes reflete diretamente a arquitetura em camadas, tornando o projeto intuitivo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src
+└── com
+    └── yourproject
+        ├── application
+        │   └── Main.java             // Classe de inicialização da aplicação
+        │
+        ├── db                        // Pacote de conexão com o banco (reutilizado)
+        │   ├── DB.java
+        │   └── DbException.java
+        │
+        ├── gui
+        │   ├── MainView.fxml
+        │   ├── MainViewController.java
+        │   ├── DepartmentList.fxml
+        │   ├── DepartmentListController.java
+        │   ├── DepartmentForm.fxml
+        │   ├── DepartmentFormController.java
+        │   └── ... (outras views e controllers)
+        │
+        ├── gui
+        │   ├── listeners
+        │   │   └── DataChangeListener.java // Interface para o padrão Observer
+        │   └── util                  // Classes utilitárias da GUI
+        │       ├── Alerts.java
+        │       ├── Constraints.java
+        │       └── Utils.java
+        │
+        └── model
+            ├── entities              // Classes de domínio (Department, Seller)
+            ├── services              // Camada de serviço (DepartmentService, SellerService)
+            ├── dao                   // Interfaces DAO (DepartmentDao, SellerDao)
+            │   └── impl              // Implementações JDBC dos DAOs
+            └── exceptions
+                └── ValidationException.java // Exceção para erros de validação de formulário
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-1-configuração-do-projeto-e-janela-principal"><strong>Fase 1: Configuração do Projeto e Janela Principal</strong></h3>
+
+<p>Esta fase estabelece a base da aplicação: a janela principal que hospedará as outras telas.</p>
+
+<p><strong>1. Configuração do Projeto</strong></p>
+
+<ul>
+  <li>Crie um novo Projeto JavaFX no Eclipse.</li>
+  <li>Adicione as User Libraries <code class="language-plaintext highlighter-rouge">JavaFX</code> e <code class="language-plaintext highlighter-rouge">MySQLConnector</code> ao build path do projeto.</li>
+  <li>Configure os <code class="language-plaintext highlighter-rouge">VM arguments</code> na sua <code class="language-plaintext highlighter-rouge">Run Configuration</code>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--module-path "C:\caminho\para\javafx-sdk\lib" --add-modules javafx.controls,javafx.fxml
+</code></pre></div>    </div>
+  </li>
+  <li>Copie a camada de acesso a dados (pacotes <code class="language-plaintext highlighter-rouge">db</code>, <code class="language-plaintext highlighter-rouge">model.dao</code>, <code class="language-plaintext highlighter-rouge">model.dao.impl</code>) e o arquivo <code class="language-plaintext highlighter-rouge">db.properties</code> do projeto JDBC anterior.</li>
+</ul>
+
+<p><strong>2. Criando a Janela Principal (<code class="language-plaintext highlighter-rouge">MainView.fxml</code>)</strong>
+Use o Scene Builder para criar uma tela principal. O layout ideal é um <code class="language-plaintext highlighter-rouge">ScrollPane</code> contendo um <code class="language-plaintext highlighter-rouge">VBox</code>. Dentro do <code class="language-plaintext highlighter-rouge">VBox</code>, adicione um <code class="language-plaintext highlighter-rouge">MenuBar</code> para a navegação.</p>
+
+<p><strong>3. Carregando a View e Implementando a Navegação</strong>
+O <code class="language-plaintext highlighter-rouge">MainViewController</code> terá um método dinâmico para carregar outras views dentro do <code class="language-plaintext highlighter-rouge">ScrollPane</code> da janela principal.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.gui;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.fxml.FXML</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.FXMLLoader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Node</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Alert.AlertType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.MenuItem</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.AnchorPane</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.VBox</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.Consumer</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainViewController</span> <span class="o">{</span>
+
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">MenuItem</span> <span class="n">menuItemSeller</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">MenuItem</span> <span class="n">menuItemDepartment</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">MenuItem</span> <span class="n">menuItemAbout</span><span class="o">;</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMenuItemSellerAction</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"onMenuItemSellerAction"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMenuItemDepartmentAction</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// O Consumer permite passar uma ação de inicialização para o controller da nova tela</span>
+        <span class="n">loadView</span><span class="o">(</span><span class="s">"/com/yourproject/gui/DepartmentList.fxml"</span><span class="o">,</span> <span class="o">(</span><span class="nc">DepartmentListController</span> <span class="n">controller</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">controller</span><span class="o">.</span><span class="na">setDepartmentService</span><span class="o">(</span><span class="k">new</span> <span class="nc">DepartmentService</span><span class="o">());</span>
+            <span class="n">controller</span><span class="o">.</span><span class="na">updateTableView</span><span class="o">();</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMenuItemAboutAction</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">loadView</span><span class="o">(</span><span class="s">"/com/yourproject/gui/About.fxml"</span><span class="o">,</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="o">{});</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método sincronizado para evitar problemas de thread</span>
+    <span class="kd">private</span> <span class="kd">synchronized</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">loadView</span><span class="o">(</span><span class="nc">String</span> <span class="n">absoluteName</span><span class="o">,</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">initializingAction</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">FXMLLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FXMLLoader</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResource</span><span class="o">(</span><span class="n">absoluteName</span><span class="o">));</span>
+            <span class="nc">VBox</span> <span class="n">newVBox</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="na">load</span><span class="o">();</span>
+
+            <span class="c1">// Pega a cena principal e seu conteúdo (o ScrollPane -&gt; VBox)</span>
+            <span class="nc">Scene</span> <span class="n">mainScene</span> <span class="o">=</span> <span class="nc">Main</span><span class="o">.</span><span class="na">getMainScene</span><span class="o">();</span>
+            <span class="nc">VBox</span> <span class="n">mainVBox</span> <span class="o">=</span> <span class="o">(</span><span class="nc">VBox</span><span class="o">)</span> <span class="o">((</span><span class="nc">ScrollPane</span><span class="o">)</span> <span class="n">mainScene</span><span class="o">.</span><span class="na">getRoot</span><span class="o">()).</span><span class="na">getContent</span><span class="o">();</span>
+
+            <span class="c1">// Guarda o primeiro elemento (o MenuBar) e limpa o VBox principal</span>
+            <span class="nc">Node</span> <span class="n">mainMenu</span> <span class="o">=</span> <span class="n">mainVBox</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="n">mainVBox</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">clear</span><span class="o">();</span>
+            
+            <span class="c1">// Adiciona o MenuBar e os filhos da nova VBox</span>
+            <span class="n">mainVBox</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">mainMenu</span><span class="o">);</span>
+            <span class="n">mainVBox</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">newVBox</span><span class="o">.</span><span class="na">getChildren</span><span class="o">());</span>
+            
+            <span class="c1">// Executa a ação de inicialização passada como parâmetro</span>
+            <span class="no">T</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="na">getController</span><span class="o">();</span>
+            <span class="n">initializingAction</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">Alerts</span><span class="o">.</span><span class="na">showAlert</span><span class="o">(</span><span class="s">"IO Exception"</span><span class="o">,</span> <span class="s">"Error loading view"</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="nc">AlertType</span><span class="o">.</span><span class="na">ERROR</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-2-crud-de-departamentos---listagem-e-formulário"><strong>Fase 2: CRUD de Departamentos - Listagem e Formulário</strong></h3>
+
+<p>Vamos implementar o ciclo completo de operações para a entidade <code class="language-plaintext highlighter-rouge">Department</code>.</p>
+
+<p><strong>1. Controller da Lista (<code class="language-plaintext highlighter-rouge">DepartmentListController.java</code>)</strong>
+Este controller gerencia a tela que exibe todos os departamentos em uma <code class="language-plaintext highlighter-rouge">TableView</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.gui;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.collections.FXCollections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.collections.ObservableList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.FXML</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.Initializable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Button</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.TableColumn</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.TableView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.cell.PropertyValueFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ResourceBundle</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DepartmentListController</span> <span class="kd">implements</span> <span class="nc">Initializable</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">DepartmentService</span> <span class="n">service</span><span class="o">;</span>
+    
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableView</span><span class="o">&lt;</span><span class="nc">Department</span><span class="o">&gt;</span> <span class="n">tableViewDepartment</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableColumn</span><span class="o">&lt;</span><span class="nc">Department</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">tableColumnId</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableColumn</span><span class="o">&lt;</span><span class="nc">Department</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">tableColumnName</span><span class="o">;</span>
+    <span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">Button</span> <span class="n">btNew</span><span class="o">;</span>
+    
+    <span class="kd">private</span> <span class="nc">ObservableList</span><span class="o">&lt;</span><span class="nc">Department</span><span class="o">&gt;</span> <span class="n">obsList</span><span class="o">;</span>
+
+    <span class="c1">// Injeção de dependência do serviço</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDepartmentService</span><span class="o">(</span><span class="nc">DepartmentService</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">service</span> <span class="o">=</span> <span class="n">service</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateTableView</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">service</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">"Service was null"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Department</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">obsList</span> <span class="o">=</span> <span class="nc">FXCollections</span><span class="o">.</span><span class="na">observableArrayList</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+        <span class="n">tableViewDepartment</span><span class="o">.</span><span class="na">setItems</span><span class="o">(</span><span class="n">obsList</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="no">URL</span> <span class="n">url</span><span class="o">,</span> <span class="nc">ResourceBundle</span> <span class="n">rb</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Padrão para iniciar o comportamento das colunas da tabela</span>
+        <span class="n">tableColumnId</span><span class="o">.</span><span class="na">setCellValueFactory</span><span class="o">(</span><span class="k">new</span> <span class="nc">PropertyValueFactory</span><span class="o">&lt;&gt;(</span><span class="s">"id"</span><span class="o">));</span>
+        <span class="n">tableColumnName</span><span class="o">.</span><span class="na">setCellValueFactory</span><span class="o">(</span><span class="k">new</span> <span class="nc">PropertyValueFactory</span><span class="o">&lt;&gt;(</span><span class="s">"name"</span><span class="o">));</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@FXML</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onBtNewAction</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Lógica para abrir o formulário de diálogo</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>2. Abrindo o Formulário de Diálogo (<code class="language-plaintext highlighter-rouge">createDialogForm</code>)</strong>
+Este método, dentro do <code class="language-plaintext highlighter-rouge">DepartmentListController</code>, é responsável por criar e exibir a janela de formulário (modal).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Dentro de DepartmentListController.java</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">createDialogForm</span><span class="o">(</span><span class="nc">Department</span> <span class="n">obj</span><span class="o">,</span> <span class="nc">String</span> <span class="n">absoluteName</span><span class="o">,</span> <span class="nc">Stage</span> <span class="n">parentStage</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="nc">FXMLLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FXMLLoader</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResource</span><span class="o">(</span><span class="n">absoluteName</span><span class="o">));</span>
+        <span class="nc">AnchorPane</span> <span class="n">pane</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="na">load</span><span class="o">();</span>
+
+        <span class="nc">DepartmentFormController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="na">getController</span><span class="o">();</span>
+        <span class="n">controller</span><span class="o">.</span><span class="na">setDepartment</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+        <span class="n">controller</span><span class="o">.</span><span class="na">setDepartmentService</span><span class="o">(</span><span class="k">new</span> <span class="nc">DepartmentService</span><span class="o">());</span>
+        
+        <span class="c1">// Inscreve o ListController para ouvir mudanças</span>
+        <span class="n">controller</span><span class="o">.</span><span class="na">subscribeDataChangeListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        
+        <span class="n">controller</span><span class="o">.</span><span class="na">updateFormData</span><span class="o">();</span>
+
+        <span class="nc">Stage</span> <span class="n">dialogStage</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stage</span><span class="o">();</span>
+        <span class="n">dialogStage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Enter Department data"</span><span class="o">);</span>
+        <span class="n">dialogStage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">pane</span><span class="o">));</span>
+        <span class="n">dialogStage</span><span class="o">.</span><span class="na">setResizable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">dialogStage</span><span class="o">.</span><span class="na">initOwner</span><span class="o">(</span><span class="n">parentStage</span><span class="o">);</span>
+        <span class="n">dialogStage</span><span class="o">.</span><span class="na">initModality</span><span class="o">(</span><span class="nc">Modality</span><span class="o">.</span><span class="na">WINDOW_MODAL</span><span class="o">);</span> <span class="c1">// Bloqueia a janela pai</span>
+        <span class="n">dialogStage</span><span class="o">.</span><span class="na">showAndWait</span><span class="o">();</span>
+
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Alerts</span><span class="o">.</span><span class="na">showAlert</span><span class="o">(</span><span class="s">"IO Exception"</span><span class="o">,</span> <span class="s">"Error loading view"</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="nc">AlertType</span><span class="o">.</span><span class="na">ERROR</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-3-comunicação-entre-controllers-com-o-padrão-observer"><strong>Fase 3: Comunicação entre Controllers com o Padrão Observer</strong></h3>
+
+<p>Quando um departamento é salvo no formulário, a lista na tela principal precisa ser atualizada. Usamos o padrão Observer para desacoplar os controllers.</p>
+
+<p><strong>1. Interface <code class="language-plaintext highlighter-rouge">DataChangeListener.java</code></strong>
+Define o contrato para qualquer classe que queira ser notificada sobre mudanças nos dados.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.gui.listeners;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DataChangeListener</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">onDataChanged</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>2. <code class="language-plaintext highlighter-rouge">DepartmentFormController.java</code> (O Sujeito / Publicador)</strong>
+Este controller notifica os listeners (observadores) quando um dado é salvo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DepartmentFormController</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">DataChangeListener</span><span class="o">&gt;</span> <span class="n">dataChangeListeners</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribeDataChangeListener</span><span class="o">(</span><span class="nc">DataChangeListener</span> <span class="n">listener</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dataChangeListeners</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">listener</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">notifyDataChangeListeners</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">DataChangeListener</span> <span class="n">listener</span> <span class="o">:</span> <span class="n">dataChangeListeners</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">listener</span><span class="o">.</span><span class="na">onDataChanged</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onBtSaveAction</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// ... lógica para salvar o departamento ...</span>
+        <span class="n">service</span><span class="o">.</span><span class="na">saveOrUpdate</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+        <span class="n">notifyDataChangeListeners</span><span class="o">();</span> <span class="c1">// Notifica que os dados mudaram</span>
+        <span class="nc">Utils</span><span class="o">.</span><span class="na">currentStage</span><span class="o">(</span><span class="n">event</span><span class="o">).</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>3. <code class="language-plaintext highlighter-rouge">DepartmentListController.java</code> (O Observador)</strong>
+Este controller implementa a interface e se inscreve para receber as notificações.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DepartmentListController</span> <span class="kd">implements</span> <span class="nc">Initializable</span><span class="o">,</span> <span class="nc">DataChangeListener</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDataChanged</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">updateTableView</span><span class="o">();</span> <span class="c1">// Ação a ser executada quando notificado</span>
+    <span class="o">}</span>
+    <span class="c1">// No método createDialogForm, ele se inscreve:</span>
+    <span class="c1">// controller.subscribeDataChangeListener(this);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-4-adicionando-botões-de-ação-na-tableview"><strong>Fase 4: Adicionando Botões de Ação na <code class="language-plaintext highlighter-rouge">TableView</code></strong></h3>
+
+<p>Para permitir a edição e exclusão diretamente na lista, adicionamos colunas com botões. Isso é feito programaticamente usando <code class="language-plaintext highlighter-rouge">CellFactory</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Dentro de DepartmentListController.java</span>
+<span class="nd">@FXML</span> <span class="kd">private</span> <span class="nc">TableColumn</span><span class="o">&lt;</span><span class="nc">Department</span><span class="o">,</span> <span class="nc">Department</span><span class="o">&gt;</span> <span class="n">tableColumnEDIT</span><span class="o">;</span>
+
+<span class="c1">// Adicione este método e chame-o no initialize()</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">initEditButtons</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Define a fábrica de células para a coluna de edição</span>
+    <span class="n">tableColumnEDIT</span><span class="o">.</span><span class="na">setCellValueFactory</span><span class="o">(</span><span class="n">param</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">ReadOnlyObjectWrapper</span><span class="o">&lt;&gt;(</span><span class="n">param</span><span class="o">.</span><span class="na">getValue</span><span class="o">()));</span>
+    <span class="n">tableColumnEDIT</span><span class="o">.</span><span class="na">setCellFactory</span><span class="o">(</span><span class="n">param</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">TableCell</span><span class="o">&lt;</span><span class="nc">Department</span><span class="o">,</span> <span class="nc">Department</span><span class="o">&gt;()</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Button</span> <span class="n">button</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">"edit"</span><span class="o">);</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">updateItem</span><span class="o">(</span><span class="nc">Department</span> <span class="n">obj</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">empty</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">.</span><span class="na">updateItem</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="n">empty</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">setGraphic</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+                <span class="k">return</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// Adiciona o botão à célula</span>
+            <span class="n">setGraphic</span><span class="o">(</span><span class="n">button</span><span class="o">);</span>
+            <span class="c1">// Define a ação do botão</span>
+            <span class="n">button</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span>
+                <span class="n">event</span> <span class="o">-&gt;</span> <span class="n">createDialogForm</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="s">"/com/yourproject/gui/DepartmentForm.fxml"</span><span class="o">,</span> <span class="nc">Utils</span><span class="o">.</span><span class="na">currentStage</span><span class="o">(</span><span class="n">event</span><span class="o">)));</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>A lógica para o botão de remoção é similar, mas sua ação chamaria um método <code class="language-plaintext highlighter-rouge">removeEntity(obj)</code> que, por sua vez, invoca <code class="language-plaintext highlighter-rouge">service.remove(obj)</code> e trata <code class="language-plaintext highlighter-rouge">DbIntegrityException</code>.</p>
+
+<h3 id="fase-5-implementando-o-crud-de-vendedores-e-componentes-avançados"><strong>Fase 5: Implementando o CRUD de Vendedores e Componentes Avançados</strong></h3>
+
+<p>A implementação do CRUD de <code class="language-plaintext highlighter-rouge">Seller</code> segue o mesmo padrão do <code class="language-plaintext highlighter-rouge">Department</code>, mas introduz novos desafios:</p>
+
+<ul>
+  <li><strong>Formatação de Colunas</strong>: Use métodos utilitários para formatar datas e valores <code class="language-plaintext highlighter-rouge">Double</code> na <code class="language-plaintext highlighter-rouge">TableView</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">DatePicker</code></strong>: No formulário do vendedor, utilize o componente <code class="language-plaintext highlighter-rouge">DatePicker</code> para o campo de data de nascimento.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ComboBox</code> para Associação</strong>: Adicione um <code class="language-plaintext highlighter-rouge">ComboBox</code> no formulário do vendedor para selecionar o <code class="language-plaintext highlighter-rouge">Department</code>. Este ComboBox deve ser populado buscando todos os departamentos através do <code class="language-plaintext highlighter-rouge">DepartmentService</code>.</li>
+</ul>
+
+<h3 id="fase-6-empacotamento-e-distribuição"><strong>Fase 6: Empacotamento e Distribuição</strong></h3>
+
+<p>Após finalizar o desenvolvimento, o próximo passo é gerar um pacote executável.</p>
+
+<ol>
+  <li>
+    <p><strong>Exportar JAR Executável</strong>: No Eclipse, clique com o botão direito no projeto -&gt; <code class="language-plaintext highlighter-rouge">Export...</code> -&gt; <code class="language-plaintext highlighter-rouge">Java</code> -&gt; <code class="language-plaintext highlighter-rouge">Runnable JAR file</code>.</p>
+
+    <ul>
+      <li>Selecione a classe <code class="language-plaintext highlighter-rouge">Main</code> da sua aplicação.</li>
+      <li>Escolha um diretório de destino.</li>
+      <li>Em <code class="language-plaintext highlighter-rouge">Library handling</code>, selecione a opção: <strong>“Package required libraries into generated JAR”</strong>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Preparar a Pasta de Distribuição</strong>: Crie uma pasta e coloque nela:</p>
+
+    <ul>
+      <li>O arquivo <code class="language-plaintext highlighter-rouge">.jar</code> que você gerou.</li>
+      <li>O arquivo <code class="language-plaintext highlighter-rouge">db.properties</code>.</li>
+      <li>Uma pasta <code class="language-plaintext highlighter-rouge">lib</code> contendo o <code class="language-plaintext highlighter-rouge">mysql-connector.jar</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Executar a Aplicação</strong>:
+Para executar, o usuário final precisará do Java e do JavaFX SDK. O comando de execução via terminal, que pode ser colocado em um arquivo <code class="language-plaintext highlighter-rouge">.bat</code> (Windows) ou <code class="language-plaintext highlighter-rouge">.sh</code> (Linux/Mac) para facilitar, é:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">--module-path</span> /caminho/para/javafx-sdk/lib <span class="nt">--add-modules</span> javafx.controls,javafx.fxml <span class="nt">-jar</span> SeuAplicativo.jar
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Este guia abrange o ciclo de vida completo do projeto, desde a arquitetura e configuração até a implementação de funcionalidades complexas e a distribuição final da aplicação.</p>

@@ -1,0 +1,341 @@
+<h1 id="sistema-de-cadastro-de-alunos-em-javascript-poo"><strong>Sistema de Cadastro de Alunos em JavaScript (POO)</strong></h1>
+
+<p>Sistema de cadastro de alunos** usando <strong>JavaScript</strong> com orientação a objetos. Essa versão pode ser executada diretamente no navegador ou no Node.js.</p>
+
+<hr />
+
+<h2 id="-sistema-de-cadastro-de-alunos-em-javascript-poo">🟨 Sistema de Cadastro de Alunos em JavaScript (POO)</h2>
+
+<hr />
+
+<h3 id="-objetivo">🎯 <strong>Objetivo</strong></h3>
+
+<p>Criar uma aplicação simples em JavaScript que permita:</p>
+
+<ul>
+  <li>
+    <p>Cadastrar os dados de um aluno</p>
+  </li>
+  <li>
+    <p>Cadastrar a média de notas</p>
+  </li>
+  <li>
+    <p>Exibir todas as informações no console</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-etapa-1-criando-a-classe-aluno">📦 Etapa 1: Criando a classe <code class="language-plaintext highlighter-rouge">Aluno</code></h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Aluno</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">media</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">cadastrarDados</span><span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nx">idade</span><span class="p">,</span> <span class="nx">matricula</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="nx">nome</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="nx">idade</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span> <span class="o">=</span> <span class="nx">matricula</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">cadastrarMediaNotas</span><span class="p">(</span><span class="nx">media</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">media</span> <span class="o">=</span> <span class="nx">media</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">exibirInformacoes</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">=== DADOS DO ALUNO ===</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Nome:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">nome</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Idade:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">idade</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Matrícula:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Média de notas:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">media</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-etapa-2-criando-o-script-principal">📦 Etapa 2: Criando o script principal</h2>
+
+<h3 id="-em-um-ambiente-nodejs-linha-de-comando">👉 Em um ambiente <strong>Node.js</strong> (linha de comando)</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">readline</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">readline</span><span class="dl">"</span><span class="p">).</span><span class="nf">createInterface</span><span class="p">({</span>
+  <span class="na">input</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">,</span>
+  <span class="na">output</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">aluno</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Aluno</span><span class="p">();</span>
+
+<span class="nx">readline</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite o nome do aluno: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">nome</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">readline</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a idade do aluno: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">idade</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">readline</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a matrícula do aluno: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">matricula</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">aluno</span><span class="p">.</span><span class="nf">cadastrarDados</span><span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">idade</span><span class="p">),</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">matricula</span><span class="p">));</span>
+
+      <span class="nx">readline</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a média de notas: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">media</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">aluno</span><span class="p">.</span><span class="nf">cadastrarMediaNotas</span><span class="p">(</span><span class="nf">parseFloat</span><span class="p">(</span><span class="nx">media</span><span class="p">));</span>
+
+        <span class="nx">aluno</span><span class="p">.</span><span class="nf">exibirInformacoes</span><span class="p">();</span>
+        <span class="nx">readline</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-em-um-ambiente-navegador-html--js">👉 Em um ambiente <strong>navegador (HTML + JS)</strong></h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-BR"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Cadastro de Aluno<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Abra o console para ver o resultado (F12)<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+    <span class="kd">class</span> <span class="nc">Aluno</span> <span class="p">{</span>
+      <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">media</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nf">cadastrarDados</span><span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nx">idade</span><span class="p">,</span> <span class="nx">matricula</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="nx">nome</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="nx">idade</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span> <span class="o">=</span> <span class="nx">matricula</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nf">cadastrarMediaNotas</span><span class="p">(</span><span class="nx">media</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">media</span> <span class="o">=</span> <span class="nx">media</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nf">exibirInformacoes</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">=== DADOS DO ALUNO ===</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Nome:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">nome</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Idade:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">idade</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Matrícula:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Média de notas:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">media</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">const</span> <span class="nx">aluno</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Aluno</span><span class="p">();</span>
+
+    <span class="kd">const</span> <span class="nx">nome</span> <span class="o">=</span> <span class="nf">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite o nome do aluno:</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">idade</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nf">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a idade do aluno:</span><span class="dl">"</span><span class="p">));</span>
+    <span class="kd">const</span> <span class="nx">matricula</span> <span class="o">=</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nf">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite o número de matrícula:</span><span class="dl">"</span><span class="p">));</span>
+    <span class="kd">const</span> <span class="nx">media</span> <span class="o">=</span> <span class="nf">parseFloat</span><span class="p">(</span><span class="nf">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a média de notas:</span><span class="dl">"</span><span class="p">));</span>
+
+    <span class="nx">aluno</span><span class="p">.</span><span class="nf">cadastrarDados</span><span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nx">idade</span><span class="p">,</span> <span class="nx">matricula</span><span class="p">);</span>
+    <span class="nx">aluno</span><span class="p">.</span><span class="nf">cadastrarMediaNotas</span><span class="p">(</span><span class="nx">media</span><span class="p">);</span>
+    <span class="nx">aluno</span><span class="p">.</span><span class="nf">exibirInformacoes</span><span class="p">();</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-o-que-os-alunos-aprendem-com-esse-exemplo">🧠 O que os alunos aprendem com esse exemplo?</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Conceito</th>
+      <th>Aplicação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Classes e objetos</td>
+      <td><code class="language-plaintext highlighter-rouge">class</code>, <code class="language-plaintext highlighter-rouge">constructor()</code>, <code class="language-plaintext highlighter-rouge">new Aluno()</code></td>
+    </tr>
+    <tr>
+      <td>Métodos de instância</td>
+      <td><code class="language-plaintext highlighter-rouge">cadastrarDados()</code>, <code class="language-plaintext highlighter-rouge">exibirInformacoes()</code></td>
+    </tr>
+    <tr>
+      <td>Tipagem dinâmica</td>
+      <td>Conversão com <code class="language-plaintext highlighter-rouge">parseInt</code>, <code class="language-plaintext highlighter-rouge">parseFloat</code></td>
+    </tr>
+    <tr>
+      <td>Entrada interativa</td>
+      <td><code class="language-plaintext highlighter-rouge">prompt()</code> no navegador, <code class="language-plaintext highlighter-rouge">readline</code> no Node.js</td>
+    </tr>
+    <tr>
+      <td>Console para debug</td>
+      <td><code class="language-plaintext highlighter-rouge">console.log()</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-fluxograma-igual-para-todas-as-linguagens">📊 Fluxograma (igual para todas as linguagens)</h2>
+
+<pre><code class="language-plantuml">@startuml
+start
+:Criar objeto aluno (Aluno);
+:Capturar nome, idade, matrícula;
+:Chamar aluno.cadastrarDados();
+:Capturar média;
+:Chamar aluno.cadastrarMediaNotas();
+:Chamar aluno.exibirInformacoes();
+stop
+@enduml
+</code></pre>
+
+<hr />
+
+<p>NODEJS</p>
+
+<p>Projeto de <strong>cadastro de aluno em Node.js (linha de comando)</strong> com estrutura profissional e simples para uso em sala de aula. A ideia é separar a lógica da aplicação em arquivos modulares, algo próximo ao que se faz em projetos maiores.</p>
+
+<hr />
+
+<h2 id="-estrutura-de-arquivos">📁 Estrutura de Arquivos</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cadastro-aluno-node/
+├── package.json
+├── index.js            # ponto de entrada do app
+└── src/
+    ├── aluno.js        # classe Aluno (POO)
+    └── utils.js        # funções auxiliares (opcional)
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-etapa-1-criar-o-projeto-com-nodejs">📦 Etapa 1: Criar o projeto com Node.js</h2>
+
+<p>No terminal, execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>cadastro-aluno-node
+<span class="nb">cd </span>cadastro-aluno-node
+npm init <span class="nt">-y</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-etapa-2-criar-os-arquivos">📦 Etapa 2: Criar os arquivos</h2>
+
+<h3 id="srcalunojs--classe-aluno"><code class="language-plaintext highlighter-rouge">src/aluno.js</code> – Classe Aluno</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Aluno</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">media</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">cadastrarDados</span><span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nx">idade</span><span class="p">,</span> <span class="nx">matricula</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nome</span> <span class="o">=</span> <span class="nx">nome</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">idade</span> <span class="o">=</span> <span class="nx">idade</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span> <span class="o">=</span> <span class="nx">matricula</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">cadastrarMediaNotas</span><span class="p">(</span><span class="nx">media</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">media</span> <span class="o">=</span> <span class="nx">media</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">exibirInformacoes</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">
+=== DADOS DO ALUNO ===</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Nome:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">nome</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Idade:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">idade</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Matrícula:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matricula</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Média de notas:</span><span class="dl">"</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">media</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Aluno</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="indexjs--ponto-de-entrada"><code class="language-plaintext highlighter-rouge">index.js</code> – Ponto de entrada</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">readline</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">readline</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">Aluno</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">./src/aluno</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">rl</span> <span class="o">=</span> <span class="nx">readline</span><span class="p">.</span><span class="nf">createInterface</span><span class="p">({</span>
+  <span class="na">input</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdin</span><span class="p">,</span>
+  <span class="na">output</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">aluno</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Aluno</span><span class="p">();</span>
+
+<span class="nx">rl</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite o nome do aluno: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">nome</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">rl</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a idade do aluno: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">idade</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">rl</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a matrícula do aluno: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">matricula</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">aluno</span><span class="p">.</span><span class="nf">cadastrarDados</span><span class="p">(</span><span class="nx">nome</span><span class="p">,</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">idade</span><span class="p">),</span> <span class="nf">parseInt</span><span class="p">(</span><span class="nx">matricula</span><span class="p">));</span>
+
+      <span class="nx">rl</span><span class="p">.</span><span class="nf">question</span><span class="p">(</span><span class="dl">"</span><span class="s2">Digite a média de notas: </span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">media</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">aluno</span><span class="p">.</span><span class="nf">cadastrarMediaNotas</span><span class="p">(</span><span class="nf">parseFloat</span><span class="p">(</span><span class="nx">media</span><span class="p">));</span>
+        <span class="nx">aluno</span><span class="p">.</span><span class="nf">exibirInformacoes</span><span class="p">();</span>
+
+        <span class="nx">rl</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="opcional-srcutilsjs--funções-auxiliares">(Opcional) <code class="language-plaintext highlighter-rouge">src/utils.js</code> – Funções auxiliares</h3>
+
+<p>Se quiser deixar o projeto mais modular, pode mover validações ou formatações para esse arquivo.</p>
+
+<hr />
+
+<h2 id="️-executar-o-projeto">▶️ Executar o Projeto</h2>
+
+<p>No terminal, rode:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node index.js
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-o-que-os-alunos-aprendem-com-isso">📌 O que os alunos aprendem com isso?</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Conceito</th>
+      <th>Aplicação prática</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Módulos Node.js</td>
+      <td><code class="language-plaintext highlighter-rouge">require</code>, <code class="language-plaintext highlighter-rouge">module.exports</code></td>
+    </tr>
+    <tr>
+      <td>Orientação a Objetos</td>
+      <td>Classe Aluno</td>
+    </tr>
+    <tr>
+      <td>Entrada de dados</td>
+      <td><code class="language-plaintext highlighter-rouge">readline</code></td>
+    </tr>
+    <tr>
+      <td>Tipagem e parseamento</td>
+      <td><code class="language-plaintext highlighter-rouge">parseInt</code>, <code class="language-plaintext highlighter-rouge">parseFloat</code></td>
+    </tr>
+    <tr>
+      <td>Organização em arquivos</td>
+      <td>Separação em <code class="language-plaintext highlighter-rouge">src/</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+

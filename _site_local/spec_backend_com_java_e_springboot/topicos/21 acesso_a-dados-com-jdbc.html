@@ -1,0 +1,346 @@
+<h3 id="visão-arquitetural-acesso-a-dados-com-jdbc-e-o-padrão-dao"><strong>Visão Arquitetural: Acesso a Dados com JDBC e o Padrão DAO</strong></h3>
+
+<p>O <strong>JDBC (Java Database Connectivity)</strong> é a API fundamental do Java que nos permite executar comandos SQL em um banco de dados relacional. Embora poderosa, a utilização direta do JDBC pode levar a um código repetitivo e acoplado à sua infraestrutura.</p>
+
+<p>Para resolver isso, aplicamos o padrão de projeto <strong>DAO (Data Access Object)</strong>. A estratégia é criar uma camada de abstração que isola completamente a lógica de negócio das particularidades da persistência de dados. Cada entidade do nosso modelo de domínio (como <code class="language-plaintext highlighter-rouge">Vendedor</code> ou <code class="language-plaintext highlighter-rouge">Departamento</code>) terá um “objeto de acesso a dados” correspondente, responsável por todas as operações de CRUD (Create, Retrieve, Update, Delete) para aquela entidade.</p>
+
+<h3 id="estrutura-do-projeto-organização-para-escalabilidade"><strong>Estrutura do Projeto: Organização para Escalabilidade</strong></h3>
+
+<p>Uma estrutura de pacotes bem definida é crucial para a manutenibilidade. Para este projeto, adotaremos uma organização que separa claramente as responsabilidades:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src
+└── com
+    └── yourdomain
+        ├── application
+        │   └── Program.java        // Classe principal para testar a aplicação
+        │
+        ├── db
+        │   ├── DB.java             // Classe utilitária para conexão com o banco
+        │   ├── DbException.java    // Exceção personalizada para erros de DB
+        │   └── DbIntegrityException.java // Exceção para violação de integridade
+        │
+        └── model
+            ├── entities
+            │   ├── Department.java // Classe da entidade Departamento
+            │   └── Seller.java     // Classe da entidade Vendedor
+            │
+            ├── dao
+            │   ├── DaoFactory.java     // Fábrica para criar os objetos DAO
+            │   ├── DepartmentDao.java  // Interface para o DAO de Departamento
+            │   └── SellerDao.java      // Interface para o DAO de Vendedor
+            │
+            └── dao
+                └── impl
+                    ├── DepartmentDaoJDBC.java // Implementação do DAO com JDBC
+                    └── SellerDaoJDBC.java     // Implementação do DAO com JDBC
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-1-configuração-da-conexão-com-o-banco-de-dados"><strong>Fase 1: Configuração da Conexão com o Banco de Dados</strong></h3>
+
+<p>O primeiro passo é criar uma base sólida e centralizada para gerenciar a conexão com o banco de dados.</p>
+
+<p><strong>1. Arquivo <code class="language-plaintext highlighter-rouge">db.properties</code></strong>
+Crie este arquivo na raiz do projeto. Ele externaliza as credenciais e a URL de conexão, permitindo alterá-las sem recompilar o código.</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">user</span><span class="p">=</span><span class="s">root</span>
+<span class="py">password</span><span class="p">=</span><span class="s">your_password</span>
+<span class="py">dburl</span><span class="p">=</span><span class="s">jdbc:mysql://localhost:3306/coursejdbc?useSSL=false&amp;serverTimezone=UTC</span>
+</code></pre></div></div>
+
+<p><strong>2. Classe Utilitária <code class="language-plaintext highlighter-rouge">DB.java</code></strong>
+Esta classe será responsável por carregar as propriedades, obter e fechar conexões. O uso de métodos estáticos a torna um ponto de acesso único e conveniente.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourdomain.db;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.ResultSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.Statement</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DB</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="c1">// Carrega as propriedades do arquivo db.properties</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Properties</span> <span class="nf">loadProperties</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">FileInputStream</span> <span class="n">fs</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"db.properties"</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">();</span>
+            <span class="n">props</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">fs</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">props</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Obtém uma nova conexão com o banco de dados</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Connection</span> <span class="nf">getConnection</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">conn</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="n">loadProperties</span><span class="o">();</span>
+                <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">"dburl"</span><span class="o">);</span>
+                <span class="n">conn</span> <span class="o">=</span> <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">props</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">conn</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Fecha a conexão</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeConnection</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">conn</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">conn</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Métodos auxiliares para fechar Statement e ResultSet de forma segura</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeStatement</span><span class="o">(</span><span class="nc">Statement</span> <span class="n">st</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">st</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">st</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeResultSet</span><span class="o">(</span><span class="nc">ResultSet</span> <span class="n">rs</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">rs</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">rs</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-2-modelagem-das-entidades"><strong>Fase 2: Modelagem das Entidades</strong></h3>
+
+<p>As classes de entidade são um espelho das tabelas do banco de dados.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Department.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourdomain.model.entities;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.Serializable</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Department</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Department</span><span class="o">()</span> <span class="o">{}</span>
+
+    <span class="kd">public</span> <span class="nf">Department</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters, Setters, hashCode, equals e toString</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-3-projetando-e-implementando-o-padrão-dao"><strong>Fase 3: Projetando e Implementando o Padrão DAO</strong></h3>
+
+<p>Aqui criamos a camada de abstração para o acesso a dados.</p>
+
+<p><strong>1. Interface <code class="language-plaintext highlighter-rouge">SellerDao.java</code></strong>
+A interface define o “contrato”, ou seja, quais operações de persistência estarão disponíveis para a entidade <code class="language-plaintext highlighter-rouge">Seller</code>, sem se preocupar com a tecnologia (JDBC, JPA, etc.).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourdomain.model.dao;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.entities.Department</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.entities.Seller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">SellerDao</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">insert</span><span class="o">(</span><span class="nc">Seller</span> <span class="n">obj</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="nc">Seller</span> <span class="n">obj</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">deleteById</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">);</span>
+    <span class="nc">Seller</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">);</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Seller</span><span class="o">&gt;</span> <span class="nf">findAll</span><span class="o">();</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Seller</span><span class="o">&gt;</span> <span class="nf">findByDepartment</span><span class="o">(</span><span class="nc">Department</span> <span class="n">department</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>2. Fábrica <code class="language-plaintext highlighter-rouge">DaoFactory.java</code></strong>
+Esta classe usa o Padrão de Fábrica (Factory Pattern) para desacoplar a implementação do DAO do código cliente. O programa principal não precisará saber qual implementação concreta está sendo usada.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourdomain.model.dao;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourdomain.db.DB</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.dao.impl.SellerDaoJDBC</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DaoFactory</span> <span class="o">{</span>
+    <span class="c1">// O método expõe a interface, mas internamente instancia a implementação</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">SellerDao</span> <span class="nf">createSellerDao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">SellerDaoJDBC</span><span class="o">(</span><span class="no">DB</span><span class="o">.</span><span class="na">getConnection</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>3. Implementação <code class="language-plaintext highlighter-rouge">SellerDaoJDBC.java</code></strong>
+Esta é a classe concreta que contém o código JDBC para executar as operações SQL.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourdomain.model.dao.impl;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourdomain.db.DbException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.dao.SellerDao</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.entities.Department</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.entities.Seller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SellerDaoJDBC</span> <span class="kd">implements</span> <span class="nc">SellerDao</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Connection</span> <span class="n">conn</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">SellerDaoJDBC</span><span class="o">(</span><span class="nc">Connection</span> <span class="n">conn</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Seller</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">PreparedStatement</span> <span class="n">st</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="nc">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">st</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span>
+                <span class="s">"SELECT seller.*, department.Name as DepName "</span>
+                <span class="o">+</span> <span class="s">"FROM seller INNER JOIN department "</span>
+                <span class="o">+</span> <span class="s">"ON seller.DepartmentId = department.Id "</span>
+                <span class="o">+</span> <span class="s">"WHERE seller.Id = ?"</span><span class="o">);</span>
+
+            <span class="n">st</span><span class="o">.</span><span class="na">setInt</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+            <span class="n">rs</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">();</span>
+
+            <span class="c1">// O ResultSet pode retornar um ou nenhum resultado</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+                <span class="nc">Department</span> <span class="n">dep</span> <span class="o">=</span> <span class="n">instantiateDepartment</span><span class="o">(</span><span class="n">rs</span><span class="o">);</span>
+                <span class="nc">Seller</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">instantiateSeller</span><span class="o">(</span><span class="n">rs</span><span class="o">,</span> <span class="n">dep</span><span class="o">);</span>
+                <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="c1">// Fechamento dos recursos</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="o">(</span><span class="nc">Seller</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">PreparedStatement</span> <span class="n">st</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">st</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span>
+                <span class="s">"INSERT INTO seller "</span>
+                <span class="o">+</span> <span class="s">"(Name, Email, BirthDate, BaseSalary, DepartmentId) "</span>
+                <span class="o">+</span> <span class="s">"VALUES (?, ?, ?, ?, ?)"</span><span class="o">,</span>
+                <span class="nc">Statement</span><span class="o">.</span><span class="na">RETURN_GENERATED_KEYS</span><span class="o">);</span> <span class="c1">// Pede para retornar o ID gerado</span>
+
+            <span class="n">st</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">obj</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+            <span class="n">st</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">obj</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+            <span class="n">st</span><span class="o">.</span><span class="na">setDate</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Date</span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">getBirthDate</span><span class="o">().</span><span class="na">getTime</span><span class="o">()));</span>
+            <span class="n">st</span><span class="o">.</span><span class="na">setDouble</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="n">obj</span><span class="o">.</span><span class="na">getBaseSalary</span><span class="o">());</span>
+            <span class="n">st</span><span class="o">.</span><span class="na">setInt</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="n">obj</span><span class="o">.</span><span class="na">getDepartment</span><span class="o">().</span><span class="na">getId</span><span class="o">());</span>
+            
+            <span class="kt">int</span> <span class="n">rowsAffected</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="na">executeUpdate</span><span class="o">();</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">rowsAffected</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="na">getGeneratedKeys</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// O ID gerado está na primeira coluna</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="s">"Unexpected error! No rows affected!"</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SQLException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">DbException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="c1">// Fechamento dos recursos</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Métodos auxiliares para evitar duplicação de código</span>
+    <span class="kd">private</span> <span class="nc">Department</span> <span class="nf">instantiateDepartment</span><span class="o">(</span><span class="nc">ResultSet</span> <span class="n">rs</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">SQLException</span> <span class="o">{</span>
+        <span class="nc">Department</span> <span class="n">dep</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Department</span><span class="o">();</span>
+        <span class="n">dep</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"DepartmentId"</span><span class="o">));</span>
+        <span class="n">dep</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"DepName"</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">dep</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">Seller</span> <span class="nf">instantiateSeller</span><span class="o">(</span><span class="nc">ResultSet</span> <span class="n">rs</span><span class="o">,</span> <span class="nc">Department</span> <span class="n">dep</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">SQLException</span> <span class="o">{</span>
+        <span class="nc">Seller</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Seller</span><span class="o">();</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">"Id"</span><span class="o">));</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"Name"</span><span class="o">));</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"Email"</span><span class="o">));</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setBaseSalary</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getDouble</span><span class="o">(</span><span class="s">"BaseSalary"</span><span class="o">));</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setBirthDate</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getDate</span><span class="o">(</span><span class="s">"BirthDate"</span><span class="o">));</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setDepartment</span><span class="o">(</span><span class="n">dep</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// ... Implementação dos outros métodos (update, delete, findAll, etc.)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-4-utilizando-o-dao-na-aplicação"><strong>Fase 4: Utilizando o DAO na Aplicação</strong></h3>
+
+<p>Finalmente, a classe <code class="language-plaintext highlighter-rouge">Program</code> pode usar a fábrica para obter uma instância do DAO e realizar as operações de forma limpa e desacoplada.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Program.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourdomain.application;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.dao.DaoFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.dao.SellerDao</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.entities.Department</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.yourdomain.model.entities.Seller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Program</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        
+        <span class="c1">// Obter o DAO através da fábrica</span>
+        <span class="nc">SellerDao</span> <span class="n">sellerDao</span> <span class="o">=</span> <span class="nc">DaoFactory</span><span class="o">.</span><span class="na">createSellerDao</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"=== TEST 1: seller findById ==="</span><span class="o">);</span>
+        <span class="nc">Seller</span> <span class="n">seller</span> <span class="o">=</span> <span class="n">sellerDao</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">seller</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+=== TEST 2: seller findByDepartment ==="</span><span class="o">);</span>
+        <span class="nc">Department</span> <span class="n">department</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Department</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Seller</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">sellerDao</span><span class="o">.</span><span class="na">findByDepartment</span><span class="o">(</span><span class="n">department</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Seller</span> <span class="n">obj</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+        <span class="o">}</span>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+=== TEST 3: seller insert ==="</span><span class="o">);</span>
+        <span class="nc">Seller</span> <span class="n">newSeller</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Seller</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"Greg"</span><span class="o">,</span> <span class="s">"greg@gmail.com"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">(),</span> <span class="mf">4000.0</span><span class="o">,</span> <span class="n">department</span><span class="o">);</span>
+        <span class="n">sellerDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">newSeller</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Inserted! New id = "</span> <span class="o">+</span> <span class="n">newSeller</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Seguindo esta estrutura, você terá uma aplicação Java com acesso a dados robusta, organizada e fácil de manter, onde a lógica de negócio permanece completamente isolada da tecnologia de persistência.</p>

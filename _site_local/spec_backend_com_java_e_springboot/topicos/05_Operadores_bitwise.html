@@ -1,0 +1,318 @@
+<h1 id="operadores-bitwise-em-java-manipulando-bits-como-um-profissional-">Operadores Bitwise em Java: Manipulando Bits Como um Profissional 💡</h1>
+
+<p>Em Java, os operadores <em>bitwise</em> (ou “bit a bit”) são ferramentas de baixo nível que permitem a manipulação direta dos <code class="language-plaintext highlighter-rouge">0</code>s e <code class="language-plaintext highlighter-rouge">1</code>s que formam os números inteiros (<code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">long</code>, <code class="language-plaintext highlighter-rouge">byte</code>, etc.).</p>
+
+<p>Pense neles como interruptores. Enquanto operadores lógicos como <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> e <code class="language-plaintext highlighter-rouge">||</code> avaliam uma condição inteira como <code class="language-plaintext highlighter-rouge">verdadeira</code> ou <code class="language-plaintext highlighter-rouge">falsa</code>, os operadores bitwise olham para cada “interruptor” (bit) individualmente, permitindo um controle muito mais granular sobre os dados.</p>
+
+<h2 id="os-operadores-bitwise-em-ação-">Os Operadores Bitwise em Ação 🧮</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Nome</th>
+      <th style="text-align: left">Descrição</th>
+      <th style="text-align: left">Exemplo Prático (<code class="language-plaintext highlighter-rouge">5</code> e <code class="language-plaintext highlighter-rouge">3</code>)</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;</code></td>
+      <td style="text-align: left"><strong>E</strong> (AND)</td>
+      <td style="text-align: left">O bit do resultado é <code class="language-plaintext highlighter-rouge">1</code> <strong>apenas se</strong> ambos os bits comparados forem <code class="language-plaintext highlighter-rouge">1</code>.</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0101 &amp; 0011</code> → <code class="language-plaintext highlighter-rouge">0001</code> (1)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">`</td>
+      <td style="text-align: left">`</td>
+      <td style="text-align: left"><strong>OU</strong> (OR)</td>
+      <td style="text-align: left">O bit do resultado é <code class="language-plaintext highlighter-rouge">1</code> <strong>se pelo menos um</strong> dos bits comparados for <code class="language-plaintext highlighter-rouge">1</code>.</td>
+      <td><code class="language-plaintext highlighter-rouge">0101 | 0011</code> → <code class="language-plaintext highlighter-rouge">0111</code> (7)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">^</code></td>
+      <td style="text-align: left"><strong>OU-Exclusivo</strong> (XOR)</td>
+      <td style="text-align: left">O bit do resultado é <code class="language-plaintext highlighter-rouge">1</code> <strong>apenas se</strong> os bits comparados forem diferentes.</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0101 ^ 0011</code> → <code class="language-plaintext highlighter-rouge">0110</code> (6)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="como-cada-operador-funciona">Como Cada Operador Funciona?</h2>
+
+<p>A maneira mais fácil de visualizar a lógica é através de “tabelas verdade”, onde <code class="language-plaintext highlighter-rouge">1</code> é Verdadeiro e <code class="language-plaintext highlighter-rouge">0</code> é Falso.</p>
+
+<h3 id="operador-e-">Operador E (<code class="language-plaintext highlighter-rouge">&amp;</code>)</h3>
+
+<p>Retorna <code class="language-plaintext highlighter-rouge">1</code> apenas quando ambos os bits de entrada são <code class="language-plaintext highlighter-rouge">1</code>. É útil para “desligar” bits ou verificar se um bit específico está “ligado”.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Bit A</th>
+      <th style="text-align: center">Bit B</th>
+      <th style="text-align: center">A &amp; B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><strong>0</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><strong>0</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><strong>0</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><strong>1</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="operador-ou-">Operador OU (<code class="language-plaintext highlighter-rouge">|</code>)</h3>
+
+<p>Retorna <code class="language-plaintext highlighter-rouge">1</code> se um dos bits de entrada (ou ambos) for <code class="language-plaintext highlighter-rouge">1</code>. É perfeito para “ligar” bits específicos.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Bit A</th>
+      <th style="text-align: center">Bit B</th>
+      <th style="text-align: center">A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><strong>0</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="operador-ou-exclusivo--ou-xor">Operador OU-Exclusivo (<code class="language-plaintext highlighter-rouge">^</code> ou XOR)</h3>
+
+<p>Retorna <code class="language-plaintext highlighter-rouge">1</code> apenas se os bits forem opostos. Uma aplicação interessante é a capacidade de alternar o estado de um bit (de <code class="language-plaintext highlighter-rouge">0</code> para <code class="language-plaintext highlighter-rouge">1</code> ou de <code class="language-plaintext highlighter-rouge">1</code> para <code class="language-plaintext highlighter-rouge">0</code>).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Bit A</th>
+      <th style="text-align: center">Bit B</th>
+      <th style="text-align: center">A ^ B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><strong>0</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><strong>1</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><strong>1</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><strong>0</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="demonstração-prática-aprimorada-">Demonstração Prática Aprimorada 💻</h2>
+
+<p>Vamos dissecar o funcionamento desses operadores com os números <code class="language-plaintext highlighter-rouge">n1 = 89</code> e <code class="language-plaintext highlighter-rouge">n2 = 60</code>.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">n1 = 89</code></strong> em binário (8 bits) é <code class="language-plaintext highlighter-rouge">01011001</code></li>
+  <li><strong><code class="language-plaintext highlighter-rouge">n2 = 60</code></strong> em binário (8 bits) é <code class="language-plaintext highlighter-rouge">00111100</code></li>
+</ul>
+
+<h4 id="operação--e"><strong>Operação <code class="language-plaintext highlighter-rouge">&amp;</code> (E)</strong></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  01011001  (89)
+&amp; 00111100  (60)
+-----------------
+  00011000  -&gt; Resultado: 24
+</code></pre></div></div>
+
+<p>O resultado de <code class="language-plaintext highlighter-rouge">89 &amp; 60</code> é <strong>24</strong>. Apenas as colunas onde ambos os bits eram <code class="language-plaintext highlighter-rouge">1</code> (a 4ª e 5ª da direita para a esquerda) resultaram em <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<h4 id="operação--ou"><strong>Operação <code class="language-plaintext highlighter-rouge">|</code> (OU)</strong></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  01011001  (89)
+| 00111100  (60)
+-----------------
+  01111101  -&gt; Resultado: 125
+</code></pre></div></div>
+
+<p>O resultado de <code class="language-plaintext highlighter-rouge">89 | 60</code> é <strong>125</strong>. Se uma coluna tivesse ao menos um bit <code class="language-plaintext highlighter-rouge">1</code>, o resultado naquela coluna era <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<h4 id="operação--xor"><strong>Operação <code class="language-plaintext highlighter-rouge">^</code> (XOR)</strong></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  01011001  (89)
+^ 00111100  (60)
+-----------------
+  01100101  -&gt; Resultado: 101
+</code></pre></div></div>
+
+<p>O resultado de <code class="language-plaintext highlighter-rouge">89 ^ 60</code> é <strong>101</strong>. Apenas as colunas onde os bits eram diferentes resultaram em <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<h3 id="código-de-exemplo-otimizado">Código de Exemplo Otimizado</h3>
+
+<p>Este código não apenas calcula os resultados, mas também exibe as representações binárias para facilitar a visualização e o aprendizado.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="mi">89</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n2</span> <span class="o">=</span> <span class="mi">60</span><span class="o">;</span>
+
+        <span class="c1">// Exibe os números iniciais em formato decimal e binário</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n1 = "</span> <span class="o">+</span> <span class="n">n1</span> <span class="o">+</span> <span class="s">" (Binário: "</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">n1</span><span class="o">)</span> <span class="o">+</span> <span class="s">")"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"n2 = "</span> <span class="o">+</span> <span class="n">n2</span> <span class="o">+</span> <span class="s">" (Binário: "</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">n2</span><span class="o">)</span> <span class="o">+</span> <span class="s">")"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"----------------------------------------"</span><span class="o">);</span>
+        
+        <span class="c1">// Operação E (&amp;)</span>
+        <span class="kt">int</span> <span class="n">resultadoE</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">&amp;</span> <span class="n">n2</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">n1</span> <span class="o">+</span> <span class="s">" &amp; "</span> <span class="o">+</span> <span class="n">n2</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">resultadoE</span> <span class="o">+</span> <span class="s">" (Binário: "</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">resultadoE</span><span class="o">)</span> <span class="o">+</span> <span class="s">")"</span><span class="o">);</span>
+
+        <span class="c1">// Operação OU (|)</span>
+        <span class="kt">int</span> <span class="n">resultadoOU</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">|</span> <span class="n">n2</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">n1</span> <span class="o">+</span> <span class="s">" | "</span> <span class="o">+</span> <span class="n">n2</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">resultadoOU</span> <span class="o">+</span> <span class="s">" (Binário: "</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">resultadoOU</span><span class="o">)</span> <span class="o">+</span> <span class="s">")"</span><span class="o">);</span>
+
+        <span class="c1">// Operação OU-Exclusivo (^)</span>
+        <span class="kt">int</span> <span class="n">resultadoXOR</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">^</span> <span class="n">n2</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">n1</span> <span class="o">+</span> <span class="s">" ^ "</span> <span class="o">+</span> <span class="n">n2</span> <span class="o">+</span> <span class="s">" = "</span> <span class="o">+</span> <span class="n">resultadoXOR</span> <span class="o">+</span> <span class="s">" (Binário: "</span> <span class="o">+</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">resultadoXOR</span><span class="o">)</span> <span class="o">+</span> <span class="s">")"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="uso-avançado-verificando-um-bit-com-máscaras-️️">Uso Avançado: Verificando um Bit com Máscaras 🕵️‍♀️</h2>
+
+<p>Uma das aplicações mais poderosas de operadores bitwise é usar uma <strong>máscara de bits</strong> para isolar e verificar o estado de um bit específico.</p>
+
+<p><strong>Objetivo:</strong> Queremos saber se o 6º bit de um número está “ligado” (<code class="language-plaintext highlighter-rouge">1</code>) ou “desligado” (<code class="language-plaintext highlighter-rouge">0</code>).</p>
+
+<ol>
+  <li><strong>Crie a Máscara</strong>: Precisamos de um número que tenha <code class="language-plaintext highlighter-rouge">1</code> <strong>apenas</strong> na 6ª posição. As posições dos bits começam em 0 da direita para a esquerda. A 6ª posição corresponde a <code class="language-plaintext highlighter-rouge">2^5</code>, que é <code class="language-plaintext highlighter-rouge">32</code>. Em binário, <code class="language-plaintext highlighter-rouge">32</code> é <code class="language-plaintext highlighter-rouge">100000</code>. Essa é a nossa máscara.</li>
+  <li><strong>Aplique o Operador <code class="language-plaintext highlighter-rouge">&amp;</code></strong>: Realizamos a operação <code class="language-plaintext highlighter-rouge">&amp;</code> entre o número original e a máscara.</li>
+  <li><strong>Interprete o Resultado</strong>:
+    <ul>
+      <li>Se o 6º bit do número original for <code class="language-plaintext highlighter-rouge">0</code>, o resultado da operação <code class="language-plaintext highlighter-rouge">&amp;</code> será <code class="language-plaintext highlighter-rouge">0</code>.</li>
+      <li>Se o 6º bit do número original for <code class="language-plaintext highlighter-rouge">1</code>, o resultado da operação <code class="language-plaintext highlighter-rouge">&amp;</code> será a própria máscara (<code class="language-plaintext highlighter-rouge">32</code>), que é um valor diferente de zero.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="código-de-exemplo-interativo">Código de Exemplo Interativo</h3>
+
+<p>Este programa pede um número ao usuário e, em seguida, usa uma máscara para verificar e informar o estado do 6º bit, mostrando a representação binária para maior clareza.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaVerificaBit</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="c1">// A máscara 0b100000 é uma forma literal em Java de escrever o número 32.</span>
+        <span class="c1">// Ela possui o 6º bit (posição 5) "ligado", e todos os outros "desligados".</span>
+        <span class="kt">int</span> <span class="n">mascara</span> <span class="o">=</span> <span class="mb">0b100000</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite um número inteiro: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">numero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="c1">// Converte o número e a máscara para binário para fácil visualização</span>
+        <span class="nc">String</span> <span class="n">binarioNumero</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%8s"</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">numero</span><span class="o">)).</span><span class="na">replace</span><span class="o">(</span><span class="sc">' '</span><span class="o">,</span> <span class="sc">'0'</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">binarioMascara</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%8s"</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">mascara</span><span class="o">)).</span><span class="na">replace</span><span class="o">(</span><span class="sc">' '</span><span class="o">,</span> <span class="sc">'0'</span><span class="o">);</span>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Número em binário : "</span> <span class="o">+</span> <span class="n">binarioNumero</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Máscara em binário: "</span> <span class="o">+</span> <span class="n">binarioMascara</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"------------------------- (&amp;)"</span><span class="o">);</span>
+
+        <span class="c1">// A mágica acontece aqui: usamos o operador '&amp;'</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">numero</span> <span class="o">&amp;</span> <span class="n">mascara</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Resultado: O 6º bit é VERDADEIRO (1)!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Resultado: O 6º bit é FALSO (0)."</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="executando-o-código-no-vs-code-e-intellij-idea-">Executando o Código no VS Code e IntelliJ IDEA 🚀</h2>
+
+<p>Para compilar e rodar estes exemplos, certifique-se de ter o <strong>JDK (Java Development Kit)</strong> instalado em sua máquina.</p>
+
+<h3 id="visual-studio-code">Visual Studio Code</h3>
+
+<ol>
+  <li>Instale o pacote de extensões <strong>“Extension Pack for Java”</strong> da Microsoft.</li>
+  <li>Crie um novo arquivo (ex: <code class="language-plaintext highlighter-rouge">Programa.java</code>) e cole o código.</li>
+  <li>Clique no ícone de “play” (▶️) no canto superior direito ou clique com o botão direito no código e selecione <strong>“Run Java”</strong>.</li>
+</ol>
+
+<h3 id="intellij-idea">IntelliJ IDEA</h3>
+
+<ol>
+  <li>Crie um novo projeto (<code class="language-plaintext highlighter-rouge">File</code> &gt; <code class="language-plaintext highlighter-rouge">New</code> &gt; <code class="language-plaintext highlighter-rouge">Project...</code>).</li>
+  <li>Selecione <code class="language-plaintext highlighter-rouge">Java</code> e seu JDK.</li>
+  <li>Dentro da pasta <code class="language-plaintext highlighter-rouge">src</code>, clique com o botão direito e escolha <code class="language-plaintext highlighter-rouge">New</code> &gt; <code class="language-plaintext highlighter-rouge">Java Class</code>.</li>
+  <li>Nomeie a classe (ex: <code class="language-plaintext highlighter-rouge">Programa</code>) e cole o código dentro dela.</li>
+  <li>Clique na seta verde (▶️) ao lado do método <code class="language-plaintext highlighter-rouge">main</code> para executar.</li>
+</ol>
+
+<hr />
+

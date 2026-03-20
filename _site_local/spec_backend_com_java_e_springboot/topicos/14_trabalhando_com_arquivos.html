@@ -1,0 +1,443 @@
+<h1 id="️-java-trabalhando-com-arquivos-">☕️ Java: Trabalhando com Arquivos 📁</h1>
+
+<p>Este capítulo aborda como manipular arquivos em Java, cobrindo leitura, escrita e manipulação de diretórios, utilizando as classes principais do pacote <code class="language-plaintext highlighter-rouge">java.io</code>.</p>
+
+<h2 id="️-lendo-arquivos-de-texto-com-file-e-scanner">📄➡️💻 Lendo Arquivos de Texto com <code class="language-plaintext highlighter-rouge">File</code> e <code class="language-plaintext highlighter-rouge">Scanner</code></h2>
+
+<p>Uma forma comum de ler dados de arquivos de texto é utilizando a classe <code class="language-plaintext highlighter-rouge">File</code> para representar o arquivo e a classe <code class="language-plaintext highlighter-rouge">Scanner</code> para realizar a leitura e parsing do conteúdo.</p>
+
+<h3 id="-classes-essenciais">🧱 Classes Essenciais</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">File</code></strong>: Representa de forma abstrata um arquivo ou diretório no sistema de arquivos. Permite verificar a existência, obter informações como caminho, nome, etc.
+    <ul>
+      <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/10/docs/api/java/io/File.html</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Scanner</code></strong>: Um leitor de texto que pode analisar tipos primitivos e strings usando expressões regulares. É muito útil para ler entradas de diversas fontes, incluindo arquivos.
+    <ul>
+      <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/10/docs/api/java/util/Scanner.html</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">IOException</code></strong>: Uma exceção que é lançada quando ocorre um erro de E/S (Entrada/Saída). É uma <em>checked exception</em>, o que significa que o programador deve explicitamente tratá-la (com <code class="language-plaintext highlighter-rouge">try-catch</code>) ou declarar que o método pode lançá-la (com <code class="language-plaintext highlighter-rouge">throws</code>).
+    <ul>
+      <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/10/docs/api/java/io/IOException.html</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exemplo-prático-lendo-linhas-de-um-arquivo">Exemplo Prático: Lendo Linhas de um Arquivo</h3>
+
+<p>O código a seguir demonstra como ler todas as linhas de um arquivo de texto chamado <code class="language-plaintext highlighter-rouge">in.txt</code> localizado em <code class="language-plaintext highlighter-rouge">C:\temp\</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">File</span> <span class="n">arquivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"C:\\temp\\in.txt"</span><span class="o">);</span> <span class="c1">// Cria um objeto File representando o arquivo</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// Declara o Scanner fora do try para que seja acessível no finally</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="n">arquivo</span><span class="o">);</span> <span class="c1">// Inicializa o Scanner com o arquivo</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Conteúdo do arquivo:"</span><span class="o">);</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span> <span class="c1">// Verifica se há uma próxima linha no arquivo</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">());</span> <span class="c1">// Lê e imprime a próxima linha</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Trata possíveis erros de E/S, como arquivo não encontrado</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao ler o arquivo: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="c1">// Bloco finally é sempre executado, ideal para fechar recursos</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">sc</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">// Fecha o Scanner para liberar recursos do sistema</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Conceitos Complementares:</strong></p>
+<ul>
+  <li><strong>Caminhos de Arquivo</strong>: No Windows, os caminhos usam <code class="language-plaintext highlighter-rouge">\</code> como separador. Em Java, <code class="language-plaintext highlighter-rouge">\</code> é um caractere de escape, então você precisa usar <code class="language-plaintext highlighter-rouge">\\</code> em literais String (ex: <code class="language-plaintext highlighter-rouge">"C:\\temp\\in.txt"</code>) ou <code class="language-plaintext highlighter-rouge">/</code> que funciona na maioria dos sistemas (<code class="language-plaintext highlighter-rouge">"C:/temp/in.txt"</code>).</li>
+  <li><strong>Tratamento de Exceções</strong>: O bloco <code class="language-plaintext highlighter-rouge">try-catch</code> é fundamental para lidar com <code class="language-plaintext highlighter-rouge">IOException</code> que pode ocorrer se o arquivo não existir, se não houver permissão de leitura, etc.</li>
+  <li><strong>Fechamento de Recursos</strong>: É crucial fechar <code class="language-plaintext highlighter-rouge">Scanner</code> (e outros streams) no bloco <code class="language-plaintext highlighter-rouge">finally</code> para evitar vazamento de recursos, garantindo que o arquivo seja liberado pelo sistema operacional.</li>
+</ul>
+
+<h2 id="-filereader-e-bufferedreader">📖💨 <code class="language-plaintext highlighter-rouge">FileReader</code> e <code class="language-plaintext highlighter-rouge">BufferedReader</code></h2>
+
+<p>Para leitura de arquivos de texto baseada em caracteres, especialmente arquivos maiores, <code class="language-plaintext highlighter-rouge">FileReader</code> em conjunto com <code class="language-plaintext highlighter-rouge">BufferedReader</code> oferece uma alternativa eficiente.</p>
+
+<h3 id="-classes-essenciais-1">🧱 Classes Essenciais</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">FileReader</code></strong>: É uma <em>stream</em> (fluxo) de conveniência para ler arquivos de caracteres. Ele lê o arquivo caractere por caractere.
+    <ul>
+      <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/10/docs/api/java/io/FileReader.html</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">BufferedReader</code></strong>: Envolve um <code class="language-plaintext highlighter-rouge">Reader</code> (como <code class="language-plaintext highlighter-rouge">FileReader</code>) e adiciona um buffer interno. Isso torna a leitura de caracteres, arrays e linhas mais eficiente, pois reduz o número de acessos diretos ao disco. Possui o método <code class="language-plaintext highlighter-rouge">readLine()</code> que é muito útil.
+    <ul>
+      <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/10/docs/api/java/io/BufferedReader.html</code></li>
+      <li>Diferença entre <code class="language-plaintext highlighter-rouge">BufferedReader</code> e <code class="language-plaintext highlighter-rouge">FileReader</code>: <code class="language-plaintext highlighter-rouge">https://stackoverflow.com/questions/9648811/specific-difference-between-bufferedreader-and-filereader</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exemplo-prático-leitura-eficiente-com-buffer">Exemplo Prático: Leitura Eficiente com Buffer</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">caminho</span> <span class="o">=</span> <span class="s">"C:\\temp\\in.txt"</span><span class="o">;</span> <span class="c1">// Caminho do arquivo a ser lido</span>
+        <span class="nc">FileReader</span> <span class="n">fr</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">fr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">caminho</span><span class="o">);</span> <span class="c1">// Cria um leitor de arquivo</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="n">fr</span><span class="o">);</span> <span class="c1">// Adiciona buffer para leitura eficiente</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Conteúdo do arquivo (com BufferedReader):"</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span> <span class="c1">// Lê a primeira linha</span>
+
+            <span class="k">while</span> <span class="o">(</span><span class="n">linha</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Continua enquanto houver linhas no arquivo</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">linha</span><span class="o">);</span> <span class="c1">// Imprime a linha atual</span>
+                <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span> <span class="c1">// Lê a próxima linha</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao ler o arquivo: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">br</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">br</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">// Fecha o BufferedReader (que também fecha o FileReader aninhado)</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">fr</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">br</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Caso o BufferedReader não tenha sido inicializado</span>
+                    <span class="n">fr</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// Trata erro ao tentar fechar os leitores</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao fechar o leitor: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Conceitos Complementares:</strong></p>
+<ul>
+  <li><strong>Streams de Caracteres</strong>: <code class="language-plaintext highlighter-rouge">FileReader</code> e <code class="language-plaintext highlighter-rouge">BufferedReader</code> são parte da hierarquia de <code class="language-plaintext highlighter-rouge">Reader</code>, que são streams orientados a caracteres, ideais para manipular texto.</li>
+  <li><strong>Buffering</strong>: <code class="language-plaintext highlighter-rouge">BufferedReader</code> melhora significativamente o desempenho ao ler dados em blocos maiores da fonte subjacente (disco, rede) para um buffer na memória, e então entregando os dados do buffer conforme solicitado. Isso minimiza o número de operações de E/S físicas.</li>
+</ul>
+
+<h2 id="️-bloco-try-with-resources">🛠️🔒 Bloco <code class="language-plaintext highlighter-rouge">try-with-resources</code></h2>
+
+<p>Introduzido no Java 7, o bloco <code class="language-plaintext highlighter-rouge">try-with-resources</code> simplifica o gerenciamento de recursos que precisam ser fechados (como streams de arquivos), garantindo que sejam fechados automaticamente ao final do bloco, mesmo que ocorram exceções.</p>
+
+<ul>
+  <li><strong>Vantagens</strong>: Código mais limpo, menos verboso e menor risco de vazamento de recursos, pois o fechamento é automático.</li>
+  <li>Recursos declarados no <code class="language-plaintext highlighter-rouge">try(...)</code> devem implementar a interface <code class="language-plaintext highlighter-rouge">AutoCloseable</code> ou <code class="language-plaintext highlighter-rouge">Closeable</code>.</li>
+  <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html</code></li>
+</ul>
+
+<h3 id="exemplo-prático-try-with-resources-para-leitura">Exemplo Prático: <code class="language-plaintext highlighter-rouge">try-with-resources</code> para Leitura</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">caminho</span> <span class="o">=</span> <span class="s">"C:\\temp\\in.txt"</span><span class="o">;</span>
+
+        <span class="c1">// Recursos (br) são declarados dentro dos parênteses do try</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">caminho</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Conteúdo do arquivo (com try-with-resources):"</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span> <span class="c1">// Lê a primeira linha</span>
+
+            <span class="k">while</span> <span class="o">(</span><span class="n">linha</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">linha</span><span class="o">);</span>
+                <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span> <span class="c1">// Lê a próxima linha</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Trata erros de E/S</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao ler o arquivo: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="c1">// Não é necessário o bloco finally para fechar 'br', pois ele será fechado automaticamente.</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Por que usar <code class="language-plaintext highlighter-rouge">try-with-resources</code>?</strong>
+Ele torna o código mais seguro e legível. O compilador Java gera automaticamente o código <code class="language-plaintext highlighter-rouge">finally</code> necessário para fechar os recursos.</p>
+
+<h2 id="️-filewriter-e-bufferedwriter">💻➡️📄 <code class="language-plaintext highlighter-rouge">FileWriter</code> e <code class="language-plaintext highlighter-rouge">BufferedWriter</code></h2>
+
+<p>Para escrever dados em arquivos de texto, as classes <code class="language-plaintext highlighter-rouge">FileWriter</code> e <code class="language-plaintext highlighter-rouge">BufferedWriter</code> são comumente utilizadas, oferecendo funcionalidades análogas às suas contrapartes de leitura.</p>
+
+<h3 id="-classes-essenciais-2">🧱 Classes Essenciais</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">FileWriter</code></strong>: Uma <em>stream</em> de conveniência para escrever arquivos de caracteres.
+    <ul>
+      <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/10/docs/api/java/io/FileWriter.html</code></li>
+      <li>Construtores importantes:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">new FileWriter(path)</code>: Cria um novo arquivo para escrita. Se o arquivo já existir, ele será sobrescrito.</li>
+          <li><code class="language-plaintext highlighter-rouge">new FileWriter(path, true)</code>: Se o arquivo existir, os novos dados serão acrescentados ao final do arquivo (modo <em>append</em>). Se não existir, um novo arquivo será criado.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">BufferedWriter</code></strong>: Envolve um <code class="language-plaintext highlighter-rouge">Writer</code> (como <code class="language-plaintext highlighter-rouge">FileWriter</code>) e adiciona um buffer interno para tornar a escrita de caracteres, arrays e strings mais eficiente. Frequentemente usado com <code class="language-plaintext highlighter-rouge">newLine()</code> para adicionar quebras de linha de forma portável.
+    <ul>
+      <li>Documentação: <code class="language-plaintext highlighter-rouge">https://docs.oracle.com/javase/10/docs/api/java/io/BufferedWriter.html</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exemplo-prático-escrevendo-linhas-em-um-arquivo">Exemplo Prático: Escrevendo Linhas em um Arquivo</h3>
+
+<p>O código a seguir cria (ou sobrescreve) um arquivo <code class="language-plaintext highlighter-rouge">out.txt</code> e escreve algumas linhas nele.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span><span class="o">[]</span> <span class="n">linhas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[]</span> <span class="o">{</span> <span class="s">"Bom dia"</span><span class="o">,</span> <span class="s">"Boa tarde"</span><span class="o">,</span> <span class="s">"Boa noite"</span> <span class="o">};</span>
+        <span class="nc">String</span> <span class="n">caminho</span> <span class="o">=</span> <span class="s">"C:\\temp\\out.txt"</span><span class="o">;</span> <span class="c1">// Caminho do arquivo de saída</span>
+
+        <span class="c1">// Usando try-with-resources para garantir que BufferedWriter e FileWriter sejam fechados</span>
+        <span class="c1">// O segundo argumento 'true' em FileWriter habilita o modo append: new FileWriter(caminho, true)</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedWriter</span> <span class="n">bw</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileWriter</span><span class="o">(</span><span class="n">caminho</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Escrevendo no arquivo: "</span> <span class="o">+</span> <span class="n">caminho</span><span class="o">);</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">linha</span> <span class="o">:</span> <span class="n">linhas</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">bw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">linha</span><span class="o">);</span> <span class="c1">// Escreve a string da linha</span>
+                <span class="n">bw</span><span class="o">.</span><span class="na">newLine</span><span class="o">();</span>    <span class="c1">// Adiciona uma nova linha (quebra de linha específica do sistema)</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Arquivo escrito com sucesso!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao escrever no arquivo: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Conceitos Complementares:</strong></p>
+<ul>
+  <li><strong>Streams de Escrita</strong>: <code class="language-plaintext highlighter-rouge">FileWriter</code> e <code class="language-plaintext highlighter-rouge">BufferedWriter</code> são parte da hierarquia <code class="language-plaintext highlighter-rouge">Writer</code>, streams orientados a caracteres para saída.</li>
+  <li><strong>Flush vs. Close</strong>: <code class="language-plaintext highlighter-rouge">BufferedWriter</code> armazena dados em um buffer. A escrita no disco pode não ocorrer imediatamente. Chamar <code class="language-plaintext highlighter-rouge">bw.flush()</code> força a escrita dos dados do buffer para o arquivo. Chamar <code class="language-plaintext highlighter-rouge">bw.close()</code> também faz o <code class="language-plaintext highlighter-rouge">flush()</code> antes de fechar o stream. Com <code class="language-plaintext highlighter-rouge">try-with-resources</code>, <code class="language-plaintext highlighter-rouge">close()</code> é chamado automaticamente.</li>
+</ul>
+
+<h2 id="️-manipulando-pastas-diretórios-com-file">🗂️ Manipulando Pastas (Diretórios) com <code class="language-plaintext highlighter-rouge">File</code></h2>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">File</code> não serve apenas para arquivos, mas também para manipular diretórios (pastas).</p>
+
+<h3 id="exemplo-prático-listando-pastas-e-arquivos-criando-subdiretório">Exemplo Prático: Listando Pastas e Arquivos, Criando Subdiretório</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite o caminho de uma pasta: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">caminhoStr</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Ex: C:\Users\SeuUsuario\Documentos</span>
+
+        <span class="nc">File</span> <span class="n">objetoCaminho</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">caminhoStr</span><span class="o">);</span> <span class="c1">// Cria um objeto File para o caminho fornecido</span>
+
+        <span class="c1">// Listar todas as subpastas (diretórios)</span>
+        <span class="nc">File</span><span class="o">[]</span> <span class="n">pastas</span> <span class="o">=</span> <span class="n">objetoCaminho</span><span class="o">.</span><span class="na">listFiles</span><span class="o">(</span><span class="nl">File:</span><span class="o">:</span><span class="n">isDirectory</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"PASTAS ENCONTRADAS:"</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">pastas</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">File</span> <span class="n">pasta</span> <span class="o">:</span> <span class="n">pastas</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pasta</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span> <span class="c1">// Imprime o nome da pasta</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Listar todos os arquivos dentro da pasta</span>
+        <span class="nc">File</span><span class="o">[]</span> <span class="n">arquivos</span> <span class="o">=</span> <span class="n">objetoCaminho</span><span class="o">.</span><span class="na">listFiles</span><span class="o">(</span><span class="nl">File:</span><span class="o">:</span><span class="n">isFile</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+ARQUIVOS ENCONTRADOS:"</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">arquivos</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">File</span> <span class="n">arquivo</span> <span class="o">:</span> <span class="n">arquivos</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arquivo</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span> <span class="c1">// Imprime o nome do arquivo</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Criar um subdiretório chamado "subdir" dentro da pasta informada</span>
+        <span class="c1">// File.separator é usado para portabilidade de sistema operacional ('\' no Windows, '/' no Linux/Mac)</span>
+        <span class="kt">boolean</span> <span class="n">sucesso</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">caminhoStr</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">"nova_subpasta"</span><span class="o">).</span><span class="na">mkdir</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">sucesso</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Diretório 'nova_subpasta' criado com sucesso!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Falha ao criar o diretório 'nova_subpasta' (pode já existir ou faltar permissão)."</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Métodos Úteis da Classe <code class="language-plaintext highlighter-rouge">File</code> para Diretórios:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">isDirectory()</code>: Retorna <code class="language-plaintext highlighter-rouge">true</code> se o <code class="language-plaintext highlighter-rouge">File</code> representa um diretório.</li>
+  <li><code class="language-plaintext highlighter-rouge">isFile()</code>: Retorna <code class="language-plaintext highlighter-rouge">true</code> se o <code class="language-plaintext highlighter-rouge">File</code> representa um arquivo normal.</li>
+  <li><code class="language-plaintext highlighter-rouge">listFiles()</code>: Retorna um array de <code class="language-plaintext highlighter-rouge">File</code> com os arquivos e diretórios contidos no diretório representado por este <code class="language-plaintext highlighter-rouge">File</code>. Pode ser filtrado usando <code class="language-plaintext highlighter-rouge">FileFilter</code> ou referências de método (como <code class="language-plaintext highlighter-rouge">File::isDirectory</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">mkdir()</code>: Tenta criar o diretório nomeado por este <code class="language-plaintext highlighter-rouge">File</code>. Retorna <code class="language-plaintext highlighter-rouge">true</code> se bem-sucedido.</li>
+  <li><code class="language-plaintext highlighter-rouge">mkdirs()</code>: Cria o diretório nomeado por este <code class="language-plaintext highlighter-rouge">File</code>, incluindo quaisquer diretórios pai necessários que não existam.</li>
+</ul>
+
+<h2 id="️-informações-do-caminho-do-arquivo">🗺️ Informações do Caminho do Arquivo</h2>
+
+<p>A classe <code class="language-plaintext highlighter-rouge">File</code> também permite obter diversas informações sobre o caminho de um arquivo ou diretório.</p>
+
+<h3 id="exemplo-prático-obtendo-detalhes-do-caminho">Exemplo Prático: Obtendo Detalhes do Caminho</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite o caminho de um arquivo ou pasta: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">caminhoStr</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Ex: C:\temp\in.txt ou C:\temp</span>
+
+        <span class="nc">File</span> <span class="n">objetoCaminho</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">caminhoStr</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- Informações do Caminho ---"</span><span class="o">);</span>
+        <span class="c1">// getPath(): Retorna o caminho completo como string.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Caminho completo (getPath): "</span> <span class="o">+</span> <span class="n">objetoCaminho</span><span class="o">.</span><span class="na">getPath</span><span class="o">());</span>
+
+        <span class="c1">// getParent(): Retorna o caminho do diretório pai como string, ou null se não houver pai.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Diretório pai (getParent): "</span> <span class="o">+</span> <span class="n">objetoCaminho</span><span class="o">.</span><span class="na">getParent</span><span class="o">());</span>
+
+        <span class="c1">// getName(): Retorna o nome do arquivo ou diretório (a última parte do caminho).</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome do arquivo/pasta (getName): "</span> <span class="o">+</span> <span class="n">objetoCaminho</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+
+        <span class="c1">// exists(): Verifica se o arquivo ou diretório existe.</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Existe? (exists): "</span> <span class="o">+</span> <span class="n">objetoCaminho</span><span class="o">.</span><span class="na">exists</span><span class="o">());</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">objetoCaminho</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+            <span class="c1">// length(): Retorna o tamanho do arquivo em bytes (0 para diretórios, geralmente).</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tamanho (length): "</span> <span class="o">+</span> <span class="n">objetoCaminho</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="s">" bytes"</span><span class="o">);</span>
+            <span class="c1">// lastModified(): Retorna a data da última modificação em milissegundos desde a época.</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Última modificação (lastModified): "</span> <span class="o">+</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">(</span><span class="n">objetoCaminho</span><span class="o">.</span><span class="na">lastModified</span><span class="o">()));</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-configurando-o-ambiente-e-executando-os-exemplos">⚙️ Configurando o Ambiente e Executando os Exemplos</h2>
+
+<p>Os exemplos de código Java fornecidos podem ser compilados e executados em qualquer ambiente de desenvolvimento Java padrão. Aqui estão algumas dicas para <strong>VS Code</strong> e <strong>IntelliJ IDEA</strong>:</p>
+
+<h3 id="para-vs-code">Para VS Code:</h3>
+<ol>
+  <li><strong>Instalação</strong>: Certifique-se de ter o JDK (Java Development Kit) instalado. Instale o “Extension Pack for Java” da Microsoft no VS Code.</li>
+  <li><strong>Estrutura do Projeto</strong>: Você pode simplesmente criar uma pasta para seu projeto.</li>
+  <li><strong>Criando Arquivos</strong>: Crie arquivos <code class="language-plaintext highlighter-rouge">.java</code> (por exemplo, <code class="language-plaintext highlighter-rouge">Programa.java</code>) dentro da pasta do projeto. Se estiver usando pacotes (ex: <code class="language-plaintext highlighter-rouge">package aplicacao;</code>), crie a estrutura de pastas correspondente (ex: <code class="language-plaintext highlighter-rouge">pasta_do_projeto/aplicacao/Programa.java</code>).</li>
+  <li><strong>Execução</strong>: Abra o arquivo <code class="language-plaintext highlighter-rouge">.java</code> que contém o método <code class="language-plaintext highlighter-rouge">main</code>. Clique com o botão direito no editor e selecione “Run Java” ou use o botão “Run” que aparece acima do método <code class="language-plaintext highlighter-rouge">main</code>.</li>
+  <li><strong>Entrada de Dados (Scanner)</strong>: A entrada de dados via <code class="language-plaintext highlighter-rouge">Scanner(System.in)</code> ocorrerá no terminal integrado do VS Code.</li>
+  <li><strong>Arquivos de Exemplo</strong>: Crie os arquivos <code class="language-plaintext highlighter-rouge">in.txt</code> ou <code class="language-plaintext highlighter-rouge">out.txt</code> na pasta <code class="language-plaintext highlighter-rouge">C:\temp\</code> ou ajuste os caminhos no código para um local de sua preferência (por exemplo, dentro da pasta do projeto).</li>
+</ol>
+
+<h3 id="para-intellij-idea">Para IntelliJ IDEA:</h3>
+<ol>
+  <li><strong>Instalação</strong>: Certifique-se de ter o JDK instalado.</li>
+  <li><strong>Novo Projeto</strong>:
+    <ul>
+      <li>Abra o IntelliJ IDEA e clique em “New Project”.</li>
+      <li>Selecione “Java” na lista à esquerda. Escolha o seu JDK. Clique em “Next”.</li>
+      <li>Você pode optar por criar um projeto a partir de um template (Command Line App) ou um projeto vazio. Dê um nome ao projeto e defina sua localização.</li>
+    </ul>
+  </li>
+  <li><strong>Estrutura do Projeto</strong>: Por padrão, os arquivos fonte (<code class="language-plaintext highlighter-rouge">.java</code>) devem ser colocados na pasta <code class="language-plaintext highlighter-rouge">src</code>.</li>
+  <li><strong>Criando Arquivos</strong>: Clique com o botão direito na pasta <code class="language-plaintext highlighter-rouge">src</code> (ou em um subpacote dentro de <code class="language-plaintext highlighter-rouge">src</code>) e selecione “New” -&gt; “Java Class”. Dê o nome à classe (ex: <code class="language-plaintext highlighter-rouge">Programa</code>).</li>
+  <li><strong>Pacotes</strong>: Se o código usa <code class="language-plaintext highlighter-rouge">package aplicacao;</code>, crie um pacote chamado <code class="language-plaintext highlighter-rouge">aplicacao</code> dentro de <code class="language-plaintext highlighter-rouge">src</code> (clique direito em <code class="language-plaintext highlighter-rouge">src</code> -&gt; New -&gt; Package).</li>
+  <li><strong>Execução</strong>: Abra o arquivo <code class="language-plaintext highlighter-rouge">.java</code> com o método <code class="language-plaintext highlighter-rouge">main</code>. Clique na seta verde ao lado da declaração do método <code class="language-plaintext highlighter-rouge">main</code> ou da classe e selecione “Run ‘Programa.main()’”.</li>
+  <li><strong>Entrada de Dados (Scanner)</strong>: A entrada de dados será feita no painel “Run” na parte inferior da IDE.</li>
+  <li><strong>Arquivos de Exemplo</strong>: Assim como no VS Code, crie os arquivos de texto no local esperado (<code class="language-plaintext highlighter-rouge">C:\temp\</code>) ou modifique os caminhos no código.</li>
+</ol>
+
+<p>Lembre-se de que para os exemplos que manipulam arquivos em um caminho específico como <code class="language-plaintext highlighter-rouge">"C:\\temp\\in.txt"</code>, você precisará criar essa pasta e arquivo manualmente antes de executar o código que tenta lê-lo.</p>
+
+<hr />
+
+<h2 id="-exercício-proposto">🎯 Exercício Proposto</h2>
+
+<p><strong>Objetivo:</strong> Fazer um programa para ler o caminho de um arquivo <code class="language-plaintext highlighter-rouge">.csv</code> contendo os dados de itens vendidos.</p>
+
+<p><strong>Detalhes:</strong></p>
+<ol>
+  <li>Cada item no arquivo de origem possui um nome, preço unitário e quantidade, separados por vírgula.</li>
+  <li>Você deve gerar um novo arquivo chamado <code class="language-plaintext highlighter-rouge">"summary.csv"</code>.</li>
+  <li>Este novo arquivo deve ser localizado em uma subpasta chamada <code class="language-plaintext highlighter-rouge">"out"</code> a partir da pasta original do arquivo de origem.</li>
+  <li>O arquivo <code class="language-plaintext highlighter-rouge">"summary.csv"</code> deve conter apenas o nome e o valor total para aquele item (preço unitário multiplicado pela quantidade), conforme exemplo.</li>
+</ol>
+
+<p><strong>Exemplo:</strong></p>
+
+<p><strong>Arquivo de Origem (<code class="language-plaintext highlighter-rouge">source.csv</code>):</strong></p>
+<pre><code class="language-csv">TV LED,1290.99,1
+Video Game Chair,350.50,3
+Iphone X,900.00,2
+Samsung Galaxy 9,850.00,2
+</code></pre>
+
+<p><strong>Arquivo de Saída (<code class="language-plaintext highlighter-rouge">out/summary.csv</code>):</strong></p>
+<pre><code class="language-csv">TV LED,1290.99
+Video Game Chair,1051.50
+Iphone X,1800.00
+Samsung Galaxy 9,1700.00
+</code></pre>
+
+<p><strong>Dicas para o Exercício:</strong></p>
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">Scanner</code> ou <code class="language-plaintext highlighter-rouge">BufferedReader</code> para ler o arquivo de origem linha por linha.</li>
+  <li>Para cada linha, use o método <code class="language-plaintext highlighter-rouge">split(",")</code> da classe <code class="language-plaintext highlighter-rouge">String</code> para separar os campos.</li>
+  <li>Converta preço e quantidade para tipos numéricos (<code class="language-plaintext highlighter-rouge">Double.parseDouble()</code>, <code class="language-plaintext highlighter-rouge">Integer.parseInt()</code>).</li>
+  <li>Crie o diretório “out” usando <code class="language-plaintext highlighter-rouge">File.mkdir()</code> se ele não existir.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">BufferedWriter</code> e <code class="language-plaintext highlighter-rouge">FileWriter</code> para escrever no arquivo <code class="language-plaintext highlighter-rouge">summary.csv</code>.</li>
+  <li>Lembre-se de formatar o valor total para duas casas decimais, se necessário. Pode usar <code class="language-plaintext highlighter-rouge">String.format("%.2f", valor)</code> ou <code class="language-plaintext highlighter-rouge">DecimalFormat</code>.</li>
+</ul>
+
+<h2 id="este-exercício-combina-várias-das-técnicas-apresentadas-como-leitura-de-arquivos-manipulação-de-strings-criação-de-diretórios-e-escrita-de-arquivos">Este exercício combina várias das técnicas apresentadas, como leitura de arquivos, manipulação de strings, criação de diretórios e escrita de arquivos.</h2>
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

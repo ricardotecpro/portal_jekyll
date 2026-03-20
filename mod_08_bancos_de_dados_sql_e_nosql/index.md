@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 💾 Bancos de Dados: SQL e NoSQL
+title: "💾 Bancos de Dados: SQL e NoSQL"
 ---
 
 # 💾 Bancos de Dados: SQL e NoSQL

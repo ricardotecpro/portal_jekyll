@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 📈 UML: A Linguagem de Modelagem Unificada
+title: "📈 UML: A Linguagem de Modelagem Unificada"
 ---
 
 # 📈 UML: A Linguagem de Modelagem Unificada

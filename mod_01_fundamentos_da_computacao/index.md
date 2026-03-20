@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🏛️ Fundamentos da Computação: Os Pilares do Mundo Digital
+title: "🏛️ Fundamentos da Computação: Os Pilares do Mundo Digital"
 ---
 
 # 🏛️ Fundamentos da Computação: Os Pilares do Mundo Digital

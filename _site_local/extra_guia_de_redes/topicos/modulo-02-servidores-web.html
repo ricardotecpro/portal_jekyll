@@ -1,0 +1,138 @@
+<h3 id="arquivo-2-modulo-02-servidores-webmd"><strong>Arquivo 2: <code class="language-plaintext highlighter-rouge">modulo-02-servidores-web.md</code></strong></h3>
+
+<h1 id="-módulo-2-o-coração-da-aplicação---servidores-web">🚀 Módulo 2: O Coração da Aplicação - Servidores Web</h1>
+
+<p>Agora que entendemos como a informação viaja pela rede, vamos focar no software que a recebe e responde: o servidor web. Ele é a porta de entrada para sua aplicação.</p>
+
+<h2 id="-aula-1-introdução-aos-servidores-web">🔄 Aula 1: Introdução aos Servidores Web</h2>
+
+<h3 id="o-ciclo-requisição-resposta">O Ciclo Requisição-Resposta</h3>
+<p>Toda interação na web segue este fluxo fundamental:</p>
+<ol>
+  <li>O <strong>cliente</strong> (navegador) faz uma <strong>requisição</strong> HTTP para um servidor.</li>
+  <li>O <strong>servidor web</strong> processa a requisição.</li>
+  <li>O servidor envia uma <strong>resposta</strong> HTTP de volta ao cliente.</li>
+  <li>O cliente renderiza a resposta (ex: exibe uma página HTML).</li>
+</ol>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Client as "Cliente (Navegador)"
+    participant Server as "Servidor Web (Nginx/Apache)"
+    participant App as "Aplicação Backend"
+
+    Client-&gt;&gt;Server: GET /pagina.html HTTP/1.1
+    Note over Server: Requisição recebida
+    Server--&gt;&gt;Client: HTTP/1.1 200 OK
+&lt;html&gt;...&lt;/html&gt;
+    Note over Client: Resposta recebida e renderizada
+
+    Client-&gt;&gt;Server: GET /api/dados HTTP/1.1
+    Server-&gt;&gt;App: Processar requisição para /api/dados
+    App--&gt;&gt;Server: Dados em JSON
+    Server--&gt;&gt;Client: HTTP/1.1 200 OK
+{"id": 1, "nome": "Produto"}
+</code></pre>
+
+<ul>
+  <li><strong>Conteúdo Estático:</strong> Arquivos que não mudam (HTML, CSS, JS, imagens). Servidos diretamente pelo servidor web.</li>
+  <li><strong>Conteúdo Dinâmico:</strong> Conteúdo gerado na hora por uma aplicação (ex: um feed de notícias). O servidor web repassa a requisição para a aplicação.</li>
+</ul>
+
+<h2 id="-aula-2-apache---o-veterano-confiável">🔥 Aula 2: Apache - O Veterano Confiável</h2>
+
+<p>O <strong>Apache HTTP Server</strong> é um dos servidores web mais antigos e populares. É conhecido por sua flexibilidade e enorme quantidade de módulos.</p>
+
+<ul>
+  <li><strong>Arquitetura:</strong> Baseada em processos ou threads.</li>
+  <li><strong>Configuração:</strong> O arquivo principal é o <code class="language-plaintext highlighter-rouge">httpd.conf</code>. As configurações de sites específicos geralmente ficam em <code class="language-plaintext highlighter-rouge">sites-available</code>.</li>
+  <li><strong>Virtual Hosts:</strong> Permite hospedar múltiplos domínios (<code class="language-plaintext highlighter-rouge">site1.com</code>, <code class="language-plaintext highlighter-rouge">site2.com</code>) no mesmo servidor e IP.</li>
+</ul>
+
+<p><strong>Exemplo de Virtual Host no Apache:</strong></p>
+
+<div class="language-apache highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nl">VirtualHost</span><span class="sr"> *:80</span><span class="p">&gt;
+</span>    <span class="nc">ServerName</span> [www.meusite.com](https://www.meusite.com)
+    <span class="nc">ServerAdmin</span> webmaster@meusite.com
+    <span class="nc">DocumentRoot</span> /var/www/[meusite.com/public_html](https://meusite.com/public_html)
+
+    <span class="nc">ErrorLog</span> ${APACHE_LOG_DIR}/error.log
+    <span class="nc">CustomLog</span> ${APACHE_LOG_DIR}/access.log combined
+<span class="p">&lt;/</span><span class="nl">VirtualHost</span><span class="p">&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li><strong>Módulos Essenciais:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">mod_rewrite</code>: Para reescrever URLs.</li>
+      <li><code class="language-plaintext highlighter-rouge">mod_ssl</code>: Para habilitar HTTPS.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-aula-3-nginx---performance-e-escalabilidade">⚡ Aula 3: Nginx - Performance e Escalabilidade</h2>
+
+<p><strong>Nginx</strong> (pronuncia-se “Engine-X”) é um servidor web moderno, conhecido por sua alta performance, baixo consumo de recursos e capacidade de lidar com milhares de conexões simultâneas.</p>
+
+<ul>
+  <li><strong>Arquitetura:</strong> Orientada a eventos, assíncrona.</li>
+  <li><strong>Configuração:</strong> O arquivo principal é o <code class="language-plaintext highlighter-rouge">nginx.conf</code>.</li>
+  <li><strong>Usos Comuns:</strong> Além de servidor web, é amplamente utilizado como <strong>proxy reverso</strong>, <strong>balanceador de carga</strong> e <strong>cache HTTP</strong>.</li>
+</ul>
+
+<p><strong>Exemplo de Bloco de Servidor (Server Block) no Nginx:</strong></p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">[www.meusite.com](https://www.meusite.com)</span><span class="p">;</span>
+
+    <span class="kn">root</span> <span class="n">/var/www/[meusite.com/public_html]</span><span class="s">(https://meusite.com/public_html)</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="apache-vs-nginx">Apache vs. Nginx</h3>
+
+<ul>
+  <li><strong>Apache:</strong> Ótimo para flexibilidade, hospedagem compartilhada e configurações complexas com <code class="language-plaintext highlighter-rouge">.htaccess</code>.</li>
+  <li><strong>Nginx:</strong> Brilha ao servir conteúdo estático, como proxy reverso e em cenários de alta concorrência. É a escolha mais comum para arquiteturas modernas.</li>
+</ul>
+
+<h2 id="-aula-4-laboratório-prático">🔧 Aula 4: Laboratório Prático</h2>
+
+<p>Nesta aula prática, vamos colocar a mão na massa!</p>
+
+<ol>
+  <li><strong>Instalar Nginx ou Apache:</strong> Use o gerenciador de pacotes do seu sistema (ex: <code class="language-plaintext highlighter-rouge">sudo apt install nginx</code>).</li>
+  <li><strong>Configurar um Site Estático:</strong>
+    <ul>
+      <li>Crie um diretório para seu site (ex: <code class="language-plaintext highlighter-rouge">/var/www/meu-site</code>).</li>
+      <li>Crie um arquivo <code class="language-plaintext highlighter-rouge">index.html</code> dentro dele.</li>
+      <li>Configure um virtual host (Apache) ou server block (Nginx) apontando para esse diretório.</li>
+    </ul>
+  </li>
+  <li><strong>Configurar um Proxy Reverso com Nginx:</strong>
+    <ul>
+      <li>Suponha que você tem uma aplicação Node.js rodando na porta 3000.</li>
+      <li>Configure o Nginx para receber requisições na porta 80 e repassá-las para <code class="language-plaintext highlighter-rouge">localhost:3000</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo de Proxy Reverso no Nginx:</strong></p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">minhaapi.com</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+

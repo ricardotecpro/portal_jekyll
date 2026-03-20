@@ -1,0 +1,144 @@
+<h3 id="1-criar-um-novo-projeto-nodejs"><strong>1. Criar um novo projeto Node.js</strong></h3>
+
+<ol>
+  <li><strong>Abra o vsCode</strong> e clique em <strong>“File” &gt; “New Project”</strong>.</li>
+  <li>Escolha <strong>“Node.js”</strong> na lista de tipos de projeto.</li>
+  <li>Escolha um diretório para o projeto e clique em <strong>“Create”</strong>.</li>
+</ol>
+
+<hr />
+
+<h3 id="2-inicializar-um-projeto-nodejs"><strong>2. Inicializar um projeto Node.js</strong></h3>
+
+<ol>
+  <li><strong>Abra o terminal integrado do vsCode</strong> (View &gt; Tool Windows &gt; Terminal).</li>
+  <li>
+    <p>Execute o comando:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> npm init <span class="nt">-y</span>
+</code></pre></div>    </div>
+
+    <p>Isso criará um arquivo <code class="language-plaintext highlighter-rouge">package.json</code> com as configurações padrão.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="3-instalar-o-expressjs"><strong>3. Instalar o Express.js</strong></h3>
+
+<p>No terminal, instale o Express.js executando:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-criar-o-arquivo-do-servidor"><strong>4. Criar o arquivo do servidor</strong></h3>
+
+<p>https://gist.github.com/ricardotecpro/7470466accecb9384f74b12603d0eb0f</p>
+
+<ol>
+  <li>No painel esquerdo (Project), crie um arquivo chamado <strong><code class="language-plaintext highlighter-rouge">server.js</code></strong> na raiz do projeto.</li>
+  <li>Copie e cole o seguinte código no arquivo <code class="language-plaintext highlighter-rouge">server.js</code>:</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+
+<span class="c1">// Rota com status 200 (OK)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Requisição bem-sucedida!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Rota com status 404 (Not Found)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/erro</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Recurso não encontrado!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Rota com status 500 (Erro Interno)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/falha</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erro no servidor!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Servidor rodando em http://localhost:</span><span class="p">${</span><span class="nx">port</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-configurar-o-script-de-execução"><strong>5. Configurar o script de execução</strong></h3>
+
+<ol>
+  <li>
+    <p>No <code class="language-plaintext highlighter-rouge">package.json</code>, adicione um script para iniciar o servidor. No bloco <code class="language-plaintext highlighter-rouge">"scripts"</code>, adicione:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node server.js"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Agora você pode rodar o servidor com:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> npm start
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="6-executar-e-testar-o-servidor"><strong>6. Executar e testar o servidor</strong></h3>
+
+<ol>
+  <li>Para rodar o servidor no vsCode, clique com o botão direito no arquivo <code class="language-plaintext highlighter-rouge">server.js</code> e selecione <strong>“Run ‘server.js’“</strong>.</li>
+  <li>
+    <p>O console mostrará a mensagem:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Servidor rodando em http://localhost:3000
+</code></pre></div>    </div>
+  </li>
+  <li>Abra um navegador e teste as rotas:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">http://localhost:3000/</code> → Deve exibir <strong>“Requisição bem-sucedida!”</strong>.</li>
+      <li><code class="language-plaintext highlighter-rouge">http://localhost:3000/erro</code> → Deve exibir <strong>“Recurso não encontrado!”</strong>.</li>
+      <li><code class="language-plaintext highlighter-rouge">http://localhost:3000/falha</code> → Deve exibir <strong>“Erro no servidor!”</strong>.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="7-melhorando-com-nodemon-opcional"><strong>7. Melhorando com Nodemon (opcional)</strong></h3>
+
+<p>Se quiser que o servidor reinicie automaticamente ao modificar o código:</p>
+
+<ol>
+  <li>
+    <p>Instale o <code class="language-plaintext highlighter-rouge">nodemon</code> como dependência de desenvolvimento:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> npm <span class="nb">install</span> <span class="nt">--save-dev</span> nodemon
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>No <code class="language-plaintext highlighter-rouge">package.json</code>, edite os scripts:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node server.js"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"dev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodemon server.js"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Agora, rode o servidor no modo desenvolvimento com:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> npm run dev
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

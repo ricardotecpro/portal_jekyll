@@ -1,0 +1,904 @@
+<h2 id="-aula-completa-os-4-pilares-da-poo-em-java-para-iniciantes">🎓 <strong>Aula Completa: Os 4 Pilares da POO em Java para Iniciantes</strong></h2>
+
+<p>Esta aula foi pensada para guiar você, passo a passo, pelos conceitos que formam a base da programação moderna.</p>
+
+<h3 id="-objetivos-da-aula">✅ <strong>Objetivos da Aula:</strong></h3>
+
+<ul>
+  <li>Entender o que é a Programação Orientada a Objetos (POO).</li>
+  <li>Dominar os 4 pilares da POO:
+    <ul>
+      <li><strong>Encapsulamento</strong>: Proteger e organizar seus dados.</li>
+      <li><strong>Herança</strong>: Reutilizar código e criar hierarquias lógicas.</li>
+      <li><strong>Abstração</strong>: Focar no essencial, escondendo a complexidade.</li>
+      <li><strong>Polimorfismo</strong>: Usar objetos de formas diferentes e flexíveis.</li>
+    </ul>
+  </li>
+  <li>Aprender com exemplos práticos e progressivos em Java.</li>
+</ul>
+
+<hr />
+
+<h3 id="-1-o-que-é-programação-orientada-a-objetos">🧱 <strong>1. O que é Programação Orientada a Objetos?</strong></h3>
+
+<p>A Programação Orientada a Objetos (POO) é um <strong>paradigma de programação</strong> baseado no conceito de <strong>“objetos”</strong>. Pense em objetos do mundo real: um carro, uma pessoa, uma conta bancária. Todos eles têm <strong>características (atributos)</strong> e <strong>comportamentos (métodos)</strong>.</p>
+
+<p>Com POO, nosso código se aproxima dessa forma de pensar, tornando-o mais intuitivo, organizado e reutilizável.</p>
+
+<hr />
+
+<h3 id="-2-pilar-1-encapsulamento">🔒 <strong>2. Pilar 1: Encapsulamento</strong></h3>
+
+<p><strong>🎯 Conceito:</strong> Encapsular é como criar uma “cápsula” de proteção ao redor dos dados (atributos) de um objeto. Em vez de permitir acesso direto e descontrolado, você fornece métodos públicos para interagir com eles.</p>
+
+<p><strong>🤔 Por que isso é tão importante?</strong></p>
+
+<p>Vamos analisar três versões de uma classe <code class="language-plaintext highlighter-rouge">ContaBancaria</code> para entender o problema que o encapsulamento resolve.</p>
+
+<h4 id="versão-1-sem-encapsulamento-inseguro-️"><strong>Versão 1: Sem Encapsulamento (Inseguro ⚠️)</strong></h4>
+
+<p>Aqui, o atributo <code class="language-plaintext highlighter-rouge">saldo</code> é <code class="language-plaintext highlighter-rouge">public</code>, ou seja, qualquer parte do código pode alterá-lo diretamente.</p>
+
+<ul>
+  <li><strong>ContaBancaria.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// Atributo público e desprotegido</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Principal.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">;</span>  <span class="c1">// Acesso direto</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="o">-</span><span class="mf">500.0</span><span class="o">;</span> <span class="c1">// Perigo! Saldo negativo permitido!</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">+=</span> <span class="mi">30000</span><span class="o">;</span> <span class="c1">// Qualquer operação é permitida, sem regras.</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span><span class="o">);</span> <span class="c1">// Saída: Saldo: R$-500.0</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+    <p><strong>Problema:</strong> Não há controle. Podemos definir um saldo negativo ou realizar operações que quebram as regras de negócio de um banco. Isso é perigoso e leva a inconsistências.</p>
+  </li>
+</ul>
+
+<h4 id="versão-2-com-encapsulamento-seguro-e-recomendado-️"><strong>Versão 2: Com Encapsulamento (Seguro e Recomendado 🛡️)</strong></h4>
+
+<p>Agora, o atributo <code class="language-plaintext highlighter-rouge">saldo</code> é <code class="language-plaintext highlighter-rouge">private</code>, e só podemos interagir com ele através de métodos.</p>
+
+<ul>
+  <li><strong>ContaBancaria.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// Atributo privado e protegido</span>
+
+    <span class="c1">// Método público para depositar com uma regra de negócio</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Regra: só deposita valores positivos</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Depósito de R$"</span> <span class="o">+</span> <span class="n">valor</span> <span class="o">+</span> <span class="s">" realizado com sucesso."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Valor de depósito inválido."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método público para sacar com uma regra de negócio</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">valor</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="o">.</span><span class="na">saldo</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Regra: o valor deve ser positivo e haver saldo</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saque de R$"</span> <span class="o">+</span> <span class="n">valor</span> <span class="o">+</span> <span class="s">" realizado com sucesso."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saque não permitido. Saldo insuficiente ou valor inválido."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método público para consultar o saldo (apenas leitura)</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Principal.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+        <span class="c1">// conta.saldo = 100; // ERRO DE COMPILAÇÃO! Não é mais possível acessar diretamente.</span>
+
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(-</span><span class="mi">10</span><span class="o">);</span> <span class="c1">// A regra de negócio impedirá</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>     <span class="c1">// A regra de negócio impedirá</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo final: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Resultado:</strong> Agora a classe <code class="language-plaintext highlighter-rouge">ContaBancaria</code> tem controle total sobre seus dados. Todas as operações são validadas, garantindo a integridade e a segurança do objeto.</p>
+
+<p>✅ <strong>Benefícios do Encapsulamento:</strong></p>
+
+<ul>
+  <li><strong>Segurança:</strong> Protege os dados contra acessos indevidos.</li>
+  <li><strong>Controle:</strong> A classe decide como seus dados podem (ou não) ser alterados.</li>
+  <li><strong>Organização:</strong> Oculta a complexidade interna e expõe apenas o necessário.</li>
+</ul>
+
+<hr />
+
+<h3 id="-3-pilar-2-herança">🧬 <strong>3. Pilar 2: Herança</strong></h3>
+
+<p><strong>🎯 Conceito:</strong> A herança permite que uma classe (filha) herde atributos e métodos de outra classe (mãe). Isso cria uma relação “é um” e promove o reaproveitamento de código.</p>
+
+<p><strong>💡 Exemplo:</strong> Um <code class="language-plaintext highlighter-rouge">Cachorro</code> <strong>é um</strong> <code class="language-plaintext highlighter-rouge">Animal</code>. Um <code class="language-plaintext highlighter-rouge">Carro</code> <strong>é um</strong> <code class="language-plaintext highlighter-rouge">Veiculo</code>.</p>
+
+<ul>
+  <li><strong>Animal.java (Classe Mãe / Superclasse)</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">comer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"O animal está comendo..."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fazerSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Animal fazendo som..."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters para o nome</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Cachorro.java (Classe Filha / Subclasse)</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// "Cachorro" herda tudo o que "Animal" tem usando a palavra "extends"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cachorro</span> <span class="kd">extends</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="c1">// Método específico da classe Cachorro</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">abanarRabo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cachorro abanando o rabo!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Principal.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Cachorro</span> <span class="n">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cachorro</span><span class="o">();</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Rex"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome: "</span> <span class="o">+</span> <span class="n">dog</span><span class="o">.</span><span class="na">getNome</span><span class="o">());</span>
+
+        <span class="n">dog</span><span class="o">.</span><span class="na">comer</span><span class="o">();</span>      <span class="c1">// Método herdado de Animal</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">fazerSom</span><span class="o">();</span>   <span class="c1">// Método herdado de Animal</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">abanarRabo</span><span class="o">();</span> <span class="c1">// Método específico de Cachorro</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>✅ <strong>Benefícios da Herança:</strong></p>
+
+<ul>
+  <li><strong>Reutilização de código:</strong> Evita escrever o mesmo código várias vezes.</li>
+  <li><strong>Organização:</strong> Cria hierarquias claras e lógicas entre as classes.</li>
+</ul>
+
+<hr />
+
+<h3 id="-4-pilar-3-abstração">🧼 <strong>4. Pilar 3: Abstração</strong></h3>
+
+<p><strong>🎯 Conceito:</strong> Abstração é focar no que um objeto <strong>faz</strong>, escondendo os detalhes de <strong>como</strong> ele faz. Ela define um “contrato” que outras classes devem seguir, sem se prender à implementação. Em Java, usamos <code class="language-plaintext highlighter-rouge">classes abstratas</code> e <code class="language-plaintext highlighter-rouge">interfaces</code>.</p>
+
+<p><strong>💡 Exemplo:</strong> Toda <code class="language-plaintext highlighter-rouge">Forma</code> geométrica deve ser capaz de <code class="language-plaintext highlighter-rouge">desenhar()</code>, mas a maneira de desenhar um <code class="language-plaintext highlighter-rouge">Círculo</code> é diferente de um <code class="language-plaintext highlighter-rouge">Retângulo</code>.</p>
+
+<ul>
+  <li><strong>Forma.java (Classe Abstrata)</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Uma classe abstrata não pode ser instanciada diretamente. Ela serve de modelo.</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="c1">// Um método abstrato é um contrato. Ele força as classes filhas a implementá-lo.</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">desenhar</span><span class="o">();</span>
+
+    <span class="c1">// Classes abstratas também podem ter métodos concretos.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">saudacao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Desenhando uma nova forma."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Circulo.java e Retangulo.java (Classes Concretas)</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Circulo</span> <span class="kd">extends</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="nd">@Override</span> <span class="c1">// Boa prática para indicar que o método está sendo sobrescrito</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">desenhar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Desenhando um círculo: O"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Retangulo</span> <span class="kd">extends</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">desenhar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Desenhando um retângulo: []"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>✅ <strong>Benefícios da Abstração:</strong></p>
+
+<ul>
+  <li><strong>Reduz a complexidade:</strong> Você interage com um contrato simples, não com a implementação complexa.</li>
+  <li><strong>Foco no essencial:</strong> Permite pensar no “o quê” antes de se preocupar com o “como”.</li>
+</ul>
+
+<hr />
+
+<h3 id="-5-pilar-4-polimorfismo">🔄 <strong>5. Pilar 4: Polimorfismo</strong></h3>
+
+<p><strong>🎯 Conceito:</strong> Polimorfismo significa “muitas formas”. É a capacidade de um objeto se comportar de maneiras diferentes dependendo do contexto, geralmente através da sobrescrita de métodos (<code class="language-plaintext highlighter-rouge">@Override</code>).</p>
+
+<p><strong>💡 Exemplo:</strong> Vamos usar as classes <code class="language-plaintext highlighter-rouge">Animal</code>, <code class="language-plaintext highlighter-rouge">Gato</code> e <code class="language-plaintext highlighter-rouge">Vaca</code>. Todas são <code class="language-plaintext highlighter-rouge">Animais</code>, mas cada uma faz um som diferente.</p>
+
+<ul>
+  <li><strong>Animal.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fazerSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Som genérico de animal"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Gato.java e Vaca.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Gato</span> <span class="kd">extends</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fazerSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Miau!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Vaca</span> <span class="kd">extends</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fazerSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Muuu!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Principal.java</strong>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// "a1" é uma variável do tipo Animal, mas aponta para um objeto Gato.</span>
+        <span class="nc">Animal</span> <span class="n">a1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Gato</span><span class="o">();</span>
+        <span class="c1">// "a2" é uma variável do tipo Animal, mas aponta para um objeto Vaca.</span>
+        <span class="nc">Animal</span> <span class="n">a2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Vaca</span><span class="o">();</span>
+
+        <span class="c1">// Polimorfismo em ação!</span>
+        <span class="c1">// O mesmo método fazerSom() tem comportamentos diferentes.</span>
+        <span class="n">a1</span><span class="o">.</span><span class="na">fazerSom</span><span class="o">();</span> <span class="c1">// Saída: Miau!</span>
+        <span class="n">a2</span><span class="o">.</span><span class="na">fazerSom</span><span class="o">();</span> <span class="c1">// Saída: Muuu!</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>✅ <strong>Benefícios do Polimorfismo:</strong></p>
+
+<ul>
+  <li><strong>Flexibilidade:</strong> Permite tratar objetos diferentes de maneira uniforme.</li>
+  <li><strong>Reutilização:</strong> O código que manipula a classe mãe (<code class="language-plaintext highlighter-rouge">Animal</code>) também funcionará para todas as suas classes filhas (<code class="language-plaintext highlighter-rouge">Gato</code>, <code class="language-plaintext highlighter-rouge">Vaca</code>, etc.).</li>
+</ul>
+
+<hr />
+
+<h3 id="-resumo-da-aula">🧠 <strong>Resumo da Aula</strong></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Pilar</th>
+      <th style="text-align: left">O que faz</th>
+      <th style="text-align: left">Palavras-chave em Java</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Encapsulamento</strong></td>
+      <td style="text-align: left">Protege os dados internos e controla o acesso.</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">private</code>, <code class="language-plaintext highlighter-rouge">public</code>, métodos <code class="language-plaintext highlighter-rouge">get</code>/<code class="language-plaintext highlighter-rouge">set</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Herança</strong></td>
+      <td style="text-align: left">Uma classe herda características de outra.</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">extends</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Abstração</strong></td>
+      <td style="text-align: left">Esconde detalhes complexos, define um contrato.</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">abstract</code>, <code class="language-plaintext highlighter-rouge">interface</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Polimorfismo</strong></td>
+      <td style="text-align: left">Um objeto se comporta de múltiplas formas.</td>
+      <td style="text-align: left">Sobrescrita de método (<code class="language-plaintext highlighter-rouge">@Override</code>).</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="-exercício-final-juntando-tudo">📝 <strong>Exercício Final: Juntando Tudo</strong></h3>
+
+<p><strong>Desafio:</strong> Crie um sistema simples para veículos, aplicando os quatro pilares.</p>
+
+<ol>
+  <li><strong>Abstração:</strong> Crie uma classe abstrata <code class="language-plaintext highlighter-rouge">Veiculo</code> com atributos <code class="language-plaintext highlighter-rouge">marca</code> e <code class="language-plaintext highlighter-rouge">modelo</code> (encapsulados) e um método abstrato <code class="language-plaintext highlighter-rouge">ligar()</code>.</li>
+  <li><strong>Herança:</strong> Crie as classes <code class="language-plaintext highlighter-rouge">Carro</code> e <code class="language-plaintext highlighter-rouge">Moto</code> que herdam de <code class="language-plaintext highlighter-rouge">Veiculo</code>.</li>
+  <li><strong>Polimorfismo:</strong> Implemente o método <code class="language-plaintext highlighter-rouge">ligar()</code> de forma diferente para <code class="language-plaintext highlighter-rouge">Carro</code> (“Carro ligado girando a chave.”) e <code class="language-plaintext highlighter-rouge">Moto</code> (“Moto ligada pelo botão de ignição.”).</li>
+  <li><strong>Teste:</strong> Crie uma classe <code class="language-plaintext highlighter-rouge">Main</code> que instancia um <code class="language-plaintext highlighter-rouge">Carro</code> e uma <code class="language-plaintext highlighter-rouge">Moto</code> em um array do tipo <code class="language-plaintext highlighter-rouge">Veiculo</code> e chame o método <code class="language-plaintext highlighter-rouge">ligar()</code> de cada um para ver o polimorfismo em ação.</li>
+</ol>
+
+<ul>
+  <li>
+    <p><strong>Veiculo.java (Abstrata)</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Veiculo</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">marca</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">modelo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">ligar</span><span class="o">();</span>
+
+    <span class="c1">// Getters e Setters (Encapsulamento)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getMarca</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">marca</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMarca</span><span class="o">(</span><span class="nc">String</span> <span class="n">marca</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">marca</span> <span class="o">=</span> <span class="n">marca</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getModelo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">modelo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setModelo</span><span class="o">(</span><span class="nc">String</span> <span class="n">modelo</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">modelo</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Carro.java (Herança e Polimorfismo)</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Carro</span> <span class="kd">extends</span> <span class="nc">Veiculo</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ligar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Carro ligado girando a chave."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Moto.java (Herança e Polimorfismo)</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Moto</span> <span class="kd">extends</span> <span class="nc">Veiculo</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ligar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Moto ligada pelo botão de ignição."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Main.java (Teste)</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Veiculo</span><span class="o">[]</span> <span class="n">meusVeiculos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Veiculo</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+
+        <span class="n">meusVeiculos</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Carro</span><span class="o">();</span>
+        <span class="n">meusVeiculos</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">setMarca</span><span class="o">(</span><span class="s">"Ford"</span><span class="o">);</span>
+        <span class="n">meusVeiculos</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">setModelo</span><span class="o">(</span><span class="s">"Fiesta"</span><span class="o">);</span>
+
+        <span class="n">meusVeiculos</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Moto</span><span class="o">();</span>
+        <span class="n">meusVeiculos</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="na">setMarca</span><span class="o">(</span><span class="s">"Honda"</span><span class="o">);</span>
+        <span class="n">meusVeiculos</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="na">setModelo</span><span class="o">(</span><span class="s">"CB 500"</span><span class="o">);</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Veiculo</span> <span class="n">v</span> <span class="o">:</span> <span class="n">meusVeiculos</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Veículo: "</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">getMarca</span><span class="o">()</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="na">getModelo</span><span class="o">());</span>
+            <span class="n">v</span><span class="o">.</span><span class="na">ligar</span><span class="o">();</span> <span class="c1">// O polimorfismo decide qual método "ligar" chamar</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"---"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-exercício-1-encapsulamento">🔐 <strong>Exercício 1: Encapsulamento</strong></h3>
+
+<p><strong>🎯 Objetivo:</strong> Praticar o encapsulamento para garantir a integridade dos dados de um objeto.</p>
+
+<p><strong>Enunciado:</strong> Crie uma classe <code class="language-plaintext highlighter-rouge">Aluno</code> que armazene o <code class="language-plaintext highlighter-rouge">nome</code>, a <code class="language-plaintext highlighter-rouge">matricula</code> e as <code class="language-plaintext highlighter-rouge">quatro notas</code> de um aluno. Os atributos devem ser privados. Crie métodos públicos para:</p>
+
+<ol>
+  <li>Definir o nome e a matrícula.</li>
+  <li>Adicionar as quatro notas (o método deve validar se a nota está entre 0 e 10).</li>
+  <li>Calcular e retornar a média final do aluno. Se alguma nota ainda não foi adicionada, a média deve retornar 0.</li>
+</ol>
+
+<p>Crie uma classe <code class="language-plaintext highlighter-rouge">Main</code> para testar, tentando adicionar uma nota inválida (ex: 11 ou -1) e exibindo a média final.</p>
+
+<p><strong>Diagrama de Classes (Mermaid):</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    class Aluno {
+        -String nome
+        -String matricula
+        -double[] notas
+        +setNome(String nome)
+        +setMatricula(String matricula)
+        +setNotas(double n1, double n2, double n3, double n4)
+        +getMediaFinal(): double
+    }
+    class Main {
+        +main(String[] args)
+    }
+    Main --&gt; Aluno : instancia
+</code></pre>
+
+<hr />
+
+<ul>
+  <li>
+    <p><strong>Aluno.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Aluno</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">matricula</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span><span class="o">[]</span> <span class="n">notas</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="mi">4</span><span class="o">];</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">notasInseridas</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMatricula</span><span class="o">(</span><span class="nc">String</span> <span class="n">matricula</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">matricula</span> <span class="o">=</span> <span class="n">matricula</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para adicionar as 4 notas de uma vez com validação</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">setNotas</span><span class="o">(</span><span class="kt">double</span> <span class="n">n1</span><span class="o">,</span> <span class="kt">double</span> <span class="n">n2</span><span class="o">,</span> <span class="kt">double</span> <span class="n">n3</span><span class="o">,</span> <span class="kt">double</span> <span class="n">n4</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">validaNota</span><span class="o">(</span><span class="n">n1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">validaNota</span><span class="o">(</span><span class="n">n2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">validaNota</span><span class="o">(</span><span class="n">n3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">validaNota</span><span class="o">(</span><span class="n">n4</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">notas</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">n1</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">notas</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">n2</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">notas</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">n3</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">notas</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="n">n4</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">notasInseridas</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Notas inseridas com sucesso."</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Uma ou mais notas são inválidas. As notas devem estar entre 0 e 10."</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Função auxiliar privada para validar uma nota</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">validaNota</span><span class="o">(</span><span class="kt">double</span> <span class="n">nota</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nota</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">nota</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getMediaFinal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">notasInseridas</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ainda não é possível calcular a média. Insira as 4 notas."</span><span class="o">);</span>
+            <span class="k">return</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">double</span> <span class="n">nota</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">notas</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">soma</span> <span class="o">+=</span> <span class="n">nota</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">soma</span> <span class="o">/</span> <span class="mf">4.0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Main.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Aluno</span> <span class="n">aluno1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Aluno</span><span class="o">();</span>
+        <span class="n">aluno1</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Carlos Souza"</span><span class="o">);</span>
+        <span class="n">aluno1</span><span class="o">.</span><span class="na">setMatricula</span><span class="o">(</span><span class="s">"2024-001"</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Aluno: "</span> <span class="o">+</span> <span class="n">aluno1</span><span class="o">.</span><span class="na">getNome</span><span class="o">());</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+--- Tentativa 1: Notas inválidas ---"</span><span class="o">);</span>
+        <span class="n">aluno1</span><span class="o">.</span><span class="na">setNotas</span><span class="o">(</span><span class="mf">8.5</span><span class="o">,</span> <span class="mf">9.0</span><span class="o">,</span> <span class="mf">11.0</span><span class="o">,</span> <span class="mf">7.0</span><span class="o">);</span> <span class="c1">// Nota 11.0 é inválida</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Média final: %.2f
+"</span><span class="o">,</span> <span class="n">aluno1</span><span class="o">.</span><span class="na">getMediaFinal</span><span class="o">());</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+--- Tentativa 2: Notas válidas ---"</span><span class="o">);</span>
+        <span class="n">aluno1</span><span class="o">.</span><span class="na">setNotas</span><span class="o">(</span><span class="mf">8.5</span><span class="o">,</span> <span class="mf">9.0</span><span class="o">,</span> <span class="mf">7.5</span><span class="o">,</span> <span class="mf">10.0</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Média final: %.2f
+"</span><span class="o">,</span> <span class="n">aluno1</span><span class="o">.</span><span class="na">getMediaFinal</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-exercício-2-herança">🧬 <strong>Exercício 2: Herança</strong></h3>
+
+<p><strong>🎯 Objetivo:</strong> Praticar a criação de uma hierarquia de classes e o reaproveitamento de código.</p>
+
+<p><strong>Enunciado:</strong> Crie uma classe <code class="language-plaintext highlighter-rouge">Pessoa</code> com os atributos <code class="language-plaintext highlighter-rouge">nome</code> e <code class="language-plaintext highlighter-rouge">idade</code>. Em seguida, crie duas subclasses:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Funcionario</code>, que herda de <code class="language-plaintext highlighter-rouge">Pessoa</code> e adiciona o atributo <code class="language-plaintext highlighter-rouge">salario</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Estudante</code>, que herda de <code class="language-plaintext highlighter-rouge">Pessoa</code> e adiciona o atributo <code class="language-plaintext highlighter-rouge">curso</code>.</li>
+</ol>
+
+<p>Ambas as subclasses devem ter um método <code class="language-plaintext highlighter-rouge">apresentar()</code> que exibe todos os seus dados (os herdados e os próprios). Crie uma classe <code class="language-plaintext highlighter-rouge">Main</code> para instanciar e apresentar um <code class="language-plaintext highlighter-rouge">Funcionario</code> e um <code class="language-plaintext highlighter-rouge">Estudante</code>.</p>
+
+<p><strong>Diagrama de Classes (Mermaid):</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    class Pessoa {
+        -String nome
+        -int idade
+        +getNome(): String
+        +getIdade(): int
+    }
+    class Funcionario {
+        -double salario
+        +getSalario(): double
+        +apresentar()
+    }
+    class Estudante {
+        -String curso
+        +getCurso(): String
+        +apresentar()
+    }
+    Pessoa &lt;|-- Funcionario
+    Pessoa &lt;|-- Estudante
+    Main --&gt; Funcionario : instancia
+    Main --&gt; Estudante : instancia
+</code></pre>
+
+<hr />
+
+<ul>
+  <li>
+    <p><strong>Pessoa.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pessoa</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getIdade</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">idade</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIdade</span><span class="o">(</span><span class="kt">int</span> <span class="n">idade</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">idade</span> <span class="o">=</span> <span class="n">idade</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Funcionario.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Funcionario</span> <span class="kd">extends</span> <span class="nc">Pessoa</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">salario</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSalario</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">salario</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalario</span><span class="o">(</span><span class="kt">double</span> <span class="n">salario</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">salario</span> <span class="o">=</span> <span class="n">salario</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apresentar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- Apresentação do Funcionário ---"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome: "</span> <span class="o">+</span> <span class="n">getNome</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Idade: "</span> <span class="o">+</span> <span class="n">getIdade</span><span class="o">()</span> <span class="o">+</span> <span class="s">" anos"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Salário: R$"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">salario</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Estudante.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Estudante</span> <span class="kd">extends</span> <span class="nc">Pessoa</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">curso</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getCurso</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">curso</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCurso</span><span class="o">(</span><span class="nc">String</span> <span class="n">curso</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">curso</span> <span class="o">=</span> <span class="n">curso</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apresentar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- Apresentação do Estudante ---"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome: "</span> <span class="o">+</span> <span class="n">getNome</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Idade: "</span> <span class="o">+</span> <span class="n">getIdade</span><span class="o">()</span> <span class="o">+</span> <span class="s">" anos"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Curso: "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">curso</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Main.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Funcionario</span> <span class="n">f1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Funcionario</span><span class="o">();</span>
+        <span class="n">f1</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Ana Paula"</span><span class="o">);</span>
+        <span class="n">f1</span><span class="o">.</span><span class="na">setIdade</span><span class="o">(</span><span class="mi">32</span><span class="o">);</span>
+        <span class="n">f1</span><span class="o">.</span><span class="na">setSalario</span><span class="o">(</span><span class="mf">4500.00</span><span class="o">);</span>
+
+        <span class="nc">Estudante</span> <span class="n">e1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Estudante</span><span class="o">();</span>
+        <span class="n">e1</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Lucas Martins"</span><span class="o">);</span>
+        <span class="n">e1</span><span class="o">.</span><span class="na">setIdade</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+        <span class="n">e1</span><span class="o">.</span><span class="na">setCurso</span><span class="o">(</span><span class="s">"Engenharia de Software"</span><span class="o">);</span>
+
+        <span class="n">f1</span><span class="o">.</span><span class="na">apresentar</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="c1">// Linha em branco para separar</span>
+        <span class="n">e1</span><span class="o">.</span><span class="na">apresentar</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-exercício-3-abstração">🧼 <strong>Exercício 3: Abstração</strong></h3>
+
+<p><strong>🎯 Objetivo:</strong> Utilizar interfaces para definir um contrato que múltiplas classes não relacionadas podem implementar.</p>
+
+<p><strong>Enunciado:</strong> Crie uma interface <code class="language-plaintext highlighter-rouge">Imprimivel</code> que defina um único método: <code class="language-plaintext highlighter-rouge">imprimir()</code>. Crie três classes distintas que implementam essa interface:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Contrato</code>: Possui atributos como <code class="language-plaintext highlighter-rouge">numero</code> e <code class="language-plaintext highlighter-rouge">tipo</code>. O método <code class="language-plaintext highlighter-rouge">imprimir</code> deve exibir “Imprimindo Contrato: [tipo], Nº [numero]”.</li>
+  <li><code class="language-plaintext highlighter-rouge">Foto</code>: Possui um atributo <code class="language-plaintext highlighter-rouge">nomeDoArquivo</code>. O método <code class="language-plaintext highlighter-rouge">imprimir</code> deve exibir “Imprimindo Foto: [nomeDoArquivo]”.</li>
+  <li><code class="language-plaintext highlighter-rouge">Documento</code>: Possui um atributo <code class="language-plaintext highlighter-rouge">texto</code>. O método <code class="language-plaintext highlighter-rouge">imprimir</code> deve exibir “Imprimindo Documento: [texto]”.</li>
+</ol>
+
+<p>Crie uma classe <code class="language-plaintext highlighter-rouge">Impressora</code> com um método <code class="language-plaintext highlighter-rouge">adicionarNaFila(Imprimivel item)</code> que chama o método <code class="language-plaintext highlighter-rouge">imprimir()</code> do item passado como argumento. Teste na <code class="language-plaintext highlighter-rouge">Main</code>.</p>
+
+<p><strong>Diagrama de Classes (Mermaid):</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    direction LR
+    class Impressora {
+        +adicionarNaFila(Imprimivel item)
+    }
+    class Imprimivel {
+        &lt;&lt;Interface&gt;&gt;
+        +imprimir()
+    }
+    class Contrato {
+        -int numero
+        -String tipo
+        +imprimir()
+    }
+    class Foto {
+        -String nomeDoArquivo
+        +imprimir()
+    }
+    class Documento {
+        -String texto
+        +imprimir()
+    }
+    Imprimivel &lt;|.. Contrato
+    Imprimivel &lt;|.. Foto
+    Imprimivel &lt;|.. Documento
+    Impressora ..&gt; Imprimivel : depende de
+</code></pre>
+
+<hr />
+
+<ul>
+  <li>
+    <p><strong>Imprimivel.java (Interface)</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Imprimivel</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">imprimir</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Contrato.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Contrato</span> <span class="kd">implements</span> <span class="nc">Imprimivel</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">tipo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Contrato</span><span class="o">(</span><span class="kt">int</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">tipo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numero</span> <span class="o">=</span> <span class="n">numero</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tipo</span> <span class="o">=</span> <span class="n">tipo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">imprimir</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Imprimindo Contrato: "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">tipo</span> <span class="o">+</span> <span class="s">", Nº "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">numero</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Foto.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Foto</span> <span class="kd">implements</span> <span class="nc">Imprimivel</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nomeDoArquivo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Foto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nomeDoArquivo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nomeDoArquivo</span> <span class="o">=</span> <span class="n">nomeDoArquivo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">imprimir</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Imprimindo Foto: "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">nomeDoArquivo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Documento.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Documento</span> <span class="kd">implements</span> <span class="nc">Imprimivel</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">texto</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Documento</span><span class="o">(</span><span class="nc">String</span> <span class="n">texto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">texto</span> <span class="o">=</span> <span class="n">texto</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">imprimir</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Imprimindo Documento: "</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">texto</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Impressora.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Impressora</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarNaFila</span><span class="o">(</span><span class="nc">Imprimivel</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enviando para a impressora... "</span><span class="o">);</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">imprimir</span><span class="o">();</span> <span class="c1">// Chama o método da interface</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Main.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Impressora</span> <span class="n">impressora</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Impressora</span><span class="o">();</span>
+
+        <span class="nc">Contrato</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Contrato</span><span class="o">(</span><span class="mi">101</span><span class="o">,</span> <span class="s">"Prestação de Serviços"</span><span class="o">);</span>
+        <span class="nc">Foto</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Foto</span><span class="o">(</span><span class="s">"ferias_2024.jpg"</span><span class="o">);</span>
+        <span class="nc">Documento</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Documento</span><span class="o">(</span><span class="s">"Relatório Anual"</span><span class="o">);</span>
+
+        <span class="n">impressora</span><span class="o">.</span><span class="na">adicionarNaFila</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+        <span class="n">impressora</span><span class="o">.</span><span class="na">adicionarNaFila</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+        <span class="n">impressora</span><span class="o">.</span><span class="na">adicionarNaFila</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-exercício-4-polimorfismo">🔄 <strong>Exercício 4: Polimorfismo</strong></h3>
+
+<p><strong>🎯 Objetivo:</strong> Demonstrar como o polimorfismo permite tratar diferentes objetos de forma uniforme, simplificando o código.</p>
+
+<p><strong>Enunciado:</strong> Crie uma classe base <code class="language-plaintext highlighter-rouge">Funcionario</code> com um método <code class="language-plaintext highlighter-rouge">calcularSalario()</code> que retorna um salário base de R$ 1500. Crie três subclasses:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Gerente</code>: Sobrescreve <code class="language-plaintext highlighter-rouge">calcularSalario()</code> para adicionar um bônus de 50% sobre o salário base.</li>
+  <li><code class="language-plaintext highlighter-rouge">Programador</code>: Sobrescreve <code class="language-plaintext highlighter-rouge">calcularSalario()</code> para adicionar um bônus fixo de R$ 800.</li>
+  <li><code class="language-plaintext highlighter-rouge">Vendedor</code>: Sobrescreve <code class="language-plaintext highlighter-rouge">calcularSalario()</code> para adicionar uma comissão de R$ 250.</li>
+</ol>
+
+<p>Crie uma classe <code class="language-plaintext highlighter-rouge">Main</code> que tenha um array de <code class="language-plaintext highlighter-rouge">Funcionario</code>. Adicione instâncias de <code class="language-plaintext highlighter-rouge">Gerente</code>, <code class="language-plaintext highlighter-rouge">Programador</code> e <code class="language-plaintext highlighter-rouge">Vendedor</code> a este array. Percorra o array e imprima o salário de cada funcionário, mostrando o polimorfismo em ação.</p>
+
+<p><strong>Diagrama de Classes (Mermaid):</strong></p>
+
+<pre><code class="language-mermaid">classDiagram
+    class Funcionario {
+        +calcularSalario(): double
+    }
+    class Gerente {
+        +calcularSalario(): double
+    }
+    class Programador {
+        +calcularSalario(): double
+    }
+    class Vendedor {
+        +calcularSalario(): double
+    }
+    Funcionario &lt;|-- Gerente
+    Funcionario &lt;|-- Programador
+    Funcionario &lt;|-- Vendedor
+    Main ..&gt; Funcionario : usa
+</code></pre>
+
+<hr />
+
+<ul>
+  <li>
+    <p><strong>Funcionario.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularSalario</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Salário base para todos os funcionários</span>
+        <span class="k">return</span> <span class="mf">1500.0</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Gerente.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Gerente</span> <span class="kd">extends</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularSalario</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">salarioBase</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">calcularSalario</span><span class="o">();</span>
+        <span class="kt">double</span> <span class="n">bonus</span> <span class="o">=</span> <span class="n">salarioBase</span> <span class="o">*</span> <span class="mf">0.50</span><span class="o">;</span> <span class="c1">// 50% de bônus</span>
+        <span class="k">return</span> <span class="n">salarioBase</span> <span class="o">+</span> <span class="n">bonus</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Programador.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programador</span> <span class="kd">extends</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularSalario</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">calcularSalario</span><span class="o">()</span> <span class="o">+</span> <span class="mf">800.0</span><span class="o">;</span> <span class="c1">// Bônus fixo</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Vendedor.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Vendedor</span> <span class="kd">extends</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularSalario</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">calcularSalario</span><span class="o">()</span> <span class="o">+</span> <span class="mf">250.0</span><span class="o">;</span> <span class="c1">// Comissão</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Main.java</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Funcionario</span><span class="o">[]</span> <span class="n">equipe</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Funcionario</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+
+        <span class="n">equipe</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Gerente</span><span class="o">();</span>
+        <span class="n">equipe</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Programador</span><span class="o">();</span>
+        <span class="n">equipe</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Vendedor</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- Folha de Pagamento ---"</span><span class="o">);</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Funcionario</span> <span class="n">f</span> <span class="o">:</span> <span class="n">equipe</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Polimorfismo: O Java sabe qual método calcularSalario() chamar</span>
+            <span class="c1">// com base no objeto real (Gerente, Programador ou Vendedor).</span>
+            <span class="nc">String</span> <span class="n">cargo</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getSimpleName</span><span class="o">();</span> <span class="c1">// Pega o nome da classe</span>
+            <span class="kt">double</span> <span class="n">salario</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="na">calcularSalario</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Cargo: %s - Salário: R$ %.2f
+"</span><span class="o">,</span> <span class="n">cargo</span><span class="o">,</span> <span class="n">salario</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

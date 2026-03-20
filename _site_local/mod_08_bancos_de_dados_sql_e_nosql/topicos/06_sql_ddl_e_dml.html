@@ -1,0 +1,173 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/06_sql_ddl_e_dml.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SQL (Structured Query Language) 📜 é a linguagem padrão para acessar e manipular bancos de dados. | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="SQL (Structured Query Language) 📜 é a linguagem padrão para acessar e manipular bancos de dados." />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/06_sql_ddl_e_dml.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/06_sql_ddl_e_dml.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SQL (Structured Query Language) 📜 é a linguagem padrão para acessar e manipular bancos de dados." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"SQL (Structured Query Language) 📜 é a linguagem padrão para acessar e manipular bancos de dados.","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/06_sql_ddl_e_dml.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Sql (structured query language) 📜 é a linguagem padrão para acessar e manipular bancos de dados.</span>
+          
+        
+      </nav>
+
+      <h2 id="sql-structured-query-language--é-a-linguagem-padrão-para-acessar-e-manipular-bancos-de-dados">SQL (Structured Query Language) 📜 é a linguagem padrão para acessar e manipular bancos de dados.</h2>
+
+<p>Originada da linguagem SEQUEL da IBM em 1973, SQL é hoje um padrão ANSI. A linguagem é dividida em sublinguagens, cada uma com um propósito específico.</p>
+
+<h3 id="data-definition-language-ddl---linguagem-de-definição-de-dados-️">Data Definition Language (DDL) - Linguagem de Definição de Dados 🏗️</h3>
+
+<p>A DDL é usada para definir e gerenciar a estrutura (esquema) do banco de dados e seus objetos.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">CREATE</code></strong> ✨: Cria objetos no banco de dados, como tabelas.
+    <ul>
+      <li><strong>Tipos de Dados:</strong> Ao criar tabelas, é preciso definir o tipo de cada coluna. Alguns tipos comuns no Postgres são:
+        <ul>
+          <li><strong>Texto:</strong> <code class="language-plaintext highlighter-rouge">CHAR(n)</code> (tamanho fixo), <code class="language-plaintext highlighter-rouge">VARCHAR(n)</code> (tamanho variável), <code class="language-plaintext highlighter-rouge">TEXT</code> (variável).</li>
+          <li><strong>Numéricos:</strong> <code class="language-plaintext highlighter-rouge">INTEGER</code> (4 bytes), <code class="language-plaintext highlighter-rouge">SERIAL</code> (similar ao <code class="language-plaintext highlighter-rouge">INTEGER</code>, mas autoincremental, ideal para chaves primárias).</li>
+          <li><strong>Data e Hora:</strong> <code class="language-plaintext highlighter-rouge">DATE</code> (data), <code class="language-plaintext highlighter-rouge">TIMESTAMP</code> (data e hora).</li>
+        </ul>
+      </li>
+      <li><strong>Restrições de Integridade (Constraints):</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">NOT NULL</code>: Garante que a coluna não pode ter valores nulos.</li>
+          <li><code class="language-plaintext highlighter-rouge">DEFAULT</code>: Associa um valor padrão a uma coluna caso nenhum seja especificado.</li>
+          <li><code class="language-plaintext highlighter-rouge">CHECK</code>: Especifica uma condição que deve ser verdadeira para todos os registros.</li>
+          <li><code class="language-plaintext highlighter-rouge">PRIMARY KEY</code>: Define a chave primária da tabela.</li>
+          <li><code class="language-plaintext highlighter-rouge">UNIQUE</code>: Impede valores duplicados em uma coluna.</li>
+          <li><code class="language-plaintext highlighter-rouge">FOREIGN KEY</code>: Define uma chave estrangeira para estabelecer um relacionamento com outra tabela.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ALTER</code></strong> 🔧: Modifica a estrutura de um objeto existente, como adicionar, remover ou renomear uma coluna em uma tabela.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">DROP</code></strong> 🗑️: Remove um objeto do banco de dados, como uma tabela ou o próprio banco de dados.</li>
+</ul>
+
+<h3 id="data-manipulation-language-dml---linguagem-de-manipulação-de-dados-️">Data Manipulation Language (DML) - Linguagem de Manipulação de Dados ✍️</h3>
+
+<p>A DML é usada para gerenciar os dados armazenados nas tabelas.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">INSERT</code></strong> 📥: Adiciona novos registros (linhas) a uma tabela.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">UPDATE</code></strong> 📝: Modifica registros existentes em uma tabela.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">DELETE</code></strong> ❌: Remove registros de uma tabela.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SELECT</code></strong> 🔍: Consulta e recupera dados de uma ou mais tabelas.</li>
+</ul>
+
+<h3 id="data-control-language-dcl---linguagem-de-controle-de-dados-️">Data Control Language (DCL) - Linguagem de Controle de Dados 🛡️</h3>
+
+<p>A DCL é usada para controlar as permissões de acesso dos usuários aos dados.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">GRANT</code></strong> ✅: Concede privilégios de acesso a um usuário.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">REVOKE</code></strong> 🚫: Retira privilégios de acesso de um usuário.</li>
+</ul>
+
+<h3 id="transaction-control-language-tcl---linguagem-de-controle-de-transação-">Transaction Control Language (TCL) - Linguagem de Controle de Transação 🔄</h3>
+
+<p>A TCL gerencia as transações no banco de dados, agrupando comandos DML em unidades lógicas de trabalho.</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">COMMIT</code></strong> 👍: Salva permanentemente todas as alterações feitas na transação atual.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ROLLBACK</code></strong> ↩️: Desfaz todas as alterações feitas na transação atual.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SAVEPOINT</code></strong> 📍: Cria um ponto de controle dentro de uma transação para o qual se pode reverter posteriormente.</li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

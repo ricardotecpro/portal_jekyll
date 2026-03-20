@@ -1,0 +1,366 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/exemplos/sm12_01_heranca/Heranca.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Herança e Java | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Herança e Java" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/exemplos/sm12_01_heranca/Heranca.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/exemplos/sm12_01_heranca/Heranca.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Herança e Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Herança e Java","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/exemplos/sm12_01_heranca/Heranca.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/exemplos/sm12_01_heranca/" style="margin-left: 0.5rem;">Sm12 01 heranca</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Herança e java</span>
+          
+        
+      </nav>
+
+      <h1 id="herança-e-java">Herança e Java</h1>
+
+<p>📘 Conceitos:
+Herança: mecanismo pelo qual uma classe (subclasse) herda atributos e métodos de outra (superclasse). Serve para reaproveitar código.</p>
+
+<p>Polimorfismo: capacidade de um objeto se comportar de diferentes formas dependendo do contexto. Permite usar referências de forma genérica e alterar o comportamento com métodos sobrescritos (override).</p>
+
+<h2 id="-estrutura-do-projeto">📁 Estrutura do Projeto</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/
+├── aplicacao/
+│   └── Programa.java
+└── entidades/
+    ├── Conta.java
+    ├── ContaEmpresa.java
+    └── ContaPoupanca.java
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-classe-contajava-superclasse">📄 Classe <code class="language-plaintext highlighter-rouge">Conta.java</code> (Superclasse)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numero</span> <span class="o">=</span> <span class="n">numero</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span> <span class="o">+</span> <span class="mf">5.0</span><span class="o">;</span> <span class="c1">// taxa padrão de saque</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">numero</span> <span class="o">+</span> <span class="s">", Titular: "</span> <span class="o">+</span> <span class="n">titular</span> <span class="o">+</span> <span class="s">", Saldo: R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-classe-contaempresajava-subclasse-de-conta">📄 Classe <code class="language-plaintext highlighter-rouge">ContaEmpresa.java</code> (Subclasse de <code class="language-plaintext highlighter-rouge">Conta</code>)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaEmpresa</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">limiteEmprestimo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ContaEmpresa</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">limiteEmprestimo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">limiteEmprestimo</span> <span class="o">=</span> <span class="n">limiteEmprestimo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">emprestar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&lt;=</span> <span class="n">limiteEmprestimo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">;</span> <span class="c1">// taxa reduzida para empresas</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-classe-contapoupancajava-subclasse-de-conta">📄 Classe <code class="language-plaintext highlighter-rouge">ContaPoupanca.java</code> (Subclasse de <code class="language-plaintext highlighter-rouge">Conta</code>)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaPoupanca</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">taxaJuros</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ContaPoupanca</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">taxaJuros</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">taxaJuros</span> <span class="o">=</span> <span class="n">taxaJuros</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">atualizarSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">+=</span> <span class="n">saldo</span> <span class="o">*</span> <span class="n">taxaJuros</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span> <span class="c1">// sem taxa na poupança</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-classe-programajava-exemplo-com-polimorfismo">📄 Classe <code class="language-plaintext highlighter-rouge">Programa.java</code> (Exemplo com Polimorfismo)</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Conta</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.ContaEmpresa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.ContaPoupanca</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Conta</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaPoupanca</span><span class="o">(</span><span class="mi">1001</span><span class="o">,</span> <span class="s">"Alex"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">0.01</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaEmpresa</span><span class="o">(</span><span class="mi">1002</span><span class="o">,</span> <span class="s">"Maria"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">500.0</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaPoupanca</span><span class="o">(</span><span class="mi">1003</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">0.02</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaEmpresa</span><span class="o">(</span><span class="mi">1004</span><span class="o">,</span> <span class="s">"Anna"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">400.0</span><span class="o">));</span>
+
+        <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Conta</span> <span class="n">conta</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">soma</span> <span class="o">+=</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Saldo total: R$ %.2f%n"</span><span class="o">,</span> <span class="n">soma</span><span class="o">);</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Conta</span> <span class="n">conta</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mf">100.0</span><span class="o">);</span> <span class="c1">// comportamento polimórfico</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Após saque:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Conta</span> <span class="n">conta</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conta</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-saída-esperada">🧪 Saída esperada</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Saldo total: R$ 4000.00
+
+Após saque:
+1001, Titular: Alex, Saldo: R$ 900.00
+1002, Titular: Maria, Saldo: R$ 898.00
+1003, Titular: Bob, Saldo: R$ 900.00
+1004, Titular: Anna, Saldo: R$ 898.00
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-1-como-usar-super-para-chamar-o-construtor-da-superclasse">🧠 1. <strong>Como usar <code class="language-plaintext highlighter-rouge">super</code> para chamar o construtor da superclasse</strong></h2>
+
+<p>Quando uma <strong>classe herda</strong> de outra, o construtor da subclasse pode (e geralmente deve) chamar o construtor da superclasse para inicializar os atributos herdados.</p>
+
+<h3 id="-exemplo">📌 Exemplo:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nf">ContaEmpresa</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">limiteEmprestimo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span> <span class="c1">// chama o construtor da classe Conta</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">limiteEmprestimo</span> <span class="o">=</span> <span class="n">limiteEmprestimo</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Aqui, a classe <code class="language-plaintext highlighter-rouge">ContaEmpresa</code> está chamando o construtor da classe <code class="language-plaintext highlighter-rouge">Conta</code> usando <code class="language-plaintext highlighter-rouge">super(...)</code>.</li>
+  <li>Isso evita repetição de código e garante que os atributos herdados sejam inicializados corretamente.</li>
+</ul>
+
+<hr />
+
+<h2 id="-2-como-usar-override-para-sobrescrever-métodos">🧠 2. <strong>Como usar <code class="language-plaintext highlighter-rouge">@Override</code> para sobrescrever métodos</strong></h2>
+
+<p>A anotação <code class="language-plaintext highlighter-rouge">@Override</code> é usada para indicar que um método está sendo <strong>reescrito (sobrescrito)</strong> em uma subclasse. Isso significa que o comportamento será alterado em relação à implementação da superclasse.</p>
+
+<h3 id="-exemplo-1">📌 Exemplo:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">;</span> <span class="c1">// taxa menor para empresas</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Este método sobrescreve o <code class="language-plaintext highlighter-rouge">sacar()</code> da superclasse <code class="language-plaintext highlighter-rouge">Conta</code>, onde a taxa padrão é <code class="language-plaintext highlighter-rouge">+5.0</code>.</li>
+  <li>Aqui, a <code class="language-plaintext highlighter-rouge">ContaEmpresa</code> cobra uma taxa de <code class="language-plaintext highlighter-rouge">+2.0</code>.</li>
+</ul>
+
+<blockquote>
+  <p>⚠️ A anotação <code class="language-plaintext highlighter-rouge">@Override</code> não é obrigatória, mas é <strong>recomendada</strong>, pois o compilador verifica se realmente estamos sobrescrevendo um método existente.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="-3-como-o-polimorfismo-permite-tratar-diferentes-tipos-com-a-mesma-interface">🧠 3. <strong>Como o polimorfismo permite tratar diferentes tipos com a mesma interface</strong></h2>
+
+<p><strong>Polimorfismo</strong> permite que objetos de diferentes subclasses sejam tratados como se fossem do tipo da superclasse. Isso permite, por exemplo, usar uma lista de <code class="language-plaintext highlighter-rouge">Conta</code> para armazenar objetos de <code class="language-plaintext highlighter-rouge">Conta</code>, <code class="language-plaintext highlighter-rouge">ContaEmpresa</code>, ou <code class="language-plaintext highlighter-rouge">ContaPoupanca</code>.</p>
+
+<h3 id="-exemplo-2">📌 Exemplo:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Conta</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+<span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaPoupanca</span><span class="o">(</span><span class="mi">1001</span><span class="o">,</span> <span class="s">"Alex"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">0.01</span><span class="o">));</span>
+<span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaEmpresa</span><span class="o">(</span><span class="mi">1002</span><span class="o">,</span> <span class="s">"Maria"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">500.0</span><span class="o">));</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Mesmo que <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> e <code class="language-plaintext highlighter-rouge">ContaEmpresa</code> sejam diferentes, ambas podem ser adicionadas à lista de <code class="language-plaintext highlighter-rouge">Conta</code>, pois <strong>herdam</strong> de <code class="language-plaintext highlighter-rouge">Conta</code>.</li>
+  <li>Ao chamar <code class="language-plaintext highlighter-rouge">conta.sacar(100.0)</code> dentro de um loop, o Java escolhe <strong>automaticamente</strong> o método apropriado com base no <strong>tipo real do objeto</strong> (mesmo que a variável seja do tipo <code class="language-plaintext highlighter-rouge">Conta</code>).</li>
+</ul>
+
+<hr />
+
+<h2 id="-4-diferença-de-comportamento-no-método-sacar">🧠 4. <strong>Diferença de comportamento no método <code class="language-plaintext highlighter-rouge">sacar()</code></strong></h2>
+
+<p>Todas as classes possuem o método <code class="language-plaintext highlighter-rouge">sacar()</code>, mas com comportamentos diferentes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Classe</th>
+      <th>Comportamento de <code class="language-plaintext highlighter-rouge">sacar(double valor)</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Conta</code></td>
+      <td>Desconta <code class="language-plaintext highlighter-rouge">valor + 5.0</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ContaEmpresa</code></td>
+      <td>Desconta <code class="language-plaintext highlighter-rouge">valor + 2.0</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ContaPoupanca</code></td>
+      <td>Desconta apenas o <code class="language-plaintext highlighter-rouge">valor</code> (sem taxa)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-por-quê">📌 Por quê?</h3>
+
+<p>Cada classe redefine (sobrescreve) o método de acordo com sua <strong>regra de negócio</strong>. O polimorfismo permite que, mesmo chamando <code class="language-plaintext highlighter-rouge">conta.sacar(...)</code>, cada tipo de conta aplique a sua própria lógica.</p>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,327 @@
+<h2 id="-aula-integração-de-java-gitgithub-e-docker-no-ciclo-de-desenvolvimento">🎓 Aula: Integração de Java, Git/GitHub e Docker no Ciclo de Desenvolvimento</h2>
+
+<h3 id="-objetivos-da-aula">🎯 Objetivos da Aula</h3>
+
+<ul>
+  <li>Compreender como aplicar conceitos de versionamento com Git/GitHub.</li>
+  <li>Criar e executar uma aplicação Java simples.</li>
+  <li>Containerizar a aplicação com Docker.</li>
+  <li>Orquestrar com Docker Compose.</li>
+  <li>Simular um pequeno fluxo de trabalho em equipe.</li>
+</ul>
+
+<hr />
+
+<h2 id="aula-1-teoria-e-prática-de-programação-em-java-com-git-e-github">Aula 1: Teoria e Prática de Programação em Java com Git e GitHub</h2>
+
+<h3 id="parte-1--fundamentos-teóricos-30-minutos">Parte 1 – Fundamentos Teóricos (30 minutos)</h3>
+
+<p><strong>Tópicos a serem abordados:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Programação em Java</strong></p>
+
+    <ul>
+      <li>Estrutura de um projeto simples em Java (sem frameworks).</li>
+      <li>Compilação e execução via terminal.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Git e GitHub</strong></p>
+
+    <ul>
+      <li>Conceitos de versionamento: repositório, commit, branch, merge.</li>
+      <li>Diferença entre Git (local) e GitHub (remoto).</li>
+      <li>Boas práticas de commits.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Material de apoio:</strong></p>
+
+<ul>
+  <li>Slides explicativos.</li>
+  <li>Fluxograma com ciclo <code class="language-plaintext highlighter-rouge">add → commit → push</code>.</li>
+</ul>
+
+<h3 id="parte-2--prática-70-minutos">Parte 2 – Prática (70 minutos)</h3>
+
+<h4 id="️-atividade-criar-uma-calculadora-java-com-git">🛠️ Atividade: Criar uma calculadora Java com Git</h4>
+
+<p><strong>Etapas:</strong></p>
+
+<ol>
+  <li>Criar projeto Java (CLI) com <code class="language-plaintext highlighter-rouge">Calculadora.java</code>.</li>
+  <li>Iniciar um repositório Git (<code class="language-plaintext highlighter-rouge">git init</code>).</li>
+  <li>
+    <p>Fazer commits em cada funcionalidade:</p>
+
+    <ul>
+      <li>Soma</li>
+      <li>Subtração</li>
+      <li>Multiplicação</li>
+      <li>Divisão</li>
+    </ul>
+  </li>
+  <li>Criar um repositório no GitHub e subir o código (<code class="language-plaintext highlighter-rouge">git remote add</code> + <code class="language-plaintext highlighter-rouge">git push</code>).</li>
+  <li>Criar uma nova branch <code class="language-plaintext highlighter-rouge">melhoria-interface</code> e fazer uma melhoria.</li>
+  <li>Realizar merge com <code class="language-plaintext highlighter-rouge">main</code>.</li>
+</ol>
+
+<hr />
+
+<h2 id="aula-2-docker-e-docker-compose-com-java">Aula 2: Docker e Docker Compose com Java</h2>
+
+<h3 id="parte-1--fundamentos-teóricos-30-minutos-1">Parte 1 – Fundamentos Teóricos (30 minutos)</h3>
+
+<p><strong>Tópicos:</strong></p>
+
+<ol>
+  <li>
+    <p><strong>Docker</strong></p>
+
+    <ul>
+      <li>O que é um container.</li>
+      <li>Diferença entre imagem e container.</li>
+      <li>Vantagens no ambiente de desenvolvimento.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Dockerfile</strong></p>
+
+    <ul>
+      <li>Como criar uma imagem de aplicação Java.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Docker Compose</strong></p>
+
+    <ul>
+      <li>Orquestração de múltiplos serviços.</li>
+      <li>Exemplo com app + banco de dados.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="parte-2--prática-70-minutos-1">Parte 2 – Prática (70 minutos)</h3>
+
+<h4 id="️-atividade-dockerizar-o-projeto-da-calculadora">🛠️ Atividade: Dockerizar o Projeto da Calculadora</h4>
+
+<p><strong>Etapas:</strong></p>
+
+<ol>
+  <li>
+    <p>Criar um <code class="language-plaintext highlighter-rouge">Dockerfile</code>:</p>
+
+    <div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> openjdk:17</span>
+<span class="k">COPY</span><span class="s"> . /app</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">RUN </span>javac Calculadora.java
+<span class="k">CMD</span><span class="s"> ["java", "Calculadora"]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Construir e rodar:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> calculadora-java <span class="nb">.</span>
+docker run <span class="nt">--rm</span> calculadora-java
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Criar <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> (simples, apenas um serviço):</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">app</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">calculadora</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Rodar com Docker Compose:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="aula-3-opcional-projeto-integrado-java--postgresql-com-docker-compose">Aula 3 (Opcional): Projeto Integrado Java + PostgreSQL com Docker Compose</h2>
+
+<p><strong>Desafio final:</strong></p>
+
+<ul>
+  <li>Criar uma aplicação Java que se conecta a um banco PostgreSQL.</li>
+  <li>Docker Compose com dois serviços (Java app e PostgreSQL).</li>
+  <li>Salvar os resultados das operações da calculadora no banco.</li>
+</ul>
+
+<p><strong>Exemplo de <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>:</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">app</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">db</span>
+  <span class="na">db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">user</span>
+      <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">pass</span>
+      <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">calcdb</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-avaliação-sugerida">📘 Avaliação Sugerida</h2>
+
+<ul>
+  <li><strong>Entrega individual ou em dupla</strong> no GitHub.</li>
+  <li>
+    <p><strong>Critérios:</strong></p>
+
+    <ul>
+      <li>Uso correto do Git e histórico de commits.</li>
+      <li>Projeto funcional em Java.</li>
+      <li>Dockerfile funcional.</li>
+      <li>Docker Compose funcional (opcional para nota extra).</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-recursos-e-links">📎 Recursos e Links</h2>
+
+<ul>
+  <li><a href="https://git-scm.com/doc">Documentação do Git</a></li>
+  <li><a href="https://docs.github.com">GitHub Docs</a></li>
+  <li><a href="https://docs.docker.com">Docker Docs</a></li>
+  <li><a href="https://hub.docker.com/_/openjdk">OpenJDK Docker Hub</a></li>
+  <li><a href="https://learngitbranching.js.org/?locale=pt_BR">Learning Brach</a></li>
+</ul>
+
+<hr />
+<h2 id="-considerações-finais">📝 Considerações Finais</h2>
+<ul>
+  <li>Java básico com uma classe <code class="language-plaintext highlighter-rouge">Calculadora.java</code>.</li>
+  <li>Um <code class="language-plaintext highlighter-rouge">Dockerfile</code> para construir a imagem do projeto Java.</li>
+  <li>Um <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> para orquestrar o container.</li>
+</ul>
+
+<hr />
+
+<h3 id="1-projeto-java-simples---calculadorajava">1. Projeto Java simples - <code class="language-plaintext highlighter-rouge">Calculadora.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/com/example/calculadora/Calculadora.java</span>
+<span class="kn">package</span> <span class="nn">com.example.calculadora</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calculadora</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Soma de 5 + 3 = "</span> <span class="o">+</span> <span class="n">soma</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Subtração de 5 - 3 = "</span> <span class="o">+</span> <span class="n">subtrai</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Multiplicação de 5 * 3 = "</span> <span class="o">+</span> <span class="n">multiplica</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Divisão de 5 / 3 = "</span> <span class="o">+</span> <span class="n">divide</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">soma</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">subtrai</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">multiplica</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">IllegalArgumentException</span><span class="o">(</span><span class="s">"Divisão por zero não é permitida."</span><span class="o">);</span>
+        <span class="k">return</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2-dockerfile">2. <code class="language-plaintext highlighter-rouge">Dockerfile</code></h3>
+
+<p>Vamos criar um Dockerfile para construir e rodar a aplicação Java.</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Usar imagem oficial do OpenJDK 17 como base</span>
+<span class="k">FROM</span><span class="s"> openjdk:17-jdk-alpine</span>
+
+<span class="c"># Diretório de trabalho dentro do container</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># Copiar o código fonte para o container</span>
+<span class="k">COPY</span><span class="s"> src ./src</span>
+
+<span class="c"># Compilar o código Java</span>
+<span class="k">RUN </span>javac src/main/java/com/example/calculadora/Calculadora.java
+
+<span class="c"># Comando para rodar a aplicação</span>
+<span class="k">CMD</span><span class="s"> ["java", "-cp", "src/main/java", "com.example.calculadora.Calculadora"]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-docker-composeyml">3. <code class="language-plaintext highlighter-rouge">docker-compose.yml</code></h3>
+
+<p>Este arquivo vai criar um serviço chamado <code class="language-plaintext highlighter-rouge">calculadora</code>, que constrói a imagem a partir do Dockerfile.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">calculadora</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">calculadora-java</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="estrutura-recomendada-do-projeto">Estrutura recomendada do projeto:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>calculadora-java/
+├── Dockerfile
+├── docker-compose.yml
+└── src
+    └── main
+        └── java
+            └── com
+                └── example
+                    └── calculadora
+                        └── Calculadora.java
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="como-usar">Como usar:</h3>
+
+<ol>
+  <li>Crie a estrutura acima.</li>
+  <li>
+    <p>Na pasta raiz (<code class="language-plaintext highlighter-rouge">calculadora-java</code>), rode:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>O output será algo assim:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Soma de 5 + 3 = 8
+Subtração de 5 - 3 = 2
+Multiplicação de 5 * 3 = 15
+Divisão de 5 / 3 = 1.6666666666666667
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+

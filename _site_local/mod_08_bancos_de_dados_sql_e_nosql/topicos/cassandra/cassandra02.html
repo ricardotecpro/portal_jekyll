@@ -1,0 +1,322 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra02.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CASSANDRA02 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="CASSANDRA02" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra02.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra02.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CASSANDRA02" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"CASSANDRA02","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra02.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/" style="margin-left: 0.5rem;">Cassandra</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Cassandra02</span>
+          
+        
+      </nav>
+
+      <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># Atividade 2: Evidências das Criações 📜</span><span class="sb">
+
+
+</span><span class="gu">## Descrição da Atividade 📋</span>
+
+O objetivo desta atividade é demonstrar a criação e gerenciamento de um banco de dados Cassandra utilizando Docker. Serão capturadas pelo menos 3 telas das seguintes ações:
+<span class="p">*</span> Sua conta criada
+<span class="p">*</span> Criação do BD e Keyspace
+<span class="p">*</span> Tela CQL Console com comando DESCRIBE executado
+<span class="p">
+---
+</span>
+<span class="gu">## Criar e Gerenciar um Keyspace e Tabela no Cassandra usando Docker 🐳</span>
+
+<span class="gu">### 1. Preparação do Ambiente 🛠️</span>
+
+<span class="gs">**1. Verifique a versão do Docker:**</span>
+
+<span class="p">```</span><span class="nl">bash
+</span>docker <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p><strong>Saída:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:/opt/cassandra$ docker --version
+ version 28.0.1, build 068a01e
+ :/opt/cassandra$
+</code></pre></div></div>
+
+<p><strong>2. Baixe a imagem do Cassandra:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull Cassandra
+</code></pre></div></div>
+
+<p><strong>Saída:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/cassandra$ docker pull cassandra
+efault tag: latest
+Pulling from library/cassandra
+sha256:1e6dcf071026032c26c79b3eca115f27566952c71c155de91faa3465dd02ee14
+Image is up to date for cassandra: latest
+io/library/cassandra: latest
+/opt/cassandra$
+</code></pre></div></div>
+
+<p><strong>3. Crie um diretório local para persistência dos dados:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /opt/cassandra
+</code></pre></div></div>
+
+<p><strong>4. Inicie o container Cassandra: 🚀</strong>
+A imagem abaixo mostra o container ‘cassandra’ em execução no Docker Desktop.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Container ID</th>
+      <th style="text-align: left">Image</th>
+      <th style="text-align: left">Port(s)</th>
+      <th style="text-align: left">CPU (%)</th>
+      <th style="text-align: left">Last sta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">cassandra</td>
+      <td style="text-align: left">fe73ade7a253</td>
+      <td style="text-align: left">cassandra</td>
+      <td style="text-align: left">232906-2906</td>
+      <td style="text-align: left">1.3%</td>
+      <td style="text-align: left">18 minu</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Comando para iniciar o container:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> cassandra <span class="nt">-p</span> 9042:9042 <span class="nt">-v</span> /opt/cassandra:/var/lib/cassandra <span class="nt">-d</span> cassandra
+</code></pre></div></div>
+
+<p><strong>5. Acesse o container:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> cassandra bash
+</code></pre></div></div>
+
+<h3 id="2-conectando-ao-cassandra-via-cqlsh-">2. Conectando ao Cassandra via CQLSH 🔌</h3>
+
+<p><strong>1. Entre no ‘cqlsh’ (shell interativo do Cassandra):</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cqlsh
+</code></pre></div></div>
+
+<p><strong>Saída:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@fe73ade7a253:/# cqlsh
+Connected to Test Cluster at 127.0.0.1:9042
+[cqlsh 6.2.0 | Cassandra 5.0.4 | CQL spec 3.4.7 | Native protocol v5]
+Use HELP for help.
+cqlsh&gt;
+</code></pre></div></div>
+
+<h3 id="3-criando-o-keyspace-">3. Criando o Keyspace 🔑</h3>
+
+<p><strong>1. Comando para criar o Keyspace:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="n">KEYSPACE</span> <span class="n">minhakeyspaceCetec</span>
+<span class="k">WITH</span> <span class="n">replication</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'class'</span><span class="p">:</span> <span class="s1">'SimpleStrategy'</span><span class="p">,</span>
+  <span class="s1">'replication_factor'</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SimpleStrategy</code> é uma boa escolha para ambientes de desenvolvimento.</li>
+  <li><code class="language-plaintext highlighter-rouge">replication_factor: 1</code> indica que há uma cópia dos dados no cluster.</li>
+</ul>
+
+<p><strong>2. Verifique se o Keyspace foi criado:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DESCRIBE</span> <span class="n">KEYSPACES</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Saída:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cqlsh&gt; DESCRIBE KEYSPACES;
+minhakeyspacecetec system_auth
+system
+system_schema system_views
+system_distributed system_traces system_virtual_schema
+</code></pre></div></div>
+
+<h3 id="4-usando-o-keyspace-criado-">4. Usando o Keyspace Criado 👉</h3>
+
+<p><strong>1. Comando para usar o Keyspace:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">USE</span> <span class="n">minhakeyspaceCetec</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Saída:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cqlsh&gt; USE minhakeyspaceCetec;
+cqlsh:minhakeyspacecetec&gt;
+</code></pre></div></div>
+
+<h3 id="5-criando-a-tabela-alunos-">5. Criando a Tabela <code class="language-plaintext highlighter-rouge">alunos</code> 📝</h3>
+
+<p><strong>1. Comando para criar a tabela <code class="language-plaintext highlighter-rouge">alunos</code>:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">alunos</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="n">UUID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">idade</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">curso</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">id: UUID</code> (identificador único).</li>
+  <li><code class="language-plaintext highlighter-rouge">nome, email, idade, curso:</code> campos típicos para cadastro de alunos.</li>
+</ul>
+
+<h3 id="6-inserindo-dados-na-tabela-">6. Inserindo Dados na Tabela ➕</h3>
+
+<p><strong>1. Comando para inserir um aluno:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">,</span> <span class="n">curso</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'João Silva'</span><span class="p">,</span> <span class="s1">'joao.silva@cetec.edu'</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="s1">'Engenharia de Software'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Usa-se o <code class="language-plaintext highlighter-rouge">uuid()</code> para gerar um identificador único para o aluno João Silva.</li>
+</ul>
+
+<h3 id="7-consultando-os-dados-">7. Consultando os Dados 🔍</h3>
+
+<p><strong>1. Comando para consultar todos os alunos:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">alunos</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Saída:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cqlsh:minhakeyspacecetec&gt; SELECT * FROM alunos;
+
+ Ld                                   | curso                  | email                | Idadiele
+--------------------------------------+------------------------+----------------------+-----------------
+ 2d364e15-86b8-4754-879f-f991f8cb4f8B | Engenharia de Software | joao.silva@cetec.edu | 21 João Silva
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="conclusão-">Conclusão ✅</h2>
+
+<p>Com esses passos, você aprendeu a:</p>
+
+<ol>
+  <li>Configurar o Cassandra no Docker.</li>
+  <li>Criar um keyspace e uma tabela no Cassandra.</li>
+  <li>Inserir e consultar dados na tabela de alunos.</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

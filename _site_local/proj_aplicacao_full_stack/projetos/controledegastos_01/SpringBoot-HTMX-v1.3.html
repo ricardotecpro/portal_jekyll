@@ -1,0 +1,582 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.3.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Construindo, Implantando e Dominando o “Controle de Gastos” | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Construindo, Implantando e Dominando o “Controle de Gastos”" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.3.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.3.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Construindo, Implantando e Dominando o “Controle de Gastos”" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Construindo, Implantando e Dominando o “Controle de Gastos”","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.3.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/" style="margin-left: 0.5rem;">Controledegastos 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 construindo, implantando e dominando o "controle de gastos"</span>
+          
+        
+      </nav>
+
+      <h1 id="-construindo-implantando-e-dominando-o-controle-de-gastos">🚀 Construindo, Implantando e Dominando o “Controle de Gastos”</h1>
+<p>v1.3
+Bem-vindo ao guia definitivo para criar a aplicação <strong>Controle de Gastos</strong>. Esta versão foi aprimorada com base em experiências práticas de build e deploy, garantindo um processo mais robusto e educativo. Vamos construir uma aplicação Spring Boot com uma interface dinâmica usando htmx e implantá-la na nuvem de forma profissional com Docker.</p>
+
+<p><strong>Tecnologias Finais:</strong></p>
+
+<ul>
+  <li><strong>Backend</strong>: Java 21, Spring Boot, Spring Data JPA</li>
+  <li><strong>Frontend</strong>: Thymeleaf + htmx</li>
+  <li><strong>Banco de Dados</strong>: H2 (Desenvolvimento), PostgreSQL (Produção no Neon)</li>
+  <li><strong>Deploy</strong>: Docker, Render</li>
+</ul>
+
+<hr />
+
+<h3 id="1-a-arquitetura-e-os-conceitos">1. A Arquitetura e os Conceitos</h3>
+
+<h4 id="11-arquitetura-do-projeto-mvc">1.1. Arquitetura do Projeto (MVC)</h4>
+
+<p>Usaremos o padrão Model-View-Controller para organizar nosso código, resultando em uma aplicação de fácil manutenção.
+graph TD
+    subgraph Browser
+        A[👨‍💻 Usuário]
+    end</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>subgraph "Aplicação Spring Boot (Container Docker)"
+    C[LancamentoController] -- Usa --&gt; D{LancamentoRepository}
+    D -- Gerencia --&gt; E[Lancamento - Entidade]
+    C -- Renderiza --&gt; B[View: Thymeleaf + htmx]
+end
+
+subgraph "Banco de Dados (Neon)"
+    F[(PostgreSQL)]
+end
+
+A &lt;--&gt;|Requisições HTTP| B
+B -- Aciona via htmx --&gt; C
+E -- Mapeada para --&gt; F
+</code></pre></div></div>
+
+<h4 id="12-como-funciona-o-htmx">1.2. Como Funciona o htmx</h4>
+
+<p>Htmx potencializa nosso HTML para que ele possa fazer requisições ao servidor e atualizar partes da página sem precisar recarregar tudo e sem escrever JavaScript complexo. Ele funciona respondendo a 4 perguntas através de atributos HTML:</p>
+
+<ol>
+  <li><strong>O que aciona?</strong> (<code class="language-plaintext highlighter-rouge">hx-trigger</code>): Um clique, o envio de um formulário, etc.</li>
+  <li><strong>Que requisição fazer?</strong> (<code class="language-plaintext highlighter-rouge">hx-get</code>, <code class="language-plaintext highlighter-rouge">hx-post</code>, <code class="language-plaintext highlighter-rouge">hx-put</code>, <code class="language-plaintext highlighter-rouge">hx-delete</code>): Os verbos HTTP.</li>
+  <li><strong>Qual o alvo da atualização?</strong> (<code class="language-plaintext highlighter-rouge">hx-target</code>): Um seletor CSS que aponta para onde a resposta deve ser colocada.</li>
+  <li><strong>Como atualizar?</strong> (<code class="language-plaintext highlighter-rouge">hx-swap</code>): A estratégia para inserir a resposta (ex: substituir o conteúdo interno <code class="language-plaintext highlighter-rouge">innerHTML</code> ou o elemento inteiro <code class="language-plaintext highlighter-rouge">outerHTML</code>).</li>
+</ol>
+
+<p>O servidor, por sua vez, responde com pequenos fragmentos de HTML, e não com JSON.</p>
+
+<hr />
+
+<h3 id="2-fase-1-preparação-do-ambiente-e-controle-de-versão">2. Fase 1: Preparação do Ambiente e Controle de Versão</h3>
+
+<ol>
+  <li>
+    <p><strong>Crie a Pasta e Inicie o Git:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>controle-de-gastos
+<span class="nb">cd </span>controle-de-gastos
+git init
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie o Repositório no GitHub</strong> e conecte-o ao seu repositório local.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="3-fase-2-criação-do-esqueleto-do-projeto">3. Fase 2: Criação do Esqueleto do Projeto</h3>
+
+<ol>
+  <li>
+    <p>Acesse <a href="https://start.spring.io">start.spring.io</a> e configure:</p>
+
+    <ul>
+      <li><strong>Project:</strong> Maven</li>
+      <li><strong>Language:</strong> Java</li>
+      <li><strong>Java:</strong> 21</li>
+      <li><strong>Dependencies:</strong> <code class="language-plaintext highlighter-rouge">Spring Web</code>, <code class="language-plaintext highlighter-rouge">Spring Data JPA</code>, <code class="language-plaintext highlighter-rouge">Thymeleaf</code>, <code class="language-plaintext highlighter-rouge">H2 Database</code>, <code class="language-plaintext highlighter-rouge">PostgreSQL Driver</code>, <code class="language-plaintext highlighter-rouge">Spring Boot DevTools</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>GENERATE</strong>, baixe e descompacte o projeto na sua pasta.</p>
+  </li>
+  <li>
+    <p><strong>(Prevenção de Erro 1) Corrija a Permissão de Execução:</strong> Antes do primeiro commit, execute este comando no terminal para evitar o erro <code class="language-plaintext highlighter-rouge">Permission denied</code> nos sistemas de deploy:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git update-index <span class="nt">--chmod</span><span class="o">=</span>+x mvnw
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>(Prevenção de Erro 2) Force a Codificação UTF-8:</strong> Abra o arquivo <code class="language-plaintext highlighter-rouge">pom.xml</code> e adicione a propriedade <code class="language-plaintext highlighter-rouge">&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</code>. Isso previne o erro <code class="language-plaintext highlighter-rouge">MalformedInputException</code>.</p>
+
+    <p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">pom.xml</code> (seção <code class="language-plaintext highlighter-rouge">&lt;properties&gt;</code>)</strong></p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;java.version&gt;</span>21<span class="nt">&lt;/java.version&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Faça o primeiro commit:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"🚀 Feat: Initial project structure with build fixes"</span>
+git push <span class="nt">-u</span> origin main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="4-fase-3-modelagem-e-persistência-de-dados">4. Fase 3: Modelagem e Persistência de Dados</h3>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/.../model/TipoLancamento.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.controledegastos.model</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">TipoLancamento</span> <span class="o">{</span>
+    <span class="no">RECEITA</span><span class="o">,</span>
+    <span class="no">DESPESA</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/.../model/Lancamento.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.controledegastos.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.LocalDate</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lancamento</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">BigDecimal</span> <span class="n">valor</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">LocalDate</span> <span class="n">data</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+    <span class="nd">@Enumerated</span><span class="o">(</span><span class="nc">EnumType</span><span class="o">.</span><span class="na">STRING</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">TipoLancamento</span> <span class="n">tipo</span><span class="o">;</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescricao</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDescricao</span><span class="o">(</span><span class="nc">String</span> <span class="n">descricao</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">descricao</span> <span class="o">=</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">BigDecimal</span> <span class="nf">getValor</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">valor</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValor</span><span class="o">(</span><span class="nc">BigDecimal</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">valor</span> <span class="o">=</span> <span class="n">valor</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">LocalDate</span> <span class="nf">getData</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">data</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="nc">LocalDate</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">TipoLancamento</span> <span class="nf">getTipo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tipo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTipo</span><span class="o">(</span><span class="nc">TipoLancamento</span> <span class="n">tipo</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">tipo</span> <span class="o">=</span> <span class="n">tipo</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/.../repository/LancamentoRepository.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.controledegastos.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.Lancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">LancamentoRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-fase-4-lógica-de-backend-controller-com-crud-completo">5. Fase 4: Lógica de Backend (Controller com CRUD Completo)</h3>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/.../controller/LancamentoController.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.controledegastos.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.Lancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.TipoLancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.repository.LancamentoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LancamentoController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">LancamentoRepository</span> <span class="n">lancamentoRepository</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">carregarLancamentos</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentos</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">lancamentos</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Lancamento:</span><span class="o">:</span><span class="n">getData</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentos"</span><span class="o">,</span> <span class="n">lancamentos</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">index</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">carregarLancamentos</span><span class="o">(</span><span class="n">model</span><span class="o">);</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"novoLancamento"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Lancamento</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tipos"</span><span class="o">,</span> <span class="nc">TipoLancamento</span><span class="o">.</span><span class="na">values</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"index"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/lancamentos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">addLancamento</span><span class="o">(</span><span class="nd">@ModelAttribute</span> <span class="nc">Lancamento</span> <span class="n">novoLancamento</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">novoLancamento</span><span class="o">);</span>
+        <span class="n">carregarLancamentos</span><span class="o">(</span><span class="n">model</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/lancamentos/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">deleteLancamento</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="n">carregarLancamentos</span><span class="o">(</span><span class="n">model</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/lancamentos/editar/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">editLancamento</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentoOpt</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">lancamentoOpt</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentoParaEditar"</span><span class="o">,</span> <span class="n">lancamentoOpt</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+            <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tipos"</span><span class="o">,</span> <span class="nc">TipoLancamento</span><span class="o">.</span><span class="na">values</span><span class="o">());</span>
+            <span class="k">return</span> <span class="s">"index :: form-edicao"</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/lancamentos/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">updateLancamento</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@ModelAttribute</span> <span class="nc">Lancamento</span> <span class="n">lancamentoAtualizado</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentoOpt</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">lancamentoOpt</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">Lancamento</span> <span class="n">lancamentoExistente</span> <span class="o">=</span> <span class="n">lancamentoOpt</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+            <span class="n">lancamentoExistente</span><span class="o">.</span><span class="na">setDescricao</span><span class="o">(</span><span class="n">lancamentoAtualizado</span><span class="o">.</span><span class="na">getDescricao</span><span class="o">());</span>
+            <span class="n">lancamentoExistente</span><span class="o">.</span><span class="na">setValor</span><span class="o">(</span><span class="n">lancamentoAtualizado</span><span class="o">.</span><span class="na">getValor</span><span class="o">());</span>
+            <span class="n">lancamentoExistente</span><span class="o">.</span><span class="na">setTipo</span><span class="o">(</span><span class="n">lancamentoAtualizado</span><span class="o">.</span><span class="na">getTipo</span><span class="o">());</span>
+            <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">lancamentoExistente</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">carregarLancamentos</span><span class="o">(</span><span class="n">model</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="6-fase-5-configuração-de-ambientes">6. Fase 5: Configuração de Ambientes</h3>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do H2 Database (perfil 'default')
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div></div>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/main/resources/application-prod.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do PostgreSQL (perfil 'prod')
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">${DB_URL}</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">${DB_USERNAME}</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">${DB_PASSWORD}</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+<span class="py">spring.jpa.properties.hibernate.dialect</span><span class="p">=</span><span class="s">org.hibernate.dialect.PostgreSQLDialect</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="7-fase-6-construção-da-interface-frontend-comentado">7. Fase 6: Construção da Interface (Frontend Comentado)</h3>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">src/main/resources/templates/index.html</code></strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Controle de Gastos<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="o">-</span><span class="n">apple-system</span><span class="p">,</span> <span class="n">BlinkMacSystemFont</span><span class="p">,</span> <span class="s1">"Segoe UI"</span><span class="p">,</span> <span class="n">Roboto</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f4f4f9</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.container</span> <span class="p">{</span> <span class="nl">max-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">background</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span> <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">2px</span> <span class="m">4px</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0.1</span><span class="p">);</span> <span class="p">}</span>
+        <span class="nt">form</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">flex-wrap</span><span class="p">:</span> <span class="nb">wrap</span><span class="p">;</span> <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">input</span><span class="o">,</span> <span class="nt">select</span><span class="o">,</span> <span class="nt">button</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="nl">font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.add-btn</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#007bff</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">table</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">border-collapse</span><span class="p">:</span> <span class="nb">collapse</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span> <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <span class="nl">vertical-align</span><span class="p">:</span> <span class="nb">middle</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.despesa</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#d9534f</span><span class="p">;</span> <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.receita</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#5cb85c</span><span class="p">;</span> <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.action-btn</span> <span class="p">{</span> <span class="nl">font-size</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">6px</span> <span class="m">10px</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.edit-btn</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f0ad4e</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.delete-btn</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#d9534f</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.save-btn</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#5cb85c</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.cancel-btn</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#777</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/htmx.org@1.9.12"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Meu Controle de Gastos 💰<span class="nt">&lt;/h1&gt;</span>
+
+        <span class="nt">&lt;form</span> 
+              <span class="na">hx-post=</span><span class="s">"/lancamentos"</span>
+              <span class="na">hx-target=</span><span class="s">"#lista-lancamentos"</span>
+              <span class="na">hx-swap=</span><span class="s">"innerHTML"</span>
+              <span class="na">hx-on::after-request=</span><span class="s">"this.reset()"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">placeholder=</span><span class="s">"Descrição"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">step=</span><span class="s">"0.01"</span> <span class="na">name=</span><span class="s">"valor"</span> <span class="na">placeholder=</span><span class="s">"Valor"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"tipo"</span> <span class="na">required</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;option</span> <span class="na">th:each=</span><span class="s">"tipoOpt : ${tipos}"</span> <span class="na">th:value=</span><span class="s">"${tipoOpt}"</span> <span class="na">th:text=</span><span class="s">"${tipoOpt}"</span><span class="nt">&gt;&lt;/option&gt;</span>
+            <span class="nt">&lt;/select&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"add-btn"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"lista-lancamentos"</span><span class="nt">&gt;</span>
+        
+            <span class="nt">&lt;table</span> <span class="na">th:fragment=</span><span class="s">"lista-lancamentos"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;thead&gt;</span>
+                    <span class="nt">&lt;tr&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Descrição<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Valor<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Data<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Tipo<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Ações<span class="nt">&lt;/th&gt;</span>
+                    <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;/thead&gt;</span>
+                <span class="nt">&lt;tbody&gt;</span>
+                    <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"lancamento : ${lancamentos}"</span> <span class="na">th:id=</span><span class="s">"'lancamento-' + ${lancamento.id}"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${lancamento.descricao}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"|R$ ${#numbers.formatDecimal(lancamento.valor, 1, 'POINT', 2, 'COMMA')}|"</span>
+                            <span class="na">th:class=</span><span class="s">"${lancamento.tipo.name() == 'DESPESA' ? 'despesa' : 'receita'}"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${#temporals.format(lancamento.data, 'dd/MM/yyyy')}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${lancamento.tipo.name()}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td&gt;</span>
+                            <span class="nt">&lt;button</span> <span class="na">class.action-btn</span> <span class="na">edit-btn</span><span class="err">"</span>
+                                    <span class="na">th:hx-get=</span><span class="s">"@{/lancamentos/editar/{id}(id=${lancamento.id})}"</span>
+                                    <span class="na">th:hx-target=</span><span class="s">"'#lancamento-' + ${lancamento.id}"</span>
+                                    <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+                                Alterar
+                            <span class="nt">&lt;/button&gt;</span>
+                            
+                            <span class="nt">&lt;button</span> <span class="na">class.action-btn</span> <span class="na">delete-btn</span><span class="err">"</span>
+                                    <span class="na">th:hx-delete=</span><span class="s">"@{/lancamentos/{id}(id=${lancamento.id})}"</span>
+                                    <span class="na">hx-target=</span><span class="s">"#lista-lancamentos"</span>
+                                    <span class="na">hx-swap=</span><span class="s">"innerHTML"</span>
+                                    <span class="na">hx-confirm=</span><span class="s">"Tem certeza que deseja excluir?"</span><span class="nt">&gt;</span>
+                                Excluir
+                            <span class="nt">&lt;/button&gt;</span>
+                        <span class="nt">&lt;/td&gt;</span>
+                    <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;/tbody&gt;</span>
+            <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;tr</span> <span class="na">th:fragment=</span><span class="s">"form-edicao"</span> <span class="na">th:id=</span><span class="s">"'lancamento-' + ${lancamentoParaEditar.id}"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;form&gt;</span>
+            <span class="nt">&lt;td&gt;&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">th:value=</span><span class="s">"${lancamentoParaEditar.descricao}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">step=</span><span class="s">"0.01"</span> <span class="na">name=</span><span class="s">"valor"</span> <span class="na">th:value=</span><span class="s">"${lancamentoParaEditar.valor}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${#temporals.format(lancamentoParaEditar.data, 'dd/MM/yyyy')}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>
+                <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"tipo"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;option</span> <span class="na">th:each=</span><span class="s">"tipoOpt : ${tipos}"</span>
+                            <span class="na">th:value=</span><span class="s">"${tipoOpt}"</span>
+                            <span class="na">th:text=</span><span class="s">"${tipoOpt}"</span>
+                            <span class="na">th:selected=</span><span class="s">"${tipoOpt == lancamentoParaEditar.tipo}"</span><span class="nt">&gt;&lt;/option&gt;</span>
+                <span class="nt">&lt;/select&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;td&gt;</span>
+                <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"action-btn save-btn"</span>
+                        <span class="na">th:hx-put=</span><span class="s">"@{/lancamentos/{id}(id=${lancamentoParaEditar.id})}"</span>
+                        <span class="na">th:hx-target=</span><span class="s">"'#lista-lancamentos'"</span>
+                        <span class="na">hx-swap=</span><span class="s">"innerHTML"</span>
+                        <span class="na">th:hx-include=</span><span class="s">"'#lancamento-' + ${lancamentoParaEditar.id} + ' form'"</span><span class="nt">&gt;</span>
+                    Salvar
+                <span class="nt">&lt;/button&gt;</span>
+                
+                <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"action-btn cancel-btn"</span>
+                        <span class="na">th:hx-get=</span><span class="s">"@{/}"</span>
+                        <span class="na">th:hx-target=</span><span class="s">"'#lista-lancamentos'"</span>
+                        <span class="na">hx-swap=</span><span class="s">"innerHTML"</span><span class="nt">&gt;</span>
+                    Cancelar
+                <span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="8-fase-7-containerização-com-docker">8. Fase 7: Containerização com Docker</h3>
+
+<p><strong>Arquivo: <code class="language-plaintext highlighter-rouge">Dockerfile</code></strong></p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Estágio 1: Build da Aplicação com OpenJDK</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">openjdk:21-jdk</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s">builder</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> .mvn/ .mvn</span>
+<span class="k">COPY</span><span class="s"> mvnw .</span>
+<span class="k">COPY</span><span class="s"> pom.xml .</span>
+<span class="k">RUN </span>./mvnw dependency:go-offline
+<span class="k">COPY</span><span class="s"> src ./src</span>
+<span class="k">RUN </span>./mvnw clean package <span class="nt">-DskipTests</span>
+
+<span class="c"># Estágio 2: Imagem Final de Execução (mais leve)</span>
+<span class="k">FROM</span><span class="s"> openjdk:21-jre</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> --from=builder /app/target/*.jar app.jar</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<p><strong>Envie o código final para o GitHub antes de prosseguir.</strong></p>
+
+<hr />
+
+<h3 id="9-fase-8-deploy-em-produção-neon--render">9. Fase 8: Deploy em Produção (Neon + Render)</h3>
+
+<h4 id="91-crie-o-banco-de-dados-no-neon">9.1. Crie o Banco de Dados no Neon</h4>
+
+<ul>
+  <li>Crie um projeto no <a href="https://neon.tech">Neon</a> e guarde as credenciais de conexão.</li>
+</ul>
+
+<h4 id="92-faça-o-deploy-no-render-com-docker">9.2. Faça o Deploy no Render com Docker</h4>
+
+<ol>
+  <li>No painel do Render, crie um <strong>New Web Service</strong> e conecte seu repositório.</li>
+  <li>Na configuração:
+    <ul>
+      <li><strong>Runtime</strong>: Selecione <strong><code class="language-plaintext highlighter-rouge">Docker</code></strong>.</li>
+      <li><strong>Build/Start Commands</strong>: Deixe estes campos <strong>em branco</strong>.</li>
+    </ul>
+  </li>
+  <li>Vá até <strong>Advanced</strong> e adicione as <strong>Environment Variables</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">SPRING_PROFILES_ACTIVE</code>: <code class="language-plaintext highlighter-rouge">prod</code></li>
+      <li><code class="language-plaintext highlighter-rouge">DB_URL</code>: <code class="language-plaintext highlighter-rouge">jdbc:postgresql://&lt;HOST_DO_NEON&gt;/&lt;DB_NAME_DO_NEON&gt;?sslmode=require</code></li>
+      <li><code class="language-plaintext highlighter-rouge">DB_USERNAME</code>: (Seu usuário do Neon)</li>
+      <li><code class="language-plaintext highlighter-rouge">DB_PASSWORD</code>: (Sua senha do Neon)</li>
+    </ul>
+  </li>
+  <li>Clique em <strong>Create Web Service</strong>.</li>
+</ol>
+
+<hr />
+
+<h3 id="-conclusão">✅ Conclusão</h3>
+
+<p>Parabéns! Você finalizou o guia completo, construindo e implantando uma aplicação robusta e moderna. O projeto agora conta com um CRUD completo e um processo de deploy profissional e à prova de falhas usando Docker.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

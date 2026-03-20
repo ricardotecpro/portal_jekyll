@@ -1,0 +1,252 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_07_backend_e_apis/topicos/springboot/spring_boot_h2_mysql.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🥞 Projetos Full Stack | Navegando por Todas as Camadas de Desenvolvimento</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🥞 Projetos Full Stack" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/spring_boot_h2_mysql.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/spring_boot_h2_mysql.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🥞 Projetos Full Stack" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🥞 Projetos Full Stack","url":"https://ricardotecpro.github.io/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/spring_boot_h2_mysql.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/" style="margin-left: 0.5rem;">Mod 07 backend e apis</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_07_backend_e_apis/topicos/springboot/" style="margin-left: 0.5rem;">Springboot</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Spring boot h2 mysql.html</span>
+          
+        
+      </nav>
+
+      <h1 id="-configuração-do-spring-boot-com-h2-e-mysql"># Configuração do Spring Boot com H2 e MySQL</h1>
+
+<p>Para configurar o <strong>H2 para homologação</strong> e <strong>MySQL para produção</strong>, siga os passos abaixo.</p>
+
+<hr />
+
+<h2 id="1️⃣-configuração-do-banco-de-dados-no-applicationproperties"><strong>1️⃣ Configuração do Banco de Dados no <code class="language-plaintext highlighter-rouge">application.properties</code></strong></h2>
+<p>📌 <strong>Edite o arquivo</strong> <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code> e configure conforme o ambiente.</p>
+
+<h3 id="-h2-homologação">✅ <strong>H2 (Homologação)</strong></h3>
+<p>Use esta configuração quando estiver testando localmente sem precisar de um banco externo.</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Banco de dados H2 (memória)
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+
+<span class="c"># Configuração do Hibernate para H2
+</span><span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update  # Cria/atualiza as tabelas automaticamente</span>
+
+<span class="c"># Habilitar console web do H2 para consultas
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+<span class="py">spring.h2.console.settings.trace</span><span class="p">=</span><span class="s">false</span>
+<span class="py">spring.h2.console.settings.web-allow-others</span><span class="p">=</span><span class="s">false</span>
+</code></pre></div></div>
+<p>✅ <strong>Acesse o console do H2:</strong><br />
+➡ <strong>http://localhost:8080/h2-console</strong><br />
+No campo <strong>JDBC URL</strong>, insira:</p>
+<pre><code class="language-txt">jdbc:h2:mem:testdb
+</code></pre>
+<p>Clique em <strong>Connect</strong>.</p>
+
+<hr />
+
+<h3 id="-mysql-produção">✅ <strong>MySQL (Produção)</strong></h3>
+<p>Use esta configuração quando for subir para produção ou quando quiser persistir os dados.</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Banco de dados MySQL
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:mysql://localhost:3306/listatarefas</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">root</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">1234</span>
+<span class="py">spring.datasource.driver-class-name</span><span class="p">=</span><span class="s">com.mysql.cj.jdbc.Driver</span>
+
+<span class="c"># Configuração do Hibernate para MySQL
+</span><span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.MySQL8Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update  # Cria/atualiza as tabelas automaticamente</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Certifique-se de que o MySQL está rodando e que o banco de dados <code class="language-plaintext highlighter-rouge">listatarefas</code> já foi criado</strong>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">listatarefas</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2️⃣-configurar-o-applicationyml-para-múltiplos-perfis-opcional"><strong>2️⃣ Configurar o <code class="language-plaintext highlighter-rouge">application.yml</code> para múltiplos perfis (opcional)</strong></h2>
+<p>Caso queira alternar automaticamente entre <strong>H2 (homologação) e MySQL (produção)</strong>, crie um arquivo <code class="language-plaintext highlighter-rouge">src/main/resources/application.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
+  <span class="na">profiles</span><span class="pi">:</span>
+    <span class="na">active</span><span class="pi">:</span> <span class="s">dev</span>  <span class="c1"># Troque para "prod" em produção</span>
+
+<span class="nn">---</span>
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="na">activate</span><span class="pi">:</span>
+      <span class="na">on-profile</span><span class="pi">:</span> <span class="s">dev</span>
+  <span class="na">datasource</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">jdbc:h2:mem:testdb</span>
+    <span class="na">driverClassName</span><span class="pi">:</span> <span class="s">org.h2.Driver</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s">sa</span>
+    <span class="na">password</span><span class="pi">:</span> 
+  <span class="na">jpa</span><span class="pi">:</span>
+    <span class="na">database-platform</span><span class="pi">:</span> <span class="s">org.hibernate.dialect.H2Dialect</span>
+    <span class="na">hibernate</span><span class="pi">:</span>
+      <span class="na">ddl-auto</span><span class="pi">:</span> <span class="s">update</span>
+  <span class="na">h2</span><span class="pi">:</span>
+    <span class="na">console</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s">/h2-console</span>
+
+<span class="nn">---</span>
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="na">activate</span><span class="pi">:</span>
+      <span class="na">on-profile</span><span class="pi">:</span> <span class="s">prod</span>
+  <span class="na">datasource</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">jdbc:mysql://localhost:3306/listatarefas</span>
+    <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">com.mysql.cj.jdbc.Driver</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s">root</span>
+    <span class="na">password</span><span class="pi">:</span> <span class="m">1234</span>
+  <span class="na">jpa</span><span class="pi">:</span>
+    <span class="na">database-platform</span><span class="pi">:</span> <span class="s">org.hibernate.dialect.MySQL8Dialect</span>
+    <span class="na">hibernate</span><span class="pi">:</span>
+      <span class="na">ddl-auto</span><span class="pi">:</span> <span class="s">update</span>
+</code></pre></div></div>
+<p>Agora, para rodar com H2 (homologação):</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+<p>E para rodar em produção com MySQL:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run <span class="nt">-Dspring</span>.profiles.active<span class="o">=</span>prod
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3️⃣-criar-os-scripts-sql"><strong>3️⃣ Criar os scripts SQL</strong></h3>
+<p>Caso o Hibernate não esteja gerando automaticamente as tabelas, crie os arquivos:</p>
+
+<p>📌 <strong><code class="language-plaintext highlighter-rouge">src/main/resources/schema.sql</code></strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">produto</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">BIGINT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">preco</span> <span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<p>📌 <strong><code class="language-plaintext highlighter-rouge">src/main/resources/data.sql</code></strong> (Para popular com dados iniciais)</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">produto</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">preco</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'Notebook Dell'</span><span class="p">,</span> <span class="mi">4500</span><span class="p">.</span><span class="mi">00</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">produto</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">preco</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">'Mouse Logitech'</span><span class="p">,</span> <span class="mi">120</span><span class="p">.</span><span class="mi">50</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">produto</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">preco</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">'Teclado Mecânico'</span><span class="p">,</span> <span class="mi">350</span><span class="p">.</span><span class="mi">75</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4️⃣-reiniciar-a-aplicação"><strong>4️⃣ Reiniciar a aplicação</strong></h3>
+<p>Após configurar tudo, reinicie o Spring Boot:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<p>Se estiver usando MySQL, <strong>não esqueça de rodar o servidor MySQL antes</strong>.</p>
+
+<p>Agora, sua aplicação está configurada corretamente para rodar com <strong>H2 em homologação</strong> e <strong>MySQL em produção</strong>! 🚀</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

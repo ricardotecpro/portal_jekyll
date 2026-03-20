@@ -1,0 +1,294 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /extra_guia_de_ferramentas/topicos/astrovim/astrovim_2.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Instalação e Configuração do AstroNvim no Debian/Ubuntu | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Instalação e Configuração do AstroNvim no Debian/Ubuntu" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/astrovim_2.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/astrovim_2.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Instalação e Configuração do AstroNvim no Debian/Ubuntu" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Instalação e Configuração do AstroNvim no Debian/Ubuntu","url":"https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/astrovim_2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/extra_guia_de_ferramentas/" style="margin-left: 0.5rem;">Extra guia de ferramentas</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/extra_guia_de_ferramentas/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/" style="margin-left: 0.5rem;">Astrovim</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 **instalação e configuração do astronvim no debian/ubuntu**</span>
+          
+        
+      </nav>
+
+      <h1 id="-instalação-e-configuração-do-astronvim-no-debianubuntu">🚀 <strong>Instalação e Configuração do AstroNvim no Debian/Ubuntu</strong></h1>
+
+<h2 id="1️⃣-removendo-versões-antigas-do-neovim">1️⃣ <strong>Removendo versões antigas do Neovim</strong></h2>
+
+<p>Se você já tem uma instalação do Neovim e quer começar do zero, remova as versões antigas com:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt remove <span class="nt">--purge</span> neovim <span class="nt">-y</span>
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> ~/.config/lvim ~/.local/share/lunarvim ~/.local/state/lunarvim ~/.cache/lunarvim
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> /usr/local/bin/nvim /usr/local/bin/nvim-linux-x86_64.appimage /opt/neovim
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2️⃣-instalando-neovim-v0104">2️⃣ <strong>Instalando Neovim (v0.10.4)</strong></h2>
+
+<h3 id="-baixar-e-instalar-neovim-appimage">📥 <strong>Baixar e instalar Neovim (AppImage)</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-LO</span> https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
+<span class="nb">chmod </span>u+x nvim-linux-x86_64.appimage
+<span class="nb">sudo mv </span>nvim-linux-x86_64.appimage /usr/local/bin/nvim
+</code></pre></div></div>
+
+<h3 id="-verificando-a-instalação">🔍 <strong>Verificando a instalação</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Se tudo estiver certo, o comando acima mostrará a versão do Neovim instalada.</p>
+
+<hr />
+
+<h2 id="3️⃣-instalando-o-astronvim">3️⃣ <strong>Instalando o AstroNvim</strong></h2>
+
+<h3 id="-fazendo-backup-da-configuração-antiga-se-existir">🛠 <strong>Fazendo backup da configuração antiga (se existir)</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> ~/.config/nvim ~/.config/nvim.bak
+<span class="nb">mv</span> ~/.local/share/nvim ~/.local/share/nvim.bak
+<span class="nb">mv</span> ~/.local/state/nvim ~/.local/state/nvim.bak
+<span class="nb">mv</span> ~/.cache/nvim ~/.cache/nvim.bak
+</code></pre></div></div>
+
+<h3 id="-baixando-e-instalando-o-astronvim">📥 <strong>Baixando e instalando o AstroNvim</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--depth</span> 1 https://github.com/AstroNvim/template ~/.config/nvim
+<span class="nb">rm</span> <span class="nt">-rf</span> ~/.config/nvim/.git
+</code></pre></div></div>
+
+<h3 id="-iniciando-o-neovim">🚀 <strong>Iniciando o Neovim</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4️⃣-melhorando-a-aparência-para-parecer-com-o-vs-code">4️⃣ <strong>Melhorando a Aparência para Parecer com o VS Code</strong></h2>
+
+<h3 id="-habilitar-ícones-nerd-fonts">🔤 <strong>Habilitar Ícones Nerd Fonts</strong></h3>
+
+<ol>
+  <li>Baixe e instale uma fonte Nerd Font em <strong><a href="https://www.nerdfonts.com/">NerdFonts</a></strong></li>
+  <li>Configure seu terminal para usar essa fonte.</li>
+</ol>
+
+<h3 id="-instalar-o-tema-catppuccin">🎨 <strong>Instalar o Tema Catppuccin</strong></h3>
+
+<p>O tema já está incluso na configuração personalizada.<br />
+Para ativá-lo manualmente dentro do Neovim, use:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">:</span><span class="k">colorscheme</span> catppuccin
+</code></pre></div></div>
+
+<h3 id="-configurar-uma-barra-de-status-moderna-lualine">📊 <strong>Configurar uma Barra de Status Moderna (lualine)</strong></h3>
+
+<p>Já incluso na configuração personalizada.</p>
+
+<hr />
+
+<h2 id="5️⃣-instalar-e-configurar-plugins-essenciais">5️⃣ <strong>Instalar e Configurar Plugins Essenciais</strong></h2>
+
+<h3 id="-instalar-servidores-lsp">🛠 <strong>Instalar Servidores LSP</strong></h3>
+
+<p>Dentro do Neovim, execute:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">:</span>LspInstall pyright clangd jdtls html cssls tsserver sqlls omnisharp
+</code></pre></div></div>
+
+<h3 id="-instalar-treesitter-para-realce-de-sintaxe">🌳 <strong>Instalar Treesitter para realce de sintaxe</strong></h3>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">:</span>TSInstall <span class="k">c</span> <span class="nb">cpp</span> java html css javascript typescript sql c_sharp
+</code></pre></div></div>
+
+<h3 id="-habilitar-explorer-de-arquivos-nvim-tree">📂 <strong>Habilitar Explorer de Arquivos (nvim-tree)</strong></h3>
+
+<p>Para abrir o <strong>nvim-tree</strong>, use:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">:</span>NvimTreeToggle
+</code></pre></div></div>
+
+<p>Ou utilize a tecla de atalho configurada:<br />
+<strong><code class="language-plaintext highlighter-rouge">&lt;leader&gt;e</code></strong> → (A tecla <strong>Leader</strong> é o <strong>espaço</strong> <code class="language-plaintext highlighter-rouge">Space</code>).</p>
+
+<hr />
+
+<h2 id="6️⃣-configuração-personalizada-initlua">6️⃣ <strong>Configuração Personalizada (<code class="language-plaintext highlighter-rouge">init.lua</code>)</strong></h2>
+
+<p>A configuração principal está em <code class="language-plaintext highlighter-rouge">~/.config/nvim/lua/user/init.lua</code>.<br />
+Aqui está um <strong>exemplo otimizado</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>code ~/.config/nvim/lua/user/init.lua
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+return {
+  colorscheme = "catppuccin",
+  options = {
+    opt = {
+      number = true, relativenumber = true, tabstop = 2, shiftwidth = 2,
+      expandtab = true, smartindent = true, wrap = false, cursorline = true,
+      termguicolors = true, background = "dark",
+    },
+    g = {
+      mapleader = " ", autoformat_enabled = true, cmp_enabled = true,
+      diagnostics_mode = 3, icons_enabled = true, ui_notifications_enabled = true,
+    },
+  },
+
+  plugins = {
+    { "catppuccin/nvim", name = "catppuccin" },
+    {
+      "nvim-lualine/lualine.nvim",
+      config = function() require("lualine").setup({ options = { theme = "catppuccin" } }) end,
+    },
+    {
+      "williamboman/mason.nvim",
+      config = function() require("mason").setup() end,
+    },
+    {
+      "neovim/nvim-lspconfig",
+      config = function()
+        local lspconfig = require("lspconfig")
+        lspconfig.pyright.setup({})
+        lspconfig.clangd.setup({})
+        lspconfig.jdtls.setup({})
+        lspconfig.html.setup({})
+        lspconfig.cssls.setup({})
+        lspconfig.tsserver.setup({})
+        lspconfig.sqlls.setup({})
+        lspconfig.omnisharp.setup({})
+      end,
+    },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+      config = function()
+        require("nvim-treesitter.configs").setup({
+          ensure_installed = { "c", "cpp", "java", "html", "css", "javascript", "typescript", "sql", "c_sharp" },
+          highlight = { enable = true },
+        })
+      end,
+    },
+    {
+      "nvim-tree/nvim-tree.lua",
+      config = function()
+        require("nvim-tree").setup({ view = { width = 30, side = "left" } })
+        vim.keymap.set("n", "&lt;leader&gt;e", ":NvimTreeToggle&lt;CR&gt;", { noremap = true, silent = true })
+      end,
+    },
+  },
+}
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-conclusão">✅ <strong>Conclusão</strong></h2>
+
+<p>Agora seu <strong>Neovim com AstroNvim</strong> está totalmente funcional e otimizado para desenvolvimento com <strong>LSP, Treesitter, nvim-tree e uma aparência moderna como o VS Code</strong>. 🚀</p>
+
+<p>😃</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

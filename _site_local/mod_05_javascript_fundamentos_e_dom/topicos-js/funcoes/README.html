@@ -1,0 +1,70 @@
+<h1 id="-curso-nivelamento-javascript"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png" alt="curso logo" /> Curso Nivelamento JavaScript</h1>
+<blockquote>
+  <p>Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end</p>
+</blockquote>
+
+<h2 id="realização">Realização</h2>
+<p><a href="https://curso.com.br">curso - Escola de programação</a></p>
+
+<p><a href="https://instagram.com/curso.ig"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/ig-icon.png" alt="curso no Instagram" /></a>
+<a href="https://youtube.com/curso"><img src="https://raw.githubusercontent.com/curso/bds-assets/main/ds/yt-icon.png" alt="curso no Youtube" /></a></p>
+
+<h2 id="javascript---funções--arrow-function">JavaScript - Funções / arrow function</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">soma1</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">soma2</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">soma3</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">soma4</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span> 
+
+<span class="kd">const</span> <span class="nx">dobro1</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">dobro2</span> <span class="o">=</span> <span class="nx">num</span> <span class="o">=&gt;</span> <span class="nx">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="c1">// Funcao que nao tem retorno definido, retorna undefined</span>
+
+<span class="kd">function</span> <span class="nf">mostrarPreco</span><span class="p">(</span><span class="nx">preco</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`PRECO = </span><span class="p">${</span><span class="nx">preco</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Variaveis definidas dentro da funcao pertencem somente ao escopo da funcao</span>
+
+<span class="kd">function</span> <span class="nf">areaCirculo</span><span class="p">(</span><span class="nx">raio</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pi</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">pi</span> <span class="o">*</span> <span class="nx">raio</span> <span class="o">*</span> <span class="nx">raio</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//console.log(pi);</span>
+
+<span class="c1">// Function hoisting: declaracoes de funcoes sao "movidas" para cima pelo motor do JavaScript</span>
+
+<span class="nf">teste</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nf">teste</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">TESTE </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Funcoes podem ser passadas como argumento</span>
+
+<span class="kd">function</span> <span class="nf">triplo</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">num</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">aplicar</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">RESULTADO = </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nf">aplicar</span><span class="p">(</span><span class="nx">dobro1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="nf">aplicar</span><span class="p">(</span><span class="nx">triplo</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</code></pre></div></div>
+

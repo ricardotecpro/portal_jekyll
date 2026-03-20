@@ -1,0 +1,174 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Triangulo/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Projeto Triângulo | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Projeto Triângulo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Triangulo/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Triangulo/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Projeto Triângulo" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Projeto Triângulo","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Triangulo/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/" style="margin-left: 0.5rem;">Oo</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/" style="margin-left: 0.5rem;">Python</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Python/Triangulo/" style="margin-left: 0.5rem;">Triangulo</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Projeto triângulo</span>
+          
+        
+      </nav>
+
+      <h1 id="projeto-triângulo">Projeto Triângulo</h1>
+
+<p>Este projeto em Python calcula e compara a área de dois triângulos com base nas medidas informadas pelo usuário.</p>
+
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Triangulo/
+│-- application/
+│   │-- program.py
+│-- entities/
+│   │-- triangle.py
+│-- main.py
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">entities/triangle.py</code>: Define a classe <code class="language-plaintext highlighter-rouge">Triangle</code> com um método para calcular a área.</li>
+  <li><code class="language-plaintext highlighter-rouge">application/program.py</code>: Contém a classe <code class="language-plaintext highlighter-rouge">Program</code>, que executa a lógica principal do programa.</li>
+  <li><code class="language-plaintext highlighter-rouge">main.py</code>: Ponto de entrada do programa.</li>
+</ul>
+
+<h2 id="como-executar">Como Executar</h2>
+<ol>
+  <li>Certifique-se de estar no diretório raiz do projeto.</li>
+  <li>Execute o seguinte comando no terminal:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python main.py
+</code></pre></div>    </div>
+  </li>
+  <li>Insira os valores dos lados dos triângulos quando solicitado.</li>
+</ol>
+
+<h2 id="exemplo-de-uso">Exemplo de Uso</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter the measures of triangle X:
+3.0
+4.0
+5.0
+Enter the measures of triangle Y:
+6.0
+8.0
+10.0
+Triangle X area: 6.0000
+Triangle Y area: 24.0000
+Larger area: Y
+</code></pre></div></div>
+
+<h2 id="requisitos">Requisitos</h2>
+<ul>
+  <li>Python 3.x instalado.</li>
+</ul>
+
+<h2 id="autor">Autor</h2>
+<p>Projeto baseado no exemplo em Java e adaptado para Python.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

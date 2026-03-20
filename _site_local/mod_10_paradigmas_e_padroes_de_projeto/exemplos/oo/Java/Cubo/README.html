@@ -1,0 +1,196 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Java/Cubo/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Projeto Cubos | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Projeto Cubos" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Java/Cubo/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Java/Cubo/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Projeto Cubos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Projeto Cubos","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Java/Cubo/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/" style="margin-left: 0.5rem;">Oo</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Java/" style="margin-left: 0.5rem;">Java</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/Java/Cubo/" style="margin-left: 0.5rem;">Cubo</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Projeto cubos</span>
+          
+        
+      </nav>
+
+      <h1 id="projeto-cubos">Projeto Cubos</h1>
+
+<p>Este projeto em Java calcula o volume de dois cubos com base nos lados fornecidos pelo usuário e compara qual cubo tem o maior volume.</p>
+
+<h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cubos/
+
+├── application/
+│   └── Program.java # Contém a lógica principal do programa
+├── entities/
+│   └── Cubo.java # Contém a classe Cubo com o atributo e método para calcular o volume
+└── Main.java # Classe principal que chama o método main do Program
+</code></pre></div></div>
+
+<h3 id="descrição-das-classes">Descrição das Classes</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Cubo.java</code> (entities/Cubo.java):</strong>
+    <ul>
+      <li>Contém a classe <code class="language-plaintext highlighter-rouge">Cubo</code> com um atributo <code class="language-plaintext highlighter-rouge">lado</code> (representando o comprimento de um lado do cubo).</li>
+      <li>A classe também possui o método <code class="language-plaintext highlighter-rouge">calcularVolume()</code>, que retorna o volume do cubo, calculado como <code class="language-plaintext highlighter-rouge">lado^3</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Program.java</code> (application/Program.java):</strong>
+    <ul>
+      <li>Contém a lógica do programa, incluindo o método <code class="language-plaintext highlighter-rouge">main</code> que solicita os lados de dois cubos ao usuário, calcula seus volumes e compara qual cubo tem o maior volume.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Main.java</code> (Main.java):</strong>
+    <ul>
+      <li>Contém a classe <code class="language-plaintext highlighter-rouge">Main</code>, que chama o método <code class="language-plaintext highlighter-rouge">main</code> da classe <code class="language-plaintext highlighter-rouge">Program</code> para iniciar a execução do programa.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="como-executar-o-projeto">Como Executar o Projeto</h2>
+
+<h3 id="pré-requisitos">Pré-requisitos</h3>
+<p>Certifique-se de que o <a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">Java JDK</a> esteja instalado em sua máquina.</p>
+
+<h3 id="passos">Passos</h3>
+
+<ol>
+  <li>Clone o repositório:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://github.com/seu-usuario/projeto-cubos.git
+</code></pre></div>    </div>
+  </li>
+  <li>Navegue até o diretório do projeto:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd </span>projeto-cubos
+</code></pre></div>    </div>
+  </li>
+  <li>Compile os arquivos Java:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> javac entities/Cubo.java application/Program.java Main.java
+</code></pre></div>    </div>
+  </li>
+  <li>Execute o programa:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> java Main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="exemplo-de-execução">Exemplo de Execução</h3>
+
+<p>```text
+Enter the side length of cubo X: 
+3.0
+Enter the side length of cubo Y: 
+4.0
+Volume of Cubo X = 27.0
+Volume of Cubo Y = 64.0
+Larger volume: Cubo Y</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

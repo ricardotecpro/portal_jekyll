@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ⚡ JavaScript: A Linguagem da Web
+title: "⚡ JavaScript: A Linguagem da Web"
 ---
 
 # ⚡ JavaScript: A Linguagem da Web

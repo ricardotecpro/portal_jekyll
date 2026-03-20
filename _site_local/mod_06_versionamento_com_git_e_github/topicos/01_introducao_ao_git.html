@@ -1,0 +1,276 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_06_versionamento_com_git_e_github/topicos/01_introducao_ao_git.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🐐 Git SCM (Sistema de Controle de Versão) | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🐐 Git SCM (Sistema de Controle de Versão)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/01_introducao_ao_git.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/01_introducao_ao_git.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🐐 Git SCM (Sistema de Controle de Versão)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🐐 Git SCM (Sistema de Controle de Versão)","url":"https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/01_introducao_ao_git.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/" style="margin-left: 0.5rem;">Mod 06 versionamento com git e github</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🐐 git scm (sistema de controle de versão)</span>
+          
+        
+      </nav>
+
+      <h2 id="-git-scm-sistema-de-controle-de-versão">🐐 Git SCM (Sistema de Controle de Versão)</h2>
+
+<h3 id="o-que-é-git">O que é Git?</h3>
+
+<p><strong>Git</strong> é um sistema de controle de versionamento distribuído. Ele permite que você controle as modificações de um projeto ao longo do tempo por meio de versões chamadas “commits”. Cada commit é como uma fotografia do seu projeto em um determinado ponto, registrando o que foi alterado.</p>
+
+<p>Imagine o histórico de um projeto como uma linha do tempo de commits:
+<code class="language-plaintext highlighter-rouge">e8aab78 (commit 1) &lt;-- 38k2ane (commit 2) &lt;-- c9g57ef (commit 3) &lt;-- k2f89m3 (commit 4)</code></p>
+
+<p><strong>Benefícios do Git:</strong></p>
+
+<ul>
+  <li><strong>Histórico de Alterações:</strong> Você pode ver quem alterou o quê e quando.</li>
+  <li><strong>Reversão de Mudanças:</strong> Facilidade para voltar a versões anteriores do projeto caso algo dê errado.</li>
+  <li><strong>Trabalho em Equipe:</strong> Permite que múltiplos desenvolvedores trabalhem no mesmo projeto de forma organizada.</li>
+  <li><strong>Ramificações (Branches):</strong> Desenvolvedores podem trabalhar em novas funcionalidades ou correções de forma isolada em “branches” sem afetar a versão principal do projeto.</li>
+</ul>
+
+<h3 id="️-instalação-e-configuração-do-git">🛠️ Instalação e Configuração do Git</h3>
+
+<h4 id="instalação-do-git-no-computador">Instalação do Git no Computador</h4>
+
+<p>Antes de usar o Git, você precisa instalá-lo.
+Você pode encontrar os downloads e instruções em: <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+
+<h4 id="configurando-sua-identificação-no-git">Configurando sua Identificação no Git</h4>
+
+<p>Após a instalação, configure seu nome de usuário e email. Essa informação será usada para identificar seus commits.</p>
+
+<p>Abra um terminal ou prompt de comando e execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"Seu Nome Completo"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"seu_email_cadastrado_no_github@exemplo.com"</span>
+</code></pre></div></div>
+
+<p>Para verificar as configurações:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--list</span>
+</code></pre></div></div>
+
+<h3 id="-comandos-e-conceitos-fundamentais">🔍 Comandos e Conceitos Fundamentais</h3>
+
+<h4 id="git-init"><code class="language-plaintext highlighter-rouge">git init</code></h4>
+
+<ul>
+  <li><strong>O que faz:</strong> Inicializa um novo repositório Git na pasta atual do seu projeto. Cria uma subpasta oculta chamada <code class="language-plaintext highlighter-rouge">.git</code> que armazena todas as informações do versionamento.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="git-status-git-add-e-o-stage-área-de-preparação"><code class="language-plaintext highlighter-rouge">git status</code>, <code class="language-plaintext highlighter-rouge">git add</code> e o “Stage” (Área de Preparação)</h4>
+
+<p>O Git tem um conceito chamado “área de stage” (ou “index”). É uma área intermediária onde você prepara as alterações que farão parte do próximo commit.</p>
+
+<p>O fluxo é:</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">modified</code> / <code class="language-plaintext highlighter-rouge">untracked</code> (Modificado / Não Rastreado):</strong> Seus arquivos no diretório de trabalho. <code class="language-plaintext highlighter-rouge">git status</code> mostra esses arquivos.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">staged</code> (Preparado):</strong> Você usa <code class="language-plaintext highlighter-rouge">git add &lt;arquivo&gt;</code> para mover as alterações para a área de stage.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">committed</code> (Commitado):</strong> Você usa <code class="language-plaintext highlighter-rouge">git commit</code> para salvar o que está na área de stage como uma nova versão.</li>
+</ol>
+
+<!-- end list -->
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">git add .</code></strong>: Adiciona todos os arquivos e modificações do diretório de trabalho atual à área de stage.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">git commit -m "Mensagem"</code></strong>: Salva as alterações que estão na área de stage como uma nova versão (commit) no seu repositório local.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Primeiro commit: Estrutura inicial do projeto"</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="verificando-o-histórico-de-versões-">Verificando o Histórico de Versões 📜</h4>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">git log</code></strong>: Mostra o histórico completo de commits, com detalhes como autor, data e mensagem.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log
+</code></pre></div>    </div>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">git log --oneline</code></strong>: Mostra uma listagem resumida do histórico de commits.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="nt">--oneline</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="git-diff"><code class="language-plaintext highlighter-rouge">git diff</code></h4>
+
+<ul>
+  <li><strong>O que faz:</strong> Mostra as diferenças entre os arquivos modificados e a última versão commitada ou entre diferentes estados/commits.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">git diff</code>: Mostra as alterações no diretório de trabalho que ainda não foram para o stage.</li>
+      <li><code class="language-plaintext highlighter-rouge">git diff --staged</code>: Mostra as alterações que estão no stage.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="git-checkout-navegando-entre-versões"><code class="language-plaintext highlighter-rouge">git checkout</code>: Navegando entre Versões</h4>
+
+<ul>
+  <li>
+    <p><strong>O que faz:</strong> Permite modificar temporariamente os arquivos do seu projeto para o estado de um dado commit ou branch.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">HEAD</code></strong>: É uma referência especial que aponta para o último commit.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">HEAD~N</code></strong>: Refere-se a um commit N versões antes de <code class="language-plaintext highlighter-rouge">HEAD</code> (<code class="language-plaintext highlighter-rouge">HEAD~1</code> é o penúltimo).</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Voltar para o estado de um commit específico</span>
+git checkout &lt;hash_do_commit&gt;
+
+<span class="c"># Voltar para o penúltimo commit</span>
+git checkout HEAD~1
+
+<span class="c"># Para voltar para o commit mais recente da sua branch</span>
+git checkout main
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Desfazendo alterações locais:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Descarta todas as alterações nos arquivos monitorados</span>
+git checkout <span class="nt">--</span> <span class="nb">.</span>
+
+<span class="c"># CUIDADO: remove arquivos não rastreados permanentemente!</span>
+git clean <span class="nt">-df</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="ignorando-arquivos-com-gitignore-">Ignorando Arquivos com <code class="language-plaintext highlighter-rouge">.gitignore</code> 🚫</h4>
+
+<ul>
+  <li><strong>O que é:</strong> O <code class="language-plaintext highlighter-rouge">.gitignore</code> é um arquivo de texto onde você lista arquivos e pastas que o Git deve ignorar.</li>
+  <li><strong>Casos Comuns para Ignorar:</strong>
+    <ol>
+      <li><strong>Arquivos Compilados e de Build:</strong> <code class="language-plaintext highlighter-rouge">target/</code>, <code class="language-plaintext highlighter-rouge">build/</code>, <code class="language-plaintext highlighter-rouge">dist/</code>, <code class="language-plaintext highlighter-rouge">*.class</code>.</li>
+      <li><strong>Dependências:</strong> <code class="language-plaintext highlighter-rouge">node_modules/</code>.</li>
+      <li><strong>Arquivos de IDEs:</strong> <code class="language-plaintext highlighter-rouge">.vscode/</code>, <code class="language-plaintext highlighter-rouge">.idea/</code>.</li>
+      <li><strong>Arquivos de Sistema Operacional:</strong> <code class="language-plaintext highlighter-rouge">.DS_Store</code>, <code class="language-plaintext highlighter-rouge">Thumbs.db</code>.</li>
+      <li><strong>Arquivos de Credenciais:</strong> <code class="language-plaintext highlighter-rouge">.env</code>, senhas, chaves de API.</li>
+    </ol>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-recursos-adicionais">📚 Recursos Adicionais</h3>
+
+<h4 id="ferramentas-gerais">Ferramentas Gerais</h4>
+
+<ul>
+  <li><strong>Visual Studio Code:</strong> Editor de código recomendado. <a href="https://code.visualstudio.com/download">Download</a>.</li>
+</ul>
+
+<h4 id="focados-em-git">Focados em Git</h4>
+
+<ul>
+  <li><a href="https://git-scm.com/doc">Documentação Oficial do Git</a></li>
+  <li><a href="https://git-scm.com/book/en/v2">Pro Git Book</a> - Um livro completo e gratuito.</li>
+  <li><a href="https://www.atlassian.com/git/tutorials">Atlassian Git Tutorials</a></li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

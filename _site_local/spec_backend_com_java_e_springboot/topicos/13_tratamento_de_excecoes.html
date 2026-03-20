@@ -1,0 +1,932 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/topicos/13_tratamento_de_excecoes.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tratamento de Exceções em Java ☕ | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Tratamento de Exceções em Java ☕" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/13_tratamento_de_excecoes.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/13_tratamento_de_excecoes.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tratamento de Exceções em Java ☕" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Tratamento de Exceções em Java ☕","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/topicos/13_tratamento_de_excecoes.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Tratamento de exceções em java ☕</span>
+          
+        
+      </nav>
+
+      <h1 id="tratamento-de-exceções-em-java-">Tratamento de Exceções em Java ☕</h1>
+
+<p>Este capítulo aborda o tratamento de exceções em Java, um mecanismo fundamental para lidar com erros e situações inesperadas durante a execução de um programa.</p>
+
+<h2 id="discussão-inicial-sobre-exceções-">Discussão Inicial sobre Exceções 🧐</h2>
+
+<p>Atenção: Alguns conceitos podem parecer complexos inicialmente, mas se tornarão mais claros com os exemplos práticos apresentados.</p>
+
+<h3 id="o-que-são-exceções">O que são Exceções?</h3>
+<p>Uma exceção é qualquer condição de erro ou comportamento inesperado encontrado por um programa em execução. Em Java, uma exceção é um objeto herdado da classe:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">java.lang.Exception</code>: O compilador obriga o desenvolvedor a tratar ou propagar essas exceções. São geralmente usadas para condições das quais um programa pode razoavelmente tentar se recuperar (ex: arquivo não encontrado, problema de rede).</li>
+  <li><code class="language-plaintext highlighter-rouge">java.lang.RuntimeException</code>: O compilador <em>não</em> obriga o tratamento ou propagação. Indicam frequentemente bugs de programação (ex: acessar um índice inválido de um array, usar um objeto nulo) ou problemas irrecuperáveis no ambiente de execução.</li>
+</ul>
+
+<p>Quando uma exceção é “lançada” (thrown), ela é propagada na pilha de chamadas de métodos em execução. Se nenhum método na pilha de chamadas capturar (tratar) a exceção, o programa é encerrado e a pilha de chamadas da exceção é impressa no console.</p>
+
+<h3 id="hierarquia-de-exceções-do-java-">Hierarquia de Exceções do Java 🌳</h3>
+<p>A classe base para todas as exceções e erros em Java é <code class="language-plaintext highlighter-rouge">java.lang.Throwable</code>. Abaixo dela, a hierarquia se divide principalmente em:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Error</code></strong>: Representa problemas sérios que uma aplicação razoável não deveria tentar tratar (ex: <code class="language-plaintext highlighter-rouge">OutOfMemoryError</code>, <code class="language-plaintext highlighter-rouge">VirtualMachineError</code>). Esses geralmente indicam problemas irrecuperáveis na JVM ou no ambiente.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Exception</code></strong>: Representa condições que uma aplicação pode querer tratar.
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">IOException</code></strong>: Exceções relacionadas a operações de entrada/saída (ex: falha ao ler um arquivo). É uma <em>checked exception</em>.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">RuntimeException</code></strong>: Exceções que podem ocorrer durante a operação normal da JVM (ex: <code class="language-plaintext highlighter-rouge">NullPointerException</code>, <code class="language-plaintext highlighter-rouge">IndexOutOfBoundsException</code>, <code class="language-plaintext highlighter-rouge">ArithmeticException</code>). São <em>unchecked exceptions</em>.</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-mermaid">graph TD
+    A[Throwable] --&gt; B[Error];
+    A --&gt; C[Exception];
+
+    B --&gt; D[OutOfMemoryError];
+    B --&gt; E[VirtualMachineError];
+
+    C --&gt; F[IOException];
+    C --&gt; G[RuntimeException];
+
+    G --&gt; H[IndexOutOfBoundsException];
+    G --&gt; I[NullPointerException];
+    G --&gt; J[ArithmeticException];
+</code></pre>
+
+<h3 id="por-que-usar-exceções-">Por que usar Exceções? 🤔</h3>
+<p>O modelo de tratamento de exceções permite que erros sejam tratados de forma consistente, flexível e seguindo boas práticas de programação.</p>
+
+<p><strong>Vantagens</strong>:</p>
+
+<ul>
+  <li><strong>Separação de Lógica</strong>: Delega a lógica de tratamento de erro para blocos específicos (blocos <code class="language-plaintext highlighter-rouge">catch</code>), separando-a do código principal do programa. Isso torna o código mais limpo e legível.</li>
+  <li><strong>Tratamento Organizado</strong>: Permite tratar diferentes tipos de exceções de forma organizada, inclusive hierarquicamente (capturar uma exceção mais genérica pode tratar várias exceções filhas).</li>
+  <li><strong>Propagação de Erros</strong>: Se um método não sabe como tratar uma exceção, ele pode propagá-la para o método chamador, permitindo que o erro seja tratado no nível mais apropriado.</li>
+  <li><strong>Informações Detalhadas</strong>: Objetos de exceção podem carregar informações detalhadas sobre o erro (mensagem, pilha de chamadas), o que auxilia na depuração.</li>
+  <li><strong>Criação de Exceções Personalizadas</strong>: Permite definir tipos de exceção específicos para a aplicação, tornando o tratamento de erros mais semântico.</li>
+</ul>
+
+<h2 id="estrutura-try-catch-️">Estrutura <code class="language-plaintext highlighter-rouge">try-catch</code> 🛡️</h2>
+<p>A estrutura <code class="language-plaintext highlighter-rouge">try-catch</code> é o principal mecanismo para tratar exceções em Java.</p>
+
+<ul>
+  <li><strong>Bloco <code class="language-plaintext highlighter-rouge">try</code></strong>: Contém o código que representa a execução normal do trecho de código que <em>pode</em> acarretar em uma exceção.</li>
+  <li><strong>Bloco <code class="language-plaintext highlighter-rouge">catch</code></strong>: Contém o código a ser executado caso uma exceção específica ocorra dentro do bloco <code class="language-plaintext highlighter-rouge">try</code>.
+    <ul>
+      <li>Deve ser especificado o tipo da exceção a ser tratada. Upcasting é permitido (ou seja, você pode capturar <code class="language-plaintext highlighter-rouge">Exception</code> para pegar qualquer exceção filha).</li>
+      <li>Pode haver múltiplos blocos <code class="language-plaintext highlighter-rouge">catch</code> para tratar diferentes tipos de exceções. A ordem dos blocos <code class="language-plaintext highlighter-rouge">catch</code> importa: coloque os mais específicos antes dos mais genéricos.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="sintaxe">Sintaxe</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
+    <span class="c1">// Código que pode lançar uma exceção</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">TipoDeExcecao1</span> <span class="n">nomeVariavelExcecao1</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Código para tratar TipoDeExcecao1</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">TipoDeExcecao2</span> <span class="n">nomeVariavelExcecao2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Código para tratar TipoDeExcecao2</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">nomeVariavelExcecaoGeral</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Código para tratar qualquer outra exceção (se não capturada antes)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-prático-divisão-por-zero-e-entrada-inválida">Exemplo Prático: Divisão por Zero e Entrada Inválida</h3>
+<p>Vamos criar um programa simples que pede dois números ao usuário e tenta dividir o primeiro pelo segundo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.InputMismatchException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaDivisao</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o numerador: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">numerador</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o denominador: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">denominador</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+            <span class="kt">int</span> <span class="n">resultado</span> <span class="o">=</span> <span class="n">numerador</span> <span class="o">/</span> <span class="n">denominador</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Resultado: "</span> <span class="o">+</span> <span class="n">resultado</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArithmeticException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Não é possível dividir por zero."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InputMismatchException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Entrada inválida. Por favor, digite números inteiros."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Captura genérica para outras exceções inesperadas</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ocorreu um erro inesperado: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bloco try-catch finalizado."</span><span class="o">);</span>
+            <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">// Boa prática: fechar o Scanner no finally</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fim do programa."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Como executar este exemplo:</strong></p>
+
+<ul>
+  <li><strong>VS Code</strong>:
+    <ol>
+      <li>Certifique-se de ter o Java Development Kit (JDK) e a extensão “Extension Pack for Java” da Microsoft instalados.</li>
+      <li>Crie um arquivo chamado <code class="language-plaintext highlighter-rouge">ProgramaDivisao.java</code> dentro de uma pasta <code class="language-plaintext highlighter-rouge">aplicacao</code>.</li>
+      <li>Cole o código acima.</li>
+      <li>Clique com o botão direito no editor e selecione “Run Java”.</li>
+    </ol>
+  </li>
+  <li><strong>IntelliJ IDEA</strong>:
+    <ol>
+      <li>Certifique-se de ter o JDK configurado no IntelliJ.</li>
+      <li>Crie um novo projeto Java.</li>
+      <li>Crie um pacote chamado <code class="language-plaintext highlighter-rouge">aplicacao</code> (clique direito na pasta <code class="language-plaintext highlighter-rouge">src</code> -&gt; New -&gt; Package).</li>
+      <li>Dentro do pacote <code class="language-plaintext highlighter-rouge">aplicacao</code>, crie uma classe Java chamada <code class="language-plaintext highlighter-rouge">ProgramaDivisao</code>.</li>
+      <li>Cole o código acima.</li>
+      <li>Clique na seta verde ao lado da declaração <code class="language-plaintext highlighter-rouge">public class ProgramaDivisao</code> ou do método <code class="language-plaintext highlighter-rouge">main</code> e selecione “Run ‘ProgramaDivisao.main()’”.</li>
+    </ol>
+  </li>
+</ul>
+
+<p><strong>Testando o exemplo:</strong></p>
+<ol>
+  <li>Execute o programa e forneça <code class="language-plaintext highlighter-rouge">10</code> e <code class="language-plaintext highlighter-rouge">2</code>. Resultado: <code class="language-plaintext highlighter-rouge">5</code>.</li>
+  <li>Execute novamente e forneça <code class="language-plaintext highlighter-rouge">10</code> e <code class="language-plaintext highlighter-rouge">0</code>. Resultado: <code class="language-plaintext highlighter-rouge">Erro: Não é possível dividir por zero.</code></li>
+  <li>Execute novamente e forneça <code class="language-plaintext highlighter-rouge">dez</code> para o numerador. Resultado: <code class="language-plaintext highlighter-rouge">Erro: Entrada inválida. Por favor, digite números inteiros.</code></li>
+</ol>
+
+<h3 id="exemplo-do-documento-original-acesso-a-array">Exemplo do Documento Original (Acesso a Array)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.InputMismatchException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite alguns nomes separados por espaço:"</span><span class="o">);</span>
+            <span class="nc">String</span><span class="o">[]</span> <span class="n">vetor</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span> <span class="c1">// Lê a linha e divide por espaços</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite a posição do vetor que deseja acessar (começando em 0):"</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">posicao</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span> <span class="c1">// Lê um inteiro para a posição</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome na posição "</span> <span class="o">+</span> <span class="n">posicao</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">vetor</span><span class="o">[</span><span class="n">posicao</span><span class="o">]);</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Esta exceção ocorre se 'posicao' for menor que 0 ou maior/igual ao tamanho de 'vetor'</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Posição inválida no vetor!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InputMismatchException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Esta exceção ocorre se o usuário não digitar um número inteiro para 'posicao'</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro de entrada: A posição deve ser um número inteiro."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+             <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ocorreu um erro inesperado: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fim do programa."</span><span class="o">);</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Teste este exemplo:</strong></p>
+<ol>
+  <li>Entrada: <code class="language-plaintext highlighter-rouge">Ana Bob Carlos</code>, Posição: <code class="language-plaintext highlighter-rouge">1</code>. Saída: <code class="language-plaintext highlighter-rouge">Nome na posição 1: Bob</code>.</li>
+  <li>Entrada: <code class="language-plaintext highlighter-rouge">Ana Bob</code>, Posição: <code class="language-plaintext highlighter-rouge">2</code>. Saída: <code class="language-plaintext highlighter-rouge">Posição inválida no vetor!</code>.</li>
+  <li>Entrada: <code class="language-plaintext highlighter-rouge">Ana Bob</code>, Posição: <code class="language-plaintext highlighter-rouge">abc</code>. Saída: <code class="language-plaintext highlighter-rouge">Erro de entrada: A posição deve ser um número inteiro.</code>.</li>
+</ol>
+
+<h2 id="pilha-de-chamadas-de-métodos-call-stack-">Pilha de Chamadas de Métodos (Call Stack) 🥞</h2>
+<p>Quando um programa Java executa, a JVM mantém uma “pilha de chamadas” (call stack). Cada vez que um método é chamado, um novo “quadro” (stack frame) é adicionado ao topo da pilha. Este quadro contém informações sobre o método, como seus parâmetros e variáveis locais. Quando o método termina, seu quadro é removido da pilha.</p>
+
+<p>Se uma exceção ocorre em um método e não é tratada por ele, a JVM “desempilha” a pilha de chamadas. Isso significa que o método atual é interrompido, e a exceção é propagada para o método que o chamou (o método anterior na pilha). Esse processo continua até que:</p>
+<ol>
+  <li>Um método na pilha de chamadas capture e trate a exceção usando um bloco <code class="language-plaintext highlighter-rouge">try-catch</code>.</li>
+  <li>A exceção chegue ao topo da pilha (ao método <code class="language-plaintext highlighter-rouge">main</code>) sem ser tratada. Neste caso, o programa termina e a “pilha de rastreamento” (stack trace) da exceção é impressa, mostrando a sequência de chamadas de método que levaram ao erro.</li>
+</ol>
+
+<h3 id="exemplo-de-pilha-de-chamadas-e-propagação">Exemplo de Pilha de Chamadas e Propagação</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.InputMismatchException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaPilhaChamadas</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- INÍCIO DO MÉTODO main ---"</span><span class="o">);</span>
+        <span class="n">metodo1</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- FIM DO MÉTODO main ---"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">metodo1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"*** INÍCIO DO metodo1 ***"</span><span class="o">);</span>
+        <span class="n">metodo2</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"*** FIM DO metodo1 ***"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">metodo2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"+++ INÍCIO DO metodo2 +++"</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite alguns nomes separados por espaço:"</span><span class="o">);</span>
+            <span class="nc">String</span><span class="o">[]</span> <span class="n">vetor</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite a posição do vetor que deseja acessar:"</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">posicao</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vetor</span><span class="o">[</span><span class="n">posicao</span><span class="o">]);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Posição inválida!"</span><span class="o">);</span>
+            <span class="c1">// e.printStackTrace(); // Descomente para ver a pilha de chamadas completa da exceção</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InputMismatchException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro de entrada de dados!"</span><span class="o">);</span>
+            <span class="c1">// e.printStackTrace();</span>
+        <span class="o">}</span>
+        <span class="c1">// sc.close(); // Fechar o Scanner aqui pode dar problema se uma exceção ocorrer antes</span>
+                   <span class="c1">// É melhor fechar no main se o Scanner for passado, ou usar try-with-resources.</span>
+                   <span class="c1">// Neste exemplo simples, para evitar complexidade, deixaremos aberto ou</span>
+                   <span class="c1">// podemos fechar aqui se garantirmos que não haverá mais leitura.</span>
+                   <span class="c1">// A melhor prática é usar try-with-resources para System.in globalmente</span>
+                   <span class="c1">// ou fechar explicitamente no método que o criou.</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"+++ FIM DO metodo2 +++"</span><span class="o">);</span>
+        <span class="c1">// Se o Scanner for usado apenas em metodo2, feche-o aqui.</span>
+        <span class="c1">// No entanto, como é System.in, geralmente não se fecha até o final do programa.</span>
+        <span class="c1">// Para este exemplo específico, vamos omitir o sc.close() em metodo2</span>
+        <span class="c1">// e assumir que o Scanner principal (se houvesse um no main) controlaria o System.in.</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Explicação:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">main</code> chama <code class="language-plaintext highlighter-rouge">metodo1</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">metodo1</code> chama <code class="language-plaintext highlighter-rouge">metodo2</code>.</li>
+  <li>Em <code class="language-plaintext highlighter-rouge">metodo2</code>, se ocorrer uma <code class="language-plaintext highlighter-rouge">ArrayIndexOutOfBoundsException</code> (por exemplo, se você digitar uma posição que não existe no vetor), o bloco <code class="language-plaintext highlighter-rouge">catch</code> em <code class="language-plaintext highlighter-rouge">metodo2</code> a tratará.</li>
+  <li>Se <code class="language-plaintext highlighter-rouge">metodo2</code> não tivesse um bloco <code class="language-plaintext highlighter-rouge">try-catch</code> para <code class="language-plaintext highlighter-rouge">ArrayIndexOutOfBoundsException</code>, a exceção seria propagada para <code class="language-plaintext highlighter-rouge">metodo1</code>.</li>
+  <li>Se <code class="language-plaintext highlighter-rouge">metodo1</code> também não a tratasse, ela seria propagada para <code class="language-plaintext highlighter-rouge">main</code>.</li>
+  <li>Se <code class="language-plaintext highlighter-rouge">main</code> não a tratasse, o programa terminaria e imprimiria a pilha de rastreamento.</li>
+</ul>
+
+<p>A chamada <code class="language-plaintext highlighter-rouge">e.printStackTrace();</code> dentro de um bloco <code class="language-plaintext highlighter-rouge">catch</code> é muito útil para depuração, pois mostra exatamente onde a exceção ocorreu e a sequência de chamadas que levou a ela.</p>
+
+<h2 id="bloco-finally-">Bloco <code class="language-plaintext highlighter-rouge">finally</code> 🧹</h2>
+<p>O bloco <code class="language-plaintext highlighter-rouge">finally</code> é usado em conjunto com <code class="language-plaintext highlighter-rouge">try-catch</code>. O código dentro de um bloco <code class="language-plaintext highlighter-rouge">finally</code> é <strong>garantido</strong> de ser executado, independentemente de uma exceção ter sido lançada ou não, ou mesmo se uma exceção lançada foi capturada ou não.</p>
+
+<p><strong>Uso Clássico</strong>: Liberar recursos externos, como fechar arquivos, conexões de banco de dados, ou sockets de rede. Isso garante que os recursos sejam liberados mesmo que ocorram erros.</p>
+
+<h3 id="sintaxe-1">Sintaxe:</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">{</span>
+    <span class="c1">// Código que pode lançar uma exceção</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">TipoDeExcecao1</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Trata TipoDeExcecao1</span>
+<span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+    <span class="c1">// Este código SEMPRE será executado</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Um bloco <code class="language-plaintext highlighter-rouge">try</code> pode ter um <code class="language-plaintext highlighter-rouge">finally</code> sem nenhum <code class="language-plaintext highlighter-rouge">catch</code>, ou com múltiplos <code class="language-plaintext highlighter-rouge">catch</code> e um <code class="language-plaintext highlighter-rouge">finally</code>.</p>
+
+<h3 id="exemplo-prático-com-finally-leitura-de-arquivo">Exemplo Prático com <code class="language-plaintext highlighter-rouge">finally</code> (Leitura de Arquivo)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileNotFoundException</span><span class="o">;</span> <span class="c1">// Import específico para arquivo não encontrado</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaFinally</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">File</span> <span class="n">arquivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"C:\\temp\\entrada.txt"</span><span class="o">);</span> <span class="c1">// Tente criar este arquivo para teste</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="n">arquivo</span><span class="o">);</span> <span class="c1">// Tenta abrir o arquivo</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Arquivo aberto com sucesso."</span><span class="o">);</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Exceção específica para arquivo não encontrado</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao abrir o arquivo: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="c1">// e.printStackTrace(); // Útil para depuração</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="c1">// Este bloco é executado mesmo que o arquivo não seja encontrado</span>
+            <span class="c1">// ou se outra exceção ocorrer durante a leitura.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">sc</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fechando o Scanner no bloco finally."</span><span class="o">);</span>
+                <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">// Garante que o Scanner seja fechado se foi aberto</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Scanner não foi inicializado, nada a fechar no finally."</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fim do programa."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Para testar:</strong></p>
+<ol>
+  <li>Crie um arquivo <code class="language-plaintext highlighter-rouge">entrada.txt</code> em <code class="language-plaintext highlighter-rouge">C:\temp\</code> (ou ajuste o caminho) com algum texto. Execute.</li>
+  <li>Delete o arquivo <code class="language-plaintext highlighter-rouge">entrada.txt</code> ou renomeie-o. Execute novamente. Você verá a mensagem de erro e o bloco <code class="language-plaintext highlighter-rouge">finally</code> ainda sendo executado.</li>
+</ol>
+
+<h3 id="try-with-resources-alternativa-moderna-ao-finally-para-recursos"><code class="language-plaintext highlighter-rouge">try-with-resources</code> (Alternativa Moderna ao <code class="language-plaintext highlighter-rouge">finally</code> para Recursos)</h3>
+<p>A partir do Java 7, a instrução <code class="language-plaintext highlighter-rouge">try-with-resources</code> simplifica o gerenciamento de recursos que implementam a interface <code class="language-plaintext highlighter-rouge">java.lang.AutoCloseable</code> (como <code class="language-plaintext highlighter-rouge">Scanner</code>, <code class="language-plaintext highlighter-rouge">FileInputStream</code>, conexões JDBC). Os recursos declarados no <code class="language-plaintext highlighter-rouge">try</code> são automaticamente fechados ao final do bloco, seja ele concluído normalmente ou por uma exceção.</p>
+
+<p><strong>Exemplo com <code class="language-plaintext highlighter-rouge">try-with-resources</code>:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaTryWithResources</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">File</span> <span class="n">arquivo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"C:\\temp\\entrada.txt"</span><span class="o">);</span>
+
+        <span class="c1">// O Scanner 'sc' será fechado automaticamente</span>
+        <span class="k">try</span> <span class="o">(</span><span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="n">arquivo</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Arquivo aberto com sucesso (try-with-resources)."</span><span class="o">);</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao abrir o arquivo (try-with-resources): "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="c1">// Não é necessário um bloco finally para fechar 'sc'</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Fim do programa (try-with-resources)."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Esta forma é geralmente preferida por ser mais concisa e menos propensa a erros (como esquecer de fechar um recurso).</p>
+
+<h2 id="criando-exceções-personalizadas-️">Criando Exceções Personalizadas 🛠️</h2>
+<p>Às vezes, as exceções padrão do Java não descrevem adequadamente um erro específico da lógica de negócios da sua aplicação. Nesses casos, você pode criar suas próprias classes de exceção.</p>
+
+<p><strong>Como fazer:</strong></p>
+<ol>
+  <li>Crie uma nova classe que herde de <code class="language-plaintext highlighter-rouge">Exception</code> (para criar uma <em>checked exception</em>) ou <code class="language-plaintext highlighter-rouge">RuntimeException</code> (para uma <em>unchecked exception</em>).</li>
+  <li>É uma boa prática fornecer um construtor que aceite uma mensagem de erro (String) e a passe para o construtor da superclasse (<code class="language-plaintext highlighter-rouge">super(mensagem)</code>).</li>
+  <li>Você também pode adicionar outros construtores ou campos à sua exceção personalizada, se necessário, para carregar mais informações sobre o erro.</li>
+</ol>
+
+<h3 id="sugestão-de-estrutura-de-pacotes-model">Sugestão de Estrutura de Pacotes “model”</h3>
+<p>Para organizar o projeto, pode-se usar a seguinte estrutura de pacotes dentro do seu diretório <code class="language-plaintext highlighter-rouge">src</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>model/
+├── entidades/     // Classes de entidade (ex: Reserva, Conta)
+├── enums/         // Enumerações
+├── excecoes/      // Suas exceções personalizadas (ex: ExcecaoDominio)
+└── servicos/      // Classes de serviço
+</code></pre></div></div>
+
+<h3 id="problema-exemplo-reserva-de-hotel-">Problema Exemplo: Reserva de Hotel 🏨</h3>
+<p>Vamos criar um programa para gerenciar reservas de hotel.</p>
+
+<p><strong>Requisitos:</strong></p>
+<ul>
+  <li>Ler dados da reserva: número do quarto, data de entrada, data de saída.</li>
+  <li>Mostrar dados da reserva e sua duração em dias.</li>
+  <li>Ler novas datas para atualizar a reserva.</li>
+  <li>Mostrar dados atualizados.</li>
+</ul>
+
+<p><strong>Regras de Validação (que podem lançar exceções):</strong></p>
+<ol>
+  <li>Alterações de reserva só podem ocorrer para datas futuras.</li>
+  <li>A data de saída deve ser maior (posterior) que a data de entrada.</li>
+</ol>
+
+<p><strong>Estrutura da Classe <code class="language-plaintext highlighter-rouge">Reserva</code> (simplificada):</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em model/entidades/Reserva.java</span>
+<span class="kn">package</span> <span class="nn">model.entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">model.excecoes.ExcecaoDominio</span><span class="o">;</span> <span class="c1">// Nossa exceção personalizada</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Reserva</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">numeroQuarto</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">dataEntrada</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">dataSaida</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="nf">Reserva</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numeroQuarto</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">dataEntrada</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">dataSaida</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ExcecaoDominio</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">dataSaida</span><span class="o">.</span><span class="na">after</span><span class="o">(</span><span class="n">dataEntrada</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ExcecaoDominio</span><span class="o">(</span><span class="s">"Erro na reserva: A data de saída deve ser posterior à data de entrada."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="c1">// Validação adicional: não permitir check-in no passado na criação (opcional aqui)</span>
+        <span class="nc">Date</span> <span class="n">agora</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">dataEntrada</span><span class="o">.</span><span class="na">before</span><span class="o">(</span><span class="n">agora</span><span class="o">)</span> <span class="o">||</span> <span class="n">dataSaida</span><span class="o">.</span><span class="na">before</span><span class="o">(</span><span class="n">agora</span><span class="o">))</span> <span class="o">{</span>
+             <span class="k">throw</span> <span class="k">new</span> <span class="nf">ExcecaoDominio</span><span class="o">(</span><span class="s">"Erro na reserva: As datas da reserva devem ser futuras."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numeroQuarto</span> <span class="o">=</span> <span class="n">numeroQuarto</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dataEntrada</span> <span class="o">=</span> <span class="n">dataEntrada</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dataSaida</span> <span class="o">=</span> <span class="n">dataSaida</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters (com validação nos setters se necessário)</span>
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getNumeroQuarto</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">numeroQuarto</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNumeroQuarto</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numeroQuarto</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">numeroQuarto</span> <span class="o">=</span> <span class="n">numeroQuarto</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getDataEntrada</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">dataEntrada</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getDataSaida</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">dataSaida</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">long</span> <span class="nf">duracao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">dataSaida</span><span class="o">.</span><span class="na">getTime</span><span class="o">()</span> <span class="o">-</span> <span class="n">dataEntrada</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span> <span class="c1">// Diferença em milissegundos</span>
+        <span class="k">return</span> <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">DAYS</span><span class="o">.</span><span class="na">convert</span><span class="o">(</span><span class="n">diff</span><span class="o">,</span> <span class="nc">TimeUnit</span><span class="o">.</span><span class="na">MILLISECONDS</span><span class="o">);</span> <span class="c1">// Converte para dias</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">atualizarDatas</span><span class="o">(</span><span class="nc">Date</span> <span class="n">novaDataEntrada</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">novaDataSaida</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ExcecaoDominio</span> <span class="o">{</span>
+        <span class="nc">Date</span> <span class="n">agora</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">novaDataEntrada</span><span class="o">.</span><span class="na">before</span><span class="o">(</span><span class="n">agora</span><span class="o">)</span> <span class="o">||</span> <span class="n">novaDataSaida</span><span class="o">.</span><span class="na">before</span><span class="o">(</span><span class="n">agora</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// Lança nossa exceção personalizada</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ExcecaoDominio</span><span class="o">(</span><span class="s">"Erro na atualização: As datas da reserva para atualização devem ser futuras."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">novaDataSaida</span><span class="o">.</span><span class="na">after</span><span class="o">(</span><span class="n">novaDataEntrada</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ExcecaoDominio</span><span class="o">(</span><span class="s">"Erro na atualização: A data de saída deve ser posterior à data de entrada."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dataEntrada</span> <span class="o">=</span> <span class="n">novaDataEntrada</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dataSaida</span> <span class="o">=</span> <span class="n">novaDataSaida</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Reserva: Quarto "</span> <span class="o">+</span> <span class="n">numeroQuarto</span> <span class="o">+</span>
+               <span class="s">", Entrada: "</span> <span class="o">+</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataEntrada</span><span class="o">)</span> <span class="o">+</span>
+               <span class="s">", Saída: "</span> <span class="o">+</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataSaida</span><span class="o">)</span> <span class="o">+</span>
+               <span class="s">", "</span> <span class="o">+</span> <span class="n">duracao</span><span class="o">()</span> <span class="o">+</span> <span class="s">" noites"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exceção Personalizada <code class="language-plaintext highlighter-rouge">ExcecaoDominio</code>:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em model/excecoes/ExcecaoDominio.java</span>
+<span class="kn">package</span> <span class="nn">model.excecoes</span><span class="o">;</span>
+
+<span class="c1">// Pode ser RuntimeException (unchecked) ou Exception (checked)</span>
+<span class="c1">// Se for Exception, o compilador obrigará o tratamento com try-catch ou throws.</span>
+<span class="c1">// Se for RuntimeException, o tratamento é opcional (mas recomendado para erros esperados).</span>
+<span class="c1">// Para regras de negócio, usar Exception (checked) é muitas vezes uma boa prática,</span>
+<span class="c1">// pois força o chamador a pensar sobre como lidar com a falha.</span>
+<span class="c1">// Vamos usar Exception aqui para demonstrar a obrigatoriedade do tratamento.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExcecaoDominio</span> <span class="kd">extends</span> <span class="nc">Exception</span> <span class="o">{</span> <span class="c1">// Se fosse RuntimeException, não precisaria do 'throws' no construtor e métodos</span>
+
+    <span class="kd">public</span> <span class="nf">ExcecaoDominio</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span> <span class="c1">// Repassa a mensagem para o construtor da superclasse (Exception)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Programa Principal:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em aplicacao/ProgramaReserva.java</span>
+<span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">model.entidades.Reserva</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">model.excecoes.ExcecaoDominio</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.text.ParseException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaReserva</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">);</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Número do quarto: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">numero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Data de entrada (dd/MM/yyyy): "</span><span class="o">);</span>
+            <span class="nc">Date</span> <span class="n">dataEntrada</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Data de saída (dd/MM/yyyy): "</span><span class="o">);</span>
+            <span class="nc">Date</span> <span class="n">dataSaida</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+
+            <span class="nc">Reserva</span> <span class="n">reserva</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Reserva</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">dataEntrada</span><span class="o">,</span> <span class="n">dataSaida</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">reserva</span><span class="o">);</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Entre com os dados para atualizar a reserva:"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nova data de entrada (dd/MM/yyyy): "</span><span class="o">);</span>
+            <span class="n">dataEntrada</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nova data de saída (dd/MM/yyyy): "</span><span class="o">);</span>
+            <span class="n">dataSaida</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+
+            <span class="n">reserva</span><span class="o">.</span><span class="na">atualizarDatas</span><span class="o">(</span><span class="n">dataEntrada</span><span class="o">,</span> <span class="n">dataSaida</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Reserva atualizada: "</span> <span class="o">+</span> <span class="n">reserva</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Formato de data inválido."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ExcecaoDominio</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Capturando nossa exceção personalizada</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">RuntimeException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Para capturar outros erros de tempo de execução (ex: InputMismatchException)</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro inesperado de tempo de execução: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="c1">// e.printStackTrace(); // Para depuração</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplos de Interação (como no documento original):</strong></p>
+
+<ol>
+  <li><strong>Reserva e atualização válidas:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Número do quarto: 8021
+Data de entrada (dd/MM/yyyy): 23/09/2025
+Data de saída (dd/MM/yyyy): 26/09/2025
+Reserva: Quarto 8021, Entrada: 23/09/2025, Saída: 26/09/2025, 3 noites
+
+Entre com os dados para atualizar a reserva:
+Nova data de entrada (dd/MM/yyyy): 24/09/2025
+Nova data de saída (dd/MM/yyyy): 29/09/2025
+Reserva atualizada: Reserva: Quarto 8021, Entrada: 24/09/2025, Saída: 29/09/2025, 5 noites
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Erro: Data de saída anterior à data de entrada (na criação):</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Número do quarto: 8021
+Data de entrada (dd/MM/yyyy): 23/09/2025
+Data de saída (dd/MM/yyyy): 21/09/2025
+Erro na reserva: A data de saída deve ser posterior à data de entrada.
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Erro: Datas de atualização no passado:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Número do quarto: 8021
+Data de entrada (dd/MM/yyyy): 23/09/2025
+Data de saída (dd/MM/yyyy): 26/09/2025
+Reserva: Quarto 8021, Entrada: 23/09/2025, Saída: 26/09/2025, 3 noites
+
+Entre com os dados para atualizar a reserva:
+Nova data de entrada (dd/MM/yyyy): 24/09/2015
+Nova data de saída (dd/MM/yyyy): 29/09/2015
+Erro na atualização: As datas da reserva para atualização devem ser futuras.
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="abordagens-de-solução-e-resumo-">Abordagens de Solução e Resumo 📝</h2>
+
+<p>No desenvolvimento, poderíamos ter diferentes abordagens para validação:</p>
+
+<ul>
+  <li><strong>Solução 1 (muito ruim):</strong> Lógica de validação toda no programa principal (ex: <code class="language-plaintext highlighter-rouge">ProgramaReserva.java</code>).
+    <ul>
+      <li>Desvantagem: A lógica de validação não é delegada à classe <code class="language-plaintext highlighter-rouge">Reserva</code>, que é quem deveria conhecer suas próprias regras. O código fica acoplado e difícil de manter.</li>
+    </ul>
+  </li>
+  <li><strong>Solução 2 (ruim):</strong> Métodos na classe <code class="language-plaintext highlighter-rouge">Reserva</code> retornando códigos de erro (ex: um <code class="language-plaintext highlighter-rouge">String</code> ou um <code class="language-plaintext highlighter-rouge">int</code>).
+    <ul>
+      <li>Desvantagens:
+        <ul>
+          <li>A semântica da operação é prejudicada (um método <code class="language-plaintext highlighter-rouge">atualizarDatas</code> deveria atualizar datas, não primariamente retornar um status de erro).</li>
+          <li>E se o método já precisasse retornar um valor específico (ex: uma <code class="language-plaintext highlighter-rouge">String</code> com um resumo)?</li>
+          <li>Não é possível usar essa abordagem para tratar erros em construtores de forma elegante.</li>
+          <li>O compilador não ajuda: o programador deve “lembrar” de verificar o código de retorno.</li>
+          <li>A lógica fica estruturada em condicionais aninhadas (<code class="language-plaintext highlighter-rouge">if-else if-else</code>).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Solução 3 (boa):</strong> Tratamento de exceções (como implementado acima).
+    <ul>
+      <li><strong>Vantagens:</strong>
+        <ul>
+          <li><strong>Lógica Delegada</strong>: A classe <code class="language-plaintext highlighter-rouge">Reserva</code> é responsável por suas próprias validações e lança exceções quando regras são violadas.</li>
+          <li><strong>Construtores</strong>: Construtores podem lançar exceções, indicando que a criação do objeto falhou.</li>
+          <li><strong>Auxílio do Compilador</strong> (para <em>checked exceptions</em>): O compilador obriga o tratamento, prevenindo que erros sejam ignorados.</li>
+          <li><strong>Código Mais Limpo</strong>: Evita condicionais aninhadas para tratamento de erro. A execução é interrompida no ponto do erro e transferida para o bloco <code class="language-plaintext highlighter-rouge">catch</code> correspondente.</li>
+          <li><strong>Captura Abrangente</strong>: É possível capturar tanto exceções personalizadas quanto exceções do sistema (<code class="language-plaintext highlighter-rouge">ParseException</code>, <code class="language-plaintext highlighter-rouge">InputMismatchException</code>).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="palavras-chave-importantes-no-tratamento-de-exceções">Palavras-chave Importantes no Tratamento de Exceções:</h3>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">try</code></strong>: Define um bloco de código que será monitorado para exceções.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">catch</code></strong>: Define um bloco de código para tratar uma exceção específica que ocorreu no bloco <code class="language-plaintext highlighter-rouge">try</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">finally</code></strong>: Define um bloco de código que sempre será executado após o <code class="language-plaintext highlighter-rouge">try</code> (e <code class="language-plaintext highlighter-rouge">catch</code>, se houver), independentemente de uma exceção ter ocorrido ou não.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">throw</code></strong>: Usado para <em>lançar</em> explicitamente uma instância de uma exceção. Interrompe o fluxo normal do método e “corta” sua execução.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">if</span> <span class="o">(</span><span class="n">saldo</span> <span class="o">&lt;</span> <span class="n">valorSaque</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"Saldo insuficiente."</span><span class="o">);</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">throws</code></strong>: Usado na assinatura de um método para indicar que ele <em>pode</em> lançar certas <em>checked exceptions</em>, e que não as trata internamente. O método que chama um método com <code class="language-plaintext highlighter-rouge">throws</code> deve tratar a exceção ou propagá-la também usando <code class="language-plaintext highlighter-rouge">throws</code>.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// O método informa que pode lançar IOException e quem o chamar deve tratar.</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">lerArquivo</span><span class="o">(</span><span class="nc">String</span> <span class="n">nomeArquivo</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+      <span class="c1">// código que pode lançar IOException...</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="exception-vs-runtimeexception"><code class="language-plaintext highlighter-rouge">Exception</code> vs. <code class="language-plaintext highlighter-rouge">RuntimeException</code></h3>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Exception</code> (e suas subclasses, exceto <code class="language-plaintext highlighter-rouge">RuntimeException</code> e suas subclasses):</strong> São <em>checked exceptions</em>. O compilador obriga que sejam tratadas (com <code class="language-plaintext highlighter-rouge">try-catch</code>) ou propagadas (com <code class="language-plaintext highlighter-rouge">throws</code> na assinatura do método). Usadas para condições recuperáveis ou esperadas.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">RuntimeException</code> (e suas subclasses):</strong> São <em>unchecked exceptions</em>. O compilador não obriga o tratamento ou propagação. Geralmente indicam erros de programação (<code class="language-plaintext highlighter-rouge">NullPointerException</code>, <code class="language-plaintext highlighter-rouge">ArrayIndexOutOfBoundsException</code>) ou problemas irrecuperáveis.</li>
+</ul>
+
+<h2 id="exercício-de-fixação-conta-bancária-">Exercício de Fixação: Conta Bancária 🏦</h2>
+
+<p>Fazer um programa para ler os dados de uma conta bancária e depois realizar um saque, mostrando o novo saldo.</p>
+
+<p><strong>Regras:</strong></p>
+<ol>
+  <li>Um saque não pode ocorrer se não houver saldo suficiente na conta.</li>
+  <li>Um saque não pode ocorrer se o valor do saque for superior ao limite de saque da conta.</li>
+</ol>
+
+<p><strong>Projeto da Classe <code class="language-plaintext highlighter-rouge">Conta</code>:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Conta
+--------------------
+- numero: Integer
+- titular: String
+- saldo: Double
+- limiteSaque: Double
+--------------------
++ depositar(quantia: Double): void
++ sacar(quantia: Double): void  // Este método pode lançar uma exceção personalizada
+</code></pre></div></div>
+
+<h3 id="classe-excecaoconta-personalizada">Classe <code class="language-plaintext highlighter-rouge">ExcecaoConta</code> (Personalizada)</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em model/excecoes/ExcecaoConta.java (ou similar)</span>
+<span class="kn">package</span> <span class="nn">model.excecoes</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExcecaoConta</span> <span class="kd">extends</span> <span class="nc">Exception</span> <span class="o">{</span> <span class="c1">// Checked exception</span>
+    <span class="kd">public</span> <span class="nf">ExcecaoConta</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="classe-conta">Classe <code class="language-plaintext highlighter-rouge">Conta</code></h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em model/entidades/Conta.java (ou similar)</span>
+<span class="kn">package</span> <span class="nn">model.entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">model.excecoes.ExcecaoConta</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">limiteSaque</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldoInicial</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">limiteSaque</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numero</span> <span class="o">=</span> <span class="n">numero</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="n">saldoInicial</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">limiteSaque</span> <span class="o">=</span> <span class="n">limiteSaque</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters</span>
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getNumero</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">numero</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTitular</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">titular</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getLimiteSaque</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">limiteSaque</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="c1">// Setters (para titular e limite de saque, por exemplo)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitular</span><span class="o">(</span><span class="nc">String</span> <span class="n">titular</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLimiteSaque</span><span class="o">(</span><span class="nc">Double</span> <span class="n">limiteSaque</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">limiteSaque</span> <span class="o">=</span> <span class="n">limiteSaque</span><span class="o">;</span> <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Poderia lançar uma IllegalArgumentException aqui, mas para simplificar o exercício, focaremos no saque.</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Quantia de depósito deve ser positiva."</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">saldo</span> <span class="o">+=</span> <span class="n">quantia</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Depósito realizado. Novo saldo: "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">saldo</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ExcecaoConta</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ExcecaoConta</span><span class="o">(</span><span class="s">"Erro de saque: A quantia deve ser positiva."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&gt;</span> <span class="n">limiteSaque</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ExcecaoConta</span><span class="o">(</span><span class="s">"Erro de saque: A quantia ("</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">+</span> <span class="s">") excede o limite de saque ("</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">limiteSaque</span><span class="o">)</span> <span class="o">+</span> <span class="s">")."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&gt;</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">ExcecaoConta</span><span class="o">(</span><span class="s">"Erro de saque: Saldo insuficiente. Saldo atual ("</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">+</span> <span class="s">")."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">quantia</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Conta "</span> <span class="o">+</span> <span class="n">numero</span> <span class="o">+</span> <span class="s">", Titular: "</span> <span class="o">+</span> <span class="n">titular</span> <span class="o">+</span> <span class="s">", Saldo: "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="programa-principal-para-conta-bancária">Programa Principal para Conta Bancária</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em aplicacao/ProgramaConta.java</span>
+<span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">model.entidades.Conta</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">model.excecoes.ExcecaoConta</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.InputMismatchException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaConta</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span> <span class="c1">// Para usar ponto como separador decimal</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Entre com os dados da conta:"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Número: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">numero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consumir a quebra de linha pendente</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Titular: "</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">titular</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Saldo inicial: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">saldoInicial</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Limite de saque: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">limiteSaque</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="nc">Conta</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Conta</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">,</span> <span class="n">saldoInicial</span><span class="o">,</span> <span class="n">limiteSaque</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conta</span><span class="o">);</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"
+Entre com a quantia para saque: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">quantiaSaque</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="n">quantiaSaque</span><span class="o">);</span> <span class="c1">// Este método pode lançar ExcecaoConta</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saque realizado com sucesso!"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Novo saldo: "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">()));</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ExcecaoConta</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InputMismatchException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro de entrada: Verifique se os valores numéricos foram digitados corretamente."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ocorreu um erro inesperado: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="c1">// e.printStackTrace();</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Exemplos de Interação (Conta Bancária):</strong></p>
+
+<ol>
+  <li><strong>Saque válido:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entre com os dados da conta:
+Número: 8021
+Titular: Bob Brown
+Saldo inicial: 500.00
+Limite de saque: 300.00
+Conta 8021, Titular: Bob Brown, Saldo: 500.00
+
+Entre com a quantia para saque: 100.00
+Saque realizado com sucesso!
+Novo saldo: 400.00
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Erro: Saque excede limite:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entre com os dados da conta:
+Número: 8021
+Titular: Bob Brown
+Saldo inicial: 500.00
+Limite de saque: 300.00
+Conta 8021, Titular: Bob Brown, Saldo: 500.00
+
+Entre com a quantia para saque: 400.00
+Erro de saque: A quantia (400.00) excede o limite de saque (300.00).
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Erro: Saldo insuficiente:</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entre com os dados da conta:
+Número: 8021
+Titular: Bob Brown
+Saldo inicial: 200.00
+Limite de saque: 300.00
+Conta 8021, Titular: Bob Brown, Saldo: 200.00
+
+Entre com a quantia para saque: 250.00
+Erro de saque: Saldo insuficiente. Saldo atual (200.00).
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Este resumo e os exemplos fornecem uma base sólida para entender e aplicar o tratamento de exceções em seus programas Java, tornando-os mais robustos e fáceis de manter.</p>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

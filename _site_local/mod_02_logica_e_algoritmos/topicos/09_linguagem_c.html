@@ -1,0 +1,766 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/09_linguagem_c.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linguagem C 📖 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Linguagem C 📖" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/09_linguagem_c.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/09_linguagem_c.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linguagem C 📖" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Linguagem C 📖","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/09_linguagem_c.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Linguagem c 📖</span>
+          
+        
+      </nav>
+
+      <h1 id="linguagem-c-">Linguagem C 📖</h1>
+
+<p>Este guia é um material de apoio completo para quem está começando na linguagem C, especialmente para estudantes que já possuem uma base em lógica de programação.</p>
+
+<h2 id="️-instalação-e-configuração-do-ambiente-vs-code">🛠️ Instalação e Configuração do Ambiente (VS Code)</h2>
+
+<p>Para programar em C, você precisará de duas ferramentas principais: um <strong>compilador</strong> e um <strong>Editor de Código/IDE</strong>.</p>
+
+<ul>
+  <li><strong>Compilador</strong>: É o programa que traduz seu código C (legível por humanos) para código de máquina (executável pelo computador). Usaremos o <strong>GCC</strong>, que faz parte do pacote <strong>MinGW</strong> para Windows.</li>
+  <li><strong>IDE (Ambiente de Desenvolvimento Integrado)</strong>: É um editor de texto com superpoderes para programadores. Usaremos o <strong>Visual Studio Code (VS Code)</strong>, que é moderno, gratuito e altamente customizável.</li>
+</ul>
+
+<h3 id="passos-para-configuração">Passos para Configuração:</h3>
+
+<ol>
+  <li>
+    <p><strong>Instale o Compilador (MinGW-w64)</strong>:</p>
+
+    <ul>
+      <li>Acesse o site oficial do <a href="https://www.mingw-w64.org/downloads/">MinGW-w64</a> e faça o download do instalador.</li>
+      <li>Durante a instalação, na tela de “Settings”, certifique-se de que a arquitetura (<code class="language-plaintext highlighter-rouge">Architecture</code>) está definida como <code class="language-plaintext highlighter-rouge">x86_64</code> e clique em <code class="language-plaintext highlighter-rouge">Next</code>.</li>
+      <li><strong>Adicione o MinGW ao Path do Windows</strong>: É crucial que o sistema operacional saiba onde encontrar o compilador. Adicione o caminho da pasta <code class="language-plaintext highlighter-rouge">bin</code> do MinGW (ex: <code class="language-plaintext highlighter-rouge">C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin</code>) à variável de ambiente <code class="language-plaintext highlighter-rouge">Path</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Instale o VS Code</strong>:</p>
+
+    <ul>
+      <li>Baixe e instale o <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Instale a Extensão C/C++ no VS Code</strong>:</p>
+
+    <ul>
+      <li>Abra o VS Code, vá para a aba de <code class="language-plaintext highlighter-rouge">Extensions</code> (ícone de blocos no menu lateral).</li>
+      <li>Procure por “C/C++” da Microsoft e clique em <code class="language-plaintext highlighter-rouge">Install</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-seu-primeiro-programa-em-c">🚀 Seu Primeiro Programa em C</h3>
+
+<p>Vamos criar um programa clássico que exibe uma mensagem na tela.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Ola, Universo C!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Análise do Código:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;stdio.h&gt;</code>: Importa a biblioteca padrão de entrada e saída de dados (<code class="language-plaintext highlighter-rouge">Standard Input/Output</code>), que nos dá acesso a funções como <code class="language-plaintext highlighter-rouge">printf</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">int main()</code>: É a função principal, o ponto de partida de todo programa em C.</li>
+  <li><code class="language-plaintext highlighter-rouge">printf("Ola, Universo C!
+");</code>: A função <code class="language-plaintext highlighter-rouge">printf</code> é usada para “imprimir” texto no console. O `
+` é um caractere especial que significa “nova linha”.</li>
+  <li><code class="language-plaintext highlighter-rouge">return 0;</code>: Indica que o programa foi executado com sucesso e terminou sem erros.</li>
+</ul>
+
+<h2 id="-tipos-de-dados-e-variáveis">📊 Tipos de Dados e Variáveis</h2>
+
+<p>Variáveis são espaços na memória que reservamos para armazenar dados. Em C, toda variável precisa ter um tipo definido.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Significado</th>
+      <th style="text-align: left">Tipo em C</th>
+      <th style="text-align: left">Exemplo de Declaração</th>
+      <th style="text-align: left">Observações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Número Inteiro</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int idade;</code></td>
+      <td style="text-align: left">Armazena números inteiros. O intervalo pode ser estendido com <code class="language-plaintext highlighter-rouge">long int</code> ou <code class="language-plaintext highlighter-rouge">long long int</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Número com Ponto Flutuante</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double salario;</code></td>
+      <td style="text-align: left">Armazena números reais com alta precisão. Para precisão menor (e menos uso de memória), pode-se usar <code class="language-plaintext highlighter-rouge">float</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Um Único Caractere</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char genero;</code></td>
+      <td style="text-align: left">Armazena um único caractere, que deve ser envolvido por <strong>aspas simples</strong>. Ex: <code class="language-plaintext highlighter-rouge">'F'</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Texto (String)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char[]</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char nome[50];</code></td>
+      <td style="text-align: left">Em C, um texto é um <strong>vetor (array) de caracteres</strong>. O valor deve ser envolvido por <strong>aspas duplas</strong>. Ex: <code class="language-plaintext highlighter-rouge">"Ana Souza"</code>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Valor Lógico (Booleano)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code> (tradicional) ou <code class="language-plaintext highlighter-rouge">bool</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int temFilhos;</code></td>
+      <td style="text-align: left">C tradicionalmente usa <code class="language-plaintext highlighter-rouge">int</code>: <strong>0</strong> representa <code class="language-plaintext highlighter-rouge">falso</code> e qualquer outro número representa <code class="language-plaintext highlighter-rouge">verdadeiro</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Nota:</strong> Em C moderno (padrão C99 em diante), você pode incluir a biblioteca <code class="language-plaintext highlighter-rouge">&lt;stdbool.h&gt;</code> para usar os tipos <code class="language-plaintext highlighter-rouge">bool</code>, <code class="language-plaintext highlighter-rouge">true</code> e <code class="language-plaintext highlighter-rouge">false</code>, o que torna o código mais legível.</p>
+
+<h2 id="-declaração-e-atribuição-de-variáveis">📝 Declaração e Atribuição de Variáveis</h2>
+
+<p>Você pode declarar uma variável e atribuir um valor a ela na mesma linha ou em momentos diferentes.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="c1"> // Necessário para a função strcpy</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Declaração de variáveis</span>
+    <span class="kt">int</span> <span class="n">idade</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">salario</span><span class="p">,</span> <span class="n">altura</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">genero</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">nome</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+
+    <span class="c1">// Atribuição de valores</span>
+    <span class="n">idade</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+    <span class="n">salario</span> <span class="o">=</span> <span class="mi">6200</span><span class="p">.</span><span class="mi">75</span><span class="p">;</span>
+    <span class="n">altura</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.</span><span class="mi">70</span><span class="p">;</span>
+    <span class="n">genero</span> <span class="o">=</span> <span class="sc">'F'</span><span class="p">;</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="s">"Ana Souza"</span><span class="p">);</span> <span class="c1">// Função para copiar um texto para uma variável string</span>
+
+    <span class="c1">// Saída de dados</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"IDADE = %d</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">idade</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"SALARIO = %.2f</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">salario</span><span class="p">);</span> <span class="c1">// %.2f formata para 2 casas decimais</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"ALTURA = %.2f</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">altura</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"GENERO = %c</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">genero</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"NOME = %s</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">nome</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IDADE = 25
+SALARIO = 6200.75
+ALTURA = 1.70
+GENERO = F
+NOME = Ana Souza
+</code></pre></div></div>
+
+<p><strong>Importante:</strong></p>
+
+<ul>
+  <li>A atribuição de texto a um vetor <code class="language-plaintext highlighter-rouge">char</code> após sua declaração deve ser feita com a função <code class="language-plaintext highlighter-rouge">strcpy</code> (string copy).</li>
+  <li>Você também pode inicializar a variável na mesma linha da declaração, o que é mais comum: <code class="language-plaintext highlighter-rouge">int idade = 25;</code> ou <code class="language-plaintext highlighter-rouge">char nome[50] = "Ana Souza";</code>.</li>
+</ul>
+
+<h2 id="-operadores">🔢 Operadores</h2>
+
+<h3 id="aritméticos">Aritméticos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Resto da divisão (módulo)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="comparativos">Comparativos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left">Igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente de</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="lógicos">Lógicos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left">E (AND)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left">OU (OR)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left">NÃO (NOT)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-saída-de-dados-printf">📤 Saída de Dados (<code class="language-plaintext highlighter-rouge">printf</code>)</h2>
+
+<p>A função <code class="language-plaintext highlighter-rouge">printf</code> usa “placeholders” (marcadores de posição) para exibir o conteúdo de variáveis.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Tipo</th>
+      <th style="text-align: left">Placeholder</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%d</code> ou <code class="language-plaintext highlighter-rouge">%i</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">long int</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%li</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">long long int</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%lli</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">float</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%f</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%lf</code> (com <code class="language-plaintext highlighter-rouge">scanf</code>), mas <code class="language-plaintext highlighter-rouge">%f</code> é comum para <code class="language-plaintext highlighter-rouge">printf</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code> (um caractere)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%c</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char[]</code> (texto)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">%s</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Exemplo Prático:</strong></p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">25</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">salario</span> <span class="o">=</span> <span class="mi">6200</span><span class="p">.</span><span class="mi">75</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">nome</span><span class="p">[</span><span class="mi">50</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Ana Souza"</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">genero</span> <span class="o">=</span> <span class="sc">'F'</span><span class="p">;</span>
+
+    <span class="c1">// Imprimindo uma frase formatada</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"A funcionaria %s, do sexo %c, tem %d anos e recebe R$ %.2f.</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">genero</span><span class="p">,</span> <span class="n">idade</span><span class="p">,</span> <span class="n">salario</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A funcionaria Ana Souza, do sexo F, tem 25 anos e recebe R$ 6200.75.
+</code></pre></div></div>
+
+<h2 id="-processamento-de-dados-e-casting">🔄 Processamento de Dados e Casting</h2>
+
+<p>O <em>casting</em> é uma conversão explícita de um tipo de dado para outro. É útil em situações como a divisão de inteiros, onde o resultado pode ser truncado.</p>
+
+<p><strong>Exemplo 1: Divisão de Inteiros</strong></p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">resultado</span><span class="p">;</span>
+
+    <span class="n">resultado</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Resultado: %d</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">resultado</span><span class="p">);</span> <span class="c1">// Saída será 3, a parte decimal é perdida</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Resultado: 3
+</code></pre></div></div>
+
+<p><strong>Exemplo 2: Casting para Divisão Correta</strong>
+Para obter um resultado com casas decimais, precisamos converter um dos operandos para <code class="language-plaintext highlighter-rouge">double</code> ou <code class="language-plaintext highlighter-rouge">float</code>.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">resultado</span><span class="p">;</span>
+
+    <span class="n">resultado</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// Casting de 'a' para double antes da divisão</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Resultado: %.2f</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">resultado</span><span class="p">);</span> <span class="c1">// Saída será 3.33</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Resultado: 3.33
+</code></pre></div></div>
+
+<h2 id="-entrada-de-dados-scanf">📥 Entrada de Dados (<code class="language-plaintext highlighter-rouge">scanf</code>)</h2>
+
+<p>Para ler dados digitados pelo usuário, usamos a função <code class="language-plaintext highlighter-rouge">scanf</code>. Ela utiliza os mesmos placeholders que o <code class="language-plaintext highlighter-rouge">printf</code>.</p>
+
+<p><strong>O Desafio do Buffer de Entrada</strong></p>
+
+<p>Um problema comum em C é o “lixo” deixado no buffer de entrada (uma área de memória temporária). Quando você lê um número com <code class="language-plaintext highlighter-rouge">scanf("%d", &amp;idade);</code>, o número é lido, mas a tecla <code class="language-plaintext highlighter-rouge">Enter</code> (<code class="language-plaintext highlighter-rouge">
+</code>) que você pressionou continua no buffer. Se a próxima leitura for de um caractere ou de um texto, ela pode capturar esse `
+` indesejado.</p>
+
+<p><strong>Solução: Funções de Limpeza</strong>
+Para evitar problemas, podemos criar uma função para limpar o buffer antes de ler um texto ou um caractere que venha depois de uma leitura de número.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="c1">// Função para limpar o buffer de entrada</span>
+<span class="kt">void</span> <span class="nf">limpar_entrada</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="err">'</span>
+<span class="err">'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="c1">// Função para ler texto de forma segura</span>
+<span class="kt">void</span> <span class="nf">ler_texto</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+    <span class="n">strtok</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="s">"</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span> <span class="c1">// Remove a quebra de linha que o fgets captura</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">idade</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">salario</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">nome</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">genero</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Digite seu nome completo: "</span><span class="p">);</span>
+    <span class="n">ler_texto</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Digite sua idade: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">idade</span><span class="p">);</span>
+    
+    <span class="c1">// Limpa o buffer antes de ler o próximo caractere</span>
+    <span class="n">limpar_entrada</span><span class="p">();</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Digite seu genero (M/F): "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%c"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">genero</span><span class="p">);</span>
+    
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Digite seu salario: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%lf"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">salario</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="err">
+</span><span class="s">--- DADOS CADASTRADOS ---</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Nome: %s</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">nome</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Idade: %d</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">idade</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Genero: %c</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">genero</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Salario: %.2f</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">salario</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-estrutura-condicional-if-else">🔀 Estrutura Condicional (<code class="language-plaintext highlighter-rouge">if-else</code>)</h2>
+
+<p>Permite que o programa tome decisões com base em condições.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">hora</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Digite uma hora do dia (0-23): "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hora</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Bom dia!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Boa tarde!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Boa noite!</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-estruturas-de-repetição">🔁 Estruturas de Repetição</h2>
+
+<h3 id="while-enquanto"><code class="language-plaintext highlighter-rouge">while</code> (Enquanto)</h3>
+
+<p>Executa um bloco de código <strong>enquanto</strong> uma condição for verdadeira. A condição é testada <strong>antes</strong> da primeira execução.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">numero</span><span class="p">,</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Digite um numero (0 para sair): "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">numero</span><span class="p">);</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">numero</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">soma</span> <span class="o">=</span> <span class="n">soma</span> <span class="o">+</span> <span class="n">numero</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Digite outro numero (0 para sair): "</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">numero</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"SOMA FINAL = %d</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">soma</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="for-para"><code class="language-plaintext highlighter-rouge">for</code> (Para)</h3>
+
+<p>Ideal para repetir um bloco de código um número definido de vezes.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">valor</span><span class="p">,</span> <span class="n">soma</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Quantos numeros serao digitados? "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+
+    <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Digite o valor #%d: "</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">valor</span><span class="p">);</span>
+        <span class="n">soma</span> <span class="o">+=</span> <span class="n">valor</span><span class="p">;</span> <span class="c1">// Forma abreviada de soma = soma + valor</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"SOMA FINAL = %d</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">soma</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="do-while-faça-enquanto"><code class="language-plaintext highlighter-rouge">do-while</code> (Faça-Enquanto)</h3>
+
+<p>Similar ao <code class="language-plaintext highlighter-rouge">while</code>, mas garante que o bloco de código seja executado <strong>pelo menos uma vez</strong>, pois a condição é testada no <strong>final</strong>.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">limpar_entrada</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="err">'</span>
+<span class="err">'</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">C</span><span class="p">,</span> <span class="n">F</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">resposta</span><span class="p">;</span>
+
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Digite a temperatura em Celsius: "</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%lf"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">C</span><span class="p">);</span>
+        
+        <span class="n">F</span> <span class="o">=</span> <span class="n">C</span> <span class="o">*</span> <span class="mi">9</span><span class="p">.</span><span class="mi">0</span> <span class="o">/</span> <span class="mi">5</span><span class="p">.</span><span class="mi">0</span> <span class="o">+</span> <span class="mi">32</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+        
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Equivalente em Fahrenheit: %.1f</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">F</span><span class="p">);</span>
+        
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Deseja repetir (s/n)? "</span><span class="p">);</span>
+        <span class="n">limpar_entrada</span><span class="p">();</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%c"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">resposta</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">resposta</span> <span class="o">==</span> <span class="sc">'s'</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-vetores-arrays">📏 Vetores (Arrays)</h2>
+
+<p>Vetores são coleções de dados do mesmo tipo, acessados por um índice. Em C, o primeiro índice é sempre <strong>0</strong>.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Quantos numeros voce vai digitar? "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+
+    <span class="kt">double</span> <span class="n">numeros</span><span class="p">[</span><span class="n">N</span><span class="p">];</span> <span class="c1">// Declara um vetor de 'N' posições</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Digite o numero %d: "</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%lf"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">numeros</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="err">
+</span><span class="s">NUMEROS DIGITADOS:</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%.1f</span><span class="err">
+</span><span class="s">"</span><span class="p">,</span> <span class="n">numeros</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-matrizes-arrays-2d">▦ Matrizes (Arrays 2D)</h2>
+
+<p>Matrizes são vetores de vetores, usados para representar tabelas ou grades.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Quantas linhas tera a matriz? "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">M</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Quantas colunas tera a matriz? "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">N</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">matriz</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Elemento [%d,%d]: "</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+            <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">matriz</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="err">
+</span><span class="s">MATRIZ DIGITADA:</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span> <span class="n">matriz</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="err">
+</span><span class="s">"</span><span class="p">);</span> <span class="c1">// Pula para a próxima linha</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-depuração-debugging-no-vs-code">🐞 Depuração (Debugging) no VS Code</h2>
+
+<p>Debugging é o processo de encontrar e corrigir erros no seu código. O VS Code oferece uma ferramenta de depuração poderosa.</p>
+
+<p><strong>Passos Básicos:</strong></p>
+
+<ol>
+  <li><strong>Marcar um Breakpoint</strong>: Clique na margem esquerda do editor, ao lado do número da linha. Uma bola vermelha aparecerá. O <em>breakpoint</em> é um ponto de parada onde a execução do programa será pausada.</li>
+  <li><strong>Iniciar a Depuração</strong>: Pressione <code class="language-plaintext highlighter-rouge">F5</code> ou vá para a aba <code class="language-plaintext highlighter-rouge">Run and Debug</code> e clique no botão verde <code class="language-plaintext highlighter-rouge">Start Debugging</code>.</li>
+  <li><strong>Analisar Variáveis</strong>: Com a execução pausada, a janela <code class="language-plaintext highlighter-rouge">VARIABLES</code> no painel esquerdo mostrará o valor atual de todas as variáveis locais.</li>
+  <li><strong>Controlar a Execução</strong>:
+    <ul>
+      <li><strong>Step Over (<code class="language-plaintext highlighter-rouge">F10</code>)</strong>: Executa a linha atual e para na próxima.</li>
+      <li><strong>Step Into (<code class="language-plaintext highlighter-rouge">F11</code>)</strong>: Se a linha atual for uma chamada de função, entra na função para depurá-la.</li>
+      <li><strong>Continue (<code class="language-plaintext highlighter-rouge">F5</code>)</strong>: Continua a execução normal até o próximo breakpoint ou o fim do programa.</li>
+      <li><strong>Stop (<code class="language-plaintext highlighter-rouge">Shift+F5</code>)</strong>: Para a sessão de depuração.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

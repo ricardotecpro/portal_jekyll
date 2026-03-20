@@ -1,0 +1,2040 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/listadetarefas_06_vue/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Projeto Lista de Tarefas 06 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Projeto Lista de Tarefas 06" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_06_vue/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_06_vue/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Projeto Lista de Tarefas 06" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Projeto Lista de Tarefas 06","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_06_vue/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/listadetarefas_06_vue/" style="margin-left: 0.5rem;">Listadetarefas 06 vue</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Projeto lista de tarefas 06</span>
+          
+        
+      </nav>
+
+      <h1 id="projeto-lista-de-tarefas-06">Projeto Lista de Tarefas 06</h1>
+
+<h2 id="spring-boot-com-vuejs-com-cors">Spring Boot com Vue.js com CORS</h2>
+
+<p>Crie um diretório raiz para o projeto e, dentro dele, as subpastas para o backend e o frontend.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>projeto-listatarefas_spring_vue_cors
+<span class="nb">cd </span>projeto-listatarefas_spring_vue_cors
+<span class="nb">mkdir </span>backend
+<span class="nb">mkdir </span>frontend
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="backend-spring-boot"><strong>Backend: Spring Boot</strong></h2>
+
+<h4 id="1-geração-do-projeto"><strong>1. Geração do Projeto</strong></h4>
+
+<ol>
+  <li>Acesse o <a href="https://start.spring.io/">Spring Initializr</a>.</li>
+  <li>Preencha os metadados do projeto:
+    <ul>
+      <li><strong>Project</strong>: Maven</li>
+      <li><strong>Language</strong>: Java</li>
+      <li><strong>Spring Boot</strong>: 3.x.x</li>
+      <li><strong>Group</strong>: <code class="language-plaintext highlighter-rouge">br.com.tarefas</code></li>
+      <li><strong>Artifact</strong>: <code class="language-plaintext highlighter-rouge">api</code></li>
+      <li><strong>Name</strong>: <code class="language-plaintext highlighter-rouge">api</code></li>
+      <li><strong>Package name</strong>: <code class="language-plaintext highlighter-rouge">br.com.tarefas.api</code></li>
+      <li><strong>Packaging</strong>: Jar</li>
+      <li><strong>Java</strong>: 21 ou superior</li>
+    </ul>
+  </li>
+  <li>Adicione as dependências essenciais:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code>: Para criar APIs REST.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Data JPA</code>: Para persistência de dados.</li>
+      <li><code class="language-plaintext highlighter-rouge">H2 Database</code>: Banco de dados em memória para desenvolvimento.</li>
+      <li><code class="language-plaintext highlighter-rouge">Lombok</code>: Para reduzir código boilerplate (getters, setters, construtores).</li>
+      <li><code class="language-plaintext highlighter-rouge">Dev tools</code>: Hot Reload.</li>
+    </ul>
+  </li>
+  <li>Clique em “GENERATE” e extraia o conteúdo do arquivo <code class="language-plaintext highlighter-rouge">.zip</code> para a pasta <code class="language-plaintext highlighter-rouge">backend</code>.</li>
+</ol>
+
+<hr />
+
+<p><strong>Inicie sua aplicação Spring Boot.</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="2-código-inicial-prática-a-ser-corrigida"><strong>2. Código Inicial (Prática a ser corrigida)</strong></h4>
+
+<p>Este é um exemplo comum onde o Controller acessa o Repository diretamente, misturando responsabilidades.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/Tarefa.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tarefa</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/TarefaRepository.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TarefaRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/TarefaController.java</code> (Incorreto)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">;</span> <span class="c1">// Injeção direta do Repository</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span> <span class="c1">// Lógica de busca no controller</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criar</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span> <span class="c1">// Lógica de persistência no controller</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>Inicie sua aplicação Spring Boot.</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="3-refatoração-para-o-padrão-mvc"><strong>3. Refatoração para o Padrão MVC</strong></h4>
+
+<p>Separamos as responsabilidades em camadas: <code class="language-plaintext highlighter-rouge">Controller</code> (apresentação), <code class="language-plaintext highlighter-rouge">Service</code> (regras de negócio) e <code class="language-plaintext highlighter-rouge">Repository</code> (acesso a dados).</p>
+
+<p><strong>a. Camada de Serviço (Service)</strong></p>
+
+<p>Crie um novo pacote <code class="language-plaintext highlighter-rouge">br.com.tarefas.api.service</code>.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/service/TarefaService.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.Tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.TarefaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Service</span> <span class="c1">// Anotação que define a classe como um serviço</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTodas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// A lógica de negócio reside aqui.</span>
+        <span class="c1">// Ex: validações, orquestração de chamadas, etc.</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Validação de entrada</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tarefa</span><span class="o">.</span><span class="na">getTitulo</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">tarefa</span><span class="o">.</span><span class="na">getTitulo</span><span class="o">().</span><span class="na">isBlank</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"O título da tarefa é obrigatório."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">tarefaRepository</span><span class="o">.</span><span class="na">existsById</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada com o id: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span> <span class="c1">// Exceção mais específica seria melhor</span>
+        <span class="o">}</span>
+        <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>b. Controller Refatorado</strong></p>
+
+<p>O Controller agora delega a lógica para o <code class="language-plaintext highlighter-rouge">TarefaService</code>.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/controller/TarefaController.java</code> (Correto)</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api.controller</span><span class="o">;</span> <span class="c1">// Pacote corrigido</span>
+
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.Tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.service.TarefaService</span><span class="o">;</span> <span class="c1">// Importa o serviço</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tarefas"</span><span class="o">)</span> <span class="c1">// Prefixo /api para rotas de dados</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span> <span class="c1">// Injeta o Serviço, não o Repositório</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;&gt;</span> <span class="nf">listar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="n">tarefas</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">tarefas</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">criar</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Tarefa</span> <span class="n">novaTarefa</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">criarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="n">novaTarefa</span><span class="o">,</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deletar</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletarTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="4-configuração-de-cors-cross-origin-resource-sharing"><strong>4. Configuração de CORS (Cross-Origin Resource Sharing)</strong></h4>
+
+<p>O frontend (ex: <code class="language-plaintext highlighter-rouge">http://localhost:5173</code>) tentará acessar o backend (ex: <code class="language-plaintext highlighter-rouge">http://localhost:8080</code>). O navegador bloqueará essa requisição por padrão por segurança. O CORS informa ao navegador que o acesso é permitido.</p>
+
+<p><strong>Método 1: Anotação <code class="language-plaintext highlighter-rouge">@CrossOrigin</code> (Rápido, menos flexível)</strong></p>
+
+<p>Adicione a anotação diretamente na classe do Controller. Útil para testes rápidos.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em TarefaController.java</span>
+<span class="nd">@CrossOrigin</span><span class="o">(</span><span class="n">origins</span> <span class="o">=</span> <span class="s">"http://localhost:5173"</span><span class="o">)</span> <span class="c1">// Permite requisições desta origem</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Método 2: Configuração Global (Recomendado, centralizado e flexível)</strong></p>
+
+<p>Crie uma classe de configuração.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/config/WebConfig.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.CorsRegistry</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.WebMvcConfigurer</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebConfig</span> <span class="kd">implements</span> <span class="nc">WebMvcConfigurer</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCorsMappings</span><span class="o">(</span><span class="nc">CorsRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">addMapping</span><span class="o">(</span><span class="s">"/api/**"</span><span class="o">)</span> <span class="c1">// Aplica a política para todas as rotas sob /api/</span>
+            <span class="o">.</span><span class="na">allowedOrigins</span><span class="o">(</span><span class="s">"http://localhost:5173"</span><span class="o">)</span> <span class="c1">// Origem do frontend</span>
+            <span class="o">.</span><span class="na">allowedMethods</span><span class="o">(</span><span class="s">"GET"</span><span class="o">,</span> <span class="s">"POST"</span><span class="o">,</span> <span class="s">"PUT"</span><span class="o">,</span> <span class="s">"DELETE"</span><span class="o">,</span> <span class="s">"OPTIONS"</span><span class="o">)</span> <span class="c1">// Métodos HTTP permitidos</span>
+            <span class="o">.</span><span class="na">allowedHeaders</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span> <span class="c1">// Permite todos os cabeçalhos</span>
+            <span class="o">.</span><span class="na">allowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>Inicie sua aplicação Spring Boot.</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<hr />
+
+<p>Esta abordagem centraliza a configuração de CORS para toda a aplicação, tornando-a mais fácil de manter.</p>
+
+<hr />
+
+<h2 id="-1-verificar-se-o-nodejs-já-está-instalado">🟩 1. Verificar se o Node.js já está instalado</h2>
+
+<p>Abra o <strong>terminal</strong> (PowerShell, CMD ou Bash) e execute:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">-v</span>
+npm <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>Se ambos mostrarem versões (ex: <code class="language-plaintext highlighter-rouge">v20.x.x</code> e <code class="language-plaintext highlighter-rouge">10.x.x</code>), o Node.js já está instalado.</p>
+
+<hr />
+
+<h2 id="-2-instalar-nodejs-lts">🧩 2. Instalar Node.js LTS</h2>
+
+<h3 id="-windows">🪟 <strong>Windows</strong></h3>
+
+<ol>
+  <li>Vá até o site oficial:
+👉 <a href="https://nodejs.org/">https://nodejs.org/</a></li>
+  <li>Baixe a versão <strong>LTS (Long Term Support)</strong> — geralmente marcada como “Recommended for most users”.</li>
+  <li>
+    <p>Execute o instalador <code class="language-plaintext highlighter-rouge">.msi</code> e:</p>
+
+    <ul>
+      <li>Mantenha as opções padrão (incluindo “Add to PATH” ✅).</li>
+      <li>Após concluir, feche e reabra o PowerShell.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Teste novamente:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">-v</span>
+npm <span class="nt">-v</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-linux-ubuntu-etc">🐧 <strong>Linux (Ubuntu, etc.)</strong></h3>
+
+<p>Use o <strong>NodeSource</strong>, que mantém pacotes oficiais e atualizados:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-fsSL</span> https://deb.nodesource.com/setup_lts.x | <span class="nb">sudo</span> <span class="nt">-E</span> bash -
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nodejs
+</code></pre></div></div>
+
+<p>Depois, confirme a instalação:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">-v</span>
+npm <span class="nt">-v</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-macos">🍎 <strong>macOS</strong></h3>
+
+<p>Com <strong>Homebrew</strong> instalado, basta rodar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>node@lts
+</code></pre></div></div>
+
+<p>ou, se preferir a versão mais recente LTS:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>node
+</code></pre></div></div>
+
+<p>Verifique:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">-v</span>
+npm <span class="nt">-v</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-3-instalar-o-vue-cli-opcional">⚙️ 3. Instalar o Vue CLI (opcional)</h2>
+
+<p>Para criar e gerenciar projetos Vue 2 ou Vue 3 com interface de linha de comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> @vue/cli
+</code></pre></div></div>
+
+<p>Verifique:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vue <span class="nt">--version</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-4-criar-um-novo-projeto-vuejs-usando-vite--recomendado">🚀 4. Criar um novo projeto Vue.js (usando Vite — recomendado)</h2>
+
+<p>A forma moderna de criar projetos Vue 3:</p>
+
+<hr />
+
+<h2 id="frontend-vuejs"><strong>Frontend: Vue.js</strong></h2>
+
+<h4 id="1-geração-do-projeto-1"><strong>1. Geração do Projeto</strong></h4>
+
+<p>Navegue até a pasta <code class="language-plaintext highlighter-rouge">listatarefas_spring_vue_cors</code> e execute o comando abaixo no terminal.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Na pasta /listatarefas_spring_vue_cors</span>
+npm create vue@latest
+</code></pre></div></div>
+
+<p>Siga as instruções:</p>
+
+<hr />
+
+<p>Com base na sua tela, siga estas seleções para manter o foco nos objetivos de arquitetura e boas práticas para este projeto específico.</p>
+
+<h3 id="seleção-de-recursos"><strong>Seleção de Recursos</strong></h3>
+
+<p>Use as setas (↑/↓) para navegar, a barra de espaço para selecionar/desmarcar e <code class="language-plaintext highlighter-rouge">Enter</code> para confirmar.</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Project name</code>: <strong>app-tarefas</strong> (Pressione <code class="language-plaintext highlighter-rouge">Enter</code>)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add TypeScript?</code>: <strong>No</strong></p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: Para um projeto didático focado na arquitetura de serviços e na separação de responsabilidades, usar JavaScript puro remove uma camada de complexidade. O foco permanece na estrutura do código, não no sistema de tipos.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add JSX Support?</code>: <strong>No</strong></p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: A sintaxe de templates do Vue (<code class="language-plaintext highlighter-rouge">&lt;template&gt;...</code>) é mais idiomática e clara para a maioria dos casos de uso. JSX não é necessário e adicionaria uma etapa de transpilação extra sem um benefício claro para este projeto.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add Vue Router for Single Page Application development?</code>: <strong>No</strong></p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: Nossa aplicação de lista de tarefas é uma única tela. O Vue Router é projetado para gerenciar a navegação entre múltiplas “páginas” ou views, o que é desnecessário aqui.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add Pinia for state management?</code>: <strong>No</strong></p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: Pinia é uma excelente biblioteca para gerenciar o estado global da aplicação. No entanto, para uma lista de tarefas simples, o estado pode ser gerenciado localmente dentro do componente principal (<code class="language-plaintext highlighter-rouge">App.vue</code>), tornando o uso de uma biblioteca externa um excesso de engenharia (<em>over-engineering</em>).</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add Vitest for Unit Testing?</code>: <strong>No</strong></p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: Embora testes sejam uma prática essencial, o objetivo desta aula é focar na arquitetura cliente-servidor e na configuração do CORS. A introdução de testes seria um tópico para uma aula separada.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add an End-to-End Testing Solution?</code>: <strong>No</strong></p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: Pelos mesmos motivos da recusa do Vitest, manteremos o escopo focado nos objetivos primários.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add ESLint for code quality?</code>: <strong>Yes</strong> (Pressione espaço para selecionar)</p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: <strong>Prática fundamental</strong>. ESLint analisa estaticamente o código para encontrar problemas, bugs em potencial e inconsistências de estilo. Ele garante uma qualidade de código mais alta desde o início.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">Add Prettier for code formatting?</code>: <strong>Yes</strong> (Pressione espaço para selecionar)</p>
+
+    <ul>
+      <li><strong>Justificativa</strong>: <strong>Prática fundamental</strong>. Prettier formata automaticamente seu código para garantir um estilo consistente em todo o projeto. Isso elimina discussões sobre formatação e melhora drasticamente a legibilidade.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="resumo-da-seleção-final"><strong>Resumo da Seleção Final</strong></h3>
+
+<p>Sua tela de seleção deve ficar assim antes de pressionar <code class="language-plaintext highlighter-rouge">Enter</code> para confirmar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>◆  Select features to include in your project:
+│  ◻ TypeScript
+│  ◻ JSX Support
+│  ◻ Router (SPA development)
+│  ◻ Pinia (state management)
+│  ◻ Vitest (unit testing)
+│  ◻ End-to-End Testing
+│  ◉ ESLint (error prevention)
+│  ◉ Prettier (code formatting)
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="próximos-passos-após-a-criação"><strong>Próximos Passos (Após a criação)</strong></h3>
+
+<p>Após pressionar <code class="language-plaintext highlighter-rouge">Enter</code>, o terminal exibirá as seguintes instruções. Execute-as em ordem.</p>
+
+<ol>
+  <li>
+    <p><strong>Navegue para o diretório do projeto:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>frontend
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Instale as dependências do projeto:</strong></p>
+
+    <blockquote>
+      <p>Este comando lê o arquivo <code class="language-plaintext highlighter-rouge">package.json</code> e baixa todas as bibliotecas necessárias (Vue, ESLint, Prettier, etc.) para a pasta <code class="language-plaintext highlighter-rouge">node_modules</code>.</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>2.1 <strong>Formate o código do projeto:</strong></p>
+
+<blockquote>
+  <p>Este comando executa o Prettier (ou outra ferramenta configurada) para padronizar a formatação do código.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run format
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p><strong>Inicie o servidor de desenvolvimento:</strong></p>
+
+    <blockquote>
+      <p>Este comando compila a aplicação e a serve localmente, geralmente em uma porta como <code class="language-plaintext highlighter-rouge">http://localhost:5173</code>.
+Ele também observa as alterações nos arquivos e recarrega a página automaticamente.</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<p>Acesse a pasta do projeto e instale as dependências e o <code class="language-plaintext highlighter-rouge">axios</code> para requisições HTTP.</p>
+
+<p>No <strong>Vue.js</strong>, o <code class="language-plaintext highlighter-rouge">axios</code> é uma <strong>biblioteca JavaScript</strong> usada para fazer <strong>requisições HTTP</strong> (como GET, POST, PUT, DELETE) entre o <strong>frontend (Vue)</strong> e o <strong>backend (ex: Spring Boot, Node.js, etc.)</strong>.</p>
+
+<p>👉 Em resumo, o <code class="language-plaintext highlighter-rouge">axios</code> é o <strong>“mensageiro”</strong> que permite que o Vue.js <strong>busque dados de uma API</strong> ou <strong>envie informações para ela</strong>.</p>
+
+<hr />
+
+<h2 id="-o-que-o-axios-faz-no-vuejs">🚀 O que o <code class="language-plaintext highlighter-rouge">axios</code> faz no Vue.js</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Função</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🔹 <strong>Requisições HTTP</strong></td>
+      <td>Envia e recebe dados da API (ex: <code class="language-plaintext highlighter-rouge">/api/tarefas</code>)</td>
+    </tr>
+    <tr>
+      <td>🔹 <strong>Integração com Backend</strong></td>
+      <td>Permite comunicação entre Vue.js e servidores como Spring Boot</td>
+    </tr>
+    <tr>
+      <td>🔹 <strong>Suporte a Promises</strong></td>
+      <td>Trabalha de forma assíncrona (<code class="language-plaintext highlighter-rouge">async/await</code>)</td>
+    </tr>
+    <tr>
+      <td>🔹 <strong>Interceptores</strong></td>
+      <td>Permite adicionar tokens JWT, logs ou tratamento de erros antes de enviar/receber requisições</td>
+    </tr>
+    <tr>
+      <td>🔹 <strong>Configuração Global</strong></td>
+      <td>Define URL base, cabeçalhos e tempo limite para todas as requisições</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>frontend
+npm <span class="nb">install
+</span>npm <span class="nb">install </span>axios
+</code></pre></div></div>
+
+<h4 id="2-código-inicial-prática-a-ser-corrigida-1"><strong>2. Código Inicial (Prática a ser corrigida)</strong></h4>
+
+<p>Lógica de API misturada diretamente com o componente visual.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/App.vue</code> (Incorreto)</strong></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vue</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">tarefas</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">([]);</span>
+<span class="kd">const</span> <span class="nx">novaTarefaTitulo</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">carregarTarefas</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Chamada de API hardcoded no componente</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:8080/api/tarefas</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">adicionarTarefa</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+  <span class="c1">// Lógica de post diretamente no componente</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:8080/api/tarefas</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">titulo</span><span class="p">:</span> <span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+    <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">});</span>
+  <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">onMounted</span><span class="p">(</span><span class="nx">carregarTarefas</span><span class="p">);</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;input</span>
+    <span class="na">v-model=</span><span class="s">"novaTarefaTitulo"</span>
+    <span class="err">@</span><span class="na">keyup.enter=</span><span class="s">"adicionarTarefa"</span>
+    <span class="na">placeholder=</span><span class="s">"Nova tarefa..."</span>
+  <span class="nt">/&gt;</span>
+  <span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"tarefa in tarefas"</span> <span class="na">:key=</span><span class="s">"tarefa.id"</span><span class="nt">&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h4 id="3-refatoração-com-camada-de-serviço"><strong>3. Refatoração com Camada de Serviço</strong></h4>
+
+<p>Isolamos toda a lógica de comunicação com a API em um módulo dedicado.</p>
+
+<p><strong>a. Camada de Serviço (API Service)</strong></p>
+
+<p>Crie a pasta <code class="language-plaintext highlighter-rouge">src/services</code> e o arquivo <code class="language-plaintext highlighter-rouge">tarefaService.js</code>.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/services/tarefaService.js</code></strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Instância do Axios com baseURL centralizada</span>
+<span class="kd">const</span> <span class="nx">apiClient</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:8080/api</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// URL base da API</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+
+<span class="c1">// Exporta funções específicas para cada endpoint</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nf">getTarefas</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">addTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`/tarefas/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><strong>b. Componente Refatorado</strong></p>
+
+<p>O componente agora importa e usa o serviço, focando apenas na lógica da UI e no estado.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">src/App.vue</code> (Correto)</strong></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vue</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// Importa o serviço de API, não o axios diretamente</span>
+<span class="k">import</span> <span class="nx">tarefaService</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./services/tarefaService</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">tarefas</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">([]);</span>
+<span class="kd">const</span> <span class="nx">novaTarefaTitulo</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">erro</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">carregarTarefas</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">getTarefas</span><span class="p">();</span>
+    <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao carregar tarefas.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">adicionarTarefa</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">trim</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+
+  <span class="kd">const</span> <span class="nx">novaTarefa</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">titulo</span><span class="p">:</span> <span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+    <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">};</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">addTarefa</span><span class="p">(</span><span class="nx">novaTarefa</span><span class="p">);</span>
+    <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao adicionar tarefa.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">removerTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+    <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">t</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="nx">id</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao remover tarefa.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nf">onMounted</span><span class="p">(</span><span class="nx">carregarTarefas</span><span class="p">);</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-container"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span>
+        <span class="na">v-model=</span><span class="s">"novaTarefaTitulo"</span>
+        <span class="err">@</span><span class="na">keyup.enter=</span><span class="s">"adicionarTarefa"</span>
+        <span class="na">placeholder=</span><span class="s">"Adicionar uma nova tarefa"</span>
+      <span class="nt">/&gt;</span>
+      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"adicionarTarefa"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"erro"</span> <span class="na">class=</span><span class="s">"erro"</span><span class="nt">&gt;&lt;/p&gt;</span>
+
+    <span class="nt">&lt;ul&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"tarefa in tarefas"</span> <span class="na">:key=</span><span class="s">"tarefa.id"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span&gt;&lt;/span&gt;</span>
+        <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"removerTarefa(tarefa.id)"</span> <span class="na">class=</span><span class="s">"btn-remover"</span><span class="nt">&gt;</span>X<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span> <span class="na">scoped</span><span class="nt">&gt;</span>
+<span class="c">/* Estilos para melhor visualização */</span>
+<span class="nc">.erro</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">ul</span> <span class="p">{</span>
+  <span class="nl">list-style</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">li</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+  <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">space-between</span><span class="p">;</span>
+  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
+  <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ccc</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.btn-remover</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#ff4d4d</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="estrutura-do-backend-antes-da-refatoração"><strong>Estrutura do Backend ANTES da Refatoração</strong></h3>
+
+<p>Nesta abordagem inicial, todas as classes (Entidade, Repositório e Controlador) estão no mesmo pacote raiz (<code class="language-plaintext highlighter-rouge">br.com.tarefas.api</code>). Embora funcional para projetos muito pequenos, essa estrutura não escala bem e viola o princípio de separação de conceitos.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src
+└── main
+    └── java
+        └── br
+            └── com
+                └── tarefas
+                    └── api
+                        ├── Tarefa.java           // (Model)
+                        ├── TarefaRepository.java // (Repository - Data)
+                        ├── TarefaController.java // (Controller com lógica de negócio)
+                        └── ApiApplication.java   // (Classe principal)
+</code></pre></div></div>
+
+<p><strong>Características:</strong></p>
+
+<ul>
+  <li><strong>Baixa Coesão:</strong> O pacote <code class="language-plaintext highlighter-rouge">api</code> contém classes com responsabilidades distintas (acesso a dados, regras de negócio e apresentação).</li>
+  <li><strong>Alto Acoplamento:</strong> O <code class="language-plaintext highlighter-rouge">Controller</code> está diretamente acoplado ao <code class="language-plaintext highlighter-rouge">Repository</code>, tornando difícil a reutilização da lógica de negócio e a implementação de testes unitários.</li>
+  <li><strong>Difícil Manutenção:</strong> À medida que o projeto cresce, encontrar e modificar classes torna-se complicado.</li>
+</ul>
+
+<hr />
+
+<h3 id="estrutura-do-backend-depois-da-refatoração-padrão-mvc"><strong>Estrutura do Backend DEPOIS da Refatoração (Padrão MVC)</strong></h3>
+
+<p>A estrutura é reorganizada em pacotes que representam as camadas da arquitetura MVC. Cada pacote tem uma responsabilidade clara e bem definida.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src
+└── main
+    └── java
+        └── br
+            └── com
+                └── tarefas
+                    └── api
+                        ├── model                  // Pacote para entidades (Model)
+                        |   └── Tarefa.java
+                        ├── repository             // Pacote para acesso a dados (Data)
+                        |   └── TarefaRepository.java
+                        ├── service                // Pacote para regras de negócio (Service/Business)
+                        |   └── TarefaService.java
+                        ├── controller             // Pacote para endpoints HTTP (Controller/Presentation)
+                        |   └── TarefaController.java
+                        ├── config                 // Pacote para classes de configuração (ex: CORS)
+                        |   └── WebConfig.java
+                        └── ApiApplication.java    // (Classe principal)
+</code></pre></div></div>
+
+<p><strong>Características:</strong></p>
+
+<ul>
+  <li><strong>Alta Coesão:</strong> Classes com responsabilidades similares são agrupadas no mesmo pacote (ex: <code class="language-plaintext highlighter-rouge">controller</code>, <code class="language-plaintext highlighter-rouge">service</code>).</li>
+  <li><strong>Baixo Acoplamento:</strong> O <code class="language-plaintext highlighter-rouge">Controller</code> depende do <code class="language-plaintext highlighter-rouge">Service</code>, e o <code class="language-plaintext highlighter-rouge">Service</code> depende do <code class="language-plaintext highlighter-rouge">Repository</code>. As camadas comunicam-se através de interfaces bem definidas, facilitando a substituição de implementações e os testes.</li>
+  <li><strong>Clareza e Manutenibilidade:</strong> A estrutura é intuitiva. Um novo desenvolvedor pode facilmente localizar onde a lógica de negócio (<code class="language-plaintext highlighter-rouge">service</code>), os endpoints (<code class="language-plaintext highlighter-rouge">controller</code>) ou o acesso a dados (<code class="language-plaintext highlighter-rouge">repository</code>) estão implementados.</li>
+  <li><strong>Escalabilidade:</strong> É simples adicionar novas funcionalidades mantendo a organização. Por exemplo, ao adicionar uma entidade “Usuário”, seriam criados <code class="language-plaintext highlighter-rouge">Usuario.java</code> em <code class="language-plaintext highlighter-rouge">model</code>, <code class="language-plaintext highlighter-rouge">UsuarioRepository</code> em <code class="language-plaintext highlighter-rouge">repository</code>, e assim por diante.</li>
+</ul>
+
+<hr />
+
+<h3 id="configuração-do-applicationproperties"><strong>Configuração do <code class="language-plaintext highlighter-rouge">application.properties</code></strong></h3>
+
+<p>O arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> é o principal local para configurar o comportamento da sua aplicação Spring Boot, como a conexão com o banco de dados, a porta do servidor e outras propriedades essenciais.</p>
+
+<p><strong>Localização:</strong> <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code></p>
+
+<hr />
+
+<h4 id="conteúdo-do-applicationproperties"><strong>Conteúdo do <code class="language-plaintext highlighter-rouge">application.properties</code></strong></h4>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ===================================================================
+# CONFIGURACAO DO SERVIDOR WEB EMBUTIDO (TOMCAT)
+# ===================================================================
+# Define a porta em que a aplicacao backend sera executada.
+# O padrao e 8080. Usar 8088 evita conflitos com outras aplicacoes.
+</span><span class="py">server.port</span><span class="p">=</span><span class="s">8088</span>
+
+<span class="c"># Define um prefixo para todos os endpoints da aplicacao.
+# Ajuda a organizar as rotas e a evitar colisoes, especialmente em ambientes com proxy.
+# Ex: http://localhost:8088/api/tarefas em vez de http://localhost:8088/tarefas
+</span><span class="py">server.servlet.context-path</span><span class="p">=</span><span class="s">/api</span>
+
+<span class="c"># ===================================================================
+# CONFIGURACAO DO BANCO DE DADOS (DATASOURCE)
+# ===================================================================
+# URL de conexao para o banco de dados em memoria H2.
+# 'mem' indica que e em memoria (dados sao perdidos ao reiniciar).
+# 'tarefasdb' e o nome do banco de dados.
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:tarefasdb</span>
+
+<span class="c"># Driver JDBC para o H2. O Spring Boot geralmente o detecta automaticamente.
+</span><span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+
+<span class="c"># Nome de usuario para acessar o banco de dados H2.
+# 'sa' e o padrao (System Administrator).
+</span><span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+
+<span class="c"># Senha para o banco de dados H2.
+# Para desenvolvimento, uma senha em branco e comum.
+</span><span class="py">spring.datasource.password</span><span class="p">=</span>
+
+<span class="c"># ===================================================================
+# CONFIGURACAO DO H2 CONSOLE (INTERFACE WEB PARA O BANCO DE DADOS)
+# ===================================================================
+# Habilita o console web do H2, uma ferramenta util para visualizar
+# e manipular os dados do banco diretamente no navegador.
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Define o caminho para acessar o console H2.
+# Voce podera acessa-lo em: http://localhost:8088/api/h2-console
+</span><span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+
+<span class="c"># ===================================================================
+# CONFIGURACAO DO JPA (JAVA PERSISTENCE API) E HIBERNATE
+# ===================================================================
+# Dialeto do banco de dados que o Hibernate (implementacao JPA do Spring) deve usar.
+# Isso permite que o Hibernate gere o SQL correto para o H2.
+</span><span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+
+<span class="c"># Acao a ser tomada no schema do banco de dados na inicializacao.
+# 'create-drop': Cria o schema (tabelas) quando a aplicacao inicia e o destroi quando a aplicacao para.
+# Perfeito para desenvolvimento, pois garante um ambiente limpo a cada reinicio.
+# Outras opcoes: 'update', 'validate', 'none'.
+</span><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">create-drop</span>
+
+<span class="c"># Mostra no console o SQL gerado pelo Hibernate.
+# Extremamente util para depuracao e para entender o que esta acontecendo no banco de dados.
+</span><span class="py">spring.jpa.show-sql</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Formata o SQL exibido no console para ser mais legivel.
+</span><span class="py">spring.jpa.properties.hibernate.format_sql</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<h3 id="guia-didático-como-usar-esta-configuração"><strong>Guia Didático: Como usar esta configuração</strong></h3>
+
+<ol>
+  <li><strong>Copie e Cole</strong>: Substitua o conteúdo do seu arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> pelo código acima.</li>
+  <li><strong>Reinicie a Aplicação</strong>: Pare e inicie novamente sua aplicação Spring Boot para que as novas configurações sejam carregadas.</li>
+  <li><strong>Verifique a Porta e o Contexto</strong>:
+    <ul>
+      <li>Sua aplicação agora está rodando em <code class="language-plaintext highlighter-rouge">http://localhost:8088</code>.</li>
+      <li>O endpoint para listar tarefas será <code class="language-plaintext highlighter-rouge">http://localhost:8088/api/tarefas</code> (note o <code class="language-plaintext highlighter-rouge">/api</code> adicionado).</li>
+    </ul>
+  </li>
+  <li><strong>Acesse o H2 Console</strong>:
+    <ul>
+      <li>Abra seu navegador e acesse a URL: <code class="language-plaintext highlighter-rouge">http://localhost:8088/h2-console</code>.</li>
+      <li>Na tela de login do H2 Console, <strong>é crucial</strong> que o campo <code class="language-plaintext highlighter-rouge">JDBC URL</code> seja exatamente o mesmo definido em <code class="language-plaintext highlighter-rouge">spring.datasource.url</code>: <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:tarefasdb</code>.</li>
+      <li>Use o usuário <code class="language-plaintext highlighter-rouge">sa</code> e deixe a senha em branco.</li>
+      <li>Clique em “Connect”. Agora você pode visualizar a tabela <code class="language-plaintext highlighter-rouge">TAREFA</code>, ver os dados que foram inseridos pela classe <code class="language-plaintext highlighter-rouge">DataInitializer</code> e até mesmo executar queries SQL diretamente.</li>
+    </ul>
+  </li>
+  <li><strong>Observe o Console da IDE</strong>:
+    <ul>
+      <li>Ao iniciar a aplicação, você verá o Hibernate criando as tabelas (<code class="language-plaintext highlighter-rouge">create table...</code>).</li>
+      <li>
+        <h2 id="ao-fazer-uma-requisição-para-get-apitarefas-o-sql-formatado-select--from-tarefa-aparecerá-no-console-mostrando-exatamente-a-consulta-que-o-show-sqltrue-revelou">Ao fazer uma requisição para <code class="language-plaintext highlighter-rouge">GET /api/tarefas</code>, o SQL formatado (<code class="language-plaintext highlighter-rouge">select ... from tarefa</code>) aparecerá no console, mostrando exatamente a consulta que o <code class="language-plaintext highlighter-rouge">show-sql=true</code> revelou.</h2>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="classe-para-popular-o-banco-de-dados-seed"><strong>Classe para Popular o Banco de Dados (Seed)</strong></h3>
+
+<p>Para popular o banco de dados com dados iniciais toda vez que a aplicação é iniciada, a abordagem mais comum e didática no Spring Boot é utilizar a interface <code class="language-plaintext highlighter-rouge">CommandLineRunner</code>. Ela garante que um código seja executado <em>após</em> a inicialização da aplicação e de todos os seus componentes.</p>
+
+<h4 id="1-localização-do-arquivo"><strong>1. Localização do Arquivo</strong></h4>
+
+<p>Crie a classe dentro do pacote <code class="language-plaintext highlighter-rouge">config</code>, pois sua função é configurar um estado inicial para a aplicação.</p>
+
+<p><strong>Caminho:</strong> <code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/config/DataInitializer.java</code></p>
+
+<h4 id="2-código-da-classe-datainitializer"><strong>2. Código da Classe <code class="language-plaintext highlighter-rouge">DataInitializer</code></strong></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.model.Tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.repository.TarefaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.CommandLineRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Componente que executa um código na inicialização da aplicação Spring Boot.
+ * Ideal para popular o banco de dados com dados de teste para desenvolvimento.
+ */</span>
+<span class="nd">@Component</span> <span class="c1">// Anotação que transforma a classe em um Bean gerenciado pelo Spring.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataInitializer</span> <span class="kd">implements</span> <span class="nc">CommandLineRunner</span> <span class="o">{</span>
+
+    <span class="c1">// Injeção de dependência do repositório de tarefas.</span>
+    <span class="c1">// O Spring fornecerá uma instância de TarefaRepository para esta classe.</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span> <span class="c1">// Boas práticas recomendam a injeção via construtor.</span>
+    <span class="kd">public</span> <span class="nf">DataInitializer</span><span class="o">(</span><span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tarefaRepository</span> <span class="o">=</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Este método é executado automaticamente pelo Spring Boot na inicialização.
+     * @param args Argumentos de linha de comando (não utilizados aqui).
+     * @throws Exception
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="nc">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// Limpa o repositório para evitar duplicação a cada reinicialização</span>
+        <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">deleteAll</span><span class="o">();</span>
+
+        <span class="c1">// Criação de uma lista de tarefas iniciais com temas relevantes ao projeto</span>
+        <span class="nc">Tarefa</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">t1</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Configurar o backend Spring Boot com MVC"</span><span class="o">);</span>
+        <span class="n">t1</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="nc">Tarefa</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Criar a entidade Tarefa e o Repository"</span><span class="o">);</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="nc">Tarefa</span> <span class="n">t3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">t3</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Desenvolver a camada de Serviço e o Controller"</span><span class="o">);</span>
+        <span class="n">t3</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+        <span class="nc">Tarefa</span> <span class="n">t4</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">t4</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Estudar e configurar o CORS para o frontend"</span><span class="o">);</span>
+        <span class="n">t4</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+        <span class="nc">Tarefa</span> <span class="n">t5</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">t5</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Inicializar o projeto Vue.js com a CLI"</span><span class="o">);</span>
+        <span class="n">t5</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+        <span class="nc">Tarefa</span> <span class="n">t6</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">t6</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Criar um serviço no frontend para consumir a API"</span><span class="o">);</span>
+        <span class="n">t6</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+        <span class="nc">Tarefa</span> <span class="n">t7</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tarefa</span><span class="o">();</span>
+        <span class="n">t7</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="s">"Desenvolver o componente principal para listar e adicionar tarefas"</span><span class="o">);</span>
+        <span class="n">t7</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+        <span class="c1">// Salva todas as tarefas no banco de dados de uma só vez</span>
+        <span class="c1">// O método saveAll é mais performático do que salvar uma por uma em um loop.</span>
+        <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">saveAll</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">t1</span><span class="o">,</span> <span class="n">t2</span><span class="o">,</span> <span class="n">t3</span><span class="o">,</span> <span class="n">t4</span><span class="o">,</span> <span class="n">t5</span><span class="o">,</span> <span class="n">t6</span><span class="o">,</span> <span class="n">t7</span><span class="o">));</span>
+
+        <span class="c1">// Feedback no console para o desenvolvedor</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"✅ Base de dados inicializada com 7 tarefas."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="guia-didático-entendendo-o-datainitializer"><strong>Guia Didático: Entendendo o <code class="language-plaintext highlighter-rouge">DataInitializer</code></strong></h3>
+
+<ol>
+  <li>
+    <p><strong>Anotação <code class="language-plaintext highlighter-rouge">@Component</code></strong>: Esta anotação informa ao Spring que ele deve criar e gerenciar um objeto (um <em>Bean</em>) desta classe. Sem isso, a classe seria ignorada pela aplicação.</p>
+  </li>
+  <li>
+    <p><strong>Interface <code class="language-plaintext highlighter-rouge">CommandLineRunner</code></strong>: Ao implementar esta interface, obrigamos a classe a ter um método <code class="language-plaintext highlighter-rouge">run(String... args)</code>. O Spring Boot identifica todos os <em>Beans</em> que implementam <code class="language-plaintext highlighter-rouge">CommandLineRunner</code> e executa seus métodos <code class="language-plaintext highlighter-rouge">run</code> logo após a aplicação iniciar completamente.</p>
+  </li>
+  <li>
+    <p><strong>Injeção de Dependência (<code class="language-plaintext highlighter-rouge">@Autowired</code>)</strong>: A classe precisa do <code class="language-plaintext highlighter-rouge">TarefaRepository</code> para salvar dados no banco. Em vez de criá-lo manualmente (<code class="language-plaintext highlighter-rouge">new TarefaRepository()</code>), declaramos que precisamos dele no construtor. O Spring, que já gerencia o <code class="language-plaintext highlighter-rouge">TarefaRepository</code>, automaticamente “injeta” ou fornece a instância pronta para uso. Esta é uma prática fundamental chamada <strong>Inversão de Controle (IoC)</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Método <code class="language-plaintext highlighter-rouge">run</code></strong>:</p>
+
+    <ul>
+      <li><strong>Lógica Central</strong>: É aqui que a “mágica” acontece. Todo o código dentro deste método será executado na ordem definida.</li>
+      <li><strong>Criação dos Objetos</strong>: Instanciamos objetos <code class="language-plaintext highlighter-rouge">Tarefa</code> normais, como faríamos em qualquer código Java.</li>
+      <li><strong>Definição dos Dados</strong>: Usamos os métodos <code class="language-plaintext highlighter-rouge">set</code> para popular os objetos com títulos e status relevantes para o projeto do aluno.</li>
+      <li><strong>Persistência em Lote</strong>: O <code class="language-plaintext highlighter-rouge">tarefaRepository.saveAll()</code> recebe uma lista de objetos e os salva no banco de dados. É mais eficiente para múltiplas inserções.</li>
+      <li><strong>Feedback Visual</strong>: A linha <code class="language-plaintext highlighter-rouge">System.out.println</code> é um feedback simples, mas crucial para o desenvolvedor saber que o processo de seed foi executado com sucesso ao olhar o console da aplicação.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="como-executar"><strong>Como Executar</strong></h3>
+
+<p>Não é necessário chamar esta classe em nenhum lugar. Apenas reinicie sua aplicação Spring Boot. As anotações e a implementação da interface farão com que o Spring a execute automaticamente. Você verá a mensagem “✅ Base de dados inicializada com 7 tarefas.” no log de inicialização e, ao acessar o endpoint <code class="language-plaintext highlighter-rouge">GET /api/tarefas</code>, os dados já estarão lá.</p>
+
+<hr />
+
+<h3 id="tratamento-de-erros"><strong>Tratamento de erros</strong></h3>
+
+<p>O erro “Falha ao carregar tarefas” é causado por uma incompatibilidade de porta entre a configuração do frontend (Vue) e a do backend (Spring Boot).</p>
+
+<p>Analisando os arquivos, a causa do problema é a seguinte:</p>
+
+<ul>
+  <li>No backend, o arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> foi configurado para executar o servidor na porta <strong><code class="language-plaintext highlighter-rouge">8088</code></strong>.</li>
+  <li>No frontend, o arquivo <code class="language-plaintext highlighter-rouge">tarefaService.js</code> está tentando fazer requisições para a porta <strong><code class="language-plaintext highlighter-rouge">8080</code></strong>.</li>
+</ul>
+
+<p>O navegador tenta contatar <code class="language-plaintext highlighter-rouge">localhost:8080</code>, não encontra nenhum serviço respondendo e a requisição falha, acionando a mensagem de erro no bloco <code class="language-plaintext highlighter-rouge">catch</code> do seu componente Vue.</p>
+
+<h3 id="correção"><strong>Correção</strong></h3>
+
+<p>Para corrigir, você deve alinhar a <code class="language-plaintext highlighter-rouge">baseURL</code> no arquivo <code class="language-plaintext highlighter-rouge">tarefaService.js</code> com a porta definida no seu backend.</p>
+
+<p><strong>Arquivo a ser modificado:</strong> <code class="language-plaintext highlighter-rouge">frontend/app-tarefas/src/services/tarefaService.js</code></p>
+
+<p><strong>Código Antigo (Incorreto):</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//...</span>
+<span class="kd">const</span> <span class="nx">apiClient</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:8080/api</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// URL base da API</span>
+<span class="c1">//...</span>
+</code></pre></div></div>
+
+<p><strong>Código Novo (Correto):</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Instância do Axios com baseURL centralizada</span>
+<span class="kd">const</span> <span class="nx">apiClient</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:8088/api</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// URL base da API CORRIGIDA</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+
+<span class="c1">// Exporta funções específicas para cada endpoint</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nf">getTarefas</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">addTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`/tarefas/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><strong>Próximos Passos:</strong></p>
+
+<ol>
+  <li>Altere a linha da <code class="language-plaintext highlighter-rouge">baseURL</code> no arquivo <code class="language-plaintext highlighter-rouge">tarefaService.js</code> de <code class="language-plaintext highlighter-rouge">8080</code> para <code class="language-plaintext highlighter-rouge">8088</code>.</li>
+  <li>Salve o arquivo. O servidor de desenvolvimento do Vue (<code class="language-plaintext highlighter-rouge">npm run dev</code>) irá recarregar automaticamente.</li>
+  <li>Atualize a página no seu navegador (<code class="language-plaintext highlighter-rouge">http://localhost:5173</code>). O erro deve desaparecer e a lista de tarefas, populada pela classe <code class="language-plaintext highlighter-rouge">DataInitializer</code>, será exibida.</li>
+</ol>
+
+<hr />
+
+<h3 id="diagnóstico-como-confirmar-o-erro-de-cors"><strong>Diagnóstico: Como Confirmar o Erro de CORS</strong></h3>
+
+<p>Para ter 100% de certeza, siga estes passos no seu navegador (onde a aplicação Vue está aberta):</p>
+
+<ol>
+  <li>
+    <p><strong>Abra as Ferramentas de Desenvolvedor</strong>: Pressione a tecla <code class="language-plaintext highlighter-rouge">F12</code> (ou <code class="language-plaintext highlighter-rouge">Ctrl+Shift+I</code> / <code class="language-plaintext highlighter-rouge">Cmd+Opt+I</code>).</p>
+  </li>
+  <li>
+    <p><strong>Vá para a Aba “Console”</strong>: Atualize a página (<code class="language-plaintext highlighter-rouge">F5</code>). Você verá uma mensagem de erro detalhada em vermelho, parecida com esta:</p>
+
+    <blockquote>
+      <p>Access to XMLHttpRequest at ‘http://localhost:8088/api/tarefas’ from origin ‘http://localhost:5173’ has been blocked by CORS policy: No ‘Access-Control-Allow-Origin’ header is present on the requested resource.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>Vá para a Aba “Network” (Rede)</strong>:</p>
+
+    <ul>
+      <li>Atualize a página novamente.</li>
+      <li>Você verá a requisição para <code class="language-plaintext highlighter-rouge">tarefas</code> aparecer na lista, provavelmente em vermelho.</li>
+      <li>O status da requisição não será <code class="language-plaintext highlighter-rouge">200 OK</code>, mas sim algo como <code class="language-plaintext highlighter-rouge">(failed)</code> e o tipo será <code class="language-plaintext highlighter-rouge">cors</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Essa mensagem confirma que o servidor backend (na porta <code class="language-plaintext highlighter-rouge">8088</code>) não está dando permissão explícita para que o frontend (na porta <code class="language-plaintext highlighter-rouge">5173</code>) acesse seus recursos.</p>
+
+<hr />
+
+<h3 id="revisão-e-solução"><strong>Revisão e Solução</strong></h3>
+
+<p>Vamos garantir que a configuração de CORS no seu backend Spring Boot está correta e sendo carregada. A melhor abordagem é a configuração global, pois ela centraliza a regra em um único lugar.</p>
+
+<h4 id="plano-de-ação-corretivo"><strong>Plano de Ação Corretivo</strong></h4>
+
+<ol>
+  <li>
+    <p><strong>Verifique a Porta no Frontend (Mais uma vez)</strong>:
+O arquivo <code class="language-plaintext highlighter-rouge">tarefaService.js</code> que você enviou <strong>ainda mostra a porta 8080</strong>. Este é o primeiro ponto a ser corrigido. Garanta que a <code class="language-plaintext highlighter-rouge">baseURL</code> esteja correta e que o arquivo foi salvo.</p>
+
+    <p><strong>Arquivo</strong>: <code class="language-plaintext highlighter-rouge">frontend/app-tarefas/src/services/tarefaService.js</code></p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ...</span>
+<span class="kd">const</span> <span class="nx">apiClient</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:8088/api</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// GARANTA QUE ESTÁ 8088</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+<span class="c1">// ...</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie ou Verifique a Classe de Configuração de CORS no Backend</strong>:
+Esta é a solução recomendada e mais robusta. Se você ainda não criou este arquivo, crie-o exatamente como abaixo.</p>
+
+    <p><strong>Localização</strong>: <code class="language-plaintext highlighter-rouge">backend/src/main/java/br/com/tarefas/api/config/WebConfig.java</code></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.CorsRegistry</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.config.annotation.WebMvcConfigurer</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebConfig</span> <span class="kd">implements</span> <span class="nc">WebMvcConfigurer</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addCorsMappings</span><span class="o">(</span><span class="nc">CorsRegistry</span> <span class="n">registry</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">registry</span><span class="o">.</span><span class="na">addMapping</span><span class="o">(</span><span class="s">"/**"</span><span class="o">)</span> <span class="c1">// Aplica a política para TODAS as rotas</span>
+            <span class="o">.</span><span class="na">allowedOrigins</span><span class="o">(</span><span class="s">"http://localhost:5173"</span><span class="o">)</span> <span class="c1">// Origem do frontend Vue</span>
+            <span class="o">.</span><span class="na">allowedMethods</span><span class="o">(</span><span class="s">"GET"</span><span class="o">,</span> <span class="s">"POST"</span><span class="o">,</span> <span class="s">"PUT"</span><span class="o">,</span> <span class="s">"DELETE"</span><span class="o">,</span> <span class="s">"OPTIONS"</span><span class="o">)</span> <span class="c1">// Métodos HTTP permitidos</span>
+            <span class="o">.</span><span class="na">allowedHeaders</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span> <span class="c1">// Permite todos os cabeçalhos</span>
+            <span class="o">.</span><span class="na">allowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li><strong>Atenção</strong>: O <code class="language-plaintext highlighter-rouge">addMapping("/**")</code> garante que a regra de CORS se aplique a todos os controllers da sua API, não apenas ao <code class="language-plaintext highlighter-rouge">/api/tarefas</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Reinicie o Servidor Backend</strong>:
+<strong>Este passo é crucial.</strong> Pare completamente sua aplicação Spring Boot e inicie-a novamente. As classes de <code class="language-plaintext highlighter-rouge">@Configuration</code> só são lidas durante a inicialização.</p>
+  </li>
+  <li>
+    <p><strong>Limpe o Cache e Teste Novamente</strong>:</p>
+
+    <ul>
+      <li>Volte para a página do frontend no navegador.</li>
+      <li>Faça uma atualização forçada para limpar o cache (geralmente <code class="language-plaintext highlighter-rouge">Ctrl+F5</code> ou <code class="language-plaintext highlighter-rouge">Cmd+Shift+R</code>).</li>
+      <li>O erro deve desaparecer e as tarefas devem ser carregadas.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<p>Observe na sua própria imagem a linha <strong><code class="language-plaintext highlighter-rouge">Request URL</code></strong>:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Request URL: http://localhost:8080/api/tarefas</code></strong></li>
+</ul>
+
+<p>Isso mostra inequivocamente que a requisição está sendo enviada para a porta <code class="language-plaintext highlighter-rouge">8080</code>.</p>
+
+<p>No entanto, o seu backend Spring Boot está configurado para rodar na porta <strong><code class="language-plaintext highlighter-rouge">8088</code></strong>. A requisição falha porque não há nenhum servidor escutando na porta <code class="language-plaintext highlighter-rouge">8080</code>, e a chamada nem chega a ser recebida pelo backend para que a política de CORS seja avaliada.</p>
+
+<h3 id="solução-definitiva"><strong>Solução Definitiva</strong></h3>
+
+<p>A correção continua a mesma: você <strong>precisa</strong> alterar o arquivo de serviço no frontend.</p>
+
+<ol>
+  <li><strong>Abra o arquivo:</strong> <code class="language-plaintext highlighter-rouge">frontend/services/tarefaService.js</code>.</li>
+  <li><strong>Localize a linha</strong> <code class="language-plaintext highlighter-rouge">baseURL</code>.</li>
+  <li><strong>Altere a porta</strong> de <code class="language-plaintext highlighter-rouge">8080</code> para <code class="language-plaintext highlighter-rouge">8088</code>.</li>
+  <li><strong>Salve o arquivo</strong>.</li>
+</ol>
+
+<p><strong>Código a ser corrigido em <code class="language-plaintext highlighter-rouge">tarefaService.js</code>:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">apiClient</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="c1">//           👇 AQUI ESTÁ O ERRO</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:8080/api</span><span class="dl">"</span><span class="p">,</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><strong>Código Corrigido:</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">apiClient</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="c1">//           👇 CORREÇÃO APLICADA</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:8088/api</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+
+<span class="c1">// O resto do arquivo permanece igual...</span>
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nf">getTarefas</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">addTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`/tarefas/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><strong>Passos Finais:</strong></p>
+
+<ol>
+  <li>Após salvar a alteração no <code class="language-plaintext highlighter-rouge">tarefaService.js</code>, observe o terminal onde <code class="language-plaintext highlighter-rouge">npm run dev</code> está rodando para garantir que ele recompilou o projeto sem erros.</li>
+  <li>Volte ao navegador e atualize a página (<code class="language-plaintext highlighter-rouge">F5</code>). A requisição será feita para a porta correta (<code class="language-plaintext highlighter-rouge">8088</code>) e a aplicação deverá funcionar.</li>
+</ol>
+
+<hr />
+
+<p>Com base nas imagens e logs, o problema é um erro <strong><code class="language-plaintext highlighter-rouge">404 Not Found</code></strong> causado por uma duplicação no caminho (path) da URL da sua API.</p>
+
+<p>O seu backend está esperando uma URL e o seu frontend está chamando outra.</p>
+
+<hr />
+
+<h3 id="diagnóstico-"><strong>Diagnóstico 👨‍🏫</strong></h3>
+
+<ol>
+  <li>
+    <p><strong>Configuração do Backend:</strong> No seu <code class="language-plaintext highlighter-rouge">application.properties</code>, você configurou <code class="language-plaintext highlighter-rouge">server.servlet.context-path=/api</code>. Isso significa que o Spring Boot <strong>automaticamente adiciona o prefixo <code class="language-plaintext highlighter-rouge">/api</code></strong> a todos os endpoints da sua aplicação.</p>
+  </li>
+  <li>
+    <p><strong>Mapeamento do Controller:</strong> No seu <code class="language-plaintext highlighter-rouge">TarefaController.java</code>, o endpoint está mapeado como <code class="language-plaintext highlighter-rouge">@RequestMapping("/api/tarefas")</code>.</p>
+  </li>
+  <li>
+    <p><strong>O Problema (A Duplicação):</strong> O Spring Boot combina os dois caminhos. O <code class="language-plaintext highlighter-rouge">context-path</code> e o <code class="language-plaintext highlighter-rouge">@RequestMapping</code>.</p>
+
+    <ul>
+      <li>Caminho do Servidor: <code class="language-plaintext highlighter-rouge">/api</code></li>
+      <li>Caminho do Controller: <code class="language-plaintext highlighter-rouge">/api/tarefas</code></li>
+      <li><strong>URL Final no Servidor:</strong> <code class="language-plaintext highlighter-rouge">/api/api/tarefas</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Requisição do Frontend:</strong> Seu frontend está configurado para chamar <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/tarefas</code>, como mostra a imagem.</p>
+  </li>
+</ol>
+
+<p>A requisição do frontend em <code class="language-plaintext highlighter-rouge">/api/tarefas</code> não encontra o endpoint, pois o servidor o registrou em <code class="language-plaintext highlighter-rouge">/api/api/tarefas</code>. Por isso, o servidor responde corretamente com <strong><code class="language-plaintext highlighter-rouge">404 Not Found</code></strong>.</p>
+
+<hr />
+
+<h3 id="soluções-"><strong>Soluções ✅</strong></h3>
+
+<p>Você tem duas maneiras de corrigir isso. A primeira é a mais recomendada por ser mais limpa e evitar redundância.</p>
+
+<h4 id="solução-1-recomendada-corrigir-o-controller-no-backend"><strong>Solução 1 (Recomendada): Corrigir o Controller no Backend</strong></h4>
+
+<p>Altere o mapeamento do seu controller para não repetir o <code class="language-plaintext highlighter-rouge">/api</code>, já que ele é gerenciado globalmente pelo <code class="language-plaintext highlighter-rouge">context-path</code>.</p>
+
+<ol>
+  <li>
+    <p><strong>Abra o arquivo:</strong> <code class="language-plaintext highlighter-rouge">TarefaController.java</code></p>
+  </li>
+  <li>
+    <p><strong>Altere a anotação <code class="language-plaintext highlighter-rouge">@RequestMapping</code>:</strong></p>
+
+    <p><strong>Código Antigo:</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ...</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tarefas"</span><span class="o">)</span> <span class="c1">// &lt;-- Caminho redundante</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p><strong>Código Novo (Correto):</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ...</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span> <span class="c1">// &lt;-- Correção: Removido o "/api"</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Reinicie sua aplicação Spring Boot.</strong> As alterações no backend só têm efeito após a reinicialização.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="solução-2-alternativa-remover-o-context-path-do-backend"><strong>Solução 2 (Alternativa): Remover o <code class="language-plaintext highlighter-rouge">context-path</code> do Backend</strong></h4>
+
+<p>Se você preferir que cada controller defina seu caminho completo, você pode remover a configuração global.</p>
+
+<ol>
+  <li>
+    <p><strong>Abra o arquivo:</strong> <code class="language-plaintext highlighter-rouge">application.properties</code></p>
+  </li>
+  <li>
+    <p><strong>Comente ou remova a linha:</strong></p>
+
+    <p><strong>Código Antigo:</strong></p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ...
+</span><span class="py">server.servlet.context-path</span><span class="p">=</span><span class="s">/api</span>
+<span class="c"># ...
+</span></code></pre></div>    </div>
+
+    <p><strong>Código Novo (Correto):</strong></p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ...
+# server.servlet.context-path=/api
+# ...
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Reinicie sua aplicação Spring Boot.</strong></p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn spring-boot:run
+</code></pre></div></div>
+
+<hr />
+
+<p>Agora que a comunicação está estabelecida, vamos implementar o CRUD completo e modernizar o visual.</p>
+
+<h2 id="backend-completando-o-crud"><strong>Backend: Completando o CRUD</strong></h2>
+
+<p>Vamos adicionar as funcionalidades de <strong>Update</strong> (Atualizar). Teremos duas formas de atualização:</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">PUT</code></strong>: Para marcar uma tarefa como concluída/não concluída.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">PATCH</code></strong>: Para editar o título de uma tarefa.</li>
+</ol>
+
+<h4 id="1-camada-de-serviço-tarefaservicejava"><strong>1. Camada de Serviço (<code class="language-plaintext highlighter-rouge">TarefaService.java</code>)</strong></h4>
+
+<p>Adicione os métodos para atualizar a tarefa.</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/service/TarefaService.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.model.Tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.repository.TarefaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span> <span class="c1">// Importar Optional</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaRepository</span> <span class="n">tarefaRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listarTodas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criarTarefa</span><span class="o">(</span><span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tarefa</span><span class="o">.</span><span class="na">getTitulo</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">tarefa</span><span class="o">.</span><span class="na">getTitulo</span><span class="o">().</span><span class="na">isBlank</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"O título da tarefa é obrigatório."</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- NOVOS MÉTODOS ADICIONADOS ---</span>
+
+    <span class="cm">/**
+     * Atualiza o status de conclusão de uma tarefa.
+     * @param id O ID da tarefa a ser atualizada.
+     * @param concluida O novo status de conclusão.
+     * @return A tarefa atualizada.
+     */</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">atualizarStatus</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// orElseThrow lança uma exceção se a tarefa não for encontrada.</span>
+        <span class="nc">Tarefa</span> <span class="n">tarefaExistente</span> <span class="o">=</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada com o id: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+
+        <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setConcluida</span><span class="o">(</span><span class="n">concluida</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefaExistente</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Atualiza o título de uma tarefa.
+     * @param id O ID da tarefa a ser atualizada.
+     * @param titulo O novo título.
+     * @return A tarefa atualizada.
+     */</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">atualizarTitulo</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">titulo</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">titulo</span><span class="o">.</span><span class="na">isBlank</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"O novo título não pode ser vazio."</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nc">Tarefa</span> <span class="n">tarefaExistente</span> <span class="o">=</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada com o id: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">));</span>
+
+        <span class="n">tarefaExistente</span><span class="o">.</span><span class="na">setTitulo</span><span class="o">(</span><span class="n">titulo</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefaExistente</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deletarTarefa</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">tarefaRepository</span><span class="o">.</span><span class="na">existsById</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"Tarefa não encontrada com o id: "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">tarefaRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="2-camada-de-controller-tarefacontrollerjava"><strong>2. Camada de Controller (<code class="language-plaintext highlighter-rouge">TarefaController.java</code>)</strong></h4>
+
+<p>Adicione os novos endpoints (<code class="language-plaintext highlighter-rouge">PUT</code> e <code class="language-plaintext highlighter-rouge">PATCH</code>).</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">src/main/java/br/com/tarefas/api/controller/TarefaController.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.tarefas.api.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.model.Tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.tarefas.api.service.TarefaService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span> <span class="c1">// Importar Map</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span> <span class="c1">// Caminho corrigido para não duplicar /api</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaService</span> <span class="n">tarefaService</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;&gt;</span> <span class="nf">listar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="n">tarefas</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">listarTodas</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">tarefas</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">criar</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Tarefa</span> <span class="n">novaTarefa</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">criarTarefa</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="n">novaTarefa</span><span class="o">,</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- NOVOS ENDPOINTS ADICIONADOS ---</span>
+
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}/status"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">atualizarStatus</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">&gt;</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// @RequestBody Map... permite receber um JSON simples como {"concluida": true}</span>
+        <span class="nc">Tarefa</span> <span class="n">tarefaAtualizada</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizarStatus</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">status</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"concluida"</span><span class="o">));</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PatchMapping</span><span class="o">(</span><span class="s">"/{id}/titulo"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">atualizarTitulo</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">payload</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Tarefa</span> <span class="n">tarefaAtualizada</span> <span class="o">=</span> <span class="n">tarefaService</span><span class="o">.</span><span class="na">atualizarTitulo</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">payload</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"titulo"</span><span class="o">));</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">tarefaAtualizada</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">deletar</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">tarefaService</span><span class="o">.</span><span class="na">deletarTarefa</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">noContent</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p><strong>Importante:</strong> Reinicie seu servidor backend para aplicar as mudanças.</p>
+
+<hr />
+
+<h3 id="frontend-crud-e-novo-visual"><strong>Frontend: CRUD e Novo Visual</strong></h3>
+
+<h4 id="1-atualizando-o-serviço-tarefaservicejs"><strong>1. Atualizando o Serviço (<code class="language-plaintext highlighter-rouge">tarefaService.js</code>)</strong></h4>
+
+<p>Adicione as funções para se comunicar com os novos endpoints.</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">frontend/app-tarefas/src/services/tarefaService.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">apiClient</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:8088/api</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Verifique a porta e o /api</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nf">getTarefas</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">addTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">"</span><span class="s2">/tarefas</span><span class="dl">"</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`/tarefas/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="c1">// --- NOVAS FUNÇÕES ADICIONADAS ---</span>
+  <span class="nf">updateStatusTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">concluida</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">`/tarefas/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/status`</span><span class="p">,</span> <span class="p">{</span> <span class="nx">concluida</span> <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="nf">updateTituloTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">titulo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">apiClient</span><span class="p">.</span><span class="nf">patch</span><span class="p">(</span><span class="s2">`/tarefas/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">/titulo`</span><span class="p">,</span> <span class="p">{</span> <span class="nx">titulo</span> <span class="p">});</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="2-componente-principal-appvue"><strong>2. Componente Principal (<code class="language-plaintext highlighter-rouge">App.vue</code>)</strong></h4>
+
+<p>Esta é a maior mudança. Adicionaremos reatividade, métodos para edição e um <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> completamente novo.</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">frontend/src/App.vue</code></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span><span class="p">,</span> <span class="nx">nextTick</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">vue</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">tarefaService</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./services/tarefaService</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">tarefas</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">([]);</span>
+<span class="kd">const</span> <span class="nx">novaTarefaTitulo</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">erro</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">tarefaEditandoId</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// ID da tarefa sendo editada</span>
+<span class="kd">const</span> <span class="nx">tituloEditando</span> <span class="o">=</span> <span class="nf">ref</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span> <span class="c1">// Título temporário durante a edição</span>
+
+<span class="c1">// Funções de API</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">carregarTarefas</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">getTarefas</span><span class="p">();</span>
+    <span class="c1">// Ordena as tarefas: pendentes primeiro, depois por ID</span>
+    <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span>
+      <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">concluida</span> <span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">concluida</span> <span class="o">||</span> <span class="nx">a</span><span class="p">.</span><span class="nx">id</span> <span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">id</span>
+    <span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao carregar tarefas.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">adicionarTarefa</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">trim</span><span class="p">())</span> <span class="k">return</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">novaTarefa</span> <span class="o">=</span> <span class="p">{</span> <span class="na">titulo</span><span class="p">:</span> <span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">addTarefa</span><span class="p">(</span><span class="nx">novaTarefa</span><span class="p">);</span>
+    <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="nx">novaTarefaTitulo</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+    <span class="c1">// Recarrega para manter a ordem</span>
+    <span class="k">await</span> <span class="nf">carregarTarefas</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao adicionar tarefa.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">removerTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+    <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tarefas</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">t</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="nx">id</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao remover tarefa.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// --- NOVAS FUNÇÕES ---</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">alternarStatus</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">novoStatus</span> <span class="o">=</span> <span class="o">!</span><span class="nx">tarefa</span><span class="p">.</span><span class="nx">concluida</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">updateStatusTarefa</span><span class="p">(</span>
+      <span class="nx">tarefa</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+      <span class="nx">novoStatus</span>
+    <span class="p">);</span>
+    <span class="c1">// Atualiza o objeto local para reatividade instantânea</span>
+    <span class="nx">tarefa</span><span class="p">.</span><span class="nx">concluida</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">concluida</span><span class="p">;</span>
+    <span class="c1">// Recarrega para reordenar a lista</span>
+    <span class="k">await</span> <span class="nf">carregarTarefas</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao atualizar status.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">ativarEdicao</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">tarefaEditandoId</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tarefa</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+  <span class="nx">tituloEditando</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">tarefa</span><span class="p">.</span><span class="nx">titulo</span><span class="p">;</span>
+  <span class="c1">// nextTick garante que o DOM foi atualizado antes de focar no input</span>
+  <span class="nf">nextTick</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="s2">`#input-edit-</span><span class="p">${</span><span class="nx">tarefa</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">).</span><span class="nf">focus</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">salvarEdicao</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if </span><span class="p">(</span>
+    <span class="o">!</span><span class="nx">tituloEditando</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">trim</span><span class="p">()</span> <span class="o">||</span>
+    <span class="nx">tituloEditando</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nf">trim</span><span class="p">()</span> <span class="o">===</span> <span class="nx">tarefa</span><span class="p">.</span><span class="nx">titulo</span>
+  <span class="p">)</span> <span class="p">{</span>
+    <span class="nf">cancelarEdicao</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">tarefaService</span><span class="p">.</span><span class="nf">updateTituloTarefa</span><span class="p">(</span>
+      <span class="nx">tarefa</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+      <span class="nx">tituloEditando</span><span class="p">.</span><span class="nx">value</span>
+    <span class="p">);</span>
+    <span class="nx">tarefa</span><span class="p">.</span><span class="nx">titulo</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">titulo</span><span class="p">;</span>
+    <span class="nf">cancelarEdicao</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">erro</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Falha ao salvar edição.</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">cancelarEdicao</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">tarefaEditandoId</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="nx">tituloEditando</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Carrega as tarefas quando o componente é montado</span>
+<span class="nf">onMounted</span><span class="p">(</span><span class="nx">carregarTarefas</span><span class="p">);</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;header&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+      <span class="nt">&lt;p&gt;</span>Aplicação Full-Stack com Vue e Spring Boot<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+    <span class="nt">&lt;main&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span>
+          <span class="na">v-model=</span><span class="s">"novaTarefaTitulo"</span>
+          <span class="err">@</span><span class="na">keyup.enter=</span><span class="s">"adicionarTarefa"</span>
+          <span class="na">placeholder=</span><span class="s">"O que precisa ser feito?"</span>
+        <span class="nt">/&gt;</span>
+        <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"adicionarTarefa"</span><span class="nt">&gt;</span>+<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+
+      <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"erro"</span> <span class="na">class=</span><span class="s">"erro"</span><span class="nt">&gt;&lt;/p&gt;</span>
+
+      <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"tarefa-lista"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span>
+          <span class="na">v-for=</span><span class="s">"tarefa in tarefas"</span>
+          <span class="na">:key=</span><span class="s">"tarefa.id"</span>
+          <span class="na">:class=</span><span class="s">"</span>{ concluida: tarefa.concluida }"
+        &gt;
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"info-tarefa"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span>
+              <span class="na">type=</span><span class="s">"checkbox"</span>
+              <span class="na">:checked=</span><span class="s">"tarefa.concluida"</span>
+              <span class="err">@</span><span class="na">change=</span><span class="s">"alternarStatus(tarefa)"</span>
+            <span class="nt">/&gt;</span>
+            <span class="nt">&lt;span</span>
+              <span class="na">v-if=</span><span class="s">"tarefaEditandoId !== tarefa.id"</span>
+              <span class="err">@</span><span class="na">dblclick=</span><span class="s">"ativarEdicao(tarefa)"</span>
+            <span class="nt">&gt;</span>
+              
+            <span class="nt">&lt;/span&gt;</span>
+            <span class="nt">&lt;input</span>
+              <span class="na">v-else</span>
+              <span class="na">:id=</span><span class="s">"`input-edit-$</span>{tarefa.id}`"
+              type="text"
+              v-model="tituloEditando"
+              @blur="salvarEdicao(tarefa)"
+              @keyup.enter="salvarEdicao(tarefa)"
+              @keyup.esc="cancelarEdicao"
+              class="input-edicao"
+            /&gt;
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"acoes"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"removerTarefa(tarefa.id)"</span> <span class="na">class=</span><span class="s">"btn-remover"</span><span class="nt">&gt;</span>
+              ×
+            <span class="nt">&lt;/button&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/main&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span><span class="nt">&gt;</span>
+<span class="c">/* Reset Básico e Estilo Global */</span>
+<span class="nd">:root</span> <span class="p">{</span>
+  <span class="py">--cor-fundo</span><span class="p">:</span> <span class="nx">#1a1a1a</span><span class="p">;</span>
+  <span class="py">--cor-surface</span><span class="p">:</span> <span class="nx">#242424</span><span class="p">;</span>
+  <span class="py">--cor-primaria</span><span class="p">:</span> <span class="nx">#646cff</span><span class="p">;</span>
+  <span class="py">--cor-texto</span><span class="p">:</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">255</span><span class="p">,</span> <span class="m">255</span><span class="p">,</span> <span class="m">0.87</span><span class="p">);</span>
+  <span class="py">--cor-borda</span><span class="p">:</span> <span class="nx">#424242</span><span class="p">;</span>
+  <span class="py">--cor-perigo</span><span class="p">:</span> <span class="nx">#ff6b6b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Inter"</span><span class="p">,</span> <span class="n">system-ui</span><span class="p">,</span> <span class="n">Avenir</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-fundo</span><span class="p">);</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-texto</span><span class="p">);</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+  <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">padding-top</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Container Principal */</span>
+<span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">680px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span> <span class="m">20px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">header</span> <span class="p">{</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">3.2em</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-primaria</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nt">header</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">#a0a0a0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Formulário de Nova Tarefa */</span>
+<span class="nc">.form-container</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.form-container</span> <span class="nt">input</span> <span class="p">{</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">12px</span> <span class="m">15px</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-surface</span><span class="p">);</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-borda</span><span class="p">);</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-texto</span><span class="p">);</span>
+  <span class="nl">outline</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">transition</span><span class="p">:</span> <span class="n">border-color</span> <span class="m">0.2s</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.form-container</span> <span class="nt">input</span><span class="nd">:focus</span> <span class="p">{</span>
+  <span class="nl">border-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-primaria</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.form-container</span> <span class="nt">button</span> <span class="p">{</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">48px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">48px</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">2em</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nb">transparent</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-primaria</span><span class="p">);</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+  <span class="nl">transition</span><span class="p">:</span> <span class="n">background-color</span> <span class="m">0.2s</span><span class="p">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">48px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.form-container</span> <span class="nt">button</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#535bf2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Mensagem de Erro */</span>
+<span class="nc">.erro</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-perigo</span><span class="p">);</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Lista de Tarefas */</span>
+<span class="nc">.tarefa-lista</span> <span class="p">{</span>
+  <span class="nl">list-style</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.tarefa-lista</span> <span class="nt">li</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+  <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">space-between</span><span class="p">;</span>
+  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-surface</span><span class="p">);</span>
+  <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-borda</span><span class="p">);</span>
+  <span class="nl">transition</span><span class="p">:</span> <span class="n">background-color</span> <span class="m">0.2s</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.tarefa-lista</span> <span class="nt">li</span><span class="nd">:first-child</span> <span class="p">{</span>
+  <span class="nl">border-top-left-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
+  <span class="nl">border-top-right-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.tarefa-lista</span> <span class="nt">li</span><span class="nd">:last-child</span> <span class="p">{</span>
+  <span class="nl">border-bottom</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">border-bottom-left-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
+  <span class="nl">border-bottom-right-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.info-tarefa</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">gap</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Checkbox customizado */</span>
+<span class="nc">.info-tarefa</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"checkbox"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="nl">appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-borda</span><span class="p">);</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+  <span class="nl">transition</span><span class="p">:</span> <span class="nb">all</span> <span class="m">0.2s</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.info-tarefa</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"checkbox"</span><span class="o">]</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">border-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-primaria</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.info-tarefa</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"checkbox"</span><span class="o">]</span><span class="nd">:checked</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-primaria</span><span class="p">);</span>
+  <span class="nl">border-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-primaria</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.info-tarefa</span> <span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"checkbox"</span><span class="o">]</span><span class="nd">:checked::after</span> <span class="p">{</span>
+  <span class="nl">content</span><span class="p">:</span> <span class="s1">"✔"</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+  <span class="nl">transform</span><span class="p">:</span> <span class="nf">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">);</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">12px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.info-tarefa</span> <span class="nt">span</span> <span class="p">{</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Estilo da tarefa concluída */</span>
+<span class="nt">li</span><span class="nc">.concluida</span> <span class="nc">.info-tarefa</span> <span class="nt">span</span> <span class="p">{</span>
+  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">line-through</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">#a0a0a0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Input de Edição */</span>
+<span class="nc">.input-edicao</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-fundo</span><span class="p">);</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-primaria</span><span class="p">);</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-texto</span><span class="p">);</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Botão de Remover */</span>
+<span class="nc">.btn-remover</span> <span class="p">{</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">#a0a0a0</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1.5em</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+  <span class="nl">transition</span><span class="p">:</span> <span class="nb">color</span> <span class="m">0.2s</span><span class="p">;</span>
+  <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+  <span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">li</span><span class="nd">:hover</span> <span class="nc">.btn-remover</span> <span class="p">{</span>
+  <span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;</span>
+  <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.btn-remover</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="l">--cor-perigo</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/04_modelo_logico_relacional.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>O Modelo Lógico Relacional | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="O Modelo Lógico Relacional" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/04_modelo_logico_relacional.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/04_modelo_logico_relacional.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="O Modelo Lógico Relacional" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"O Modelo Lógico Relacional","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/04_modelo_logico_relacional.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / O modelo lógico relacional</span>
+          
+        
+      </nav>
+
+      <h2 id="o-modelo-lógico-relacional">O Modelo Lógico Relacional</h2>
+
+<p>É um modelo de dados de nível de design, proposto por Edgar F. Codd em 1970, que se tornou a base para a maioria dos bancos de dados modernos.</p>
+
+<h3 id="fundamentos-do-modelo-relacional-">Fundamentos do Modelo Relacional 🧱</h3>
+
+<p>No modelo relacional, os dados são organizados em <strong>tabelas</strong>, tecnicamente chamadas de <strong>relações</strong>.</p>
+
+<ul>
+  <li><strong>Tabelas</strong> 🗂️: São um conjunto não ordenado de registros exclusivos, compostas por linhas e colunas.</li>
+  <li><strong>Registros (Linhas)</strong> ➖: Cada registro em uma tabela corresponde a uma única ocorrência de um item.</li>
+  <li><strong>Campos (Colunas ou Atributos)</strong>  Cada coluna representa um atributo dos registros. O valor de um campo deve ser simples (não composto) e monovalorado (não pode conter múltiplos valores).</li>
+  <li><strong>Esquema de Dados</strong> 🗺️: É a estrutura completa de um banco de dados, composta por tabelas, relacionamentos e regras (constraints).</li>
+</ul>
+
+<h3 id="chaves-e-integridade-">Chaves e Integridade 🔑</h3>
+
+<p>As chaves são fundamentais para identificar registros e estabelecer relacionamentos entre tabelas.</p>
+
+<ul>
+  <li><strong>Chave Candidata:</strong> É uma coluna ou combinação de colunas que identifica unicamente um registro em uma tabela. Para ser uma chave, ela deve ser:
+    <ul>
+      <li><strong>Única:</strong> O valor não pode se repetir na tabela.</li>
+      <li><strong>Obrigatória:</strong> Não pode ter valor nulo.</li>
+      <li><strong>Mínima:</strong> Não deve existir outra chave candidata contida nela.</li>
+    </ul>
+  </li>
+  <li><strong>Chave Primária (Primary Key - PK):</strong> É a chave candidata escolhida como o identificador “padrão” de um registro na tabela.</li>
+  <li><strong>Chaves Alternativas:</strong> São as chaves candidatas que não foram escolhidas como chave primária.</li>
+  <li><strong>Chave Estrangeira (Foreign Key - FK):</strong> É uma coluna (ou combinação de colunas) em uma tabela que corresponde à chave primária de outra tabela. Ela serve para criar relacionamentos entre as tabelas.</li>
+  <li><strong>Integridade Referencial</strong> ✅: É a regra que garante a consistência dos dados de uma chave estrangeira. Ela estipula que, se um valor existe em uma chave estrangeira, o valor correspondente deve obrigatoriamente existir na chave primária da tabela referenciada.</li>
+</ul>
+
+<h3 id="conversão-do-modelo-conceitual-para-o-relacional-mc--mr-">Conversão do Modelo Conceitual para o Relacional (MC → MR) ✨</h3>
+
+<p>O processo de transformar um Modelo Conceitual (MC) em um Modelo Relacional (MR) segue um conjunto de regras bem definidas:</p>
+
+<ol>
+  <li>
+    <p><strong>Conceitos ou Entidades:</strong> Cada conceito do MC se torna uma tabela no MR.</p>
+  </li>
+  <li>
+    <p><strong>Relacionamento 1-para-N (Um-para-Muitos) 🔗:</strong> A chave primária da tabela do lado “1” é adicionada como chave estrangeira na tabela do lado “N” (muitos).</p>
+  </li>
+  <li>
+    <p><strong>Relacionamento 1-para-1 (Um-para-Um) 🤝:</strong> A chave estrangeira pode ser colocada em qualquer uma das duas tabelas para referenciar a outra. A escolha geralmente depende da obrigatoriedade do relacionamento.</p>
+  </li>
+  <li>
+    <p><strong>Relacionamento N-para-N (Muitos-para-Muitos) 🔄:</strong> Este tipo de relacionamento exige a criação de uma nova tabela, chamada de <strong>tabela associativa</strong>. Esta nova tabela conterá, no mínimo, duas chaves estrangeiras, cada uma referenciando a chave primária de uma das tabelas originais.</p>
+  </li>
+  <li>
+    <p><strong>Classe de Associação em Relacionamento N-N:</strong> A classe de associação do MC se transforma na tabela associativa no MR. Os atributos da classe de associação se tornam colunas nesta nova tabela.</p>
+  </li>
+  <li><strong>Autorrelacionamento:</strong>
+    <ul>
+      <li><strong>1-para-N:</strong> A própria tabela recebe uma chave estrangeira que referencia sua chave primária (ex: uma tabela <code class="language-plaintext highlighter-rouge">tb_item_menu</code> com um campo <code class="language-plaintext highlighter-rouge">father_id</code> que aponta para o <code class="language-plaintext highlighter-rouge">id</code> da mesma tabela).</li>
+      <li><strong>N-para-N:</strong> Cria-se uma tabela associativa com duas chaves estrangeiras, ambas referenciando a chave primária da mesma tabela (ex: <code class="language-plaintext highlighter-rouge">tb_seguidores</code> com <code class="language-plaintext highlighter-rouge">seguidor_id</code> e <code class="language-plaintext highlighter-rouge">seguido_id</code>, ambos referenciando <code class="language-plaintext highlighter-rouge">tb_usuario</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Herança</strong> 🧬: Para mapear uma estrutura de herança, existem duas abordagens principais:
+    <ul>
+      <li><strong>Tabela Única:</strong> Criar uma única tabela para toda a hierarquia. A tabela conteria todos os atributos da superclasse e de todas as subclasses, além de uma coluna “tipo” para diferenciar os registros. A vantagem é a simplicidade e velocidade, mas a desvantagem é o “espaço ocioso” gerado por muitos campos nulos.</li>
+      <li><strong>Tabelas por Subclasse (Recomendado):</strong> Criar uma tabela para a superclasse e uma tabela separada para cada subclasse. A chave primária de cada tabela de subclasse é também uma chave estrangeira que referencia a chave primária da tabela da superclasse.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

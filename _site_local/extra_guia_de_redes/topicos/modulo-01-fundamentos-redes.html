@@ -1,0 +1,137 @@
+<h3 id="arquivo-1-modulo-01-fundamentos-redesmd"><strong>Arquivo 1: <code class="language-plaintext highlighter-rouge">modulo-01-fundamentos-redes.md</code></strong></h3>
+
+<h1 id="-módulo-1-a-fundação---redes-e-a-internet">🌐 Módulo 1: A Fundação - Redes e a Internet</h1>
+
+<p>Bem-vindo ao ponto de partida da sua jornada pela infraestrutura web! Neste módulo, vamos desvendar os conceitos essenciais que fazem a internet funcionar. Ao final, você entenderá como os dados viajam pelo mundo em milissegundos.</p>
+
+<h2 id="-aula-1-a-mágica-da-internet">📜 Aula 1: A Mágica da Internet</h2>
+
+<h3 id="o-que-é-a-internet">O que é a Internet?</h3>
+<p>A Internet é uma rede global de computadores interconectados que se comunicam através de um conjunto padronizado de protocolos. Pense nela como um sistema postal gigantesco e ultrarrápido para informações digitais.</p>
+
+<ul>
+  <li><strong>História e Arquitetura:</strong> Uma rede descentralizada, projetada para ser resiliente.</li>
+  <li><strong>Protocolos:</strong> O conjunto de regras que governa a comunicação. O principal é o <strong>TCP/IP</strong>.</li>
+</ul>
+
+<h3 id="modelos-de-referência-tcpip">Modelos de Referência: TCP/IP</h3>
+<p>Para organizar a complexidade da comunicação em rede, usamos modelos de camadas. O mais prático e utilizado é o modelo TCP/IP.</p>
+
+<pre><code class="language-mermaid">graph TD
+    subgraph "Modelo TCP/IP Simplificado"
+        A["Aplicação (HTTP, FTP, SMTP)"]
+        B["Transporte (TCP, UDP)"]
+        C["Internet (IP)"]
+        D["Enlace (Ethernet, Wi-Fi)"]
+    end
+    A -- "Dados da Aplicação" --&gt; B
+    B -- "Segmentos/Datagramas" --&gt; C
+    C -- "Pacotes" --&gt; D
+    D -- "Quadros (Frames)" --&gt; E((Rede Física))
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#ccf,stroke:#333,stroke-width:2px
+    style C fill:#cfc,stroke:#333,stroke-width:2px
+    style D fill:#fcf,stroke:#333,stroke-width:2px
+</code></pre>
+
+<ul>
+  <li><strong>Pacotes de Dados:</strong> As informações são quebradas em pequenos pedaços chamados pacotes, que são enviados pela rede e remontados no destino.</li>
+  <li><strong>Roteadores e Switches:</strong> São os “agentes de trânsito” da internet. Switches conectam dispositivos em uma rede local (LAN), enquanto roteadores conectam diferentes redes.</li>
+</ul>
+
+<h2 id="️-aula-2-endereçamento-na-web---ips-e-dns">🛰️ Aula 2: Endereçamento na Web - IPs e DNS</h2>
+
+<h3 id="endereços-ip-internet-protocol">Endereços IP (Internet Protocol)</h3>
+
+<p>O endereço IP é um identificador numérico único atribuído a cada dispositivo conectado a uma rede. É como o endereço da sua casa no mundo digital.</p>
+
+<ul>
+  <li><strong>IPv4 vs. IPv6:</strong> Duas versões do protocolo, sendo o IPv6 a solução para o esgotamento de endereços IPv4.</li>
+  <li><strong>IP Fixo vs. IP Dinâmico:</strong>
+    <ul>
+      <li><strong>Fixo:</strong> Um endereço permanente, ideal para servidores. Custo mais elevado.</li>
+      <li><strong>Dinâmico:</strong> Um endereço temporário, atribuído pelo provedor de internet a cada conexão. Comum para usuários domésticos.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dns-domain-name-system">DNS (Domain Name System)</h3>
+
+<p>Humanos são bons em lembrar nomes (<code class="language-plaintext highlighter-rouge">google.com</code>), mas computadores precisam de números (IPs). O DNS é o sistema que traduz nomes de domínio em endereços IP.</p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant User as Usuário
+    participant Browser as Navegador
+    participant Resolver as "Resolvedor DNS"
+    participant Root as "Servidor Raiz"
+    participant TLD as "Servidor TLD (.com)"
+    participant Auth as "Servidor Autoritativo"
+
+    User-&gt;&gt;Browser: Acessar [www.google.com](https://www.google.com)
+    Browser-&gt;&gt;Resolver: Qual o IP de [www.google.com](https://www.google.com)?
+    Resolver-&gt;&gt;Root: Onde encontro ".com"?
+    Root--&gt;&gt;Resolver: No servidor TLD X
+    Resolver-&gt;&gt;TLD: Onde encontro "google.com"?
+    TLD--&gt;&gt;Resolver: No servidor autoritativo Y
+    Resolver-&gt;&gt;Auth: Qual o IP de "[www.google.com](https://www.google.com)"?
+    Auth--&gt;&gt;Resolver: O IP é 142.250.218.4
+    Resolver--&gt;&gt;Browser: O IP é 142.250.218.4
+    Browser-&gt;&gt;User: Conectando ao servidor...
+</code></pre>
+
+<h3 id="prática-ferramentas-de-diagnóstico">Prática: Ferramentas de Diagnóstico</h3>
+
+<p>Abra seu terminal e experimente estes comandos:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">ping google.com</code></strong>: Testa a conectividade com um host.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">traceroute google.com</code></strong> (ou <code class="language-plaintext highlighter-rouge">tracert</code> no Windows): Mostra a rota que os pacotes fazem até o destino.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">nslookup google.com</code></strong>: Consulta o DNS para encontrar o IP de um domínio.</li>
+</ul>
+
+<!-- end list -->
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Exemplo de saída do nslookup</span>
+<span class="nv">$ </span>nslookup google.com
+Server:		192.168.1.1
+Address:	192.168.1.1#53
+
+Non-authoritative answer:
+Name:	google.com
+Address: 142.250.218.14
+</code></pre></div></div>
+
+<h2 id="-aula-3-portas-protocolos-e-proxies">🚪 Aula 3: Portas, Protocolos e Proxies</h2>
+
+<h3 id="portas-de-rede">Portas de Rede</h3>
+
+<p>Se o IP é o endereço do prédio, a porta é o número do apartamento. Ela direciona os dados para o serviço correto no servidor.</p>
+
+<ul>
+  <li><strong>Porta 80:</strong> HTTP (web)</li>
+  <li><strong>Porta 443:</strong> HTTPS (web segura)</li>
+  <li><strong>Porta 22:</strong> SSH (acesso remoto seguro)</li>
+  <li><strong>Porta 21:</strong> FTP (transferência de arquivos)</li>
+</ul>
+
+<h3 id="protocolos-fundamentais">Protocolos Fundamentais</h3>
+
+<ul>
+  <li><strong>HTTP (HyperText Transfer Protocol):</strong> O protocolo base para a comunicação na web.</li>
+  <li><strong>HTTPS (HTTP Secure):</strong> Uma camada de segurança (SSL/TLS) sobre o HTTP, que criptografa a comunicação, essencial para proteger dados sensíveis.</li>
+</ul>
+
+<h3 id="servidores-proxy">Servidores Proxy</h3>
+
+<p>Um proxy é um intermediário entre o cliente e o servidor final.</p>
+
+<ul>
+  <li><strong>Proxy Forward:</strong> Usado pelo cliente (ex: em uma empresa) para controlar o acesso à internet externa.</li>
+  <li><strong>Proxy Reverso:</strong> Usado pelo servidor para receber requisições em nome de outros servidores. Essencial para balanceamento de carga, segurança e caching.</li>
+</ul>
+
+<!-- end list -->
+
+<hr />
+

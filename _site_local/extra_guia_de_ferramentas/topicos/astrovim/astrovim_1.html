@@ -1,0 +1,470 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /extra_guia_de_ferramentas/topicos/astrovim/astrovim_1.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Instalando e Configurando AstroVim no Debian/Ubuntu | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Instalando e Configurando AstroVim no Debian/Ubuntu" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/astrovim_1.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/astrovim_1.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Instalando e Configurando AstroVim no Debian/Ubuntu" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Instalando e Configurando AstroVim no Debian/Ubuntu","url":"https://ricardotecpro.github.io/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/astrovim_1.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/extra_guia_de_ferramentas/" style="margin-left: 0.5rem;">Extra guia de ferramentas</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/extra_guia_de_ferramentas/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/extra_guia_de_ferramentas/topicos/astrovim/" style="margin-left: 0.5rem;">Astrovim</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 instalando e configurando astrovim no debian/ubuntu</span>
+          
+        
+      </nav>
+
+      <h1 id="-instalando-e-configurando-astrovim-no-debianubuntu">🚀 Instalando e Configurando AstroVim no Debian/Ubuntu</h1>
+
+<p>Este tutorial ensina como instalar o <strong>Neovim (v0.10.4)</strong>, configurar o <strong>AstroNvim</strong> e melhorar a aparência para parecer com o <strong>VS Code</strong>.</p>
+
+<h2 id="-1-remover-versões-antigas-do-neovim">🔹 1. Remover versões antigas do Neovim</h2>
+
+<p>Antes de instalar, remova qualquer versão antiga do Neovim e suas configurações:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt remove <span class="nt">--purge</span> neovim <span class="nt">-y</span>
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim ~/.config/nvim
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> ~/.local/share/lunarvim ~/.local/state/lunarvim ~/.cache/lunarvim ~/.config/lvim
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> /usr/local/bin/nvim /usr/local/bin/nvim-linux-x86_64.appimage /opt/neovim
+
+</code></pre></div></div>
+
+<h2 id="-2-instalar-o-neovim-v0104">🔹 2. Instalar o Neovim v0.10.4</h2>
+
+<p>Baixe e instale a versão mais recente do Neovim:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
+<span class="nb">chmod </span>u+x nvim-linux-x86_64.appimage
+<span class="nb">sudo mv </span>nvim-linux-x86_64.appimage /usr/local/bin/nvim
+
+</code></pre></div></div>
+
+<p>Verifique se a instalação foi concluída corretamente:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim <span class="nt">--version</span>
+
+</code></pre></div></div>
+
+<h2 id="-3-instalar-o-astronvim">🔹 3. Instalar o AstroNvim</h2>
+
+<h3 id="31-fazer-backup-da-configuração-antiga">3.1 Fazer backup da configuração antiga</h3>
+
+<p>Se você já tiver um Neovim configurado, faça um backup antes de instalar o AstroNvim:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> ~/.config/nvim ~/.config/nvim.bak
+<span class="nb">mv</span> ~/.local/share/nvim ~/.local/share/nvim.bak
+<span class="nb">mv</span> ~/.local/state/nvim ~/.local/state/nvim.bak
+<span class="nb">mv</span> ~/.cache/nvim ~/.cache/nvim.bak
+
+</code></pre></div></div>
+
+<h3 id="32-clonar-o-astronvim">3.2 Clonar o AstroNvim</h3>
+
+<p>Agora, baixe a configuração base do AstroNvim:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--depth</span> 1 https://github.com/AstroNvim/template ~/.config/nvim
+<span class="nb">rm</span> <span class="nt">-rf</span> ~/.config/nvim/.git  <span class="c"># Remove conexão com o repositório</span>
+
+</code></pre></div></div>
+
+<p>Agora abra o Neovim para iniciar a instalação automática:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim
+</code></pre></div></div>
+
+<h2 id="-4-melhorando-a-aparência-para-parecer-com-o-vs-code">🔹 4. Melhorando a Aparência para Parecer com o VS Code</h2>
+
+<h3 id="41-habilitar-ícones-nerd-fonts">4.1 Habilitar Ícones Nerd Fonts</h3>
+
+<p>Baixe e instale uma <strong>Nerd Font</strong> de <a href="https://www.nerdfonts.com/">NerdFonts</a>.</p>
+
+<p>Depois, configure seu terminal para usar essa fonte.</p>
+
+<h3 id="42-instalar-o-tema-catppuccin">4.2 Instalar o Tema Catppuccin</h3>
+
+<p>O tema <strong>Catppuccin</strong> já está incluído na configuração.<br />
+Se precisar ativá-lo manualmente dentro do Neovim, use o comando:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:colorscheme catppuccin
+</code></pre></div></div>
+
+<h3 id="43-configurar-uma-barra-de-status-moderna">4.3 Configurar uma Barra de Status Moderna</h3>
+
+<p>A barra de status <strong>lualine</strong> já está configurada no tema.</p>
+
+<h2 id="-5-habilitar-e-usar-o-gerenciador-de-arquivos-nvim-tree">🔹 5. Habilitar e Usar o Gerenciador de Arquivos (<code class="language-plaintext highlighter-rouge">nvim-tree</code>)</h2>
+
+<h3 id="51-instalar-o-nvim-tree">5.1 Instalar o <code class="language-plaintext highlighter-rouge">nvim-tree</code></h3>
+
+<p>Caso ainda não esteja instalado, adicione o plugin no arquivo <code class="language-plaintext highlighter-rouge">~/.config/nvim/lua/user/init.lua</code>:</p>
+
+<p><code class="language-plaintext highlighter-rouge">~/.config/nvim/init.lua</code></p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="n">updater</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="n">remote</span> <span class="o">=</span> <span class="s2">"origin"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="n">channel</span> <span class="o">=</span> <span class="s2">"stable"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="n">version</span> <span class="o">=</span> <span class="s2">"latest"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="n">branch</span> <span class="o">=</span> <span class="s2">"main"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="n">pin_plugins</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="p">},</span>
+
+  
+
+<span class="err"> </span> <span class="n">colorscheme</span> <span class="o">=</span> <span class="s2">"catppuccin"</span><span class="p">,</span>
+
+  
+
+<span class="err"> </span> <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="n">opt</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">number</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">relativenumber</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">tabstop</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">shiftwidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">expandtab</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">smartindent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">wrap</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">cursorline</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">termguicolors</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">background</span> <span class="o">=</span> <span class="s2">"dark"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="n">g</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">mapleader</span> <span class="o">=</span> <span class="s2">" "</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">autoformat_enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">cmp_enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">diagnostics_mode</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">icons_enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">ui_notifications_enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="p">},</span>
+
+  
+
+<span class="err"> </span> <span class="n">plugins</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">{</span> <span class="s2">"catppuccin/nvim"</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">"catppuccin"</span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="s2">"nvim-lualine/lualine.nvim"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nb">require</span><span class="p">(</span><span class="s2">"lualine"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">theme</span> <span class="o">=</span> <span class="s2">"catppuccin"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">end</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="s2">"williamboman/mason.nvim"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nb">require</span><span class="p">(</span><span class="s2">"mason"</span><span class="p">).</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">end</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="s2">"neovim/nvim-lspconfig"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="kd">local</span> <span class="n">lspconfig</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">"lspconfig"</span><span class="p">)</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">pyright</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">clangd</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">jdtls</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">html</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">cssls</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">tsserver</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">sqlls</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lspconfig</span><span class="p">.</span><span class="n">omnisharp</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">end</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="s2">"nvim-treesitter/nvim-treesitter"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">run</span> <span class="o">=</span> <span class="s2">":TSUpdate"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nb">require</span><span class="p">(</span><span class="s2">"nvim-treesitter.configs"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">ensure_installed</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"cpp"</span><span class="p">,</span> <span class="s2">"java"</span><span class="p">,</span> <span class="s2">"html"</span><span class="p">,</span> <span class="s2">"css"</span><span class="p">,</span> <span class="s2">"javascript"</span><span class="p">,</span> <span class="s2">"typescript"</span><span class="p">,</span> <span class="s2">"sql"</span><span class="p">,</span> <span class="s2">"c_sharp"</span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">highlight</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">end</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="s2">"nvim-tree/nvim-tree.lua"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">lazy</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">-- Carregar imediatamente</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="nb">require</span><span class="p">(</span><span class="s2">"nvim-tree"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">view</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">width</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">side</span> <span class="o">=</span> <span class="s2">"left"</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="p">})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="c1">-- Atalho para abrir/fechar NvimTree</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="n">vim</span><span class="p">.</span><span class="n">keymap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"n"</span><span class="p">,</span> <span class="s2">"&lt;leader&gt;e"</span><span class="p">,</span> <span class="s2">":NvimTreeToggle&lt;CR&gt;"</span><span class="p">,</span> <span class="p">{</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">})</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="err"> </span> <span class="k">end</span><span class="p">,</span>
+
+<span class="err"> </span> <span class="err"> </span> <span class="p">},</span>
+
+<span class="err"> </span> <span class="p">},</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="52-como-abrir-o-gerenciador-de-arquivos">5.2 Como Abrir o Gerenciador de Arquivos</h3>
+
+<p>Pressione:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Space&gt; e
+</code></pre></div></div>
+
+<p>Ou digite o comando no Neovim:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:NvimTreeToggle
+</code></pre></div></div>
+
+<h2 id="-6-instalar-e-configurar-o-lsp-language-server-protocol">🔹 6. Instalar e Configurar o LSP (Language Server Protocol)</h2>
+
+<h3 id="61-instalar-servidores-lsp">6.1 Instalar Servidores LSP</h3>
+
+<p>Dentro do Neovim, execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:LspInstall &lt;linguagem&gt;
+</code></pre></div></div>
+
+<p>Exemplo para instalar suporte a <strong>Python</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:LspInstall pyright
+</code></pre></div></div>
+
+<h3 id="62-configurar-o-lsp">6.2 Configurar o LSP</h3>
+
+<p>No arquivo <code class="language-plaintext highlighter-rouge">~/.config/nvim/lua/user/init.lua</code>, adicione o seguinte código para suportar várias linguagens:</p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"neovim/nvim-lspconfig"</span><span class="p">,</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">lspconfig</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">"lspconfig"</span><span class="p">)</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">pyright</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">clangd</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">jdtls</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">html</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">cssls</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">tsserver</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">sqlls</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+    <span class="n">lspconfig</span><span class="p">.</span><span class="n">omnisharp</span><span class="p">.</span><span class="n">setup</span><span class="p">({})</span>
+  <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="63-instalar-treesitter-para-melhor-sintaxe">6.3 Instalar Treesitter para Melhor Sintaxe</h3>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"nvim-treesitter/nvim-treesitter"</span><span class="p">,</span>
+  <span class="n">run</span> <span class="o">=</span> <span class="s2">":TSUpdate"</span><span class="p">,</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+    <span class="nb">require</span><span class="p">(</span><span class="s2">"nvim-treesitter.configs"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+      <span class="n">ensure_installed</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"cpp"</span><span class="p">,</span> <span class="s2">"java"</span><span class="p">,</span> <span class="s2">"html"</span><span class="p">,</span> <span class="s2">"css"</span><span class="p">,</span> <span class="s2">"javascript"</span><span class="p">,</span> <span class="s2">"typescript"</span><span class="p">,</span> <span class="s2">"sql"</span><span class="p">,</span> <span class="s2">"c_sharp"</span> <span class="p">},</span>
+      <span class="n">highlight</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">})</span>
+  <span class="k">end</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Para instalar uma nova linguagem, execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:TSInstall &lt;linguagem&gt;
+</code></pre></div></div>
+
+<p>Exemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:TSInstall python
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-tudo-pronto">🎯 Tudo Pronto!</h2>
+
+<p>Agora você tem um <strong>Neovim poderoso e moderno</strong> com aparência do <strong>VS Code</strong> e suporte a várias linguagens! 🚀</p>
+
+<p>😃</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🧠 Lógica e Algoritmos: A Essência do Raciocínio Computacional
+title: "🧠 Lógica e Algoritmos: A Essência do Raciocínio Computacional"
 ---
 
 # 🧠 Lógica e Algoritmos: A Essência do Raciocínio Computacional

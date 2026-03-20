@@ -1,0 +1,187 @@
+<h1 id="módulo-back-end-api-rest-camadas-crud-exceções-e-validações-️">Módulo Back-end: API REST, Camadas, CRUD, Exceções e Validações ⚙️</h1>
+
+<p>Este capítulo aborda os pilares da construção de um back-end moderno: a criação de uma API REST, a organização do código em camadas, a implementação das operações básicas de um CRUD e o tratamento de exceções e validações de forma profissional.</p>
+
+<h2 id="conceitos-fundamentais-de-api-rest-">Conceitos Fundamentais de API REST 🌐</h2>
+
+<h3 id="o-que-é-uma-api">O que é uma API?</h3>
+
+<ul>
+  <li><strong>API (Application Programming Interface)</strong>: É um conjunto de funcionalidades expostas por uma aplicação ou módulo. A ideia é permitir que outra aplicação possa acessar e consumir essas funcionalidades. Funciona como um contrato bem definido entre o provedor da funcionalidade e o seu consumidor.</li>
+  <li><strong>API Web</strong>: É uma API que é disponibilizada através da web. Suas funcionalidades são acessadas por meio de <em>endpoints</em> (endereços) web, utilizando o protocolo HTTP e seus elementos, como host, porta, rotas, parâmetros e corpo da requisição (payload).</li>
+  <li><strong>API REST</strong>: É uma API Web projetada para estar em conformidade com as restrições e princípios do padrão de arquitetura REST (Representational State Transfer).</li>
+</ul>
+
+<h3 id="arquitetura-cliente-servidor">Arquitetura Cliente-Servidor</h3>
+
+<p>No contexto de aplicações web, temos uma separação clara entre o <strong>front-end</strong> (cliente, que roda no navegador) e o <strong>back-end</strong> (servidor, onde a lógica e o acesso a dados residem). A comunicação entre eles ocorre por meio de requisições web, geralmente usando o protocolo HTTP e trocando dados no formato JSON.</p>
+
+<ul>
+  <li><strong>Back-end</strong>: É todo o sistema que roda do lado do servidor.</li>
+  <li><strong>API</strong>: É o conjunto de funcionalidades que o back-end expõe para serem consumidas pelo front-end ou por outros sistemas.</li>
+</ul>
+
+<h3 id="princípios-do-padrão-rest">Princípios do Padrão REST</h3>
+
+<p>Uma API é considerada “RESTful” quando segue um conjunto de princípios, incluindo:</p>
+
+<ul>
+  <li><strong>Cliente/Servidor com HTTP</strong></li>
+  <li><strong>Comunicação <em>Stateless</em></strong>: Cada requisição do cliente para o servidor deve conter toda a informação necessária para ser entendida e processada, sem depender de um estado armazenado no servidor.</li>
+  <li><strong><em>Cache</em></strong>: As respostas do servidor devem ser passíveis de serem cacheadas pelo cliente para melhorar a performance.</li>
+  <li><strong>Interface Uniforme</strong>: O uso de um formato padronizado para representar os recursos.</li>
+  <li><strong>Sistema em Camadas</strong></li>
+  <li><strong>Código sob Demanda</strong> (Opcional)</li>
+</ul>
+
+<h3 id="recursos-e-urls">Recursos e URLs</h3>
+
+<p>Em uma API REST, as funcionalidades são organizadas na forma de <strong>recursos</strong> (por exemplo: produtos, clientes, pedidos). Cada recurso é identificado por uma URL (Universal Resource Locator) única.</p>
+
+<p>A URL deve se referir ao recurso pelo seu nome (substantivo), e não pela ação a ser executada.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">GET /products</code> -&gt; Obter a lista de produtos.</li>
+  <li><code class="language-plaintext highlighter-rouge">GET /products?page=3</code> -&gt; Obter a terceira página da lista de produtos.</li>
+  <li><code class="language-plaintext highlighter-rouge">GET /products/1</code> -&gt; Obter o produto com ID 1.</li>
+  <li><code class="language-plaintext highlighter-rouge">GET /products/1/categories</code> -&gt; Obter as categorias do produto com ID 1.</li>
+</ul>
+
+<p>A ação desejada deve ser expressa pelo verbo HTTP, e não pela rota.</p>
+
+<ul>
+  <li><strong>ERRADO</strong>: <code class="language-plaintext highlighter-rouge">GET /listProduct</code> ou <code class="language-plaintext highlighter-rouge">GET /insertProduct</code>.</li>
+  <li><strong>CORRETO</strong>: <code class="language-plaintext highlighter-rouge">GET /products</code> para listar e <code class="language-plaintext highlighter-rouge">POST /products</code> para inserir.</li>
+</ul>
+
+<h3 id="verbos-http-e-códigos-de-resposta">Verbos HTTP e Códigos de Resposta</h3>
+
+<h4 id="principais-verbos-métodos-http">Principais Verbos (Métodos) HTTP</h4>
+
+<ul>
+  <li><strong>GET</strong>: Obter/ler um recurso.</li>
+  <li><strong>POST</strong>: Criar um novo recurso.</li>
+  <li><strong>PUT</strong>: Salvar/atualizar um recurso de forma <strong>idempotente</strong>. Uma operação é idempotente quando executá-la múltiplas vezes produz o mesmo resultado que executá-la uma única vez.</li>
+  <li><strong>DELETE</strong>: Deletar um recurso.</li>
+</ul>
+
+<h4 id="códigos-de-resposta-http">Códigos de Resposta HTTP</h4>
+
+<p>O servidor responde a cada requisição com um código de status HTTP, agrupados em categorias:</p>
+
+<ul>
+  <li><strong>1xx</strong>: Respostas de informação.</li>
+  <li><strong>2xx</strong>: Respostas de sucesso (Ex: <code class="language-plaintext highlighter-rouge">200 OK</code>, <code class="language-plaintext highlighter-rouge">201 Created</code>).</li>
+  <li><strong>3xx</strong>: Redirecionamentos.</li>
+  <li><strong>4xx</strong>: Erros do cliente (Ex: <code class="language-plaintext highlighter-rouge">404 Not Found</code>, <code class="language-plaintext highlighter-rouge">400 Bad Request</code>).</li>
+  <li><strong>5xx</strong>: Erros do servidor (Ex: <code class="language-plaintext highlighter-rouge">500 Internal Server Error</code>).</li>
+</ul>
+
+<h2 id="organização-em-camadas-layered-architecture-️">Organização em Camadas (Layered Architecture) 🏛️</h2>
+
+<p>Aplicações back-end são organizadas em camadas para separar as responsabilidades, tornando o sistema mais fácil de manter e evoluir. Cada camada tem uma responsabilidade bem definida e só pode depender de componentes da mesma camada ou da camada imediatamente abaixo.</p>
+
+<h3 id="responsabilidades-das-camadas">Responsabilidades das Camadas</h3>
+
+<ul>
+  <li><strong>Controlador REST (Controller)</strong>: É a porta de entrada da API. Sua responsabilidade é receber as requisições HTTP, extrair os dados e encaminhá-los para a camada de serviço. No contexto de uma API REST, as “interações do usuário” são as próprias requisições.</li>
+  <li><strong>Camada de Serviço (Service)</strong>: Contém a lógica de negócio da aplicação. Um método de serviço deve ter um significado de negócio claro e pode orquestrar várias operações, como verificar estoque, salvar um pedido e enviar um e-mail. É nesta camada que as transações de banco de dados são gerenciadas.</li>
+  <li><strong>Camada de Acesso a Dados (Repository)</strong>: Sua única responsabilidade é realizar as operações “individuais” de acesso ao banco de dados (inserir, buscar, atualizar, deletar).</li>
+</ul>
+
+<h2 id="dto-data-transfer-object-">DTO (Data Transfer Object) 📦</h2>
+
+<h3 id="o-que-é-um-dto">O que é um DTO?</h3>
+
+<p>Um DTO (Data Transfer Object) é um objeto simples que tem como único propósito carregar dados entre as camadas da aplicação, especialmente entre o back-end e o front-end. Ele não é gerenciado por uma biblioteca ORM (como o Hibernate) e não contém lógica de negócio.</p>
+
+<h3 id="por-que-usar-dtos">Por que usar DTOs?</h3>
+
+<ol>
+  <li><strong>Projeção de Dados</strong>: Permite controlar exatamente quais dados são enviados pela API.
+    <ul>
+      <li><strong>Segurança</strong>: Evita expor dados sensíveis da entidade, como senhas ou informações internas.</li>
+      <li><strong>Economia de Tráfego</strong>: Envia apenas os dados necessários para uma tela específica, otimizando a performance.</li>
+      <li><strong>Flexibilidade</strong>: Permite que a API trafegue diferentes representações dos mesmos dados, como uma versão simplificada para uma lista (<code class="language-plaintext highlighter-rouge">{id, nome}</code>) e uma versão completa para uma tela de detalhes (<code class="language-plaintext highlighter-rouge">{id, nome, salario, email, ...}</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Separação de Responsabilidades</strong>: Mantém o tráfego de dados no controlador simples, enquanto as entidades (gerenciadas pelo ORM) e as transações ficam restritas às camadas de serviço e repositório.</li>
+</ol>
+
+<h3 id="copiando-dados-entity---dto">Copiando Dados (Entity -&gt; DTO)</h3>
+
+<p>Para transferir dados de uma entidade para um DTO, podem ser usadas duas abordagens principais:</p>
+
+<ul>
+  <li><strong>Cópia Manual</strong>: Através de um construtor no DTO que recebe a entidade ou usando métodos <code class="language-plaintext highlighter-rouge">set</code>.</li>
+  <li><strong>Bibliotecas de Mapeamento</strong>: Usar uma biblioteca como o ModelMapper, que copia automaticamente os atributos com o mesmo nome de um objeto para outro.</li>
+</ul>
+
+<h2 id="implementando-um-crud-️">Implementando um CRUD ✏️</h2>
+
+<p><strong>CRUD</strong> é um acrônimo para <strong>Create, Retrieve, Update, Delete</strong> (Criar, Recuperar, Atualizar, Deletar), que representam as quatro operações básicas de persistência de dados.</p>
+
+<h3 id="operações-de-back-end-para-um-crud">Operações de Back-end para um CRUD</h3>
+
+<p>Para um caso de uso como “Manter Produtos”, as operações de back-end correspondentes seriam:</p>
+
+<ul>
+  <li><strong>(C)reate</strong>: Salvar um novo produto.</li>
+  <li><strong>(R)etrieve</strong>: Recuperar um produto por ID e recuperar todos os produtos de forma paginada.</li>
+  <li><strong>(U)pdate</strong>: Atualizar um produto existente, dado o seu ID.</li>
+  <li><strong>(D)elete</strong>: Deletar um produto, dado o seu ID.</li>
+</ul>
+
+<h2 id="tratamento-de-exceções-">Tratamento de Exceções 🚨</h2>
+
+<h3 id="códigos-de-erro-comuns-em-apis">Códigos de Erro Comuns em APIs</h3>
+
+<ul>
+  <li><strong>400 (Bad Request)</strong>: Erro genérico do lado do cliente, geralmente por dados inválidos.</li>
+  <li><strong>401 (Unauthorized)</strong>: Falha de autenticação (usuário não logado).</li>
+  <li><strong>403 (Forbidden)</strong>: Acesso negado. O usuário está autenticado, mas não tem permissão para acessar o recurso.</li>
+  <li><strong>404 (Not Found)</strong>: O recurso solicitado não foi encontrado.</li>
+  <li><strong>422 (Unprocessable Entity)</strong>: A requisição está bem formada, mas não pôde ser processada, geralmente devido a um erro de validação de negócio.</li>
+</ul>
+
+<h3 id="tratamento-global-com-controlleradvice">Tratamento Global com @ControllerAdvice</h3>
+
+<p>O Spring oferece a anotação <code class="language-plaintext highlighter-rouge">@ControllerAdvice</code> para centralizar o tratamento de exceções. Uma classe com esta anotação pode conter métodos que capturam exceções específicas lançadas em qualquer controlador, evitando a repetição de blocos <code class="language-plaintext highlighter-rouge">try-catch</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ControllerAdvice</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ControllerExceptionHandler</span> <span class="o">{</span>
+
+    <span class="c1">// Este método irá capturar todas as CustomException lançadas pela aplicação</span>
+    <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="nc">CustomException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">CustomError</span><span class="o">&gt;</span> <span class="nf">handleCustomException</span><span class="o">(</span><span class="nc">CustomException</span> <span class="n">e</span><span class="o">,</span> <span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">HttpStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">NOT_FOUND</span><span class="o">;</span> <span class="c1">// Ex: 404</span>
+        <span class="c1">// 'CustomError' e 'CustomException' são classes criadas pelo desenvolvedor</span>
+        <span class="nc">CustomError</span> <span class="n">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CustomError</span><span class="o">(</span><span class="cm">/* ... */</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="n">status</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">err</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="validação-de-dados-">Validação de Dados ✅</h2>
+
+<p>A validação de dados de entrada é crucial para a integridade do sistema. O <strong>Bean Validation</strong> é uma especificação padrão do Jakarta EE para isso.</p>
+
+<p>Para utilizá-lo em um projeto Maven com Spring Boot, as seguintes dependências são necessárias:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>jakarta.validation<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>jakarta.validation-api<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.0.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>hibernate-validator<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>8.0.0.CR2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

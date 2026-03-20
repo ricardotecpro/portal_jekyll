@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🧠 Quizzes de Fixação
+title: "🧠 Quizzes de Fixação"
 ---
 
 # 🧠 Quizzes de Fixação

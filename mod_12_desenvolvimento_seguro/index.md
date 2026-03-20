@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🔐 Desenvolvimento Seguro (DevSecOps): Construindo a Segurança desde o Início
+title: "🔐 Desenvolvimento Seguro (DevSecOps): Construindo a Segurança desde o Início"
 ---
 
 # 🔐 Desenvolvimento Seguro (DevSecOps): Construindo a Segurança desde o Início
@@ -91,6 +91,12 @@ Mais importante do que qualquer ferramenta, o Desenvolvimento Seguro é uma **mu
   - **Segurança Deixa de Ser um "Portão"**: Em vez de a equipe de segurança ser um gargalo que aprova ou reprova no final, ela se torna uma equipe de "facilitadores", que fornecem as ferramentas, o conhecimento e a automação para que os próprios desenvolvedores possam construir software seguro.
   - **Responsabilidade Compartilhada**: A segurança do produto final é responsabilidade de todos: do gerente de produto que define os requisitos, do desenvolvedor que escreve o código, do engenheiro de DevOps que configura a infraestrutura e do analista de segurança que monitora o ambiente.
   - **Empoderamento do Desenvolvedor**: O objetivo é capacitar os desenvolvedores, dando-lhes o conhecimento e as ferramentas para tomarem decisões seguras desde o início e serem a primeira linha de defesa da aplicação.
+
+---
+
+## 📚 Conteúdo Detalhado
+
+* **[Explorar Tópicos](topicos/)**: Lista completa de lições e materiais.
 
 ---
 

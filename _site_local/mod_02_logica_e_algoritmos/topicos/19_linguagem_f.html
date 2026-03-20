@@ -1,0 +1,173 @@
+<h3 id="f--uma-linguagem-funcional-para-net-"><strong>F# – Uma Linguagem Funcional para .NET</strong> 🚀</h3>
+
+<p><strong>F#</strong> é uma linguagem de programação funcional que roda na plataforma <strong>.NET</strong>, desenvolvida pela Microsoft e pela comunidade <strong>open-source</strong>. Ela combina <strong>programação funcional</strong>, <strong>orientação a objetos</strong> e <strong>programação imperativa</strong>, sendo uma excelente escolha para desenvolvimento robusto, seguro e conciso.</p>
+
+<hr />
+
+<h2 id="-características-do-f"><strong>🔹 Características do F#</strong></h2>
+
+<h3 id="-sintaxe-concisa-e-expressiva">✅ <strong>Sintaxe concisa e expressiva</strong></h3>
+
+<ul>
+  <li>O código é mais curto e legível, eliminando a necessidade de muitos <code class="language-plaintext highlighter-rouge">return</code>, <code class="language-plaintext highlighter-rouge">{}</code> e <code class="language-plaintext highlighter-rouge">;</code>.</li>
+</ul>
+
+<h3 id="-imutabilidade-por-padrão">✅ <strong>Imutabilidade por padrão</strong></h3>
+
+<ul>
+  <li>As variáveis são imutáveis (<code class="language-plaintext highlighter-rouge">let</code>), tornando o código mais previsível e seguro.</li>
+</ul>
+
+<h3 id="-inferência-de-tipos-poderosa">✅ <strong>Inferência de tipos poderosa</strong></h3>
+
+<ul>
+  <li>Não é necessário declarar tipos explicitamente na maioria dos casos.</li>
+</ul>
+
+<h3 id="-suporte-a-programação-concorrente">✅ <strong>Suporte a Programação Concorrente</strong></h3>
+
+<ul>
+  <li>Usa o modelo de <strong>Actor (Mailbox Processors)</strong> e <strong>Async Workflows</strong> para concorrência eficiente.</li>
+</ul>
+
+<h3 id="-interoperabilidade-com-c-e-net">✅ <strong>Interoperabilidade com C# e .NET</strong></h3>
+
+<ul>
+  <li>Pode ser usado junto com código C#, aproveitando a vasta biblioteca .NET.</li>
+</ul>
+
+<hr />
+
+<h2 id="-primeiros-passos-no-f"><strong>📌 Primeiros Passos no F#</strong></h2>
+
+<p>Vamos ver exemplos práticos de F# para entender melhor como ele funciona.</p>
+
+<hr />
+
+<h3 id="1️⃣-definição-de-variáveis"><strong>1️⃣ Definição de Variáveis</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">nome</span> <span class="p">=</span> <span class="s2">"Ricardo"</span>
+<span class="k">let</span> <span class="n">idade</span> <span class="p">=</span> <span class="mi">30</span>
+<span class="n">printfn</span> <span class="s2">"Nome: %s, Idade: %d"</span> <span class="n">nome</span> <span class="n">idade</span>
+</code></pre></div></div>
+
+<p>📌 As variáveis em F# são <strong>imutáveis</strong> por padrão. Para criar uma mutável, usamos <code class="language-plaintext highlighter-rouge">mutable</code>:</p>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mutable</span> <span class="n">contador</span> <span class="p">=</span> <span class="mi">0</span>
+<span class="n">contador</span> <span class="p">&lt;-</span> <span class="n">contador</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">printfn</span> <span class="s2">"Contador: %d"</span> <span class="n">contador</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2️⃣-funções-simples"><strong>2️⃣ Funções Simples</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">soma</span> <span class="n">x</span> <span class="n">y</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">printfn</span> <span class="s2">"2 + 3 = %d"</span> <span class="p">(</span><span class="n">soma</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>📌 Não precisa de <code class="language-plaintext highlighter-rouge">return</code>, pois F# retorna automaticamente o último valor da função.</p>
+
+<hr />
+
+<h3 id="3️⃣-funções-de-alta-ordem"><strong>3️⃣ Funções de Alta Ordem</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">aplicarOperacao</span> <span class="n">operacao</span> <span class="n">x</span> <span class="n">y</span> <span class="p">=</span> <span class="n">operacao</span> <span class="n">x</span> <span class="n">y</span>
+
+<span class="k">let</span> <span class="n">resultado</span> <span class="p">=</span> <span class="n">aplicarOperacao</span> <span class="o">(+)</span> <span class="mi">10</span> <span class="mi">5</span>
+<span class="n">printfn</span> <span class="s2">"Resultado: %d"</span> <span class="n">resultado</span>  <span class="c1">// 15</span>
+</code></pre></div></div>
+
+<p>📌 Aqui, <code class="language-plaintext highlighter-rouge">aplicarOperacao</code> recebe uma função como parâmetro (<code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">*</code>, etc.).</p>
+
+<hr />
+
+<h3 id="4️⃣-map-filter-e-reduce"><strong>4️⃣ Map, Filter e Reduce</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">numeros</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="k">let</span> <span class="n">dobrados</span> <span class="p">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">map</span> <span class="p">(</span><span class="k">fun</span> <span class="n">x</span> <span class="p">-&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="mi">2</span><span class="p">)</span> <span class="n">numeros</span>
+<span class="n">printfn</span> <span class="s2">"%A"</span> <span class="n">dobrados</span>  <span class="c1">// [2; 4; 6; 8; 10]</span>
+
+<span class="k">let</span> <span class="n">pares</span> <span class="p">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">filter</span> <span class="p">(</span><span class="k">fun</span> <span class="n">x</span> <span class="p">-&gt;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="p">=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">numeros</span>
+<span class="n">printfn</span> <span class="s2">"%A"</span> <span class="n">pares</span>  <span class="c1">// [2; 4]</span>
+
+<span class="k">let</span> <span class="n">soma</span> <span class="p">=</span> <span class="nn">List</span><span class="p">.</span><span class="n">fold</span> <span class="o">(+)</span> <span class="mi">0</span> <span class="n">numeros</span>
+<span class="n">printfn</span> <span class="s2">"Soma: %d"</span> <span class="n">soma</span>  <span class="c1">// 15</span>
+</code></pre></div></div>
+
+<p>📌 <code class="language-plaintext highlighter-rouge">map</code> transforma os valores, <code class="language-plaintext highlighter-rouge">filter</code> filtra elementos e <code class="language-plaintext highlighter-rouge">fold</code> reduz a lista a um único valor.</p>
+
+<hr />
+
+<h3 id="5️⃣-recursão-sem-loops"><strong>5️⃣ Recursão (sem loops!)</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">rec</span> <span class="n">fatorial</span> <span class="n">n</span> <span class="p">=</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="p">=</span> <span class="mi">0</span> <span class="k">then</span> <span class="mi">1</span>
+    <span class="k">else</span> <span class="n">n</span> <span class="p">*</span> <span class="n">fatorial</span> <span class="p">(</span><span class="n">n</span> <span class="p">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">printfn</span> <span class="s2">"Fatorial de 5: %d"</span> <span class="p">(</span><span class="n">fatorial</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>📌 <strong>Recursão</strong> é a abordagem funcional para repetição, substituindo <code class="language-plaintext highlighter-rouge">for</code> e <code class="language-plaintext highlighter-rouge">while</code>.</p>
+
+<hr />
+
+<h3 id="6️⃣-expressões-lambda"><strong>6️⃣ Expressões Lambda</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">quadrado</span> <span class="p">=</span> <span class="k">fun</span> <span class="n">x</span> <span class="p">-&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="n">x</span>
+<span class="n">printfn</span> <span class="s2">"%d"</span> <span class="p">(</span><span class="n">quadrado</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1">// 16</span>
+</code></pre></div></div>
+
+<p>📌 O <code class="language-plaintext highlighter-rouge">fun x -&gt;</code> define uma função anônima (lambda).</p>
+
+<hr />
+
+<h3 id="7️⃣-composição-de-funções"><strong>7️⃣ Composição de Funções</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">dobrar</span> <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="p">*</span> <span class="mi">2</span>
+<span class="k">let</span> <span class="n">incrementar</span> <span class="n">x</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">let</span> <span class="n">dobrarDepoisIncrementar</span> <span class="p">=</span> <span class="n">dobrar</span> <span class="o">&gt;&gt;</span> <span class="n">incrementar</span>
+
+<span class="n">printfn</span> <span class="s2">"%d"</span> <span class="p">(</span><span class="n">dobrarDepoisIncrementar</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1">// 7</span>
+</code></pre></div></div>
+
+<p>📌 <code class="language-plaintext highlighter-rouge">&gt;&gt;</code> compõe funções: primeiro <code class="language-plaintext highlighter-rouge">dobrar</code>, depois <code class="language-plaintext highlighter-rouge">incrementar</code>.</p>
+
+<hr />
+
+<h3 id="8️⃣-programação-concorrente-com-async"><strong>8️⃣ Programação Concorrente com Async</strong></h3>
+
+<div class="language-fsharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">tarefaLonga</span><span class="bp">()</span> <span class="p">=</span>
+    <span class="n">async</span> <span class="p">{</span>
+        <span class="k">do</span><span class="o">!</span> <span class="nn">Async</span><span class="p">.</span><span class="nc">Sleep</span> <span class="mi">2000</span>
+        <span class="k">return</span> <span class="s2">"Tarefa concluída!"</span>
+    <span class="p">}</span>
+
+<span class="k">let</span> <span class="n">resultado</span> <span class="p">=</span> <span class="nn">Async</span><span class="p">.</span><span class="nc">RunSynchronously</span> <span class="p">(</span><span class="n">tarefaLonga</span><span class="bp">()</span><span class="p">)</span>
+<span class="n">printfn</span> <span class="s2">"%s"</span> <span class="n">resultado</span>
+</code></pre></div></div>
+
+<p>📌 <strong><code class="language-plaintext highlighter-rouge">async {}</code></strong> cria tarefas assíncronas, otimizando o uso de CPU.</p>
+
+<hr />
+
+<h2 id="-aplicações-do-f"><strong>📍 Aplicações do F#</strong></h2>
+
+<p>✅ <strong>Machine Learning</strong> (com ML.NET e F# Data)<br />
+✅ <strong>Processamento de dados e ETL</strong><br />
+✅ <strong>Desenvolvimento Web</strong> (usando ASP.NET e Giraffe)<br />
+✅ <strong>Sistemas financeiros e científicos</strong><br />
+✅ <strong>Concorrência e computação paralela</strong></p>
+
+<hr />
+
+<h2 id="-conclusão"><strong>💡 Conclusão</strong></h2>
+
+<p>O <strong>F#</strong> é uma linguagem poderosa e concisa para programação funcional na plataforma <strong>.NET</strong>, combinando <strong>eficiência, segurança e interoperabilidade com C#</strong>. Ele é ideal para aplicações que exigem <strong>alta confiabilidade</strong>, como sistemas financeiros e científicos.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

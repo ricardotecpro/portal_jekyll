@@ -1,0 +1,132 @@
+<h3 id="instalando-o-cassandra-com-docker-"><strong>Instalando o Cassandra com Docker 🚀</strong></h3>
+
+<p>Este tutorial detalha o processo de instalação e configuração de um ambiente Cassandra de nó único usando Docker, ideal para desenvolvimento e estudos.</p>
+
+<h4 id="passo-1-verificar-a-instalação-do-docker-"><strong>Passo 1: Verificar a Instalação do Docker 🧐</strong></h4>
+
+<p>Antes de começar, é crucial garantir que o Docker esteja instalado e em execução no seu sistema.</p>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Este comando exibirá a versão instalada do Docker, confirmando que o ambiente está pronto para os próximos passos.</p>
+
+<h4 id="passo-2-baixar-a-imagem-oficial-do-cassandra-"><strong>Passo 2: Baixar a Imagem Oficial do Cassandra 📥</strong></h4>
+
+<p>O próximo passo é baixar a imagem mais recente do Apache Cassandra do Docker Hub, que é o registro oficial de imagens de contêineres.</p>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull cassandra
+</code></pre></div></div>
+
+<h4 id="passo-3-listar-imagens-verificação-"><strong>Passo 3: Listar Imagens (Verificação) ✅</strong></h4>
+
+<p>Para confirmar que a imagem foi baixada com sucesso, você pode listar todas as imagens Docker disponíveis localmente.</p>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
+</code></pre></div></div>
+
+<p>Você deverá ver <code class="language-plaintext highlighter-rouge">cassandra</code> na lista de repositórios, junto com sua tag (geralmente <code class="language-plaintext highlighter-rouge">latest</code>).</p>
+
+<h4 id="passo-4-criar-um-diretório-para-persistência-de-dados-"><strong>Passo 4: Criar um Diretório para Persistência de Dados 📂</strong></h4>
+
+<p>Para garantir que os dados do seu banco de dados não sejam perdidos quando o contêiner for parado ou removido, é uma boa prática criar um diretório local e mapeá-lo para o diretório de dados dentro do contêiner.</p>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /opt/cassandra
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Observação:</strong> O uso de <code class="language-plaintext highlighter-rouge">sudo</code> pode ser necessário dependendo das permissões do seu sistema. O <code class="language-plaintext highlighter-rouge">-p</code> garante que o diretório seja criado mesmo que os diretórios pais não existam.</li>
+</ul>
+
+<h4 id="passo-5-iniciar-o-contêiner-cassandra-️"><strong>Passo 5: Iniciar o Contêiner Cassandra ▶️</strong></h4>
+
+<p>Este é o passo mais importante, onde o contêiner Cassandra é efetivamente criado e executado.</p>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> cassandra <span class="nt">-p</span> 9042:9042 <span class="nt">-v</span> /opt/cassandra:/var/lib/cassandra <span class="nt">-d</span> cassandra
+</code></pre></div></div>
+
+<p><strong>Análise dos parâmetros:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--name cassandra</code>: Define um nome fácil de lembrar para o seu contêiner.</li>
+  <li><code class="language-plaintext highlighter-rouge">-p 9042:9042</code>: Mapeia a porta 9042 do seu computador (host) para a porta 9042 do contêiner. Esta é a porta padrão que o Cassandra usa para a comunicação via CQL (Cassandra Query Language).</li>
+  <li><code class="language-plaintext highlighter-rouge">-v /opt/cassandra:/var/lib/cassandra</code>: Este é o passo crucial para a persistência. Ele “monta” o diretório local <code class="language-plaintext highlighter-rouge">/opt/cassandra</code> no diretório <code class="language-plaintext highlighter-rouge">/var/lib/cassandra</code> dentro do contêiner. O diretório <code class="language-plaintext highlighter-rouge">/var/lib/cassandra</code> é o local padrão onde a imagem oficial do Cassandra armazena seus arquivos de dados.</li>
+  <li><code class="language-plaintext highlighter-rouge">-d</code>: Executa o contêiner em modo “detached” (desanexado), ou seja, ele rodará em segundo plano.</li>
+  <li><code class="language-plaintext highlighter-rouge">cassandra</code>: Especifica a imagem a ser usada para criar o contêiner.</li>
+</ul>
+
+<h4 id="passo-6-acessar-o-contêiner-"><strong>Passo 6: Acessar o Contêiner 💻</strong></h4>
+
+<p>Uma vez que o contêiner está em execução, você pode acessar seu shell para executar comandos administrativos.</p>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> cassandra bash
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">exec</code>: Executa um comando dentro de um contêiner em execução.</li>
+  <li><code class="language-plaintext highlighter-rouge">-it</code>: Aloca um pseudo-TTY interativo, permitindo que você interaja com o shell do contêiner.</li>
+  <li><code class="language-plaintext highlighter-rouge">cassandra</code>: O nome do contêiner a ser acessado.</li>
+  <li><code class="language-plaintext highlighter-rouge">bash</code>: O comando a ser executado (neste caso, o shell Bash).</li>
+</ul>
+
+<h4 id="passo-7-utilizar-o-console-cql-cqlsh-"><strong>Passo 7: Utilizar o Console CQL (cqlsh) ⚡</strong></h4>
+
+<p>Dentro do contêiner, você pode agora iniciar o <code class="language-plaintext highlighter-rouge">cqlsh</code>, o shell de linha de comando para interagir com o Cassandra.</p>
+
+<p><strong>Comando:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cqlsh
+</code></pre></div></div>
+
+<p>Se a conexão for bem-sucedida, o prompt mudará para <code class="language-plaintext highlighter-rouge">cqlsh&gt;</code>.</p>
+
+<h4 id="passo-8-explorar-e-preparar-o-banco-de-dados-️"><strong>Passo 8: Explorar e Preparar o Banco de Dados 🗺️</strong></h4>
+
+<p>Agora você pode executar comandos CQL para gerenciar o banco de dados.</p>
+
+<p><strong>1. Descrever os Keyspaces Existentes:</strong>
+Um keyspace no Cassandra é análogo a um “schema” ou “banco de dados” em sistemas de bancos de dados relacionais.</p>
+
+<p><strong>Comando:</strong></p>
+
+<pre><code class="language-cql">DESC KEYSPACES;
+</code></pre>
+
+<p>Este comando listará todos os keyspaces padrão que vêm com a instalação do Cassandra, como <code class="language-plaintext highlighter-rouge">system_auth</code>, <code class="language-plaintext highlighter-rouge">system_schema</code>, entre outros.</p>
+
+<p><strong>2. Criar e Usar um Novo Keyspace:</strong>
+Para organizar seus dados, você deve criar seu próprio keyspace.</p>
+
+<p><strong>Comando para criar:</strong></p>
+
+<pre><code class="language-cql">CREATE KEYSPACE minhakeyspace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+</code></pre>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SimpleStrategy</code>: Adequado para um cluster de um único nó.</li>
+  <li><code class="language-plaintext highlighter-rouge">replication_factor: 1</code>: Indica que haverá apenas uma cópia dos dados, o que é apropriado para um ambiente de desenvolvimento local.</li>
+</ul>
+
+<p><strong>Comando para usar:</strong></p>
+
+<pre><code class="language-cql">USE minhakeyspace;
+</code></pre>
+
+<p>Após executar este comando, o prompt mudará para <code class="language-plaintext highlighter-rouge">cqlsh:minhakeyspace&gt;</code>, indicando que todos os comandos subsequentes (como <code class="language-plaintext highlighter-rouge">CREATE TABLE</code>, <code class="language-plaintext highlighter-rouge">INSERT</code>, etc.) serão executados dentro deste keyspace.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🎨 HTML & CSS: Estrutura e Estilo da Web
+title: "🎨 HTML & CSS: Estrutura e Estilo da Web"
 ---
 
 # 🎨 HTML & CSS: Estrutura e Estilo da Web

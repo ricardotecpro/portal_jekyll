@@ -1,0 +1,356 @@
+<h2 id="-guia-didático-seu-primeiro-app-java-swing-botão-e-contador">🚀 Guia Didático: Seu Primeiro App Java Swing (Botão e Contador)</h2>
+
+<p>Este guia é uma <strong>sequência didática</strong> projetada para estudantes de computação. Vamos criar, do zero, uma janela com um botão e um texto. Cada clique no botão incrementará um número no texto.</p>
+
+<h3 id="o-que-vamos-usar">O que vamos usar?</h3>
+
+<ul>
+  <li><strong>Java Swing:</strong> É a biblioteca (parte do Java) para criar componentes visuais (janelas, botões, textos).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">JFrame</code>:</strong> A classe que representa a “janela” principal do nosso aplicativo.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">JButton</code>:</strong> A classe para o nosso botão clicável.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">JLabel</code>:</strong> A classe para exibir nosso texto (o contador).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ActionListener</code>:</strong> A “mágica” que nos permite <em>ouvir</em> o clique do botão e executar um código.</li>
+</ul>
+
+<hr />
+
+<h3 id="passo-1-o-esqueleto-do-projeto-a-janela">Passo 1: O Esqueleto do Projeto (A Janela)</h3>
+
+<p>Tudo começa com uma janela. Em Swing, a janela principal é um <code class="language-plaintext highlighter-rouge">JFrame</code>. Vamos criar uma classe que <em>é</em> um <code class="language-plaintext highlighter-rouge">JFrame</code>.</p>
+
+<p><strong>Arquivo:</strong> <code class="language-plaintext highlighter-rouge">ContadorApp.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span> <span class="c1">// Importa a classe da janela</span>
+
+<span class="cm">/**
+ * Nossa classe principal.
+ * Usar "extends JFrame" significa que nossa classe ContadorApp É uma janela.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorApp</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="c1">// O "construtor": é o código que roda quando criamos um "new ContadorApp()"</span>
+    <span class="kd">public</span> <span class="nf">ContadorApp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 1. Título da Janela</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador Swing"</span><span class="o">);</span>
+
+        <span class="c1">// 2. Tamanho da Janela (Largura, Altura em pixels)</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+
+        <span class="c1">// 3. O que fazer quando o usuário clicar no "X" de fechar</span>
+        <span class="c1">// JFrame.EXIT_ON_CLOSE = Terminar o programa.</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+
+        <span class="c1">// 4. (Opcional, mas bom) Centralizar a janela na tela</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// O método main: o ponto de entrada do nosso programa</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Cria e exibe nossa janela</span>
+        <span class="nc">ContadorApp</span> <span class="n">minhaJanela</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContadorApp</span><span class="o">();</span>
+        <span class="n">minhaJanela</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// &lt;-- IMPORTANTE! Torna a janela visível.</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>➡️ O que fazer:</strong> Salve este código como <code class="language-plaintext highlighter-rouge">ContadorApp.java</code>, compile e execute. Você deve ver uma janela vazia aparecer no centro da tela.</p>
+
+<hr />
+
+<h3 id="passo-2-adicionando-os-componentes-botão-e-rótulo">Passo 2: Adicionando os Componentes (Botão e Rótulo)</h3>
+
+<p>Agora, vamos adicionar as “peças” dentro da nossa janela.</p>
+
+<ol>
+  <li><strong>Declarar as variáveis:</strong> Precisamos que o botão e o rótulo sejam acessíveis em toda a classe.</li>
+  <li><strong>Declarar o contador:</strong> Precisamos de uma variável para guardar o número.</li>
+  <li><strong>Inicializar os componentes:</strong> No construtor, vamos criar os objetos.</li>
+  <li><strong>Adicionar à janela:</strong> Vamos dizer à janela para exibir esses componentes.</li>
+</ol>
+
+<p>Vamos modificar nosso <code class="language-plaintext highlighter-rouge">ContadorApp.java</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Importações necessárias</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JButton</span><span class="o">;</span> <span class="c1">// Importa o botão</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JLabel</span><span class="o">;</span>  <span class="c1">// Importa o rótulo de texto</span>
+<span class="kn">import</span> <span class="nn">java.awt.FlowLayout</span><span class="o">;</span> <span class="c1">// Importa o organizador de layout mais simples</span>
+
+<span class="cm">/**
+ * Nossa classe principal da janela
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorApp</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="c1">// --- Variáveis dos Componentes ---</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">botaoClique</span><span class="o">;</span>   <span class="c1">// O botão</span>
+    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">labelContador</span><span class="o">;</span>  <span class="c1">// O texto que mostrará o número</span>
+
+    <span class="c1">// --- Variável de Estado ---</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">contador</span><span class="o">;</span> <span class="c1">// O número que vamos incrementar</span>
+
+    <span class="c1">// Construtor</span>
+    <span class="kd">public</span> <span class="nf">ContadorApp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ... (configurações da janela do Passo 1) ...</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador Swing"</span><span class="o">);</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+
+        <span class="c1">// --- Configurando o Layout ---</span>
+        <span class="c1">// O FlowLayout organiza os componentes um ao lado do outro.</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">());</span>
+
+        <span class="c1">// --- Inicializando o Estado ---</span>
+        <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// Começamos em zero</span>
+
+        <span class="c1">// --- Inicializando os Componentes ---</span>
+        <span class="n">botaoClique</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Clique em mim!"</span><span class="o">);</span>
+        
+        <span class="c1">// O JLabel inicial mostra o contador no estado inicial</span>
+        <span class="n">labelContador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+
+        <span class="c1">// --- Adicionando os Componentes na Janela ---</span>
+        <span class="c1">// A ordem importa no FlowLayout</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">botaoClique</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">labelContador</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... (método main do Passo 1) ...</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContadorApp</span> <span class="n">minhaJanela</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContadorApp</span><span class="o">();</span>
+        <span class="n">minhaJanela</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>➡️ O que fazer:</strong> Compile e execute novamente. Agora você verá a janela com um botão e um texto (“Contador: 0”). Clicar no botão ainda não faz nada.</p>
+
+<hr />
+
+<h3 id="passo-3-a-lógica-ouvindo-o-clique">Passo 3: A Lógica (Ouvindo o Clique)</h3>
+
+<p>Este é o passo mais importante: <strong>event handling</strong> (manipulação de eventos).</p>
+
+<p>Queremos que um código seja executado <em>quando</em> o botão for clicado. Para isso, usamos um <code class="language-plaintext highlighter-rouge">ActionListener</code>.</p>
+
+<ol>
+  <li><strong>Implementar a interface:</strong> Dizemos que nossa classe <code class="language-plaintext highlighter-rouge">ContadorApp</code> <em>é</em> um “Ouvinte de Ações” (<code class="language-plaintext highlighter-rouge">implements ActionListener</code>).</li>
+  <li><strong>Registrar o ouvinte:</strong> Dizemos ao <code class="language-plaintext highlighter-rouge">botaoClique</code> que <em>esta classe</em> (<code class="language-plaintext highlighter-rouge">this</code>) deve ser notificada quando ele for clicado.</li>
+  <li><strong>Escrever o código do evento:</strong> Implementamos o método <code class="language-plaintext highlighter-rouge">actionPerformed</code>, que é chamado automaticamente no clique.</li>
+</ol>
+
+<p>Vamos à alteração final do <code class="language-plaintext highlighter-rouge">ContadorApp.java</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JButton</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JLabel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.FlowLayout</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span> <span class="c1">// Importa o "Ouvinte"</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>   <span class="c1">// Importa o "Evento" que o ouvinte recebe</span>
+
+<span class="cm">/**
+ * Nossa classe AGORA TAMBÉM é um Ouvinte de Ações (ActionListener)
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorApp</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
+
+    <span class="c1">// ... (variáveis do Passo 2) ...</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">botaoClique</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">labelContador</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">contador</span><span class="o">;</span>
+
+    <span class="c1">// Construtor</span>
+    <span class="kd">public</span> <span class="nf">ContadorApp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ... (configurações da janela do Passo 1) ...</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador Swing"</span><span class="o">);</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">());</span>
+
+        <span class="c1">// ... (inicialização do Passo 2) ...</span>
+        <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">botaoClique</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Clique em mim!"</span><span class="o">);</span>
+        <span class="n">labelContador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+
+        <span class="c1">// --- Passo 3: REGISTRANDO O OUVINTE ---</span>
+        <span class="c1">// Dizemos ao botão: "Ei, quando alguém clicar em você,</span>
+        <span class="c1">// avise a ESTA classe (this) chamando o método actionPerformed."</span>
+        <span class="n">botaoClique</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+        <span class="c1">// ... (adicionando componentes do Passo 2) ...</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">botaoClique</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">labelContador</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Este método é OBRIGATÓRIO por causa do "implements ActionListener".
+     * Ele é chamado automaticamente sempre que o "botaoClique" for pressionado.
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 1. Incrementa a variável</span>
+        <span class="n">contador</span><span class="o">++;</span>
+        
+        <span class="c1">// 2. Atualiza o texto do JLabel</span>
+        <span class="n">labelContador</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... (método main do Passo 1) ...</span>
+    <span class="c1">// ATUALIZAÇÃO NO MAIN (BOA PRÁTICA)</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Interfaces gráficas em Swing devem ser criadas na "Event Dispatch Thread" (EDT)</span>
+        <span class="c1">// Usar SwingUtilities.invokeLater garante isso.</span>
+        <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nc">ContadorApp</span> <span class="n">minhaJanela</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContadorApp</span><span class="o">();</span>
+                <span class="n">minhaJanela</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>➡️ O que fazer:</strong> Compile e execute. Agora, cada vez que você clicar no botão, o número no <code class="language-plaintext highlighter-rouge">JLabel</code> será incrementado!</p>
+
+<hr />
+
+<h3 id="-dissecando-o-código-revisão-didática">🎓 Dissecando o Código (Revisão Didática)</h3>
+
+<p>Vamos entender os conceitos-chave que você acabou de usar:</p>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">import</code>:</strong> Você está trazendo “caixas de ferramentas” (pacotes) para dentro do seu código. <code class="language-plaintext highlighter-rouge">javax.swing</code> é o pacote principal de Swing. <code class="language-plaintext highlighter-rouge">java.awt.event</code> é o pacote para eventos (como cliques).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">extends JFrame</code>:</strong> Isso é <strong>Herança</strong>. Sua classe <code class="language-plaintext highlighter-rouge">ContadorApp</code> herda todas as características de uma <code class="language-plaintext highlighter-rouge">JFrame</code> (título, tamanho, botão de fechar, etc.).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">implements ActionListener</code>:</strong> Isso é <strong>Interface</strong>. É um “contrato”. Ao assinar (implementar) este contrato, sua classe <em>promete</em> que terá um método chamado <code class="language-plaintext highlighter-rouge">actionPerformed(ActionEvent e)</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">private int contador;</code>:</strong> Esta é a variável de <strong>estado</strong>. É a memória do seu aplicativo. Ela “lembra” qual é o número atual.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">botaoClique.addActionListener(this);</code>:</strong> Este é o <strong>Registro de Evento</strong>. Você está conectando o <em>Componente</em> (o botão) ao <em>Ouvinte</em> (sua classe, representada por <code class="language-plaintext highlighter-rouge">this</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">actionPerformed(ActionEvent e)</code>:</strong> Este é o <strong>Manipulador de Evento (Event Handler)</strong>. É o coração da lógica. É o código que <em>reage</em> à ação do usuário.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">labelContador.setText(...)</code>:</strong> Este é o <strong>feedback visual</strong>. Você está atualizando a interface gráfica para refletir a mudança no <em>estado</em> (a variável <code class="language-plaintext highlighter-rouge">contador</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">SwingUtilities.invokeLater(...)</code>:</strong> Esta é a regra de ouro do Swing. Garante que sua interface gráfica seja criada e atualizada na <em>thread</em> correta (a Event Dispatch Thread), evitando problemas de concorrência.</li>
+</ol>
+
+<p>Você acabou de criar um aplicativo completo com interface gráfica, estado e manipulação de eventos, que são os três pilares de qualquer aplicação GUI.</p>
+
+<hr />
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JButton</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JLabel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.SwingUtilities</span><span class="o">;</span> <span class="c1">// Para a boa prática de inicialização</span>
+<span class="kn">import</span> <span class="nn">java.awt.FlowLayout</span><span class="o">;</span>        <span class="c1">// Para organizar os componentes</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span> <span class="c1">// Interface para "ouvir" eventos</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>   <span class="c1">// Objeto do evento (o clique)</span>
+
+<span class="cm">/**
+ * Aplicação Java Swing completa com um botão de incremento e um rótulo (label)
+ * que exibe a contagem.
+ *
+ * Esta classe funciona como:
+ * 1. A Janela principal (pois "extends JFrame")
+ * 2. O Ouvinte do clique do botão (pois "implements ActionListener")
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContadorApp</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="kd">implements</span> <span class="nc">ActionListener</span> <span class="o">{</span>
+
+    <span class="c1">// --- 1. Declaração dos Componentes e Estado ---</span>
+
+    <span class="cm">/** O botão que o usuário irá clicar. */</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">botaoClique</span><span class="o">;</span>
+
+    <span class="cm">/** O rótulo que exibirá o número do contador. */</span>
+    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">labelContador</span><span class="o">;</span>
+
+    <span class="cm">/** A variável que guarda o estado (o número atual) do contador. */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">contador</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Construtor da aplicação.
+     * É aqui que configuramos a janela e inicializamos os componentes.
+     */</span>
+    <span class="kd">public</span> <span class="nf">ContadorApp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// --- 2. Configuração da Janela (JFrame) ---</span>
+
+        <span class="c1">// Define o título que aparece na barra da janela</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Meu Primeiro Contador Swing"</span><span class="o">);</span>
+
+        <span class="c1">// Define o tamanho da janela em pixels (Largura, Altura)</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">300</span><span class="o">,</span> <span class="mi">150</span><span class="o">);</span>
+
+        <span class="c1">// Define a ação padrão ao fechar a janela (terminar o programa)</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+
+        <span class="c1">// Centraliza a janela na tela</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+
+        <span class="c1">// Define o "organizador de layout". FlowLayout coloca os</span>
+        <span class="c1">// componentes um ao lado do outro, da esquerda para a direita.</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">());</span>
+
+        <span class="c1">// --- 3. Inicialização do Estado e Componentes ---</span>
+
+        <span class="c1">// O contador começa em 0</span>
+        <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="c1">// Cria o objeto JButton com o texto "Clique em mim!"</span>
+        <span class="n">botaoClique</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Clique em mim!"</span><span class="o">);</span>
+
+        <span class="c1">// Cria o objeto JLabel mostrando o valor inicial do contador</span>
+        <span class="n">labelContador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+
+        <span class="c1">// --- 4. Registro do Ouvinte (Event Handling) ---</span>
+
+        <span class="c1">// Informa ao botão que *esta* classe (this) deve ser</span>
+        <span class="c1">// notificada quando ele for clicado.</span>
+        <span class="n">botaoClique</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+        <span class="c1">// --- 5. Adição dos Componentes na Janela ---</span>
+
+        <span class="c1">// Adiciona o botão ao painel de conteúdo da janela</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">botaoClique</span><span class="o">);</span>
+
+        <span class="c1">// Adiciona o rótulo ao painel de conteúdo da janela</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">labelContador</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Este é o método obrigatório da interface ActionListener.
+     * Ele é chamado automaticamente pelo Swing toda vez que o
+     * 'botaoClique' (que registramos) for pressionado.
+     *
+     * @param e O objeto ActionEvent que contém informações sobre o evento (o clique).
+     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="nc">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 1. Atualiza o estado: incrementa a variável</span>
+        <span class="n">contador</span><span class="o">++;</span>
+        
+        <span class="c1">// 2. Atualiza a interface: muda o texto do rótulo</span>
+        <span class="n">labelContador</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Contador: "</span> <span class="o">+</span> <span class="n">contador</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Método principal (main) - O ponto de entrada do programa.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Boa prática do Swing:</span>
+        <span class="c1">// Garante que a interface gráfica (GUI) seja criada e</span>
+        <span class="c1">// executada na Thread de Despacho de Eventos (Event Dispatch Thread - EDT).</span>
+        <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="c1">// Cria uma instância da nossa janela</span>
+                <span class="nc">ContadorApp</span> <span class="n">minhaJanela</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContadorApp</span><span class="o">();</span>
+                
+                <span class="c1">// Torna a janela visível para o usuário</span>
+                <span class="n">minhaJanela</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

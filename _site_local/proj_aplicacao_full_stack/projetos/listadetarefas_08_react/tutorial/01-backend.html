@@ -1,0 +1,107 @@
+<h1 id="-módulo-1-backend-com-spring-boot">🎓 Módulo 1: Backend com Spring Boot</h1>
+
+<p><strong>Objetivo</strong>: Criar uma API RESTful capaz de criar, ler, atualizar e deletar tarefas (CRUD).</p>
+
+<hr />
+
+<h2 id="1-o-que-é-uma-api-rest">1. O que é uma API REST?</h2>
+<p>Imagine um garçom (API). Você (Frontend) pede um prato (Dados) olhando o cardápio (Endpoints). O garçom leva o pedido para a cozinha (Backend/Banco de Dados) e traz a comida.</p>
+<ul>
+  <li><strong>GET</strong>: Buscar dados.</li>
+  <li><strong>POST</strong>: Criar dados.</li>
+  <li><strong>PUT</strong>: Atualizar dados.</li>
+  <li><strong>DELETE</strong>: Remover dados.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-criando-o-projeto">2. Criando o Projeto</h2>
+
+<ol>
+  <li>Acesse <a href="https://start.spring.io/">start.spring.io</a>.</li>
+  <li>Configure:
+    <ul>
+      <li><strong>Project</strong>: Maven</li>
+      <li><strong>Language</strong>: Java</li>
+      <li><strong>Spring Boot</strong>: 3.x.x (Stable)</li>
+      <li><strong>Dependencies</strong>: Spring Web, Spring Data JPA, H2 Database, Lombok.</li>
+    </ul>
+  </li>
+  <li>Gere o projeto, baixe e extraia na pasta <code class="language-plaintext highlighter-rouge">backend</code>.</li>
+</ol>
+
+<hr />
+
+<h2 id="3-mão-na-massa-o-modelo-model">3. Mão na Massa: O Modelo (Model)</h2>
+
+<p>Crie o arquivo <code class="language-plaintext highlighter-rouge">src/main/java/br/com/liston/api/model/Tarefa.java</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="nd">@Data</span> <span class="c1">// Lombok cria Getters/Setters automaticamente</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tarefa</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>Explicação: <code class="language-plaintext highlighter-rouge">@Entity</code> diz que essa classe vira uma tabela no banco de dados.</em></p>
+
+<hr />
+
+<h2 id="4-o-repositório-repository">4. O Repositório (Repository)</h2>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">src/main/java/br/com/liston/api/repository/TarefaRepository.java</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TarefaRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>Explicação: Ao estender <code class="language-plaintext highlighter-rouge">JpaRepository</code>, ganhamos métodos prontos como <code class="language-plaintext highlighter-rouge">save()</code>, <code class="language-plaintext highlighter-rouge">findAll()</code> e <code class="language-plaintext highlighter-rouge">deleteById()</code> sem escrever SQL.</em></p>
+
+<hr />
+
+<h2 id="5-o-controlador-controller">5. O Controlador (Controller)</h2>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">src/main/java/br/com/liston/api/controller/TarefaController.java</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TarefaRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">criar</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// ... Implementar PUT e DELETE como desafio!</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-pare-e-teste">🛑 Pare e Teste</h2>
+
+<ol>
+  <li>Rode o projeto: <code class="language-plaintext highlighter-rouge">./mvnw spring-boot:run</code>.</li>
+  <li>Abra o navegador em <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/tarefas</code>.</li>
+  <li>Você deve ver <code class="language-plaintext highlighter-rouge">[]</code> (lista vazia).</li>
+</ol>
+
+<hr />
+
+<h2 id="-desafio">🏆 Desafio</h2>
+<p>Implemente os métodos <code class="language-plaintext highlighter-rouge">atualizar</code> (@PutMapping) e <code class="language-plaintext highlighter-rouge">deletar</code> (@DeleteMapping) no Controller.</p>
+

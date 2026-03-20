@@ -1,0 +1,1472 @@
+<h1 id="java-construtores-palavra-this-sobrecarga-e-encapsulamento-">Java: Construtores, Palavra <code class="language-plaintext highlighter-rouge">this</code>, Sobrecarga e Encapsulamento ☕</h1>
+
+<p>Este material aborda conceitos fundamentais da Programação Orientada a Objetos (POO) em Java, como construtores, o uso da palavra-chave <code class="language-plaintext highlighter-rouge">this</code>, sobrecarga de métodos e encapsulamento.</p>
+
+<h2 id="construtores-️">Construtores 🏗️</h2>
+
+<p>Um <strong>construtor</strong> é uma operação especial da classe que é executada no momento da instanciação de um objeto. Ele tem o mesmo nome da classe.</p>
+
+<p><strong>Usos comuns:</strong></p>
+<ul>
+  <li>Iniciar os valores dos atributos de um objeto.</li>
+  <li>Permitir ou obrigar que o objeto receba dados/dependências no momento de sua criação (um conceito relacionado à injeção de dependência).</li>
+</ul>
+
+<p>Se um construtor customizado não for especificado na classe, o Java disponibiliza um <strong>construtor padrão</strong> (sem argumentos). Por exemplo:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Produto</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">();</span>
+</code></pre></div></div>
+<p>É possível especificar mais de um construtor na mesma classe, desde que suas listas de parâmetros sejam diferentes. Isso é chamado de <strong>sobrecarga de construtores</strong>.</p>
+
+<h3 id="problema-exemplo">Problema Exemplo</h3>
+
+<p>Vamos considerar um programa que gerencia produtos em estoque.</p>
+
+<p><strong>Interação esperada com o usuário:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entre com os dados do produto:
+Nome: TV
+Preço: 900.00
+Quantidade em estoque: 10
+
+Dados do produto: TV, $ 900.00, 10 unidades, Total: $ 9000.00
+
+Entre com o número de produtos a ser adicionado ao estoque: 5
+Dados atualizados: TV, $ 900.00, 15 unidades, Total: $ 13500.00
+
+Entre com o número de produtos a ser removido do estoque: 3
+Dados atualizados: TV, $ 900.00, 12 unidades, Total: $ 10800.00
+</code></pre></div></div>
+
+<p><strong>Diagrama da Classe <code class="language-plaintext highlighter-rouge">Produto</code> (Conceitual):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-------------------------
+|        Produto        |
+-------------------------
+| - nome: String        |
+| - preco: double       |
+| - quantidade: int     |
+-------------------------
+| + valorTotalEmEstoque(): double |
+| + adicionarProdutos(quantidade: int): void |
+| + removerProdutos(quantidade: int): void |
+-------------------------
+</code></pre></div></div>
+
+<p><strong>Código Inicial (sem construtor customizado):</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">Programa.java</code></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Produto</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="c1">// Instanciando Produto usando o construtor padrão</span>
+        <span class="nc">Produto</span> <span class="n">produto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Entre com os dados do produto:"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+        <span class="n">produto</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Acesso direto ao atributo (não ideal)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Preço: "</span><span class="o">);</span>
+        <span class="n">produto</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span> <span class="c1">// Acesso direto</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantidade em estoque: "</span><span class="o">);</span>
+        <span class="n">produto</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span> <span class="c1">// Acesso direto</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados do produto: "</span> <span class="o">+</span> <span class="n">produto</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o número de produtos a ser adicionado ao estoque: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">quantidadeAdicionar</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">produto</span><span class="o">.</span><span class="na">adicionarProdutos</span><span class="o">(</span><span class="n">quantidadeAdicionar</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados atualizados: "</span> <span class="o">+</span> <span class="n">produto</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o número de produtos a ser removido do estoque: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">quantidadeRemover</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">produto</span><span class="o">.</span><span class="na">removerProdutos</span><span class="o">(</span><span class="n">quantidadeRemover</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados atualizados: "</span> <span class="o">+</span> <span class="n">produto</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Produto.java</code></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">valorTotalEmEstoque</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span> <span class="o">*</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaAdicionar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 'this.quantidade' refere-se ao atributo da instância</span>
+        <span class="c1">// 'quantidadeParaAdicionar' é o parâmetro do método</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">+=</span> <span class="n">quantidadeParaAdicionar</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removerProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaRemover</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">-=</span> <span class="n">quantidadeParaRemover</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span>
+                <span class="o">+</span> <span class="s">", $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">)</span>
+                <span class="o">+</span> <span class="s">", "</span>
+                <span class="o">+</span> <span class="n">quantidade</span>
+                <span class="o">+</span> <span class="s">" unidades, Total: $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">valorTotalEmEstoque</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="proposta-de-melhoria-obrigatoriedade-de-dados-iniciais">Proposta de Melhoria: Obrigatoriedade de Dados Iniciais</h3>
+
+<p>Quando executamos <code class="language-plaintext highlighter-rouge">Produto produto = new Produto();</code>, o objeto <code class="language-plaintext highlighter-rouge">produto</code> é instanciado com seus atributos “vazios” (ou com valores padrão: <code class="language-plaintext highlighter-rouge">null</code> para <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">0.0</code> para <code class="language-plaintext highlighter-rouge">double</code>, <code class="language-plaintext highlighter-rouge">0</code> para <code class="language-plaintext highlighter-rouge">int</code>).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Memória:
+produto --&gt; [ null | 0.0 | 0 ]
+            (nome) (preco) (quantidade)
+</code></pre></div></div>
+
+<p>Mas faz sentido um produto não ter nome? Faz sentido um produto não ter preço?
+Para evitar a existência de produtos sem nome e sem preço, podemos tornar <strong>obrigatória</strong> a iniciação desses valores no momento da criação do objeto. Isso é feito definindo um construtor que recebe esses valores como parâmetros.</p>
+
+<p><strong>Código com Construtor Customizado:</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">Produto.java</code> (trecho modificado)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span>
+
+    <span class="c1">// Construtor que obriga a fornecer nome, preço e quantidade</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... demais métodos (valorTotalEmEstoque, adicionarProdutos, etc.)</span>
+     <span class="kd">public</span> <span class="kt">double</span> <span class="nf">valorTotalEmEstoque</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span> <span class="o">*</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaAdicionar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">+=</span> <span class="n">quantidadeParaAdicionar</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removerProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaRemover</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">-=</span> <span class="n">quantidadeParaRemover</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span>
+                <span class="o">+</span> <span class="s">", $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">)</span>
+                <span class="o">+</span> <span class="s">", "</span>
+                <span class="o">+</span> <span class="n">quantidade</span>
+                <span class="o">+</span> <span class="s">" unidades, Total: $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">valorTotalEmEstoque</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Programa.java</code> (trecho modificado para usar o novo construtor)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... importações e início do método main</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Entre com os dados do produto:"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Preço: "</span><span class="o">);</span>
+<span class="kt">double</span> <span class="n">preco</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantidade em estoque: "</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">quantidadeInicial</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+<span class="c1">// Instanciando Produto usando o novo construtor</span>
+<span class="nc">Produto</span> <span class="n">produto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">,</span> <span class="n">quantidadeInicial</span><span class="o">);</span>
+
+<span class="c1">// ... restante do programa (mostrar dados, adicionar, remover)</span>
+<span class="c1">// ...</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados do produto: "</span> <span class="o">+</span> <span class="n">produto</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o número de produtos a ser adicionado ao estoque: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">quantidadeAdicionar</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">produto</span><span class="o">.</span><span class="na">adicionarProdutos</span><span class="o">(</span><span class="n">quantidadeAdicionar</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados atualizados: "</span> <span class="o">+</span> <span class="n">produto</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o número de produtos a ser removido do estoque: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">quantidadeRemover</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">produto</span><span class="o">.</span><span class="na">removerProdutos</span><span class="o">(</span><span class="n">quantidadeRemover</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados atualizados: "</span> <span class="o">+</span> <span class="n">produto</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="c1">// ...</span>
+</code></pre></div></div>
+<p><strong>Observação Importante:</strong> Ao definir um construtor customizado (com parâmetros), a classe <strong>perde</strong> o construtor padrão (sem parâmetros) que o Java fornece automaticamente. Se você ainda precisar de um construtor sem parâmetros, deverá declará-lo explicitamente.</p>
+
+<h2 id="palavra-this-️">Palavra <code class="language-plaintext highlighter-rouge">this</code> 🏷️</h2>
+
+<p>A palavra-chave <code class="language-plaintext highlighter-rouge">this</code> é uma referência para o próprio objeto (a instância atual da classe).</p>
+
+<p><strong>Usos comuns:</strong></p>
+<ol>
+  <li><strong>Diferenciar atributos de variáveis locais:</strong> Especialmente útil em construtores e métodos <code class="language-plaintext highlighter-rouge">set</code> onde os nomes dos parâmetros são os mesmos que os nomes dos atributos da classe.</li>
+  <li>Passar o próprio objeto como argumento na chamada de um método ou construtor.</li>
+</ol>
+
+<h3 id="1-diferenciar-atributos-de-variáveis-locais">1. Diferenciar Atributos de Variáveis Locais</h3>
+
+<p>Considere o construtor da classe <code class="language-plaintext highlighter-rouge">Produto</code>:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 'this.nome' refere-se ao atributo da instância 'Produto'</span>
+        <span class="c1">// 'nome' (à direita) refere-se ao parâmetro do construtor</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>     <span class="c1">// this.preco é o atributo, preco é o parâmetro</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span> <span class="c1">// this.quantidade é o atributo, quantidade é o parâmetro</span>
+    <span class="o">}</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Sem o <code class="language-plaintext highlighter-rouge">this</code>, se os nomes fossem iguais (<code class="language-plaintext highlighter-rouge">nome = nome;</code>), o Java entenderia que você está atribuindo o parâmetro a ele mesmo, e o atributo da classe não seria modificado.</p>
+
+<p><strong>Exemplo de Memória (escopo do construtor):</strong>
+Ao chamar <code class="language-plaintext highlighter-rouge">new Produto("TV", 1500.0, 0);</code></p>
+
+<p>Variáveis locais ao construtor:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">nome</code>: “TV”</li>
+  <li><code class="language-plaintext highlighter-rouge">preco</code>: 1500.0</li>
+  <li><code class="language-plaintext highlighter-rouge">quantidade</code>: 0</li>
+</ul>
+
+<p>Objeto <code class="language-plaintext highlighter-rouge">produto</code> sendo criado (referenciado por <code class="language-plaintext highlighter-rouge">this</code> dentro do construtor):</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">this.nome</code> (atributo <code class="language-plaintext highlighter-rouge">nome</code> do objeto) &lt;- recebe “TV”</li>
+  <li><code class="language-plaintext highlighter-rouge">this.preco</code> (atributo <code class="language-plaintext highlighter-rouge">preco</code> do objeto) &lt;- recebe 1500.0</li>
+  <li><code class="language-plaintext highlighter-rouge">this.quantidade</code> (atributo <code class="language-plaintext highlighter-rouge">quantidade</code> do objeto) &lt;- recebe 0</li>
+</ul>
+
+<h3 id="2-passar-o-próprio-objeto-como-argumento">2. Passar o Próprio Objeto como Argumento</h3>
+
+<p>Às vezes, um objeto precisa passar uma referência de si mesmo para outro método ou construtor.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Exemplo conceitual: Em uma classe JogoDeXadrez</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JogoDeXadrez</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Tabuleiro</span> <span class="n">tabuleiro</span><span class="o">;</span>
+    <span class="c1">// ... outros atributos</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">iniciarPartida</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// ...</span>
+        <span class="c1">// Ao criar uma nova peça Rei, passamos uma referência</span>
+        <span class="c1">// do próprio objeto JogoDeXadrez para o construtor do Rei.</span>
+        <span class="c1">// Supondo que o construtor de Rei precise saber a qual partida ele pertence.</span>
+        <span class="nc">Peca</span> <span class="n">novoRei</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Rei</span><span class="o">(</span><span class="n">tabuleiro</span><span class="o">,</span> <span class="nc">Cor</span><span class="o">.</span><span class="na">BRANCO</span><span class="o">,</span> <span class="k">this</span><span class="o">);</span>
+        <span class="n">tabuleiro</span><span class="o">.</span><span class="na">colocarPeca</span><span class="o">(</span><span class="sc">'e'</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">novoRei</span><span class="o">);</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Supondo uma classe Peca e Rei</span>
+<span class="kd">class</span> <span class="nc">Tabuleiro</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="kt">void</span> <span class="nf">colocarPeca</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="nc">Peca</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span> <span class="cm">/* ... */</span> <span class="o">}</span> <span class="o">}</span>
+<span class="kd">enum</span> <span class="nc">Cor</span> <span class="o">{</span> <span class="no">BRANCO</span><span class="o">,</span> <span class="no">PRETO</span> <span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Peca</span> <span class="o">{</span>
+    <span class="kd">protected</span> <span class="nc">Tabuleiro</span> <span class="n">tabuleiro</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="nc">Cor</span> <span class="n">cor</span><span class="o">;</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Rei</span> <span class="kd">extends</span> <span class="nc">Peca</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">JogoDeXadrez</span> <span class="n">partida</span><span class="o">;</span> <span class="c1">// Rei conhece a partida à qual pertence</span>
+
+    <span class="kd">public</span> <span class="nf">Rei</span><span class="o">(</span><span class="nc">Tabuleiro</span> <span class="n">tabuleiro</span><span class="o">,</span> <span class="nc">Cor</span> <span class="n">cor</span><span class="o">,</span> <span class="nc">JogoDeXadrez</span> <span class="n">partidaAtual</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">();</span> <span class="c1">// Chama construtor de Peca</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tabuleiro</span> <span class="o">=</span> <span class="n">tabuleiro</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cor</span> <span class="o">=</span> <span class="n">cor</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">partida</span> <span class="o">=</span> <span class="n">partidaAtual</span><span class="o">;</span> <span class="c1">// Armazena a referência da partida</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Rei criado para a partida: "</span> <span class="o">+</span> <span class="n">partida</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="sobrecarga-overloading-">Sobrecarga (Overloading) 🔁</h2>
+
+<p><strong>Sobrecarga</strong> é um recurso que uma classe possui de oferecer mais de uma operação (método ou construtor) com o <strong>mesmo nome</strong>, porém com <strong>diferentes listas de parâmetros</strong>. A diferença pode ser no número de parâmetros ou nos tipos dos parâmetros, ou em ambos.</p>
+
+<p>O compilador Java decide qual versão do método/construtor chamar com base na assinatura da chamada (nome do método e os tipos dos argumentos passados).</p>
+
+<h3 id="proposta-de-melhoria-com-sobrecarga-de-construtores">Proposta de Melhoria com Sobrecarga de Construtores</h3>
+
+<p>Vamos criar um construtor opcional para a classe <code class="language-plaintext highlighter-rouge">Produto</code>, o qual recebe apenas nome e preço. A quantidade em estoque deste novo produto, por padrão, deverá então ser iniciada com o valor zero.</p>
+
+<p>É possível também manter o construtor que recebe todos os parâmetros e, se necessário, reintroduzir o construtor padrão (sem argumentos).</p>
+
+<p><code class="language-plaintext highlighter-rouge">Produto.java</code> (com construtores sobrecarregados)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span>
+
+    <span class="c1">// Construtor padrão (opcional, se necessário)</span>
+    <span class="c1">// Se você define qualquer outro construtor, o padrão não é mais fornecido automaticamente.</span>
+    <span class="c1">// Se quiser usá-lo, você deve declará-lo.</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Atributos serão inicializados com valores padrão (null, 0.0, 0)</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Construtor que recebe nome, preço e quantidade</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Novo construtor sobrecarregado: recebe apenas nome e preço</span>
+    <span class="c1">// A quantidade é iniciada com 0 por padrão.</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// ou simplesmente não atribuir, pois int já inicializa com 0</span>
+                              <span class="c1">// this.quantidade = 0; é mais explícito.</span>
+        <span class="c1">// Alternativamente, você poderia chamar outro construtor usando this():</span>
+        <span class="c1">// this(nome, preco, 0); // Chama o construtor public Produto(String, double, int)</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... demais métodos (valorTotalEmEstoque, adicionarProdutos, etc.)</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">valorTotalEmEstoque</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span> <span class="o">*</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaAdicionar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">+=</span> <span class="n">quantidadeParaAdicionar</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removerProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaRemover</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">-=</span> <span class="n">quantidadeParaRemover</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span>
+                <span class="o">+</span> <span class="s">", $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">)</span>
+                <span class="o">+</span> <span class="s">", "</span>
+                <span class="o">+</span> <span class="n">quantidade</span>
+                <span class="o">+</span> <span class="s">" unidades, Total: $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">valorTotalEmEstoque</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Exemplo de uso dos construtores sobrecarregados:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Produto</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">();</span> <span class="c1">// Usa o construtor padrão (se definido)</span>
+<span class="nc">Produto</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV LED"</span><span class="o">,</span> <span class="mf">1200.00</span><span class="o">,</span> <span class="mi">10</span><span class="o">);</span> <span class="c1">// Usa o construtor com 3 parâmetros</span>
+<span class="nc">Produto</span> <span class="n">p3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Mouse Sem Fio"</span><span class="o">,</span> <span class="mf">80.00</span><span class="o">);</span> <span class="c1">// Usa o construtor com 2 parâmetros (quantidade será 0)</span>
+</code></pre></div></div>
+
+<hr />
+<p>Versão <strong>sem encapsulamento</strong>, ou seja, o atributo <code class="language-plaintext highlighter-rouge">saldo</code> será <strong>público</strong> e acessado diretamente, sem métodos <code class="language-plaintext highlighter-rouge">getSaldo()</code>, <code class="language-plaintext highlighter-rouge">depositar()</code> ou <code class="language-plaintext highlighter-rouge">sacar()</code>.</p>
+
+<hr />
+
+<h3 id="-contabancariajava">📁 <code class="language-plaintext highlighter-rouge">ContaBancaria.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// atributo público</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-principaljava">📁 <code class="language-plaintext highlighter-rouge">Principal.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+        
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// depósito direto</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">-=</span> <span class="mi">30</span><span class="o">;</span> <span class="c1">// saque direto</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo atual: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Aqui está a <strong>versão intermediária</strong>: o atributo <code class="language-plaintext highlighter-rouge">saldo</code> <strong>não é mais <code class="language-plaintext highlighter-rouge">private</code> (é <code class="language-plaintext highlighter-rouge">public</code>)</strong>, mas ainda existem os <strong>métodos para depositar, sacar e consultar o saldo</strong>.</p>
+
+<hr />
+
+<h3 id="-contabancariajava-1">📁 <code class="language-plaintext highlighter-rouge">ContaBancaria.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// agora é público</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&lt;=</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-principaljava-1">📁 <code class="language-plaintext highlighter-rouge">Principal.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+        
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo atual: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Aqui está a <strong>terceira versão</strong>, onde você pode <strong>usar tanto os métodos quanto acessar o atributo diretamente</strong> — ou seja, <code class="language-plaintext highlighter-rouge">saldo</code> é público <strong>e</strong> os métodos continuam disponíveis:</p>
+
+<hr />
+
+<h3 id="-contabancariajava-2">📁 <code class="language-plaintext highlighter-rouge">ContaBancaria.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// público</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&lt;=</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-principaljava-2">📁 <code class="language-plaintext highlighter-rouge">Principal.java</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+
+        <span class="c1">// usando os métodos</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo via método: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+
+        <span class="c1">// acessando diretamente o atributo</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">+=</span> <span class="mi">50</span><span class="o">;</span>  <span class="c1">// depósito direto</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">-=</span> <span class="mi">20</span><span class="o">;</span>  <span class="c1">// saque direto</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo via acesso direto: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Abaixo estão as <strong>três versões lado a lado</strong> com seus códigos e <strong>explicações das diferenças principais</strong> 👇</p>
+
+<hr />
+
+<h2 id="️-1-versão-com-encapsulamento-padrão-recomendado">🛡️ 1. Versão com Encapsulamento (padrão recomendado)</h2>
+
+<p><strong>ContaBancaria.java</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// privado</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&lt;=</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Principal.java</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo atual: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>🔒 <strong>Características</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">saldo</code> é <code class="language-plaintext highlighter-rouge">private</code> → não pode ser alterado diretamente.</li>
+  <li>Só pode modificar o saldo usando os métodos <code class="language-plaintext highlighter-rouge">depositar()</code> e <code class="language-plaintext highlighter-rouge">sacar()</code>.</li>
+  <li>Garante <strong>segurança e controle</strong> sobre os dados.</li>
+  <li>É a <strong>forma correta segundo o conceito de encapsulamento</strong> da programação orientada a objetos.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-2-versão-sem-encapsulamento-tudo-público">⚙️ 2. Versão sem Encapsulamento (tudo público)</h2>
+
+<p><strong>ContaBancaria.java</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// público</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Principal.java</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// depósito direto</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">-=</span> <span class="mi">30</span><span class="o">;</span> <span class="c1">// saque direto</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo atual: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>⚠️ <strong>Características</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">saldo</code> é <code class="language-plaintext highlighter-rouge">public</code> → qualquer código pode mudar o valor direto.</li>
+  <li>Não existem métodos de controle (qualquer valor pode ser atribuído, inclusive negativo).</li>
+  <li>É <strong>mais simples, mas inseguro</strong>: pode causar inconsistências facilmente.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-3-versão-mista-público--métodos">⚖️ 3. Versão Mista (público + métodos)</h2>
+
+<p><strong>ContaBancaria.java</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaBancaria</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// público</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&lt;=</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Principal.java</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Principal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ContaBancaria</span> <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaBancaria</span><span class="o">();</span>
+
+        <span class="c1">// usando métodos</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mi">30</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo via método: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">());</span>
+
+        <span class="c1">// acessando diretamente</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">+=</span> <span class="mi">50</span><span class="o">;</span>  <span class="c1">// depósito direto</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span> <span class="o">-=</span> <span class="mi">20</span><span class="o">;</span>  <span class="c1">// saque direto</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo via acesso direto: R$"</span> <span class="o">+</span> <span class="n">conta</span><span class="o">.</span><span class="na">saldo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>⚖️ <strong>Características</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">saldo</code> é <code class="language-plaintext highlighter-rouge">public</code>, mas ainda existem métodos que impõem regras (como impedir depósitos negativos).</li>
+  <li>Permite <strong>duas formas de acesso</strong>, mas isso pode <strong>quebrar a segurança</strong> se usarem o acesso direto.</li>
+  <li>É uma <strong>fase intermediária</strong>, útil para aprendizado, mas <strong>não recomendada em sistemas reais</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="-resumo-das-diferenças">📝 Resumo das Diferenças</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Versão</th>
+      <th>Atributo <code class="language-plaintext highlighter-rouge">saldo</code></th>
+      <th>Métodos de controle</th>
+      <th>Segurança</th>
+      <th>Uso recomendado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Encapsulada</td>
+      <td><code class="language-plaintext highlighter-rouge">private</code></td>
+      <td>✅ sim</td>
+      <td>Alta</td>
+      <td>Sistemas reais / profissionais</td>
+    </tr>
+    <tr>
+      <td>Sem encapsulamento</td>
+      <td><code class="language-plaintext highlighter-rouge">public</code></td>
+      <td>❌ não</td>
+      <td>Baixa</td>
+      <td>Apenas para testes simples</td>
+    </tr>
+    <tr>
+      <td>Mista (público + métodos)</td>
+      <td><code class="language-plaintext highlighter-rouge">public</code></td>
+      <td>✅ sim</td>
+      <td>Média</td>
+      <td>Estudos / transição</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p>Aqui está um <strong>diagrama conceitual simples</strong> que mostra como o acesso ao atributo <code class="language-plaintext highlighter-rouge">saldo</code> muda em cada versão 👇</p>
+
+<hr />
+
+<h2 id="️-versão-encapsulada">🛡️ Versão Encapsulada</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Principal
+   |
+   | chama métodos
+   v
+ContaBancaria
+   - saldo (private)
+   + depositar()
+   + sacar()
+   + getSaldo()
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">saldo</code> é <strong>privado</strong> (<code class="language-plaintext highlighter-rouge">-</code>), só pode ser acessado indiretamente por métodos públicos (<code class="language-plaintext highlighter-rouge">+</code>).</li>
+  <li>Garante segurança e controle das regras de negócio.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-versão-sem-encapsulamento">⚠️ Versão Sem Encapsulamento</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Principal
+   |
+   | acessa diretamente
+   v
+ContaBancaria
+   + saldo (public)
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">saldo</code> é <strong>público</strong> (<code class="language-plaintext highlighter-rouge">+</code>), qualquer parte do código pode mudar o valor livremente.</li>
+  <li>Não há proteção contra valores inválidos.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-versão-mista-público--métodos">⚖️ Versão Mista (público + métodos)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Principal
+   |                \
+   | métodos          \ acesso direto
+   v                   v
+ContaBancaria
+   + saldo (public)
+   + depositar()
+   + sacar()
+   + getSaldo()
+</code></pre></div></div>
+
+<ul>
+  <li>Existem <strong>duas formas de acesso</strong>: direta e via métodos.</li>
+  <li>Pode causar <strong>inconsistência</strong> se os dois forem usados de forma misturada.</li>
+</ul>
+
+<p>🧩 Aqui estão os três diagramas usando o padrão <em>**</em>.</p>
+
+<hr />
+
+<h2 id="️-versão-encapsulada-1">🛡️ Versão Encapsulada</h2>
+
+<pre><code class="language-mermaid">classDiagram
+    class Principal {
+        +main(String[] args)
+    }
+
+    class ContaBancaria {
+        -double saldo
+        +void depositar(double valor)
+        +void sacar(double valor)
+        +double getSaldo()
+    }
+
+    Principal --&gt; ContaBancaria : usa métodos
+</code></pre>
+
+<hr />
+
+<h2 id="️-versão-sem-encapsulamento-1">⚠️ Versão Sem Encapsulamento</h2>
+
+<pre><code class="language-mermaid">classDiagram
+    class Principal {
+        +main(String[] args)
+    }
+
+    class ContaBancaria {
+        +double saldo
+    }
+
+    Principal --&gt; ContaBancaria : acesso direto
+</code></pre>
+
+<hr />
+
+<h2 id="️-versão-mista-público--métodos-1">⚖️ Versão Mista (público + métodos)</h2>
+
+<pre><code class="language-mermaid">classDiagram
+    class Principal {
+        +main(String[] args)
+    }
+
+    class ContaBancaria {
+        +double saldo
+        +void depositar(double valor)
+        +void sacar(double valor)
+        +double getSaldo()
+    }
+
+    Principal --&gt; ContaBancaria : métodos e acesso direto
+</code></pre>
+
+<hr />
+
+<p>Agora <strong>unir os três diagramas em um só</strong>, lado a lado, para facilitar a comparação visual.</p>
+
+<hr />
+
+<p>classDiagram
+    %% =========================
+    %% Versão 1 - Encapsulada
+    %% =========================
+    class PrincipalEncapsulada {
+        +main(String[] args)
+    }</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class ContaBancariaEncapsulada {
+    -double saldo
+    +void depositar(double valor)
+    +void sacar(double valor)
+    +double getSaldo()
+}
+
+PrincipalEncapsulada --&gt; ContaBancariaEncapsulada : usa métodos
+
+
+%% =========================
+%% Versão 2 - Sem Encapsulamento
+%% =========================
+class PrincipalSem {
+    +main(String[] args)
+}
+
+class ContaBancariaSem {
+    +double saldo
+}
+
+PrincipalSem --&gt; ContaBancariaSem : acesso direto
+
+
+%% =========================
+%% Versão 3 - Mista
+%% =========================
+class PrincipalMista {
+    +main(String[] args)
+}
+
+class ContaBancariaMista {
+    +double saldo
+    +void depositar(double valor)
+    +void sacar(double valor)
+    +double getSaldo()
+}
+
+PrincipalMista --&gt; ContaBancariaMista : métodos e acesso direto
+</code></pre></div></div>
+
+<hr />
+
+<p>🖌️
+Aqui está o <strong>mesmo diagrama  com cores e estereótipos</strong> :</p>
+
+<hr />
+
+<pre><code class="language-mermaid">classDiagram
+    %% =========================
+    %% Versão 1 - Encapsulada
+    %% =========================
+    class PrincipalEncapsulada {
+        &lt;&lt;Main&gt;&gt;
+        +main(String[] args)
+    }
+
+    class ContaBancariaEncapsulada {
+        &lt;&lt;Encapsulada&gt;&gt;
+        -double saldo
+        +void depositar(double valor)
+        +void sacar(double valor)
+        +double getSaldo()
+    }
+
+    class PrincipalEncapsulada:::mainClass
+    class ContaBancariaEncapsulada:::encapsuladaClass
+
+    PrincipalEncapsulada --&gt; ContaBancariaEncapsulada : usa métodos
+
+
+    %% =========================
+    %% Versão 2 - Sem Encapsulamento
+    %% =========================
+    class PrincipalSem {
+        &lt;&lt;Main&gt;&gt;
+        +main(String[] args)
+    }
+
+    class ContaBancariaSem {
+        &lt;&lt;Sem Encapsulamento&gt;&gt;
+        +double saldo
+    }
+
+    class PrincipalSem:::mainClass
+    class ContaBancariaSem:::semClass
+
+    PrincipalSem --&gt; ContaBancariaSem : acesso direto
+
+
+    %% =========================
+    %% Versão 3 - Mista
+    %% =========================
+    class PrincipalMista {
+        &lt;&lt;Main&gt;&gt;
+        +main(String[] args)
+    }
+
+    class ContaBancariaMista {
+        &lt;&lt;Mista&gt;&gt;
+        +double saldo
+        +void depositar(double valor)
+        +void sacar(double valor)
+        +double getSaldo()
+    }
+
+    class PrincipalMista:::mainClass
+    class ContaBancariaMista:::mistaClass
+
+    PrincipalMista --&gt; ContaBancariaMista : métodos e acesso direto
+
+
+    %% =========================
+    %% Estilos
+    %% =========================
+    %% classDef mainClass fill:#fef9c3,stroke:#d97706,stroke-width:2px;
+    %% classDef encapsuladaClass fill:#dcfce7,stroke:#16a34a,stroke-width:2px;
+    %% classDef semClass fill:#fee2e2,stroke:#dc2626,stroke-width:2px;
+    %% classDef mistaClass fill:#e0e7ff,stroke:#2563eb,stroke-width:2px;
+</code></pre>
+
+<hr />
+
+<p>📌 <strong>Legenda das cores</strong></p>
+
+<ul>
+  <li>🟢 <strong>Verde</strong> = Encapsulada (segura e recomendada)</li>
+  <li>🔴 <strong>Vermelho</strong> = Sem encapsulamento (insegura)</li>
+  <li>🔵 <strong>Azul</strong> = Mista (intermediária)</li>
+  <li>🟡 <strong>Amarelo</strong> = Classe principal <code class="language-plaintext highlighter-rouge">main</code></li>
+</ul>
+
+<hr />
+
+<hr />
+
+<h2 id="encapsulamento-️">Encapsulamento 🛡️</h2>
+
+<p><strong>Encapsulamento</strong> é um dos pilares da Programação Orientada a Objetos. Consiste em <strong>esconder detalhes de implementação</strong> de uma classe, expondo apenas operações seguras e que mantenham os objetos em um estado consistente.</p>
+
+<p><strong>Regra de ouro:</strong> O objeto deve sempre estar em um estado consistente, e a própria classe deve garantir isso.</p>
+
+<p><strong>Analogia:</strong> Pense em um controle remoto de TV. Você usa os botões (interface pública) para mudar de canal ou ajustar o volume. Você não precisa saber (e não pode mexer diretamente) nos circuitos internos (implementação interna) para que ele funcione. O encapsulamento protege os detalhes internos e previne mau uso.</p>
+
+<p><strong>Benefícios do Encapsulamento:</strong></p>
+<ul>
+  <li><strong>Proteção de dados:</strong> Impede que o estado interno de um objeto seja corrompido por acesso externo direto e descontrolado.</li>
+  <li><strong>Consistência:</strong> A classe pode garantir que seus dados internos sejam sempre válidos através de lógica nos métodos públicos (getters e setters).</li>
+  <li><strong>Flexibilidade e Manutenção:</strong> A implementação interna da classe pode ser alterada sem afetar o código que a utiliza, desde que a interface pública (assinatura dos métodos) permaneça a mesma.</li>
+  <li><strong>Ocultação de Complexidade:</strong> A classe expõe apenas o necessário, simplificando seu uso.</li>
+</ul>
+
+<h3 id="regra-geral-básica-para-encapsulamento">Regra Geral Básica para Encapsulamento</h3>
+
+<ul>
+  <li>Um objeto <strong>NÃO</strong> deve expor nenhum atributo diretamente. Para isso, os atributos são declarados com o modificador de acesso <code class="language-plaintext highlighter-rouge">private</code>.</li>
+  <li>Os atributos devem ser acessados (para leitura ou modificação) por meio de métodos públicos chamados <strong>getters</strong> e <strong>setters</strong>.</li>
+  <li>Este é um padrão comum, conhecido como <strong>JavaBeans Convention</strong>.</li>
+</ul>
+
+<p><strong>Padrão para implementação de getters e setters:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Atributos privados</span>
+<span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span> <span class="c1">// Adicionando getter para quantidade, mas não setter direto se quisermos controlar através de add/remove</span>
+
+<span class="c1">// Getter para 'nome'</span>
+<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// Setter para 'nome'</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Aqui poderíamos adicionar validações, ex: nome não pode ser nulo ou vazio</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nome</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">nome</span><span class="o">.</span><span class="na">trim</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Nome não pode ser vazio."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Getter para 'preco'</span>
+<span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">preco</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// Setter para 'preco'</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Validação: preço não pode ser negativo</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">preco</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Preço não pode ser negativo."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Getter para 'quantidade'</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getQuantidade</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">quantidade</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// Nota: Geralmente, não teríamos um setQuantidade() público se a quantidade</span>
+<span class="c1">// deve ser controlada apenas pelos métodos adicionarProdutos() e removerProdutos().</span>
+<span class="c1">// Isso garante que a quantidade só mude de formas controladas.</span>
+<span class="c1">// public void setQuantidade(int quantidade) {</span>
+<span class="c1">//     if (quantidade &gt;= 0) {</span>
+<span class="c1">//         this.quantidade = quantidade;</span>
+<span class="c1">//     } else {</span>
+<span class="c1">//         System.out.println("Erro: Quantidade não pode ser negativa.");</span>
+<span class="c1">//     }</span>
+<span class="c1">// }</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Produto</code> com Encapsulamento:</strong>
+<code class="language-plaintext highlighter-rouge">Produto.java</code> (aplicando encapsulamento)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span> <span class="c1">// Atributo privado</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span> <span class="c1">// Atributo privado</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span> <span class="c1">// Atributo privado</span>
+
+    <span class="c1">// Construtores (podem permanecer os mesmos, usando 'this' para atribuir aos atributos privados)</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+        <span class="c1">// Poderíamos adicionar uma validação para quantidade inicial aqui também</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantidade</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// Ou lançar uma exceção</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// Padrão</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Adicionando uma simples validação</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">nome</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">nome</span><span class="o">.</span><span class="na">trim</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">preco</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getQuantidade</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Métodos públicos para manipular o estado de forma controlada</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">valorTotalEmEstoque</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span> <span class="o">*</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaAdicionar</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantidadeParaAdicionar</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Só adiciona se for valor positivo</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">+=</span> <span class="n">quantidadeParaAdicionar</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removerProdutos</span><span class="o">(</span><span class="kt">int</span> <span class="n">quantidadeParaRemover</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantidadeParaRemover</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Só remove se for valor positivo</span>
+            <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">&gt;=</span> <span class="n">quantidadeParaRemover</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">-=</span> <span class="n">quantidadeParaRemover</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// Evita quantidade negativa, ou poderia lançar erro</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método toString() usando os getters (boa prática se os getters tiverem alguma lógica)</span>
+    <span class="c1">// ou acessando os atributos diretamente (comum se não houver lógica nos getters)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getNome</span><span class="o">()</span> <span class="c1">// ou this.nome</span>
+                <span class="o">+</span> <span class="s">", $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">getPreco</span><span class="o">())</span> <span class="c1">// ou this.preco</span>
+                <span class="o">+</span> <span class="s">", "</span>
+                <span class="o">+</span> <span class="n">getQuantidade</span><span class="o">()</span> <span class="c1">// ou this.quantidade</span>
+                <span class="o">+</span> <span class="s">" unidades, Total: $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">valorTotalEmEstoque</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Agora, na classe <code class="language-plaintext highlighter-rouge">Programa</code>, o acesso aos atributos <code class="language-plaintext highlighter-rouge">nome</code>, <code class="language-plaintext highlighter-rouge">preco</code> e <code class="language-plaintext highlighter-rouge">quantidade</code> deve ser feito através dos getters e setters. Por exemplo, <code class="language-plaintext highlighter-rouge">produto.nome = sc.nextLine();</code> se tornaria <code class="language-plaintext highlighter-rouge">produto.setNome(sc.nextLine());</code> e <code class="language-plaintext highlighter-rouge">System.out.println(produto.nome);</code> se tornaria <code class="language-plaintext highlighter-rouge">System.out.println(produto.getNome());</code>.</p>
+
+<h3 id="gerando-getters-setters-e-construtores-automaticamente-em-ides-️">Gerando Getters, Setters e Construtores Automaticamente em IDEs ⚙️</h3>
+
+<p>A maioria das IDEs Java modernas oferece ferramentas para gerar esse código repetitivo (boilerplate) automaticamente.</p>
+
+<p><strong>No VS Code (com o “Extension Pack for Java” da Microsoft instalado):</strong></p>
+<ol>
+  <li>Dentro da sua classe, clique com o botão direito no editor de código onde você quer adicionar os métodos.</li>
+  <li>Selecione “Ação de Código…” (ou pressione <code class="language-plaintext highlighter-rouge">Ctrl+.</code> ou <code class="language-plaintext highlighter-rouge">Cmd+.</code>).</li>
+  <li>Alternativamente, clique com o botão direito e procure por “Código-fonte…” ou “Gerar…” (as opções podem variar ligeiramente com atualizações da extensão).</li>
+  <li>Você encontrará opções como:
+    <ul>
+      <li>“Generate Getters and Setters…” -&gt; Selecione os campos para os quais deseja gerá-los.</li>
+      <li>“Generate Constructor using Fields…” -&gt; Selecione os campos que o construtor deve inicializar.</li>
+      <li>“Generate toString()…”</li>
+      <li>“Generate hashCode() and equals()…”</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>No IntelliJ IDEA (Community ou Ultimate):</strong></p>
+<ol>
+  <li>Dentro da sua classe, clique com o botão direito no editor de código.</li>
+  <li>Selecione “Generate…” (ou use o atalho <code class="language-plaintext highlighter-rouge">Alt+Insert</code> no Windows/Linux ou <code class="language-plaintext highlighter-rouge">Cmd+N</code> no macOS).</li>
+  <li>Um menu pop-up aparecerá com opções como:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Constructor</code> -&gt; Para criar construtores.</li>
+      <li><code class="language-plaintext highlighter-rouge">Getter</code> -&gt; Para criar métodos getter.</li>
+      <li><code class="language-plaintext highlighter-rouge">Setter</code> -&gt; Para criar métodos setter.</li>
+      <li><code class="language-plaintext highlighter-rouge">Getter and Setter</code> -&gt; Para criar ambos.</li>
+      <li><code class="language-plaintext highlighter-rouge">toString()</code></li>
+      <li><code class="language-plaintext highlighter-rouge">hashCode() and equals()</code></li>
+    </ul>
+  </li>
+  <li>Selecione os campos desejados na caixa de diálogo seguinte e clique em “OK”.</li>
+</ol>
+
+<p>Essas ferramentas economizam tempo e reduzem a chance de erros de digitação ao criar esses métodos padrão.</p>
+
+<h2 id="modificadores-de-acesso-">Modificadores de Acesso 🚦</h2>
+
+<p>Modificadores de acesso definem a visibilidade (onde pode ser acessado) de classes, atributos, construtores e métodos.</p>
+
+<p><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html">https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html</a></p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">private</code></strong>: O membro (atributo, método, construtor) só pode ser acessado <strong>de dentro da própria classe</strong> onde foi declarado. É o nível mais restritivo.
+    <ul>
+      <li><em>Exemplo:</em> Atributos de dados em encapsulamento (<code class="language-plaintext highlighter-rouge">private String nome;</code>).</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">(nada/padrão/package-private)</code></strong>: Se nenhum modificador de acesso é especificado (ex: <code class="language-plaintext highlighter-rouge">int idade;</code>), o membro só pode ser acessado por classes que estão <strong>no mesmo pacote (package)</strong>.
+    <ul>
+      <li><em>Exemplo:</em> Classes auxiliares que só fazem sentido dentro de um pacote específico.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">protected</code></strong>: O membro pode ser acessado por classes no <strong>mesmo pacote</strong> E por <strong>subclasses</strong> (classes que herdam da classe com o membro protegido), mesmo que essas subclasses estejam em pacotes diferentes.
+    <ul>
+      <li><em>Exemplo:</em> Métodos que devem ser usados ou sobrescritos por subclasses, mas não expostos publicamente.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">public</code></strong>: O membro pode ser acessado por <strong>qualquer classe, de qualquer pacote</strong>. É o nível menos restritivo.
+    <ul>
+      <li><em>Exemplo:</em> A interface pública de uma classe (construtores, métodos principais, getters/setters).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>[https://stackoverflow.com/questions/215497/in-java-difference-between-package-private-public-protected-and-private]{https://stackoverflow.com/questions/215497/in-java-difference-between-package-private-public-protected-and-private}</p>
+
+<p><strong>Resumo da Acessibilidade:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Modificador</th>
+      <th style="text-align: center">Mesma Classe</th>
+      <th style="text-align: center">Mesmo Pacote (sem ser subclasse)</th>
+      <th style="text-align: center">Subclasse (mesmo pacote)</th>
+      <th style="text-align: center">Subclasse (pacote diferente)</th>
+      <th style="text-align: center">Outra Classe (pacote diferente, não subclasse)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">public</code></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">protected</code></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">(padrão/package)</code></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">private</code></td>
+      <td style="text-align: center">✅</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+      <td style="text-align: center">❌</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="exercício-de-fixação-conta-bancária-">Exercício de Fixação: Conta Bancária 🏦</h2>
+
+<p>Em um banco, para se cadastrar uma conta bancária, é necessário informar o número da conta, o nome do titular da conta, e opcionalmente um valor de depósito inicial. Se o titular não tiver dinheiro para depositar no momento de abrir a conta, o depósito inicial não será feito e o saldo inicial da conta será zero.</p>
+
+<p><strong>Regras Importantes:</strong></p>
+<ol>
+  <li>Uma vez que uma conta bancária foi aberta, o <strong>número da conta nunca poderá ser alterado</strong>.</li>
+  <li>O <strong>nome do titular pode ser alterado</strong> (pois uma pessoa pode mudar de nome por ocasião de casamento, por exemplo).</li>
+  <li>O <strong>saldo da conta não pode ser alterado livremente</strong>. Ele só aumenta por meio de depósitos e só diminui por meio de saques.</li>
+  <li>Para cada <strong>saque</strong> realizado, o banco cobra uma <strong>taxa de $ 5.00</strong>.</li>
+  <li>A conta pode ficar com <strong>saldo negativo</strong> se o saldo não for suficiente para realizar o saque e/ou pagar a taxa.</li>
+</ol>
+
+<p>Você deve fazer um programa que realize o cadastro de uma conta, dando opção para que seja ou não informado o valor de depósito inicial. Em seguida, o programa deve permitir realizar um depósito e depois um saque, sempre mostrando os dados da conta após cada operação.</p>
+
+<p><strong>Exemplo 1:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entre com o número da conta: 8532
+Entre com o titular da conta: Alex Green
+Haverá depósito inicial (s/n)? s
+Entre o valor de depósito inicial: 500.00
+
+Dados da conta:
+Conta 8532, Titular: Alex Green, Saldo: $ 500.00
+
+Entre um valor para depósito: 200.00
+Dados da conta atualizados:
+Conta 8532, Titular: Alex Green, Saldo: $ 700.00
+
+Entre um valor para saque: 300.00
+Dados da conta atualizados:
+Conta 8532, Titular: Alex Green, Saldo: $ 395.00
+</code></pre></div></div>
+
+<p><strong>Exemplo 2:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entre com o número da conta: 7801
+Entre com o titular da conta: Maria Brown
+Haverá depósito inicial (s/n)? n
+
+Dados da conta:
+Conta 7801, Titular: Maria Brown, Saldo: $ 0.00
+
+Entre um valor para depósito: 200.00
+Dados da conta atualizados:
+Conta 7801, Titular: Maria Brown, Saldo: $ 200.00
+
+Entre um valor para saque: 198.00
+Dados da conta atualizados:
+Conta 7801, Titular: Maria Brown, Saldo: $ -3.00
+</code></pre></div></div>
+
+<h3 id="correção-do-exercício-de-fixação-estrutura-da-classe-e-programa-principal-">Correção do Exercício de Fixação (Estrutura da Classe e Programa Principal) 📝</h3>
+
+<p><strong>Diagrama da Classe <code class="language-plaintext highlighter-rouge">Conta</code> (Conceitual):</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-------------------------
+|         Conta         |
+-------------------------
+| - numeroConta: int    |  // Imutável após criação
+| - titular: String     |
+| - saldo: double       |  // Controlado por depósitos e saques
+-------------------------
+| + Conta(numeroConta: int, titular: String)
+| + Conta(numeroConta: int, titular: String, depositoInicial: double)
+| + getNumeroConta(): int
+| + getTitular(): String
+| + setTitular(novoTitular: String): void
+| + getSaldo(): double
+| + depositar(valor: double): void
+| + sacar(valor: double): void
+| + toString(): String
+-------------------------
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Conta.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">numeroConta</span><span class="o">;</span> <span class="c1">// final: garante imutabilidade após a instanciação</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">double</span> <span class="no">TAXA_SAQUE</span> <span class="o">=</span> <span class="mf">5.00</span><span class="o">;</span>
+
+    <span class="c1">// Construtor para conta com depósito inicial</span>
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="kt">int</span> <span class="n">numeroConta</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="kt">double</span> <span class="n">depositoInicial</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numeroConta</span> <span class="o">=</span> <span class="n">numeroConta</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="n">depositar</span><span class="o">(</span><span class="n">depositoInicial</span><span class="o">);</span> <span class="c1">// Reutiliza o método depositar para garantir consistência (se houver regras)</span>
+                                    <span class="c1">// Embora aqui seja uma simples atribuição, é uma boa prática.</span>
+                                    <span class="c1">// Alternativamente: this.saldo = depositoInicial; (se não houver lógica no depositar relevante aqui)</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Construtor para conta sem depósito inicial (saldo inicia com 0)</span>
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="kt">int</span> <span class="n">numeroConta</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numeroConta</span> <span class="o">=</span> <span class="n">numeroConta</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// Saldo é explicitamente 0, ou pode ser omitido pois double já inicializa com 0.0</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getter para numeroConta (não há setter, pois é imutável)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNumeroConta</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">numeroConta</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getter e Setter para titular</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTitular</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitular</span><span class="o">(</span><span class="nc">String</span> <span class="n">titular</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getter para saldo (não há setter público, saldo é controlado por depositar/sacar)</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para realizar depósitos</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">+=</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Valor de depósito deve ser positivo."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para realizar saques</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">valor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">saldo</span> <span class="o">-=</span> <span class="n">valor</span><span class="o">;</span>
+            <span class="n">saldo</span> <span class="o">-=</span> <span class="no">TAXA_SAQUE</span><span class="o">;</span> <span class="c1">// Aplica a taxa de saque</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Valor de saque deve ser positivo."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método toString para exibir os dados da conta</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Conta "</span>
+                <span class="o">+</span> <span class="n">numeroConta</span>
+                <span class="o">+</span> <span class="s">", Titular: "</span>
+                <span class="o">+</span> <span class="n">titular</span>
+                <span class="o">+</span> <span class="s">", Saldo: $ "</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">ProgramaPrincipal.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Conta</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaPrincipal</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">Conta</span> <span class="n">conta</span><span class="o">;</span> <span class="c1">// Declara a variável conta</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o número da conta: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">numero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consumir a quebra de linha pendente</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o titular da conta: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">titular</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Haverá depósito inicial (s/n)? "</span><span class="o">);</span>
+        <span class="kt">char</span> <span class="n">resposta</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">resposta</span> <span class="o">==</span> <span class="sc">'s'</span> <span class="o">||</span> <span class="n">resposta</span> <span class="o">==</span> <span class="sc">'S'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre o valor de depósito inicial: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">depositoInicial</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+            <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Conta</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">,</span> <span class="n">depositoInicial</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">conta</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Conta</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados da conta:"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conta</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre um valor para depósito: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">valorDeposito</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="n">valorDeposito</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados da conta atualizados:"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conta</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre um valor para saque: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">valorSaque</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="n">conta</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="n">valorSaque</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados da conta atualizados:"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conta</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

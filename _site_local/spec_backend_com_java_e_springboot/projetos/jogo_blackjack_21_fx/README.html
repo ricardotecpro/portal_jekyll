@@ -1,0 +1,796 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/projetos/jogo_blackjack_21_fx/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Jogo Blackjack (21) | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Jogo Blackjack (21)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_blackjack_21_fx/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_blackjack_21_fx/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Jogo Blackjack (21)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Jogo Blackjack (21)","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_blackjack_21_fx/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_blackjack_21_fx/" style="margin-left: 0.5rem;">Jogo blackjack 21 fx</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Jogo **blackjack (21)**</span>
+          
+        
+      </nav>
+
+      <h1 id="jogo-blackjack-21">Jogo <strong>Blackjack (21)</strong></h1>
+
+<p>Vamos construir um <strong>Blackjack (21)</strong> profissional, com arquitetura MVC (Model-View-Controller).</p>
+
+<hr />
+
+<h3 id="️-1-preparação-do-ambiente-e-estrutura">🏗️ 1. Preparação do Ambiente e Estrutura</h3>
+
+<p>Você precisará do <strong>JDK 21</strong> instalado e de uma IDE (IntelliJ IDEA ou Eclipse). Vamos usar o <strong>Maven</strong> para gerenciar as dependências.</p>
+
+<p><strong>Estrutura de Pastas Recomendada:</strong></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>blackjack21/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── blackjack/
+│   │   │           ├── Main.java          (Entrada)
+│   │   │           ├── model/             (Lógica: Carta, Baralho, Mão)
+│   │   │           └── controller/        (Interface e Regras de Jogo)
+│   │   └── resources/
+│   │       └── styles.css                 (Estilo Moderno)
+└── pom.xml
+</code></pre></div></div>
+
+<p><strong>Dependências no <code class="language-plaintext highlighter-rouge">pom.xml</code>:</strong>
+Precisamos das bibliotecas do JavaFX.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>javafx-controls<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>21<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>javafx-fxml<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>21<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-2-configuração-e-execução-no-windows">🚀 2. Configuração e Execução no Windows</h3>
+
+<h4 id="pré-requisitos">Pré-requisitos</h4>
+
+<ul>
+  <li><strong>JDK 21</strong> instalado</li>
+  <li><strong>Maven</strong> instalado globalmente (ou use o Maven Wrapper incluído)</li>
+</ul>
+
+<h4 id="problema-comum-maven-wrapper">Problema Comum: Maven Wrapper</h4>
+
+<p>Se você encontrar o erro:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get-Content : Cannot find path '.mvn\wrapper\maven-wrapper.properties' because it does not exist.
+</code></pre></div></div>
+
+<p><strong>Solução:</strong></p>
+
+<ol>
+  <li>Abra o PowerShell no diretório do projeto</li>
+  <li>Execute o comando para regenerar o Maven Wrapper:
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mvn</span><span class="w"> </span><span class="nt">-N</span><span class="w"> </span><span class="nx">wrapper:wrapper</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="como-executar-o-projeto">Como Executar o Projeto</h4>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Navegar para o diretório do projeto</span><span class="w">
+</span><span class="n">cd</span><span class="w"> </span><span class="s2">"caminho\para\jogo_blackjack_21_fx"</span><span class="w">
+
+</span><span class="c"># Executar a aplicação JavaFX</span><span class="w">
+</span><span class="o">.</span><span class="n">\mvnw</span><span class="w"> </span><span class="nx">javafx:run</span><span class="w">
+
+</span><span class="c"># Ou limpar e executar</span><span class="w">
+</span><span class="o">.</span><span class="n">\mvnw</span><span class="w"> </span><span class="nx">clean</span><span class="w"> </span><span class="nx">javafx:run</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="outros-comandos-úteis">Outros Comandos Úteis</h4>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Apenas compilar</span><span class="w">
+</span><span class="o">.</span><span class="n">\mvnw</span><span class="w"> </span><span class="nx">compile</span><span class="w">
+
+</span><span class="c"># Limpar arquivos compilados</span><span class="w">
+</span><span class="o">.</span><span class="n">\mvnw</span><span class="w"> </span><span class="nx">clean</span><span class="w">
+
+</span><span class="c"># Executar testes (se houver)</span><span class="w">
+</span><span class="o">.</span><span class="n">\mvnw</span><span class="w"> </span><span class="nx">test</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="-4-o-modelo-model">🃏 4. O Modelo (Model)</h3>
+
+<p>Aqui ficam as regras de negócio, independentes da interface visual.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Carta.java</code> e Enums:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.blackjack.model</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">record</span> <span class="nf">Carta</span><span class="o">(</span><span class="nc">Nipe</span> <span class="n">nipe</span><span class="o">,</span> <span class="nc">Rank</span> <span class="n">rank</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Nipe</span> <span class="o">{</span> <span class="no">COPAS</span><span class="o">,</span> <span class="no">OUROS</span><span class="o">,</span> <span class="no">PAUS</span><span class="o">,</span> <span class="no">ESPADAS</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Rank</span> <span class="o">{</span>
+        <span class="no">DOIS</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span> <span class="no">TRES</span><span class="o">(</span><span class="mi">3</span><span class="o">),</span> <span class="no">QUATRO</span><span class="o">(</span><span class="mi">4</span><span class="o">),</span> <span class="no">CINCO</span><span class="o">(</span><span class="mi">5</span><span class="o">),</span> <span class="no">SEIS</span><span class="o">(</span><span class="mi">6</span><span class="o">),</span> <span class="no">SETE</span><span class="o">(</span><span class="mi">7</span><span class="o">),</span> <span class="no">OITO</span><span class="o">(</span><span class="mi">8</span><span class="o">),</span> <span class="no">NOVE</span><span class="o">(</span><span class="mi">9</span><span class="o">),</span> <span class="no">DEZ</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span>
+        <span class="no">VALETE</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="no">DAMA</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="no">REI</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="no">AS</span><span class="o">(</span><span class="mi">11</span><span class="o">);</span>
+
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">valor</span><span class="o">;</span>
+        <span class="nc">Rank</span><span class="o">(</span><span class="kt">int</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">valor</span> <span class="o">=</span> <span class="n">valor</span><span class="o">;</span> <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">rank</span> <span class="o">+</span> <span class="s">" de "</span> <span class="o">+</span> <span class="n">nipe</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Baralho.java</code>:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.blackjack.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Baralho</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Stack</span><span class="o">&lt;</span><span class="nc">Carta</span><span class="o">&gt;</span> <span class="n">cartas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stack</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">Baralho</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">reiniciar</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">reiniciar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">cartas</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Carta</span><span class="o">.</span><span class="na">Nipe</span> <span class="n">nipe</span> <span class="o">:</span> <span class="nc">Carta</span><span class="o">.</span><span class="na">Nipe</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">Carta</span><span class="o">.</span><span class="na">Rank</span> <span class="n">rank</span> <span class="o">:</span> <span class="nc">Carta</span><span class="o">.</span><span class="na">Rank</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">cartas</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="k">new</span> <span class="nc">Carta</span><span class="o">(</span><span class="n">nipe</span><span class="o">,</span> <span class="n">rank</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="nc">Collections</span><span class="o">.</span><span class="na">shuffle</span><span class="o">(</span><span class="n">cartas</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Carta</span> <span class="nf">comprar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">cartas</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="n">cartas</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-5-lógica-de-pontuação-regra-do-ás">🧠 5. Lógica de Pontuação (Regra do Ás)</h3>
+
+<p>O Ás é “tricky”. Ele vale 11, a menos que estoure 21, aí passa a valer 1.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Mao.java</code>:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.blackjack.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Mao</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Carta</span><span class="o">&gt;</span> <span class="n">cartas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarCarta</span><span class="o">(</span><span class="nc">Carta</span> <span class="n">carta</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">cartas</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">carta</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">limpar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">cartas</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Carta</span><span class="o">&gt;</span> <span class="nf">getCartas</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">cartas</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">calcularPontuacao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">pontos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">ases</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Carta</span> <span class="n">c</span> <span class="o">:</span> <span class="n">cartas</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">pontos</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="na">rank</span><span class="o">().</span><span class="na">valor</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">rank</span><span class="o">()</span> <span class="o">==</span> <span class="nc">Carta</span><span class="o">.</span><span class="na">Rank</span><span class="o">.</span><span class="na">AS</span><span class="o">)</span> <span class="n">ases</span><span class="o">++;</span>
+        <span class="o">}</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">pontos</span> <span class="o">&gt;</span> <span class="mi">21</span> <span class="o">&amp;&amp;</span> <span class="n">ases</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">pontos</span> <span class="o">-=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">// Transforma Ás de 11 para 1</span>
+            <span class="n">ases</span><span class="o">--;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">pontos</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-6-interface-moderna-e-controle-view--controller">🎨 6. Interface Moderna e Controle (View &amp; Controller)</h3>
+
+<p>Em vez de usar HTML/DOM (que é Web), usaremos o <strong>Scenegraph</strong> do JavaFX. Para ser didático, farei a interface via código para você ver a estrutura, mas em projetos grandes usamos arquivos FXML.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">BlackjackGame.java</code> (O Coração da UI):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.blackjack.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.blackjack.model.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.geometry.Pos</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.layout.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BlackjackGame</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Baralho</span> <span class="n">baralho</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Mao</span> <span class="n">maoJogador</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Mao</span> <span class="n">maoDealer</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">HBox</span> <span class="n">mesaDealer</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">HBox</span> <span class="n">mesaJogador</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Label</span> <span class="n">lblStatus</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Label</span> <span class="n">lblPontosJogador</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">btnPedir</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">btnParar</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">btnReiniciar</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">stage</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">baralho</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Baralho</span><span class="o">();</span>
+        <span class="n">maoJogador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Mao</span><span class="o">();</span>
+        <span class="n">maoDealer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Mao</span><span class="o">();</span>
+
+        <span class="c1">// --- Layout da Interface (Responsiva) ---</span>
+        <span class="nc">VBox</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">VBox</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="s">"-fx-background-color: #2E8B57; -fx-padding: 30;"</span><span class="o">);</span> <span class="c1">// Verde Mesa de Jogo</span>
+
+        <span class="c1">// Área do Dealer</span>
+        <span class="nc">Label</span> <span class="n">lblDealer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Dealer"</span><span class="o">);</span>
+        <span class="n">lblDealer</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">"titulo"</span><span class="o">);</span>
+        <span class="n">mesaDealer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HBox</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+        <span class="n">mesaDealer</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+
+        <span class="c1">// Área do Jogador</span>
+        <span class="nc">Label</span> <span class="n">lblJogador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Você"</span><span class="o">);</span>
+        <span class="n">lblJogador</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">"titulo"</span><span class="o">);</span>
+        <span class="n">mesaJogador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HBox</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+        <span class="n">mesaJogador</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+        <span class="n">lblPontosJogador</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Pontos: 0"</span><span class="o">);</span>
+        <span class="n">lblPontosJogador</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">"texto-branco"</span><span class="o">);</span>
+
+        <span class="c1">// Botões</span>
+        <span class="nc">HBox</span> <span class="n">painelBotoes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HBox</span><span class="o">(</span><span class="mi">15</span><span class="o">);</span>
+        <span class="n">painelBotoes</span><span class="o">.</span><span class="na">setAlignment</span><span class="o">(</span><span class="nc">Pos</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+        <span class="n">btnPedir</span> <span class="o">=</span> <span class="n">criarBotao</span><span class="o">(</span><span class="s">"Pedir Carta"</span><span class="o">,</span> <span class="s">"#3498db"</span><span class="o">);</span>
+        <span class="n">btnParar</span> <span class="o">=</span> <span class="n">criarBotao</span><span class="o">(</span><span class="s">"Parar"</span><span class="o">,</span> <span class="s">"#e74c3c"</span><span class="o">);</span>
+        <span class="n">btnReiniciar</span> <span class="o">=</span> <span class="n">criarBotao</span><span class="o">(</span><span class="s">"Novo Jogo"</span><span class="o">,</span> <span class="s">"#f1c40f"</span><span class="o">);</span>
+        <span class="n">btnReiniciar</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// Só aparece no fim</span>
+
+        <span class="n">painelBotoes</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">btnPedir</span><span class="o">,</span> <span class="n">btnParar</span><span class="o">,</span> <span class="n">btnReiniciar</span><span class="o">);</span>
+
+        <span class="n">lblStatus</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="s">"Bem-vindo ao Blackjack!"</span><span class="o">);</span>
+        <span class="n">lblStatus</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">"status"</span><span class="o">);</span>
+
+        <span class="n">root</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">addAll</span><span class="o">(</span><span class="n">lblDealer</span><span class="o">,</span> <span class="n">mesaDealer</span><span class="o">,</span> <span class="n">lblStatus</span><span class="o">,</span> <span class="n">mesaJogador</span><span class="o">,</span> <span class="n">lblJogador</span><span class="o">,</span> <span class="n">lblPontosJogador</span><span class="o">,</span> <span class="n">painelBotoes</span><span class="o">);</span>
+
+        <span class="c1">// --- Eventos (Interatividade) ---</span>
+        <span class="n">btnPedir</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">comprarCartaJogador</span><span class="o">());</span>
+        <span class="n">btnParar</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">turnoDealer</span><span class="o">());</span>
+        <span class="n">btnReiniciar</span><span class="o">.</span><span class="na">setOnAction</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">iniciarJogo</span><span class="o">());</span>
+
+        <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="mi">800</span><span class="o">,</span> <span class="mi">600</span><span class="o">);</span>
+        <span class="n">scene</span><span class="o">.</span><span class="na">getStylesheets</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResource</span><span class="o">(</span><span class="s">"/styles.css"</span><span class="o">).</span><span class="na">toExternalForm</span><span class="o">());</span>
+
+        <span class="n">stage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"Blackjack Java 21"</span><span class="o">);</span>
+        <span class="n">stage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+        <span class="n">stage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+
+        <span class="n">iniciarJogo</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">iniciarJogo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">baralho</span><span class="o">.</span><span class="na">reiniciar</span><span class="o">();</span>
+        <span class="n">maoJogador</span><span class="o">.</span><span class="na">limpar</span><span class="o">();</span>
+        <span class="n">maoDealer</span><span class="o">.</span><span class="na">limpar</span><span class="o">();</span>
+
+        <span class="n">btnPedir</span><span class="o">.</span><span class="na">setDisable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">btnParar</span><span class="o">.</span><span class="na">setDisable</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">btnReiniciar</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">lblStatus</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Sua vez..."</span><span class="o">);</span>
+
+        <span class="c1">// Distribuição inicial</span>
+        <span class="n">maoJogador</span><span class="o">.</span><span class="na">adicionarCarta</span><span class="o">(</span><span class="n">baralho</span><span class="o">.</span><span class="na">comprar</span><span class="o">());</span>
+        <span class="n">maoDealer</span><span class="o">.</span><span class="na">adicionarCarta</span><span class="o">(</span><span class="n">baralho</span><span class="o">.</span><span class="na">comprar</span><span class="o">());</span>
+        <span class="n">maoJogador</span><span class="o">.</span><span class="na">adicionarCarta</span><span class="o">(</span><span class="n">baralho</span><span class="o">.</span><span class="na">comprar</span><span class="o">());</span>
+        <span class="n">maoDealer</span><span class="o">.</span><span class="na">adicionarCarta</span><span class="o">(</span><span class="n">baralho</span><span class="o">.</span><span class="na">comprar</span><span class="o">());</span>
+
+        <span class="n">atualizarMesa</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">comprarCartaJogador</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">maoJogador</span><span class="o">.</span><span class="na">adicionarCarta</span><span class="o">(</span><span class="n">baralho</span><span class="o">.</span><span class="na">comprar</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">maoJogador</span><span class="o">.</span><span class="na">calcularPontuacao</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">21</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">atualizarMesa</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            <span class="n">fimDeJogo</span><span class="o">(</span><span class="s">"Você estourou! Dealer venceu."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">atualizarMesa</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">turnoDealer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Dealer compra até ter 17 ou mais</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">maoDealer</span><span class="o">.</span><span class="na">calcularPontuacao</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">17</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">maoDealer</span><span class="o">.</span><span class="na">adicionarCarta</span><span class="o">(</span><span class="n">baralho</span><span class="o">.</span><span class="na">comprar</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">verificarVencedor</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">verificarVencedor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">pJogador</span> <span class="o">=</span> <span class="n">maoJogador</span><span class="o">.</span><span class="na">calcularPontuacao</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">pDealer</span> <span class="o">=</span> <span class="n">maoDealer</span><span class="o">.</span><span class="na">calcularPontuacao</span><span class="o">();</span>
+
+        <span class="n">atualizarMesa</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// Revela cartas do dealer</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">pDealer</span> <span class="o">&gt;</span> <span class="mi">21</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">fimDeJogo</span><span class="o">(</span><span class="s">"Dealer estourou! Você venceu!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">pJogador</span> <span class="o">&gt;</span> <span class="n">pDealer</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">fimDeJogo</span><span class="o">(</span><span class="s">"Você venceu!"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">pJogador</span> <span class="o">&lt;</span> <span class="n">pDealer</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">fimDeJogo</span><span class="o">(</span><span class="s">"Dealer venceu."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">fimDeJogo</span><span class="o">(</span><span class="s">"Empate."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">fimDeJogo</span><span class="o">(</span><span class="nc">String</span> <span class="n">mensagem</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lblStatus</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">mensagem</span><span class="o">);</span>
+        <span class="n">btnPedir</span><span class="o">.</span><span class="na">setDisable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">btnParar</span><span class="o">.</span><span class="na">setDisable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">btnReiniciar</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Atualiza a "DOM" do JavaFX</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">atualizarMesa</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">mostrarTudoDealer</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mesaJogador</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">mesaDealer</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">clear</span><span class="o">();</span>
+
+        <span class="c1">// Renderiza Jogador</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Carta</span> <span class="n">c</span> <span class="o">:</span> <span class="n">maoJogador</span><span class="o">.</span><span class="na">getCartas</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">mesaJogador</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">criarVisualCarta</span><span class="o">(</span><span class="n">c</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="n">lblPontosJogador</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Pontos: "</span> <span class="o">+</span> <span class="n">maoJogador</span><span class="o">.</span><span class="na">calcularPontuacao</span><span class="o">());</span>
+
+        <span class="c1">// Renderiza Dealer</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Carta</span><span class="o">&gt;</span> <span class="n">cartasDealer</span> <span class="o">=</span> <span class="n">maoDealer</span><span class="o">.</span><span class="na">getCartas</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cartasDealer</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">mostrarTudoDealer</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// Carta oculta</span>
+                <span class="n">mesaDealer</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">criarVisualCartaOculta</span><span class="o">());</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">mesaDealer</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">criarVisualCarta</span><span class="o">(</span><span class="n">cartasDealer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Helpers de UI</span>
+    <span class="kd">private</span> <span class="nc">StackPane</span> <span class="nf">criarVisualCarta</span><span class="o">(</span><span class="nc">Carta</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">StackPane</span> <span class="n">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StackPane</span><span class="o">();</span>
+        <span class="n">card</span><span class="o">.</span><span class="na">setPrefSize</span><span class="o">(</span><span class="mi">80</span><span class="o">,</span> <span class="mi">120</span><span class="o">);</span>
+        <span class="n">card</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">"carta"</span><span class="o">);</span>
+        <span class="nc">Label</span> <span class="n">lbl</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Label</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">lbl</span><span class="o">.</span><span class="na">setWrapText</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">card</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">lbl</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">card</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">StackPane</span> <span class="nf">criarVisualCartaOculta</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">StackPane</span> <span class="n">card</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StackPane</span><span class="o">();</span>
+        <span class="n">card</span><span class="o">.</span><span class="na">setPrefSize</span><span class="o">(</span><span class="mi">80</span><span class="o">,</span> <span class="mi">120</span><span class="o">);</span>
+        <span class="n">card</span><span class="o">.</span><span class="na">getStyleClass</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="s">"carta-oculta"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">card</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="nf">criarBotao</span><span class="o">(</span><span class="nc">String</span> <span class="n">texto</span><span class="o">,</span> <span class="nc">String</span> <span class="n">cor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Button</span> <span class="n">btn</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="n">texto</span><span class="o">);</span>
+        <span class="n">btn</span><span class="o">.</span><span class="na">setStyle</span><span class="o">(</span><span class="s">"-fx-background-color: "</span> <span class="o">+</span> <span class="n">cor</span> <span class="o">+</span> <span class="s">"; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"</span><span class="o">);</span>
+        <span class="n">btn</span><span class="o">.</span><span class="na">setPrefWidth</span><span class="o">(</span><span class="mi">120</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">btn</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-5-estilização-css-moderno-e-responsivo">💅 5. Estilização CSS (Moderno e Responsivo)</h3>
+
+<p>Salve como <code class="language-plaintext highlighter-rouge">src/main/resources/styles.css</code>. Isso substitui a necessidade de HTML.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.root</span> <span class="p">{</span>
+  <span class="py">-fx-font-family</span><span class="p">:</span> <span class="s1">"Segoe UI"</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.titulo</span> <span class="p">{</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">24px</span><span class="p">;</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="py">-fx-effect</span><span class="p">:</span> <span class="n">dropshadow</span><span class="p">(</span><span class="n">three-pass-box</span><span class="p">,</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.6</span><span class="p">),</span> <span class="m">5</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.texto-branco</span> <span class="p">{</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.status</span> <span class="p">{</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">28px</span><span class="p">;</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">#f1c40f</span><span class="p">;</span>
+  <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="py">-fx-effect</span><span class="p">:</span> <span class="n">dropshadow</span><span class="p">(</span><span class="n">three-pass-box</span><span class="p">,</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.8</span><span class="p">),</span> <span class="m">10</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.carta</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-background-radius</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>
+  <span class="py">-fx-border-color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span>
+  <span class="py">-fx-border-radius</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>
+  <span class="py">-fx-border-width</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
+  <span class="py">-fx-effect</span><span class="p">:</span> <span class="n">dropshadow</span><span class="p">(</span><span class="n">three-pass-box</span><span class="p">,</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.4</span><span class="p">),</span> <span class="m">10</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.carta-oculta</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#a93226</span><span class="p">;</span> <span class="c">/* Vermelho fundo carta */</span>
+  <span class="py">-fx-background-radius</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>
+  <span class="py">-fx-border-color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-border-width</span><span class="p">:</span> <span class="m">3</span><span class="p">;</span>
+  <span class="py">-fx-border-style</span><span class="p">:</span> <span class="nb">dashed</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-8-gerar-versão-desktop-java-fx">🚀 8. Gerar Versão Desktop (Java FX)</h3>
+
+<p>No Java moderno, não usamos Electron. Usamos <strong>jpackage</strong> (incluso no JDK 21) para criar um <code class="language-plaintext highlighter-rouge">.exe</code> ou <code class="language-plaintext highlighter-rouge">.msi</code> nativo.</p>
+
+<ol>
+  <li><strong>Compile o projeto</strong> (via Maven):
+<code class="language-plaintext highlighter-rouge">mvn clean package</code></li>
+  <li><strong>Gere a imagem nativa</strong> (Exemplo de comando simplificado):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jpackage <span class="nt">--input</span> target/ <span class="nt">--name</span> Blackjack21 <span class="nt">--main-jar</span> blackjack-1.0.jar <span class="nt">--main-class</span> com.blackjack.controller.BlackjackGame <span class="nt">--type</span> app-image
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Isso criará um executável que o usuário pode clicar e jogar sem precisar instalar o Java manualmente.</p>
+
+<hr />
+
+<h3 id="próximo-passo">Próximo Passo</h3>
+
+<h3 id="-9-refatoração">🚀 9. Refatoração</h3>
+
+<p>Esse erro é um clássico no desenvolvimento moderno com JavaFX (pós-JDK 11).</p>
+
+<p>O motivo: Desde o Java 11, o JavaFX foi removido do JDK padrão e agora vive como módulos separados. Quando você tenta rodar diretamente uma classe que estende <code class="language-plaintext highlighter-rouge">Application</code> (como a nossa <code class="language-plaintext highlighter-rouge">BlackjackApp</code>), a JVM tenta carregar os componentes gráficos nativos antes mesmo de olhar para o seu classpath, e falha.</p>
+
+<p>Vou te ensinar o <strong>padrão da indústria</strong> para resolver isso sem precisar ficar configurando argumentos complexos de VM (<code class="language-plaintext highlighter-rouge">--module-path</code>, etc). Usaremos a técnica do <strong>Launcher (Lançador)</strong>.</p>
+
+<p>Siga estes passos simples:</p>
+
+<h3 id="-a-solução-o-truque-do-launcher">✅ A Solução: O “Truque” do Launcher</h3>
+
+<p>Precisamos criar uma classe simples que <strong>não</strong> estenda <code class="language-plaintext highlighter-rouge">Application</code>, apenas para chamar o <code class="language-plaintext highlighter-rouge">main</code> da classe principal. Isso engana a JVM e permite que as bibliotecas sejam carregadas corretamente do classpath.</p>
+
+<h4 id="1-crie-a-classe-launcherjava">1. Crie a classe <code class="language-plaintext highlighter-rouge">Launcher.java</code></h4>
+
+<p>Crie este arquivo na mesma pasta do seu <code class="language-plaintext highlighter-rouge">BlackjackApp.java</code> (<code class="language-plaintext highlighter-rouge">src/main/java/com/blackjack/Launcher.java</code>):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.blackjack</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Launcher</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">BlackjackApp</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="2-execute-pelo-launcher">2. Execute pelo Launcher</h4>
+
+<p>Agora, em vez de tentar rodar o <code class="language-plaintext highlighter-rouge">BlackjackApp.java</code>, <strong>execute o <code class="language-plaintext highlighter-rouge">Launcher.java</code></strong>.</p>
+
+<ul>
+  <li><strong>Se estiver no VS Code/IntelliJ:</strong> Clique com o botão direito em <code class="language-plaintext highlighter-rouge">Launcher.java</code> e selecione “Run”.</li>
+  <li><strong>Se estiver via Linha de Comando:</strong> Aponte para essa classe.</li>
+</ul>
+
+<hr />
+
+<h3 id="-alternativa-rodando-via-maven-recomendado">💡 Alternativa: Rodando via Maven (Recomendado)</h3>
+
+<p>Se você já configurou o <code class="language-plaintext highlighter-rouge">pom.xml</code> que te passei anteriormente, você nem precisa criar o Launcher se rodar direto pelo Maven. O plugin do JavaFX cuida disso para você.</p>
+
+<p>Abra o terminal na pasta do projeto (onde está o <code class="language-plaintext highlighter-rouge">pom.xml</code>) e digite:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean javafx:run
+</code></pre></div></div>
+
+<p>Isso deve abrir a janela do jogo imediatamente.</p>
+
+<h3 id="resumo-técnico-para-seu-aprendizado">Resumo Técnico (Para seu aprendizado)</h3>
+
+<p>O erro acontece porque a classe <code class="language-plaintext highlighter-rouge">BlackjackApp</code> herda de <code class="language-plaintext highlighter-rouge">javafx.application.Application</code>. A JVM verifica isso na inicialização e exige que os módulos JavaFX estejam no <em>Module Path</em>. Ao usar a classe <code class="language-plaintext highlighter-rouge">Launcher</code> (que é uma classe Java comum), a aplicação inicia normalmente e, quando chama <code class="language-plaintext highlighter-rouge">BlackjackApp.main()</code>, as bibliotecas já estão carregadas no <em>Class Path</em>, contornando a verificação estrita da inicialização.</p>
+
+<hr />
+
+<h1 id="códigos-completos">Códigos Completos</h1>
+
+<p><strong>Dependências no <code class="language-plaintext highlighter-rouge">pom.xml</code>:</strong>
+Precisamos das bibliotecas do JavaFX.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span>
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+    <span class="nt">&lt;groupId&gt;</span>com.blackjack<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>blackjack-desktop<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+
+    <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;maven.compiler.source&gt;</span>21<span class="nt">&lt;/maven.compiler.source&gt;</span>
+        <span class="nt">&lt;maven.compiler.target&gt;</span>21<span class="nt">&lt;/maven.compiler.target&gt;</span>
+        <span class="nt">&lt;javafx.version&gt;</span>21<span class="nt">&lt;/javafx.version&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javafx-controls<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${javafx.version}<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javafx-fxml<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${javafx.version}<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>3.11.0<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.openjfx<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>javafx-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>0.0.8<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;mainClass&gt;</span>com.blackjack.BlackjackApp<span class="nt">&lt;/mainClass&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-5-estilização-css-moderno-e-responsivo-1">💅 5. Estilização CSS (Moderno e Responsivo)</h3>
+
+<p>Salve como <code class="language-plaintext highlighter-rouge">src/main/resources/styles.css</code>. Isso substitui a necessidade de HTML.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.root</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#0a5c0a</span><span class="p">;</span> <span class="c">/* Verde clássico */</span>
+  <span class="py">-fx-font-family</span><span class="p">:</span> <span class="s1">"Arial"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Títulos */</span>
+<span class="nc">.titulo-principal</span> <span class="p">{</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">32px</span><span class="p">;</span>
+  <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="py">-fx-padding</span><span class="p">:</span> <span class="m">20</span><span class="p">;</span>
+  <span class="py">-fx-effect</span><span class="p">:</span> <span class="n">dropshadow</span><span class="p">(</span><span class="n">three-pass-box</span><span class="p">,</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> <span class="m">5</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.titulo-area</span> <span class="p">{</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">#ffc107</span><span class="p">;</span> <span class="c">/* Dourado */</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+  <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Container das Mãos (Areas) */</span>
+<span class="nc">.area-jogo</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.2</span><span class="p">);</span>
+  <span class="py">-fx-border-color</span><span class="p">:</span> <span class="nx">#ffc107</span><span class="p">;</span>
+  <span class="py">-fx-border-width</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
+  <span class="py">-fx-border-radius</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>
+  <span class="py">-fx-background-radius</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>
+  <span class="py">-fx-padding</span><span class="p">:</span> <span class="m">20</span><span class="p">;</span>
+  <span class="py">-fx-spacing</span><span class="p">:</span> <span class="m">15</span><span class="p">;</span>
+  <span class="py">-fx-alignment</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="py">-fx-min-width</span><span class="p">:</span> <span class="m">600</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* A Carta Visual */</span>
+<span class="nc">.carta</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-background-radius</span><span class="p">:</span> <span class="m">8</span><span class="p">;</span>
+  <span class="py">-fx-border-color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span>
+  <span class="py">-fx-border-radius</span><span class="p">:</span> <span class="m">8</span><span class="p">;</span>
+  <span class="py">-fx-border-width</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+  <span class="py">-fx-pref-width</span><span class="p">:</span> <span class="m">80</span><span class="p">;</span>
+  <span class="py">-fx-pref-height</span><span class="p">:</span> <span class="m">120</span><span class="p">;</span>
+  <span class="py">-fx-effect</span><span class="p">:</span> <span class="n">dropshadow</span><span class="p">(</span><span class="n">three-pass-box</span><span class="p">,</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.4</span><span class="p">),</span> <span class="m">8</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.carta-texto</span> <span class="p">{</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+  <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.carta-naipe-grande</span> <span class="p">{</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">36px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.red</span> <span class="p">{</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">#d90000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.black</span> <span class="p">{</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">black</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Carta Oculta (Verso) */</span>
+<span class="nc">.carta-oculta</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nf">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="nb">bottom</span> <span class="nb">right</span><span class="p">,</span> <span class="nx">#444</span><span class="p">,</span> <span class="nx">#666</span><span class="p">);</span>
+  <span class="py">-fx-background-radius</span><span class="p">:</span> <span class="m">8</span><span class="p">;</span>
+  <span class="py">-fx-border-color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-border-width</span><span class="p">:</span> <span class="m">2</span><span class="p">;</span>
+  <span class="py">-fx-border-style</span><span class="p">:</span> <span class="nb">solid</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Mensagem de Status */</span>
+<span class="nc">.status-msg</span> <span class="p">{</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">24px</span><span class="p">;</span>
+  <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="py">-fx-padding</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Botões */</span>
+<span class="nc">.button</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#ffc107</span><span class="p">;</span>
+  <span class="py">-fx-text-fill</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span>
+  <span class="py">-fx-font-size</span><span class="p">:</span> <span class="m">14px</span><span class="p">;</span>
+  <span class="py">-fx-font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+  <span class="py">-fx-background-radius</span><span class="p">:</span> <span class="m">5</span><span class="p">;</span>
+  <span class="py">-fx-cursor</span><span class="p">:</span> <span class="n">hand</span><span class="p">;</span>
+  <span class="py">-fx-padding</span><span class="p">:</span> <span class="m">10</span> <span class="m">20</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.button</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#ffd54f</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.button</span><span class="nd">:disabled</span> <span class="p">{</span>
+  <span class="py">-fx-background-color</span><span class="p">:</span> <span class="nx">#999</span><span class="p">;</span>
+  <span class="py">-fx-opacity</span><span class="p">:</span> <span class="m">0.7</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,285 @@
+<h1 id="comandos-de-impressão-em-java-print-println-e-printf">Comandos de Impressão em Java: <code class="language-plaintext highlighter-rouge">print</code>, <code class="language-plaintext highlighter-rouge">println</code> e <code class="language-plaintext highlighter-rouge">printf</code></h1>
+
+<p>Em Java, os comandos <code class="language-plaintext highlighter-rouge">print</code>, <code class="language-plaintext highlighter-rouge">println</code> e <code class="language-plaintext highlighter-rouge">printf</code> pertencem à classe <code class="language-plaintext highlighter-rouge">PrintStream</code>, mais comumente usada via <code class="language-plaintext highlighter-rouge">System.out</code>. Aqui estão as <strong>diferenças entre eles</strong> e as particularidades envolvendo quebras de linha:</p>
+
+<hr />
+
+<h3 id="-print">✅ <code class="language-plaintext highlighter-rouge">print</code></h3>
+
+<ul>
+  <li><strong>O que faz:</strong> Imprime um texto na saída padrão <strong>sem adicionar uma quebra de linha</strong> ao final.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Olá"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">" mundo!"</span><span class="o">);</span>
+<span class="c1">// Saída: Olá mundo!</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-println">✅ <code class="language-plaintext highlighter-rouge">println</code></h3>
+
+<ul>
+  <li><strong>O que faz:</strong> Imprime o texto e <strong>adiciona uma quebra de linha automática</strong> ao final.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Olá"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"mundo!"</span><span class="o">);</span>
+<span class="c1">// Saída:</span>
+<span class="c1">// Olá</span>
+<span class="c1">// mundo!</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-printf">✅ <code class="language-plaintext highlighter-rouge">printf</code></h3>
+
+<ul>
+  <li><strong>O que faz:</strong> Permite <strong>formatar a saída</strong> com placeholders (<code class="language-plaintext highlighter-rouge">%s</code>, <code class="language-plaintext highlighter-rouge">%d</code>, <code class="language-plaintext highlighter-rouge">%.2f</code>, etc.), semelhante ao <code class="language-plaintext highlighter-rouge">printf</code> da linguagem C.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Nome: %s, Idade: %d%n"</span><span class="o">,</span> <span class="s">"João"</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Letra <code class="language-plaintext highlighter-rouge">f</code>:</strong> significa <strong>“formatted”</strong>, ou seja, saída formatada.</li>
+</ul>
+
+<hr />
+
+<h2 id="-diferença-entre-">📌 Diferença entre `</h2>
+<p>` e <code class="language-plaintext highlighter-rouge">%n</code> no <code class="language-plaintext highlighter-rouge">printf</code></p>
+
+<h3 id="-">🔹 `</h3>
+<p>`</p>
+
+<ul>
+  <li>
+    <p>É o <strong>caractere de nova linha</strong> usado em muitos sistemas.</p>
+  </li>
+  <li>
+    <p>No Windows, quebra a linha, mas pode causar problemas de portabilidade.</p>
+  </li>
+  <li>
+    <p>Nem sempre respeita corretamente o sistema operacional (em alguns casos exóticos).</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Linha 1
+Linha 2"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="-n">🔹 <code class="language-plaintext highlighter-rouge">%n</code></h3>
+
+<ul>
+  <li>
+    <p>É a <strong>forma correta e portável</strong> de quebrar linha em <code class="language-plaintext highlighter-rouge">printf</code>.</p>
+  </li>
+  <li>
+    <p>Usa o separador de linha <strong>do sistema operacional</strong>.</p>
+  </li>
+  <li>
+    <p>Recomendado em Java para garantir que funcione corretamente em <strong>Windows, Linux e macOS</strong>.</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Linha 1%nLinha 2"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-diferença-de-quebra-de-linha-entre-windows-e-linux">🖥️ Diferença de quebra de linha entre Windows e Linux?</h2>
+
+<p>Sim:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sistema</th>
+      <th>Quebra de linha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Windows</td>
+      <td>`\r</td>
+    </tr>
+    <tr>
+      <td>` (carriage return + line feed)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Linux/macOS</td>
+      <td>`</td>
+    </tr>
+    <tr>
+      <td>` (line feed apenas)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>➡️ <strong>Por isso, o <code class="language-plaintext highlighter-rouge">%n</code> é preferível ao `
+` em <code class="language-plaintext highlighter-rouge">printf</code></strong>, pois ele cuida da quebra de linha correta de forma automática para cada sistema.</p>
+
+<hr />
+
+<h3 id="-resumo-final">✅ Resumo final</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comando</th>
+      <th>Adiciona quebra de linha?</th>
+      <th>Formatação?</th>
+      <th>Portável?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">print</code></td>
+      <td>❌ Não</td>
+      <td>❌ Não</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">println</code></td>
+      <td>✅ Sim (automática)</td>
+      <td>❌ Não</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>`printf(“</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>”)`</td>
+      <td>✅ Sim</td>
+      <td>✅ Sim</td>
+      <td>⚠️ Pode falhar</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">printf("%n")</code></td>
+      <td>✅ Sim</td>
+      <td>✅ Sim</td>
+      <td>✅ Recomendado</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Em Java, o comando <strong>mais utilizado no dia a dia</strong> depende do contexto do programa e do objetivo da saída. Aqui está um panorama realista com base em práticas comuns:</p>
+
+<hr />
+
+<h3 id="-1-systemoutprintln--mais-utilizado-no-geral">✅ 1. <code class="language-plaintext highlighter-rouge">System.out.println(...)</code> — <strong>Mais utilizado no geral</strong></h3>
+
+<ul>
+  <li>
+    <p><strong>Uso:</strong> Muito comum em <strong>programas simples, tutoriais, depuração (debug), saída padrão.</strong></p>
+  </li>
+  <li>
+    <p><strong>Por quê?</strong> É simples, rápido e já inclui a quebra de linha.</p>
+  </li>
+  <li>
+    <p><strong>Exemplo:</strong></p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Olá mundo!"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>🔹 <strong>Principal em exercícios de aprendizado, impressão de mensagens, logs simples, etc.</strong></p>
+
+<hr />
+
+<h3 id="-2-systemoutprint">✅ 2. <code class="language-plaintext highlighter-rouge">System.out.print(...)</code></h3>
+
+<ul>
+  <li>
+    <p><strong>Uso:</strong> Usado quando você <strong>não quer uma quebra de linha</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Comum em:</strong> Impressões contínuas na mesma linha ou construção manual de uma linha.</p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"João"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>🔹 Útil em <strong>menus interativos</strong> ou para montar uma linha passo a passo.</p>
+
+<hr />
+
+<h3 id="-3-systemoutprintf">✅ 3. <code class="language-plaintext highlighter-rouge">System.out.printf(...)</code></h3>
+
+<ul>
+  <li>
+    <p><strong>Uso:</strong> Usado quando você precisa de <strong>formatação precisa</strong> (números, casas decimais, alinhamento, etc).</p>
+  </li>
+  <li>
+    <p><strong>Comum em:</strong> Aplicações mais elaboradas, <strong>relatórios, outputs formatados, tabelas.</strong></p>
+  </li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Valor: %.2f%n"</span><span class="o">,</span> <span class="mf">12.3456</span><span class="o">);</span> <span class="c1">// Valor: 12.35</span>
+</code></pre></div></div>
+
+<p>🔹 Mais usado em <strong>aplicações reais e profissionais</strong> que exigem controle da formatação da saída.</p>
+
+<hr />
+
+<h3 id="-comparativo-prático">📊 Comparativo prático:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comando</th>
+      <th>Frequência de uso</th>
+      <th>Contexto ideal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">println</code></td>
+      <td>⭐⭐⭐⭐ (mais comum)</td>
+      <td>Saída simples, didática, debug</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">print</code></td>
+      <td>⭐⭐</td>
+      <td>Impressão sem quebra de linha</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">printf</code></td>
+      <td>⭐⭐⭐</td>
+      <td>Saída formatada (profissional)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="-conclusão">✅ Conclusão:</h3>
+
+<ul>
+  <li>
+    <p><strong>Mais usado no geral:</strong> <code class="language-plaintext highlighter-rouge">println</code>, especialmente no aprendizado e debug.</p>
+  </li>
+  <li>
+    <p><strong>Mais poderoso para formatação:</strong> <code class="language-plaintext highlighter-rouge">printf</code>, mais usado em aplicações sérias.</p>
+  </li>
+  <li>
+    <p><strong>Menos usado:</strong> <code class="language-plaintext highlighter-rouge">print</code>, mas ainda útil em situações específicas.</p>
+  </li>
+</ul>
+
+<p>Se você estiver ensinando, <code class="language-plaintext highlighter-rouge">println</code> é o padrão.<br />
+Se estiver construindo um sistema real, <code class="language-plaintext highlighter-rouge">printf</code> é mais comum.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

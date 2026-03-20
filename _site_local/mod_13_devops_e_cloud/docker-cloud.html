@@ -1,0 +1,686 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_13_devops_e_cloud/docker-cloud.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🐳 DevOps e Cloud | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🐳 DevOps e Cloud" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_13_devops_e_cloud/docker-cloud.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_13_devops_e_cloud/docker-cloud.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🐳 DevOps e Cloud" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🐳 DevOps e Cloud","url":"https://ricardotecpro.github.io/portal_jekyll/mod_13_devops_e_cloud/docker-cloud.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_13_devops_e_cloud/" style="margin-left: 0.5rem;">Mod 13 devops e cloud</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🐳 devops e cloud</span>
+          
+        
+      </nav>
+
+      <h1 id="-devops-e-cloud">🐳 DevOps e Cloud</h1>
+
+<h2 id="fundamentos-e-práticas-essenciais-do-docker">Fundamentos e práticas essenciais do Docker</h2>
+
+<h2 id="-tópicos">📜 Tópicos</h2>
+<ol>
+  <li>O Problema: “Funciona na Minha Máquina!”</li>
+  <li>O Que é Docker?
+    <ul>
+      <li>Contêineres: A Solução Mágica</li>
+      <li>Imagens Docker: A Receita do Bolo</li>
+    </ul>
+  </li>
+  <li>Docker Hub: Seu Universo de Imagens Docker
+    <ul>
+      <li>Principais Características e Funcionalidades</li>
+      <li>Interagindo com o Docker Hub via CLI</li>
+      <li>Benefícios de Usar o Docker Hub</li>
+    </ul>
+  </li>
+  <li>Contêineres vs. Máquinas Virtuais (VMs)</li>
+  <li>Vantagens de Usar Docker
+    <ul>
+      <li>Eficiência e Leveza</li>
+      <li>Portabilidade e Consistência</li>
+      <li>Agilidade no Desenvolvimento e CI/CD</li>
+    </ul>
+  </li>
+  <li>Instalando o Docker
+    <ul>
+      <li>Windows (com Docker Desktop e WSL2)</li>
+      <li>macOS (com Docker Desktop)</li>
+      <li>Linux (Docker Engine e Docker Desktop)</li>
+      <li>Verificando a Instalação (<code class="language-plaintext highlighter-rouge">docker run hello-world</code>)</li>
+    </ul>
+  </li>
+  <li>Primeiros Passos: Trabalhando com Contêineres Prontos
+    <ul>
+      <li>Buscando e Baixando Imagens do Docker Hub (<code class="language-plaintext highlighter-rouge">docker search</code>, <code class="language-plaintext highlighter-rouge">docker pull</code>)</li>
+      <li>Executando seu Primeiro Contêiner (<code class="language-plaintext highlighter-rouge">docker run</code>)</li>
+      <li>Listando Contêineres (<code class="language-plaintext highlighter-rouge">docker ps</code>)</li>
+      <li>Parando e Iniciando Contêineres (<code class="language-plaintext highlighter-rouge">docker stop</code>, <code class="language-plaintext highlighter-rouge">docker start</code>, <code class="language-plaintext highlighter-rouge">docker restart</code>)</li>
+      <li>Acessando Logs (<code class="language-plaintext highlighter-rouge">docker logs</code>)</li>
+      <li>Executando Comandos Dentro de um Contêiner (<code class="language-plaintext highlighter-rouge">docker exec</code>)</li>
+      <li>Removendo Contêineres e Imagens (<code class="language-plaintext highlighter-rouge">docker rm</code>, <code class="language-plaintext highlighter-rouge">docker rmi</code>)</li>
+    </ul>
+  </li>
+  <li>Criando Suas Próprias Aplicações com Docker
+    <ul>
+      <li>Entendendo o <code class="language-plaintext highlighter-rouge">Dockerfile</code>: A Receita da Sua Aplicação</li>
+      <li>Construindo Sua Imagem (<code class="language-plaintext highlighter-rouge">docker build</code>)</li>
+      <li>Exemplo Prático: Dockerizando uma Aplicação</li>
+      <li>Marcando (Tag) e Enviando (Push) Imagens para o Docker Hub</li>
+    </ul>
+  </li>
+  <li>Gerenciando Dados em Contêineres (Volumes)</li>
+  <li>Orquestrando Múltiplos Contêineres com Docker Compose</li>
+  <li>Docker no Ecossistema de Contêineres: Uma Comparação</li>
+  <li>Breve Olhar: História e Evolução do Docker</li>
+  <li>Integração com Ferramentas de Desenvolvimento (IDEs)</li>
+  <li>Conclusão e Próximos Passos</li>
+</ol>
+
+<hr />
+
+<h2 id="1--o-problema-funciona-na-minha-máquina">1. 🤔 O Problema: “Funciona na Minha Máquina!”</h2>
+
+<p>Todo desenvolvedor já passou por isso: você desenvolve uma aplicação, ela funciona perfeitamente no seu computador, mas ao tentar executá-la em outra máquina (de um colega, do servidor de testes ou de produção), surgem problemas de compatibilidade, dependências ausentes ou versões conflitantes de software. Esse é o clássico “mas funciona na minha máquina!”.</p>
+
+<p>É aqui que o Docker entra como uma solução elegante.</p>
+
+<h2 id="2--o-que-é-docker">2. 💡 O Que é Docker?</h2>
+
+<p>Docker é uma plataforma de código aberto que automatiza o deploy (implantação), o dimensionamento e a gestão de aplicações dentro de unidades padronizadas chamadas <strong>contêineres</strong>. Ele permite que desenvolvedores “empacotem” uma aplicação com todas as suas dependências (bibliotecas, frameworks, arquivos de configuração, etc.) em um único objeto.</p>
+
+<h3 id="-contêineres-a-solução-mágica">📦 Contêineres: A Solução Mágica</h3>
+<p>Contêineres são unidades leves e isoladas que empacotam aplicações e suas dependências, garantindo consistência no ambiente de execução. Eles executam diretamente sobre o kernel do sistema operacional hospedeiro, o que os torna mais eficientes em termos de recursos do que máquinas virtuais tradicionais.</p>
+
+<ul>
+  <li><strong>Isolamento:</strong> Cada contêiner opera em seu próprio ambiente isolado, com seu próprio sistema de arquivos, processos e rede, sem interferir em outros contêineres ou no sistema hospedeiro.</li>
+  <li><strong>Leveza:</strong> Compartilham o kernel do S.O. hospedeiro, necessitando de menos recursos (CPU, RAM, disco) que VMs.</li>
+  <li><strong>Portabilidade:</strong> Uma imagem de contêiner criada em um ambiente pode ser executada em qualquer outro ambiente que suporte Docker, melhorando a portabilidade e a eficiência.</li>
+</ul>
+
+<h3 id="-imagens-docker-a-receita-do-bolo">📜 Imagens Docker: A Receita do Bolo</h3>
+<p>Uma <strong>imagem Docker</strong> é um template somente leitura com instruções para criar um contêiner Docker. Pense nela como uma “receita” ou um “snapshot” que define o estado inicial do contêiner, incluindo o sistema operacional base, as aplicações e todas as suas dependências.</p>
+
+<ul>
+  <li>As imagens são construídas a partir de um arquivo de instruções chamado <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</li>
+  <li>Elas são armazenadas em registros de imagens, como o Docker Hub (público) ou registros privados.</li>
+  <li>Quando você executa <code class="language-plaintext highlighter-rouge">docker run &lt;imagem&gt;</code>, o Docker usa essa imagem para criar e iniciar uma instância executável: o contêiner.</li>
+</ul>
+
+<h2 id="3--docker-hub-seu-universo-de-imagens-docker">3. ✨ Docker Hub: Seu Universo de Imagens Docker</h2>
+
+<p>O <strong>Docker Hub</strong> é o registro de imagens oficial e o maior do mundo, fornecido pela Docker Inc. Ele serve como um repositório centralizado para encontrar, compartilhar e gerenciar imagens de contêineres. Pense nele como o GitHub, mas para imagens Docker.</p>
+
+<p><strong>Principais Características e Funcionalidades:</strong></p>
+
+<ul>
+  <li><strong>Repositórios Públicos e Privados:</strong>
+    <ul>
+      <li><strong>Públicos:</strong> Qualquer pessoa pode buscar e baixar (pull) imagens de repositórios públicos. Ideal para projetos de código aberto e imagens de base populares.</li>
+      <li><strong>Privados:</strong> Permitem que você armazene imagens que não deseja compartilhar publicamente. Contas gratuitas geralmente oferecem um número limitado de repositórios privados.</li>
+    </ul>
+  </li>
+  <li><strong>Imagens Oficiais (Official Images):</strong>
+    <ul>
+      <li>São uma coleção selecionada de imagens de alta qualidade, seguras e bem documentadas, mantidas pela Docker Inc. ou por parceiros verificados. Exemplos: <code class="language-plaintext highlighter-rouge">ubuntu</code>, <code class="language-plaintext highlighter-rouge">nginx</code>, <code class="language-plaintext highlighter-rouge">node</code>, <code class="language-plaintext highlighter-rouge">python</code>, <code class="language-plaintext highlighter-rouge">postgres</code>.</li>
+      <li>São recomendadas como base para a maioria das suas próprias imagens.</li>
+    </ul>
+  </li>
+  <li><strong>Imagens Verificadas de Publicadores (Verified Publisher Images):</strong>
+    <ul>
+      <li>Imagens fornecidas e mantidas por empresas de software e organizações confiáveis (ex: Microsoft, Oracle, Red Hat). Garantem que você está usando software de fontes autênticas.</li>
+    </ul>
+  </li>
+  <li><strong>Imagens da Comunidade (Community Images):</strong>
+    <ul>
+      <li>Milhares de imagens criadas e compartilhadas por usuários e organizações da comunidade Docker. A qualidade e segurança podem variar, então é importante usá-las com discernimento.</li>
+    </ul>
+  </li>
+  <li><strong>Builds Automatizados (Automated Builds):</strong>
+    <ul>
+      <li>Permite vincular seus repositórios Docker Hub a repositórios de código fonte (como GitHub ou Bitbucket).</li>
+      <li>Quando você faz um push para o seu repositório de código, o Docker Hub pode automaticamente construir (ou reconstruir) a imagem Docker a partir do seu <code class="language-plaintext highlighter-rouge">Dockerfile</code> e atualizar a imagem no Hub.</li>
+    </ul>
+  </li>
+  <li><strong>Webhooks:</strong>
+    <ul>
+      <li>Notificam outros serviços quando uma imagem é atualizada em seu repositório Docker Hub, permitindo a automação de pipelines de CI/CD.</li>
+    </ul>
+  </li>
+  <li><strong>Organizações e Times:</strong>
+    <ul>
+      <li>Permitem que múltiplos usuários colaborem em imagens privadas ou públicas sob uma conta de organização, com gerenciamento de permissões.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Interagindo com o Docker Hub via CLI:</strong></p>
+
+<ol>
+  <li><strong>Login:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login
+<span class="c"># Você será solicitado a inserir seu Docker ID (nome de usuário) e senha.</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Buscar Imagens (mais eficaz no site):</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker search termo_de_busca
+<span class="c"># Exemplo: docker search ubuntu</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Baixar (Pull) Imagens:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull nome_da_imagem:tag
+<span class="c"># Exemplo: docker pull ubuntu:22.04</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Marcar (Tag) Imagens para o Hub:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker tag minha-app-local:1.0 seu_docker_id/nome_do_repo_no_hub:1.0
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Enviar (Push) Imagens:</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker push seu_docker_id/nome_do_repo_no_hub:1.0
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>Benefícios de Usar o Docker Hub:</strong></p>
+<ul>
+  <li><strong>Centralização:</strong> Um local único para encontrar e distribuir imagens.</li>
+  <li><strong>Confiança:</strong> Imagens Oficiais e de Publicadores Verificados oferecem uma base segura.</li>
+  <li><strong>Colaboração:</strong> Facilita o compartilhamento de imagens entre equipes e com a comunidade.</li>
+  <li><strong>Automação:</strong> Builds automatizados simplificam o processo de CI/CD.</li>
+</ul>
+
+<h2 id="4--contêineres-vs-máquinas-virtuais-vms">4. 🆚 Contêineres vs. Máquinas Virtuais (VMs)</h2>
+
+<p>É comum confundir contêineres com Máquinas Virtuais (VMs), mas eles funcionam de maneiras diferentes:</p>
+
+<ul>
+  <li><strong>Máquinas Virtuais (VMs):</strong>
+    <ul>
+      <li>Virtualizam o <strong>hardware</strong>, criando um ambiente completo.</li>
+      <li>Cada VM possui seu próprio S.O. completo (kernel, bibliotecas e a aplicação). Isso pode levar a um uso menos eficiente dos recursos do sistema.</li>
+      <li>São mais pesadas e consomem mais recursos.</li>
+      <li>A inicialização é mais lenta (minutos).</li>
+      <li>Oferecem isolamento forte a nível de hardware.</li>
+    </ul>
+  </li>
+  <li><strong>Contêineres Docker:</strong>
+    <ul>
+      <li>Virtualizam o <strong>sistema operacional</strong>.</li>
+      <li>Compartilham o kernel do S.O. hospedeiro. Isso permite a execução de múltiplas aplicações em um único sistema, otimizando recursos.</li>
+      <li>Contêm apenas as bibliotecas e dependências da aplicação.</li>
+      <li>São mais leves e consomem menos recursos.</li>
+      <li>A inicialização é muito rápida (segundos ou menos).</li>
+      <li>Oferecem isolamento a nível de processo. Comparar Docker com outras tecnologias de virtualização revela suas vantagens em leveza e desvantagens em termos de isolamento.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    +-------------------+      +-------------------+
+    |    Aplicação A    |      |    Aplicação B    |
+    +-------------------+      +-------------------+
+    | Bins/Libs (App A) |      | Bins/Libs (App B) |
+    +-------------------+      +-------------------+
+    |     Docker Engine / Container Runtime         |
+    +-----------------------------------------------+
+    |          Sistema Operacional Host             |
+    +-----------------------------------------------+
+    |                   Hardware                    |
+    +-----------------------------------------------+
+                Arquitetura de Contêineres
+
+    +---------------+  +---------------+
+    |  Aplicação A  |  |  Aplicação B  |
+    +---------------+  +---------------+
+    |  Bins/Libs A  |  |  Bins/Libs B  |
+    +---------------+  +---------------+
+    | S.O. Convidado|  | S.O. Convidado|  &lt;-- Cada VM tem seu S.O.
+    +---------------+  +---------------+
+    |           Hypervisor             |
+    +----------------------------------+
+    |      Sistema Operacional Host    |
+    +----------------------------------+
+    |              Hardware            |
+    +----------------------------------+
+              Arquitetura de VMs
+</code></pre></div></div>
+
+<h2 id="5--vantagens-de-usar-docker">5. ✅ Vantagens de Usar Docker</h2>
+
+<p>Adotar o Docker traz inúmeros benefícios para o ciclo de vida de desenvolvimento de software:</p>
+
+<h3 id="️-eficiência-e-leveza">⚙️ Eficiência e Leveza</h3>
+<ul>
+  <li><strong>Uso Otimizado de Recursos:</strong> Contêineres Docker são mais leves que máquinas virtuais, permitindo um uso mais eficiente dos recursos do sistema.</li>
+  <li><strong>Desempenho Superior:</strong> A arquitetura dos contêineres permite um desempenho mais rápido e melhor resposta.</li>
+  <li><strong>Redução de Custos Operacionais:</strong> A eficiência no uso de recursos pode resultar em significativa redução nos custos operacionais.</li>
+</ul>
+
+<h3 id="-portabilidade-e-consistência">📦 Portabilidade e Consistência</h3>
+<ul>
+  <li><strong>Execute em Qualquer Lugar:</strong> Docker permite que aplicações sejam executadas em qualquer ambiente, eliminando problemas de compatibilidade.</li>
+  <li><strong>Ambientes Padronizados:</strong> A portabilidade melhora a consistência das aplicações, garantindo que funcionem da mesma forma em diferentes cenários.</li>
+  <li><strong>Confiabilidade Aumentada:</strong> Aplicações se tornam mais confiáveis, pois podem ser testadas e implantadas de maneira uniforme.</li>
+</ul>
+
+<h3 id="-agilidade-no-desenvolvimento-e-cicd">🚀 Agilidade no Desenvolvimento e CI/CD</h3>
+<ul>
+  <li><strong>Ciclos de Desenvolvimento Rápidos:</strong> O uso do Docker no desenvolvimento permite ciclos de entrega mais rápidos.</li>
+  <li><strong>Integração Contínua/Entrega Contínua (CI/CD):</strong> Docker integra-se perfeitamente com ferramentas de CI/CD, permitindo um fluxo de trabalho eficiente.</li>
+  <li><strong>Melhor Colaboração:</strong> Docker melhora a colaboração entre equipes, permitindo que desenvolvedores trabalhem em ambientes consistentes e reproduzíveis.</li>
+</ul>
+
+<h2 id="6--instalando-o-docker">6. 💻 Instalando o Docker</h2>
+
+<p>Para começar a usar o Docker, você precisa instalá-lo em seu sistema. A forma mais comum para desktops é o <strong>Docker Desktop</strong>.</p>
+
+<h3 id="instalação-no-windows">Instalação no Windows</h3>
+<ul>
+  <li><strong>Docker Desktop para Windows:</strong> Fornece uma interface gráfica amigável. Utiliza o WSL 2 (Windows Subsystem for Linux 2) para melhor desempenho.</li>
+  <li><strong>Requisitos:</strong> Windows 10/11 64-bit, WSL 2 habilitado, virtualização de hardware na BIOS.</li>
+  <li><strong>Passos:</strong>
+    <ol>
+      <li>Baixe o instalador do Docker Desktop.</li>
+      <li>Execute o instalador e siga as instruções de configuração.</li>
+      <li>Reinicie, se necessário, e inicie o Docker Desktop para começar. Após a instalação, é necessário configurar preferências e verificar se está funcionando corretamente.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="-instalação-no-macos">🍏 Instalação no macOS</h3>
+<ul>
+  <li><strong>Docker Desktop para macOS:</strong> Oferece uma plataforma poderosa para desenvolvimento na Apple.</li>
+  <li><strong>Passos:</strong>
+    <ol>
+      <li>Baixe o arquivo <code class="language-plaintext highlighter-rouge">.dmg</code> do Docker Desktop.</li>
+      <li>Abra o <code class="language-plaintext highlighter-rouge">.dmg</code> e arraste o Docker para a pasta Aplicativos.</li>
+      <li>Inicie o Docker Desktop e autorize a instalação. Após a instalação, garanta a configuração rápida para começar.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="-instalação-no-linux">🐧 Instalação no Linux</h3>
+<p>Pode ser via Docker Desktop ou instalando o Docker Engine diretamente.</p>
+
+<ul>
+  <li><strong>Docker Engine (Exemplo para Ubuntu):</strong>
+    <ol>
+      <li>Explore os passos necessários para instalar o Docker em um sistema Ubuntu.</li>
+      <li>(Comandos: <code class="language-plaintext highlighter-rouge">sudo apt update</code>, <code class="language-plaintext highlighter-rouge">sudo apt install apt-transport-https ca-certificates curl software-properties-common -y</code>, etc.)</li>
+      <li>É crucial configurar o ambiente corretamente após a instalação para garantir funcionamento eficiente.</li>
+    </ol>
+  </li>
+  <li><strong>Docker Engine (Exemplo para CentOS):</strong>
+    <ol>
+      <li>Aborde o processo de instalação no CentOS, destacando especificidades.</li>
+      <li>(Comandos: <code class="language-plaintext highlighter-rouge">sudo yum remove ...</code>, <code class="language-plaintext highlighter-rouge">sudo yum install -y yum-utils</code>, etc.)</li>
+      <li>Configure o ambiente corretamente.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="-verificando-a-instalação-docker-run-hello-world">✅ Verificando a Instalação (<code class="language-plaintext highlighter-rouge">docker run hello-world</code>)</h3>
+<p>Após a instalação, abra um terminal e verifique se tudo está funcionando:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nt">--version</span>
+docker info
+docker run hello-world
+</code></pre></div></div>
+<p>Se você vir uma mensagem de boas-vindas do <code class="language-plaintext highlighter-rouge">hello-world</code>, sua instalação está correta!</p>
+
+<h2 id="7--primeiros-passos-trabalhando-com-contêineres-prontos">7. 🚀 Primeiros Passos: Trabalhando com Contêineres Prontos</h2>
+
+<p>Agora que o Docker está instalado, vamos explorar como usar contêineres existentes.</p>
+
+<h3 id="-buscando-e-baixando-imagens-do-docker-hub-docker-search-docker-pull">🔍 Buscando e Baixando Imagens do Docker Hub (<code class="language-plaintext highlighter-rouge">docker search</code>, <code class="language-plaintext highlighter-rouge">docker pull</code>)</h3>
+<p>O Docker Hub é o principal local para encontrar imagens.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker search nginx
+docker pull nginx:latest
+</code></pre></div></div>
+
+<h3 id="️-executando-seu-primeiro-contêiner-docker-run">▶️ Executando seu Primeiro Contêiner (<code class="language-plaintext highlighter-rouge">docker run</code>)</h3>
+<p>O comando <code class="language-plaintext highlighter-rouge">docker run</code> é utilizado para iniciar um novo contêiner a partir de uma imagem especificada.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> meu-nginx-web <span class="nt">-p</span> 8080:80 <span class="nt">-d</span> nginx
+</code></pre></div></div>
+
+<h3 id="-listando-contêineres-docker-ps">📋 Listando Contêineres (<code class="language-plaintext highlighter-rouge">docker ps</code>)</h3>
+<p>O comando <code class="language-plaintext highlighter-rouge">docker ps</code> lista todos os contêineres em execução, fornecendo informações essenciais.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps
+docker ps <span class="nt">-a</span> <span class="c"># Lista todos, incluindo os parados</span>
+</code></pre></div></div>
+
+<h3 id="️-parando-e-iniciando-contêineres-docker-stop-docker-start-docker-restart">⏯️ Parando e Iniciando Contêineres (<code class="language-plaintext highlighter-rouge">docker stop</code>, <code class="language-plaintext highlighter-rouge">docker start</code>, <code class="language-plaintext highlighter-rouge">docker restart</code>)</h3>
+<p>O comando <code class="language-plaintext highlighter-rouge">docker stop</code> é usado para parar um ou mais contêineres em execução de forma segura.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stop meu-nginx-web
+docker start meu-nginx-web
+docker restart meu-nginx-web
+</code></pre></div></div>
+
+<h3 id="-acessando-logs-docker-logs">📜 Acessando Logs (<code class="language-plaintext highlighter-rouge">docker logs</code>)</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker logs meu-nginx-web
+docker logs <span class="nt">-f</span> meu-nginx-web <span class="c"># Segue os logs</span>
+</code></pre></div></div>
+
+<h3 id="executando-comandos-dentro-de-um-contêiner-docker-exec">Executando Comandos Dentro de um Contêiner (<code class="language-plaintext highlighter-rouge">docker exec</code>)</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> meu-nginx-web bash
+</code></pre></div></div>
+
+<h3 id="️-removendo-contêineres-e-imagens-docker-rm-docker-rmi">🗑️ Removendo Contêineres e Imagens (<code class="language-plaintext highlighter-rouge">docker rm</code>, <code class="language-plaintext highlighter-rouge">docker rmi</code>)</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">rm </span>meu-nginx-web <span class="c"># Remove contêiner parado</span>
+docker rmi nginx <span class="c"># Remove imagem (se não usada por contêineres)</span>
+</code></pre></div></div>
+
+<h2 id="8-️-criando-suas-próprias-aplicações-com-docker">8. 🛠️ Criando Suas Próprias Aplicações com Docker</h2>
+
+<p>Empacote suas aplicações usando um <code class="language-plaintext highlighter-rouge">Dockerfile</code>. Isso permite criar contêineres personalizados adaptados às suas necessidades.</p>
+
+<h3 id="-entendendo-o-dockerfile-a-receita-da-sua-aplicação">📄 Entendendo o <code class="language-plaintext highlighter-rouge">Dockerfile</code>: A Receita da Sua Aplicação</h3>
+<p>Um <code class="language-plaintext highlighter-rouge">Dockerfile</code> é um arquivo de texto com instruções para construir uma imagem Docker.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FROM &lt;imagem_base&gt;</code></li>
+  <li><code class="language-plaintext highlighter-rouge">WORKDIR /caminho/no/container</code></li>
+  <li><code class="language-plaintext highlighter-rouge">COPY &lt;origem&gt; &lt;destino&gt;</code></li>
+  <li><code class="language-plaintext highlighter-rouge">RUN &lt;comando&gt;</code></li>
+  <li><code class="language-plaintext highlighter-rouge">EXPOSE &lt;porta&gt;</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CMD ["executavel", "param1"]</code></li>
+</ul>
+
+<h3 id="-construindo-sua-imagem-docker-build">🧱 Construindo Sua Imagem (<code class="language-plaintext highlighter-rouge">docker build</code>)</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> nome-da-sua-imagem:tag <span class="nb">.</span>
+</code></pre></div></div>
+
+<h3 id="-exemplo-prático-dockerizando-uma-aplicação">✨ Exemplo Prático: Dockerizando uma Aplicação</h3>
+<p>(Segue o exemplo Node.js já fornecido anteriormente)</p>
+
+<ol>
+  <li><strong>Crie <code class="language-plaintext highlighter-rouge">app.js</code> e <code class="language-plaintext highlighter-rouge">package.json</code>.</strong></li>
+  <li><strong>Crie o <code class="language-plaintext highlighter-rouge">Dockerfile</code>:</strong>
+    <div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> node:18-alpine</span>
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app</span>
+<span class="k">COPY</span><span class="s"> package*.json ./</span>
+<span class="k">RUN </span>npm <span class="nb">install</span>
+<span class="k">COPY</span><span class="s"> ../modulo_08_ambiente_desenvolvimento .</span>
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">CMD</span><span class="s"> [ "npm", "start" ]</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Construa:</strong> <code class="language-plaintext highlighter-rouge">docker build -t meu-app-node .</code></li>
+  <li><strong>Execute:</strong> <code class="language-plaintext highlighter-rouge">docker run -p 3000:3000 -d meu-app-node</code></li>
+</ol>
+
+<h3 id="️-marcando-tag-e-enviando-push-imagens-para-o-docker-hub">⬆️ Marcando (Tag) e Enviando (Push) Imagens para o Docker Hub</h3>
+<p>Depois de construir e testar sua imagem localmente, você pode compartilhá-la no Docker Hub (ou outro registro).</p>
+<ol>
+  <li><strong>Login (se ainda não fez):</strong> <code class="language-plaintext highlighter-rouge">docker login</code></li>
+  <li><strong>Tag:</strong> <code class="language-plaintext highlighter-rouge">docker tag meu-app-node:latest seu_docker_id/meu-app-node:1.0</code></li>
+  <li><strong>Push:</strong> <code class="language-plaintext highlighter-rouge">docker push seu_docker_id/meu-app-node:1.0</code></li>
+</ol>
+
+<h2 id="9--gerenciando-dados-em-contêineres-volumes">9. 💾 Gerenciando Dados em Contêineres (Volumes)</h2>
+
+<p>É importante entender a persistência de dados em contêineres para garantir que seus dados sejam salvos e acessíveis.</p>
+<ul>
+  <li><strong>Volumes Nomeados:</strong> <code class="language-plaintext highlighter-rouge">docker run -v meu-volume:/app/dados minha-imagem</code></li>
+  <li><strong>Bind Mounts:</strong> <code class="language-plaintext highlighter-rouge">docker run -v /caminho/no/host:/app minha-imagem</code></li>
+</ul>
+
+<h2 id="10--orquestrando-múltiplos-contêineres-com-docker-compose">10. 🔗 Orquestrando Múltiplos Contêineres com Docker Compose</h2>
+
+<p>Para aplicações com múltiplos serviços, use o Docker Compose.</p>
+<ul>
+  <li>Crie um arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>.</li>
+  <li><strong>Exemplo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>:</strong>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span>
+  <span class="na">services</span><span class="pi">:</span>
+    <span class="na">webapp</span><span class="pi">:</span>
+      <span class="na">build</span><span class="pi">:</span> <span class="s">../modulo_08_ambiente_desenvolvimento</span>
+      <span class="na">ports</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">3000:3000"</span><span class="pi">]</span>
+      <span class="na">volumes</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">.:/usr/src/app"</span><span class="pi">]</span>
+      <span class="na">environment</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">DB_HOST=db"</span><span class="pi">]</span>
+      <span class="na">depends_on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">db</span><span class="pi">]</span>
+    <span class="na">db</span><span class="pi">:</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15-alpine</span>
+      <span class="na">volumes</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">postgres_data:/var/lib/postgresql/data"</span><span class="pi">]</span>
+      <span class="na">environment</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">POSTGRES_USER=user"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">POSTGRES_PASSWORD=pass"</span><span class="pi">]</span>
+  <span class="na">volumes</span><span class="pi">:</span>
+    <span class="na">postgres_data</span><span class="pi">:</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Comandos:</strong> <code class="language-plaintext highlighter-rouge">docker-compose up -d</code>, <code class="language-plaintext highlighter-rouge">docker-compose down</code>, <code class="language-plaintext highlighter-rouge">docker-compose ps</code>, <code class="language-plaintext highlighter-rouge">docker-compose logs webapp</code>.</li>
+</ul>
+
+<h2 id="11--docker-no-ecossistema-de-contêineres-uma-comparação">11. 🆚 Docker no Ecossistema de Contêineres: Uma Comparação</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Característica</th>
+      <th style="text-align: left">Docker (com Docker Engine)</th>
+      <th style="text-align: left">Podman (com Buildah &amp; Skopeo)</th>
+      <th style="text-align: left">LXC/LXD</th>
+      <th style="text-align: left">containerd (com <code class="language-plaintext highlighter-rouge">nerdctl</code>)</th>
+      <th style="text-align: left">Kubernetes (Orquestrador)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Arquitetura</strong></td>
+      <td style="text-align: left">Daemon (dockerd)</td>
+      <td style="text-align: left">Daemonless (interage diretamente com o kernel)</td>
+      <td style="text-align: left">Daemon (LXD) ou bibliotecas (LXC)</td>
+      <td style="text-align: left">Daemon (containerd)</td>
+      <td style="text-align: left">Arquitetura complexa de master/nodos com múltiplos daemons</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Foco Principal</strong></td>
+      <td style="text-align: left">Plataforma completa para desenvolvimento, build e execução de apps</td>
+      <td style="text-align: left">Alternativa ao Docker CLI, foco em segurança (rootless by default)</td>
+      <td style="text-align: left">Contêineres de sistema (mais parecidos com VMs leves)</td>
+      <td style="text-align: left">Runtime de contêineres de baixo nível, padrão da indústria</td>
+      <td style="text-align: left">Orquestração de contêineres em larga escala</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>OCI Compliance</strong></td>
+      <td style="text-align: left">Sim (usa containerd por baixo)</td>
+      <td style="text-align: left">Sim</td>
+      <td style="text-align: left">Sim (para imagens OCI com LXD)</td>
+      <td style="text-align: left">Sim (é um runtime OCI)</td>
+      <td style="text-align: left">Sim (usa runtimes OCI como containerd ou CRI-O)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Build de Imagens</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">docker build</code> (Dockerfile)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">podman build</code> (Dockerfile), <code class="language-plaintext highlighter-rouge">buildah bud</code></td>
+      <td style="text-align: left">Suporte para Dockerfile via LXD, ou criação de templates LXC</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">nerdctl build</code> (Dockerfile)</td>
+      <td style="text-align: left">Não constrói imagens diretamente; consome imagens prontas</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>CLI</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">docker</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">podman</code> (compatível com muitos comandos Docker)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">lxc</code>, <code class="language-plaintext highlighter-rouge">lxd</code> (com <code class="language-plaintext highlighter-rouge">lxc</code>)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">nerdctl</code> (compatível com Docker CLI), <code class="language-plaintext highlighter-rouge">ctr</code> (mais baixo nível)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">kubectl</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Segurança (Rootless)</strong></td>
+      <td style="text-align: left">Suportado (requer configuração)</td>
+      <td style="text-align: left">Padrão e mais robusto</td>
+      <td style="text-align: left">Suportado</td>
+      <td style="text-align: left">Suportado (com configuração)</td>
+      <td style="text-align: left">Suportado (configurável nos Pods e runtimes)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Gestão de Imagens</strong></td>
+      <td style="text-align: left">Docker Hub, registros privados</td>
+      <td style="text-align: left">Registros OCI (Docker Hub, Quay.io, etc.)</td>
+      <td style="text-align: left">Registros de imagens LXD, Docker Hub</td>
+      <td style="text-align: left">Registros OCI</td>
+      <td style="text-align: left">Registros OCI</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Composição (Multi-contêiner local)</strong></td>
+      <td style="text-align: left">Docker Compose</td>
+      <td style="text-align: left">Podman Compose, ou gerenciamento de Pods (conceito do K8s)</td>
+      <td style="text-align: left">Não tem ferramenta de composição análoga direta</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">nerdctl compose</code></td>
+      <td style="text-align: left">Pods (definidos em YAML)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Comunidade/Ecossistema</strong></td>
+      <td style="text-align: left">Enorme, muito maduro</td>
+      <td style="text-align: left">Crescente, forte na comunidade Red Hat/Linux</td>
+      <td style="text-align: left">Estabelecida, especialmente para contêineres de sistema Linux</td>
+      <td style="text-align: left">Forte (componente central do Docker e Kubernetes)</td>
+      <td style="text-align: left">Enorme, padrão de fato para orquestração</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Casos de Uso Típicos</strong></td>
+      <td style="text-align: left">Desenvolvimento de apps, CI/CD, deploy em pequena/média escala</td>
+      <td style="text-align: left">Ambientes que exigem mais segurança, alternativa ao daemon Docker</td>
+      <td style="text-align: left">Isolar serviços ou aplicações completas como se fossem VMs</td>
+      <td style="text-align: left">Componente de runtime para plataformas como Docker ou K8s</td>
+      <td style="text-align: left">Deploy, escalonamento e gerenciamento de apps em produção</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="12--breve-olhar-história-e-evolução-do-docker">12. ⏳ Breve Olhar: História e Evolução do Docker</h2>
+
+<ul>
+  <li><strong>Lançamento:</strong> O Docker foi lançado em 2013, introduzindo uma nova forma de empacotar e distribuir aplicações.</li>
+  <li><strong>Evolução:</strong> Com o tempo, o Docker evoluiu, incorporando novas funcionalidades que melhoraram a gestão de contêineres e a orquestração.</li>
+  <li><strong>Impacto:</strong> O impacto na indústria foi profundo, promovendo eficiência no desenvolvimento e implantação de software.</li>
+</ul>
+
+<h2 id="13-️-integração-com-ferramentas-de-desenvolvimento-ides">13. 🛠️ Integração com Ferramentas de Desenvolvimento (IDEs)</h2>
+
+<ul>
+  <li><strong>VS Code:</strong> A extensão “Docker” da Microsoft oferece excelente suporte.</li>
+  <li><strong>IntelliJ IDEA (Ultimate):</strong> Possui integração nativa robusta.</li>
+</ul>
+
+<h2 id="14--conclusão-e-próximos-passos">14. 🎉 Conclusão e Próximos Passos</h2>
+
+<p>Docker revolucionou o desenvolvimento de aplicações. Com este manual, você possui as bases para começar a utilizar o Docker. Ele oferece funcionalidades poderosas que melhoram a eficiência e a escalabilidade.</p>
+
+<p><strong>Próximos Passos:</strong></p>
+<ol>
+  <li>Pratique! Containerize suas aplicações.</li>
+  <li>Explore Dockerfiles avançados (multi-stage builds).</li>
+  <li>Aprofunde-se em Redes Docker.</li>
+  <li>Estude Orquestração (Kubernetes).</li>
+  <li>Segurança em Contêineres.</li>
+</ol>
+
+<h2 id="-referências-e-recursos-adicionais">📘 Referências e Recursos Adicionais</h2>
+<ul>
+  <li><a href="https://docs.docker.com/">Documentação Oficial do Docker</a></li>
+  <li><a href="https://hub.docker.com/">Docker Hub</a></li>
+  <li><a href="https://dockerlabs.collabnix.com/docker/cheatsheet/">Docker Cheat Sheet</a></li>
+  <li><a href="https://docs.docker.com/engine/reference/commandline/docker/">Docker CLI Reference</a></li>
+  <li><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Dockerfile Best Practices</a></li>
+  <li><a href="https://docs.docker.com/compose/">Docker Compose Documentation</a></li>
+  <li><a href="https://docs.docker.com/engine/security/security/">Docker Security Best Practices</a></li>
+  <li><a href="https://docs.docker.com/network/">Docker Networking Overview</a></li>
+  <li><a href="https://docs.docker.com/storage/volumes/">Docker Volumes Documentation</a></li>
+  <li><a href="https://docs.docker.com/engine/swarm/">Docker Swarm Overview</a></li>
+  <li><a href="https://docs.docker.com/desktop/">Docker Desktop Documentation</a></li>
+  <li><a href="https://docs.docker.com/desktop/windows/wsl/">Docker for Windows with WSL2</a></li>
+  <li><a href="https://docs.docker.com/desktop/mac/">Docker for Mac</a></li>
+  <li><a href="https://docs.docker.com/engine/install/">Docker for Linux</a></li>
+</ul>
+
+<h2 id="15--exemplos-práticos">15. 📚 Exemplos Práticos</h2>
+<h3 id="exemplo-1-dockerizando-uma-aplicação-java-simples">Exemplo 1: Dockerizando uma Aplicação Java Simples</h3>
+<p>Para criar uma aplicação Java simples e dockerizá-la, siga os passos abaixo:</p>
+
+<p><a href="ricardotecpro.github.io/modulo_08_ambiente_desenvolvimentohttps://ricardotecpro.github.io/modulo_08_ambiente_desenvolvimento/docker/calculadora-java/README.html">Docker Exemplo 1</a></p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

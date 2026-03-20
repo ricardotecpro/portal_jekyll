@@ -1,0 +1,1342 @@
+<h1 id="-java-memória-vetores-e-listas">☕ Java: Memória, Vetores e Listas</h1>
+
+<h2 id="-tipos-referência-vs-tipos-valor">🧠 Tipos Referência vs. Tipos Valor</h2>
+
+<p>Em Java, a forma como as variáveis armazenam dados difere crucialmente entre tipos primitivos (valor) e tipos complexos (referência, como classes e arrays).</p>
+
+<h3 id="-classes-são-tipos-referência">🔗 Classes são Tipos Referência</h3>
+
+<p>Variáveis que são instâncias de classes não armazenam o objeto diretamente. Em vez disso, elas contêm um endereço de memória que “aponta” para o local onde o objeto real está armazenado. Essa área de memória é chamada de <em>Heap</em>. As variáveis de referência em si residem em uma área de memória chamada <em>Stack</em>.</p>
+
+<p><strong>Analogia:</strong> Pense em uma variável de referência como um “controle remoto” (o ponteiro) e o objeto como a “TV” (os dados na Heap).</p>
+
+<p><strong>Exemplo de Atribuição:</strong></p>
+
+<p>Quando você atribui uma variável de referência a outra (<code class="language-plaintext highlighter-rouge">p2 = p1;</code>), ambas as variáveis passam a apontar para o <em>mesmo</em> objeto na Heap. Não é criada uma cópia do objeto.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Declaração de duas variáveis do tipo Produto</span>
+<span class="nc">Produto</span> <span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">;</span>
+
+<span class="c1">// p1 recebe um novo objeto Produto ("TV", 900.00, 0) alocado na Heap</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// p2 agora aponta para o MESMO objeto que p1 aponta</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Memória (Conceitual):</strong></p>
+
+<ul>
+  <li><strong>Stack (Pilha):</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">p1</code> (contém o endereço, ex: 0x100358)</li>
+      <li><code class="language-plaintext highlighter-rouge">p2</code> (contém o mesmo endereço, ex: 0x100358, após <code class="language-plaintext highlighter-rouge">p2 = p1;</code>)</li>
+    </ul>
+  </li>
+  <li><strong>Heap (Monte):</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0x100358: [Objeto Produto: nome="TV", preco=900.0, quantidade=0]</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Se você alterar o estado do objeto através de <code class="language-plaintext highlighter-rouge">p1</code> (por exemplo, <code class="language-plaintext highlighter-rouge">p1.setPreco(850.0)</code>), a mudança será refletida quando você acessar o objeto através de <code class="language-plaintext highlighter-rouge">p2</code>, pois ambos se referem à mesma instância.</p>
+
+<h3 id="-valor-null">👻 Valor “null”</h3>
+
+<p>Tipos referência podem ter um valor especial chamado <code class="language-plaintext highlighter-rouge">null</code>. Isso significa que a variável não está apontando para nenhum objeto na Heap.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Produto</span> <span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">;</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// p2 não referencia nenhum objeto</span>
+</code></pre></div></div>
+
+<p>Se você tentar acessar um membro de uma variável que é <code class="language-plaintext highlighter-rouge">null</code> (ex: <code class="language-plaintext highlighter-rouge">p2.getNome();</code>), o Java lançará uma <code class="language-plaintext highlighter-rouge">NullPointerException</code>.</p>
+
+<h3 id="-tipos-primitivos-são-tipos-valor">📦 Tipos Primitivos são Tipos Valor</h3>
+
+<p>Tipos primitivos em Java (como <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">double</code>, <code class="language-plaintext highlighter-rouge">boolean</code>, <code class="language-plaintext highlighter-rouge">char</code>, etc.) são tratados como <strong>tipos valor</strong>. Isso significa que a variável armazena o valor <em>diretamente</em> dentro do espaço alocado para ela na Stack.</p>
+
+<p><strong>Analogia:</strong> Pense em uma variável de tipo valor como uma “caixa” que contém o valor diretamente.</p>
+
+<p><strong>Exemplo de Atribuição:</strong></p>
+
+<p>Quando você atribui uma variável de tipo valor a outra (<code class="language-plaintext highlighter-rouge">y = x;</code>), uma <em>cópia</em> do valor é feita.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span> <span class="c1">// y recebe uma CÓPIA do valor de x (10.0)</span>
+
+<span class="c1">// Alterar y não afeta x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">20.0</span><span class="o">;</span>
+<span class="c1">// Agora, x é 10.0 e y é 20.0</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Memória (Conceitual):</strong></p>
+
+<ul>
+  <li><strong>Stack (Pilha):</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">x</code> (contém o valor 10.0)</li>
+      <li><code class="language-plaintext highlighter-rouge">y</code> (contém o valor 10.0, após <code class="language-plaintext highlighter-rouge">y = x;</code>, e depois 20.0 após <code class="language-plaintext highlighter-rouge">y = 20.0;</code>)</li>
+    </ul>
+  </li>
+  <li><strong>Heap (Monte):</strong>
+    <ul>
+      <li>Não utilizada para esses tipos primitivos diretamente.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="-tabela-de-tipos-primitivos-em-java">📜 Tabela de Tipos Primitivos em Java</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Tipo</th>
+      <th style="text-align: left">Conteúdo</th>
+      <th style="text-align: left">Padrão</th>
+      <th style="text-align: left">Tamanho</th>
+      <th style="text-align: left">Intervalo (aproximado)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left">1 bit</td>
+      <td style="text-align: left">N/A</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td style="text-align: left">Caractere Unicode</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">\u0000</code></td>
+      <td style="text-align: left">16 bits</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">\u0000</code> a <code class="language-plaintext highlighter-rouge">\uFFFF</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">byte</code></td>
+      <td style="text-align: left">Inteiro com sinal</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td style="text-align: left">8 bits</td>
+      <td style="text-align: left">-128 a 127</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td style="text-align: left">Inteiro com sinal</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td style="text-align: left">16 bits</td>
+      <td style="text-align: left">-32.768 a 32.767</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left">Inteiro com sinal</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td style="text-align: left">32 bits</td>
+      <td style="text-align: left">-2.147.483.648 a 2.147.483.647</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td style="text-align: left">Inteiro com sinal</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0L</code></td>
+      <td style="text-align: left">64 bits</td>
+      <td style="text-align: left">-9x10^18 a 9x10^18</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">float</code></td>
+      <td style="text-align: left">Ponto flutuante IEEE 754</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0.0f</code></td>
+      <td style="text-align: left">32 bits</td>
+      <td style="text-align: left">±1.4E-45 a ±3.4028235E+38</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td style="text-align: left">Ponto flutuante IEEE 754</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0.0</code></td>
+      <td style="text-align: left">64 bits</td>
+      <td style="text-align: left">±4.9E-324 a ±1.7976931348623157E+308</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Observação sobre Inicialização de Tipos Primitivos:</strong></p>
+
+<p>Variáveis locais de tipo primitivo <em>não</em> são inicializadas automaticamente. Você deve atribuir um valor a elas antes de usá-las, caso contrário, ocorrerá um erro de compilação.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Exemplo de erro:</span>
+<span class="kt">int</span> <span class="n">p</span><span class="o">;</span>
+<span class="c1">// System.out.println(p); // ERRO: variável p não foi inicializada</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">);</span> <span class="c1">// OK</span>
+</code></pre></div></div>
+
+<h3 id="-valores-padrão-para-tipos-estruturados">🎁 Valores Padrão para Tipos Estruturados</h3>
+
+<p>Quando você aloca (usando <code class="language-plaintext highlighter-rouge">new</code>) qualquer tipo estruturado (classe ou array), seus elementos (atributos de classe ou posições do array) recebem valores padrão se não forem explicitamente inicializados no construtor (para classes) ou na criação (para arrays).</p>
+
+<ul>
+  <li><strong>Números</strong> ( <code class="language-plaintext highlighter-rouge">byte</code>, <code class="language-plaintext highlighter-rouge">short</code>, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">long</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">double</code>): <code class="language-plaintext highlighter-rouge">0</code> (ou <code class="language-plaintext highlighter-rouge">0.0</code>)</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">boolean</code></strong>: <code class="language-plaintext highlighter-rouge">false</code></li>
+  <li><strong><code class="language-plaintext highlighter-rouge">char</code></strong>: <code class="language-plaintext highlighter-rouge">\u0000</code> (caractere nulo)</li>
+  <li><strong>Tipos Referência (Objetos, Arrays)</strong>: <code class="language-plaintext highlighter-rouge">null</code></li>
+</ul>
+
+<p><strong>Exemplo:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="c1">// Construtor padrão implícito ou explícito sem inicializações</span>
+<span class="o">}</span>
+
+<span class="c1">// ...</span>
+
+<span class="nc">Produto</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">();</span>
+<span class="c1">// Neste ponto:</span>
+<span class="c1">// p.nome é null</span>
+<span class="c1">// p.preco é 0.0</span>
+<span class="c1">// p.quantidade é 0</span>
+</code></pre></div></div>
+
+<h3 id="️-tabela-comparativa-tipos-referência-vs-tipos-valor">⚖️ Tabela Comparativa: Tipos Referência vs. Tipos Valor</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Característica</th>
+      <th style="text-align: left">CLASSE (Tipo Referência)</th>
+      <th style="text-align: left">TIPO PRIMITIVO (Tipo Valor)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Vantagem Principal</strong></td>
+      <td style="text-align: left">Usufrui de todos os recursos de Orientação a Objetos (OO)</td>
+      <td style="text-align: left">É mais simples e mais performático para operações diretas</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Natureza da Variável</strong></td>
+      <td style="text-align: left">Variáveis são “ponteiros” ou “referências”</td>
+      <td style="text-align: left">Variáveis são “caixas” contendo o valor diretamente</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Instanciação</strong></td>
+      <td style="text-align: left">Objetos precisam ser instanciados com <code class="language-plaintext highlighter-rouge">new</code></td>
+      <td style="text-align: left">Não se instancia. Declarou, está pronto para uso.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Valor <code class="language-plaintext highlighter-rouge">null</code></strong></td>
+      <td style="text-align: left">Aceita valor <code class="language-plaintext highlighter-rouge">null</code> (aponta para ninguém)</td>
+      <td style="text-align: left">Não aceita valor <code class="language-plaintext highlighter-rouge">null</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Atribuição (<code class="language-plaintext highlighter-rouge">Y = X</code>)</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Y</code> passa a apontar para onde <code class="language-plaintext highlighter-rouge">X</code> aponta</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Y</code> recebe uma <em>cópia</em> do valor de <code class="language-plaintext highlighter-rouge">X</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Local de Armazenamento do “Dado”</strong></td>
+      <td style="text-align: left">Objetos instanciados na memória <em>Heap</em></td>
+      <td style="text-align: left">“Objetos” (valores) instanciados na memória <em>Stack</em></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Desalocação de Memória (quando não utilizado)</strong></td>
+      <td style="text-align: left">Pelo <em>Garbage Collector</em> em um momento oportuno</td>
+      <td style="text-align: left">Imediatamente quando seu escopo de execução é finalizado</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="️-desalocação-de-memória-garbage-collector-e-escopo">🗑️ Desalocação de Memória: Garbage Collector e Escopo</h2>
+
+<h3 id="-garbage-collector-coletor-de-lixo">🧹 Garbage Collector (Coletor de Lixo)</h3>
+
+<p>O Garbage Collector (GC) é um processo automático em Java que gerencia a memória. Ele monitora os objetos alocados dinamicamente na <em>Heap</em>. Quando um objeto não possui mais nenhuma referência apontando para ele (ou seja, tornou-se inacessível pelo código), o GC o considera “lixo” e, eventualmente, desaloca a memória que ele ocupava, tornando-a disponível para futuras alocações.</p>
+
+<p><strong>Exemplo de Objeto se Tornando Elegível para Coleta:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Produto</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>       <span class="c1">// Objeto 1 (TV) é criado na Heap, p1 aponta para ele</span>
+<span class="nc">Produto</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Mouse"</span><span class="o">,</span> <span class="mf">30.00</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>   <span class="c1">// Objeto 2 (Mouse) é criado na Heap, p2 aponta para ele</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span><span class="o">;</span> <span class="c1">// Agora p1 também aponta para o Objeto 2 (Mouse).</span>
+         <span class="c1">// O Objeto 1 (TV) não tem mais nenhuma referência (p1 foi redirecionado).</span>
+         <span class="c1">// O Objeto 1 (TV) se torna elegível para ser coletado pelo Garbage Collector.</span>
+</code></pre></div></div>
+
+<h3 id="-desalocação-por-escopo-variáveis-locais">🚪 Desalocação por Escopo (Variáveis Locais)</h3>
+
+<p>Variáveis locais, tanto de tipo primitivo quanto de tipo referência, existem apenas dentro do escopo em que foram declaradas (geralmente um método ou um bloco de código como <code class="language-plaintext highlighter-rouge">if</code>, <code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">while</code>).</p>
+
+<p>Quando a execução do programa sai desse escopo, a memória alocada na <em>Stack</em> para essas variáveis locais é automaticamente liberada.</p>
+
+<p><strong>Importante:</strong></p>
+<ul>
+  <li>Se uma variável local era do tipo referência e apontava para um objeto na <em>Heap</em>, a <em>variável em si</em> (o ponteiro na Stack) é desalocada.</li>
+  <li>O <em>objeto na Heap</em> ao qual ela apontava <em>não</em> é imediatamente desalocado. Ele só será desalocado pelo Garbage Collector se não houver mais <em>nenhuma outra referência</em> para ele.</li>
+</ul>
+
+<p><strong>Exemplo 1: Escopo de Bloco <code class="language-plaintext highlighter-rouge">if</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">meuMetodo1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>      <span class="c1">// x é local ao método meuMetodo1</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>  <span class="c1">// y é local apenas ao bloco if</span>
+        <span class="c1">// y é utilizável aqui</span>
+    <span class="o">}</span> <span class="c1">// Fim do escopo do if: y é desalocado da Stack</span>
+    <span class="c1">// System.out.println(y); // ERRO: y não existe mais aqui</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>   <span class="c1">// x ainda existe</span>
+<span class="o">}</span> <span class="c1">// Fim do escopo de meuMetodo1: x é desalocado da Stack</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Stack (Conceitual):</strong></p>
+
+<ol>
+  <li><strong>Dentro de <code class="language-plaintext highlighter-rouge">meuMetodo1</code>, antes do <code class="language-plaintext highlighter-rouge">if</code>:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">meuMetodo1 scope</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">x: 10</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Dentro do <code class="language-plaintext highlighter-rouge">if</code>:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">meuMetodo1 scope</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">x: 10</code></li>
+          <li><code class="language-plaintext highlighter-rouge">if scope</code>
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">y: 20</code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Dentro de <code class="language-plaintext highlighter-rouge">meuMetodo1</code>, após o <code class="language-plaintext highlighter-rouge">if</code>:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">meuMetodo1 scope</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">x: 10</code> (o <code class="language-plaintext highlighter-rouge">if scope</code> e <code class="language-plaintext highlighter-rouge">y</code> já foram liberados)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Exemplo 2: Retornando Referência de um Método</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="c1">// ... construtor e outros métodos</span>
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">,</span> <span class="kt">int</span> <span class="n">qtd</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="cm">/*...*/</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">ExemploEscopo</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">metodoPrincipal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// p é local ao metodoPrincipal</span>
+        <span class="c1">// O objeto Produto retornado por criarProduto() será atribuído a p</span>
+        <span class="nc">Produto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">criarProduto</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">nome</span><span class="o">);</span> <span class="c1">// Acessa o objeto criado em criarProduto()</span>
+    <span class="o">}</span> <span class="c1">// Fim do escopo de metodoPrincipal: p (referência na Stack) é desalocado.</span>
+      <span class="c1">// O objeto Produto na Heap se torna elegível para o GC,</span>
+      <span class="c1">// a menos que outra referência a ele exista em outro lugar (não neste exemplo simples).</span>
+
+    <span class="nc">Product</span> <span class="nf">criarProduto</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// prod é local ao método criarProduto</span>
+        <span class="nc">Produto</span> <span class="n">prod</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span> <span class="c1">// Objeto é criado na Heap</span>
+        <span class="k">return</span> <span class="n">prod</span><span class="o">;</span> <span class="c1">// Retorna a REFERÊNCIA para o objeto na Heap</span>
+    <span class="o">}</span> <span class="c1">// Fim do escopo de criarProduto: prod (referência na Stack) é desalocado.</span>
+      <span class="c1">// Mas o objeto na Heap continua existindo porque sua referência foi retornada</span>
+      <span class="c1">// e atribuída a 'p' em metodoPrincipal.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Memória (Conceitual durante a chamada <code class="language-plaintext highlighter-rouge">p = criarProduto();</code>):</strong></p>
+
+<ol>
+  <li><strong>Antes de <code class="language-plaintext highlighter-rouge">criarProduto</code> retornar:</strong>
+    <ul>
+      <li><strong>Stack:</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">metodoPrincipal scope</code>
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">p</code> (ainda não inicializado ou com valor antigo)</li>
+            </ul>
+          </li>
+          <li><code class="language-plaintext highlighter-rouge">criarProduto scope</code>
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">prod</code> (contém o endereço do objeto “TV” na Heap, ex: 0xHEAP123)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Heap:</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">0xHEAP123: [Objeto Produto: nome="TV", ...]</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Após <code class="language-plaintext highlighter-rouge">criarProduto</code> retornar e a atribuição a <code class="language-plaintext highlighter-rouge">p</code>:</strong>
+    <ul>
+      <li><strong>Stack:</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">metodoPrincipal scope</code>
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">p</code> (agora contém o endereço 0xHEAP123)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Heap:</strong>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">0xHEAP123: [Objeto Produto: nome="TV", ...]</code> (o <code class="language-plaintext highlighter-rouge">criarProduto scope</code> e <code class="language-plaintext highlighter-rouge">prod</code> já foram liberados da Stack)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-resumo-da-desalocação">📝 Resumo da Desalocação</h3>
+
+<ul>
+  <li><strong>Objetos na Heap:</strong> Quando não possuem mais referências apontando para eles, são desalocados pelo <em>Garbage Collector</em>.</li>
+  <li><strong>Variáveis Locais na Stack:</strong> São desalocadas <em>imediatamente</em> assim que seu escopo local (método, bloco) termina a execução.</li>
+</ul>
+
+<h2 id="-vetores-arrays---parte-1">📏 Vetores (Arrays) - Parte 1</h2>
+
+<h3 id="-checklist-de-vetores">✅ Checklist de Vetores</h3>
+
+<ul>
+  <li>Revisão do conceito de vetor</li>
+  <li>Declaração e instanciação</li>
+  <li>Manipulação de vetor de elementos tipo valor (tipo primitivo)</li>
+  <li>Manipulação de vetor de elementos tipo referência (classe)</li>
+  <li>Acesso aos elementos</li>
+  <li>Propriedade <code class="language-plaintext highlighter-rouge">length</code></li>
+</ul>
+
+<h3 id="-o-que-são-vetores">📐 O que são Vetores?</h3>
+
+<p>Em programação, “vetor” (ou <em>array</em>, em inglês) é o nome dado a arranjos unidimensionais. Um array é uma estrutura de dados que armazena uma coleção de elementos do <em>mesmo tipo</em> em um bloco <em>contíguo</em> de memória.</p>
+
+<p><strong>Características Principais:</strong></p>
+
+<ul>
+  <li><strong>Homogênea:</strong> Todos os elementos devem ser do mesmo tipo (ex: um array de <code class="language-plaintext highlighter-rouge">int</code>, um array de <code class="language-plaintext highlighter-rouge">String</code>, um array de <code class="language-plaintext highlighter-rouge">Produto</code>).</li>
+  <li><strong>Ordenada:</strong> Os elementos são acessados por meio de um índice numérico (posição), começando em 0.</li>
+  <li><strong>Alocada de uma vez só:</strong> O tamanho do array é definido no momento da sua criação e não pode ser alterado posteriormente.</li>
+  <li><strong>Acesso Direto:</strong> O acesso a um elemento pela sua posição (índice) é muito rápido (vantagem).</li>
+</ul>
+
+<p><strong>Vantagens:</strong></p>
+
+<ul>
+  <li>Acesso imediato (rápido) aos elementos pela sua posição.</li>
+</ul>
+
+<p><strong>Desvantagens:</strong></p>
+
+<ul>
+  <li><strong>Tamanho fixo:</strong> Uma vez criado, o tamanho de um array não pode ser aumentado ou diminuído. Se você precisar de mais espaço, terá que criar um novo array maior e copiar os elementos.</li>
+  <li><strong>Dificuldade para inserções e deleções:</strong> Inserir ou remover um elemento no meio de um array pode ser ineficiente, pois exige o deslocamento dos elementos subsequentes.</li>
+</ul>
+
+<h3 id="-problema-exemplo-1-altura-média-de-pessoas">📋 Problema Exemplo 1: Altura Média de Pessoas</h3>
+
+<p><strong>Enunciado:</strong> Fazer um programa para ler um número inteiro N e a altura de N pessoas. Armazene as N alturas em um vetor. Em seguida, mostrar a altura média dessas pessoas.</p>
+
+<p><strong>Exemplo de Entrada/Saída:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Entrada:</th>
+      <th style="text-align: left">Saída:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">3</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Média da alturas = 1.69</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">1.72</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">1.56</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">1.80</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Solução em Java:</strong></p>
+
+<p>Este exemplo demonstra um vetor de tipos primitivos (<code class="language-plaintext highlighter-rouge">double</code>).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span> <span class="c1">// Para usar o ponto como separador decimal</span>
+        <span class="nc">Scanner</span> <span class="n">leitor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantas alturas você vai digitar? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="c1">// Declaração e instanciação do vetor de doubles</span>
+        <span class="c1">// 'vetorAlturas' é uma variável de referência na Stack</span>
+        <span class="c1">// que aponta para o bloco de memória do array na Heap.</span>
+        <span class="kt">double</span><span class="o">[]</span> <span class="n">vetorAlturas</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+
+        <span class="c1">// Leitura das alturas e armazenamento no vetor</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// ou i &lt; vetorAlturas.length</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Digite a altura da pessoa %d: "</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="n">vetorAlturas</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Cálculo da soma das alturas</span>
+        <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">soma</span> <span class="o">+=</span> <span class="n">vetorAlturas</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Cálculo da média</span>
+        <span class="kt">double</span> <span class="n">media</span> <span class="o">=</span> <span class="n">soma</span> <span class="o">/</span> <span class="n">n</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"ALTURA MÉDIA: %.2f%n"</span><span class="o">,</span> <span class="n">media</span><span class="o">);</span>
+
+        <span class="n">leitor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span> <span class="c1">// Boa prática: fechar o Scanner</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Memória (Conceitual para <code class="language-plaintext highlighter-rouge">n=3</code> e as alturas do exemplo):</strong></p>
+
+<ul>
+  <li><strong>Stack:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">n: 3</code></li>
+      <li><code class="language-plaintext highlighter-rouge">vetorAlturas</code> (contém o endereço do array na Heap, ex: 0xHEAP_ARR1)</li>
+      <li><code class="language-plaintext highlighter-rouge">leitor</code> (referência para o objeto Scanner)</li>
+      <li><code class="language-plaintext highlighter-rouge">soma</code>, <code class="language-plaintext highlighter-rouge">media</code> (variáveis double)</li>
+      <li><code class="language-plaintext highlighter-rouge">i</code> (variável int do loop)</li>
+    </ul>
+  </li>
+  <li><strong>Heap:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0xHEAP_ARR1: [1.72, 1.56, 1.80]</code> (bloco contíguo de memória para os doubles)</li>
+      <li>Objeto <code class="language-plaintext highlighter-rouge">Scanner</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Como executar este código (VS Code / IntelliJ IDEA):</strong></p>
+
+<ol>
+  <li><strong>Pré-requisito:</strong> Certifique-se de ter o JDK (Java Development Kit) instalado e configurado no seu sistema.</li>
+  <li><strong>VS Code:</strong>
+    <ul>
+      <li>Instale o “Extension Pack for Java” da Microsoft.</li>
+      <li>Crie um arquivo chamado <code class="language-plaintext highlighter-rouge">Programa.java</code> dentro de uma pasta (ex: <code class="language-plaintext highlighter-rouge">projetoAlturas/src/aplicacao/Programa.java</code>).</li>
+      <li>Cole o código no arquivo.</li>
+      <li>Abra o terminal integrado (Ctrl+<code class="language-plaintext highlighter-rouge">) e navegue até a pasta </code>projetoAlturas/src`.</li>
+      <li>Compile: <code class="language-plaintext highlighter-rouge">javac aplicacao/Programa.java</code></li>
+      <li>Execute: <code class="language-plaintext highlighter-rouge">java aplicacao.Programa</code></li>
+      <li>Alternativamente, clique com o botão direito no editor e selecione “Run Java”.</li>
+    </ul>
+  </li>
+  <li><strong>IntelliJ IDEA:</strong>
+    <ul>
+      <li>Crie um novo projeto Java.</li>
+      <li>Na pasta <code class="language-plaintext highlighter-rouge">src</code>, crie um pacote <code class="language-plaintext highlighter-rouge">aplicacao</code>.</li>
+      <li>Dentro do pacote <code class="language-plaintext highlighter-rouge">aplicacao</code>, crie uma classe <code class="language-plaintext highlighter-rouge">Programa</code>.</li>
+      <li>Cole o código na classe.</li>
+      <li>Clique na seta verde ao lado da declaração do método <code class="language-plaintext highlighter-rouge">main</code> e selecione “Run ‘Programa.main()’”.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="️-vetores-arrays---parte-2">🛍️ Vetores (Arrays) - Parte 2</h2>
+
+<h3 id="-problema-exemplo-2-preço-médio-de-produtos">🛒 Problema Exemplo 2: Preço Médio de Produtos</h3>
+
+<p><strong>Enunciado:</strong> Fazer um programa para ler um número inteiro N e os dados (nome e preço) de N Produtos. Armazene os N produtos em um vetor. Em seguida, mostrar o preço médio dos produtos.</p>
+
+<p><strong>Exemplo de Entrada/Saída:</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Entrada:</th>
+      <th style="text-align: left">Saída:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">3</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">Média do preços = 700.00</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PC</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">900.00</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Microondas</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">400.00</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Forno</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">800.00</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Produto</code> (Entidade):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="kt">double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Solução em Java (Programa Principal):</strong></p>
+
+<p>Este exemplo demonstra um vetor de tipos referência (objetos <code class="language-plaintext highlighter-rouge">Produto</code>).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Produto</span><span class="o">;</span> <span class="c1">// Importa a classe Produto</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">leitor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos produtos você vai cadastrar? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="c1">// Declaração e instanciação do vetor de Produtos</span>
+        <span class="c1">// 'vetorProdutos' é um array de REFERÊNCIAS para objetos Produto.</span>
+        <span class="c1">// Inicialmente, cada posição do array contém 'null'.</span>
+        <span class="nc">Produto</span><span class="o">[]</span> <span class="n">vetorProdutos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vetorProdutos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">leitor</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consome a quebra de linha pendente do nextInt()</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"--- Produto %d ---%n"</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Preço: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">preco</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="c1">// Cria o objeto Produto e armazena sua REFERÊNCIA no vetor</span>
+            <span class="n">vetorProdutos</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kt">double</span> <span class="n">somaPrecos</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vetorProdutos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// vetorProdutos[i] é a referência para um objeto Produto</span>
+            <span class="c1">// vetorProdutos[i].getPreco() acessa o método do objeto referenciado</span>
+            <span class="n">somaPrecos</span> <span class="o">+=</span> <span class="n">vetorProdutos</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">getPreco</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="kt">double</span> <span class="n">mediaPrecos</span> <span class="o">=</span> <span class="n">somaPrecos</span> <span class="o">/</span> <span class="n">vetorProdutos</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="c1">// ou n</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"PREÇO MÉDIO = %.2f%n"</span><span class="o">,</span> <span class="n">mediaPrecos</span><span class="o">);</span>
+
+        <span class="n">leitor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Memória (Conceitual para <code class="language-plaintext highlighter-rouge">n=3</code> e os produtos do exemplo):</strong></p>
+
+<ul>
+  <li><strong>Stack:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">n: 3</code></li>
+      <li><code class="language-plaintext highlighter-rouge">vetorProdutos</code> (contém o endereço do array de referências na Heap, ex: 0xHEAP_ARR_REF1)</li>
+      <li><code class="language-plaintext highlighter-rouge">leitor</code> (referência para o objeto Scanner)</li>
+      <li><code class="language-plaintext highlighter-rouge">somaPrecos</code>, <code class="language-plaintext highlighter-rouge">mediaPrecos</code></li>
+      <li><code class="language-plaintext highlighter-rouge">i</code>, <code class="language-plaintext highlighter-rouge">nome</code>, <code class="language-plaintext highlighter-rouge">preco</code> (variáveis locais do loop)</li>
+    </ul>
+  </li>
+  <li><strong>Heap:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0xHEAP_ARR_REF1: [ref_obj1, ref_obj2, ref_obj3]</code> (array de referências)
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">ref_obj1</code> aponta para <code class="language-plaintext highlighter-rouge">[Objeto Produto: nome="TV", preco=900.0]</code> (em outro local da Heap)</li>
+          <li><code class="language-plaintext highlighter-rouge">ref_obj2</code> aponta para <code class="language-plaintext highlighter-rouge">[Objeto Produto: nome="Fryer", preco=400.0]</code> (em outro local da Heap)</li>
+          <li><code class="language-plaintext highlighter-rouge">ref_obj3</code> aponta para <code class="language-plaintext highlighter-rouge">[Objeto Produto: nome="Stove", preco=800.0]</code> (em outro local da Heap)</li>
+        </ul>
+      </li>
+      <li>Objeto <code class="language-plaintext highlighter-rouge">Scanner</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Como executar (VS Code / IntelliJ IDEA):</strong></p>
+
+<ol>
+  <li>Crie a classe <code class="language-plaintext highlighter-rouge">Produto.java</code> no pacote <code class="language-plaintext highlighter-rouge">entidades</code> (ex: <code class="language-plaintext highlighter-rouge">projetoProdutos/src/entidades/Produto.java</code>).</li>
+  <li>Crie a classe <code class="language-plaintext highlighter-rouge">Programa.java</code> no pacote <code class="language-plaintext highlighter-rouge">aplicacao</code> (ex: <code class="language-plaintext highlighter-rouge">projetoProdutos/src/aplicacao/Programa.java</code>).</li>
+  <li>Siga os mesmos passos de compilação e execução descritos para o “Problema Exemplo 1”.</li>
+</ol>
+
+<h2 id="-boxing-unboxing-e-wrapper-classes">🥊 Boxing, Unboxing e Wrapper Classes</h2>
+
+<h3 id="-boxing">🎁 Boxing</h3>
+
+<p><em>Boxing</em> é o processo de conversão de um tipo valor (primitivo) para um objeto do tipo referência compatível (sua respectiva <em>wrapper class</em>). O Java faz isso automaticamente em muitos contextos (autoboxing).</p>
+
+<p><strong>Exemplo:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>        <span class="c1">// Tipo primitivo (valor) na Stack</span>
+<span class="nc">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>    <span class="c1">// Autoboxing: x é "encaixotado" em um objeto Integer.</span>
+                   <span class="c1">// 'obj' na Stack aponta para este objeto Integer na Heap.</span>
+                   <span class="c1">// O objeto Integer na Heap armazena o valor 20.</span>
+
+<span class="c1">// Também poderia ser:</span>
+<span class="c1">// Integer objInteger = x;</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Memória (Conceitual):</strong></p>
+
+<ul>
+  <li><strong>Stack:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">x: 20</code></li>
+      <li><code class="language-plaintext highlighter-rouge">obj</code> (contém o endereço do objeto <code class="language-plaintext highlighter-rouge">Integer</code> na Heap, ex: 0xHEAP_INT1)</li>
+    </ul>
+  </li>
+  <li><strong>Heap:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0xHEAP_INT1: [Objeto Integer: valor=20]</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="-unboxing">🔓 Unboxing</h3>
+
+<p><em>Unboxing</em> é o processo inverso: converter um objeto do tipo referência (de uma wrapper class) de volta para o seu tipo valor primitivo correspondente. O Java também faz isso automaticamente em muitos contextos (auto-unboxing).</p>
+
+<p><strong>Exemplo:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+<span class="nc">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>       <span class="c1">// Autoboxing para Integer</span>
+
+<span class="c1">// Para usar o valor em um contexto que espera um int, o unboxing acontece:</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">obj</span><span class="o">;</span>  <span class="c1">// Unboxing explícito (cast)</span>
+                    <span class="c1">// O valor 20 do objeto Integer na Heap é copiado para 'y' na Stack.</span>
+
+<span class="c1">// Com auto-unboxing:</span>
+<span class="c1">// Integer numeroEmCaixa = 100;</span>
+<span class="c1">// int numeroPrimitivo = numeroEmCaixa; // Auto-unboxing</span>
+</code></pre></div></div>
+
+<p><strong>Visualização da Memória (Conceitual após <code class="language-plaintext highlighter-rouge">int y = (int) obj;</code>):</strong></p>
+
+<ul>
+  <li><strong>Stack:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">x: 20</code></li>
+      <li><code class="language-plaintext highlighter-rouge">obj</code> (ainda aponta para 0xHEAP_INT1)</li>
+      <li><code class="language-plaintext highlighter-rouge">y: 20</code> (cópia do valor)</li>
+    </ul>
+  </li>
+  <li><strong>Heap:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0xHEAP_INT1: [Objeto Integer: valor=20]</code> (ainda existe)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="wrapper-classes">(Wrapper Classes)</h3>
+
+<p>Wrapper classes são classes em Java que “embrulham” os tipos de dados primitivos, permitindo que eles sejam tratados como objetos. Cada tipo primitivo tem uma classe wrapper correspondente:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">byte</code> → <code class="language-plaintext highlighter-rouge">Byte</code></li>
+  <li><code class="language-plaintext highlighter-rouge">short</code> → <code class="language-plaintext highlighter-rouge">Short</code></li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> → <code class="language-plaintext highlighter-rouge">Integer</code></li>
+  <li><code class="language-plaintext highlighter-rouge">long</code> → <code class="language-plaintext highlighter-rouge">Long</code></li>
+  <li><code class="language-plaintext highlighter-rouge">float</code> → <code class="language-plaintext highlighter-rouge">Float</code></li>
+  <li><code class="language-plaintext highlighter-rouge">double</code> → <code class="language-plaintext highlighter-rouge">Double</code></li>
+  <li><code class="language-plaintext highlighter-rouge">char</code> → <code class="language-plaintext highlighter-rouge">Character</code></li>
+  <li><code class="language-plaintext highlighter-rouge">boolean</code> → <code class="language-plaintext highlighter-rouge">Boolean</code></li>
+</ul>
+
+<p>(Todas as classes wrapper numéricas herdam de <code class="language-plaintext highlighter-rouge">Number</code>, que por sua vez herda de <code class="language-plaintext highlighter-rouge">Object</code>).</p>
+
+<p><strong>Por que usar Wrapper Classes?</strong></p>
+
+<ol>
+  <li><strong>Coleções:</strong> Estruturas de dados como <code class="language-plaintext highlighter-rouge">ArrayList</code>, <code class="language-plaintext highlighter-rouge">HashMap</code>, etc., só podem armazenar objetos. Se você quiser armazenar <code class="language-plaintext highlighter-rouge">int</code>s em um <code class="language-plaintext highlighter-rouge">ArrayList</code>, você usará <code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code>. O boxing e unboxing cuidam da conversão.</li>
+  <li><strong>Valor <code class="language-plaintext highlighter-rouge">null</code>:</strong> Variáveis de tipo wrapper podem ser <code class="language-plaintext highlighter-rouge">null</code>, o que é útil para representar a ausência de um valor (ex: em campos de banco de dados que permitem nulos). Tipos primitivos não podem ser <code class="language-plaintext highlighter-rouge">null</code>.</li>
+  <li><strong>Métodos Utilitários:</strong> As classes wrapper fornecem métodos úteis (ex: <code class="language-plaintext highlighter-rouge">Integer.parseInt()</code> para converter uma String em <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">Double.toString()</code> para converter <code class="language-plaintext highlighter-rouge">double</code> em String).</li>
+  <li><strong>Recursos de Orientação a Objetos:</strong> Como são classes, podem participar de hierarquias de herança, ter métodos, etc.</li>
+</ol>
+
+<p><strong>Uso Comum (Importante):</strong> Campos de entidades em sistemas de informação frequentemente usam classes wrapper (ex: <code class="language-plaintext highlighter-rouge">Double</code> para preço, <code class="language-plaintext highlighter-rouge">Integer</code> para quantidade) para permitir valores <code class="language-plaintext highlighter-rouge">null</code> e usufruir dos recursos de OO.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>     <span class="c1">// Usando Double para permitir preço nulo</span>
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="n">quantidade</span><span class="o">;</span> <span class="c1">// Usando Integer para permitir quantidade nula</span>
+    <span class="c1">// ... construtor, getters, setters</span>
+<span class="o">}</span>
+
+<span class="c1">// Exemplo de uso</span>
+<span class="nc">Produto</span> <span class="n">prod</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">();</span>
+<span class="n">prod</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="s">"Laptop"</span><span class="o">;</span>
+<span class="n">prod</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// Válido, pois preco é Double</span>
+<span class="c1">// prod.quantidade = 0; // Ou poderia ser null se fosse o caso</span>
+
+<span class="c1">// Demonstração de auto-unboxing em operações</span>
+<span class="nc">Integer</span> <span class="n">xCaixa</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">yPrimitivo</span> <span class="o">=</span> <span class="n">xCaixa</span> <span class="o">*</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// xCaixa é auto-desencaixotado para int antes da multiplicação</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">yPrimitivo</span><span class="o">);</span> <span class="c1">// Imprime 20</span>
+</code></pre></div></div>
+
+<h2 id="-laço-for-each-enhanced-for-loop">🔄 Laço “For Each” (Enhanced For Loop)</h2>
+
+<p>O laço “for each” (ou laço <code class="language-plaintext highlighter-rouge">for</code> aprimorado) oferece uma sintaxe opcional e mais simplificada para percorrer os elementos de coleções (como arrays e <code class="language-plaintext highlighter-rouge">List</code>s) ou qualquer objeto que implemente a interface <code class="language-plaintext highlighter-rouge">Iterable</code>.</p>
+
+<p><strong>Sintaxe:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="nc">Tipo</span> <span class="n">apelidoElemento</span> <span class="o">:</span> <span class="n">colecaoOuArray</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Comandos usando apelidoElemento</span>
+    <span class="c1">// Ex: System.out.println(apelidoElemento);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Leitura:</strong> “Para cada objeto do tipo <code class="language-plaintext highlighter-rouge">Tipo</code> chamado <code class="language-plaintext highlighter-rouge">apelidoElemento</code> contido em <code class="language-plaintext highlighter-rouge">colecaoOuArray</code>, faça:”</p>
+
+<p><strong>Vantagens:</strong></p>
+
+<ul>
+  <li><strong>Mais Legível:</strong> Geralmente mais conciso e fácil de entender para simples iteração.</li>
+  <li><strong>Menos Propenso a Erros:</strong> Evita erros comuns com índices (ex: <code class="language-plaintext highlighter-rouge">ArrayIndexOutOfBoundsException</code>).</li>
+</ul>
+
+<p><strong>Desvantagens:</strong></p>
+
+<ul>
+  <li><strong>Acesso Somente Leitura (Geralmente):</strong> Não é ideal se você precisar modificar a coleção <em>enquanto itera</em> de certas maneiras (remover elementos pode causar <code class="language-plaintext highlighter-rouge">ConcurrentModificationException</code> em algumas coleções) ou se precisar do índice do elemento.</li>
+  <li><strong>Apenas para Frente:</strong> Itera apenas do início ao fim, um elemento por vez. Não permite controle fino sobre a iteração (ex: pular elementos, iterar para trás).</li>
+</ul>
+
+<p><strong>Exemplo com Array:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span><span class="o">[]</span> <span class="n">vetorNomes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[]</span> <span class="o">{</span><span class="s">"Maria"</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">,</span> <span class="s">"Alex"</span><span class="o">};</span>
+
+<span class="c1">// Usando for tradicional com índice</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- Usando for tradicional ---"</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vetorNomes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">vetorNomes</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+<span class="o">}</span>
+
+<span class="c1">// Usando for each</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- Usando for each ---"</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">nome</span> <span class="o">:</span> <span class="n">vetorNomes</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nome</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Ambos os loops acima produzirão a mesma saída:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--- Usando for tradicional ---
+Maria
+Bob
+Alex
+--- Usando for each ---
+Maria
+Bob
+Alex
+</code></pre></div></div>
+
+<h2 id="-listas---parte-1">📜 Listas - Parte 1</h2>
+
+<h3 id="-checklist-de-listas-parte-1">✅ Checklist de Listas (Parte 1)</h3>
+
+<ul>
+  <li>Conceito de lista</li>
+  <li>Tipo <code class="language-plaintext highlighter-rouge">List</code> - Declaração, instanciação</li>
+  <li>Demonstração (operações básicas)</li>
+  <li>Assuntos pendentes (a serem explorados posteriormente):
+    <ul>
+      <li>Interfaces (em profundidade)</li>
+      <li>Generics (<code class="language-plaintext highlighter-rouge">&lt;T&gt;</code>)</li>
+      <li>Predicados (expressões lambda)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Referência:
+[https://docs.oracle.com/javase/10/docs/api/java/util/List.html]{https://docs.oracle.com/javase/10/docs/api/java/util/List.html}</p>
+
+<h3 id="-o-que-são-listas">🍃 O que são Listas?</h3>
+
+<p>Uma <strong>Lista</strong> é uma estrutura de dados do tipo coleção que representa uma sequência ordenada de elementos. Diferentemente dos arrays, as listas em Java (implementações comuns como <code class="language-plaintext highlighter-rouge">ArrayList</code>) têm <strong>tamanho dinâmico</strong>.</p>
+
+<p><strong>Características Principais:</strong></p>
+
+<ul>
+  <li><strong>Homogênea (com Generics):</strong> Geralmente, você especificará o tipo de dados que a lista irá conter usando generics (ex: <code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code>, <code class="language-plaintext highlighter-rouge">List&lt;Produto&gt;</code>).</li>
+  <li><strong>Ordenada:</strong> Mantém a ordem de inserção dos elementos. Os elementos podem ser acessados por um índice (posição), começando em 0.</li>
+  <li><strong>Dinâmica:</strong> Começa vazia (ou com elementos iniciais) e seu tamanho aumenta ou diminui conforme elementos são adicionados ou removidos.</li>
+  <li><strong>Alocação sob Demanda:</strong> Os elementos são alocados conforme necessário. Cada elemento pode ser pensado como ocupando um “nó” ou posição dentro da estrutura interna da lista.</li>
+</ul>
+
+<p><strong>Interface Principal:</strong> <code class="language-plaintext highlighter-rouge">java.util.List</code></p>
+
+<p><strong>Classes Comuns que Implementam <code class="language-plaintext highlighter-rouge">List</code>:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ArrayList</code>: Implementação baseada em um array redimensionável internamente. Boa para acesso rápido por índice (<code class="language-plaintext highlighter-rouge">get</code>) e iteração. Menos eficiente para inserções/remoções no meio da lista, pois pode exigir o deslocamento de elementos.</li>
+  <li><code class="language-plaintext highlighter-rouge">LinkedList</code>: Implementação baseada em uma lista duplamente encadeada. Mais eficiente para inserções e remoções em qualquer posição, mas o acesso por índice (<code class="language-plaintext highlighter-rouge">get</code>) pode ser mais lento (requer percorrer a lista).</li>
+</ul>
+
+<p><strong>Vantagens sobre Arrays:</strong></p>
+
+<ul>
+  <li><strong>Tamanho Variável:</strong> Adapta-se dinamicamente à quantidade de dados.</li>
+  <li><strong>Facilidade para Inserções e Deleções:</strong> Métodos convenientes para adicionar e remover elementos.</li>
+</ul>
+
+<p><strong>Desvantagens (especialmente para <code class="language-plaintext highlighter-rouge">ArrayList</code> em comparação com acesso direto a array, ou <code class="language-plaintext highlighter-rouge">LinkedList</code> para acesso por índice):</strong></p>
+
+<ul>
+  <li><strong>Acesso Sequencial (Conceitual para <code class="language-plaintext highlighter-rouge">LinkedList</code>):</strong> Embora <code class="language-plaintext highlighter-rouge">ArrayList</code> ofereça acesso rápido por índice, a natureza de algumas operações ou implementações (como <code class="language-plaintext highlighter-rouge">LinkedList</code>) pode implicar em percorrer parte da lista para encontrar um elemento específico se o índice não for usado.</li>
+  <li><strong>Overhead:</strong> Pode ter um pouco mais de consumo de memória e processamento em comparação com arrays simples devido à sua natureza dinâmica e aos objetos que gerenciam a estrutura.</li>
+</ul>
+
+<h2 id="-listas---parte-2-operações-comuns">📜 Listas - Parte 2: Operações Comuns</h2>
+
+<h3 id="️-demonstração-de-operações-com-list-usando-arraylist">⚙️ Demonstração de Operações com <code class="language-plaintext highlighter-rouge">List</code> (usando <code class="language-plaintext highlighter-rouge">ArrayList</code>)</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span> <span class="c1">// Para operações com Streams</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaLista</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Declaração e instanciação de uma Lista de Strings</span>
+        <span class="c1">// Usando o polimorfismo: List é a interface, ArrayList é a implementação concreta.</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">listaNomes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="c1">// 1. Adicionar elementos: add(obj), add(indice, obj)</span>
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">);</span>    <span class="c1">// Adiciona ao final</span>
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Alex"</span><span class="o">);</span>
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">);</span>
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Anna"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Lista original: "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">);</span>
+
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="s">"Marco"</span><span class="o">);</span> <span class="c1">// Adiciona "Marco" na posição 2 (empurra "Bob" e "Anna")</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Após add(2, 'Marco'): "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">);</span> <span class="c1">// [Maria, Alex, Marco, Bob, Anna]</span>
+
+        <span class="c1">// 2. Tamanho da lista: size()</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tamanho da lista: "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">size</span><span class="o">());</span> <span class="c1">// 5</span>
+
+        <span class="c1">// 3. Obter o elemento de uma posição: get(posicao)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Elemento na posição 1: "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span> <span class="c1">// Alex</span>
+
+        <span class="c1">// 4. Iterar sobre a lista (for each)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--- Elementos da lista (for each) ---"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">nome</span> <span class="o">:</span> <span class="n">listaNomes</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nome</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 5. Remover elementos: remove(obj), remove(indice), removeIf(Predicate)</span>
+        <span class="c1">// listaNomes.remove("Alex"); // Remove a primeira ocorrência do objeto "Alex"</span>
+        <span class="c1">// System.out.println("Após remove('Alex'): " + listaNomes);</span>
+
+        <span class="c1">// listaNomes.remove(0); // Remove o elemento na posição 0 ("Maria")</span>
+        <span class="c1">// System.out.println("Após remove(0): " + listaNomes);</span>
+
+        <span class="c1">// Remover todos os nomes que começam com a letra 'M' (usando Predicado lambda)</span>
+        <span class="c1">// Predicado: uma função que retorna true/false.</span>
+        <span class="c1">// x -&gt; x.charAt(0) == 'M'  (para cada string x, verifica se o primeiro caractere é 'M')</span>
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">removeIf</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'M'</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Após removeIf(x -&gt; x.charAt(0) == 'M'): "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">);</span> <span class="c1">// [Alex, Bob, Anna]</span>
+
+        <span class="c1">// 6. Encontrar posição de elemento: indexOf(obj), lastIndexOf(obj)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Índice de 'Bob': "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">"Bob"</span><span class="o">));</span>       <span class="c1">// 1 (na lista atual)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Índice de 'Marco': "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">"Marco"</span><span class="o">));</span> <span class="c1">// -1 (não encontrado, pois foi removido)</span>
+
+        <span class="c1">// Adicionando novamente para próximos exemplos</span>
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"Maria"</span><span class="o">);</span>
+        <span class="n">listaNomes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"Mariana"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Lista para próximos exemplos: "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">);</span> <span class="c1">// [Maria, Alex, Bob, Anna, Mariana]</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Índice de 'Maria': "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">));</span> <span class="c1">// 0 (primeira ocorrência)</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Último índice de 'Maria' (se houvesse duplicatas, aqui não há): "</span> <span class="o">+</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">));</span> <span class="c1">// 0</span>
+
+        <span class="c1">// 7. Filtrar lista com base em predicado (usando Stream API)</span>
+        <span class="c1">// Stream: uma sequência de elementos que suporta operações de agregação.</span>
+        <span class="c1">// filter(): recebe um predicado e retorna um novo stream com elementos que satisfazem o predicado.</span>
+        <span class="c1">// collect(Collectors.toList()): coleta os elementos do stream resultante em uma nova List.</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">resultadoFiltro</span> <span class="o">=</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                             <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'A'</span><span class="o">)</span>
+                                             <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nomes começando com 'A': "</span> <span class="o">+</span> <span class="n">resultadoFiltro</span><span class="o">);</span> <span class="c1">// [Alex, Anna]</span>
+
+        <span class="c1">// 8. Encontrar primeira ocorrência com base em predicado (usando Stream API)</span>
+        <span class="c1">// findFirst(): retorna um Optional contendo o primeiro elemento que satisfaz o predicado,</span>
+        <span class="c1">//              ou um Optional vazio se nenhum for encontrado.</span>
+        <span class="c1">// orElse(null): se o Optional estiver vazio, retorna null (ou outro valor padrão).</span>
+        <span class="nc">String</span> <span class="n">primeiroNomeComA</span> <span class="o">=</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'A'</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">findFirst</span><span class="o">()</span>
+                                        <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Primeiro nome começando com 'A': "</span> <span class="o">+</span> <span class="n">primeiroNomeComA</span><span class="o">);</span> <span class="c1">// Alex</span>
+
+        <span class="nc">String</span> <span class="n">primeiroNomeComJ</span> <span class="o">=</span> <span class="n">listaNomes</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'J'</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">findFirst</span><span class="o">()</span>
+                                        <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Primeiro nome começando com 'J': "</span> <span class="o">+</span> <span class="n">primeiroNomeComJ</span><span class="o">);</span> <span class="c1">// null</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Como executar (VS Code / IntelliJ IDEA):</strong></p>
+
+<ol>
+  <li>Crie um arquivo <code class="language-plaintext highlighter-rouge">ProgramaLista.java</code> (ex: <code class="language-plaintext highlighter-rouge">projetoListas/src/aplicacao/ProgramaLista.java</code>).</li>
+  <li>Cole o código.</li>
+  <li>Compile e execute como os exemplos anteriores.</li>
+</ol>
+
+<p><strong>Assuntos Pendentes (Breve Introdução):</strong></p>
+
+<ul>
+  <li><strong>Interfaces:</strong> <code class="language-plaintext highlighter-rouge">List</code> é uma interface. Ela define <em>o quê</em> uma lista deve fazer (contrato de métodos), mas não <em>como</em>. Classes como <code class="language-plaintext highlighter-rouge">ArrayList</code> e <code class="language-plaintext highlighter-rouge">LinkedList</code> <em>implementam</em> essa interface, fornecendo o comportamento concreto.</li>
+  <li><strong>Generics (<code class="language-plaintext highlighter-rouge">&lt;String&gt;</code>):</strong> Permitem criar classes, interfaces e métodos que operam com tipos especificados em tempo de compilação. No exemplo <code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;String&gt;</code> indica que a lista só pode conter objetos <code class="language-plaintext highlighter-rouge">String</code>, garantindo segurança de tipo.</li>
+  <li><strong>Predicados (Lambda Expressions <code class="language-plaintext highlighter-rouge">x -&gt; x.charAt(0) == 'M'</code>):</strong> São funções anônimas (sem nome) concisas, frequentemente usadas com a Stream API para filtrar, mapear ou realizar outras operações em coleções. <code class="language-plaintext highlighter-rouge">x -&gt; x.charAt(0) == 'M'</code> é uma lambda que pega uma string <code class="language-plaintext highlighter-rouge">x</code> e retorna <code class="language-plaintext highlighter-rouge">true</code> se seu primeiro caractere for ‘M’, <code class="language-plaintext highlighter-rouge">false</code> caso contrário.</li>
+</ul>
+
+<h2 id="️-exercício-de-fixação-cadastro-e-aumento-salarial-de-funcionários">🛠️ Exercício de Fixação: Cadastro e Aumento Salarial de Funcionários</h2>
+
+<p><strong>Objetivo:</strong> Praticar conceitos de Orientação a Objetos, Listas e encapsulamento em Java.</p>
+
+<p><strong>Enunciado do Problema:</strong></p>
+
+<p>Fazer um programa para ler um número inteiro N e depois os dados (id, nome e salário) de N funcionários. <strong>Não deve haver repetição de id.</strong></p>
+
+<p>Em seguida, efetuar o aumento de X por cento no salário de um determinado funcionário. Para isso, o programa deve ler um id e o valor X. Se o id informado não existir, mostrar uma mensagem “Este id não existe!” e abortar a operação de aumento.</p>
+
+<p>Ao final, mostrar a listagem atualizada dos funcionários.</p>
+
+<p><strong>Restrições e Dicas:</strong></p>
+
+<ul>
+  <li>Use uma <code class="language-plaintext highlighter-rouge">List</code> para armazenar os funcionários.</li>
+  <li>Crie uma classe <code class="language-plaintext highlighter-rouge">Funcionario</code> com os atributos <code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">nome</code>, e <code class="language-plaintext highlighter-rouge">salario</code>.</li>
+  <li><strong>Encapsulamento:</strong> O salário de um funcionário não deve poder ser mudado livremente de fora da classe. Ele só pode ser aumentado através de um método específico que recebe a porcentagem de aumento. Crie um método <code class="language-plaintext highlighter-rouge">aumentarSalario(double porcentagem)</code> na classe <code class="language-plaintext highlighter-rouge">Funcionario</code>.</li>
+  <li>Para verificar se um <code class="language-plaintext highlighter-rouge">id</code> já existe, você pode percorrer a lista ou usar Streams.</li>
+</ul>
+
+<p><strong>Diagrama da Classe <code class="language-plaintext highlighter-rouge">Funcionario</code> (Simplificado):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-------------------------
+| Funcionario           |
+-------------------------
+| - id: Integer         |  // Usar Integer para permitir comparação com null se necessário
+| - nome: String        |  // e para facilitar busca em coleções que esperam objetos.
+| - salario: Double     |
+-------------------------
+| + Funcionario(id, nome, salario) |
+| + getId(): Integer    |
+| + getNome(): String   |
+| + getSalario(): Double|
+| + aumentarSalario(porcentagem: double): void |
+-------------------------
+</code></pre></div></div>
+
+<p><strong>Exemplo de Interação 1 (ID encontrado):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos funcionários serão registrados? 3
+
+Funcionário #1:
+Id: 333
+Nome: Maria Brown
+Salário: 4000.00
+
+Funcionário #2:
+Id: 536
+Nome: Alex Grey
+Salário: 3000.00
+
+Funcionário #3:
+Id: 772
+Nome: Bob Green
+Salário: 5000.00
+
+Digite o id do funcionário que terá aumento salarial: 536
+Digite a porcentagem de aumento: 10.0
+
+Lista de funcionários:
+333, Maria Brown, 4000.00
+536, Alex Grey, 3300.00
+772, Bob Green, 5000.00
+</code></pre></div></div>
+
+<p><strong>Exemplo de Interação 2 (ID não encontrado):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos funcionários serão registrados? 2
+
+Funcionário #1:
+Id: 333
+Nome: Maria Brown
+Salário: 4000.00
+
+Funcionário #2:
+Id: 536
+Nome: Alex Grey
+Salário: 3000.00
+
+Digite o id do funcionário que terá aumento salarial: 776
+Este id não existe!
+
+Lista de funcionários:
+333, Maria Brown, 4000.00
+536, Alex Grey, 3000.00
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>(Solução do Exercício será implementada em arquivos separados: <code class="language-plaintext highlighter-rouge">Funcionario.java</code> e <code class="language-plaintext highlighter-rouge">ProgramaPrincipal.java</code>)</strong></p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">Funcionario.java</code> (Entidade):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">;</span> <span class="c1">// Usar Integer para facilitar a busca em streams e permitir null (embora não usado aqui)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">salario</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Funcionario</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">salario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">salario</span> <span class="o">=</span> <span class="n">salario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Não teremos setId para manter o id imutável após a criação.</span>
+    <span class="c1">// Se necessário, a lógica de alteração de id seria mais complexa.</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSalario</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">salario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// O salário só pode ser alterado através deste método, garantindo o encapsulamento.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">aumentarSalario</span><span class="o">(</span><span class="kt">double</span> <span class="n">porcentagem</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">porcentagem</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">salario</span> <span class="o">+=</span> <span class="n">salario</span> <span class="o">*</span> <span class="o">(</span><span class="n">porcentagem</span> <span class="o">/</span> <span class="mf">100.0</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Formata a saída para facilitar a impressão da lista de funcionários</span>
+        <span class="k">return</span> <span class="n">id</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">salario</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><code class="language-plaintext highlighter-rouge">ProgramaPrincipal.java</code> (Aplicação):</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.Funcionario</span><span class="o">;</span> <span class="c1">// Importa a classe Funcionario</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="c1">// Optional: import java.util.stream.Collectors; // Se usar stream para buscar</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaPrincipal</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">leitor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">listaFuncionarios</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos funcionários serão registrados? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%nFuncionário #%d:%n"</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Id: "</span><span class="o">);</span>
+            <span class="nc">Integer</span> <span class="n">id</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+            <span class="c1">// Verifica se o ID já existe</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">idJaExiste</span><span class="o">(</span><span class="n">listaFuncionarios</span><span class="o">,</span> <span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Id já cadastrado. Tente novamente: "</span><span class="o">);</span>
+                <span class="n">id</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="n">leitor</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consome a quebra de linha do nextInt()</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Salário: "</span><span class="o">);</span>
+            <span class="nc">Double</span> <span class="n">salario</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="n">listaFuncionarios</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Funcionario</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">nome</span><span class="o">,</span> <span class="n">salario</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"
+Digite o id do funcionário que terá aumento salarial: "</span><span class="o">);</span>
+        <span class="nc">Integer</span> <span class="n">idAumento</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="nc">Funcionario</span> <span class="n">funcParaAumentar</span> <span class="o">=</span> <span class="n">encontrarFuncionarioPorId</span><span class="o">(</span><span class="n">listaFuncionarios</span><span class="o">,</span> <span class="n">idAumento</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">funcParaAumentar</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a porcentagem de aumento: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">porcentagem</span> <span class="o">=</span> <span class="n">leitor</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+            <span class="n">funcParaAumentar</span><span class="o">.</span><span class="na">aumentarSalario</span><span class="o">(</span><span class="n">porcentagem</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Este id não existe!"</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Lista de funcionários:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Funcionario</span> <span class="n">func</span> <span class="o">:</span> <span class="n">listaFuncionarios</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">func</span><span class="o">);</span> <span class="c1">// Chama o método toString() de Funcionario</span>
+        <span class="o">}</span>
+
+        <span class="n">leitor</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método auxiliar para verificar se o ID já existe na lista</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">idJaExiste</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">lista</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Funcionario</span> <span class="n">func</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">func</span><span class="o">.</span><span class="na">getId</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Importante usar .equals() para comparar objetos Integer</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="c1">// Alternativa com Stream:</span>
+        <span class="c1">// return lista.stream().anyMatch(func -&gt; func.getId().equals(id));</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método auxiliar para encontrar um funcionário pelo ID</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Funcionario</span> <span class="nf">encontrarFuncionarioPorId</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">lista</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Funcionario</span> <span class="n">func</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">func</span><span class="o">.</span><span class="na">getId</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">id</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">func</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// Retorna null se não encontrar</span>
+        <span class="c1">// Alternativa com Stream:</span>
+        <span class="c1">// return lista.stream().filter(func -&gt; func.getId().equals(id)).findFirst().orElse(null);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Como executar (VS Code / IntelliJ IDEA):</strong></p>
+
+<ol>
+  <li><strong>Estrutura de Pastas (Exemplo):</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>projetoFuncionarios/
+└── src/
+    ├── aplicacao/
+    │   └── ProgramaPrincipal.java
+    └── entidades/
+        └── Funcionario.java
+</code></pre></div>    </div>
+  </li>
+  <li>Crie os arquivos <code class="language-plaintext highlighter-rouge">Funcionario.java</code> (no pacote <code class="language-plaintext highlighter-rouge">entidades</code>) e <code class="language-plaintext highlighter-rouge">ProgramaPrincipal.java</code> (no pacote <code class="language-plaintext highlighter-rouge">aplicacao</code>) com os códigos fornecidos.</li>
+  <li><strong>VS Code:</strong>
+    <ul>
+      <li>Abra a pasta <code class="language-plaintext highlighter-rouge">projetoFuncionarios</code> no VS Code.</li>
+      <li>Certifique-se de que o “Extension Pack for Java” está ativo.</li>
+      <li>Abra o arquivo <code class="language-plaintext highlighter-rouge">ProgramaPrincipal.java</code>.</li>
+      <li>Clique com o botão direito no editor e selecione “Run Java” ou use o atalho (geralmente um ícone de play).</li>
+    </ul>
+  </li>
+  <li><strong>IntelliJ IDEA:</strong>
+    <ul>
+      <li>Crie um novo projeto Java.</li>
+      <li>Crie os pacotes <code class="language-plaintext highlighter-rouge">entidades</code> e <code class="language-plaintext highlighter-rouge">aplicacao</code> dentro da pasta <code class="language-plaintext highlighter-rouge">src</code>.</li>
+      <li>Copie as classes para seus respectivos pacotes.</li>
+      <li>Abra <code class="language-plaintext highlighter-rouge">ProgramaPrincipal.java</code>.</li>
+      <li>Clique na seta verde ao lado do método <code class="language-plaintext highlighter-rouge">main</code> e selecione “Run ‘ProgramaPrincipal.main()’”.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Este exercício cobre os principais tópicos abordados: uso de classes (OO), listas para coleções dinâmicas, encapsulamento para proteger dados (salário), e interação com o usuário.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

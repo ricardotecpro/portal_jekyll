@@ -1,0 +1,1319 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/projetos/jogo_genius_02_sw/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Análise da Tarefa | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Análise da Tarefa" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_genius_02_sw/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_genius_02_sw/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Análise da Tarefa" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Análise da Tarefa","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_genius_02_sw/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/projetos/jogo_genius_02_sw/" style="margin-left: 0.5rem;">Jogo genius 02 sw</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Análise da tarefa</span>
+          
+        
+      </nav>
+
+      <h3 id="análise-da-tarefa">Análise da Tarefa</h3>
+
+<p>O objetivo é criar uma réplica do jogo “Genius” (Simon) em Java 21, com foco em uma arquitetura limpa e práticas modernas de desenvolvimento. Como nenhum código foi fornecido, construiremos a solução do zero, seguindo uma abordagem didática.</p>
+
+<hr />
+
+<h3 id="aula-1-estrutura-da-gui-java-swing">Aula 1: Estrutura da GUI (Java Swing)</h3>
+
+<p>O primeiro passo é construir a interface gráfica (GUI) baseada na imagem. Usaremos a biblioteca Swing para compatibilidade.</p>
+
+<p><strong>Princípios:</strong></p>
+
+<ul>
+  <li><strong>Separação de Responsabilidades:</strong> A classe principal (<code class="language-plaintext highlighter-rouge">GeniusGame</code>) atuará como o “Controlador” (manipulando eventos) e a “Visão” (estendendo <code class="language-plaintext highlighter-rouge">JFrame</code>). Em aplicações maiores, separaríamos isso, mas para um jogo simples, é aceitável.</li>
+  <li><strong>Layout Managers:</strong> Evitar posicionamento absoluto (<code class="language-plaintext highlighter-rouge">null</code> layout). Usaremos <code class="language-plaintext highlighter-rouge">BorderLayout</code> e <code class="language-plaintext highlighter-rouge">GridLayout</code> para um design responsivo.</li>
+</ul>
+
+<p><strong>Passo a Passo:</strong></p>
+
+<ol>
+  <li><strong>Classe Principal:</strong> Crie <code class="language-plaintext highlighter-rouge">GeniusGame</code> que herda de <code class="language-plaintext highlighter-rouge">JFrame</code>.</li>
+  <li><strong>Componentes:</strong> Declare os componentes visuais: <code class="language-plaintext highlighter-rouge">JLabel</code> para pontuação e <code class="language-plaintext highlighter-rouge">JButton</code> para as cores e o início.</li>
+  <li><strong>Layout:</strong>
+    <ul>
+      <li>O <code class="language-plaintext highlighter-rouge">JFrame</code> usará <code class="language-plaintext highlighter-rouge">BorderLayout</code>.</li>
+      <li><strong>NORTE (<code class="language-plaintext highlighter-rouge">NORTH</code>):</strong> Um <code class="language-plaintext highlighter-rouge">JPanel</code> com <code class="language-plaintext highlighter-rouge">FlowLayout</code> para os placares (<code class="language-plaintext highlighter-rouge">scoreLabel</code>, <code class="language-plaintext highlighter-rouge">recordLabel</code>).</li>
+      <li><strong>CENTRO (<code class="language-plaintext highlighter-rouge">CENTER</code>):</strong> Um <code class="language-plaintext highlighter-rouge">JPanel</code> com <code class="language-plaintext highlighter-rouge">GridLayout(2, 2)</code> para os quatro botões coloridos.</li>
+      <li><strong>SUL (<code class="language-plaintext highlighter-rouge">SOUTH</code>):</strong> Um <code class="language-plaintext highlighter-rouge">JPanel</code> com <code class="language-plaintext highlighter-rouge">FlowLayout</code> para o <code class="language-plaintext highlighter-rouge">startButton</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Método Auxiliar:</strong> Crie um método <code class="language-plaintext highlighter-rouge">createColorButton()</code> para evitar repetição de código (Princípio DRY - Don’t Repeat Yourself) ao configurar os botões.</li>
+  <li><strong>EDT (Event Dispatch Thread):</strong> A aplicação Swing deve ser iniciada dentro de <code class="language-plaintext highlighter-rouge">SwingUtilities.invokeLater()</code>.</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Aula 1: Estrutura da GUI */</span>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+
+<span class="c1">// Usamos um Enum para representar os botões.</span>
+<span class="c1">// Isso é mais seguro e legível que usar Strings ou números.</span>
+<span class="kd">enum</span> <span class="nc">ColorButton</span> <span class="o">{</span>
+    <span class="no">GREEN</span><span class="o">,</span> <span class="no">RED</span><span class="o">,</span> <span class="no">YELLOW</span><span class="o">,</span> <span class="no">BLUE</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GeniusGame</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">scoreLabel</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">JLabel</span> <span class="n">recordLabel</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">startButton</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="n">greenButton</span><span class="o">,</span> <span class="n">redButton</span><span class="o">,</span> <span class="n">yellowButton</span><span class="o">,</span> <span class="n">blueButton</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">GeniusGame</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Jogo Genius (Java 21)"</span><span class="o">);</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">BorderLayout</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+
+        <span class="c1">// --- 1. Painel de Pontuação (Norte) ---</span>
+        <span class="nc">JPanel</span> <span class="n">scorePanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">(</span><span class="nc">FlowLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">scoreLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Pontuação: 0"</span><span class="o">);</span>
+        <span class="n">recordLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Recorde: 6"</span><span class="o">);</span> <span class="c1">// Valor inicial da imagem</span>
+        <span class="n">scorePanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">scoreLabel</span><span class="o">);</span>
+        <span class="n">scorePanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">recordLabel</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">scorePanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">NORTH</span><span class="o">);</span>
+
+        <span class="c1">// --- 2. Painel de Cores (Centro) ---</span>
+        <span class="nc">JPanel</span> <span class="n">colorPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        
+        <span class="n">greenButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">GREEN</span><span class="o">);</span>
+        <span class="n">redButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+        <span class="n">yellowButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">);</span>
+        <span class="n">blueButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
+
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">greenButton</span><span class="o">);</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">redButton</span><span class="o">);</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">yellowButton</span><span class="o">);</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">blueButton</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">colorPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+
+        <span class="c1">// --- 3. Painel de Controle (Sul) ---</span>
+        <span class="nc">JPanel</span> <span class="n">controlPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">(</span><span class="nc">FlowLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">startButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Iniciar Jogo"</span><span class="o">);</span>
+        <span class="n">controlPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">startButton</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">controlPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">SOUTH</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método auxiliar (Princípio DRY)</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="nf">createColorButton</span><span class="o">(</span><span class="nc">Color</span> <span class="n">color</span><span class="o">,</span> <span class="nc">ColorButton</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">JButton</span> <span class="n">button</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">();</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setOpaque</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setBorderPainted</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setPreferredSize</span><span class="o">(</span><span class="k">new</span> <span class="nc">Dimension</span><span class="o">(</span><span class="mi">150</span><span class="o">,</span> <span class="mi">150</span><span class="o">));</span>
+        <span class="c1">// Usamos setActionCommand para identificar o botão no listener</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setActionCommand</span><span class="o">(</span><span class="n">id</span><span class="o">.</span><span class="na">name</span><span class="o">());</span> 
+        <span class="k">return</span> <span class="n">button</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Correto: Inicia a GUI na Event Dispatch Thread</span>
+        <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="nf">GeniusGame</span><span class="o">().</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="aula-2-lógica-e-estado-do-jogo">Aula 2: Lógica e Estado do Jogo</h3>
+
+<p>Agora, adicionamos as variáveis de estado e a lógica principal (o “Modelo” do nosso jogo).</p>
+
+<p><strong>Princípios:</strong></p>
+
+<ul>
+  <li><strong>Estado do Jogo:</strong> Manter o estado claramente definido (sequência do computador, posição do jogador, pontuação).</li>
+  <li><strong>Máquina de Estados:</strong> O jogo transita entre estados: “Computador Jogando”, “Jogador Jogando”, “Game Over”.</li>
+</ul>
+
+<p><strong>Passo a Passo:</strong></p>
+
+<ol>
+  <li><strong>Variáveis de Estado:</strong> Adicione campos à classe <code class="language-plaintext highlighter-rouge">GeniusGame</code> para:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">java.util.List&lt;ColorButton&gt; sequence</code>: Armazena a sequência de cores.</li>
+      <li><code class="language-plaintext highlighter-rouge">java.util.Random random</code>: Gerador de números aleatórios.</li>
+      <li><code class="language-plaintext highlighter-rouge">int score</code>, <code class="language-plaintext highlighter-rouge">int highScore</code>: Pontuação.</li>
+      <li><code class="language-plaintext highlighter-rouge">int playerIndex</code>: Onde o jogador está na sequência atual.</li>
+      <li><code class="language-plaintext highlighter-rouge">boolean isPlayerTurn</code>: Controla de quem é a vez.</li>
+    </ul>
+  </li>
+  <li><strong>Inicialização:</strong> No construtor, inicialize as variáveis (ex: <code class="language-plaintext highlighter-rouge">sequence = new ArrayList&lt;&gt;()</code>).</li>
+  <li><strong>Métodos de Lógica:</strong> Crie os métodos que controlam o fluxo:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">startGame()</code>: Reseta o jogo e inicia a primeira rodada.</li>
+      <li><code class="language-plaintext highlighter-rouge">nextRound()</code>: Adiciona uma nova cor à sequência e chama <code class="language-plaintext highlighter-rouge">playSequence()</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">playerTurn()</code>: Ativa os botões para o jogador.</li>
+      <li><code class="language-plaintext highlighter-rouge">checkPlayerInput(ColorButton pressedColor)</code>: Verifica se o jogador acertou a cor.</li>
+      <li><code class="language-plaintext highlighter-rouge">gameOver()</code>: Finaliza o jogo e atualiza o recorde.</li>
+      <li><code class="language-plaintext highlighter-rouge">updateScoreboard()</code>: Atualiza os <code class="language-plaintext highlighter-rouge">JLabels</code>.</li>
+      <li><code class="language-plaintext highlighter-rouge">enableColorButtons(boolean enable)</code>: Habilita/desabilita os botões de cor.</li>
+    </ul>
+  </li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Aula 2: Adicionando Lógica e Estado (incremental) */</span>
+
+<span class="c1">// Adicionar estes campos ao topo da classe GeniusGame</span>
+<span class="kd">private</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">List</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">&gt;</span> <span class="n">sequence</span><span class="o">;</span>
+<span class="kd">private</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Random</span> <span class="n">random</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kt">int</span> <span class="n">highScore</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span> <span class="c1">// Da imagem</span>
+<span class="kd">private</span> <span class="kt">int</span> <span class="n">playerIndex</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isPlayerTurn</span><span class="o">;</span>
+
+<span class="c1">// Adicionar ao final do construtor GeniusGame()</span>
+<span class="kd">public</span> <span class="nf">GeniusGame</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// ... (código da Aula 1) ...</span>
+    
+    <span class="n">sequence</span> <span class="o">=</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Random</span><span class="o">();</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="c1">// Desabilitar botões coloridos até o jogo começar</span>
+    <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    
+    <span class="c1">// (Ação dos botões será na Aula 3)</span>
+<span class="o">}</span>
+
+<span class="c1">// --- Métodos de Lógica do Jogo (Adicionar à classe) ---</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">startGame</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">sequence</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="n">updateScoreboard</span><span class="o">();</span>
+    <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="n">startButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="n">nextRound</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">nextRound</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    
+    <span class="c1">// Adiciona uma nova cor aleatória à sequência</span>
+    <span class="n">sequence</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">values</span><span class="o">()[</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">4</span><span class="o">)]);</span>
+    
+    <span class="c1">// Tocar a sequência (será implementado na Aula 3)</span>
+    <span class="n">playSequence</span><span class="o">();</span> 
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">playerTurn</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">checkPlayerInput</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">isPlayerTurn</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">playerIndex</span><span class="o">)</span> <span class="o">==</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Acerto</span>
+        <span class="n">playerIndex</span><span class="o">++;</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="n">playerIndex</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+            <span class="c1">// Jogador completou a rodada</span>
+            <span class="n">score</span><span class="o">++;</span>
+            <span class="n">updateScoreboard</span><span class="o">();</span>
+            <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+            
+            <span class="c1">// Pausa antes da próxima rodada (usando Timer Swing)</span>
+            <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">Timer</span> <span class="n">nextRoundTimer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">Timer</span><span class="o">(</span><span class="mi">1000</span><span class="o">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">nextRound</span><span class="o">());</span>
+            <span class="n">nextRoundTimer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// Importante: executar apenas uma vez</span>
+            <span class="n">nextRoundTimer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">// Erro</span>
+        <span class="n">gameOver</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">gameOver</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="n">startButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    
+    <span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="n">highScore</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">highScore</span> <span class="o">=</span> <span class="n">score</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">updateScoreboard</span><span class="o">();</span>
+    
+    <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"Game Over! Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">,</span> <span class="s">"Fim de Jogo"</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateScoreboard</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">scoreLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">);</span>
+    <span class="n">recordLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Recorde: "</span> <span class="o">+</span> <span class="n">highScore</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">enableColorButtons</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enable</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">greenButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+    <span class="n">redButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+    <span class="n">yellowButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+    <span class="n">blueButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// Método placeholder</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">playSequence</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Implementação crucial na próxima aula</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Tocando sequência: "</span> <span class="o">+</span> <span class="n">sequence</span><span class="o">);</span>
+    <span class="c1">// Após tocar, deve chamar playerTurn()</span>
+    <span class="n">playerTurn</span><span class="o">();</span> 
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="aula-3-eventos-e-feedback-visual-concorrência-em-swing">Aula 3: Eventos e Feedback Visual (Concorrência em Swing)</h3>
+
+<p>Este é o núcleo da aplicação: manipular cliques e fornecer feedback (piscar os botões) sem travar a interface.</p>
+
+<p><strong>Princípios:</strong></p>
+
+<ul>
+  <li><strong>Não bloquear a EDT:</strong> A Event Dispatch Thread (EDT) é a <em>única</em> thread que pode atualizar a GUI. Operações longas (como <code class="language-plaintext highlighter-rouge">Thread.sleep()</code>) nela irão congelar a aplicação.</li>
+  <li><strong>Trabalho em Background:</strong> A “reprodução” da sequência (cor, pausa, cor, pausa…) deve ocorrer em uma thread de trabalho (background thread).</li>
+  <li><strong>SwingWorker (Abordagem Clássica):</strong> A ferramenta padrão do Swing para esta tarefa.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">doInBackground()</code>: Roda na thread de trabalho (aqui usamos <code class="language-plaintext highlighter-rouge">Thread.sleep()</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">publish()</code>/<code class="language-plaintext highlighter-rouge">process()</code>: Usado para enviar atualizações parciais da thread de trabalho para a EDT (para piscar o botão).</li>
+      <li><code class="language-plaintext highlighter-rouge">done()</code>: Roda na EDT quando <code class="language-plaintext highlighter-rouge">doInBackground()</code> termina (para chamar <code class="language-plaintext highlighter-rouge">playerTurn()</code>).</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Passo a Passo:</strong></p>
+
+<ol>
+  <li><strong>Registrar Listeners:</strong> No construtor, adicione <code class="language-plaintext highlighter-rouge">ActionListener</code> ao <code class="language-plaintext highlighter-rouge">startButton</code> (chamando <code class="language-plaintext highlighter-rouge">startGame()</code>) e aos botões coloridos (chamando <code class="language-plaintext highlighter-rouge">checkPlayerInput()</code>).</li>
+  <li><strong>Método <code class="language-plaintext highlighter-rouge">highlightButton()</code>:</strong> Crie um método que altera a cor de um botão para “brilhante” (feedback visual).</li>
+  <li><strong>Implementar <code class="language-plaintext highlighter-rouge">playSequence()</code> com <code class="language-plaintext highlighter-rouge">SwingWorker</code>:</strong>
+    <ul>
+      <li>Crie uma classe interna ou anônima que estende <code class="language-plaintext highlighter-rouge">SwingWorker&lt;Void, ColorButton&gt;</code>.</li>
+      <li>Em <code class="language-plaintext highlighter-rouge">doInBackground()</code>, itere pela <code class="language-plaintext highlighter-rouge">sequence</code>.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">publish(color)</code> para “acender” o botão.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">Thread.sleep()</code> para a pausa.</li>
+      <li>Use <code class="language-plaintext highlighter-rouge">publish(null)</code> para “apagar” o botão.</li>
+      <li>Em <code class="language-plaintext highlighter-rouge">process()</code>, chame <code class="language-plaintext highlighter-rouge">highlightButton(color)</code> para atualizar a GUI.</li>
+      <li>Em <code class="language-plaintext highlighter-rouge">done()</code>, chame <code class="language-plaintext highlighter-rouge">playerTurn()</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Feedback no Clique:</strong> Adicione um feedback visual (piscar) dentro de <code class="language-plaintext highlighter-rouge">checkPlayerInput()</code>.</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Aula 3: Eventos e Concorrência (incremental) */</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span> <span class="c1">// Importar java.util.List</span>
+
+<span class="c1">// Adicionar ao construtor GeniusGame()</span>
+<span class="kd">public</span> <span class="nf">GeniusGame</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// ... (código da Aula 2) ...</span>
+
+    <span class="c1">// --- 4. Registro de Eventos ---</span>
+    <span class="n">startButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">startGame</span><span class="o">());</span>
+    
+    <span class="c1">// Listener único para todos os botões coloridos</span>
+    <span class="n">java</span><span class="o">.</span><span class="na">awt</span><span class="o">.</span><span class="na">event</span><span class="o">.</span><span class="na">ActionListener</span> <span class="n">colorListener</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="c1">// Usamos o ActionCommand definido na Aula 1</span>
+        <span class="n">checkPlayerInput</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getActionCommand</span><span class="o">()));</span>
+    <span class="o">};</span>
+    
+    <span class="n">greenButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+    <span class="n">redButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+    <span class="n">yellowButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+    <span class="n">blueButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// --- Novos Métodos de Feedback Visual ---</span>
+
+<span class="c1">// Substituir o placeholder da Aula 2</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">playSequence</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">new</span> <span class="nc">SwingWorker</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">&gt;()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="nc">Void</span> <span class="nf">doInBackground</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span> <span class="c1">// Pausa antes de começar</span>
+            
+            <span class="k">for</span> <span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span> <span class="o">:</span> <span class="n">sequence</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">publish</span><span class="o">(</span><span class="n">color</span><span class="o">);</span> <span class="c1">// Publica a cor para "acender"</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">600</span><span class="o">);</span>
+                <span class="n">publish</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span> <span class="c1">// Publica null para "apagar"</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">200</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">&gt;</span> <span class="n">chunks</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Este método roda na EDT, seguro para GUI</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span> <span class="o">:</span> <span class="n">chunks</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">highlightButton</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">done</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Roda na EDT ao final</span>
+            <span class="n">highlightButton</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+            <span class="n">playerTurn</span><span class="o">();</span> <span class="c1">// Agora é a vez do jogador</span>
+        <span class="o">}</span>
+    <span class="o">}.</span><span class="na">execute</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">highlightButton</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Reseta todos para a cor base</span>
+    <span class="n">greenButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">);</span>
+    <span class="n">redButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+    <span class="n">yellowButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">);</span>
+    <span class="n">blueButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">color</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+    <span class="c1">// Destaca o botão específico</span>
+    <span class="c1">// Usamos .brighter() para um efeito simples</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="nl">GREEN:</span>
+            <span class="n">greenButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">.</span><span class="na">brighter</span><span class="o">().</span><span class="na">brighter</span><span class="o">());</span>
+            <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="nl">RED:</span>
+            <span class="n">redButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">.</span><span class="na">brighter</span><span class="o">().</span><span class="na">brighter</span><span class="o">());</span>
+            <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="nl">YELLOW:</span>
+            <span class="n">yellowButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">.</span><span class="na">brighter</span><span class="o">().</span><span class="na">brighter</span><span class="o">());</span>
+            <span class="k">break</span><span class="o">;</span>
+        <span class="k">case</span> <span class="nl">BLUE:</span>
+            <span class="n">blueButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">.</span><span class="na">brighter</span><span class="o">().</span><span class="na">brighter</span><span class="o">());</span>
+            <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// --- Atualização no checkPlayerInput (para feedback) ---</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">checkPlayerInput</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">isPlayerTurn</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+    <span class="c1">// --- Adicionar Feedback Visual Imediato ---</span>
+    <span class="n">highlightButton</span><span class="o">(</span><span class="n">pressedColor</span><span class="o">);</span>
+    <span class="c1">// Usamos um Timer para "apagar" o botão após 200ms</span>
+    <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">Timer</span> <span class="n">highlightTimer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">javax</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">Timer</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+    <span class="n">highlightTimer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="n">highlightTimer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="c1">// --- Fim do Feedback ---</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">playerIndex</span><span class="o">)</span> <span class="o">==</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// (Lógica de acerto da Aula 2)</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">gameOver</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="aula-4-refatoração-com-java-21-threads-virtuais">Aula 4: Refatoração com Java 21 (Threads Virtuais)</h3>
+
+<p>O <code class="language-plaintext highlighter-rouge">SwingWorker</code> é funcional, mas verboso. Com o Java 21 (Project Loom), podemos simplificar drasticamente a concorrência usando <strong>Threads Virtuais</strong>.</p>
+
+<p><strong>Princípios:</strong></p>
+
+<ul>
+  <li><strong>Threads Virtuais:</strong> São threads leves gerenciadas pelo JVM. Bloquear uma thread virtual (com <code class="language-plaintext highlighter-rouge">Thread.sleep()</code>) é barato e não bloqueia a thread do sistema operacional (Kernel Thread).</li>
+  <li><strong>Sincronização com a EDT:</strong> A regra de ouro <em>ainda</em> se aplica: <strong>Nunca toque na GUI de uma thread que não seja a EDT</strong>.</li>
+  <li><strong>Solução Moderna:</strong> Usamos <code class="language-plaintext highlighter-rouge">Thread.ofVirtual().start()</code> para rodar a lógica de espera. Quando precisamos atualizar a GUI, usamos <code class="language-plaintext highlighter-rouge">SwingUtilities.invokeLater()</code> para enviar essa atualização de volta à EDT.</li>
+</ul>
+
+<p><strong>Passo a Passo (Refatoração):</strong></p>
+
+<ol>
+  <li><strong>Refatorar <code class="language-plaintext highlighter-rouge">playSequence()</code>:</strong> Substitua o <code class="language-plaintext highlighter-rouge">SwingWorker</code> por uma Thread Virtual. O código fica linear e muito mais fácil de ler.</li>
+  <li><strong>Refatorar <code class="language-plaintext highlighter-rouge">highlightButton()</code>:</strong> Use uma <em>Switch Expression</em> (Java 14+) para um código mais limpo.</li>
+  <li><strong>Usar <code class="language-plaintext highlighter-rouge">var</code>:</strong> Adote a inferência de tipo para variáveis locais (Java 10+).</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Aula 4: Refatoração para Java 21 (incremental) */</span>
+
+<span class="c1">// 1. Refatorar playSequence() (Substitui o SwingWorker da Aula 3)</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">playSequence</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Java 21: Usando Threads Virtuais (Project Loom)</span>
+    <span class="nc">Thread</span><span class="o">.</span><span class="na">ofVirtual</span><span class="o">().</span><span class="na">start</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            
+            <span class="k">for</span> <span class="o">(</span><span class="kt">var</span> <span class="n">color</span> <span class="o">:</span> <span class="n">sequence</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Usando 'var' (Java 10+)</span>
+                
+                <span class="c1">// 1. Atualiza a GUI (pisca) -&gt; Deve ser na EDT</span>
+                <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="n">color</span><span class="o">));</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">600</span><span class="o">);</span>
+                
+                <span class="c1">// 2. Atualiza a GUI (apaga) -&gt; Deve ser na EDT</span>
+                <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">200</span><span class="o">);</span>
+            <span class="o">}</span>
+            
+            <span class="c1">// 3. Habilita o turno do jogador -&gt; Deve ser na EDT</span>
+            <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">playerTurn</span><span class="o">);</span> <span class="c1">// Usando method reference</span>
+            
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Em apps reais, tratar o cancelamento</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+
+<span class="c1">// 2. Refatorar highlightButton() (Substitui o da Aula 3)</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">highlightButton</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Reseta todos</span>
+    <span class="n">greenButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">);</span>
+    <span class="n">redButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+    <span class="n">yellowButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">);</span>
+    <span class="n">blueButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">color</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+    <span class="c1">// Java 14+: Switch Expression</span>
+    <span class="c1">// Obtém a cor base do botão que será destacado</span>
+    <span class="nc">Color</span> <span class="n">baseColor</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="no">GREEN</span> <span class="o">-&gt;</span> <span class="nc">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">;</span>
+        <span class="k">case</span> <span class="no">RED</span> <span class="o">-&gt;</span> <span class="nc">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">;</span>
+        <span class="k">case</span> <span class="no">YELLOW</span> <span class="o">-&gt;</span> <span class="nc">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">;</span>
+        <span class="k">case</span> <span class="no">BLUE</span> <span class="o">-&gt;</span> <span class="nc">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">;</span>
+    <span class="o">};</span>
+    
+    <span class="c1">// Obtém o botão que será destacado</span>
+    <span class="nc">JButton</span> <span class="n">buttonToHighlight</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="no">GREEN</span> <span class="o">-&gt;</span> <span class="n">greenButton</span><span class="o">;</span>
+        <span class="k">case</span> <span class="no">RED</span> <span class="o">-&gt;</span> <span class="n">redButton</span><span class="o">;</span>
+        <span class="k">case</span> <span class="no">YELLOW</span> <span class="o">-&gt;</span> <span class="n">yellowButton</span><span class="o">;</span>
+        <span class="k">case</span> <span class="no">BLUE</span> <span class="o">-&gt;</span> <span class="n">blueButton</span><span class="o">;</span>
+    <span class="o">};</span>
+
+    <span class="c1">// Aplica o brilho</span>
+    <span class="n">buttonToHighlight</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="n">baseColor</span><span class="o">.</span><span class="na">brighter</span><span class="o">().</span><span class="na">brighter</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="código-completo-versão-final-java-21">Código Completo (Versão Final Java 21)</h3>
+
+<p>Este é o arquivo <code class="language-plaintext highlighter-rouge">GeniusGame.java</code> completo, aplicando todas as aulas e refatorações.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Implementação do Jogo Genius (Simon) usando Java 21 (Swing e Virtual Threads).
+ * Foco: Boas práticas de concorrência em GUI e código moderno.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GeniusGame</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="c1">// Enum para estado de cor (type-safe)</span>
+    <span class="kd">private</span> <span class="kd">enum</span> <span class="nc">ColorButton</span> <span class="o">{</span>
+        <span class="no">GREEN</span><span class="o">,</span> <span class="no">RED</span><span class="o">,</span> <span class="no">YELLOW</span><span class="o">,</span> <span class="no">BLUE</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Componentes da GUI ---</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JLabel</span> <span class="n">scoreLabel</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JLabel</span> <span class="n">recordLabel</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JButton</span> <span class="n">startButton</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JButton</span> <span class="n">greenButton</span><span class="o">,</span> <span class="n">redButton</span><span class="o">,</span> <span class="n">yellowButton</span><span class="o">,</span> <span class="n">blueButton</span><span class="o">;</span>
+
+    <span class="c1">// --- Estado do Jogo ---</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">&gt;</span> <span class="n">sequence</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Random</span> <span class="n">random</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">highScore</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span> <span class="c1">// Valor inicial da imagem</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">playerIndex</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isPlayerTurn</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">GeniusGame</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Jogo Genius (Java 21)"</span><span class="o">);</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">400</span><span class="o">,</span> <span class="mi">500</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">BorderLayout</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        
+        <span class="c1">// --- Estado ---</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+        <span class="c1">// --- 1. Painel de Pontuação (Norte) ---</span>
+        <span class="nc">JPanel</span> <span class="n">scorePanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">(</span><span class="nc">FlowLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">scoreLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">);</span>
+        <span class="n">recordLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Recorde: "</span> <span class="o">+</span> <span class="n">highScore</span><span class="o">);</span>
+        <span class="n">scorePanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">scoreLabel</span><span class="o">);</span>
+        <span class="n">scorePanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">recordLabel</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">scorePanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">NORTH</span><span class="o">);</span>
+
+        <span class="c1">// --- 2. Painel de Cores (Centro) ---</span>
+        <span class="nc">JPanel</span> <span class="n">colorPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">GridLayout</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        
+        <span class="n">greenButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">GREEN</span><span class="o">);</span>
+        <span class="n">redButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+        <span class="n">yellowButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">);</span>
+        <span class="n">blueButton</span> <span class="o">=</span> <span class="n">createColorButton</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
+
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">greenButton</span><span class="o">);</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">redButton</span><span class="o">);</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">yellowButton</span><span class="o">);</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">blueButton</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">colorPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+
+        <span class="c1">// --- 3. Painel de Controle (Sul) ---</span>
+        <span class="nc">JPanel</span> <span class="n">controlPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">(</span><span class="nc">FlowLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">startButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Iniciar Jogo"</span><span class="o">);</span>
+        <span class="n">controlPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">startButton</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">controlPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">SOUTH</span><span class="o">);</span>
+
+        <span class="c1">// --- 4. Registro de Eventos ---</span>
+        <span class="n">startButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">startGame</span><span class="o">());</span>
+        
+        <span class="nc">ActionListener</span> <span class="n">colorListener</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">checkPlayerInput</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getActionCommand</span><span class="o">()));</span>
+        <span class="o">};</span>
+        
+        <span class="n">greenButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+        <span class="n">redButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+        <span class="n">yellowButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+        <span class="n">blueButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">colorListener</span><span class="o">);</span>
+        
+        <span class="c1">// Estado inicial dos botões</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método auxiliar (Princípio DRY)</span>
+    <span class="kd">private</span> <span class="nc">JButton</span> <span class="nf">createColorButton</span><span class="o">(</span><span class="nc">Color</span> <span class="n">color</span><span class="o">,</span> <span class="nc">ColorButton</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">var</span> <span class="n">button</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">();</span> <span class="c1">// 'var'</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setOpaque</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setBorderPainted</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setPreferredSize</span><span class="o">(</span><span class="k">new</span> <span class="nc">Dimension</span><span class="o">(</span><span class="mi">150</span><span class="o">,</span> <span class="mi">150</span><span class="o">));</span>
+        <span class="n">button</span><span class="o">.</span><span class="na">setActionCommand</span><span class="o">(</span><span class="n">id</span><span class="o">.</span><span class="na">name</span><span class="o">());</span> 
+        <span class="k">return</span> <span class="n">button</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Métodos de Lógica do Jogo ---</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">startGame</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">sequence</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">updateScoreboard</span><span class="o">();</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">startButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">nextRound</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">nextRound</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        
+        <span class="n">sequence</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">values</span><span class="o">()[</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">4</span><span class="o">)]);</span>
+        
+        <span class="n">playSequence</span><span class="o">();</span> 
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">playerTurn</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">checkPlayerInput</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">isPlayerTurn</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+        <span class="c1">// Feedback visual imediato</span>
+        <span class="n">highlightButton</span><span class="o">(</span><span class="n">pressedColor</span><span class="o">);</span>
+        <span class="kt">var</span> <span class="n">highlightTimer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Timer</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+        <span class="n">highlightTimer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">highlightTimer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">playerIndex</span><span class="o">)</span> <span class="o">==</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Acerto</span>
+            <span class="n">playerIndex</span><span class="o">++;</span>
+            
+            <span class="k">if</span> <span class="o">(</span><span class="n">playerIndex</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">// Jogador completou a rodada</span>
+                <span class="n">score</span><span class="o">++;</span>
+                <span class="n">updateScoreboard</span><span class="o">();</span>
+                <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+                
+                <span class="kt">var</span> <span class="n">nextRoundTimer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Timer</span><span class="o">(</span><span class="mi">1000</span><span class="o">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">nextRound</span><span class="o">());</span>
+                <span class="n">nextRoundTimer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+                <span class="n">nextRoundTimer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// Erro</span>
+            <span class="n">gameOver</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">gameOver</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">startButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="n">highScore</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">highScore</span> <span class="o">=</span> <span class="n">score</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">updateScoreboard</span><span class="o">();</span>
+        
+        <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"Game Over! Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">,</span> <span class="s">"Fim de Jogo"</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateScoreboard</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">scoreLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">);</span>
+        <span class="n">recordLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Recorde: "</span> <span class="o">+</span> <span class="n">highScore</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">enableColorButtons</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">greenButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+        <span class="n">redButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+        <span class="n">yellowButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+        <span class="n">blueButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Concorrência e Feedback Visual (Java 21) ---</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">playSequence</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Java 21: Usando Threads Virtuais (Project Loom)</span>
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">ofVirtual</span><span class="o">().</span><span class="na">start</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span> <span class="c1">// Pausa antes de começar</span>
+                
+                <span class="k">for</span> <span class="o">(</span><span class="kt">var</span> <span class="n">color</span> <span class="o">:</span> <span class="n">sequence</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 'var'</span>
+                    
+                    <span class="c1">// 1. Atualiza a GUI (pisca) -&gt; Deve ser na EDT</span>
+                    <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="n">color</span><span class="o">));</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">600</span><span class="o">);</span>
+                    
+                    <span class="c1">// 2. Atualiza a GUI (apaga) -&gt; Deve ser na EDT</span>
+                    <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">200</span><span class="o">);</span>
+                <span class="o">}</span>
+                
+                <span class="c1">// 3. Habilita o turno do jogador -&gt; Deve ser na EDT</span>
+                <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">playerTurn</span><span class="o">);</span> <span class="c1">// Method reference</span>
+                
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">highlightButton</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Reseta todos</span>
+        <span class="n">greenButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">);</span>
+        <span class="n">redButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+        <span class="n">yellowButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">);</span>
+        <span class="n">blueButton</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">color</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+        <span class="c1">// Java 14+: Switch Expression</span>
+        <span class="kt">var</span> <span class="n">buttonToHighlight</span> <span class="o">=</span> <span class="k">switch</span> <span class="o">(</span><span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="no">GREEN</span> <span class="o">-&gt;</span> <span class="n">greenButton</span><span class="o">;</span>
+            <span class="k">case</span> <span class="no">RED</span> <span class="o">-&gt;</span> <span class="n">redButton</span><span class="o">;</span>
+            <span class="k">case</span> <span class="no">YELLOW</span> <span class="o">-&gt;</span> <span class="n">yellowButton</span><span class="o">;</span>
+            <span class="k">case</span> <span class="no">BLUE</span> <span class="o">-&gt;</span> <span class="n">blueButton</span><span class="o">;</span>
+        <span class="o">};</span>
+
+        <span class="c1">// Pega a cor base e ilumina</span>
+        <span class="nc">Color</span> <span class="n">baseColor</span> <span class="o">=</span> <span class="n">buttonToHighlight</span><span class="o">.</span><span class="na">getBackground</span><span class="o">();</span>
+        <span class="n">buttonToHighlight</span><span class="o">.</span><span class="na">setBackground</span><span class="o">(</span><span class="n">baseColor</span><span class="o">.</span><span class="na">brighter</span><span class="o">().</span><span class="na">brighter</span><span class="o">());</span>
+        
+        <span class="c1">// Opcional: Tocar som</span>
+        <span class="c1">// Toolkit.getDefaultToolkit().beep();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Ponto de Entrada ---</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Garante a execução na Event Dispatch Thread (EDT)</span>
+        <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="nf">GeniusGame</span><span class="o">().</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="código-completo-versão-final-java-21-1">Código Completo (Versão Final Java 21)</h3>
+
+<p>Este é o arquivo <code class="language-plaintext highlighter-rouge">GeniusGame.java</code> completo, aplicando todas as aulas e refatorações.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">javax.swing.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.MouseAdapter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.event.MouseEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.geom.Arc2D</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.EnumMap</span><span class="o">;</span>
+
+<span class="c1">// Importações para áudio</span>
+<span class="kn">import</span> <span class="nn">javax.sound.sampled.AudioSystem</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.sound.sampled.Clip</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Jogo Genius (Simon) Clássico
+ * Versão: Java 21
+ * Features: GUI Swing com renderização 2D customizada, Threads Virtuais, Áudio.
+ * Baseado no código original de GeniusGame.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GeniusGameClassic</span> <span class="kd">extends</span> <span class="nc">JFrame</span> <span class="o">{</span>
+
+    <span class="c1">// Enum para estado de cor (type-safe)</span>
+    <span class="kd">private</span> <span class="kd">enum</span> <span class="nc">ColorButton</span> <span class="o">{</span>
+        <span class="no">GREEN</span><span class="o">,</span> <span class="no">RED</span><span class="o">,</span> <span class="no">YELLOW</span><span class="o">,</span> <span class="no">BLUE</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Componentes da GUI ---</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JLabel</span> <span class="n">scoreLabel</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JLabel</span> <span class="n">recordLabel</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">JButton</span> <span class="n">startButton</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ColorPanel</span> <span class="n">colorPanel</span><span class="o">;</span> <span class="c1">// &lt;--- MUDANÇA: Substitui os 4 botões</span>
+
+    <span class="c1">// --- Estado do Jogo ---</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">&gt;</span> <span class="n">sequence</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Random</span> <span class="n">random</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">score</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">highScore</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">playerIndex</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isPlayerTurn</span><span class="o">;</span>
+
+    <span class="c1">// --- Paleta de Cores ---</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">,</span> <span class="nc">Color</span><span class="o">&gt;</span> <span class="n">baseColors</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">,</span> <span class="nc">Color</span><span class="o">&gt;</span> <span class="n">highlightColors</span><span class="o">;</span>
+
+    <span class="c1">// --- Clips de Áudio ---</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">,</span> <span class="nc">Clip</span><span class="o">&gt;</span> <span class="n">audioClips</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">GeniusGameClassic</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">setTitle</span><span class="o">(</span><span class="s">"Genius Clássico (Java 21)"</span><span class="o">);</span>
+        <span class="n">setDefaultCloseOperation</span><span class="o">(</span><span class="nc">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+        <span class="c1">// Tamanho ajustado para o layout circular</span>
+        <span class="n">setSize</span><span class="o">(</span><span class="mi">450</span><span class="o">,</span> <span class="mi">550</span><span class="o">);</span>
+        <span class="n">setLayout</span><span class="o">(</span><span class="k">new</span> <span class="nc">BorderLayout</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">setLocationRelativeTo</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+        <span class="c1">// Cor de fundo da janela para combinar com o painel</span>
+        <span class="n">getContentPane</span><span class="o">().</span><span class="na">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">DARK_GRAY</span><span class="o">.</span><span class="na">darker</span><span class="o">());</span>
+
+        <span class="c1">// --- Estado ---</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+        <span class="c1">// --- Inicializa a Paleta de Cores ---</span>
+        <span class="n">baseColors</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EnumMap</span><span class="o">&lt;&gt;(</span><span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">150</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span> <span class="mi">200</span><span class="o">,</span> <span class="mi">0</span><span class="o">),</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">BLUE</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">200</span><span class="o">)</span>
+        <span class="o">));</span>
+
+        <span class="n">highlightColors</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EnumMap</span><span class="o">&lt;&gt;(</span><span class="nc">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">144</span><span class="o">,</span> <span class="mi">238</span><span class="o">,</span> <span class="mi">144</span><span class="o">),</span> <span class="c1">// Light Green</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">240</span><span class="o">,</span> <span class="mi">128</span><span class="o">,</span> <span class="mi">128</span><span class="o">),</span> <span class="c1">// Light Coral</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span> <span class="mi">255</span><span class="o">,</span> <span class="mi">224</span><span class="o">),</span> <span class="c1">// Light Yellow</span>
+            <span class="nc">ColorButton</span><span class="o">.</span><span class="na">BLUE</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">173</span><span class="o">,</span> <span class="mi">216</span><span class="o">,</span> <span class="mi">230</span><span class="o">)</span>  <span class="c1">// Light Blue</span>
+        <span class="o">));</span>
+
+        <span class="c1">// --- Inicializa e pré-carrega os sons ---</span>
+        <span class="n">audioClips</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EnumMap</span><span class="o">&lt;&gt;(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">loadSounds</span><span class="o">();</span>
+
+        <span class="c1">// --- 1. Painel de Pontuação (Norte) ---</span>
+        <span class="kt">var</span> <span class="n">scorePanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">(</span><span class="nc">FlowLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">scoreLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">);</span>
+        <span class="n">recordLabel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JLabel</span><span class="o">(</span><span class="s">"Recorde: "</span> <span class="o">+</span> <span class="n">highScore</span><span class="o">);</span>
+        <span class="n">scorePanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">scoreLabel</span><span class="o">);</span>
+        <span class="n">scorePanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">recordLabel</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">scorePanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">NORTH</span><span class="o">);</span>
+
+        <span class="c1">// --- 2. Painel de Cores (Centro) ---</span>
+        <span class="c1">// &lt;--- MUDANÇA: Substitui o GridLayout por nosso painel customizado ---</span>
+        <span class="n">colorPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ColorPanel</span><span class="o">();</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">colorPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+        <span class="c1">// --- FIM DA MUDANÇA ---</span>
+
+        <span class="c1">// --- 3. Painel de Controle (Sul) ---</span>
+        <span class="kt">var</span> <span class="n">controlPanel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JPanel</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlowLayout</span><span class="o">(</span><span class="nc">FlowLayout</span><span class="o">.</span><span class="na">CENTER</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">10</span><span class="o">));</span>
+        <span class="n">startButton</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JButton</span><span class="o">(</span><span class="s">"Iniciar Jogo"</span><span class="o">);</span>
+        <span class="n">controlPanel</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">startButton</span><span class="o">);</span>
+        <span class="n">add</span><span class="o">(</span><span class="n">controlPanel</span><span class="o">,</span> <span class="nc">BorderLayout</span><span class="o">.</span><span class="na">SOUTH</span><span class="o">);</span>
+
+        <span class="c1">// --- 4. Registro de Eventos ---</span>
+        <span class="n">startButton</span><span class="o">.</span><span class="na">addActionListener</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">startGame</span><span class="o">());</span>
+
+        <span class="c1">// &lt;--- MUDANÇA: Os ActionListeners dos botões foram removidos ---</span>
+        <span class="c1">// A detecção de clique agora é feita dentro da classe ColorPanel.</span>
+
+        <span class="c1">// Estado inicial</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// &lt;--- REMOVIDO: createColorButton() não é mais necessário ---</span>
+
+    <span class="c1">// --- Métodos de Lógica do Jogo (A MAIORIA PERMANECE IDÊNTICA) ---</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">startGame</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">sequence</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">updateScoreboard</span><span class="o">();</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">startButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">nextRound</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">nextRound</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">playerIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="n">sequence</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">values</span><span class="o">()[</span><span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">4</span><span class="o">)]);</span>
+
+        <span class="n">playSequence</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">playerTurn</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Este método é chamado pelo ColorPanel agora, não por ActionListeners</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">checkPlayerInput</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">isPlayerTurn</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+        <span class="c1">// Feedback visual e auditivo imediato</span>
+        <span class="c1">// (O feedback visual agora é mais rápido, lidado pelo MouseListener,</span>
+        <span class="c1">// mas vamos manter um pisque rápido para consistência)</span>
+        <span class="n">highlightButton</span><span class="o">(</span><span class="n">pressedColor</span><span class="o">);</span>
+        <span class="kt">var</span> <span class="n">highlightTimer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Timer</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+        <span class="n">highlightTimer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">highlightTimer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">sequence</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">playerIndex</span><span class="o">)</span> <span class="o">==</span> <span class="n">pressedColor</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Acerto</span>
+            <span class="n">playerIndex</span><span class="o">++;</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">playerIndex</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">size</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">// Jogador completou a rodada</span>
+                <span class="n">score</span><span class="o">++;</span>
+                <span class="n">updateScoreboard</span><span class="o">();</span>
+                <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+
+                <span class="kt">var</span> <span class="n">nextRoundTimer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Timer</span><span class="o">(</span><span class="mi">1000</span><span class="o">,</span> <span class="n">e</span> <span class="o">-&gt;</span> <span class="n">nextRound</span><span class="o">());</span>
+                <span class="n">nextRoundTimer</span><span class="o">.</span><span class="na">setRepeats</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+                <span class="n">nextRoundTimer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// Erro</span>
+            <span class="n">gameOver</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">gameOver</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">isPlayerTurn</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">enableColorButtons</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">startButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">score</span> <span class="o">&gt;</span> <span class="n">highScore</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">highScore</span> <span class="o">=</span> <span class="n">score</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">updateScoreboard</span><span class="o">();</span>
+
+        <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"Game Over! Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">,</span> <span class="s">"Fim de Jogo"</span><span class="o">,</span> <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">updateScoreboard</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">scoreLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Pontuação: "</span> <span class="o">+</span> <span class="n">score</span><span class="o">);</span>
+        <span class="n">recordLabel</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Recorde: "</span> <span class="o">+</span> <span class="n">highScore</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// &lt;--- MUDANÇA: Lógica de habilitar botões atualizada ---</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">enableColorButtons</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Agora apenas informa o painel se a entrada está ativa</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">setInputEnabled</span><span class="o">(</span><span class="n">enable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Concorrência e Feedback Visual/Auditivo ---</span>
+
+    <span class="c1">// (Lógica do Virtual Thread permanece IDÊNTICA)</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">playSequence</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">ofVirtual</span><span class="o">().</span><span class="na">start</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+
+                <span class="k">for</span> <span class="o">(</span><span class="kt">var</span> <span class="n">color</span> <span class="o">:</span> <span class="n">sequence</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="n">color</span><span class="o">));</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">600</span><span class="o">);</span>
+
+                    <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">highlightButton</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">200</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(</span><span class="k">this</span><span class="o">::</span><span class="n">playerTurn</span><span class="o">);</span>
+
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="c1">// &lt;--- MUDANÇA: Lógica de destaque atualizada ---</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">highlightButton</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 1. Informa ao painel qual cor destacar</span>
+        <span class="n">colorPanel</span><span class="o">.</span><span class="na">setHighlight</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+
+        <span class="c1">// 2. Se 'color' não for nulo, toca o som</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">color</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Toca o som</span>
+            <span class="n">playSoundFor</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// (Lógica de Áudio permanece IDÊNTICA)</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">loadSounds</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">var</span> <span class="n">color</span> <span class="o">:</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">String</span> <span class="n">soundName</span> <span class="o">=</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">color</span><span class="o">.</span><span class="na">name</span><span class="o">().</span><span class="na">toLowerCase</span><span class="o">()</span> <span class="o">+</span> <span class="s">".wav"</span><span class="o">;</span>
+                <span class="kt">var</span> <span class="n">resource</span> <span class="o">=</span> <span class="nc">GeniusGameClassic</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getResource</span><span class="o">(</span><span class="n">soundName</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">resource</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Arquivo de som não encontrado: "</span> <span class="o">+</span> <span class="n">soundName</span><span class="o">);</span>
+                    <span class="k">continue</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="kt">var</span> <span class="n">audioIn</span> <span class="o">=</span> <span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getAudioInputStream</span><span class="o">(</span><span class="n">resource</span><span class="o">);</span>
+                <span class="nc">Clip</span> <span class="n">clip</span> <span class="o">=</span> <span class="nc">AudioSystem</span><span class="o">.</span><span class="na">getClip</span><span class="o">();</span>
+                <span class="n">clip</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">audioIn</span><span class="o">);</span>
+                <span class="n">audioClips</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">color</span><span class="o">,</span> <span class="n">clip</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro ao carregar som "</span> <span class="o">+</span> <span class="n">color</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// (Lógica de Áudio permanece IDÊNTICA)</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">playSoundFor</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Clip</span> <span class="n">clip</span> <span class="o">=</span> <span class="n">audioClips</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">clip</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">clip</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+            <span class="n">clip</span><span class="o">.</span><span class="na">setFramePosition</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="n">clip</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// --- Ponto de Entrada (IDÊNTICO) ---</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">SwingUtilities</span><span class="o">.</span><span class="na">invokeLater</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="nf">GeniusGameClassic</span><span class="o">().</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="c1">// =======================================================================</span>
+    <span class="c1">// --- CLASSE INTERNA: O NOVO PAINEL DE CORES ---</span>
+    <span class="c1">// =======================================================================</span>
+    <span class="kd">class</span> <span class="nc">ColorPanel</span> <span class="kd">extends</span> <span class="nc">JPanel</span> <span class="o">{</span>
+
+        <span class="kd">private</span> <span class="nc">ColorButton</span> <span class="n">highlightedColor</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isInputEnabled</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+        <span class="c1">// Formas dos botões para desenho e detecção de clique</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">ColorButton</span><span class="o">,</span> <span class="nc">Shape</span><span class="o">&gt;</span> <span class="n">buttonShapes</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="nf">ColorPanel</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Fundo preto entre os botões</span>
+            <span class="n">setBackground</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+            <span class="n">buttonShapes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EnumMap</span><span class="o">&lt;&gt;(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+            <span class="c1">// Adiciona o listener de mouse para detectar cliques</span>
+            <span class="n">addMouseListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">MouseAdapter</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mousePressed</span><span class="o">(</span><span class="nc">MouseEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// Só processa o clique se for o turno do jogador</span>
+                    <span class="k">if</span> <span class="o">(!</span><span class="n">isInputEnabled</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+
+                    <span class="c1">// Encontra a cor clicada</span>
+                    <span class="nc">ColorButton</span> <span class="n">clickedColor</span> <span class="o">=</span> <span class="n">getClickedColor</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getX</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getY</span><span class="o">());</span>
+
+                    <span class="k">if</span> <span class="o">(</span><span class="n">clickedColor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="c1">// Chama a lógica principal do jogo</span>
+                        <span class="n">checkPlayerInput</span><span class="o">(</span><span class="n">clickedColor</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+         * Define qual botão deve ser destacado e agenda um repaint.
+         */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHighlight</span><span class="o">(</span><span class="nc">ColorButton</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">highlightedColor</span> <span class="o">=</span> <span class="n">color</span><span class="o">;</span>
+            <span class="n">repaint</span><span class="o">();</span> <span class="c1">// Diz ao Swing para redesenhar o painel</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+         * Habilita ou desabilita a entrada do jogador.
+         */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setInputEnabled</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">isInputEnabled</span> <span class="o">=</span> <span class="n">enabled</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+         * Onde a mágica acontece. Este método desenha os botões.
+         */</span>
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">paintComponent</span><span class="o">(</span><span class="nc">Graphics</span> <span class="n">g</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">.</span><span class="na">paintComponent</span><span class="o">(</span><span class="n">g</span><span class="o">);</span>
+            <span class="nc">Graphics2D</span> <span class="n">g2d</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Graphics2D</span><span class="o">)</span> <span class="n">g</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+
+            <span class="c1">// Ativa o Anti-aliasing para bordas suaves</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">setRenderingHint</span><span class="o">(</span><span class="nc">RenderingHints</span><span class="o">.</span><span class="na">KEY_ANTIALIASING</span><span class="o">,</span>
+                                 <span class="nc">RenderingHints</span><span class="o">.</span><span class="na">VALUE_ANTIALIAS_ON</span><span class="o">);</span>
+
+            <span class="c1">// Calcula as dimensões</span>
+            <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">getWidth</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">getHeight</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">)</span> <span class="o">-</span> <span class="mi">40</span><span class="o">;</span> <span class="c1">// Deixa uma margem de 20px</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">size</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">size</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+
+            <span class="c1">// Define as formas dos arcos</span>
+            <span class="c1">// Arc2D.PIE define um arco fechado (como uma fatia de pizza)</span>
+            <span class="n">buttonShapes</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">Double</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">PIE</span><span class="o">));</span>
+            <span class="n">buttonShapes</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">RED</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">Double</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">PIE</span><span class="o">));</span>
+            <span class="n">buttonShapes</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">Double</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="mi">270</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">PIE</span><span class="o">));</span>
+            <span class="n">buttonShapes</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="nc">ColorButton</span><span class="o">.</span><span class="na">BLUE</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">Double</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="n">size</span><span class="o">,</span> <span class="mi">180</span><span class="o">,</span> <span class="mi">90</span><span class="o">,</span> <span class="nc">Arc2D</span><span class="o">.</span><span class="na">PIE</span><span class="o">));</span>
+
+            <span class="c1">// Desenha cada botão</span>
+            <span class="n">drawButton</span><span class="o">(</span><span class="n">g2d</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">GREEN</span><span class="o">);</span>
+            <span class="n">drawButton</span><span class="o">(</span><span class="n">g2d</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+            <span class="n">drawButton</span><span class="o">(</span><span class="n">g2d</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">);</span>
+            <span class="n">drawButton</span><span class="o">(</span><span class="n">g2d</span><span class="o">,</span> <span class="nc">ColorButton</span><span class="o">.</span><span class="na">BLUE</span><span class="o">);</span>
+
+            <span class="c1">// --- Desenha o Círculo Central ---</span>
+            <span class="kt">int</span> <span class="n">centerSize</span> <span class="o">=</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">centerX</span> <span class="o">=</span> <span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">centerSize</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">centerY</span> <span class="o">=</span> <span class="o">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">centerSize</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+
+            <span class="c1">// Círculo interno preto</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">fillOval</span><span class="o">(</span><span class="n">centerX</span><span class="o">,</span> <span class="n">centerY</span><span class="o">,</span> <span class="n">centerSize</span><span class="o">,</span> <span class="n">centerSize</span><span class="o">);</span>
+
+            <span class="c1">// Borda cinza do círculo (fiel à imagem)</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">GRAY</span><span class="o">);</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">setStroke</span><span class="o">(</span><span class="k">new</span> <span class="nc">BasicStroke</span><span class="o">(</span><span class="mi">4</span><span class="o">));</span> <span class="c1">// Borda de 4px</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">drawOval</span><span class="o">(</span><span class="n">centerX</span><span class="o">,</span> <span class="n">centerY</span><span class="o">,</span> <span class="n">centerSize</span><span class="o">,</span> <span class="n">centerSize</span><span class="o">);</span>
+
+            <span class="c1">// Simula o logo "Genius" (opcional, pode ser melhorado)</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="nc">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">);</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">setFont</span><span class="o">(</span><span class="k">new</span> <span class="nc">Font</span><span class="o">(</span><span class="s">"Arial"</span><span class="o">,</span> <span class="nc">Font</span><span class="o">.</span><span class="na">BOLD</span><span class="o">,</span> <span class="n">centerSize</span> <span class="o">/</span> <span class="mi">6</span><span class="o">));</span>
+            <span class="nc">FontMetrics</span> <span class="n">fm</span> <span class="o">=</span> <span class="n">g2d</span><span class="o">.</span><span class="na">getFontMetrics</span><span class="o">();</span>
+            <span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"Genius"</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">textX</span> <span class="o">=</span> <span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">fm</span><span class="o">.</span><span class="na">stringWidth</span><span class="o">(</span><span class="n">text</span><span class="o">))</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">textY</span> <span class="o">=</span> <span class="o">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">fm</span><span class="o">.</span><span class="na">getHeight</span><span class="o">())</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">fm</span><span class="o">.</span><span class="na">getAscent</span><span class="o">();</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">drawString</span><span class="o">(</span><span class="n">text</span><span class="o">,</span> <span class="n">textX</span><span class="o">,</span> <span class="n">textY</span><span class="o">);</span>
+
+            <span class="n">g2d</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+         * Método auxiliar para desenhar um único botão/quadrante.
+         */</span>
+        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">drawButton</span><span class="o">(</span><span class="nc">Graphics2D</span> <span class="n">g2d</span><span class="o">,</span> <span class="nc">ColorButton</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Define a cor: usa a cor de destaque se for o botão destacado</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">color</span> <span class="o">==</span> <span class="n">highlightedColor</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">g2d</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">highlightColors</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">color</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">g2d</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">baseColors</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">color</span><span class="o">));</span>
+            <span class="o">}</span>
+
+            <span class="c1">// Preenche a forma do arco</span>
+            <span class="n">g2d</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">buttonShapes</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">color</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="cm">/**
+         * Verifica qual cor foi clicada com base nas coordenadas (x, y).
+         */</span>
+        <span class="kd">private</span> <span class="nc">ColorButton</span> <span class="nf">getClickedColor</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Itera sobre as formas dos botões</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">var</span> <span class="n">entry</span> <span class="o">:</span> <span class="n">buttonShapes</span><span class="o">.</span><span class="na">entrySet</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">// `contains` verifica se o ponto (x,y) está dentro da forma</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getValue</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// Nenhum botão foi clicado (clicou no centro ou fora)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="análise-de-arquitetura-e-melhorias">Análise de Arquitetura e Melhorias</h3>
+
+<ul>
+  <li>
+    <p><strong>Arquitetura Atual (MVC Simplificado):</strong></p>
+
+    <ul>
+      <li><strong>Modelo:</strong> As variáveis de estado (<code class="language-plaintext highlighter-rouge">sequence</code>, <code class="language-plaintext highlighter-rouge">score</code>, <code class="language-plaintext highlighter-rouge">isPlayerTurn</code>) e a lógica (<code class="language-plaintext highlighter-rouge">checkPlayerInput</code>, <code class="language-plaintext highlighter-rouge">nextRound</code>).</li>
+      <li><strong>Visão:</strong> Os componentes Swing (<code class="language-plaintext highlighter-rouge">JFrame</code>, <code class="language-plaintext highlighter-rouge">JButton</code>, <code class="language-plaintext highlighter-rouge">JLabel</code>).</li>
+      <li><strong>Controlador:</strong> Os <code class="language-plaintext highlighter-rouge">ActionListeners</code> e os métodos de lógica (<code class="language-plaintext highlighter-rouge">startGame</code>).</li>
+      <li>Neste código, as três camadas estão misturadas na classe <code class="language-plaintext highlighter-rouge">GeniusGame</code>. Para um projeto desta escala, é aceitável.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Pontos de Melhoria (Próximos Passos):</strong></p>
+
+    <ol>
+      <li><strong>Separação de Camadas (Refatoração):</strong> Criar classes distintas:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">GameLogic</code> (Modelo): Conteria <code class="language-plaintext highlighter-rouge">sequence</code>, <code class="language-plaintext highlighter-rouge">score</code>, <code class="language-plaintext highlighter-rouge">highScore</code> e os métodos <code class="language-plaintext highlighter-rouge">nextRound</code>, <code class="language-plaintext highlighter-rouge">checkInput</code>. Não teria nenhuma referência ao Swing.</li>
+          <li><code class="language-plaintext highlighter-rouge">GameView</code> (Visão): Conteria o <code class="language-plaintext highlighter-rouge">JFrame</code> e os componentes. Exporia métodos como <code class="language-plaintext highlighter-rouge">highlight(ColorButton c)</code> e <code class="language-plaintext highlighter-rouge">updateScore(int s)</code>.</li>
+          <li><code class="language-plaintext highlighter-rouge">GameController</code> (Controlador): Conteria os <code class="language-plaintext highlighter-rouge">ActionListeners</code> e faria a ponte: “Quando <code class="language-plaintext highlighter-rouge">startButton</code> for clicado, chame <code class="language-plaintext highlighter-rouge">gameLogic.start()</code> e atualize <code class="language-plaintext highlighter-rouge">gameView</code>”.</li>
+        </ul>
+      </li>
+      <li><strong>JavaFX:</strong> Substituir Swing por JavaFX, a plataforma de GUI moderna do Java. O gerenciamento de concorrência é similar (usando <code class="language-plaintext highlighter-rouge">Platform.runLater()</code> em vez de <code class="language-plaintext highlighter-rouge">SwingUtilities.invokeLater()</code>).</li>
+      <li><strong>Som:</strong> Adicionar feedback de áudio. O clássico <code class="language-plaintext highlighter-rouge">Toolkit.getDefaultToolkit().beep()</code> é limitado. Seria melhor usar <code class="language-plaintext highlighter-rouge">javax.sound.sampled</code> para tocar arquivos <code class="language-plaintext highlighter-rouge">.wav</code> específicos para cada cor.</li>
+      <li><strong>Testes Unitários:</strong> A lógica do <code class="language-plaintext highlighter-rouge">GameLogic</code> (se separada) poderia ser facilmente testada unitariamente (JUnit 5) sem depender da GUI, verificando se <code class="language-plaintext highlighter-rouge">checkInput</code> retorna o resultado correto para uma sequência conhecida.</li>
+    </ol>
+  </li>
+</ul>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,285 @@
+<h1 id="-visualg-e-portugol-o-primeiro-passo-na-lógica-de-programação">👨‍🏫 VisualG e Portugol: O Primeiro Passo na Lógica de Programação</h1>
+
+<p>O <strong>VisualG</strong> é um software educacional amplamente utilizado no Brasil e em outros países de língua portuguesa como uma ferramenta para o ensino e aprendizado de <strong>lógica de programação</strong> e <strong>algoritmos</strong>. Ele funciona como um editor e interpretador para uma linguagem de pseudocódigo chamada <strong>Portugol</strong>.</p>
+
+<p>Desenvolvido pelo professor Cláudio de Castro Monteiro, da Universidade de Franca (UNIFRAN), seu principal objetivo é remover as barreiras sintáticas complexas das linguagens de programação “reais” (como C++, Java ou Python), permitindo que o estudante iniciante se concentre exclusivamente no desenvolvimento do raciocínio lógico necessário para resolver problemas.</p>
+
+<hr />
+
+<h2 id="-a-linguagem-o-portugol-estruturado">📜 A Linguagem: O Portugol Estruturado</h2>
+
+<p>O coração do VisualG é o <strong>Portugol</strong>, uma pseudolinguagem que utiliza palavras-chave em português para representar as estruturas lógicas da programação. A ideia é criar uma ponte entre a linguagem natural e uma linguagem de programação formal.</p>
+
+<p>As principais características do Portugol no VisualG são:</p>
+
+<ul>
+  <li><strong>Palavras-chave em Português</strong>: Comandos como <code class="language-plaintext highlighter-rouge">algoritmo</code>, <code class="language-plaintext highlighter-rouge">var</code>, <code class="language-plaintext highlighter-rouge">inicio</code>, <code class="language-plaintext highlighter-rouge">fimalgoritmo</code>, <code class="language-plaintext highlighter-rouge">leia</code>, <code class="language-plaintext highlighter-rouge">escreva</code>, <code class="language-plaintext highlighter-rouge">se</code>, <code class="language-plaintext highlighter-rouge">entao</code>, <code class="language-plaintext highlighter-rouge">senao</code>, <code class="language-plaintext highlighter-rouge">para</code>, <code class="language-plaintext highlighter-rouge">faca</code>, <code class="language-plaintext highlighter-rouge">enquanto</code>.</li>
+  <li><strong>Estrutura Rígida</strong>: Todo programa tem uma estrutura bem definida de declaração de algoritmo, seção de variáveis e o bloco de início/fim.</li>
+  <li><strong>Tipos de Dados Básicos</strong>: Focado nos primitivos essenciais para a lógica: <code class="language-plaintext highlighter-rouge">inteiro</code>, <code class="language-plaintext highlighter-rouge">real</code>, <code class="language-plaintext highlighter-rouge">caractere</code> e <code class="language-plaintext highlighter-rouge">logico</code>.</li>
+  <li><strong>Simplicidade Intencional</strong>: A linguagem é propositalmente limitada, não incluindo conceitos avançados como orientação a objetos, para manter o foco total nos fundamentos da lógica procedural.</li>
+</ul>
+
+<hr />
+
+<h2 id="️-o-ambiente-visualg">🖥️ O Ambiente VisualG</h2>
+
+<p>O software em si é um ambiente integrado simples que oferece três funcionalidades principais:</p>
+
+<ol>
+  <li><strong>Editor de Código</strong>: Uma área de texto para escrever o algoritmo em Portugol.</li>
+  <li><strong>Interpretador</strong>: Executa o algoritmo passo a passo, mostrando a saída em um console de texto.</li>
+  <li><strong>Visualizador de Variáveis</strong>: Este é o recurso didático mais poderoso. Um painel exibe todas as variáveis declaradas e seus valores são atualizados em tempo real à medida que o algoritmo é executado. Isso permite que o aluno “veja” o que está acontecendo na memória do computador, facilitando a compreensão de conceitos como atribuição e estado.</li>
+</ol>
+
+<p>O VisualG funciona, na prática, como um simulador de “teste de mesa” (desk check), uma técnica usada para depurar algoritmos manualmente no papel.</p>
+
+<hr />
+
+<h2 id="flowchart-estrutura-de-um-algoritmo-no-visualg">flowchart Estrutura de um Algoritmo no VisualG</h2>
+
+<p>Um fluxograma é uma ótima maneira de planejar a lógica de um algoritmo antes de escrevê-lo. O exemplo abaixo mostra o fluxo para calcular a média de um aluno e determinar se ele foi aprovado.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A(Início do Algoritmo) --&gt; B{Declare as variáveis:&lt;br/&gt;nota1, nota2, media: real};
+    B --&gt; C{Escreva "Digite a primeira nota"};
+    C --&gt; D[Leia nota1];
+    D --&gt; E{Escreva "Digite a segunda nota"};
+    E --&gt; F[Leia nota2];
+    F --&gt; G[media &lt;- (nota1 + nota2) / 2];
+    G --&gt; H{media &gt;= 6.0?};
+    H -- Sim --&gt; I[Escreva "Aprovado"];
+    H -- Não --&gt; J[Escreva "Reprovado"];
+    I --&gt; K(Fim do Algoritmo);
+    J --&gt; K;
+
+    style A fill:#cfc,stroke:#333,stroke-width:2px
+    style K fill:#f99,stroke:#333,stroke-width:2px
+</code></pre>
+
+<hr />
+
+<h2 id="️-exemplo-prático-média-de-notas">⌨️ Exemplo Prático: Média de Notas</h2>
+
+<p>Este é o código em Portugol, para ser escrito e executado no VisualG, que implementa a lógica do fluxograma acima.</p>
+
+<pre><code class="language-algol">algoritmo "CalculoMedia"
+// Descrição: Este algoritmo lê duas notas de um aluno, calcula a média
+// e informa se o aluno foi aprovado ou reprovado.
+// Autor: [Seu Nome]
+// Data: 20/08/2025
+
+var
+   nota1, nota2, media: real
+
+inicio
+   // Seção de Comandos
+   escreva("Digite a primeira nota do aluno: ")
+   leia(nota1)
+
+   escreva("Digite a segunda nota do aluno: ")
+   leia(nota2)
+
+   media &lt;- (nota1 + nota2) / 2
+
+   escreval // Pula uma linha para melhor formatação
+   escreval("A média do aluno é: ", media)
+
+   se (media &gt;= 6) entao
+      escreva("Situação: APROVADO")
+   senao
+      escreva("Situação: REPROVADO")
+   fimse
+
+fimalgoritmo
+</code></pre>
+
+<p><em>Ao executar este código no VisualG, o programa irá pedir as duas notas, exibir a média calculada e, em seguida, a situação final do aluno. No painel de variáveis, será possível ver os valores de <code class="language-plaintext highlighter-rouge">nota1</code>, <code class="language-plaintext highlighter-rouge">nota2</code> e <code class="language-plaintext highlighter-rouge">media</code> durante toda a execução.</em></p>
+
+<hr />
+
+<h2 id="-o-papel-do-visualg-na-jornada-do-desenvolvedor">🎓 O Papel do VisualG na Jornada do Desenvolvedor</h2>
+
+<p>O VisualG é uma ferramenta de entrada, um “andaime” para ajudar a construir as fundações do conhecimento em programação.</p>
+
+<h3 id="vantagens">Vantagens</h3>
+
+<ul>
+  <li><strong>Foco Absoluto na Lógica</strong>: Remove a frustração inicial com erros de sintaxe (ponto e vírgula, chaves, etc.), permitindo que o aluno se concentre no que realmente importa no início: a lógica.</li>
+  <li><strong>Barreira de Idioma Reduzida</strong>: Usar palavras-chave em português diminui a carga cognitiva de ter que aprender os conceitos de programação e um novo idioma (inglês) ao mesmo tempo.</li>
+  <li><strong>Visualização do Fluxo</strong>: O monitor de variáveis e a execução passo a passo são ferramentas pedagógicas excelentes para visualizar como um programa funciona internamente.</li>
+</ul>
+
+<h3 id="limitações-e-próximos-passos">Limitações e Próximos Passos</h3>
+
+<ul>
+  <li><strong>Não é uma Ferramenta Profissional</strong>: Nenhuma empresa desenvolve software comercial com VisualG. Seu propósito é estritamente didático.</li>
+  <li><strong>A Necessária Transição</strong>: Após dominar os conceitos de variáveis, condicionais (<code class="language-plaintext highlighter-rouge">se/senao</code>) e laços de repetição (<code class="language-plaintext highlighter-rouge">para</code>/<code class="language-plaintext highlighter-rouge">enquanto</code>) no VisualG, o aluno está preparado para o próximo passo. A transição para uma linguagem como <strong>Python</strong>, <strong>JavaScript</strong> ou <strong>Java</strong> se torna muito mais suave, pois o desafio passa a ser apenas aprender uma nova sintaxe para aplicar a lógica que já foi compreendida.</li>
+</ul>
+
+<hr />
+
+<h1 id="-portugol-studio-a-evolução-do-aprendizado-de-algoritmos">💡 Portugol Studio: A Evolução do Aprendizado de Algoritmos</h1>
+
+<p>O <strong>Portugol Studio</strong> é um Ambiente de Aprendizagem Integrado (ILE - Integrated Learning Environment), gratuito e de código aberto, projetado para ensinar os fundamentos da programação e da lógica de algoritmos. Desenvolvido pela Universidade do Vale do Itajaí (UNIVALI), ele representa uma evolução moderna de ferramentas didáticas como o VisualG.</p>
+
+<p>Seu objetivo é o mesmo: fornecer um ambiente em português onde estudantes iniciantes possam se concentrar na lógica, sem as complexidades sintáticas de uma linguagem de programação profissional. No entanto, o Portugol Studio faz isso com uma interface mais rica, recursos mais poderosos e uma abordagem que prepara melhor o aluno para as linguagens de programação do mercado.</p>
+
+<hr />
+
+<h2 id="-portugol-studio-vs-visualg-o-que-mudou">🆚 Portugol Studio vs. VisualG: O Que Mudou?</h2>
+
+<p>Embora compartilhem a mesma filosofia, o Portugol Studio oferece uma experiência de aprendizado mais moderna e completa.</p>
+
+<ul>
+  <li><strong>IDE Moderna</strong>: Oferece recursos comuns em ambientes de desenvolvimento profissionais, como <em>syntax highlighting</em> (coloração de código), autocompletar, sugestões de código e mensagens de erro muito mais claras e detalhadas.</li>
+  <li><strong>Recursos Gráficos e Multimídia</strong>: Uma das maiores vantagens. O Studio inclui bibliotecas prontas (<code class="language-plaintext highlighter-rouge">inclua Biblioteca Grafico</code>, <code class="language-plaintext highlighter-rouge">inclua Biblioteca Som</code>) que permitem ao aluno criar desenhos, animações simples e até pequenos jogos, tornando o aprendizado mais visual, lúdico e engajador.</li>
+  <li><strong>Melhor Suporte a Funções e Modularidade</strong>: Facilita a criação de algoritmos mais organizados através de funções, com um suporte mais claro para passagem de parâmetros (por valor e por referência).</li>
+  <li><strong>Estrutura de Programa Mais Próxima do “Real”</strong>: A estrutura <code class="language-plaintext highlighter-rouge">programa { funcao inicio() { ... } }</code> se assemelha mais à estrutura de um programa em linguagens como C, C++ ou Java, com uma função principal (<code class="language-plaintext highlighter-rouge">inicio</code>) que serve como ponto de entrada.</li>
+  <li><strong>Depurador (Debugger) Integrado</strong>: Possui um depurador mais avançado que permite a inserção de <em>breakpoints</em> (pontos de parada), tornando a investigação de bugs e o entendimento do fluxo do código mais fáceis.</li>
+</ul>
+
+<hr />
+
+<h2 id="-a-sintaxe-do-portugol-no-studio">📜 A Sintaxe do Portugol no Studio</h2>
+
+<p>A sintaxe é similar ao Portugol tradicional, mas com uma estrutura mais formal.</p>
+
+<ul>
+  <li><strong>Estrutura do Programa</strong>: Todo código é envolvido por um bloco <code class="language-plaintext highlighter-rouge">programa</code>. A execução sempre começa na <code class="language-plaintext highlighter-rouge">funcao inicio()</code>.</li>
+  <li><strong>Declaração de Variáveis</strong>: Os tipos de dados (<code class="language-plaintext highlighter-rouge">inteiro</code>, <code class="language-plaintext highlighter-rouge">real</code>, <code class="language-plaintext highlighter-rouge">cadeia</code>, <code class="language-plaintext highlighter-rouge">caracter</code>, <code class="language-plaintext highlighter-rouge">logico</code>) são declarados antes de serem usados.</li>
+  <li><strong>Entrada e Saída</strong>: Os comandos <code class="language-plaintext highlighter-rouge">leia()</code> e <code class="language-plaintext highlighter-rouge">escreva()</code> são usados para interagir com o usuário.</li>
+  <li><strong>Estruturas de Controle</strong>: Inclui as estruturas lógicas essenciais: <code class="language-plaintext highlighter-rouge">se</code>/<code class="language-plaintext highlighter-rouge">senao</code>, <code class="language-plaintext highlighter-rouge">caso</code>/<code class="language-plaintext highlighter-rouge">pare</code>, <code class="language-plaintext highlighter-rouge">para</code>, <code class="language-plaintext highlighter-rouge">enquanto</code> e <code class="language-plaintext highlighter-rouge">faca...enquanto</code>.</li>
+  <li><strong>Funções</strong>: Permite a criação de blocos de código reutilizáveis, melhorando a organização.</li>
+</ul>
+
+<hr />
+
+<h2 id="flowchart-visualizando-um-fluxo-com-funções">flowchart Visualizando um Fluxo com Funções</h2>
+
+<p>Este fluxograma representa uma calculadora simples, onde a lógica da operação é separada em uma função, demonstrando a modularidade incentivada pelo Portugol Studio.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A(Início) --&gt; B{Leia num1, num2, operacao};
+    B --&gt; C(Chame a função&lt;br/&gt;calcular(num1, num2, operacao));
+    subgraph "Função calcular"
+        D{Avalie 'operacao'};
+        D -- "+" --&gt; E[resultado = num1 + num2];
+        D -- "-" --&gt; F[resultado = num1 - num2];
+        D -- "*" --&gt; G[resultado = num1 * num2];
+        D -- "/" --&gt; H[resultado = num1 / num2];
+        E --&gt; I(Retorne resultado);
+        F --&gt; I;
+        G --&gt; I;
+        H --&gt; I;
+    end
+    C --&gt; J[Guarde o valor retornado];
+    J --&gt; K{Escreva o resultado};
+    K --&gt; L(Fim);
+
+    style A fill:#cfc,stroke:#333,stroke-width:2px
+    style L fill:#f99,stroke:#333,stroke-width:2px
+</code></pre>
+
+<hr />
+
+<h2 id="️-exemplo-prático-calculadora-simples">⌨️ Exemplo Prático: Calculadora Simples</h2>
+
+<p>O código abaixo implementa a lógica do fluxograma no Portugol Studio.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>programa
+{
+	funcao inicio()
+	{
+		real n1, n2, resultado
+		caracter operacao
+
+		escreva("Digite o primeiro número: ")
+		leia(n1)
+
+		escreva("Digite o segundo número: ")
+		leia(n2)
+
+		escreva("Digite a operação (+, -, *, /): ")
+		leia(operacao)
+
+		resultado = calcular(n1, n2, operacao)
+
+		escreva("
+O resultado é: ", resultado)
+	}
+
+	funcao real calcular(real num1, real num2, caracter op)
+	{
+		real res = 0.0
+
+		escolha (op)
+		{
+			caso '+':
+				res = num1 + num2
+				pare
+			caso '-':
+				res = num1 - num2
+				pare
+			caso '*':
+				res = num1 * num2
+				pare
+			caso '/':
+				se (num2 != 0) {
+					res = num1 / num2
+				} senao {
+					escreva("Erro! Divisão por zero não é permitida.")
+				}
+				pare
+			caso contrario:
+				escreva("Operação inválida!")
+		}
+		
+		retorne res
+	}
+}
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-por-que-começar-com-o-portugol-studio">🎓 Por Que Começar com o Portugol Studio?</h2>
+
+<p>Para um iniciante, o Portugol Studio oferece um ambiente de aprendizado robusto e motivador.</p>
+
+<ul>
+  <li><strong>Ambiente Amigável e Moderno</strong>: A interface é mais intuitiva e agradável que a de ferramentas mais antigas, o que melhora a experiência do aluno.</li>
+  <li><strong>Feedback Imediato e Claro</strong>: As mensagens de erro são detalhadas, ajudando o estudante a entender não apenas <em>o que</em> está errado, mas <em>por que</em> está errado.</li>
+  <li><strong>Aprendizado Lúdico e Tangível</strong>: A capacidade de criar elementos gráficos e jogos simples torna os conceitos de lógica mais concretos e a experiência de aprendizado muito mais divertida.</li>
+  <li><strong>Transição Suave para a Programação “Real”</strong>: A estrutura de <code class="language-plaintext highlighter-rouge">programa</code> e <code class="language-plaintext highlighter-rouge">funcao inicio()</code> introduz de forma natural o conceito de escopo e de um “ponto de entrada” (<code class="language-plaintext highlighter-rouge">main</code>), que são fundamentais em linguagens como C, Java e C#.</li>
+</ul>
+
+<p>Em resumo, o Portugol Studio é uma excelente porta de entrada para o mundo da programação, construindo uma base sólida de lógica e resolução de problemas em um ambiente controlado e amigável, antes de o aluno enfrentar as complexidades das linguagens profissionais.</p>
+
+<hr />
+
+<h1 id="️-visualg-vs-portugol-studio-quadro-comparativo-de-comandos">⚖️ VisualG vs. Portugol Studio: Quadro Comparativo de Comandos</h1>
+
+<p>A tabela abaixo apresenta uma comparação lado a lado dos principais comandos e estruturas utilizados no VisualG e no Portugol Studio, destacando as diferenças de sintaxe e as evoluções presentes na ferramenta mais moderna.</p>
+
+<p>| Funcionalidade | VisualG | Portugol Studio | Observações |
+| :— | :— | :— | :— |
+| <strong>Estrutura do Programa</strong> | <code class="language-plaintext highlighter-rouge">pascal&lt;br&gt;algoritmo "NomeDoAlgoritmo"&lt;br&gt;var&lt;br&gt;   // Variáveis&lt;br&gt;inicio&lt;br&gt;   // Comandos&lt;br&gt;fimalgoritmo&lt;br&gt;</code> | <code class="language-plaintext highlighter-rouge">c&lt;br&gt;programa {&lt;br&gt;  funcao inicio() {&lt;br&gt;    // Comandos&lt;br&gt;  }&lt;br&gt;}&lt;br&gt;</code> | A estrutura do Studio é mais similar à de linguagens como C, Java e JavaScript, com uma função <code class="language-plaintext highlighter-rouge">inicio</code> agindo como a <code class="language-plaintext highlighter-rouge">main</code>. |
+| <strong>Declaração de Variáveis</strong> | <code class="language-plaintext highlighter-rouge">pascal&lt;br&gt;// Todas declaradas no bloco 'var'&lt;br&gt;var&lt;br&gt;   nome: caractere&lt;br&gt;   idade: inteiro&lt;br&gt;   salario: real&lt;br&gt;</code> | <code class="language-plaintext highlighter-rouge">c&lt;br&gt;// Podem ser declaradas em qualquer&lt;br&gt;// lugar antes do primeiro uso&lt;br&gt;cadeia nome&lt;br&gt;inteiro idade&lt;br&gt;real salario&lt;br&gt;</code> | Studio é mais flexível. O tipo <code class="language-plaintext highlighter-rouge">caractere</code> do VisualG (para strings) é chamado de <code class="language-plaintext highlighter-rouge">cadeia</code> no Studio. |
+| <strong>Saída de Dados</strong> | <code class="language-plaintext highlighter-rouge">escreva("Texto")</code>&lt;br&gt;<code class="language-plaintext highlighter-rouge">escreval("Texto e pula linha")</code> | <code class="language-plaintext highlighter-rouge">escreva("Texto")</code> | Para pular linha no Studio, usa-se o caractere de escape `
+<code class="language-plaintext highlighter-rouge">. Ex: </code>escreva(“Texto
+“)<code class="language-plaintext highlighter-rouge">. |
+| **Entrada de Dados** | </code>leia(variavel)<code class="language-plaintext highlighter-rouge"> | </code>leia(variavel)<code class="language-plaintext highlighter-rouge"> | Praticamente idênticos. |
+| **Atribuição de Valor** | </code>variavel &lt;- valor<code class="language-plaintext highlighter-rouge"> | </code>variavel = valor<code class="language-plaintext highlighter-rouge"> | O Studio adota o </code>=<code class="language-plaintext highlighter-rouge"> como padrão, mais comum em linguagens modernas. O </code>&lt;-<code class="language-plaintext highlighter-rouge"> também é aceito por compatibilidade. |
+| **Comentários** | </code>// Comentário de uma linha<code class="language-plaintext highlighter-rouge"> | </code>// Comentário de uma linha<code class="language-plaintext highlighter-rouge">\&lt;br\&gt;</code>/* Comentário de<br />   múltiplas linhas */<code class="language-plaintext highlighter-rouge"> | O Studio oferece suporte a comentários de múltiplas linhas, assim como em C/Java/CSS. |
+| **Condicional (Se/Senão)** | </code>pascal<br />se (cond) entao<br />   …<br />senao<br />   …<br />fimse<br /><code class="language-plaintext highlighter-rouge"> | </code>c<br />se (cond) {<br />   …<br />} senao {<br />   …<br />}<br /><code class="language-plaintext highlighter-rouge"> | O Studio usa chaves </code>{}<code class="language-plaintext highlighter-rouge"> para delimitar blocos de código, um padrão visual mais moderno e claro. |
+| **Laço de Repetição (Para)** | </code>pascal<br />para i de 1 ate 10 faca<br />   …<br />fimpara<br /><code class="language-plaintext highlighter-rouge"> | </code>c<br />para (inteiro i = 1; i &lt;= 10; i++) {<br />   …<br />}<br /><code class="language-plaintext highlighter-rouge"> | A sintaxe do Studio é idêntica à do </code>for<code class="language-plaintext highlighter-rouge"> em C, Java, C\#, o que prepara melhor o aluno para linguagens profissionais. |
+| **Laço de Repetição (Enquanto)** | </code>pascal<br />enquanto (cond) faca<br />   …<br />fimenquanto<br /><code class="language-plaintext highlighter-rouge"> | </code>c<br />enquanto (cond) {<br />   …<br />}<br /><code class="language-plaintext highlighter-rouge"> | A lógica é a mesma, com a principal diferença sendo o uso de chaves </code>{}<code class="language-plaintext highlighter-rouge"> no Studio. |
+| **Laço de Repetição (Faça...Enquanto)** | </code>pascal<br />repita<br />   …<br />ate (condicao_de_parada)<br /><code class="language-plaintext highlighter-rouge"> | </code>c<br />faca {<br />   …<br />} enquanto (condicao_de_continuacao)<br /><code class="language-plaintext highlighter-rouge"> | A sintaxe é diferente e a lógica da condição é invertida: VisualG para quando a condição é </code>VERDADEIRO<code class="language-plaintext highlighter-rouge">, Studio continua enquanto for </code>VERDADEIRO<code class="language-plaintext highlighter-rouge">. |
+| **Estrutura de Escolha** | </code>pascal<br />escolha (variavel)<br />  caso 1<br />    …<br />  caso 2<br />    …<br />  outrocaso<br />    …<br />fimescolha<br /><code class="language-plaintext highlighter-rouge"> | </code>c<br />escolha (variavel) {<br />  caso 1:<br />    …<br />    pare<br />  caso 2:<br />    …<br />    pare<br />  caso contrario:<br />    …<br />}<br /><code class="language-plaintext highlighter-rouge"> | O Studio exige o comando </code>pare<code class="language-plaintext highlighter-rouge"> (equivalente ao </code>break<code class="language-plaintext highlighter-rouge">) para evitar que a execução continue nos casos seguintes. |
+| **Funções (com retorno)** | </code>pascal<br />Funcao Nome(p1: tipo): tipo_retorno<br />inicio<br />   …<br />   retorne valor<br />fimfuncao<br /><code class="language-plaintext highlighter-rouge"> | </code>c<br />funcao tipo_retorno Nome(tipo p1) {<br />   …<br />   retorne valor<br />}<br /><code class="language-plaintext highlighter-rouge"> | A sintaxe do Studio é mais concisa e alinhada com linguagens modernas. |
+| **Procedimentos (sem retorno)** | </code>pascal<br />procedimento Nome(p1: tipo)<br />inicio<br />   …<br />fimprocedimento<br /><code class="language-plaintext highlighter-rouge"> | </code>c<br />funcao vazio Nome(tipo p1) {<br />   …<br />}<br /><code class="language-plaintext highlighter-rouge"> | No Studio, um procedimento é apenas uma função que retorna o tipo </code>vazio<code class="language-plaintext highlighter-rouge"> (equivalente ao </code>void<code class="language-plaintext highlighter-rouge">). |
+| **Vetores (Arrays)** | </code>meuVetor: vetor [1..10] de inteiro<code class="language-plaintext highlighter-rouge"> | </code>inteiro meuVetor[10]<code class="language-plaintext highlighter-rouge"> | A declaração no Studio é mais direta. Ambos usam índice baseado em zero por padrão (0 a 9 para um tamanho de 10). |
+| **Matrizes (Arrays 2D)** | </code>minhaMatriz: vetor [1..5, 1..5] de real<code class="language-plaintext highlighter-rouge"> | </code>real minhaMatriz[5][5]<code class="language-plaintext highlighter-rouge"> | Similar aos vetores, a sintaxe do Studio é mais compacta. |
+| **Uso de Bibliotecas** | Não possui | </code>inclua Biblioteca Grafico<code class="language-plaintext highlighter-rouge">\&lt;br\&gt;</code>inclua Biblioteca Matematica` | Recurso exclusivo do Portugol Studio que expande enormemente suas capacidades, permitindo a criação de jogos simples, desenhos e uso de funções matemáticas avançadas. |</p>
+
+<hr />
+

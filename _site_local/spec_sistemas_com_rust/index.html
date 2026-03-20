@@ -1,0 +1,240 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_sistemas_com_rust/ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🦀 Rust: Performance, Segurança e Concorrência | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🦀 Rust: Performance, Segurança e Concorrência" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_sistemas_com_rust/" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_sistemas_com_rust/" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🦀 Rust: Performance, Segurança e Concorrência" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🦀 Rust: Performance, Segurança e Concorrência","url":"https://ricardotecpro.github.io/portal_jekyll/spec_sistemas_com_rust/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🦀 rust: performance, segurança e concorrência</span>
+          
+        
+      </nav>
+
+      <h1 id="-rust-performance-segurança-e-concorrência">🦀 Rust: Performance, Segurança e Concorrência</h1>
+
+<p>Rust é uma linguagem de programação de sistemas moderna, de código aberto, focada em três objetivos principais: <strong>segurança</strong>, <strong>velocidade</strong> e <strong>concorrência</strong>. Criada pela Mozilla Research, ela foi projetada para resolver problemas que atormentam o desenvolvimento de software de baixo nível há décadas, especialmente os relacionados à segurança de memória, sem a necessidade de um <em>garbage collector</em> (coletor de lixo).</p>
+
+<p>Ela combina a performance e o controle de baixo nível de linguagens como C e C++ com um poderoso sistema de tipos e um compilador rigoroso que garante a segurança do código em tempo de compilação.</p>
+
+<hr />
+
+<h2 id="️-segurança-de-memória-sem-garbage-collector">🛡️ Segurança de Memória Sem Garbage Collector</h2>
+
+<p>A característica mais revolucionária do Rust é como ele gerencia a memória. Em vez de usar um coletor de lixo (que pode introduzir pausas imprevisíveis na execução) ou exigir gerenciamento manual de memória (fonte de muitos bugs em C/C++), Rust introduz um modelo de <strong>ownership (posse)</strong>.</p>
+
+<p>Este modelo é um conjunto de regras que o compilador verifica em tempo de compilação. Se qualquer uma das regras for violada, o programa simplesmente não compila. Isso elimina classes inteiras de bugs, como <em>null pointer dereferences</em>, <em>dangling pointers</em> e <em>data races</em>.</p>
+
+<h3 id="ownership-posse">Ownership (Posse)</h3>
+
+<p>Cada valor em Rust tem uma variável que é sua <em>owner</em> (proprietária).</p>
+
+<ol>
+  <li>Só pode haver <strong>um owner</strong> por vez.</li>
+  <li>Quando o owner sai de escopo, o valor é <strong>descartado</strong> (<em>dropped</em>), e sua memória é liberada automaticamente.</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span> <span class="c1">// s1 é a owner de "hello"</span>
+    <span class="k">let</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span> <span class="c1">// A posse de "hello" é MOVIDA de s1 para s2</span>
+
+    <span class="c1">// A linha abaixo causaria um erro de compilação!</span>
+    <span class="c1">// println!("{}", s1); // s1 não é mais válido, pois não é mais o owner</span>
+<span class="p">}</span> <span class="c1">// s2 sai de escopo, "hello" é liberado da memória</span>
+</code></pre></div></div>
+
+<h3 id="borrowing-empréstimo">Borrowing (Empréstimo)</h3>
+
+<p>Para usar um valor sem transferir sua posse, podemos “emprestá-lo” através de <em>referências</em>.</p>
+
+<ul>
+  <li><strong>Referências imutáveis (<code class="language-plaintext highlighter-rouge">&amp;T</code>)</strong>: Permitem ler o dado. Você pode ter várias referências imutáveis ao mesmo tempo.</li>
+  <li><strong>Referências mutáveis (<code class="language-plaintext highlighter-rouge">&amp;mut T</code>)</strong>: Permitem modificar o dado. Você só pode ter <strong>uma</strong> referência mutável em um determinado escopo.</li>
+</ul>
+
+<p>A regra fundamental é: em um dado escopo, você pode ter <strong>ou uma referência mutável ou qualquer número de referências imutáveis</strong>, mas não ambos. Isso é o que previne <em>data races</em> em tempo de compilação.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">calcula_tamanho</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">String</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">usize</span> <span class="p">{</span> <span class="c1">// 's' é uma referência (empréstimo)</span>
+    <span class="n">s</span><span class="nf">.len</span><span class="p">()</span>
+<span class="p">}</span> <span class="c1">// 's' sai de escopo, mas o valor que ele referencia não é liberado</span>
+
+<span class="k">let</span> <span class="n">s1</span> <span class="o">=</span> <span class="nn">String</span><span class="p">::</span><span class="nf">from</span><span class="p">(</span><span class="s">"olá"</span><span class="p">);</span>
+<span class="k">let</span> <span class="n">tamanho</span> <span class="o">=</span> <span class="nf">calcula_tamanho</span><span class="p">(</span><span class="o">&amp;</span><span class="n">s1</span><span class="p">);</span> <span class="c1">// Passamos uma referência de s1</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"O tamanho de '{}' é {}."</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">tamanho</span><span class="p">);</span> <span class="c1">// s1 continua válido</span>
+</code></pre></div></div>
+
+<h3 id="lifetimes-tempo-de-vida">Lifetimes (Tempo de Vida)</h3>
+
+<p><em>Lifetimes</em> são uma forma de o compilador garantir que todas as referências emprestadas sejam válidas. Na maioria dos casos, o compilador consegue inferi-los automaticamente, então o desenvolvedor não precisa se preocupar com eles.</p>
+
+<hr />
+
+<h2 id="-outras-características-notáveis">✨ Outras Características Notáveis</h2>
+
+<h3 id="performance-abstrações-de-custo-zero">Performance: Abstrações de Custo Zero</h3>
+
+<p>Rust permite escrever código de alto nível com abstrações poderosas (como iteradores, closures e tipos genéricos) com a confiança de que elas serão compiladas para um código de máquina extremamente eficiente, sem sobrecarga de performance em tempo de execução. O desempenho é comparável ao de C e C++.</p>
+
+<h3 id="concorrência-sem-medo-fearless-concurrency">Concorrência Sem Medo (Fearless Concurrency)</h3>
+
+<p>O modelo de ownership e borrowing se estende naturalmente para a programação concorrente. O compilador garante em tempo de compilação que não haverá <em>data races</em>, um dos tipos mais difíceis de bugs em sistemas paralelos. Isso permite escrever código concorrente com muito mais segurança e confiança.</p>
+
+<h3 id="ecossistema-moderno-cargo-e-cratesio">Ecossistema Moderno: Cargo e Crates.io</h3>
+
+<ul>
+  <li><strong>Cargo</strong>: É a ferramenta de build e gerenciador de pacotes do Rust. Ele lida com a compilação de código, download e gerenciamento de dependências, execução de testes, geração de documentação e muito mais. É uma ferramenta unificada que simplifica enormemente o fluxo de trabalho.</li>
+  <li><strong>Crates.io</strong>: É o registro de pacotes (chamados de <em>crates</em>) da comunidade Rust. Similar ao PyPI (Python) ou npm (Node.js), é um repositório central com milhares de bibliotecas de código aberto prontas para serem usadas em qualquer projeto.</li>
+</ul>
+
+<hr />
+
+<h2 id="-visualizando-o-modelo-de-ownership">🧠 Visualizando o Modelo de Ownership</h2>
+
+<p>O diagrama a seguir ilustra a diferença entre mover a posse e emprestar um valor.</p>
+
+<pre><code class="language-mermaid">graph TD;
+    A[Valor criado, 's' é o owner] --&gt; B{Como passar 's' para uma função?};
+    
+    B -- Por Valor (move) --&gt; C[Ownership é movido para a função];
+    C --&gt; D[O valor original 's' se torna inválido];
+
+    B -- Por Referência (borrow) --&gt; E[A função 'empresta' o valor];
+    E --&gt; F[Ownership permanece com 's'];
+    F --&gt; G[O valor original 's' continua válido após a chamada];
+</code></pre>
+
+<hr />
+
+<h2 id="-onde-o-rust-brilha">🎯 Onde o Rust Brilha?</h2>
+
+<p>Graças à sua combinação única de performance, segurança e controle, Rust é uma excelente escolha para:</p>
+
+<ul>
+  <li><strong>Sistemas de Baixo Nível</strong>: Desenvolvimento de sistemas operacionais, kernels, drivers e outros softwares que precisam de controle total sobre o hardware.</li>
+  <li><strong>WebAssembly (Wasm)</strong>: Compilar código para rodar no navegador com performance próxima à nativa. Rust é uma das melhores linguagens para Wasm.</li>
+  <li><strong>Serviços de Rede e Backend</strong>: Construir servidores web, APIs e microserviços de alta performance, seguros e com baixo consumo de recursos.</li>
+  <li><strong>Ferramentas de Linha de Comando (CLI)</strong>: Criar ferramentas de CLI rápidas, confiáveis e que funcionam em múltiplas plataformas.</li>
+  <li><strong>Sistemas Embarcados</strong>: Programar microcontroladores e dispositivos com recursos limitados onde a confiabilidade é crítica.</li>
+  <li><strong>Game Development</strong>: Construção de motores de jogos e lógica de jogo onde a performance é essencial.</li>
+</ul>
+
+<hr />
+
+<h2 id="-começando-com-rust">🚀 Começando com Rust</h2>
+
+<p>O ecossistema Rust torna o processo de instalação e criação de projetos muito simples.</p>
+
+<ol>
+  <li><strong>Instale o Rust</strong>: A maneira recomendada é através do <code class="language-plaintext highlighter-rouge">rustup</code>, o instalador oficial da toolchain Rust. Execute o seguinte comando no seu terminal:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--proto</span> <span class="s1">'=https'</span> <span class="nt">--tlsv1</span>.2 <span class="nt">-sSf</span> https://sh.rustup.rs | sh
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Crie um novo projeto com o Cargo</strong>:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo new hello_rust
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Entre na pasta do projeto</strong>:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>hello_rust
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Compile e execute</strong>: O Cargo faz todo o trabalho.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo run
+</code></pre></div>    </div>
+    <p>Isso irá compilar seu projeto e, se tudo estiver certo, você verá a saída <code class="language-plaintext highlighter-rouge">Hello, world!</code> no terminal. O código inicial é gerado automaticamente em <code class="language-plaintext highlighter-rouge">src/main.rs</code>.</p>
+  </li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main.rs (gerado pelo `cargo new`)</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🔗 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

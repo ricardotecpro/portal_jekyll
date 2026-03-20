@@ -1,0 +1,190 @@
+<h1 id="-guia-de-arquitetura-e-desenvolvimento-aplicação-de-lista-de-tarefas">📝 Guia de Arquitetura e Desenvolvimento: Aplicação de Lista de Tarefas</h1>
+
+<p>Este documento detalha a arquitetura, a estrutura do projeto e as decisões de design para a aplicação de Lista de Tarefas. O objetivo é servir como uma fonte central de conhecimento para a equipe de desenvolvimento.</p>
+
+<h2 id="️-estrutura-do-projeto">🗂️ Estrutura do Projeto</h2>
+
+<p>A aplicação segue uma arquitetura de monorepo, separando claramente as responsabilidades do backend e do frontend. Essa abordagem facilita o desenvolvimento, o deploy e a manutenção de cada parte de forma independente.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listadetarefas_v0/
+├── backend/              # Contém toda a API Spring Boot (o projeto atual)
+│   ├── pom.xml
+│   └── src/
+│       ├── main/
+│       │   ├── java/
+│       │   │   └── br/com/curso/todolist/api/
+│       │   │       ├── TodolistApiApplication.java
+│       │   │       └── tarefa/
+│       │   │           ├── Tarefa.java
+│       │   │           ├── TarefaController.java
+│       │   │           ├── TarefaRepository.java
+│       │   │           └── TarefaService.java
+│       │   └── resources/
+│       │       ├── application.properties
+│       │       └── data.sql
+│       └── test/
+│           └── java/
+│               └── br/com/curso/todolist/api/tarefa/
+│                   └── TarefaControllerTest.java
+│
+├── frontend/             # (Exemplo) Projeto Angular, React, Vue, etc.
+│   ├── package.json
+│   └── src/
+│
+└── GUIA_DE_ARQUITETURA.md  # Este arquivo
+</code></pre></div></div>
+
+<h3 id="️-arquitetura-do-backend-spring-boot">🏛️ Arquitetura do Backend (Spring Boot)</h3>
+
+<p>O backend adota uma arquitetura em camadas clássica, que promove a separação de responsabilidades (Separation of Concerns) e facilita os testes e a manutenção.</p>
+
+<ol>
+  <li><strong>Camada de Apresentação (Controller):</strong>
+    <ul>
+      <li><strong>Pacote:</strong> <code class="language-plaintext highlighter-rouge">...api.tarefa</code></li>
+      <li><strong>Responsabilidade:</strong> Expor os endpoints da API REST. Lida com requisições HTTP (JSON), validação de entrada e delega a lógica de negócio para a camada de Serviço.</li>
+      <li><strong>Arquivo Principal:</strong> <code class="language-plaintext highlighter-rouge">TarefaController.java</code></li>
+    </ul>
+  </li>
+  <li><strong>Camada de Lógica de Negócio (Service):</strong>
+    <ul>
+      <li><strong>Pacote:</strong> <code class="language-plaintext highlighter-rouge">...api.tarefa</code></li>
+      <li><strong>Responsabilidade:</strong> Orquestrar as regras de negócio da aplicação. Ela atua como uma intermediária entre o Controller e o Repository.</li>
+      <li><strong>Arquivo Principal:</strong> <code class="language-plaintext highlighter-rouge">TarefaService.java</code></li>
+    </ul>
+  </li>
+  <li><strong>Camada de Acesso a Dados (Repository):</strong>
+    <ul>
+      <li><strong>Pacote:</strong> <code class="language-plaintext highlighter-rouge">...api.tarefa</code></li>
+      <li><strong>Responsabilidade:</strong> Abstrair a comunicação com o banco de dados. Utiliza o Spring Data JPA para simplificar as operações CRUD (Create, Read, Update, Delete).</li>
+      <li><strong>Arquivo Principal:</strong> <code class="language-plaintext highlighter-rouge">TarefaRepository.java</code></li>
+    </ul>
+  </li>
+  <li><strong>Camada de Domínio (Entity/Model):</strong>
+    <ul>
+      <li><strong>Pacote:</strong> <code class="language-plaintext highlighter-rouge">...api.tarefa</code></li>
+      <li><strong>Responsabilidade:</strong> Mapear as tabelas do banco de dados para objetos Java.</li>
+      <li><strong>Arquivo Principal:</strong> <code class="language-plaintext highlighter-rouge">Tarefa.java</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="-diagramas-de-arquitetura">📊 Diagramas de Arquitetura</h2>
+
+<h3 id="casos-de-uso-da-api">Casos de Uso da API</h3>
+
+<p>Este diagrama ilustra as principais interações que um cliente (como o frontend) pode ter com o sistema de tarefas.</p>
+
+<pre><code class="language-mermaid">usecaseDiagram
+    actor "Cliente da API (Frontend)" as client
+    rectangle "Sistema de Tarefas" {
+        usecase "Criar Tarefa" as UC1
+        usecase "Listar Todas as Tarefas" as UC2
+        usecase "Buscar Tarefa por ID" as UC3
+        usecase "Atualizar Tarefa" as UC4
+        usecase "Excluir Tarefa" as UC5
+    }
+    client --&gt; UC1
+    client --&gt; UC2
+    client --&gt; UC3
+    client --&gt; UC4
+    client --&gt; UC5
+</code></pre>
+
+<h3 id="diagrama-de-classes-do-backend">Diagrama de Classes do Backend</h3>
+
+<p>Este diagrama mostra a relação entre as principais classes do backend e suas responsabilidades.</p>
+
+<pre><code class="language-mermaid">classDiagram
+    class TarefaController {
+        -TarefaService tarefaService
+        +criarTarefa(Tarefa) ResponseEntity~Tarefa~
+        +listarTarefas() List~Tarefa~
+        +buscarTarefaPorId(Long) ResponseEntity~Tarefa~
+        +atualizarTarefa(Long, Tarefa) ResponseEntity~Tarefa~
+        +deletarTarefa(Long) ResponseEntity~Void~
+    }
+
+    class TarefaService {
+        -TarefaRepository tarefaRepository
+        +criar(Tarefa) Tarefa
+        +listarTodas() List~Tarefa~
+        +buscarPorId(Long) Optional~Tarefa~
+        +atualizar(Long, Tarefa) Tarefa
+        +deletar(Long) void
+    }
+
+    class TarefaRepository {
+        &lt;&lt;Interface&gt;&gt;
+        +findAll()
+        +findById(Long)
+        +save(Tarefa)
+        +deleteById(Long)
+    }
+
+    class Tarefa {
+        -Long id
+        -String titulo
+        -String descricao
+        -boolean concluida
+    }
+
+    TarefaController ..&gt; TarefaService : "utiliza"
+    TarefaService ..&gt; TarefaRepository : "utiliza"
+    TarefaRepository ..&gt; Tarefa : "gerencia"
+</code></pre>
+
+<h3 id="diagrama-entidade-relacionamento-er">Diagrama Entidade-Relacionamento (ER)</h3>
+
+<p>Representação da tabela de tarefas no banco de dados.</p>
+
+<pre><code class="language-mermaid">erDiagram
+    TB_TAREFAS {
+        Long id PK "Chave Primária, Auto-incremento"
+        String titulo "Título da tarefa"
+        String descricao "Descrição detalhada"
+        boolean concluida "Indica se a tarefa foi finalizada"
+    }
+</code></pre>
+
+<h2 id="️-guia-de-implementação-passo-a-passo-backend">✍️ Guia de Implementação Passo a Passo (Backend)</h2>
+
+<p>Esta seção descreve o fluxo de criação dos componentes do backend.</p>
+
+<h3 id="1-configuração-do-projeto-pomxml-e-applicationproperties">1. Configuração do Projeto (<code class="language-plaintext highlighter-rouge">pom.xml</code> e <code class="language-plaintext highlighter-rouge">application.properties</code>)</h3>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">pom.xml</code></strong>: Define as dependências essenciais: <code class="language-plaintext highlighter-rouge">spring-boot-starter-web</code> para a API, <code class="language-plaintext highlighter-rouge">spring-boot-starter-data-jpa</code> para o acesso a dados, <code class="language-plaintext highlighter-rouge">h2</code> para o banco em memória e <code class="language-plaintext highlighter-rouge">lombok</code> para reduzir código boilerplate.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">application.properties</code></strong>: Configura a conexão com o banco de dados H2 e habilita o <code class="language-plaintext highlighter-rouge">defer-datasource-initialization</code> para garantir que as tabelas sejam criadas pelo Hibernate antes da execução do <code class="language-plaintext highlighter-rouge">data.sql</code>.</li>
+</ul>
+
+<h3 id="2-criação-da-entidade-tarefajava">2. Criação da Entidade (<code class="language-plaintext highlighter-rouge">Tarefa.java</code>)</h3>
+<ul>
+  <li>A classe é anotada com <code class="language-plaintext highlighter-rouge">@Entity</code> para ser reconhecida pelo JPA.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Table(name = "tb_tarefas")</code> define o nome da tabela.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Id</code> e <code class="language-plaintext highlighter-rouge">@GeneratedValue(strategy = GenerationType.IDENTITY)</code> configuram a chave primária com auto-incremento gerenciado pelo banco.</li>
+</ul>
+
+<h3 id="3-criação-do-repositório-tarefarepositoryjava">3. Criação do Repositório (<code class="language-plaintext highlighter-rouge">TarefaRepository.java</code>)</h3>
+<ul>
+  <li>É uma interface que estende <code class="language-plaintext highlighter-rouge">JpaRepository&lt;Tarefa, Long&gt;</code>.</li>
+  <li>O Spring Data JPA implementa automaticamente os métodos CRUD básicos em tempo de execução, sem a necessidade de código SQL manual.</li>
+</ul>
+
+<h3 id="4-implementação-do-serviço-tarefaservicejava">4. Implementação do Serviço (<code class="language-plaintext highlighter-rouge">TarefaService.java</code>)</h3>
+<ul>
+  <li>Anotado com <code class="language-plaintext highlighter-rouge">@Service</code> para ser gerenciado pelo Spring.</li>
+  <li>Recebe uma injeção de <code class="language-plaintext highlighter-rouge">TarefaRepository</code> via <code class="language-plaintext highlighter-rouge">@Autowired</code>.</li>
+  <li>Contém a lógica de negócio, como a verificação da existência de uma tarefa antes de atualizá-la ou deletá-la.</li>
+</ul>
+
+<h3 id="5-exposição-da-api-tarefacontrollerjava">5. Exposição da API (<code class="language-plaintext highlighter-rouge">TarefaController.java</code>)</h3>
+<ul>
+  <li>Anotado com <code class="language-plaintext highlighter-rouge">@RestController</code> para indicar que os retornos dos métodos serão serializados para JSON.</li>
+  <li><code class="language-plaintext highlighter-rouge">@RequestMapping("/tarefas")</code> define a URL base para todos os endpoints.</li>
+  <li>Utiliza anotações como <code class="language-plaintext highlighter-rouge">@GetMapping</code>, <code class="language-plaintext highlighter-rouge">@PostMapping</code>, <code class="language-plaintext highlighter-rouge">@PutMapping</code> e <code class="language-plaintext highlighter-rouge">@DeleteMapping</code> para mapear os métodos HTTP para as ações CRUD, seguindo as melhores práticas REST.</li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

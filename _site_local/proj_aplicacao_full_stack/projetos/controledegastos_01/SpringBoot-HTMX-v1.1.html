@@ -1,0 +1,1304 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.1.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🚀 Construindo e Implantando o “Controle de Gastos” com Spring Boot e htmx | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🚀 Construindo e Implantando o “Controle de Gastos” com Spring Boot e htmx" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.1.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.1.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🚀 Construindo e Implantando o “Controle de Gastos” com Spring Boot e htmx" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🚀 Construindo e Implantando o “Controle de Gastos” com Spring Boot e htmx","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/SpringBoot-HTMX-v1.1.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/controledegastos_01/" style="margin-left: 0.5rem;">Controledegastos 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🚀 construindo e implantando o "controle de gastos" com spring boot e htmx</span>
+          
+        
+      </nav>
+
+      <h1 id="-construindo-e-implantando-o-controle-de-gastos-com-spring-boot-e-htmx">🚀 Construindo e Implantando o “Controle de Gastos” com Spring Boot e htmx</h1>
+<p>v1.1</p>
+
+<p>Olá! Sou um arquiteto de sistemas e, neste guia, vamos construir juntos uma aplicação web moderna e robusta chamada <strong>Controle de Gastos</strong>. O objetivo é criar um gerenciador financeiro simples, mas com uma experiência de usuário fluida, similar a uma <strong>Single Page Application (SPA)</strong>, sem a complexidade de frameworks JavaScript.</p>
+
+<p>Ao final, você terá uma aplicação funcional implantada na nuvem, pronta para ser usada e compartilhada.</p>
+
+<p><strong>O que você vai aprender:</strong></p>
+
+<ul>
+  <li>Estruturar um projeto <strong>Spring Boot</strong> do zero.</li>
+  <li>Modelar dados e usar o <strong>Spring Data JPA</strong>.</li>
+  <li>Criar uma interface reativa com <strong>Thymeleaf</strong> e <strong>htmx</strong>.</li>
+  <li>Gerenciar diferentes ambientes (desenvolvimento e produção) com <strong>Spring Profiles</strong>.</li>
+  <li>Fazer o deploy de um banco de dados <strong>PostgreSQL</strong> no <strong>Neon</strong>.</li>
+  <li>Fazer o deploy de uma aplicação Java no <strong>Render</strong>.</li>
+</ul>
+
+<p>Vamos começar!</p>
+
+<hr />
+
+<h3 id="️-fase-1-preparação-do-ambiente-e-controle-de-versão">🗂️ Fase 1: Preparação do Ambiente e Controle de Versão</h3>
+
+<p>Todo projeto profissional começa com um bom controle de versão. Vamos usar Git e hospedá-lo no GitHub.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie a Pasta do Projeto:</strong>
+Abra seu terminal e crie uma pasta para o projeto.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>controle-de-gastos
+<span class="nb">cd </span>controle-de-gastos
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Inicialize o Repositório Git:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie o Repositório no GitHub:</strong></p>
+
+    <ul>
+      <li>Vá para o <a href="https://github.com">GitHub</a> e crie um novo repositório (pode ser público ou privado).</li>
+      <li><strong>NÃO</strong> inicialize com <code class="language-plaintext highlighter-rouge">README</code>, <code class="language-plaintext highlighter-rouge">.gitignore</code> ou licença. Queremos um repositório limpo.</li>
+      <li>Após criar, o GitHub lhe dará os comandos para conectar seu repositório local. Copie-os e execute no seu terminal. Serão parecidos com isto:</li>
+    </ul>
+
+    <!-- end list -->
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/seu-usuario/controle-de-gastos.git
+git branch <span class="nt">-M</span> main
+<span class="c"># Faremos o primeiro push após criar o projeto na próxima fase.</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="️-fase-2-criação-do-esqueleto-do-projeto">🏗️ Fase 2: Criação do Esqueleto do Projeto</h3>
+
+<p>Usaremos o <strong>Spring Initializr</strong> para gerar a base da nossa aplicação com todas as dependências necessárias.</p>
+
+<ol>
+  <li>
+    <p>Acesse o <a href="https://start.spring.io/">Spring Initializr</a>.</p>
+  </li>
+  <li>
+    <p>Preencha os campos da seguinte forma:</p>
+
+    <ul>
+      <li><strong>Project:</strong> Maven</li>
+      <li><strong>Language:</strong> Java</li>
+      <li><strong>Spring Boot:</strong> A versão mais recente (ex: 3.x.x)</li>
+      <li><strong>Project Metadata:</strong>
+        <ul>
+          <li><strong>Group:</strong> <code class="language-plaintext highlighter-rouge">br.com.controledegastos</code></li>
+          <li><strong>Artifact:</strong> <code class="language-plaintext highlighter-rouge">controle-de-gastos</code></li>
+          <li><strong>Name:</strong> <code class="language-plaintext highlighter-rouge">controle-de-gastos</code></li>
+          <li><strong>Description:</strong> <code class="language-plaintext highlighter-rouge">Aplicação para controle de gastos pessoais</code></li>
+          <li><strong>Package name:</strong> <code class="language-plaintext highlighter-rouge">br.com.controledegastos</code></li>
+        </ul>
+      </li>
+      <li><strong>Packaging:</strong> Jar</li>
+      <li><strong>Java:</strong> 17</li>
+    </ul>
+  </li>
+  <li>
+    <p>No campo <strong>Dependencies</strong>, clique em “ADD DEPENDENCIES” e adicione as seguintes:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code>: Para criar controllers e APIs REST.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Data JPA</code>: Para persistência de dados de forma simples.</li>
+      <li><code class="language-plaintext highlighter-rouge">Thymeleaf</code>: Nosso motor de templates para renderizar o HTML.</li>
+      <li><code class="language-plaintext highlighter-rouge">H2 Database</code>: Banco de dados em memória para o ambiente de desenvolvimento.</li>
+      <li><code class="language-plaintext highlighter-rouge">PostgreSQL Driver</code>: Para conectar com nosso banco de produção.</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Boot DevTools</code>: Para live reload durante o desenvolvimento.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Clique em <strong>GENERATE</strong>. Um arquivo <code class="language-plaintext highlighter-rouge">.zip</code> será baixado.</p>
+  </li>
+  <li>
+    <p><strong>Descompacte</strong> o conteúdo do <code class="language-plaintext highlighter-rouge">.zip</code> dentro da pasta <code class="language-plaintext highlighter-rouge">controle-de-gastos</code> que criamos na Fase 1. A estrutura de arquivos deve ficar assim:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>controle-de-gastos/
+├── .git/
+├── .mvn/
+├── src/
+├── mvnw
+├── mvnw.cmd
+└── pom.xml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Faça o primeiro commit:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"🚀 Feat: Initial project structure from Spring Initializr"</span>
+git push <span class="nt">-u</span> origin main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-fase-3-modelagem-de-dados">💾 Fase 3: Modelagem de Dados</h3>
+
+<p>Vamos definir a estrutura do nosso “Lançamento” financeiro e o repositório para acessá-lo no banco de dados.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie o Enum <code class="language-plaintext highlighter-rouge">TipoLancamento</code>:</strong>
+Dentro de <code class="language-plaintext highlighter-rouge">src/main/java/br/com/controledegastos/</code>, crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">model</code>. Dentro dele, crie um Enum <code class="language-plaintext highlighter-rouge">TipoLancamento.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/model/TipoLancamento.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.model</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">TipoLancamento</span> <span class="o">{</span>
+    <span class="no">RECEITA</span><span class="o">,</span>
+    <span class="no">DESPESA</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie a Entidade <code class="language-plaintext highlighter-rouge">Lancamento</code>:</strong>
+No mesmo pacote <code class="language-plaintext highlighter-rouge">model</code>, crie a classe <code class="language-plaintext highlighter-rouge">Lancamento.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/model/Lancamento.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.time.LocalDate</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lancamento</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">BigDecimal</span> <span class="n">valor</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">LocalDate</span> <span class="n">data</span> <span class="o">=</span> <span class="nc">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+
+    <span class="nd">@Enumerated</span><span class="o">(</span><span class="nc">EnumType</span><span class="o">.</span><span class="na">STRING</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">TipoLancamento</span> <span class="n">tipo</span><span class="o">;</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getDescricao</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDescricao</span><span class="o">(</span><span class="nc">String</span> <span class="n">descricao</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">descricao</span> <span class="o">=</span> <span class="n">descricao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">BigDecimal</span> <span class="nf">getValor</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">valor</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValor</span><span class="o">(</span><span class="nc">BigDecimal</span> <span class="n">valor</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">valor</span> <span class="o">=</span> <span class="n">valor</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">LocalDate</span> <span class="nf">getData</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">data</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="nc">LocalDate</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">TipoLancamento</span> <span class="nf">getTipo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">tipo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTipo</span><span class="o">(</span><span class="nc">TipoLancamento</span> <span class="n">tipo</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">tipo</span> <span class="o">=</span> <span class="n">tipo</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Crie o Repositório <code class="language-plaintext highlighter-rouge">LancamentoRepository</code>:</strong>
+Crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">repository</code>. Dentro dele, crie a interface <code class="language-plaintext highlighter-rouge">LancamentoRepository.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/repository/LancamentoRepository.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.Lancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">LancamentoRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>O <code class="language-plaintext highlighter-rouge">JpaRepository</code> já nos fornece todos os métodos de CRUD (<code class="language-plaintext highlighter-rouge">save</code>, <code class="language-plaintext highlighter-rouge">findById</code>, <code class="language-plaintext highlighter-rouge">findAll</code>, <code class="language-plaintext highlighter-rouge">deleteById</code>, etc.) magicamente!</p>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="️-fase-4-lógica-de-backend-controller">⚙️ Fase 4: Lógica de Backend (Controller)</h3>
+
+<p>O <code class="language-plaintext highlighter-rouge">Controller</code> irá receber as requisições do navegador, processá-las e devolver o HTML.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie o <code class="language-plaintext highlighter-rouge">LancamentoController</code>:</strong>
+Crie um novo pacote chamado <code class="language-plaintext highlighter-rouge">controller</code>. Dentro dele, crie a classe <code class="language-plaintext highlighter-rouge">LancamentoController.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/main/java/br/com/controledegastos/controller/LancamentoController.java</span>
+<span class="kn">package</span> <span class="nn">br.com.controledegastos.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.Lancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.model.TipoLancamento</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.controledegastos.repository.LancamentoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LancamentoController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">LancamentoRepository</span> <span class="n">lancamentoRepository</span><span class="o">;</span>
+
+    <span class="c1">// Método para carregar a página principal</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">index</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentos</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">lancamentos</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Lancamento:</span><span class="o">:</span><span class="n">getData</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentos"</span><span class="o">,</span> <span class="n">lancamentos</span><span class="o">);</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"novoLancamento"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Lancamento</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tipos"</span><span class="o">,</span> <span class="nc">TipoLancamento</span><span class="o">.</span><span class="na">values</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"index"</span><span class="o">;</span> <span class="c1">// Retorna o arquivo templates/index.html</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Método para adicionar um novo lançamento (via htmx)</span>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/lancamentos"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">addLancamento</span><span class="o">(</span><span class="nd">@ModelAttribute</span> <span class="nc">Lancamento</span> <span class="n">novoLancamento</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">novoLancamento</span><span class="o">);</span>
+            
+        <span class="c1">// Após salvar, recarregamos a lista e a retornamos como um fragmento</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentos</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">lancamentos</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Lancamento:</span><span class="o">:</span><span class="n">getData</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentos"</span><span class="o">,</span> <span class="n">lancamentos</span><span class="o">);</span>
+            
+        <span class="c1">// Retorna apenas o fragmento da tabela, não a página inteira</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span> 
+    <span class="o">}</span>
+
+    <span class="c1">// Método para excluir um lançamento (via htmx)</span>
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/lancamentos/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">deleteLancamento</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+            
+        <span class="c1">// Após deletar, recarregamos a lista e a retornamos como um fragmento</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Lancamento</span><span class="o">&gt;</span> <span class="n">lancamentos</span> <span class="o">=</span> <span class="n">lancamentoRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+        <span class="n">lancamentos</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nc">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">Lancamento:</span><span class="o">:</span><span class="n">getData</span><span class="o">).</span><span class="na">reversed</span><span class="o">());</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"lancamentos"</span><span class="o">,</span> <span class="n">lancamentos</span><span class="o">);</span>
+            
+        <span class="c1">// Retorna apenas o fragmento da tabela</span>
+        <span class="k">return</span> <span class="s">"index :: lista-lancamentos"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p><strong>Ponto Chave:</strong> Note que os métodos <code class="language-plaintext highlighter-rouge">addLancamento</code> e <code class="language-plaintext highlighter-rouge">deleteLancamento</code> retornam <code class="language-plaintext highlighter-rouge">"index :: lista-lancamentos"</code>. Isso é uma instrução para o Thymeleaf renderizar apenas o pedaço (fragmento) do HTML chamado <code class="language-plaintext highlighter-rouge">lista-lancamentos</code> dentro do arquivo <code class="language-plaintext highlighter-rouge">index.html</code>. É essa a mágica que o htmx usará para atualizar a página dinamicamente.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-fase-5-construção-da-interface-com-thymeleaf-e-htmx">🎨 Fase 5: Construção da Interface com Thymeleaf e htmx</h3>
+
+<p>Agora vamos criar a interface que o usuário verá. Ela será um único arquivo HTML que será atualizado dinamicamente pelo htmx.</p>
+
+<ol>
+  <li>
+    <p><strong>Crie o arquivo <code class="language-plaintext highlighter-rouge">index.html</code>:</strong>
+Dentro de <code class="language-plaintext highlighter-rouge">src/main/resources/templates/</code>, crie o arquivo <code class="language-plaintext highlighter-rouge">index.html</code>.</p>
+  </li>
+  <li>
+    <p><strong>Adicione o conteúdo HTML:</strong>
+Este código inclui um formulário para adicionar lançamentos e uma tabela para listá-los. Observe os atributos <code class="language-plaintext highlighter-rouge">hx-*</code>, que são os comandos do htmx.</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt-br"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Controle de Gastos<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="o">-</span><span class="n">apple-system</span><span class="p">,</span> <span class="n">BlinkMacSystemFont</span><span class="p">,</span> <span class="s1">"Segoe UI"</span><span class="p">,</span> <span class="n">Roboto</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#f4f4f9</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#333</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.container</span> <span class="p">{</span> <span class="nl">max-width</span><span class="p">:</span> <span class="m">800px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">background</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span> <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">2px</span> <span class="m">4px</span> <span class="nf">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0.1</span><span class="p">);</span> <span class="p">}</span>
+        <span class="nt">form</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span> <span class="nl">gap</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="nl">flex-wrap</span><span class="p">:</span> <span class="nb">wrap</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">input</span><span class="o">,</span> <span class="nt">select</span><span class="o">,</span> <span class="nt">button</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#007bff</span><span class="p">;</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span> <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">button</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#0056b3</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">table</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <span class="nl">border-collapse</span><span class="p">:</span> <span class="nb">collapse</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ddd</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.despesa</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#d9534f</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.receita</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="nx">#5cb85c</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.delete-btn</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#d9534f</span><span class="p">;</span> <span class="p">}</span>
+        <span class="nc">.delete-btn</span><span class="nd">:hover</span> <span class="p">{</span> <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#c9302c</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/htmx.org@1.9.12"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Meu Controle de Gastos 💰<span class="nt">&lt;/h1&gt;</span>
+
+        <span class="nt">&lt;form</span> <span class="na">hx-post=</span><span class="s">"/lancamentos"</span>      
+              <span class="na">hx-target=</span><span class="s">"#lista-lancamentos"</span> 
+              <span class="na">hx-swap=</span><span class="s">"outerHTML"</span>            
+              <span class="na">hx-on::after-request=</span><span class="s">"this.reset()"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">placeholder=</span><span class="s">"Descrição"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">step=</span><span class="s">"0.01"</span> <span class="na">name=</span><span class="s">"valor"</span> <span class="na">placeholder=</span><span class="s">"Valor"</span> <span class="na">required</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"tipo"</span> <span class="na">required</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;option</span> <span class="na">th:each=</span><span class="s">"tipoOpt : ${tipos}"</span> <span class="na">th:value=</span><span class="s">"${tipoOpt}"</span> <span class="na">th:text=</span><span class="s">"${tipoOpt}"</span><span class="nt">&gt;&lt;/option&gt;</span>
+            <span class="nt">&lt;/select&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"lista-lancamentos"</span> <span class="na">th:fragment=</span><span class="s">"lista-lancamentos"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;table&gt;</span>
+                <span class="nt">&lt;thead&gt;</span>
+                    <span class="nt">&lt;tr&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Descrição<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Valor<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Data<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Tipo<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;th&gt;</span>Ação<span class="nt">&lt;/th&gt;</span>
+                    <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;/thead&gt;</span>
+                <span class="nt">&lt;tbody&gt;</span>
+                    <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"lancamento : ${lancamentos}"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${lancamento.descricao}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"|R$ ${#numbers.formatDecimal(lancamento.valor, 1, 'POINT', 2, 'COMMA')}|"</span>
+                            <span class="na">th:class=</span><span class="s">"${lancamento.tipo.name() == 'DESPESA' ? 'despesa' : 'receita'}"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${#temporals.format(lancamento.data, 'dd/MM/yyyy')}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${lancamento.tipo.name()}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                        <span class="nt">&lt;td&gt;</span>
+                            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"delete-btn"</span>
+                                    <span class="na">hx-delete=</span><span class="s">"@{/lancamentos/{id}(id=${lancamento.id})}"</span>
+                                    <span class="na">hx-target=</span><span class="s">"#lista-lancamentos"</span>
+                                    <span class="na">hx-swap=</span><span class="s">"outerHTML"</span>
+                                    <span class="na">hx-confirm=</span><span class="s">"Tem certeza que deseja excluir?"</span><span class="nt">&gt;</span>
+                                Excluir
+                            <span class="nt">&lt;/button&gt;</span>
+                        <span class="nt">&lt;/td&gt;</span>
+                    <span class="nt">&lt;/tr&gt;</span>
+                <span class="nt">&lt;/tbody&gt;</span>
+            <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>    </div>
+
+    <p><strong>Como o htmx funciona aqui:</strong></p>
+
+    <ul>
+      <li><strong>Adicionar:</strong> O <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code> tem <code class="language-plaintext highlighter-rouge">hx-post="/lancamentos"</code>. Ao submeter, ele envia um POST para essa URL. <code class="language-plaintext highlighter-rouge">hx-target="#lista-lancamentos"</code> e <code class="language-plaintext highlighter-rouge">hx-swap="outerHTML"</code> dizem para pegar a resposta (que é o fragmento da tabela atualizada) e substituir todo o elemento <code class="language-plaintext highlighter-rouge">&lt;div id="lista-lancamentos"&gt;</code>.</li>
+      <li><strong>Excluir:</strong> O <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> de exclusão tem <code class="language-plaintext highlighter-rouge">hx-delete="/lancamentos/..."</code>. Ao clicar, ele envia uma requisição DELETE. A resposta (a tabela atualizada) também substitui o <code class="language-plaintext highlighter-rouge">&lt;div id="lista-lancamentos"&gt;</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="-fase-6-configuração-de-ambientes">🌍 Fase 6: Configuração de Ambientes</h3>
+
+<p>Vamos configurar a aplicação para usar o H2 em desenvolvimento e o PostgreSQL em produção.</p>
+
+<ol>
+  <li>
+    <p><strong>Arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> (Desenvolvimento):</strong>
+Este arquivo, localizado em <code class="language-plaintext highlighter-rouge">src/main/resources/</code>, já é o perfil padrão. Vamos configurá-lo para o H2.</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do H2 Database (perfil 'default')
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+<span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># JPA
+</span><span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+</code></pre></div>    </div>
+
+    <p>Agora você pode rodar sua aplicação localmente. Abra a classe <code class="language-plaintext highlighter-rouge">ControleDeGastosApplication.java</code> na sua IDE e execute-a. Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080</code> e <code class="language-plaintext highlighter-rouge">http://localhost:8080/h2-console</code> (URL do JDBC: <code class="language-plaintext highlighter-rouge">jdbc:h2:mem:testdb</code>) para testar.</p>
+  </li>
+  <li>
+    <p><strong>Arquivo <code class="language-plaintext highlighter-rouge">application-prod.properties</code> (Produção):</strong>
+Na mesma pasta, crie um novo arquivo chamado <code class="language-plaintext highlighter-rouge">application-prod.properties</code>. Este arquivo será ativado quando o perfil <code class="language-plaintext highlighter-rouge">prod</code> estiver ativo.</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do PostgreSQL (perfil 'prod')
+# Usaremos variáveis de ambiente no Render para preencher estes valores
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">${DB_URL}</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">${DB_USERNAME}</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">${DB_PASSWORD}</span>
+
+<span class="c"># JPA
+</span><span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+<span class="py">spring.jpa.properties.hibernate.dialect</span><span class="p">=</span><span class="s">org.hibernate.dialect.PostgreSQLDialect</span>
+</code></pre></div>    </div>
+
+    <p>Os valores <code class="language-plaintext highlighter-rouge">${...}</code> serão substituídos por variáveis de ambiente que configuraremos na plataforma de deploy.</p>
+  </li>
+  <li>
+    <p><strong>Commit das mudanças:</strong></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"✨ Feat: Implement CRUD and SPA interface with htmx"</span>
+git push origin main
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="️-fase-7-deploy-em-produção">☁️ Fase 7: Deploy em Produção</h3>
+
+<p>É hora de colocar nossa aplicação no ar!</p>
+
+<h4 id="71-criando-o-banco-de-dados-no-neon">7.1. Criando o Banco de Dados no Neon</h4>
+
+<ol>
+  <li>Vá para <a href="https://neon.tech">Neon</a> e faça login (pode usar sua conta do GitHub).</li>
+  <li>Crie um novo projeto. Dê um nome, como <code class="language-plaintext highlighter-rouge">controle-de-gastos-db</code>.</li>
+  <li>Após a criação, você será levado a um painel. Na seção <strong>Connection Details</strong>, você encontrará as informações que precisamos.</li>
+  <li>O Neon fornece uma URL de conexão completa. Guarde as seguintes partes:
+    <ul>
+      <li><strong>Host:</strong> (ex: <code class="language-plaintext highlighter-rouge">ep-plain-snow-123456.us-east-2.aws.neon.tech</code>)</li>
+      <li><strong>Database:</strong> (o nome do seu banco)</li>
+      <li><strong>User:</strong> (o nome do seu usuário)</li>
+      <li><strong>Password:</strong> (a senha que foi gerada)</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="72-fazendo-o-deploy-da-aplicação-no-render">7.2. Fazendo o Deploy da Aplicação no Render</h4>
+
+<ol>
+  <li>
+    <p>Vá para <a href="https://render.com">Render</a> e faça login (também pode usar sua conta do GitHub).</p>
+  </li>
+  <li>
+    <p>No painel, clique em <strong>New +</strong> &gt; <strong>Web Service</strong>.</p>
+  </li>
+  <li>
+    <p>Conecte seu repositório do GitHub e selecione o repositório <code class="language-plaintext highlighter-rouge">controle-de-gastos</code>.</p>
+  </li>
+  <li>
+    <p>Na tela de configuração, preencha:</p>
+
+    <ul>
+      <li><strong>Name:</strong> <code class="language-plaintext highlighter-rouge">controle-de-gastos</code> (ou o que preferir).</li>
+      <li><strong>Region:</strong> Escolha a mais próxima de você.</li>
+      <li><strong>Branch:</strong> <code class="language-plaintext highlighter-rouge">main</code>.</li>
+      <li><strong>Runtime:</strong> <code class="language-plaintext highlighter-rouge">Java</code>. O Render geralmente detecta isso.</li>
+      <li><strong>Build Command:</strong> <code class="language-plaintext highlighter-rouge">./mvnw clean install</code></li>
+      <li><strong>Start Command:</strong> <code class="language-plaintext highlighter-rouge">java -jar target/controle-de-gastos-0.0.1-SNAPSHOT.jar</code></li>
+      <li><strong>Instance Type:</strong> <strong>Free</strong>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Agora, a parte mais importante: as <strong>Variáveis de Ambiente</strong>. Clique em <strong>Advanced</strong>.</p>
+
+    <ul>
+      <li>
+        <p>Clique em <strong>Add Environment Variable</strong> e adicione as seguintes chaves e valores:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="text-align: left">Chave</th>
+              <th style="text-align: left">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: left"><code class="language-plaintext highlighter-rouge">SPRING_PROFILES_ACTIVE</code></td>
+              <td style="text-align: left"><code class="language-plaintext highlighter-rouge">prod</code></td>
+            </tr>
+            <tr>
+              <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DB_USERNAME</code></td>
+              <td style="text-align: left">O usuário do seu banco de dados Neon.</td>
+            </tr>
+            <tr>
+              <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DB_PASSWORD</code></td>
+              <td style="text-align: left">A senha do seu banco de dados Neon.</td>
+            </tr>
+            <tr>
+              <td style="text-align: left"><code class="language-plaintext highlighter-rouge">DB_URL</code></td>
+              <td style="text-align: left"><code class="language-plaintext highlighter-rouge">jdbc:postgresql://&lt;HOST_DO_NEON&gt;/&lt;DB_NAME_DO_NEON&gt;?sslmode=require</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>Atenção:</strong> Substitua <code class="language-plaintext highlighter-rouge">&lt;HOST_DO_NEON&gt;</code> e <code class="language-plaintext highlighter-rouge">&lt;DB_NAME_DO_NEON&gt;</code> pelos valores que você pegou do painel do Neon. A parte <code class="language-plaintext highlighter-rouge">?sslmode=require</code> é <strong>essencial</strong> para a conexão funcionar.</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Um problema novo é que o <strong>Render</strong> não detecta automaticamente projetos <strong>Java/Spring Boot</strong>, porque ele só lista “runtimes oficiais”. Para rodar <strong>Spring Boot</strong> no Render, você precisa usar a opção <strong>“Docker”</strong> ou configurar manualmente via <strong>Build Command + Start Command</strong>.</p>
+
+<hr />
+
+<h2 id="-caminho-1--sem-docker-mais-simples">🔹 Caminho 1 — Sem Docker (mais simples)</h2>
+
+<ol>
+  <li>Vá em <strong>New Web Service</strong> → <strong>Connect Repo</strong> → selecione o repositório <code class="language-plaintext highlighter-rouge">controle-de-gastos</code>.</li>
+  <li>Quando Render pedir a configuração, escolha <strong>Runtime: Docker (ou Other)</strong> (mesmo se não aparecer Java).</li>
+  <li>
+    <p>Preencha manualmente:</p>
+
+    <ul>
+      <li><strong>Name</strong>: <code class="language-plaintext highlighter-rouge">controle-de-gastos</code></li>
+      <li><strong>Region</strong>: (ex. Ohio se você está no Brasil)</li>
+      <li><strong>Branch</strong>: <code class="language-plaintext highlighter-rouge">main</code></li>
+      <li>
+        <p><strong>Build Command</strong>:</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./mvnw clean <span class="nb">install</span> <span class="nt">-DskipTests</span>
+</code></pre></div>        </div>
+
+        <p>ou, se não tiver wrapper (<code class="language-plaintext highlighter-rouge">mvnw</code>):</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean <span class="nb">install</span> <span class="nt">-DskipTests</span>
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p><strong>Start Command</strong>:</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-jar</span> target/<span class="k">*</span>.jar
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Certifique-se de que o seu projeto <strong>gera o JAR executável</strong> (padrão do Spring Boot). No <code class="language-plaintext highlighter-rouge">pom.xml</code>, deve ter:</p>
+
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div>    </div>
+
+    <p>Isso garante que o JAR gerado seja “fat jar” (<code class="language-plaintext highlighter-rouge">target/controle-de-gastos-0.0.1-SNAPSHOT.jar</code>).</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="-caminho-2--usando-docker-mais-flexível">🔹 Caminho 2 — Usando Docker (mais flexível)</h2>
+
+<p>Se quiser controlar melhor, crie um arquivo <strong><code class="language-plaintext highlighter-rouge">Dockerfile</code></strong> na raiz do projeto:</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Etapa 1: build do JAR</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">maven:3.9.4-eclipse-temurin-17</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+<span class="k">RUN </span>mvn clean package <span class="nt">-DskipTests</span>
+
+<span class="c"># Etapa 2: imagem final</span>
+<span class="k">FROM</span><span class="s"> eclipse-temurin:17-jdk-alpine</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> --from=build /app/target/*.jar app.jar</span>
+
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<p>No Render:</p>
+
+<ul>
+  <li><strong>Runtime</strong>: Docker</li>
+  <li>Ele vai detectar o <code class="language-plaintext highlighter-rouge">Dockerfile</code> automaticamente e construir sua imagem.</li>
+</ul>
+
+<hr />
+
+<h2 id="-conferindo-variáveis-de-ambiente">🔹 Conferindo variáveis de ambiente</h2>
+
+<p>No painel do Render → <strong>Environment</strong>:</p>
+
+<ul>
+  <li>Configure variáveis como <code class="language-plaintext highlighter-rouge">SPRING_PROFILES_ACTIVE=prod</code> ou credenciais do banco (<code class="language-plaintext highlighter-rouge">DATABASE_URL</code>, <code class="language-plaintext highlighter-rouge">JDBC_URL</code>, etc).</li>
+  <li>Se estiver usando PostgreSQL do Render, ele te dá os dados prontos (host, user, password).</li>
+</ul>
+
+<hr />
+
+<p>👉 Resumindo:</p>
+
+<ul>
+  <li>O Render <strong>não tem runtime Java pronto</strong>, mas você pode <strong>forçar</strong> com <code class="language-plaintext highlighter-rouge">Build Command</code> + <code class="language-plaintext highlighter-rouge">Start Command</code> ou criar um <strong>Dockerfile</strong>.</li>
+  <li>O jeito mais fácil é <strong>Build Command = mvn package</strong> e <strong>Start Command = java -jar target/*.jar</strong>.</li>
+</ul>
+
+<hr />
+
+<ol>
+  <li>Role para baixo e clique em <strong>Create Web Service</strong>.</li>
+</ol>
+
+<p>O Render irá buscar seu código do GitHub, construir a aplicação e iniciá-la. O primeiro deploy pode levar alguns minutos. Você pode acompanhar o progresso nos logs.</p>
+
+<p>Quando terminar, o Render fornecerá uma URL pública (ex: <code class="language-plaintext highlighter-rouge">https://controle-de-gastos.onrender.com</code>), e sua aplicação estará <strong>ao vivo!</strong> 🎉</p>
+
+<hr />
+
+<h3 id="-conclusão">✅ Conclusão</h3>
+
+<p>Parabéns! Você construiu do zero e implantou uma aplicação web completa com uma stack moderna. Você aprendeu a combinar o poder do Spring Boot no backend com a simplicidade e reatividade do htmx no frontend, criando uma experiência de usuário ágil sem escrever JavaScript complexo.</p>
+
+<p><strong>Próximos Passos Sugeridos:</strong></p>
+
+<ul>
+  <li>Adicionar validação nos campos do formulário.</li>
+  <li>Implementar a funcionalidade de <strong>edição</strong> de um lançamento.</li>
+  <li>Melhorar o CSS e a aparência geral da aplicação.</li>
+  <li>Adicionar um sistema de usuários e autenticação com Spring Security.</li>
+</ul>
+
+<p>Espero que este guia tenha sido útil e didático. Agora você tem uma base sólida para criar muitas outras aplicações incríveis!</p>
+
+<hr />
+
+<h2 id="apêndices">Apêndices</h2>
+
+<p>Em <strong>Java</strong>, tanto <strong>classe</strong> quanto <strong>enum</strong> são tipos definidos pelo programador, mas têm papéis bem diferentes:</p>
+
+<hr />
+
+<h2 id="-classe">🔹 Classe</h2>
+
+<ul>
+  <li><strong>Definição</strong>: É um molde para criar objetos (instâncias).</li>
+  <li>
+    <p><strong>Características</strong>:</p>
+
+    <ul>
+      <li>Pode ter <strong>atributos</strong> (variáveis de instância).</li>
+      <li>Pode ter <strong>métodos</strong> (comportamentos).</li>
+      <li>Pode ser instanciada com <code class="language-plaintext highlighter-rouge">new</code>.</li>
+      <li>Pode herdar de outra classe (<code class="language-plaintext highlighter-rouge">extends</code>) e implementar interfaces (<code class="language-plaintext highlighter-rouge">implements</code>).</li>
+      <li>
+        <p>Exemplo:</p>
+
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pessoa</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Pessoa</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idade</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">idade</span> <span class="o">=</span> <span class="n">idade</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">apresentar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Olá, meu nome é "</span> <span class="o">+</span> <span class="n">nome</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">Pessoa</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Pessoa</span><span class="o">(</span><span class="s">"Ricardo"</span><span class="o">,</span> <span class="mi">35</span><span class="o">);</span>
+<span class="n">p</span><span class="o">.</span><span class="na">apresentar</span><span class="o">();</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-enum">🔹 Enum</h2>
+
+<ul>
+  <li><strong>Definição</strong>: Um tipo especial usado para representar um <strong>conjunto fixo e finito de constantes</strong>.</li>
+  <li>
+    <p><strong>Características</strong>:</p>
+
+    <ul>
+      <li>É uma classe especial, mas <strong>não pode ser instanciada com <code class="language-plaintext highlighter-rouge">new</code></strong>.</li>
+      <li>Cada valor definido no <code class="language-plaintext highlighter-rouge">enum</code> é implicitamente um objeto único e imutável.</li>
+      <li>Pode ter atributos e métodos, mas o uso típico é representar opções pré-definidas.</li>
+      <li>Sempre herda implicitamente de <code class="language-plaintext highlighter-rouge">java.lang.Enum</code>, logo não pode herdar de outra classe.</li>
+      <li>
+        <p>Exemplo:</p>
+
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">DiaSemana</span> <span class="o">{</span>
+    <span class="no">SEGUNDA</span><span class="o">,</span> <span class="no">TERCA</span><span class="o">,</span> <span class="no">QUARTA</span><span class="o">,</span> <span class="no">QUINTA</span><span class="o">,</span> <span class="no">SEXTA</span><span class="o">,</span> <span class="no">SABADO</span><span class="o">,</span> <span class="no">DOMINGO</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="nc">DiaSemana</span> <span class="n">hoje</span> <span class="o">=</span> <span class="nc">DiaSemana</span><span class="o">.</span><span class="na">SEGUNDA</span><span class="o">;</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">hoje</span> <span class="o">==</span> <span class="nc">DiaSemana</span><span class="o">.</span><span class="na">SEGUNDA</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Início da semana!"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-diferenças-principais">🔹 Diferenças principais</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto</th>
+      <th>Classe</th>
+      <th>Enum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Instanciação</td>
+      <td>Pode criar várias instâncias com <code class="language-plaintext highlighter-rouge">new</code>.</td>
+      <td>Instâncias são fixas, definidas no código.</td>
+    </tr>
+    <tr>
+      <td>Herança</td>
+      <td>Pode herdar de outra classe e implementar interfaces.</td>
+      <td>Sempre herda de <code class="language-plaintext highlighter-rouge">Enum</code>, só pode implementar interfaces.</td>
+    </tr>
+    <tr>
+      <td>Uso</td>
+      <td>Representar entidades do mundo real ou abstrações.</td>
+      <td>Representar <strong>conjuntos fixos de valores constantes</strong>.</td>
+    </tr>
+    <tr>
+      <td>Mutabilidade</td>
+      <td>Objetos podem ser mutáveis (se atributos não forem <code class="language-plaintext highlighter-rouge">final</code>).</td>
+      <td>Constantes do enum são <strong>imutáveis e únicas</strong>.</td>
+    </tr>
+    <tr>
+      <td>Criação de objetos</td>
+      <td>Feita dinamicamente em tempo de execução.</td>
+      <td>Criados estaticamente em tempo de carregamento da classe.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p>👉 Resumindo:</p>
+
+<ul>
+  <li>Use <strong>classe</strong> para modelar objetos que podem variar (Pessoa, Produto, Conta, etc).</li>
+  <li>Use <strong>enum</strong> para modelar um conjunto <strong>limitado e fixo</strong> de valores (Dias da semana, Estados de um pedido, Cores, etc).</li>
+</ul>
+
+<hr />
+
+<h2 id="-interface">🔹 Interface</h2>
+
+<ul>
+  <li><strong>Definição</strong>: Um <strong>contrato</strong> que define <strong>métodos</strong> (assinaturas) que uma classe deve implementar.</li>
+  <li>
+    <p><strong>Características</strong>:</p>
+
+    <ul>
+      <li>Não pode ser instanciada.</li>
+      <li>Não possui estado (variáveis de instância normais). Pode ter apenas <strong>constantes</strong> (<code class="language-plaintext highlighter-rouge">public static final</code>).</li>
+      <li>
+        <p>Métodos definidos <strong>não têm implementação</strong> (até Java 7).</p>
+
+        <ul>
+          <li>A partir do Java 8, podem ter <strong>métodos default</strong> (com implementação) e <strong>métodos static</strong>.</li>
+          <li>A partir do Java 9, podem ter <strong>métodos privados</strong> (para reuso interno da interface).</li>
+        </ul>
+      </li>
+      <li>Uma classe pode <strong>implementar várias interfaces</strong> (polimorfismo múltiplo).</li>
+      <li>Usada para <strong>abstração</strong> e <strong>contratos de comportamento</strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="exemplo-simples">Exemplo simples:</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Interface</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">emitirSom</span><span class="o">();</span>  <span class="c1">// método abstrato (sem corpo)</span>
+<span class="o">}</span>
+
+<span class="c1">// Classe que implementa a interface</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cachorro</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">emitirSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Au Au"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Gato</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">emitirSom</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Miau"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Uso</span>
+<span class="nc">Animal</span> <span class="n">a1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cachorro</span><span class="o">();</span>
+<span class="nc">Animal</span> <span class="n">a2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Gato</span><span class="o">();</span>
+
+<span class="n">a1</span><span class="o">.</span><span class="na">emitirSom</span><span class="o">();</span> <span class="c1">// Au Au</span>
+<span class="n">a2</span><span class="o">.</span><span class="na">emitirSom</span><span class="o">();</span> <span class="c1">// Miau</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-diferenças-principais-classe--enum--interface">🔹 Diferenças principais (Classe × Enum × Interface)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto</th>
+      <th>Classe</th>
+      <th>Enum</th>
+      <th>Interface</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Instanciação</td>
+      <td>Pode criar objetos com <code class="language-plaintext highlighter-rouge">new</code>.</td>
+      <td>Não pode instanciar, só usar valores fixos.</td>
+      <td>Não pode instanciar.</td>
+    </tr>
+    <tr>
+      <td>Herança</td>
+      <td>Pode herdar <strong>1 classe</strong> e implementar <strong>muitas interfaces</strong>.</td>
+      <td>Já herda de <code class="language-plaintext highlighter-rouge">Enum</code>, pode só implementar interfaces.</td>
+      <td>Não herda, só pode estender outras interfaces.</td>
+    </tr>
+    <tr>
+      <td>Estado (atributos)</td>
+      <td>Pode ter atributos variáveis e métodos com corpo.</td>
+      <td>Pode ter atributos e métodos, mas valores são fixos.</td>
+      <td>Só constantes (<code class="language-plaintext highlighter-rouge">public static final</code>).</td>
+    </tr>
+    <tr>
+      <td>Métodos</td>
+      <td>Podem ter corpo, estáticos e construtores.</td>
+      <td>Podem ter corpo e até construtores (privados).</td>
+      <td>Só assinatura; desde Java 8, pode ter <code class="language-plaintext highlighter-rouge">default</code>, <code class="language-plaintext highlighter-rouge">static</code>, e desde Java 9, <code class="language-plaintext highlighter-rouge">private</code>.</td>
+    </tr>
+    <tr>
+      <td>Uso típico</td>
+      <td>Modelar objetos do mundo real.</td>
+      <td>Representar conjunto fixo de constantes.</td>
+      <td>Definir contrato de comportamento.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p>👉 Em resumo:</p>
+
+<ul>
+  <li><strong>Classe</strong> = define <strong>como algo é</strong> (atributos + métodos).</li>
+  <li><strong>Enum</strong> = define <strong>um conjunto limitado de valores</strong> (tipos fixos).</li>
+  <li><strong>Interface</strong> = define <strong>o que algo faz</strong> (contrato de comportamento).</li>
+</ul>
+
+<hr />
+
+<p>👌 <strong>Organização de pacotes em projetos Java</strong>.</p>
+
+<p>Quando criamos pacotes como <code class="language-plaintext highlighter-rouge">controller</code>, <code class="language-plaintext highlighter-rouge">model</code>, <code class="language-plaintext highlighter-rouge">repository</code>, normalmente estamos aplicando o <strong>padrão de projeto MVC (Model-View-Controller)</strong> — muito comum em aplicações web com <strong>Spring Boot</strong>.</p>
+
+<hr />
+
+<h2 id="-1-model">🔹 1. <strong>Model</strong></h2>
+
+<ul>
+  <li>Representa as <strong>entidades do domínio</strong> (os dados do sistema).</li>
+  <li>Contém <strong>atributos</strong> e às vezes regras de negócio básicas.</li>
+  <li>Geralmente são mapeados para tabelas do banco de dados usando <strong>JPA/Hibernate</strong> (<code class="language-plaintext highlighter-rouge">@Entity</code>).</li>
+  <li>
+    <p>Exemplo:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">org.brothers.todolist.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tarefa</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">descricao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">concluida</span><span class="o">;</span>
+
+    <span class="c1">// getters e setters</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-2-repository">🔹 2. <strong>Repository</strong></h2>
+
+<ul>
+  <li>Responsável pela <strong>acesso aos dados</strong> (persistência).</li>
+  <li>Em projetos Spring, usamos <strong>interfaces</strong> que estendem <code class="language-plaintext highlighter-rouge">JpaRepository</code> ou <code class="language-plaintext highlighter-rouge">CrudRepository</code>.</li>
+  <li>O Spring gera automaticamente a implementação.</li>
+  <li>
+    <p>Exemplo:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">org.brothers.todolist.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.brothers.todolist.model.Tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TarefaRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="c1">// podemos criar métodos de consulta customizados, ex:</span>
+    <span class="c1">// List&lt;Tarefa&gt; findByConcluida(boolean concluida);</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-3-controller">🔹 3. <strong>Controller</strong></h2>
+
+<ul>
+  <li>Camada que recebe as <strong>requisições do usuário</strong> (HTTP).</li>
+  <li>Define os <strong>endpoints da API REST</strong> com <code class="language-plaintext highlighter-rouge">@RestController</code> e <code class="language-plaintext highlighter-rouge">@RequestMapping</code>.</li>
+  <li>Usa o <code class="language-plaintext highlighter-rouge">Repository</code> ou um <code class="language-plaintext highlighter-rouge">Service</code> para manipular os dados e devolver respostas.</li>
+  <li>
+    <p>Exemplo:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">org.brothers.todolist.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.brothers.todolist.model.Tarefa</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.brothers.todolist.repository.TarefaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TarefaController</span><span class="o">(</span><span class="nc">TarefaRepository</span> <span class="n">repository</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">repository</span> <span class="o">=</span> <span class="n">repository</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Tarefa</span><span class="o">&gt;</span> <span class="nf">listar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">adicionar</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Tarefa</span> <span class="nf">atualizar</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Tarefa</span> <span class="n">tarefa</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">tarefa</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">tarefa</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remover</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">repository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-estrutura-típica-do-projeto-spring-boot-padrão-mvc">🔹 Estrutura típica do projeto (Spring Boot, padrão MVC)</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>todolist/
+ └── src/main/java/org/brothers/todolist/
+     ├── controller/    → controladores REST (recebem requisições)
+     ├── model/         → classes de domínio (entidades JPA)
+     ├── repository/    → interfaces de persistência (DAO/JPA)
+     ├── service/       → (opcional) regras de negócio
+     └── TodolistApplication.java (classe principal)
+</code></pre></div></div>
+
+<hr />
+
+<p>👉 Resumindo:</p>
+
+<ul>
+  <li><strong>Model</strong> → define os <strong>dados</strong> (entidades).</li>
+  <li><strong>Repository</strong> → faz a <strong>ponte com o banco de dados</strong>.</li>
+  <li><strong>Controller</strong> → recebe a <strong>requisição do usuário</strong> e devolve a resposta.</li>
+</ul>
+
+<hr />
+
+<p>👌 <strong>Thymeleaf</strong> e <strong>htmx</strong>, que aparecem quando queremos lidar com a <strong>View</strong> em aplicações Java (na camada de <strong>apresentação</strong> do MVC).</p>
+
+<hr />
+
+<h2 id="-thymeleaf">🔹 Thymeleaf</h2>
+
+<ul>
+  <li><strong>O que é</strong>: Um <strong>template engine</strong> para Java, muito usado em aplicações <strong>Spring Boot</strong>.</li>
+  <li>
+    <p><strong>Para que serve</strong>:</p>
+
+    <ul>
+      <li>Permite misturar <strong>HTML + expressões dinâmicas</strong> (como <code class="language-plaintext highlighter-rouge">${objeto.atributo}</code>) renderizadas no <strong>servidor</strong>.</li>
+      <li>Gera páginas HTML completas antes de enviar para o navegador.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Características</strong>:</p>
+
+    <ul>
+      <li>Sintaxe parecida com HTML puro, mas com atributos especiais (<code class="language-plaintext highlighter-rouge">th:text</code>, <code class="language-plaintext highlighter-rouge">th:if</code>, <code class="language-plaintext highlighter-rouge">th:each</code> etc).</li>
+      <li>Substitui JSP em projetos modernos com Spring.</li>
+      <li>Integra bem com <code class="language-plaintext highlighter-rouge">Spring MVC</code> (controladores podem passar modelos de dados para as views).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exemplo-com-thymeleaf">Exemplo com Thymeleaf</h3>
+
+<p><strong>Controller:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TarefaController</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">TarefaRepository</span> <span class="n">repository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TarefaController</span><span class="o">(</span><span class="nc">TarefaRepository</span> <span class="n">repository</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">repository</span> <span class="o">=</span> <span class="n">repository</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/tarefas"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">listar</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"tarefas"</span><span class="o">,</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"tarefas"</span><span class="o">;</span> <span class="c1">// aponta para templates/tarefas.html</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Template Thymeleaf (<code class="language-plaintext highlighter-rouge">templates/tarefas.html</code>):</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Tarefas<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">th:each=</span><span class="s">"t : ${tarefas}"</span> <span class="na">th:text=</span><span class="s">"${t.descricao}"</span><span class="nt">&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>✅ O servidor gera o HTML pronto antes de enviar ao navegador.</p>
+
+<hr />
+
+<h2 id="-htmx">🔹 htmx</h2>
+
+<ul>
+  <li><strong>O que é</strong>: Uma <strong>biblioteca JavaScript leve</strong> que adiciona <strong>interatividade ao HTML</strong> sem precisar escrever muito JS ou usar frameworks como React/Angular.</li>
+  <li>
+    <p><strong>Para que serve</strong>:</p>
+
+    <ul>
+      <li>Permite atualizar <strong>partes da página</strong> via <strong>requisições AJAX</strong>, <strong>WebSockets</strong> ou <strong>SSE</strong>.</li>
+      <li>Fica na camada do <strong>cliente</strong> (navegador).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Características</strong>:</p>
+
+    <ul>
+      <li>Usa atributos <code class="language-plaintext highlighter-rouge">hx-*</code> no HTML (<code class="language-plaintext highlighter-rouge">hx-get</code>, <code class="language-plaintext highlighter-rouge">hx-post</code>, <code class="language-plaintext highlighter-rouge">hx-target</code>, etc).</li>
+      <li>Facilita criar páginas dinâmicas sem precisar recarregar tudo.</li>
+      <li>Pode ser usado junto com Thymeleaf (server-side render) para melhorar a experiência.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exemplo-com-htmx">Exemplo com htmx</h3>
+
+<p><strong>HTML com htmx:</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+
+<span class="c">&lt;!-- Botão que faz um POST para criar tarefa --&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">hx-post=</span><span class="s">"/tarefas"</span> <span class="na">hx-target=</span><span class="s">"#lista-tarefas"</span> <span class="na">hx-swap=</span><span class="s">"outerHTML"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"descricao"</span> <span class="na">placeholder=</span><span class="s">"Nova tarefa"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+
+<span class="c">&lt;!-- Lista que será atualizada dinamicamente --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"lista-tarefas"</span> <span class="na">hx-get=</span><span class="s">"/tarefas"</span> <span class="na">hx-trigger=</span><span class="s">"load"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- O servidor devolve um fragmento HTML aqui --&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/htmx.org@1.9.10"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>✅ O navegador envia requisições para o servidor e <strong>atualiza só um trecho do HTML</strong>, sem recarregar a página toda.</p>
+
+<hr />
+
+<h2 id="-comparação-thymeleaf--htmx">🔹 Comparação (Thymeleaf × htmx)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspecto</th>
+      <th>Thymeleaf</th>
+      <th>htmx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Onde atua</td>
+      <td>Servidor (renderiza HTML antes de enviar)</td>
+      <td>Cliente (navegador, atualiza partes da página)</td>
+    </tr>
+    <tr>
+      <td>Tipo de renderização</td>
+      <td><strong>Server-side rendering (SSR)</strong></td>
+      <td><strong>Client-side enhancement (AJAX/HTML over the wire)</strong></td>
+    </tr>
+    <tr>
+      <td>Uso típico</td>
+      <td>Gerar páginas HTML completas</td>
+      <td>Atualizar dinamicamente partes da página</td>
+    </tr>
+    <tr>
+      <td>Integração</td>
+      <td>Muito usado com Spring MVC</td>
+      <td>Pode ser usado junto com Thymeleaf ou até sem ele</td>
+    </tr>
+    <tr>
+      <td>Complexidade</td>
+      <td>Simples para quem já conhece Spring</td>
+      <td>Mais leve que React/Angular, mas poderoso</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p>👉 Resumindo:</p>
+
+<ul>
+  <li><strong>Thymeleaf</strong> gera o HTML completo no <strong>servidor</strong> (ótimo para SEO e páginas dinâmicas clássicas).</li>
+  <li><strong>htmx</strong> permite <strong>atualizações parciais</strong> no <strong>cliente</strong> sem precisar recarregar toda a página.</li>
+</ul>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

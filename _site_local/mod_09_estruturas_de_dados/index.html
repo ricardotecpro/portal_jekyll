@@ -1,0 +1,322 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_09_estruturas_de_dados/ -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>📊 Estruturas de Dados: Organizando a Informação | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="📊 Estruturas de Dados: Organizando a Informação" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_09_estruturas_de_dados/" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_09_estruturas_de_dados/" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="📊 Estruturas de Dados: Organizando a Informação" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"📊 Estruturas de Dados: Organizando a Informação","url":"https://ricardotecpro.github.io/portal_jekyll/mod_09_estruturas_de_dados/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 📊 estruturas de dados: organizando a informação</span>
+          
+        
+      </nav>
+
+      <h1 id="-estruturas-de-dados-organizando-a-informação">📊 Estruturas de Dados: Organizando a Informação</h1>
+
+<p><strong>Estruturas de Dados</strong> são formas específicas de organizar, armazenar e gerenciar dados em um computador para que possam ser utilizados de maneira eficiente. Elas não são uma linguagem de programação ou um framework, mas sim um conceito fundamental da Ciência da Computação que pode ser implementado em qualquer linguagem.</p>
+
+<p>Pense em uma biblioteca. Os livros (os dados) podem ser organizados de várias maneiras: jogados em uma pilha aleatória, alinhados em prateleiras por ordem alfabética, ou catalogados por um sistema de fichas. Cada método é uma “estrutura” diferente. Achar um livro em uma pilha aleatória é muito lento. Achar em prateleiras ordenadas é rápido. A escolha da estrutura de dados correta é crucial para criar programas rápidos e eficientes.</p>
+
+<h3 id="por-que-elas-são-importantes-eficiência">Por Que Elas São Importantes? (Eficiência)</h3>
+
+<p>Não existe uma “melhor” estrutura de dados; cada uma tem seus próprios <strong>prós e contras</strong>. A escolha depende do problema que você está tentando resolver. A eficiência de uma estrutura de dados é geralmente medida pelo quão rápido ela consegue realizar operações como:</p>
+
+<ul>
+  <li><strong>Acesso</strong>: Ler o dado em uma determinada posição.</li>
+  <li><strong>Busca</strong>: Encontrar um determinado dado.</li>
+  <li><strong>Inserção</strong>: Adicionar um novo dado.</li>
+  <li><strong>Deleção</strong>: Remover um dado.</li>
+</ul>
+
+<p>A eficiência dessas operações é comumente descrita usando a <strong>Notação Big O</strong>, que mede como o tempo de execução ou o uso de memória cresce à medida que a quantidade de dados aumenta.</p>
+
+<hr />
+
+<h2 id="-estruturas-de-dados-fundamentais">🧱 Estruturas de Dados Fundamentais</h2>
+
+<p>As estruturas de dados são geralmente divididas em dois tipos: lineares e não-lineares.</p>
+
+<h3 id="estruturas-lineares">Estruturas Lineares</h3>
+
+<p>Os dados são organizados em uma sequência.</p>
+
+<h4 id="array-vetor">Array (Vetor)</h4>
+
+<p>Uma coleção de elementos de tamanho fixo, armazenados em blocos de memória contíguos. Cada elemento é acessado por um índice numérico.</p>
+
+<ul>
+  <li><strong>Prós</strong>: Acesso extremamente rápido a qualquer elemento pelo seu índice (O(1)).</li>
+  <li><strong>Contras</strong>: Inserir ou deletar um elemento no meio é lento (O(n)), pois todos os elementos subsequentes precisam ser deslocados. O tamanho geralmente é fixo.</li>
+  <li><strong>Uso Comum</strong>: Armazenar coleções de dados cujo tamanho é conhecido e onde o acesso rápido por índice é a prioridade.</li>
+</ul>
+
+<h4 id="lista-ligada-linked-list">Lista Ligada (Linked List)</h4>
+
+<p>Uma sequência de elementos (nós), onde cada nó armazena seu próprio dado e um ponteiro para o próximo nó na sequência.</p>
+
+<ul>
+  <li><strong>Prós</strong>: Inserção e deleção rápidas no início, meio ou fim (O(1)), desde que se tenha a referência ao nó. Tamanho dinâmico.</li>
+  <li><strong>Contras</strong>: Acesso e busca de um elemento são lentos (O(n)), pois é preciso percorrer a lista desde o início.</li>
+  <li><strong>Uso Comum</strong>: Implementar outras estruturas de dados como pilhas e filas; situações que exigem muitas inserções/deleções.</li>
+</ul>
+
+<h4 id="pilha-stack">Pilha (Stack)</h4>
+
+<p>Uma estrutura que segue o princípio <strong>LIFO (Last-In, First-Out)</strong>: o último elemento a entrar é o primeiro a sair. Pense em uma pilha de pratos.</p>
+
+<ul>
+  <li><strong>Operações</strong>: <code class="language-plaintext highlighter-rouge">push</code> (adicionar no topo), <code class="language-plaintext highlighter-rouge">pop</code> (remover do topo).</li>
+  <li><strong>Prós</strong>: Todas as operações são muito rápidas (O(1)).</li>
+  <li><strong>Contras</strong>: Acesso limitado apenas ao elemento do topo.</li>
+  <li><strong>Uso Comum</strong>: Gerenciamento de chamadas de funções em programação, funcionalidade de “desfazer” (undo) em editores.</li>
+</ul>
+
+<h4 id="fila-queue">Fila (Queue)</h4>
+
+<p>Uma estrutura que segue o princípio <strong>FIFO (First-In, First-Out)</strong>: o primeiro elemento a entrar é o primeiro a sair. Pense em uma fila de supermercado.</p>
+
+<ul>
+  <li><strong>Operações</strong>: <code class="language-plaintext highlighter-rouge">enqueue</code> (adicionar no fim), <code class="language-plaintext highlighter-rouge">dequeue</code> (remover do início).</li>
+  <li><strong>Prós</strong>: Todas as operações são muito rápidas (O(1)).</li>
+  <li><strong>Contras</strong>: Acesso limitado apenas aos elementos do início e do fim.</li>
+  <li><strong>Uso Comum</strong>: Gerenciamento de tarefas em segundo plano (background jobs), filas de impressão, gerenciamento de requisições em um servidor.</li>
+</ul>
+
+<h3 id="estruturas-não-lineares--associativas">Estruturas Não-Lineares / Associativas</h3>
+
+<h4 id="tabela-hash-hash-table--dicionário">Tabela Hash (Hash Table / Dicionário)</h4>
+
+<p>Armazena dados em pares de <strong>chave-valor</strong>. Ela usa uma função hash para converter a chave em um índice de um array, permitindo acesso muito rápido aos valores.</p>
+
+<ul>
+  <li><strong>Prós</strong>: Inserção, busca e deleção extremamente rápidas em média (O(1)).</li>
+  <li><strong>Contras</strong>: No pior caso (colisões de hash), as operações podem se degradar para (O(n)). A ordem dos elementos não é garantida.</li>
+  <li><strong>Uso Comum</strong>: Caching de dados, implementação de objetos em JavaScript, bancos de dados, busca de dados por um identificador único.</li>
+</ul>
+
+<h4 id="árvore-tree">Árvore (Tree)</h4>
+
+<p>Uma estrutura de dados hierárquica que consiste em nós conectados por arestas. Possui um nó raiz, e cada nó pode ter nós filhos.</p>
+
+<ul>
+  <li><strong>Árvore de Busca Binária (Binary Search Tree)</strong>: um tipo especial onde o nó esquerdo de um pai é sempre menor e o nó direito é sempre maior.</li>
+  <li><strong>Prós</strong>: Busca, inserção e deleção muito eficientes (O(log n)) se a árvore estiver balanceada. Representa naturalmente dados hierárquicos.</li>
+  <li><strong>Contras</strong>: Pode se tornar desbalanceada, degradando a performance para (O(n)).</li>
+  <li><strong>Uso Comum</strong>: Sistemas de arquivos, representação do DOM em HTML, indexação de bancos de dados, preenchimento automático (autocomplete).</li>
+</ul>
+
+<h4 id="grafo-graph">Grafo (Graph)</h4>
+
+<p>Uma coleção de nós (vértices) e conexões (arestas) entre eles. É a estrutura mais flexível, podendo representar qualquer tipo de relação.</p>
+
+<ul>
+  <li><strong>Prós</strong>: Modela redes e relacionamentos complexos do mundo real.</li>
+  <li><strong>Contras</strong>: Algoritmos de travessia e busca podem ser complexos.</li>
+  <li><strong>Uso Comum</strong>: Redes sociais (amigos são nós conectados), sistemas de mapeamento como Google Maps (cidades são nós, estradas são arestas), a própria internet.</li>
+</ul>
+
+<hr />
+
+<h2 id="-comparando-a-eficiência-big-o-notation">📈 Comparando a Eficiência (Big O Notation)</h2>
+
+<p>A tabela abaixo resume a complexidade de tempo média das operações mais comuns para cada estrutura.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Estrutura de Dados</th>
+      <th>Acesso (por índice/chave)</th>
+      <th>Busca</th>
+      <th>Inserção</th>
+      <th>Deleção</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Array</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Lista Ligada</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Pilha</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Fila</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Tabela Hash</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(1)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Árvore Busca Binária</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">O(log n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(log n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(log n)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">O(log n)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Visualização de uma Árvore de Busca Binária:</strong></p>
+
+<pre><code class="language-mermaid">graph TD;
+    A[50] --&gt; B[30];
+    A --&gt; C[70];
+    B --&gt; D[20];
+    B --&gt; E[40];
+    C --&gt; F[60];
+    C --&gt; G[80];
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+</code></pre>
+
+<p>Neste exemplo, para encontrar o número <code class="language-plaintext highlighter-rouge">60</code>, você não precisa checar todos os 7 nós. Você vai para <code class="language-plaintext highlighter-rouge">50</code> (raiz), depois para a direita (<code class="language-plaintext highlighter-rouge">70</code>, pois 60 &gt; 50), e depois para a esquerda (<code class="language-plaintext highlighter-rouge">60</code>, pois 60 &lt; 70). Isso é muito mais rápido do que uma busca linear.</p>
+
+<hr />
+
+<h2 id="-como-escolher-a-estrutura-certa">✅ Como Escolher a Estrutura Certa?</h2>
+
+<p>Faça a si mesmo estas perguntas sobre o seu problema:</p>
+
+<ul>
+  <li><strong>Eu preciso acessar elementos por um índice numérico de forma super rápida e o tamanho da coleção não muda muito?</strong>
+    <ul>
+      <li>Use um <strong>Array</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Eu preciso inserir e remover elementos no meio da coleção com muita frequência?</strong>
+    <ul>
+      <li>Use uma <strong>Lista Ligada</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Eu preciso de acesso quase instantâneo aos dados com base em um identificador único (como um nome de usuário ou ID do produto)?</strong>
+    <ul>
+      <li>Use uma <strong>Tabela Hash</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Eu preciso processar os dados na ordem exata em que chegaram?</strong>
+    <ul>
+      <li>Use uma <strong>Fila</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Eu preciso acessar e remover o item adicionado mais recentemente?</strong>
+    <ul>
+      <li>Use uma <strong>Pilha</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Meus dados são hierárquicos ou precisam ser mantidos em ordem para buscas rápidas?</strong>
+    <ul>
+      <li>Use uma <strong>Árvore</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Eu preciso modelar uma rede complexa de conexões, como uma rede de amigos ou um mapa de cidades?</strong>
+    <ul>
+      <li>Use um <strong>Grafo</strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🔗 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

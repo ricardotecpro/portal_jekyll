@@ -1,0 +1,180 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra-a.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🥞 Projetos Full Stack | Navegando por Todas as Camadas de Desenvolvimento</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🥞 Projetos Full Stack" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra-a.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra-a.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🥞 Projetos Full Stack" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🥞 Projetos Full Stack","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra-a.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/" style="margin-left: 0.5rem;">Cassandra</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Cassandra a.html</span>
+          
+        
+      </nav>
+
+      <h1 id="-cassandra-container-troubleshooting-guide"># Cassandra Container Troubleshooting Guide</h1>
+
+<p>When running a Cassandra container, you might encounter issues that prevent it from starting correctly. This guide will help you troubleshoot a failed Cassandra container step-by-step.
+Cassandra container it step-by-step:</p>
+
+<hr />
+
+<h3 id="-1-check-container-status">🔍 1. Check Container Status</h3>
+
+<p>First, see the current status of all containers (including stopped ones):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps <span class="nt">-a</span>
+</code></pre></div></div>
+
+<p>Look for the Cassandra container and note the <strong>STATUS</strong> and <strong>EXIT CODE</strong>.</p>
+
+<hr />
+
+<h3 id="-2-get-container-logs">🧾 2. Get Container Logs</h3>
+
+<p>Next, check the logs to see what caused the failure:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker logs cassandra
+</code></pre></div></div>
+
+<p>You’ll often see helpful error messages like:</p>
+
+<ul>
+  <li>
+    <p>JVM heap size issues</p>
+  </li>
+  <li>
+    <p>Volume mount errors</p>
+  </li>
+  <li>
+    <p>Unable to write to disk</p>
+  </li>
+  <li>
+    <p>Port conflicts</p>
+  </li>
+  <li>
+    <p>Init script failures</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="-3-remove-and-re-run-optional">🧹 3. Remove and Re-Run (Optional)</h3>
+
+<p>If you want to quickly reset and re-run with corrected settings:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">rm </span>cassandra
+</code></pre></div></div>
+
+<p>Then re-run the container with a more appropriate volume mount:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> cassandra <span class="nt">-p</span> 9042:9042 <span class="nt">-v</span> /opt/cassandra:/var/lib/cassandra <span class="nt">-d</span> cassandra
+</code></pre></div></div>
+
+<blockquote>
+  <p>Cassandra stores its actual data in <code class="language-plaintext highlighter-rouge">/var/lib/cassandra</code> — mounting to <code class="language-plaintext highlighter-rouge">/opt/cassandra</code> won’t persist anything useful.</p>
+</blockquote>
+
+<hr />
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

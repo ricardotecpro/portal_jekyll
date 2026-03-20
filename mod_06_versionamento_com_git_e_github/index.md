@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🗂️ Git: O Sistema de Controle de Versão Distribuído
+title: "🗂️ Git: O Sistema de Controle de Versão Distribuído"
 ---
 
 # 🗂️ Git: O Sistema de Controle de Versão Distribuído
@@ -11,9 +11,9 @@ Sua principal função é rastrear mudanças no código-fonte ao longo do tempo.
 
 ---
 
-## 🔗 Tópicos
+## 🔗 Conteúdo Detalhado
 
-* **[Tópicos](/topicos.html)**: Trilhas de Aprendizagem.
+* **[Explorar Tópicos](topicos/)**: Lista completa de lições e materiais.
 
 -----
 
@@ -355,6 +355,12 @@ Equipes e empresas optam pelo GitLab por várias razões estratégicas:
   - **Transparência e Open Source**: A edição Community do GitLab é de código aberto, o que permite auditoria, customização e contribuições da comunidade. A empresa também é conhecida por sua transparência, com um manual público que detalha todos os seus processos internos.
 
 Em resumo, enquanto o GitHub brilha como um ecossistema social e colaborativo, o GitLab se destaca como uma robusta e completa "fábrica de software" unificada.
+
+---
+
+## 📚 Conteúdo Detalhado
+
+* **[Explorar Tópicos](topicos/)**: Lista completa de lições e materiais.
 
 ---
 

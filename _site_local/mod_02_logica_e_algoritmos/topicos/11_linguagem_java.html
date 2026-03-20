@@ -1,0 +1,563 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/11_linguagem_java.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linguagem Java ☕ | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Linguagem Java ☕" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/11_linguagem_java.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/11_linguagem_java.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linguagem Java ☕" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Linguagem Java ☕","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/11_linguagem_java.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Linguagem java ☕</span>
+          
+        
+      </nav>
+
+      <h1 id="linguagem-java-">Linguagem Java ☕</h1>
+
+<p>Bem-vindo ao guia da linguagem Java, uma das linguagens de programação mais populares e versáteis do mundo. Famosa por sua filosofia “escreva uma vez, rode em qualquer lugar” (<em>write once, run anywhere</em>), o Java é fundamental para o desenvolvimento de aplicações web, mobile (Android), e sistemas de grande escala.</p>
+
+<h2 id="️-instalação-e-configuração-do-ambiente">🛠️ Instalação e Configuração do Ambiente</h2>
+
+<p>Para desenvolver em Java, o primeiro passo é instalar o <strong>JDK (Java Development Kit)</strong>, que é um pacote de software contendo o compilador e outras ferramentas essenciais.</p>
+
+<ol>
+  <li>
+    <p><strong>Instale o Java JDK</strong>:</p>
+
+    <ul>
+      <li>Faça o download do JDK (versão LTS, como 11, 17 ou 21, é recomendada) a partir do site oficial da Oracle ou de uma distribuição como o OpenJDK.</li>
+      <li>Siga o instalador.</li>
+      <li><strong>Configure as Variáveis de Ambiente</strong>:
+        <ul>
+          <li>Crie uma nova variável de ambiente <code class="language-plaintext highlighter-rouge">JAVA_HOME</code> apontando para a pasta de instalação do JDK (ex: <code class="language-plaintext highlighter-rouge">C:\Program Files\Java\jdk-17.0.2</code>).</li>
+          <li>Adicione o caminho da pasta <code class="language-plaintext highlighter-rouge">bin</code> do JDK à variável <code class="language-plaintext highlighter-rouge">Path</code> do sistema (ex: <code class="language-plaintext highlighter-rouge">%JAVA_HOME%\bin</code>).</li>
+        </ul>
+      </li>
+      <li>Para verificar a instalação, abra um terminal e execute o comando <code class="language-plaintext highlighter-rouge">java -version</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Escolha uma IDE (Ambiente de Desenvolvimento Integrado)</strong>:
+Enquanto o material original foca no Eclipse, as IDEs mais utilizadas atualmente para desenvolvimento Java são o VS Code e o IntelliJ IDEA.</p>
+
+    <h3 id="opção-1-vs-code">Opção 1: VS Code</h3>
+
+    <ul>
+      <li>Instale o <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+      <li>Na aba de extensões, instale o pacote <strong>“Extension Pack for Java”</strong> da Microsoft. Ele inclui tudo o que é necessário para compilar, executar e depurar código Java.</li>
+    </ul>
+
+    <h3 id="opção-2-intellij-idea">Opção 2: IntelliJ IDEA</h3>
+
+    <ul>
+      <li>Baixe a versão <strong>Community</strong> (gratuita) do <a href="https://www.jetbrains.com/idea/download/">IntelliJ IDEA</a>.</li>
+      <li>O IntelliJ IDEA é altamente especializado para Java e oferece uma experiência de desenvolvimento muito produtiva, com ferramentas de análise de código e refatoração de ponta.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-seu-primeiro-programa-em-java">🚀 Seu Primeiro Programa em Java</h3>
+
+<p>Todo programa em Java é contido dentro de uma <strong>classe</strong>. A execução sempre começa no método <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// É uma boa prática definir um pacote para organizar suas classes.</span>
+<span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="c1">// Declaração da classe principal.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="c1">// Método principal, ponto de entrada do programa.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Comando para imprimir uma linha no console.</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Ola, Universo Java!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-tipos-de-dados-e-variáveis">📊 Tipos de Dados e Variáveis</h2>
+
+<p>Java possui tipos de dados primitivos para armazenar valores simples e tipos por referência (classes) para objetos complexos.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Significado</th>
+      <th style="text-align: left">Tipo em Java</th>
+      <th style="text-align: left">Valor Padrão</th>
+      <th style="text-align: left">Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Número Inteiro</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">O tipo padrão para inteiros. Use <code class="language-plaintext highlighter-rouge">long</code> para valores muito grandes.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Número de Ponto Flutuante</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td style="text-align: left">0.0</td>
+      <td style="text-align: left">O tipo padrão para números reais. <code class="language-plaintext highlighter-rouge">float</code> oferece precisão simples.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Um Único Caractere</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">'\u0000'</code></td>
+      <td style="text-align: left">Armazena um caractere Unicode, sempre entre <strong>aspas simples</strong> (ex: <code class="language-plaintext highlighter-rouge">'F'</code>).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Texto</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">String</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">null</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">String</code> é uma classe, não um tipo primitivo, e por isso começa com ‘S’ maiúsculo. Textos são declarados entre <strong>aspas duplas</strong> (ex: “Beatriz Costa”).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Valor Lógico</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left">Aceita apenas os valores <code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-declaração-e-atribuição-de-variáveis">📝 Declaração e Atribuição de Variáveis</h2>
+
+<p>A declaração de variáveis em Java exige a especificação de um tipo e um nome. A atribuição pode ser feita na mesma linha ou posteriormente.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span> <span class="c1">// Importa a classe Locale para formatação.</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+       <span class="c1">// Define o Locale para US para usar o ponto como separador decimal.</span>
+       <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+
+       <span class="c1">// Declaração e inicialização de variáveis.</span>
+       <span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">28</span><span class="o">;</span>
+       <span class="kt">double</span> <span class="n">salario</span> <span class="o">=</span> <span class="mf">8200.50</span><span class="o">;</span>
+       <span class="kt">double</span> <span class="n">altura</span> <span class="o">=</span> <span class="mf">1.65</span><span class="o">;</span>
+       <span class="kt">char</span> <span class="n">genero</span> <span class="o">=</span> <span class="sc">'F'</span><span class="o">;</span>
+       <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="s">"Beatriz Costa"</span><span class="o">;</span>
+
+       <span class="c1">// Saída de dados.</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NOME = "</span> <span class="o">+</span> <span class="n">nome</span><span class="o">);</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"IDADE = "</span> <span class="o">+</span> <span class="n">idade</span><span class="o">);</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"GENERO = "</span> <span class="o">+</span> <span class="n">genero</span><span class="o">);</span>
+        <span class="c1">// Usando String.format para formatar a saída com 2 casas decimais.</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"ALTURA = "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">altura</span><span class="o">));</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"SALARIO = "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">salario</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-operadores">🔢 Operadores</h2>
+
+<p>Os operadores em Java são herdados de C/C++ e seguem a mesma lógica.</p>
+
+<h3 id="aritméticos">Aritméticos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Resto da divisão (“mod”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="comparativos">Comparativos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left">Igual</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="lógicos">Lógicos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left">E</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left">OU</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left">NÃO</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-entrada-de-dados-com-a-classe-scanner">📥 Entrada de Dados com a Classe <code class="language-plaintext highlighter-rouge">Scanner</code></h2>
+
+<p>Para ler dados do teclado em Java, utilizamos a classe <code class="language-plaintext highlighter-rouge">Scanner</code>, que deve ser importada da biblioteca <code class="language-plaintext highlighter-rouge">java.util</code>.</p>
+
+<ol>
+  <li><strong>Importe a classe</strong>: <code class="language-plaintext highlighter-rouge">import java.util.Scanner;</code>.</li>
+  <li><strong>Crie um objeto Scanner</strong>: <code class="language-plaintext highlighter-rouge">Scanner sc = new Scanner(System.in);</code>.</li>
+  <li><strong>Use os métodos de leitura</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">nextInt()</code>: Lê um número inteiro.</li>
+      <li><code class="language-plaintext highlighter-rouge">nextDouble()</code>: Lê um número double.</li>
+      <li><code class="language-plaintext highlighter-rouge">next()</code>: Lê a próxima palavra (até o espaço).</li>
+      <li><code class="language-plaintext highlighter-rouge">nextLine()</code>: Lê a linha inteira de texto.</li>
+      <li><code class="language-plaintext highlighter-rouge">next().charAt(0)</code>: Lê uma palavra e pega apenas o primeiro caractere.</li>
+    </ul>
+  </li>
+  <li><strong>Feche o Scanner</strong>: <code class="language-plaintext highlighter-rouge">sc.close();</code> para liberar os recursos do sistema.</li>
+</ol>
+
+<p><strong>Atenção à Quebra de Linha Pendente:</strong>
+Quando você lê um número (<code class="language-plaintext highlighter-rouge">nextInt</code> ou <code class="language-plaintext highlighter-rouge">nextDouble</code>), o cursor de leitura para após o número, deixando o “Enter” (<code class="language-plaintext highlighter-rouge">
+</code>) no buffer de entrada. Se a próxima leitura for um <code class="language-plaintext highlighter-rouge">nextLine()</code>, ele lerá essa quebra de linha vazia.
+<strong>Solução</strong>: Consuma a quebra de linha pendente com um <code class="language-plaintext highlighter-rouge">sc.nextLine()</code> extra antes de ler o texto.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">curso</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+       <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+       <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+       <span class="nc">String</span> <span class="n">nomeCompleto</span><span class="o">;</span>
+       <span class="kt">int</span> <span class="n">idade</span><span class="o">;</span>
+       <span class="kt">double</span> <span class="n">salario</span><span class="o">;</span>
+       <span class="kt">char</span> <span class="n">genero</span><span class="o">;</span>
+
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite seu nome completo: "</span><span class="o">);</span>
+       <span class="n">nomeCompleto</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite sua idade: "</span><span class="o">);</span>
+       <span class="n">idade</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite seu salario: "</span><span class="o">);</span>
+       <span class="n">salario</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite seu genero (F/M): "</span><span class="o">);</span>
+       <span class="n">genero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+--- DADOS REGISTRADOS ---"</span><span class="o">);</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nome: "</span> <span class="o">+</span> <span class="n">nomeCompleto</span><span class="o">);</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Idade: "</span> <span class="o">+</span> <span class="n">idade</span><span class="o">);</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Salario: "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">salario</span><span class="o">));</span>
+       <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Genero: "</span> <span class="o">+</span> <span class="n">genero</span><span class="o">);</span>
+
+       <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-estruturas-de-controle">🔀 Estruturas de Controle</h2>
+
+<h3 id="estrutura-condicional-if-else">Estrutura Condicional (<code class="language-plaintext highlighter-rouge">if-else</code>)</h3>
+
+<p>Permite que o programa execute diferentes caminhos com base em condições.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método main)</span>
+<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a hora atual (0-23): "</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">hora</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Bom dia!"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hora</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Boa tarde!"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Boa noite!"</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h3 id="estrutura-de-repetição-while">Estrutura de Repetição <code class="language-plaintext highlighter-rouge">while</code></h3>
+
+<p>O bloco de código é executado enquanto a condição for verdadeira.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método main)</span>
+<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">numero</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite um numero (0 para sair): "</span><span class="o">);</span>
+<span class="n">numero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+<span class="k">while</span> <span class="o">(</span><span class="n">numero</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> 
+    <span class="n">soma</span> <span class="o">+=</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite outro numero (0 para sair): "</span><span class="o">);</span>
+    <span class="n">numero</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"SOMA FINAL = "</span> <span class="o">+</span> <span class="n">soma</span><span class="o">);</span>
+<span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h3 id="estrutura-de-repetição-for">Estrutura de Repetição <code class="language-plaintext highlighter-rouge">for</code></h3>
+
+<p>Ideal para laços que precisam ser executados um número específico de vezes.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método main)</span>
+<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos numeros serao somados? "</span><span class="o">);</span>
+<span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> 
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o valor #"</span> <span class="o">+</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">": "</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="n">soma</span> <span class="o">+=</span> <span class="n">x</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"SOMA = "</span> <span class="o">+</span> <span class="n">soma</span><span class="o">);</span>
+<span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h2 id="-vetores-e-matrizes">📏 Vetores e Matrizes</h2>
+
+<h3 id="vetores-arrays">Vetores (Arrays)</h3>
+
+<p>Em Java, vetores são objetos que armazenam uma coleção de tamanho fixo de elementos do mesmo tipo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método main)</span>
+<span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos numeros voce vai digitar? "</span><span class="o">);</span>
+<span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+<span class="c1">// Declaração e instanciação do vetor</span>
+<span class="kt">double</span><span class="o">[]</span> <span class="n">vetor</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="o">[</span><span class="no">N</span><span class="o">];</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite um numero: "</span><span class="o">);</span>
+    <span class="n">vetor</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+NUMEROS DIGITADOS:"</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.1f"</span><span class="o">,</span> <span class="n">vetor</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+<span class="o">}</span>
+<span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h3 id="matrizes-arrays-bidimensionais">Matrizes (Arrays Bidimensionais)</h3>
+
+<p>São vetores de vetores, úteis para representar dados em formato de tabela.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método main)</span>
+<span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantas linhas tera a matriz? "</span><span class="o">);</span>
+<span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantas colunas tera a matriz? "</span><span class="o">);</span>
+<span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+<span class="c1">// Declaração e instanciação da matriz</span>
+<span class="kt">int</span><span class="o">[][]</span> <span class="n">matriz</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">M</span><span class="o">][</span><span class="no">N</span><span class="o">];</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Elemento ["</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="s">"]: "</span><span class="o">);</span>
+        <span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+MATRIZ DIGITADA:"</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">M</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="no">N</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">matriz</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span> <span class="c1">// Pula para a próxima linha</span>
+<span class="o">}</span>
+<span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h2 id="-depuração-debugging-em-java">🐞 Depuração (Debugging) em Java</h2>
+
+<p>Depurar é o processo de encontrar e corrigir bugs no seu código. Tanto o VS Code quanto o IntelliJ IDEA possuem excelentes ferramentas de depuração visual. Os comandos do material original eram para o Eclipse.</p>
+
+<h3 id="debugging-no-vs-code-e-intellij-idea">Debugging no VS Code e IntelliJ IDEA</h3>
+
+<p>Os conceitos são os mesmos, apenas os atalhos podem variar.</p>
+
+<ol>
+  <li><strong>Habilitar/Desabilitar Breakpoint</strong>: Clique na margem à esquerda do número da linha onde você quer que a execução pause.</li>
+  <li><strong>Iniciar o Debug</strong>:
+    <ul>
+      <li><strong>IntelliJ</strong>: Pressione <code class="language-plaintext highlighter-rouge">Shift + F9</code> ou clique no ícone de inseto ao lado da configuração de execução.</li>
+      <li><strong>VS Code</strong>: Pressione <code class="language-plaintext highlighter-rouge">F5</code> ou vá para a aba “Run and Debug” e inicie a sessão.</li>
+    </ul>
+  </li>
+  <li><strong>Controlar a Execução</strong>:
+    <ul>
+      <li><strong>Step Over (Passar por cima)</strong>: Executa a linha atual e para na próxima. (<strong>F8</strong> no IntelliJ, <strong>F10</strong> no VS Code).</li>
+      <li><strong>Continue (Continuar)</strong>: Continua a execução até o próximo breakpoint ou o fim do programa. (<strong>F9</strong> no IntelliJ, <strong>F5</strong> no VS Code).</li>
+    </ul>
+  </li>
+  <li><strong>Inspecionar Variáveis</strong>: A aba “Debug” em ambas as IDEs mostrará uma janela “Variables” onde você pode ver e monitorar o valor das variáveis em tempo real.</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

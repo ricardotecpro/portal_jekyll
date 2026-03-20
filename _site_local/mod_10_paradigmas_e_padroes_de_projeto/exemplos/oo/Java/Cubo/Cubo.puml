@@ -1,0 +1,23 @@
+@startuml
+
+package entities {
+    class Cubo {
+        - double lado
+        + double calcularVolume()
+    }
+}
+
+package application {
+    class Program {
+        + main(args: String[]): void
+    }
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+Main --> Program : chama
+Program --> Cubo : utiliza
+
+@enduml

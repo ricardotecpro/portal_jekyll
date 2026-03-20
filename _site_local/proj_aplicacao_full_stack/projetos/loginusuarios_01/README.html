@@ -1,0 +1,728 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/loginusuarios_01/README.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CRUD de Utilizadores com Spring Boot, Thymeleaf e Perfis de Acesso | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="CRUD de Utilizadores com Spring Boot, Thymeleaf e Perfis de Acesso" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/README.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/README.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CRUD de Utilizadores com Spring Boot, Thymeleaf e Perfis de Acesso" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"CRUD de Utilizadores com Spring Boot, Thymeleaf e Perfis de Acesso","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/README.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/loginusuarios_01/" style="margin-left: 0.5rem;">Loginusuarios 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Crud de utilizadores com spring boot, thymeleaf e perfis de acesso</span>
+          
+        
+      </nav>
+
+      <h1 id="crud-de-utilizadores-com-spring-boot-thymeleaf-e-perfis-de-acesso">CRUD de Utilizadores com Spring Boot, Thymeleaf e Perfis de Acesso</h1>
+
+<p>Este documento detalha a construção de uma aplicação web monolítica completa para registo, autenticação e gestão de utilizadores, com distinção entre perfis de Administrador e Utilizador comum.</p>
+
+<h2 id="️-arquitetura-e-melhorias">🏛️ <strong>Arquitetura e Melhorias</strong></h2>
+
+<p>Mantemos a arquitetura monolítica com Spring Boot e Thymeleaf, mas com melhorias cruciais:</p>
+
+<ol>
+  <li><strong>Perfis de Acesso (Roles)</strong>: Implementamos uma distinção clara entre <code class="language-plaintext highlighter-rouge">ADMIN</code> e <code class="language-plaintext highlighter-rouge">USER</code>.
+    <ul>
+      <li><strong>ADMIN</strong>: Pode ver e apagar todos os utilizadores.</li>
+      <li><strong>USER</strong>: Apenas pode ver a lista de utilizadores.</li>
+    </ul>
+  </li>
+  <li><strong>Segurança Aprimorada</strong>: O Spring Security agora gere as permissões com base nos perfis.</li>
+  <li><strong>Interface Moderna com Bootstrap</strong>: Todas as páginas foram redesenhadas com Bootstrap 5 para uma experiência de utilizador profissional e responsiva, incluindo ícones e um layout mais limpo.</li>
+  <li><strong>Criação Automática do Admin</strong>: Um utilizador <code class="language-plaintext highlighter-rouge">admin</code> é criado na primeira execução para garantir o acesso inicial ao sistema.</li>
+</ol>
+
+<hr />
+
+<h3 id="fase-1-configuração-do-projeto-spring-initializr"><strong>Fase 1: Configuração do Projeto (Spring Initializr)</strong></h3>
+
+<p>Começamos por gerar o projeto com a configuração especificada.</p>
+
+<ul>
+  <li><strong>Project</strong>: <code class="language-plaintext highlighter-rouge">Maven</code></li>
+  <li><strong>Language</strong>: <code class="language-plaintext highlighter-rouge">Java</code></li>
+  <li><strong>Spring Boot</strong>: 3.3.x</li>
+  <li><strong>Group</strong>: <code class="language-plaintext highlighter-rouge">br.com.curso</code></li>
+  <li><strong>Artifact</strong>: <code class="language-plaintext highlighter-rouge">loginusuarios</code></li>
+  <li><strong>Java</strong>: <code class="language-plaintext highlighter-rouge">21</code></li>
+  <li><strong>Dependencies</strong>: <code class="language-plaintext highlighter-rouge">Spring Web</code>, <code class="language-plaintext highlighter-rouge">Thymeleaf</code>, <code class="language-plaintext highlighter-rouge">Spring Data JPA</code>, <code class="language-plaintext highlighter-rouge">H2 Database</code>, <code class="language-plaintext highlighter-rouge">Spring Security</code>.</li>
+</ul>
+
+<p>Após gerar e abrir o projeto na sua IDE, vamos ao código.</p>
+
+<hr />
+
+<h3 id="fase-2-modelagem-dos-dados-com-perfis"><strong>Fase 2: Modelagem dos Dados com Perfis</strong></h3>
+
+<h4 id="1-enumeração-role"><strong>1. Enumeração <code class="language-plaintext highlighter-rouge">Role</code></strong></h4>
+
+<p>Para gerir os perfis, a melhor prática é usar um <code class="language-plaintext highlighter-rouge">Enum</code>. Crie o pacote <code class="language-plaintext highlighter-rouge">model</code> e, dentro dele, o ficheiro <code class="language-plaintext highlighter-rouge">Role.java</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.model</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Role</span> <span class="o">{</span>
+    <span class="no">USER</span><span class="o">,</span>
+    <span class="no">ADMIN</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="2-entidade-user-atualizada"><strong>2. Entidade <code class="language-plaintext highlighter-rouge">User</code> Atualizada</strong></h4>
+
+<p>Agora, vamos adicionar o campo <code class="language-plaintext highlighter-rouge">role</code> à nossa entidade <code class="language-plaintext highlighter-rouge">User</code>.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/loginusuarios/model/User.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.model</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">jakarta.persistence.*</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">unique</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">senha</span><span class="o">;</span>
+
+    <span class="nd">@Enumerated</span><span class="o">(</span><span class="nc">EnumType</span><span class="o">.</span><span class="na">STRING</span><span class="o">)</span> <span class="c1">// Diz ao JPA para guardar o nome do enum (ex: "ADMIN")</span>
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Role</span> <span class="n">role</span><span class="o">;</span>
+
+    <span class="c1">// --- Getters e Setters ---</span>
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getEmail</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">email</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getSenha</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">senha</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSenha</span><span class="o">(</span><span class="nc">String</span> <span class="n">senha</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">senha</span> <span class="o">=</span> <span class="n">senha</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Role</span> <span class="nf">getRole</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">role</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRole</span><span class="o">(</span><span class="nc">Role</span> <span class="n">role</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">role</span> <span class="o">=</span> <span class="n">role</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="3-repositório-userrepository"><strong>3. Repositório <code class="language-plaintext highlighter-rouge">UserRepository</code></strong></h4>
+
+<p>O repositório não precisa de alterações. Ele continua a ser a nossa ponte com a base de dados.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/loginusuarios/repository/UserRepository.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-3-configuração-da-segurança-com-perfis"><strong>Fase 3: Configuração da Segurança com Perfis</strong></h3>
+
+<h4 id="1-securityconfig-atualizada"><strong>1. <code class="language-plaintext highlighter-rouge">SecurityConfig</code> Atualizada</strong></h4>
+
+<p>A configuração de segurança é agora mais específica, definindo que apenas utilizadores com o perfil <code class="language-plaintext highlighter-rouge">ADMIN</code> podem apagar outros utilizadores.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/loginusuarios/config/SecurityConfig.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.Role</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpMethod</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.builders.HttpSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.crypto.password.PasswordEncoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.web.SecurityFilterChain</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">PasswordEncoder</span> <span class="nf">passwordEncoder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">BCryptPasswordEncoder</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">http</span>
+            <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">authorize</span> <span class="o">-&gt;</span> <span class="n">authorize</span>
+                <span class="c1">// Permite acesso público a estas páginas e recursos estáticos</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="s">"/registar"</span><span class="o">,</span> <span class="s">"/login"</span><span class="o">,</span> <span class="s">"/css/**"</span><span class="o">,</span> <span class="s">"/js/**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="c1">// Apenas ADMINS podem aceder a URLs que começam com /usuarios/apagar</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="nc">HttpMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span> <span class="s">"/usuarios/apagar/**"</span><span class="o">).</span><span class="na">hasAuthority</span><span class="o">(</span><span class="nc">Role</span><span class="o">.</span><span class="na">ADMIN</span><span class="o">.</span><span class="na">name</span><span class="o">())</span>
+                <span class="c1">// Qualquer outro pedido exige autenticação</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+            <span class="o">)</span>
+            <span class="o">.</span><span class="na">formLogin</span><span class="o">(</span><span class="n">form</span> <span class="o">-&gt;</span> <span class="n">form</span>
+                <span class="o">.</span><span class="na">loginPage</span><span class="o">(</span><span class="s">"/login"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">"/usuarios"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+            <span class="o">)</span>
+            <span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">logout</span> <span class="o">-&gt;</span> <span class="n">logout</span>
+                <span class="o">.</span><span class="na">logoutUrl</span><span class="o">(</span><span class="s">"/logout"</span><span class="o">)</span> <span class="c1">// URL para acionar o logout</span>
+                <span class="o">.</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">"/login?logout"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">permitAll</span><span class="o">()</span>
+            <span class="o">);</span>
+        <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="2-serviço-customuserdetailsservice"><strong>2. Serviço <code class="language-plaintext highlighter-rouge">CustomUserDetailsService</code></strong></h4>
+
+<p>O serviço agora precisa de carregar os perfis (<code class="language-plaintext highlighter-rouge">authorities</code>) do utilizador para que o Spring Security possa tomar decisões.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/loginusuarios/service/CustomUserDetailsService.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.repository.UserRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.core.authority.SimpleGrantedAuthority</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.core.userdetails.UserDetails</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.core.userdetails.UserDetailsService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.core.userdetails.UsernameNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.crypto.password.PasswordEncoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomUserDetailsService</span> <span class="kd">implements</span> <span class="nc">UserDetailsService</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">PasswordEncoder</span> <span class="n">passwordEncoder</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">UserDetails</span> <span class="nf">loadUserByUsername</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">UsernameNotFoundException</span> <span class="o">{</span>
+        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findByEmail</span><span class="o">(</span><span class="n">email</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">UsernameNotFoundException</span><span class="o">(</span><span class="s">"Utilizador não encontrado com o email: "</span> <span class="o">+</span> <span class="n">email</span><span class="o">));</span>
+
+        <span class="c1">// Constrói o UserDetails, incluindo a autoridade (perfil) do utilizador</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">userdetails</span><span class="o">.</span><span class="na">User</span><span class="o">(</span>
+                <span class="n">user</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span>
+                <span class="n">user</span><span class="o">.</span><span class="na">getSenha</span><span class="o">(),</span>
+                <span class="nc">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="k">new</span> <span class="nc">SimpleGrantedAuthority</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getRole</span><span class="o">().</span><span class="na">name</span><span class="o">()))</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setSenha</span><span class="o">(</span><span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getSenha</span><span class="o">()));</span>
+        <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-4-controladores-web-e-lógica-de-negócio"><strong>Fase 4: Controladores Web e Lógica de Negócio</strong></h3>
+
+<h4 id="1-datainitializer-criador-do-utilizador-admin"><strong>1. <code class="language-plaintext highlighter-rouge">DataInitializer</code> (Criador do Utilizador Admin)</strong></h4>
+
+<p>Para garantir o acesso inicial, esta classe cria um utilizador <code class="language-plaintext highlighter-rouge">admin</code> com a senha <code class="language-plaintext highlighter-rouge">admin123</code> na primeira vez que a aplicação é executada.</p>
+
+<p>Crie o pacote <code class="language-plaintext highlighter-rouge">util</code> e, dentro dele, a classe <code class="language-plaintext highlighter-rouge">DataInitializer.java</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.util</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.Role</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.repository.UserRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.CommandLineRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.crypto.password.PasswordEncoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataInitializer</span> <span class="kd">implements</span> <span class="nc">CommandLineRunner</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">PasswordEncoder</span> <span class="n">passwordEncoder</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="nc">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// Se não houver nenhum utilizador com o perfil ADMIN, cria um</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">userRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">noneMatch</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="n">user</span><span class="o">.</span><span class="na">getRole</span><span class="o">()</span> <span class="o">==</span> <span class="nc">Role</span><span class="o">.</span><span class="na">ADMIN</span><span class="o">))</span> <span class="o">{</span>
+            <span class="nc">User</span> <span class="n">admin</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
+            <span class="n">admin</span><span class="o">.</span><span class="na">setNome</span><span class="o">(</span><span class="s">"Administrador"</span><span class="o">);</span>
+            <span class="n">admin</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"admin@email.com"</span><span class="o">);</span>
+            <span class="n">admin</span><span class="o">.</span><span class="na">setSenha</span><span class="o">(</span><span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="s">"admin123"</span><span class="o">));</span> <span class="c1">// Senha inicial</span>
+            <span class="n">admin</span><span class="o">.</span><span class="na">setRole</span><span class="o">(</span><span class="nc">Role</span><span class="o">.</span><span class="na">ADMIN</span><span class="o">);</span>
+            <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">admin</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"&gt;&gt;&gt; Utilizador ADMIN padrão criado com sucesso!"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="2-authcontroller-login-e-registo"><strong>2. <code class="language-plaintext highlighter-rouge">AuthController</code> (Login e Registo)</strong></h4>
+
+<p>Este controlador agora atribui o perfil <code class="language-plaintext highlighter-rouge">USER</code> a todos os novos registos.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/loginusuarios/controller/AuthController.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.Role</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.service.CustomUserDetailsService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ModelAttribute</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AuthController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">CustomUserDetailsService</span> <span class="n">userService</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/login"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">showLoginPage</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"login"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/registar"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">showRegistrationForm</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"user"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">User</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"registar"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/registar"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">processRegistration</span><span class="o">(</span><span class="nd">@ModelAttribute</span> <span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setRole</span><span class="o">(</span><span class="nc">Role</span><span class="o">.</span><span class="na">USER</span><span class="o">);</span> <span class="c1">// Todos os novos utilizadores são do tipo USER</span>
+        <span class="n">userService</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"redirect:/login?success"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="3-usercontroller-gestão-de-utilizadores"><strong>3. <code class="language-plaintext highlighter-rouge">UserController</code> (Gestão de Utilizadores)</strong></h4>
+
+<p>Este controlador foi expandido para incluir a funcionalidade de apagar utilizadores, que só será acessível a um <code class="language-plaintext highlighter-rouge">ADMIN</code>.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/java/br/com/curso/loginusuarios/controller/UserController.java</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.repository.UserRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PathVariable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/usuarios"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">listUsers</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"users"</span><span class="o">,</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">());</span>
+        <span class="k">return</span> <span class="s">"usuarios"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Endpoint para apagar um utilizador, acessível via POST para segurança</span>
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/apagar/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">deleteUser</span><span class="o">(</span><span class="nd">@PathVariable</span><span class="o">(</span><span class="s">"id"</span><span class="o">)</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Adicionar verificação para não se auto-apagar, se necessário</span>
+        <span class="n">userRepository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"redirect:/usuarios?deleted"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-5-interface-com-thymeleaf-e-bootstrap-5"><strong>Fase 5: Interface com Thymeleaf e Bootstrap 5</strong></h3>
+
+<p>Todas as páginas foram redesenhadas para serem mais modernas e informativas.</p>
+
+<h4 id="1-página-de-login-loginhtml"><strong>1. Página de Login (<code class="language-plaintext highlighter-rouge">login.html</code>)</strong></h4>
+
+<p>Um design mais limpo e com feedback claro para o utilizador.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/resources/templates/login.html</code></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Login - Gestão de Utilizadores<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"bg-light"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row justify-content-center align-items-center"</span> <span class="na">style=</span><span class="s">"height: 100vh;"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-5 col-lg-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow-sm border-0"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body p-4"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"card-title text-center mb-4"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-box-arrow-in-right me-2"</span><span class="nt">&gt;&lt;/i&gt;</span>Aceder ao Sistema
+                    <span class="nt">&lt;/h3&gt;</span>
+                    
+                    <span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${param.error}"</span> <span class="na">class=</span><span class="s">"alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+                        Email ou senha inválidos.
+                    <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${param.logout}"</span> <span class="na">class=</span><span class="s">"alert alert-info"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+                        Sessão terminada com sucesso.
+                    <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${param.success}"</span> <span class="na">class=</span><span class="s">"alert alert-success"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+                        Registo efetuado! Faça o login para continuar.
+                    <span class="nt">&lt;/div&gt;</span>
+
+                    <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/login}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"username"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span>
+                            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"username"</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span> <span class="na">autofocus</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Senha<span class="nt">&lt;/label&gt;</span>
+                            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"password"</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-grid"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>Entrar<span class="nt">&lt;/button&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/form&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"text-center mt-3"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;small</span> <span class="na">class=</span><span class="s">"text-muted"</span><span class="nt">&gt;</span>Não tem uma conta? <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/registar}"</span><span class="nt">&gt;</span>Registe-se aqui<span class="nt">&lt;/a&gt;&lt;/small&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h4 id="2-página-de-registo-registarhtml"><strong>2. Página de Registo (<code class="language-plaintext highlighter-rouge">registar.html</code>)</strong></h4>
+
+<p>Formulário de registo simples e direto.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/resources/templates/registar.html</code></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Registar - Gestão de Utilizadores<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"bg-light"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row justify-content-center align-items-center"</span> <span class="na">style=</span><span class="s">"height: 100vh;"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-5 col-lg-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card shadow-sm border-0"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body p-4"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"card-title text-center mb-4"</span><span class="nt">&gt;</span>
+                       <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-person-plus-fill me-2"</span><span class="nt">&gt;&lt;/i&gt;</span>Criar Nova Conta
+                    <span class="nt">&lt;/h3&gt;</span>
+                    <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/registar}"</span> <span class="na">th:object=</span><span class="s">"${user}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"nome"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Nome Completo<span class="nt">&lt;/label&gt;</span>
+                            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"nome"</span> <span class="na">th:field=</span><span class="s">"*{nome}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span>
+                            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="na">th:field=</span><span class="s">"*{email}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mb-3"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"senha"</span> <span class="na">class=</span><span class="s">"form-label"</span><span class="nt">&gt;</span>Senha<span class="nt">&lt;/label&gt;</span>
+                            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">id=</span><span class="s">"senha"</span> <span class="na">th:field=</span><span class="s">"*{senha}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">required</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-grid"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-success"</span><span class="nt">&gt;</span>Registar<span class="nt">&lt;/button&gt;</span>
+                        <span class="nt">&lt;/div&gt;</span>
+                    <span class="nt">&lt;/form&gt;</span>
+                     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"text-center mt-3"</span><span class="nt">&gt;</span>
+                         <span class="nt">&lt;small</span> <span class="na">class=</span><span class="s">"text-muted"</span><span class="nt">&gt;</span>Já tem uma conta? <span class="nt">&lt;a</span> <span class="na">th:href=</span><span class="s">"@{/login}"</span><span class="nt">&gt;</span>Faça o login<span class="nt">&lt;/a&gt;&lt;/small&gt;</span>
+                    <span class="nt">&lt;/div&gt;</span>
+                <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h4 id="3-página-de-utilizadores-usuarioshtml"><strong>3. Página de Utilizadores (<code class="language-plaintext highlighter-rouge">usuarios.html</code>)</strong></h4>
+
+<p>Esta página agora utiliza o dialeto de segurança do Thymeleaf (<code class="language-plaintext highlighter-rouge">xmlns:sec</code>) para exibir condicionalmente o botão de apagar. Apenas utilizadores com a autoridade <code class="language-plaintext highlighter-rouge">ADMIN</code> verão este botão.</p>
+
+<p>Ficheiro: <code class="language-plaintext highlighter-rouge">src/main/resources/templates/usuarios.html</code></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span> <span class="na">xmlns:th=</span><span class="s">"http://www.thymeleaf.org"</span> <span class="na">xmlns:sec=</span><span class="s">"http://www.thymeleaf.org/extras/spring-security"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Painel de Utilizadores<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-expand-lg navbar-dark bg-dark shadow-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-shield-lock-fill me-2"</span><span class="nt">&gt;&lt;/i&gt;</span>Painel de Gestão
+        <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"d-flex"</span> <span class="na">th:action=</span><span class="s">"@{/logout}"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-outline-light"</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-box-arrow-right me-2"</span><span class="nt">&gt;&lt;/i&gt;</span>Sair
+            <span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container mt-4"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"d-flex justify-content-between align-items-center mb-4"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"h3"</span><span class="nt">&gt;</span>Utilizadores Registados<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">th:if=</span><span class="s">"${param.deleted}"</span> <span class="na">class=</span><span class="s">"alert alert-warning"</span> <span class="na">role=</span><span class="s">"alert"</span><span class="nt">&gt;</span>
+        Utilizador apagado com sucesso.
+    <span class="nt">&lt;/div&gt;</span>
+    
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card border-0 shadow-sm"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+             <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"table-responsive"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-hover align-middle"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;thead</span> <span class="na">class=</span><span class="s">"table-light"</span><span class="nt">&gt;</span>
+                        <span class="nt">&lt;tr&gt;</span>
+                            <span class="nt">&lt;th&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
+                            <span class="nt">&lt;th&gt;</span>Nome<span class="nt">&lt;/th&gt;</span>
+                            <span class="nt">&lt;th&gt;</span>Email<span class="nt">&lt;/th&gt;</span>
+                            <span class="nt">&lt;th&gt;</span>Perfil<span class="nt">&lt;/th&gt;</span>
+                            <span class="nt">&lt;th</span> <span class="na">sec:authorize=</span><span class="s">"hasAuthority('ADMIN')"</span> <span class="na">class=</span><span class="s">"text-end"</span><span class="nt">&gt;</span>Ações<span class="nt">&lt;/th&gt;</span>
+                        <span class="nt">&lt;/tr&gt;</span>
+                    <span class="nt">&lt;/thead&gt;</span>
+                    <span class="nt">&lt;tbody&gt;</span>
+                        <span class="nt">&lt;tr</span> <span class="na">th:each=</span><span class="s">"user : ${users}"</span><span class="nt">&gt;</span>
+                            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.id}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.nome}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                            <span class="nt">&lt;td</span> <span class="na">th:text=</span><span class="s">"${user.email}"</span><span class="nt">&gt;&lt;/td&gt;</span>
+                            <span class="nt">&lt;td&gt;</span>
+                                <span class="nt">&lt;span</span> <span class="na">th:if=</span><span class="s">"${user.role.name() == 'ADMIN'}"</span> <span class="na">class=</span><span class="s">"badge bg-success"</span> <span class="na">th:text=</span><span class="s">"${user.role.name()}"</span><span class="nt">&gt;&lt;/span&gt;</span>
+                                <span class="nt">&lt;span</span> <span class="na">th:if=</span><span class="s">"${user.role.name() == 'USER'}"</span> <span class="na">class=</span><span class="s">"badge bg-secondary"</span> <span class="na">th:text=</span><span class="s">"${user.role.name()}"</span><span class="nt">&gt;&lt;/span&gt;</span>
+                            <span class="nt">&lt;/td&gt;</span>
+                            <span class="c">&lt;!-- Este formulário só será visível para utilizadores com o perfil ADMIN --&gt;</span>
+                            <span class="nt">&lt;td</span> <span class="na">sec:authorize=</span><span class="s">"hasAuthority('ADMIN')"</span> <span class="na">class=</span><span class="s">"text-end"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;form</span> <span class="na">th:action=</span><span class="s">"@{/usuarios/apagar/{id}(id=${user.id})}"</span> <span class="na">method=</span><span class="s">"post"</span> <span class="na">onsubmit=</span><span class="s">"return confirm('Tem a certeza que deseja apagar este utilizador?');"</span><span class="nt">&gt;</span>
+                                    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-sm btn-outline-danger"</span> <span class="na">th:disabled=</span><span class="s">"${#authentication.name == user.email}"</span><span class="nt">&gt;</span>
+                                        <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"bi bi-trash-fill"</span><span class="nt">&gt;&lt;/i&gt;</span> Apagar
+                                    <span class="nt">&lt;/button&gt;</span>
+                                <span class="nt">&lt;/form&gt;</span>
+                            <span class="nt">&lt;/td&gt;</span>
+                        <span class="nt">&lt;/tr&gt;</span>
+                    <span class="nt">&lt;/tbody&gt;</span>
+                <span class="nt">&lt;/table&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-6-executar-e-testar"><strong>Fase 6: Executar e Testar</strong></h3>
+
+<ol>
+  <li><strong>Execute a Aplicação</strong>: Corra a classe <code class="language-plaintext highlighter-rouge">LoginusuariosApplication.java</code>.</li>
+  <li><strong>Login como Admin</strong>: Aceda a <a href="https://www.google.com/search?q=http://localhost:8080/login">http://localhost:8080/login</a>. Use as credenciais <code class="language-plaintext highlighter-rouge">admin@email.com</code> e <code class="language-plaintext highlighter-rouge">admin123</code>.</li>
+  <li><strong>Teste as Permissões de Admin</strong>: Na página de utilizadores, verá a coluna “Ações” com o botão “Apagar”.</li>
+  <li><strong>Registe um Novo Utilizador</strong>: Faça logout e aceda a <a href="https://www.google.com/search?q=http://localhost:8080/registar">http://localhost:8080/registar</a>. Crie uma conta normal.</li>
+  <li><strong>Login como User</strong>: Faça login com a nova conta que criou.</li>
+  <li><strong>Teste as Permissões de User</strong>: Na página de utilizadores, a coluna “Ações” e o botão “Apagar” não estarão visíveis.</li>
+</ol>
+
+<hr />
+<h1 id="para-acesso-ao-h2">Para acesso ao H2</h1>
+
+<h2 id="securityconfig">SecurityConfig</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.curso.loginusuarios.config</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.curso.loginusuarios.model.Role</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpMethod</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.builders.HttpSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.crypto.password.PasswordEncoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.web.SecurityFilterChain</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@EnableWebSecurity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConfig</span> <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">PasswordEncoder</span> <span class="nf">passwordEncoder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">BCryptPasswordEncoder</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">SecurityFilterChain</span> <span class="nf">securityFilterChain</span><span class="o">(</span><span class="nc">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">http</span>
+            <span class="c1">// Configurações específicas para o H2 Console</span>
+            <span class="o">.</span><span class="na">csrf</span><span class="o">(</span><span class="n">csrf</span> <span class="o">-&gt;</span> <span class="n">csrf</span><span class="o">.</span><span class="na">ignoringRequestMatchers</span><span class="o">(</span><span class="s">"/h2-console/**"</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">headers</span><span class="o">(</span><span class="n">headers</span> <span class="o">-&gt;</span> <span class="n">headers</span><span class="o">.</span><span class="na">frameOptions</span><span class="o">(</span><span class="n">frameOptions</span> <span class="o">-&gt;</span> <span class="n">frameOptions</span><span class="o">.</span><span class="na">sameOrigin</span><span class="o">()))</span>
+            
+            <span class="o">.</span><span class="na">authorizeHttpRequests</span><span class="o">(</span><span class="n">authorize</span> <span class="o">-&gt;</span> <span class="n">authorize</span>
+                <span class="c1">// Permite acesso público a estas páginas, recursos estáticos e ao H2 Console</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="s">"/registar"</span><span class="o">,</span> <span class="s">"/login"</span><span class="o">,</span> <span class="s">"/css/**"</span><span class="o">,</span> <span class="s">"/js/**"</span><span class="o">,</span> <span class="s">"/h2-console/**"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="c1">// Apenas ADMINS podem aceder a URLs que começam com /usuarios/apagar</span>
+                <span class="o">.</span><span class="na">requestMatchers</span><span class="o">(</span><span class="nc">HttpMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span> <span class="s">"/usuarios/apagar/**"</span><span class="o">).</span><span class="na">hasAuthority</span><span class="o">(</span><span class="nc">Role</span><span class="o">.</span><span class="na">ADMIN</span><span class="o">.</span><span class="na">name</span><span class="o">())</span>
+                <span class="c1">// Qualquer outro pedido exige autenticação</span>
+                <span class="o">.</span><span class="na">anyRequest</span><span class="o">().</span><span class="na">authenticated</span><span class="o">()</span>
+            <span class="o">)</span>
+            <span class="o">.</span><span class="na">formLogin</span><span class="o">(</span><span class="n">form</span> <span class="o">-&gt;</span> <span class="n">form</span>
+                <span class="o">.</span><span class="na">loginPage</span><span class="o">(</span><span class="s">"/login"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">permitAll</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">defaultSuccessUrl</span><span class="o">(</span><span class="s">"/usuarios"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+            <span class="o">)</span>
+            <span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">logout</span> <span class="o">-&gt;</span> <span class="n">logout</span>
+                <span class="o">.</span><span class="na">logoutUrl</span><span class="o">(</span><span class="s">"/logout"</span><span class="o">)</span> <span class="c1">// URL para acionar o logout</span>
+                <span class="o">.</span><span class="na">logoutSuccessUrl</span><span class="o">(</span><span class="s">"/login?logout"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">permitAll</span><span class="o">()</span>
+            <span class="o">);</span>
+        <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

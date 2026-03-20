@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🎨 Design de Interfaces (UI) com Figma
+title: "🎨 Design de Interfaces (UI) com Figma"
 ---
 
 # 🎨 Design de Interfaces (UI) com Figma

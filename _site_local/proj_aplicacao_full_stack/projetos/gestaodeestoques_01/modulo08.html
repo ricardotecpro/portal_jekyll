@@ -1,0 +1,343 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo08.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MODULO08 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MODULO08" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo08.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo08.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MODULO08" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MODULO08","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo08.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/" style="margin-left: 0.5rem;">Gestaodeestoques 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Modulo08</span>
+          
+        
+      </nav>
+
+      <p>Este guia fornecerá toda a teoria e os códigos completos para que os alunos possam containerizar a aplicação e orquestrá-la com um banco de dados de produção.</p>
+
+<h1 id="-guia-didático-definitivo-gestão-de-estoques-com-spring-boot">💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot</h1>
+
+<p><strong>Local:</strong> Assis, SP
+<strong>Data:</strong> 08 de Outubro de 2025</p>
+
+<hr />
+
+<h2 id="módulo-8--deployment-e-containerização-com-docker">Módulo 8: 🚀 Deployment e Containerização com Docker</h2>
+
+<p><strong>Objetivo:</strong> Ensinar o aluno a empacotar a aplicação Spring Boot e suas dependências em um container Docker, preparando-a para distribuição e execução em qualquer ambiente, do desenvolvimento à produção. Ao final, o aluno será capaz de orquestrar a aplicação junto com um banco de dados PostgreSQL usando <code class="language-plaintext highlighter-rouge">docker-compose</code>.</p>
+
+<hr />
+
+<h3 id="-aula-81-o-que-é-docker-e-por-que-usar-containers">### Aula 8.1: O que é Docker e por que usar containers?</h3>
+
+<p><strong>O Problema Clássico:</strong> “Mas funciona na minha máquina!”
+Todo desenvolvedor já passou por isso. A aplicação funciona perfeitamente em seu computador, mas quebra ao ser movida para o ambiente de testes ou produção. Isso acontece por diferenças de ambiente: versões do Java, bibliotecas do sistema operacional, variáveis de ambiente, etc.</p>
+
+<p><strong>A Solução: Containers</strong>
+<strong>Conceito-Chave:</strong> Um <strong>container</strong> é um pacote padronizado que agrupa o código da sua aplicação com <strong>todas as suas dependências</strong> (runtime do Java, bibliotecas, configurações). Ele é isolado do sistema operacional hospedeiro, garantindo que a aplicação se comporte da mesma forma em qualquer lugar.</p>
+
+<ul>
+  <li><strong>Analogia:</strong> Pense em um container de transporte marítimo. Não importa se ele está em um navio, trem ou caminhão, o conteúdo dentro dele está protegido e intacto. Um container Docker é a mesma coisa para o software.</li>
+</ul>
+
+<p><strong>Termos Essenciais do Docker:</strong></p>
+
+<ul>
+  <li><strong>Imagem Docker:</strong> É o “molde” ou a “receita” de um container. É um pacote somente leitura que contém as instruções para criar um container. Nós criamos imagens a partir de um <code class="language-plaintext highlighter-rouge">Dockerfile</code>.</li>
+  <li><strong>Container Docker:</strong> É uma instância em execução de uma imagem. É a nossa aplicação rodando de fato. Podemos ter vários containers rodando a partir da mesma imagem.</li>
+  <li><strong>Dockerfile:</strong> É um arquivo de texto com um script de comandos que o Docker usa para montar uma imagem.</li>
+  <li><strong>Docker Engine:</strong> É o programa que roda na sua máquina e é responsável por construir, executar e gerenciar os containers.</li>
+</ul>
+
+<p><strong>Principais Vantagens:</strong></p>
+
+<ol>
+  <li><strong>Portabilidade:</strong> Roda em qualquer lugar que tenha Docker.</li>
+  <li><strong>Consistência:</strong> Garante que os ambientes de desenvolvimento, teste e produção sejam idênticos.</li>
+  <li><strong>Isolamento:</strong> Containers não interferem uns com os outros.</li>
+  <li><strong>Escalabilidade:</strong> É muito fácil criar e destruir containers para atender à demanda.</li>
+</ol>
+
+<hr />
+
+<h3 id="-aula-82-criando-um-dockerfile-para-a-aplicação-spring-boot">### Aula 8.2: Criando um <code class="language-plaintext highlighter-rouge">Dockerfile</code> para a aplicação Spring Boot</h3>
+
+<p><strong>Conceito-Chave: Multi-Stage Build</strong>
+Para criar uma imagem otimizada, usaremos uma técnica chamada “multi-stage build”.</p>
+
+<ul>
+  <li><strong>Estágio 1 (Build):</strong> Usaremos uma imagem “pesada” com todo o ferramental de compilação (Maven e JDK) para compilar nosso código e gerar o arquivo <code class="language-plaintext highlighter-rouge">.jar</code>.</li>
+  <li><strong>Estágio 2 (Runtime):</strong> Começaremos com uma imagem “leve”, contendo apenas o necessário para executar Java (JRE), e copiaremos apenas o arquivo <code class="language-plaintext highlighter-rouge">.jar</code> final do estágio anterior.</li>
+</ul>
+
+<p>O resultado é uma imagem final muito menor e mais segura, pois não contém código-fonte ou ferramentas de compilação.</p>
+
+<p><strong>Ação:</strong> Na <strong>raiz do seu projeto</strong> (na mesma pasta do <code class="language-plaintext highlighter-rouge">pom.xml</code>), crie um arquivo chamado <code class="language-plaintext highlighter-rouge">Dockerfile</code> (sem extensão).</p>
+
+<h4 id="código-dockerfile-arquivo-completo">Código: <code class="language-plaintext highlighter-rouge">Dockerfile</code> (Arquivo Completo)</h4>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ----- ESTÁGIO 1: Build com Maven e JDK -----</span>
+<span class="c"># Usamos a imagem oficial do Maven que já contém o JDK 21</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">maven:3.9-eclipse-temurin-21</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+
+<span class="c"># Define o diretório de trabalho dentro do container</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># Copia os arquivos de configuração do Maven primeiro para aproveitar o cache do Docker</span>
+<span class="k">COPY</span><span class="s"> .mvn/ .mvn</span>
+<span class="k">COPY</span><span class="s"> mvnw pom.xml ./</span>
+
+<span class="c"># Baixa as dependências</span>
+<span class="k">RUN </span>mvn dependency:go-offline
+
+<span class="c"># Copia o restante do código-fonte da aplicação</span>
+<span class="k">COPY</span><span class="s"> src ./src</span>
+
+<span class="c"># Compila a aplicação, gera o .jar e pula os testes para acelerar o build da imagem</span>
+<span class="k">RUN </span>mvn clean package <span class="nt">-DskipTests</span>
+
+
+<span class="c"># ----- ESTÁGIO 2: Runtime com JRE -----</span>
+<span class="c"># Usamos uma imagem base leve, contendo apenas o Java Runtime Environment (JRE)</span>
+<span class="k">FROM</span><span class="s"> eclipse-temurin:21-jre-jammy</span>
+
+<span class="c"># Define o diretório de trabalho</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+
+<span class="c"># Copia apenas o arquivo .jar final do estágio de build para a nossa imagem final</span>
+<span class="k">COPY</span><span class="s"> --from=builder /app/target/gestaodeestoques-0.0.1-SNAPSHOT.jar app.jar</span>
+
+<span class="c"># Expõe a porta 8080 para que possamos nos conectar ao nosso container de fora</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+
+<span class="c"># Comando que será executado quando o container iniciar</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<p><strong>Ação:</strong> Agora, vamos construir e executar nosso container.</p>
+
+<ol>
+  <li>
+    <p><strong>Construir a Imagem:</strong> Abra o terminal na raiz do projeto e execute o comando:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> gestao-estoque-api <span class="nb">.</span>
+</code></pre></div>    </div>
+
+    <p><em>(O <code class="language-plaintext highlighter-rouge">-t gestao-estoque-api</code> dá um nome (tag) à nossa imagem. O <code class="language-plaintext highlighter-rouge">.</code> indica que o Dockerfile está no diretório atual.)</em></p>
+  </li>
+  <li>
+    <p><strong>Executar o Container:</strong> Após o build terminar, execute o container com o comando:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-p</span> 8080:8080 gestao-estoque-api
+</code></pre></div>    </div>
+
+    <p><em>(O <code class="language-plaintext highlighter-rouge">-p 8080:8080</code> mapeia a porta 8080 da sua máquina para a porta 8080 exposta pelo container.)</em></p>
+  </li>
+</ol>
+
+<p>Sua aplicação agora está rodando dentro de um container Docker! No entanto, ela ainda usa o banco H2 em memória, que é zerado a cada reinicialização.</p>
+
+<hr />
+
+<h3 id="-aula-83-avançado-orquestrando-com-docker-compose-e-postgresql">### Aula 8.3: (Avançado) Orquestrando com <code class="language-plaintext highlighter-rouge">docker-compose</code> e PostgreSQL</h3>
+
+<p><strong>Conceito-Chave:</strong> <code class="language-plaintext highlighter-rouge">docker-compose</code> é uma ferramenta para definir e executar aplicações Docker com múltiplos containers. Usamos um arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> para descrever os serviços que compõem nossa aplicação (ex: a API e o banco de dados) e como eles se conectam.</p>
+
+<p><strong>Ação 1:</strong> Preparar a aplicação para se conectar ao PostgreSQL.</p>
+
+<h4 id="pomxml-adicionar-driver-do-postgresql"><code class="language-plaintext highlighter-rouge">pom.xml</code> (Adicionar Driver do PostgreSQL)</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.postgresql<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>postgresql<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h4 id="srcmainresourcesapplication-prodproperties-novo-arquivo-para-perfil-de-produção"><code class="language-plaintext highlighter-rouge">src/main/resources/application-prod.properties</code> (Novo Arquivo para Perfil de Produção)</h4>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Configurações do Banco de Dados PostgreSQL
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:postgresql://postgres-db:5432/estoquedb</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">admin</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">admin123</span>
+<span class="py">spring.datasource.driver-class-name</span><span class="p">=</span><span class="s">org.postgresql.Driver</span>
+
+<span class="c"># Configura o Hibernate/JDBC para validar o schema (não criar/dropar tabelas)
+</span><span class="py">spring.sql.init.mode</span><span class="p">=</span><span class="s">never</span>
+</code></pre></div></div>
+
+<p><strong>Ação 2:</strong> Criar o arquivo <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> na raiz do projeto.</p>
+
+<h4 id="código-docker-composeyml-arquivo-completo">Código: <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> (Arquivo Completo)</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="c1"># Serviço da nossa API Spring Boot</span>
+  <span class="na">app-service</span><span class="pi">:</span>
+    <span class="c1"># Constrói a imagem a partir do Dockerfile no diretório atual</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+    <span class="c1"># Mapeia a porta 8080 do host para a porta 8080 do container</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="c1"># Define as variáveis de ambiente para o container da aplicação</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="c1"># Diz ao Spring para usar o perfil 'prod', ativando o application-prod.properties</span>
+      <span class="pi">-</span> <span class="s">SPRING_PROFILES_ACTIVE=prod</span>
+      <span class="c1"># O segredo do JWT (em um projeto real, use um mecanismo de secrets)</span>
+      <span class="pi">-</span> <span class="s">JWT_SECRET=7d4a1b0b3e6c9d8a3f4b2e1c0a9f8b7c6d5e4a3b2c1d0f9e8a7b6c5d4e3f2a1b</span>
+    <span class="c1"># Garante que o serviço do banco de dados inicie antes da nossa aplicação</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">postgres-db</span>
+
+  <span class="c1"># Serviço do Banco de Dados PostgreSQL</span>
+  <span class="na">postgres-db</span><span class="pi">:</span>
+    <span class="c1"># Usa a imagem oficial do PostgreSQL</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15</span>
+    <span class="c1"># Define as variáveis de ambiente para configurar o banco de dados</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_DB=estoquedb</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_USER=admin</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_PASSWORD=admin123</span>
+    <span class="c1"># Mapeia a porta 5432 do container para a 5432 do host (opcional, para acesso externo)</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+    <span class="c1"># Monta um volume para persistir os dados do banco</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">postgres-data:/var/lib/postgresql/data</span>
+
+<span class="c1"># Define o volume nomeado para persistência dos dados</span>
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">postgres-data</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<p><strong>Conceito-Chave (Volumes):</strong> A linha <code class="language-plaintext highlighter-rouge">volumes: - postgres-data:/var/lib/postgresql/data</code> é crucial. Ela diz ao Docker para “salvar os dados do banco de dados do container em um local gerenciado pelo Docker no seu computador (<code class="language-plaintext highlighter-rouge">postgres-data</code>)”. Isso garante que, mesmo se o container for removido, seus dados estarão seguros.</p>
+
+<p><strong>Ação 3:</strong> Iniciar o ambiente completo.</p>
+
+<ol>
+  <li><strong>Parar qualquer container anterior:</strong> Se você executou o <code class="language-plaintext highlighter-rouge">docker run</code> antes, pare-o (Ctrl+C).</li>
+  <li><strong>Iniciar com <code class="language-plaintext highlighter-rouge">docker-compose</code>:</strong> No terminal, na raiz do projeto, execute:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up <span class="nt">--build</span>
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">up</code>: Sobe os serviços definidos no arquivo.</li>
+      <li><code class="language-plaintext highlighter-rouge">--build</code>: Força a reconstrução da imagem da nossa aplicação (importante se você alterou o código).</li>
+    </ul>
+  </li>
+</ol>
+
+<p>O Docker irá baixar a imagem do PostgreSQL, construir a imagem da sua API, criar uma rede para eles se comunicarem e iniciar os dois containers na ordem correta.</p>
+
+<hr />
+
+<h3 id="conclusão-do-módulo-8-e-final-do-guia">Conclusão do Módulo 8 e Final do Guia</h3>
+
+<p><strong>Parabéns! Você chegou ao final da nossa jornada!</strong></p>
+
+<p>Você não apenas construiu uma aplicação completa, mas também aprendeu a empacotá-la e distribuí-la usando as tecnologias mais requisitadas do mercado. Agora você tem uma aplicação:</p>
+
+<ul>
+  <li><strong>Profissional:</strong> Com arquitetura limpa, segura e testada.</li>
+  <li><strong>Portátil:</strong> Que roda de forma consistente em qualquer máquina com Docker.</li>
+  <li><strong>Pronta para Produção:</strong> Com um banco de dados persistente e configuração externalizada.</li>
+</ul>
+
+<p>O conhecimento adquirido ao longo destes 8 módulos forma a base sólida de um engenheiro de software completo. O próximo passo é pegar essa base e continuar construindo sobre ela, explorando novos desafios e tecnologias. O céu é o limite!</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

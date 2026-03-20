@@ -1,0 +1,169 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_06_versionamento_com_git_e_github/topicos/github-cli.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CLI | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="CLI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/github-cli.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/github-cli.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CLI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"CLI","url":"https://ricardotecpro.github.io/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/github-cli.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/" style="margin-left: 0.5rem;">Mod 06 versionamento com git e github</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_06_versionamento_com_git_e_github/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Cli</span>
+          
+        
+      </nav>
+
+      <h1 id="cli">CLI</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh: The term 'gh' is not recognized as a name of a cmdlet...
+</code></pre></div></div>
+
+<p>significa que o <strong>GitHub CLI (<code class="language-plaintext highlighter-rouge">gh</code>) não está instalado ou não está no PATH</strong> do seu Windows/PowerShell.</p>
+
+<hr />
+
+<h2 id="-1-instalar-o-github-cli-no-windows">🔹 1. Instalar o GitHub CLI no Windows</h2>
+
+<p>Você tem algumas opções:</p>
+
+<h3 id="-instalação-com-winget-mais-simples">👉 Instalação com <strong>winget</strong> (mais simples)</h3>
+
+<p>No PowerShell (como administrador):</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">winget</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nt">--id</span><span class="w"> </span><span class="nx">GitHub.cli</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="-instalação-com-scoop-se-já-tiver-o-gerenciador-scoop">👉 Instalação com <strong>scoop</strong> (se já tiver o gerenciador Scoop)</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scoop</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">gh</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="-instalação-manual">👉 Instalação manual</h3>
+
+<ol>
+  <li>Baixe o instalador <code class="language-plaintext highlighter-rouge">.msi</code> aqui:
+<a href="https://github.com/cli/cli/releases/latest">https://github.com/cli/cli/releases/latest</a></li>
+  <li>Execute o instalador e finalize.</li>
+  <li>Reinicie o terminal.</li>
+</ol>
+
+<hr />
+
+<h2 id="-2-verificar-se-funcionou">🔹 2. Verificar se funcionou</h2>
+
+<p>Depois da instalação, rode no PowerShell:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gh</span><span class="w"> </span><span class="nt">--version</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Se aparecer algo como <code class="language-plaintext highlighter-rouge">gh version 2.x.x</code>, está tudo certo ✅.</p>
+
+<hr />
+
+<h2 id="-3-fazer-login-no-github">🔹 3. Fazer login no GitHub</h2>
+
+<p>Depois de instalado:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gh</span><span class="w"> </span><span class="nx">auth</span><span class="w"> </span><span class="nx">login</span><span class="w">
+</span></code></pre></div></div>
+
+<p>E siga os passos (ele vai abrir o navegador para autenticar sua conta).</p>
+
+<hr />
+
+<p>📌 Pergunto: você prefere que eu monte um <strong>roteiro completo usando apenas o PowerShell</strong> (instalação via <code class="language-plaintext highlighter-rouge">winget</code> + login nas duas contas + troca entre elas), para já deixar pronto no seu Windows?</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

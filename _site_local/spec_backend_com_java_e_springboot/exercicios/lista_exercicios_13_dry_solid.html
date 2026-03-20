@@ -1,0 +1,456 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_backend_com_java_e_springboot/exercicios/lista_exercicios_13_dry_solid.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>LISTA EXERCICIOS 13 DRY SOLID | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="LISTA EXERCICIOS 13 DRY SOLID" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/exercicios/lista_exercicios_13_dry_solid.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/exercicios/lista_exercicios_13_dry_solid.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="LISTA EXERCICIOS 13 DRY SOLID" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"LISTA EXERCICIOS 13 DRY SOLID","url":"https://ricardotecpro.github.io/portal_jekyll/spec_backend_com_java_e_springboot/exercicios/lista_exercicios_13_dry_solid.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/" style="margin-left: 0.5rem;">Spec backend com java e springboot</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_backend_com_java_e_springboot/exercicios/" style="margin-left: 0.5rem;">Exercicios</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Lista exercicios 13 dry solid</span>
+          
+        
+      </nav>
+
+      <p>DRY (Don’t Repeat Yourself) é um princípio de programação que visa evitar repetições de código. Para calcular a área de diferentes figuras geométricas em Java seguindo o princípio DRY, podemos usar herança, interfaces ou até mesmo uma abordagem com enum ou polimorfismo.</p>
+
+<p>Aqui vai uma implementação orientada a objetos usando interfaces e polimorfismo, que segue o princípio DRY:</p>
+
+<p>✅ Código Java para cálculo de áreas com DRY
+// Interface comum para todas as figuras
+interface FiguraGeometrica {
+    double calcularArea();
+}</p>
+
+<p>// Classe para Círculo
+class Circulo implements FiguraGeometrica {
+    private double raio;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public Circulo(double raio) {
+    this.raio = raio;
+}
+
+@Override
+public double calcularArea() {
+    return Math.PI * raio * raio;
+} }
+</code></pre></div></div>
+
+<p>// Classe para Retângulo
+class Retangulo implements FiguraGeometrica {
+    private double largura;
+    private double altura;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public Retangulo(double largura, double altura) {
+    this.largura = largura;
+    this.altura = altura;
+}
+
+@Override
+public double calcularArea() {
+    return largura * altura;
+} }
+</code></pre></div></div>
+
+<p>// Classe para Triângulo
+class Triangulo implements FiguraGeometrica {
+    private double base;
+    private double altura;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public Triangulo(double base, double altura) {
+    this.base = base;
+    this.altura = altura;
+}
+
+@Override
+public double calcularArea() {
+    return (base * altura) / 2;
+} }
+</code></pre></div></div>
+
+<p>// Classe principal
+public class CalculadoraDeAreas {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Método genérico que aceita qualquer figura
+public static double calcularAreaFigura(FiguraGeometrica figura) {
+    return figura.calcularArea();
+}
+
+public static void main(String[] args) {
+    FiguraGeometrica circulo = new Circulo(5);
+    FiguraGeometrica retangulo = new Retangulo(4, 6);
+    FiguraGeometrica triangulo = new Triangulo(3, 7);
+
+    System.out.println("Área do Círculo: " + calcularAreaFigura(circulo));
+    System.out.println("Área do Retângulo: " + calcularAreaFigura(retangulo));
+    System.out.println("Área do Triângulo: " + calcularAreaFigura(triangulo));
+} } ✅ Vantagens dessa abordagem: Polimorfismo: Evita if-else ou switch-case para cada tipo de figura.
+</code></pre></div></div>
+
+<p>Extensível: Fácil adicionar novas figuras sem modificar código existente.</p>
+
+<p>DRY: O método calcularAreaFigura é genérico e reaproveitado.</p>
+
+<p>Vamos organizar esse projeto Java em arquivos separados, da forma correta, e eu também vou te mostrar como compilar e executar o programa passo a passo no terminal (ou CMD).</p>
+
+<p>📁 Estrutura de Arquivos do Projeto
+Organize os arquivos em uma pasta, por exemplo:</p>
+
+<p>CalculadoraDeAreas/
+├── FiguraGeometrica.java
+├── Circulo.java
+├── Retangulo.java
+├── Triangulo.java
+└── CalculadoraDeAreas.java
+Cada classe/interface vai em seu próprio arquivo .java, com nome igual ao da classe pública.</p>
+
+<p>📄 1. FiguraGeometrica.java
+public interface FiguraGeometrica {
+    double calcularArea();
+}
+📄 2. Circulo.java
+public class Circulo implements FiguraGeometrica {
+    private double raio;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public Circulo(double raio) {
+    this.raio = raio;
+}
+
+@Override
+public double calcularArea() {
+    return Math.PI * raio * raio;
+} } 📄 3. Retangulo.java public class Retangulo implements FiguraGeometrica {
+private double largura;
+private double altura;
+
+public Retangulo(double largura, double altura) {
+    this.largura = largura;
+    this.altura = altura;
+}
+
+@Override
+public double calcularArea() {
+    return largura * altura;
+} } 📄 4. Triangulo.java public class Triangulo implements FiguraGeometrica {
+private double base;
+private double altura;
+
+public Triangulo(double base, double altura) {
+    this.base = base;
+    this.altura = altura;
+}
+
+@Override
+public double calcularArea() {
+    return (base * altura) / 2;
+} } 📄 5. CalculadoraDeAreas.java public class CalculadoraDeAreas {
+
+public static double calcularAreaFigura(FiguraGeometrica figura) {
+    return figura.calcularArea();
+}
+
+public static void main(String[] args) {
+    FiguraGeometrica circulo = new Circulo(5);
+    FiguraGeometrica retangulo = new Retangulo(4, 6);
+    FiguraGeometrica triangulo = new Triangulo(3, 7);
+
+    System.out.println("Área do Círculo: " + calcularAreaFigura(circulo));
+    System.out.println("Área do Retângulo: " + calcularAreaFigura(retangulo));
+    System.out.println("Área do Triângulo: " + calcularAreaFigura(triangulo));
+} } ✅ Como Compilar e Executar Requisitos: Ter o Java JDK instalado (javac e java no terminal).
+</code></pre></div></div>
+
+<p>Estar dentro da pasta do projeto (CalculadoraDeAreas/).</p>
+
+<p>🔧 Passos:
+Abra o terminal (ou CMD/prompt) e vá até a pasta:</p>
+
+<p>cd caminho/para/CalculadoraDeAreas
+Compile todos os arquivos:</p>
+
+<p>javac *.java
+Isso irá compilar todos os .java e gerar arquivos .class.</p>
+
+<p>Execute a classe principal:</p>
+
+<p>java CalculadoraDeAreas
+🖥️ Saída esperada:
+Área do Círculo: 78.53981633974483
+Área do Retângulo: 24.0
+Área do Triângulo: 10.5
+💡 Dicas Extras
+Se quiser organizar melhor, pode usar pacotes (package) e um gerenciador como Maven ou Gradle.</p>
+
+<p>Essa abordagem já segue boas práticas de OOP e o princípio DRY.</p>
+
+<p>Você pode adicionar mais figuras no futuro (como trapézio ou losango) apenas criando novas classes que implementam FiguraGeometrica.</p>
+
+<p>📦 Estrutura com Pacotes
+Vamos usar um pacote chamado geometria.</p>
+
+<p>Estrutura de pastas:
+CalculadoraDeAreas/
+└── geometria/
+    ├── FiguraGeometrica.java
+    ├── Circulo.java
+    ├── Retangulo.java
+    ├── Triangulo.java
+    └── CalculadoraDeAreas.java
+Ou seja, todas as classes vão para dentro da pasta geometria/, que representa o pacote.</p>
+
+<p>📄 Código atualizado (com package)
+Em todos os arquivos .java, adicione esta linha no topo:</p>
+
+<p>package geometria;
+Exemplo: FiguraGeometrica.java
+package geometria;</p>
+
+<p>public interface FiguraGeometrica {
+    double calcularArea();
+}
+Exemplo: Circulo.java
+package geometria;</p>
+
+<p>public class Circulo implements FiguraGeometrica {
+    private double raio;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public Circulo(double raio) {
+    this.raio = raio;
+}
+
+@Override
+public double calcularArea() {
+    return Math.PI * raio * raio;
+} } Exemplo: CalculadoraDeAreas.java package geometria;
+</code></pre></div></div>
+
+<p>public class CalculadoraDeAreas {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static double calcularAreaFigura(FiguraGeometrica figura) {
+    return figura.calcularArea();
+}
+
+public static void main(String[] args) {
+    FiguraGeometrica circulo = new Circulo(5);
+    FiguraGeometrica retangulo = new Retangulo(4, 6);
+    FiguraGeometrica triangulo = new Triangulo(3, 7);
+
+    System.out.println("Área do Círculo: " + calcularAreaFigura(circulo));
+    System.out.println("Área do Retângulo: " + calcularAreaFigura(retangulo));
+    System.out.println("Área do Triângulo: " + calcularAreaFigura(triangulo));
+} } ✅ Como Compilar e Executar com Pacotes 1. 📂 Vá até a pasta raiz (onde está a pasta geometria): cd caminho/para/CalculadoraDeAreas 2. 🛠️ Compile todos os arquivos: javac geometria/*.java Isso criará os .class dentro da mesma pasta geometria/.
+</code></pre></div></div>
+
+<ol>
+  <li>▶️ Execute o programa principal:
+java geometria.CalculadoraDeAreas
+Nota: Como usamos package geometria;, precisamos incluir o nome do pacote na hora de executar.</li>
+</ol>
+
+<p>✅ Saída esperada:
+Área do Círculo: 78.53981633974483
+Área do Retângulo: 24.0
+Área do Triângulo: 10.5
+📌 Dica: Estrutura de pacotes maiores
+Se o projeto crescer, você pode criar subpacotes:</p>
+
+<p>geometria/
+├── figuras/
+│   ├── Circulo.java
+│   ├── Retangulo.java
+│   └── Triangulo.java
+├── interfaces/
+│   └── FiguraGeometrica.java
+└── CalculadoraDeAreas.java
+E então, nos arquivos:</p>
+
+<p>package geometria.figuras;</p>
+
+<p>import geometria.interfaces.FiguraGeometrica;</p>
+
+<p>Adaptar o projeto para que o usuário possa informar os valores pelo terminal, utilizando a classe Scanner do Java.</p>
+
+<p>Manteremos a estrutura com pacotes (package geometria) e faremos as entradas no main da classe CalculadoraDeAreas.</p>
+
+<p>📦 Estrutura do projeto (mantida)
+CalculadoraDeAreas/
+└── geometria/
+    ├── FiguraGeometrica.java
+    ├── Circulo.java
+    ├── Retangulo.java
+    ├── Triangulo.java
+    └── CalculadoraDeAreas.java
+✅ Atualize apenas o CalculadoraDeAreas.java:
+package geometria;</p>
+
+<p>import java.util.Scanner;</p>
+
+<p>public class CalculadoraDeAreas {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static double calcularAreaFigura(FiguraGeometrica figura) {
+    return figura.calcularArea();
+}
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    System.out.println("=== Calculadora de Áreas ===");
+    System.out.println("Escolha a figura geométrica:");
+    System.out.println("1 - Círculo");
+    System.out.println("2 - Retângulo");
+    System.out.println("3 - Triângulo");
+    System.out.print("Opção: ");
+    int opcao = scanner.nextInt();
+
+    FiguraGeometrica figura = null;
+
+    switch (opcao) {
+        case 1:
+            System.out.print("Digite o raio do círculo: ");
+            double raio = scanner.nextDouble();
+            figura = new Circulo(raio);
+            break;
+        case 2:
+            System.out.print("Digite a largura do retângulo: ");
+            double largura = scanner.nextDouble();
+            System.out.print("Digite a altura do retângulo: ");
+            double alturaRetangulo = scanner.nextDouble();
+            figura = new Retangulo(largura, alturaRetangulo);
+            break;
+        case 3:
+            System.out.print("Digite a base do triângulo: ");
+            double base = scanner.nextDouble();
+            System.out.print("Digite a altura do triângulo: ");
+            double alturaTriangulo = scanner.nextDouble();
+            figura = new Triangulo(base, alturaTriangulo);
+            break;
+        default:
+            System.out.println("Opção inválida.");
+            System.exit(0);
+    }
+
+    double area = calcularAreaFigura(figura);
+    System.out.printf("A área calculada é: %.2f%n", area);
+
+    scanner.close();
+} } 📥 Entradas do Usuário O programa pergunta qual figura o usuário deseja calcular.
+</code></pre></div></div>
+
+<p>Depois solicita os dados necessários para cada uma.</p>
+
+<p>Por fim, calcula e exibe a área.</p>
+
+<p>🧪 Exemplo de execução:
+=== Calculadora de Áreas ===
+Escolha a figura geométrica:
+1 - Círculo
+2 - Retângulo
+3 - Triângulo
+Opção: 2
+Digite a largura do retângulo: 5
+Digite a altura do retângulo: 10
+A área calculada é: 50.00
+🛠️ Compilar e Executar (passos)
+Vá para a pasta raiz do projeto (onde está a pasta geometria):</p>
+
+<p>cd caminho/para/CalculadoraDeAreas
+Compile os arquivos:</p>
+
+<p>javac geometria/*.java
+Execute o programa principal:</p>
+
+<p>java geometria.CalculadoraDeAreas</p>
+
+<p>Incluir um loop para repetir os cálculos até o usuário sair, ou permitir que ele calcule várias áreas em sequência.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

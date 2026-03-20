@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🌐 Redes de Computadores: Conectando o Mundo Digital
+title: "🌐 Redes de Computadores: Conectando o Mundo Digital"
 ---
 
 # 🌐 Redes de Computadores: Conectando o Mundo Digital

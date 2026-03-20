@@ -1,0 +1,335 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/topicos/api_rest_websockets/des_web_moderno_websockets.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>DES WEB MODERNO WEBSOCKETS | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="DES WEB MODERNO WEBSOCKETS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/des_web_moderno_websockets.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/des_web_moderno_websockets.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="DES WEB MODERNO WEBSOCKETS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"DES WEB MODERNO WEBSOCKETS","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/des_web_moderno_websockets.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/api_rest_websockets/" style="margin-left: 0.5rem;">Api rest websockets</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Des web moderno websockets</span>
+          
+        
+      </nav>
+
+      <p><strong>Tutorial sequencial e didático</strong> para criar um <strong>Chat em Tempo Real com WebSockets</strong>, usando <strong>Node.js</strong> para o backend e <strong>HTML + JavaScript</strong> para o frontend.</p>
+
+<p>https://gist.github.com/ricardotecpro/f7e2928a73b6434b77d304e752e44773</p>
+
+<hr />
+
+<h1 id="-criando-um-chat-em-tempo-real-com-websockets"><strong>📝 Criando um Chat em Tempo Real com WebSockets</strong></h1>
+
+<p>Neste tutorial, você aprenderá a criar um chat simples usando <strong>WebSockets</strong> com <strong>Node.js</strong> no backend e <strong>HTML + JavaScript</strong> no frontend.</p>
+
+<h2 id="-1-pré-requisitos"><strong>📌 1. Pré-requisitos</strong></h2>
+
+<p>Antes de começar, certifique-se de ter instalado:</p>
+
+<ul>
+  <li><strong><a href="https://nodejs.org/">Node.js</a></strong> (verifique executando <code class="language-plaintext highlighter-rouge">node -v</code> no terminal)</li>
+  <li><strong>Um editor de código</strong> (VS Code, por exemplo)</li>
+</ul>
+
+<hr />
+
+<h2 id="-2-estrutura-do-projeto"><strong>📂 2. Estrutura do Projeto</strong></h2>
+
+<p>Crie uma pasta para o projeto e dentro dela organize os arquivos da seguinte forma:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chat-websocket/
+│── server/             # Backend (servidor WebSocket)
+│   ├── server.js       # Código do servidor WebSocket
+│── client/             # Frontend (interface do chat)
+│   ├── index.html      # Página do chat
+│   ├── script.js       # Código JavaScript do cliente
+│   ├── styles.css      # Estilização do chat
+│── package.json        # Configuração do projeto Node.js
+│── README.md           # Instruções do projeto
+</code></pre></div></div>
+
+<p>Agora, siga as etapas abaixo para criar o chat WebSocket. 🚀</p>
+
+<hr />
+
+<h2 id="️-3-configurando-o-servidor-websocket"><strong>🛠️ 3. Configurando o Servidor WebSocket</strong></h2>
+
+<h3 id="31-criando-o-projeto-nodejs"><strong>3.1 Criando o projeto Node.js</strong></h3>
+
+<p>Abra um terminal na pasta <code class="language-plaintext highlighter-rouge">chat-websocket</code> e inicialize um projeto Node.js:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm init <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p>Isso criará um arquivo <code class="language-plaintext highlighter-rouge">package.json</code>.</p>
+
+<h3 id="32-instalando-a-biblioteca-websocket"><strong>3.2 Instalando a biblioteca WebSocket</strong></h3>
+
+<p>Agora, instale a biblioteca <strong>ws</strong>, que será usada para criar o servidor WebSocket:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>ws
+</code></pre></div></div>
+
+<h3 id="33-criando-o-servidor-websocket"><strong>3.3 Criando o servidor WebSocket</strong></h3>
+
+<p>Crie a pasta <code class="language-plaintext highlighter-rouge">server/</code> e dentro dela o arquivo <code class="language-plaintext highlighter-rouge">server.js</code> com o seguinte código:</p>
+
+<p>📌 <strong>server/server.js</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">.</span><span class="nc">Server</span><span class="p">({</span> <span class="na">port</span><span class="p">:</span> <span class="mi">8080</span> <span class="p">});</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">connection</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Cliente conectado.</span><span class="dl">'</span><span class="p">);</span>
+
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Mensagem recebida:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+        
+        <span class="c1">// Enviar a mensagem para todos os clientes conectados</span>
+        <span class="nx">server</span><span class="p">.</span><span class="nx">clients</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="nx">client</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if </span><span class="p">(</span><span class="nx">client</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="nx">WebSocket</span><span class="p">.</span><span class="nx">OPEN</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">client</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="s2">`Mensagem: </span><span class="p">${</span><span class="nx">message</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">close</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Cliente desconectado.</span><span class="dl">'</span><span class="p">));</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erro no WebSocket:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Servidor WebSocket rodando na porta 8080</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-4-criando-o-cliente-web"><strong>🖥️ 4. Criando o Cliente Web</strong></h2>
+
+<p>Agora vamos criar o <strong>frontend</strong> do chat.</p>
+
+<h3 id="41-criando-o-arquivo-html"><strong>4.1 Criando o arquivo HTML</strong></h3>
+
+<p>Crie a pasta <code class="language-plaintext highlighter-rouge">client/</code> e dentro dela um arquivo chamado <code class="language-plaintext highlighter-rouge">index.html</code> com o seguinte conteúdo:</p>
+
+<p>📌 <strong>client/index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Chat WebSocket<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"styles.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>Chat WebSocket<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"mensagem"</span> <span class="na">placeholder=</span><span class="s">"Digite uma mensagem"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"enviarMensagem()"</span><span class="nt">&gt;</span>Enviar<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chat"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"script.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="42-criando-o-código-javascript-do-cliente"><strong>4.2 Criando o código JavaScript do cliente</strong></h3>
+
+<p>Agora, crie o arquivo <code class="language-plaintext highlighter-rouge">client/script.js</code> com o código de comunicação com o WebSocket:</p>
+
+<p>📌 <strong>client/script.js</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://localhost:8080</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Conectado ao servidor.</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">chat</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">msg</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+    <span class="nx">chat</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erro no WebSocket:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Conexão fechada.</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nf">enviarMensagem</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">mensagem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">mensagem</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">mensagem</span><span class="p">.</span><span class="nf">trim</span><span class="p">()</span> <span class="o">!==</span> <span class="dl">""</span> <span class="o">&amp;&amp;</span> <span class="nx">socket</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="nx">WebSocket</span><span class="p">.</span><span class="nx">OPEN</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nx">mensagem</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">mensagem</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Conexão não está aberta ou mensagem vazia.</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="43-criando-o-estilo-do-chat"><strong>4.3 Criando o estilo do chat</strong></h3>
+
+<p>Agora, crie o arquivo <code class="language-plaintext highlighter-rouge">client/styles.css</code> para estilizar a interface:</p>
+
+<p>📌 <strong>client/styles.css</strong></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">body</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">input</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">80%</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">button</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">15px</span><span class="p">;</span> <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span> <span class="p">}</span>
+<span class="nf">#chat</span> <span class="p">{</span> <span class="nl">max-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">;</span> <span class="nl">margin</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span> <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">p</span> <span class="p">{</span> <span class="nl">background</span><span class="p">:</span> <span class="nx">#f3f3f3</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> <span class="nl">border-radius</span><span class="p">:</span> <span class="m">5px</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-5-executando-o-projeto"><strong>🚀 5. Executando o projeto</strong></h2>
+
+<p>Agora que tudo está pronto, vamos testar o chat! 🎉</p>
+
+<h3 id="51-iniciando-o-servidor-websocket"><strong>5.1 Iniciando o servidor WebSocket</strong></h3>
+
+<p>No terminal, dentro da pasta do projeto, rode o comando:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node server/server.js
+</code></pre></div></div>
+
+<p>Isso iniciará o servidor WebSocket na porta <strong>8080</strong>.</p>
+
+<h3 id="52-abrindo-o-chat-no-navegador"><strong>5.2 Abrindo o chat no navegador</strong></h3>
+
+<p>Agora, abra o arquivo <code class="language-plaintext highlighter-rouge">client/index.html</code> em um navegador <strong>(Chrome, Edge, Firefox, etc.)</strong>.</p>
+
+<hr />
+
+<h2 id="️-6-testando-e-melhorando"><strong>🛠️ 6. Testando e Melhorando</strong></h2>
+
+<p>Agora que o chat está funcionando, experimente: ✅ <strong>Abrir múltiplas abas</strong> no navegador e enviar mensagens para ver como elas são recebidas por todos os clientes.<br />
+✅ <strong>Adicionar novos recursos</strong>, como nomes de usuários e histórico de mensagens.</p>
+
+<hr />
+
+<h2 id="-dicas-extras"><strong>💡 Dicas Extras</strong></h2>
+
+<ul>
+  <li>
+    <p>Se quiser rodar o servidor automaticamente, adicione um script no <code class="language-plaintext highlighter-rouge">package.json</code>:</p>
+
+    <p>📌 <strong>package.json</strong></p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node server/server.js"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <p>Agora, basta rodar:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  npm start
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Caso o WebSocket não conecte, verifique se o firewall do sistema está bloqueando a porta <strong>8080</strong>.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-conclusão"><strong>🎯 Conclusão</strong></h2>
+
+<p>Parabéns! 🎉 Você criou um <strong>chat WebSocket</strong> simples usando <strong>Node.js</strong> no backend e <strong>HTML + JavaScript</strong> no frontend. Esse conhecimento pode ser expandido para criar aplicações mais complexas, como chats com autenticação e armazenamento de mensagens.</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,266 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/JavaScript/POO_JS.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>POO JS | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="POO JS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/JavaScript/POO_JS.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/JavaScript/POO_JS.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="POO JS" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"POO JS","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/JavaScript/POO_JS.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/" style="margin-left: 0.5rem;">Oo</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/JavaScript/" style="margin-left: 0.5rem;">Javascript</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Poo js</span>
+          
+        
+      </nav>
+
+      <p>Programar <strong>JavaScript</strong> com <strong>Programação Orientada a Objetos (POO)</strong> envolve o uso de conceitos de objetos e classes para estruturar o código de uma maneira mais modular e reutilizável. A <strong>POO</strong> no JavaScript pode ser implementada utilizando <strong>funções construtoras</strong> ou a sintaxe de <strong>classes</strong> introduzida no ECMAScript 6 (ES6).</p>
+
+<p>Aqui está um guia básico sobre como programar em JavaScript utilizando <strong>POO</strong>:</p>
+
+<h3 id="1-usando-funções-construtoras-antes-do-es6">1. <strong>Usando Funções Construtoras (antes do ES6)</strong></h3>
+
+<p>Antes de ES6, o jeito tradicional de trabalhar com objetos e POO no JavaScript era usando <strong>funções construtoras</strong>.</p>
+
+<h4 id="exemplo">Exemplo:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Função Construtora para criar objetos "Carro"</span>
+<span class="kd">function</span> <span class="nf">Carro</span><span class="p">(</span><span class="nx">marca</span><span class="p">,</span> <span class="nx">modelo</span><span class="p">,</span> <span class="nx">ano</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">marca</span> <span class="o">=</span> <span class="nx">marca</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">modelo</span> <span class="o">=</span> <span class="nx">modelo</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">ano</span> <span class="o">=</span> <span class="nx">ano</span><span class="p">;</span>
+  
+  <span class="c1">// Método para exibir informações sobre o carro</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">info</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">marca</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">modelo</span><span class="p">}</span><span class="s2"> de </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">ano</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// Criando objetos do tipo Carro</span>
+<span class="kd">const</span> <span class="nx">meuCarro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Carro</span><span class="p">(</span><span class="dl">'</span><span class="s1">Toyota</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Corolla</span><span class="dl">'</span><span class="p">,</span> <span class="mi">2020</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">meuCarro</span><span class="p">.</span><span class="nf">info</span><span class="p">());</span> <span class="c1">// Saída: "Toyota Corolla de 2020"</span>
+</code></pre></div></div>
+
+<h3 id="2-usando-classes-es6-e-posterior">2. <strong>Usando Classes (ES6 e posterior)</strong></h3>
+
+<p>Com a introdução do ES6, o JavaScript passou a ter uma sintaxe mais moderna e mais próxima das linguagens tradicionais de POO, usando o conceito de <strong>classes</strong>.</p>
+
+<h4 id="exemplo-com-classes">Exemplo com <strong>Classes</strong>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Definindo uma classe "Carro"</span>
+<span class="kd">class</span> <span class="nc">Carro</span> <span class="p">{</span>
+  <span class="c1">// O método construtor é chamado quando um objeto é criado</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">marca</span><span class="p">,</span> <span class="nx">modelo</span><span class="p">,</span> <span class="nx">ano</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">marca</span> <span class="o">=</span> <span class="nx">marca</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">modelo</span> <span class="o">=</span> <span class="nx">modelo</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ano</span> <span class="o">=</span> <span class="nx">ano</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Método para exibir informações sobre o carro</span>
+  <span class="nf">info</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">marca</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">modelo</span><span class="p">}</span><span class="s2"> de </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">ano</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Criando objetos do tipo Carro</span>
+<span class="kd">const</span> <span class="nx">meuCarro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Carro</span><span class="p">(</span><span class="dl">'</span><span class="s1">Toyota</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Corolla</span><span class="dl">'</span><span class="p">,</span> <span class="mi">2020</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">meuCarro</span><span class="p">.</span><span class="nf">info</span><span class="p">());</span> <span class="c1">// Saída: "Toyota Corolla de 2020"</span>
+</code></pre></div></div>
+
+<h3 id="3-herança-extends">3. <strong>Herança (extends)</strong></h3>
+
+<p>A herança permite que uma classe herde propriedades e métodos de outra classe. No JavaScript, isso é feito com o uso da palavra-chave <code class="language-plaintext highlighter-rouge">extends</code>.</p>
+
+<h4 id="exemplo-de-herança">Exemplo de <strong>Herança</strong>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Classe base "Carro"</span>
+<span class="kd">class</span> <span class="nc">Carro</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">marca</span><span class="p">,</span> <span class="nx">modelo</span><span class="p">,</span> <span class="nx">ano</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">marca</span> <span class="o">=</span> <span class="nx">marca</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">modelo</span> <span class="o">=</span> <span class="nx">modelo</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ano</span> <span class="o">=</span> <span class="nx">ano</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">info</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">marca</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">modelo</span><span class="p">}</span><span class="s2"> de </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">ano</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Classe derivada "CarroElétrico" que herda de "Carro"</span>
+<span class="kd">class</span> <span class="nc">CarroElétrico</span> <span class="kd">extends</span> <span class="nc">Carro</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">marca</span><span class="p">,</span> <span class="nx">modelo</span><span class="p">,</span> <span class="nx">ano</span><span class="p">,</span> <span class="nx">autonomia</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">marca</span><span class="p">,</span> <span class="nx">modelo</span><span class="p">,</span> <span class="nx">ano</span><span class="p">);</span> <span class="c1">// Chama o construtor da classe pai</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">autonomia</span> <span class="o">=</span> <span class="nx">autonomia</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">info</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">super</span><span class="p">.</span><span class="nf">info</span><span class="p">()}</span><span class="s2"> com autonomia de </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">autonomia</span><span class="p">}</span><span class="s2"> km`</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Criando um objeto da classe CarroElétrico</span>
+<span class="kd">const</span> <span class="nx">meuCarroEletrico</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CarroElétrico</span><span class="p">(</span><span class="dl">'</span><span class="s1">Tesla</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Model 3</span><span class="dl">'</span><span class="p">,</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">450</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">meuCarroEletrico</span><span class="p">.</span><span class="nf">info</span><span class="p">());</span> <span class="c1">// Saída: "Tesla Model 3 de 2022 com autonomia de 450 km"</span>
+</code></pre></div></div>
+
+<h3 id="4-encapsulamento-privado-vs-público">4. <strong>Encapsulamento (Privado vs Público)</strong></h3>
+
+<p>No JavaScript, você pode controlar o acesso às propriedades e métodos de uma classe. Com ES6 e versões posteriores, é possível usar <strong>métodos privados</strong> utilizando a sintaxe de <code class="language-plaintext highlighter-rouge">#</code> ou outras formas de controlar o acesso.</p>
+
+<h4 id="exemplo-de-encapsulamento">Exemplo de <strong>Encapsulamento</strong>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Carro</span> <span class="p">{</span>
+  <span class="c1">// Propriedade privada usando #</span>
+  <span class="nx">#marca</span><span class="p">;</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">marca</span><span class="p">,</span> <span class="nx">modelo</span><span class="p">,</span> <span class="nx">ano</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">#marca</span> <span class="o">=</span> <span class="nx">marca</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">modelo</span> <span class="o">=</span> <span class="nx">modelo</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ano</span> <span class="o">=</span> <span class="nx">ano</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Método público</span>
+  <span class="nf">info</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">#marca</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">modelo</span><span class="p">}</span><span class="s2"> de </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">ano</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">meuCarro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Carro</span><span class="p">(</span><span class="dl">'</span><span class="s1">Honda</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Civic</span><span class="dl">'</span><span class="p">,</span> <span class="mi">2021</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">meuCarro</span><span class="p">.</span><span class="nf">info</span><span class="p">());</span> <span class="c1">// Saída: "Honda Civic de 2021"</span>
+
+<span class="c1">// Não podemos acessar a propriedade privada diretamente</span>
+<span class="c1">// console.log(meuCarro.#marca); // Erro! Propriedade privada</span>
+</code></pre></div></div>
+
+<h3 id="5-polimorfismo">5. <strong>Polimorfismo</strong></h3>
+
+<p>O polimorfismo permite que objetos de diferentes classes possam ser tratados de forma uniforme, utilizando o mesmo método, mas com comportamentos diferentes. Isso é muito útil em sistemas que precisam se adaptar a diferentes tipos de objetos.</p>
+
+<h4 id="exemplo-de-polimorfismo">Exemplo de <strong>Polimorfismo</strong>:</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="p">{</span>
+  <span class="nf">falar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">O animal faz um som</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Cachorro</span> <span class="kd">extends</span> <span class="nc">Animal</span> <span class="p">{</span>
+  <span class="nf">falar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">O cachorro late</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Gato</span> <span class="kd">extends</span> <span class="nc">Animal</span> <span class="p">{</span>
+  <span class="nf">falar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">O gato mia</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">cachorro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cachorro</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">gato</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Gato</span><span class="p">();</span>
+
+<span class="nx">cachorro</span><span class="p">.</span><span class="nf">falar</span><span class="p">();</span> <span class="c1">// Saída: "O cachorro late"</span>
+<span class="nx">gato</span><span class="p">.</span><span class="nf">falar</span><span class="p">();</span>     <span class="c1">// Saída: "O gato mia"</span>
+</code></pre></div></div>
+
+<h3 id="6-conclusão">6. <strong>Conclusão</strong></h3>
+
+<p>A Programação Orientada a Objetos (POO) no JavaScript permite uma estruturação mais clara e organizada do código, utilizando classes, objetos, herança, encapsulamento e polimorfismo. Ao usar <strong>classes</strong> (a partir do ES6), você tem uma abordagem mais limpa e intuitiva para aplicar os princípios da POO, além de facilitar a manutenção e escalabilidade do código.</p>
+
+<p>Com as informações acima, você pode agora começar a criar programas utilizando POO em JavaScript de forma eficiente!</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

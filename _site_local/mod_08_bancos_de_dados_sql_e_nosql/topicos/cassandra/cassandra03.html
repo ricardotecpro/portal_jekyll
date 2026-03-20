@@ -1,0 +1,206 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra03.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CASSANDRA03 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="CASSANDRA03" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra03.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra03.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CASSANDRA03" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"CASSANDRA03","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra03.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/" style="margin-left: 0.5rem;">Cassandra</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Cassandra03</span>
+          
+        
+      </nav>
+
+      <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># Atividade 3: Evidências do Tutorial 📜</span><span class="sb">
+
+
+</span><span class="gu">## Descrição da Atividade 📋</span>
+
+Este tutorial demonstra as operações básicas de CRUD (Create, Read, Update, Delete) em uma tabela do Cassandra usando a Linguagem de Consulta Cassandra (CQL).
+<span class="p">
+---
+</span>
+<span class="gu">### CREATE KEYSPACE 🔑</span>
+
+Cria um novo keyspace para armazenar os dados.
+
+<span class="p">```</span><span class="nl">sql
+</span><span class="k">CREATE</span> <span class="n">KEYSPACE</span> <span class="n">minhakeyspaceCetec2</span>
+<span class="k">WITH</span> <span class="n">replication</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'class'</span><span class="p">:</span> <span class="s1">'SimpleStrategy'</span><span class="p">,</span>
+  <span class="s1">'replication_factor'</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="use-keyspace-">USE KEYSPACE 👉</h3>
+
+<p>Seleciona o keyspace recém-criado para ser utilizado nos comandos seguintes.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">USE</span> <span class="n">minhakeyspaceCetec2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="create-table-">CREATE TABLE 📝</h3>
+
+<p>Cria a tabela <code class="language-plaintext highlighter-rouge">alunos</code> dentro do keyspace <code class="language-plaintext highlighter-rouge">minhakeyspaceCetec2</code>.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">alunos</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="n">UUID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">idade</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">curso</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="insert-">INSERT ➕</h3>
+
+<p>Insere um novo registro na tabela <code class="language-plaintext highlighter-rouge">alunos</code>.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">,</span> <span class="n">curso</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Maria Silva'</span><span class="p">,</span> <span class="s1">'maria.silva@cetec.edu'</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s1">'Analise de Sistema'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="select-">SELECT 🔍</h3>
+
+<p>Consulta e exibe todos os registros da tabela <code class="language-plaintext highlighter-rouge">alunos</code>.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">alunos</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Saída:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> id                                   | curso              | email                 | idade | nome
+--------------------------------------+--------------------+-----------------------+-------+-------------
+ a6e8dc1c-b2ab-439d-86ed-be04f83436f5 | Analise de Sistema | maria.silva@cetec.edu |    23 | Maria Silva
+
+(1 rows)
+</code></pre></div></div>
+
+<h3 id="update-">UPDATE 🔄</h3>
+
+<p>Atualiza a idade do registro que corresponde ao <code class="language-plaintext highlighter-rouge">id</code> especificado.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">alunos</span>
+<span class="k">SET</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">31</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">a6e8dc1c</span><span class="o">-</span><span class="n">b2ab</span><span class="o">-</span><span class="mi">439</span><span class="n">d</span><span class="o">-</span><span class="mi">86</span><span class="n">ed</span><span class="o">-</span><span class="n">be04f83436f5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Saída após verificação:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> id                                   | curso              | email                 | idade | nome
+--------------------------------------+--------------------+-----------------------+-------+-------------
+ a6e8dc1c-b2ab-439d-86ed-be04f83436f5 | Analise de Sistema | maria.silva@cetec.edu |    31 | Maria Silva
+
+(1 rows)
+</code></pre></div></div>
+
+<h3 id="delete-️">DELETE 🗑️</h3>
+
+<p>Remove um registro da tabela <code class="language-plaintext highlighter-rouge">alunos</code> baseado no seu <code class="language-plaintext highlighter-rouge">id</code>.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">alunos</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">a6e8dc1c</span><span class="o">-</span><span class="n">b2ab</span><span class="o">-</span><span class="mi">439</span><span class="n">d</span><span class="o">-</span><span class="mi">86</span><span class="n">ed</span><span class="o">-</span><span class="n">be04f83436f5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

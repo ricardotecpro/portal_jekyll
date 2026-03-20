@@ -1,0 +1,546 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/12_linguagem_csharp.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Linguagem C# 💎 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Linguagem C# 💎" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/12_linguagem_csharp.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/12_linguagem_csharp.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Linguagem C# 💎" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Linguagem C# 💎","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/12_linguagem_csharp.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Linguagem c\# 💎</span>
+          
+        
+      </nav>
+
+      <h1 id="linguagem-c-">Linguagem C# 💎</h1>
+
+<p>Bem-vindo ao guia de C# (pronuncia-se “C Sharp”), uma linguagem de programação moderna, orientada a objetos e desenvolvida pela Microsoft. Ela é a principal linguagem da plataforma <strong>.NET</strong>, sendo amplamente utilizada para criar aplicações web, jogos (com a engine Unity), serviços de backend, aplicações desktop e muito mais.</p>
+
+<h2 id="️-instalação-e-configuração-do-ambiente">🛠️ Instalação e Configuração do Ambiente</h2>
+
+<p>Para começar a desenvolver em C#, você precisa do <strong>.NET SDK (Software Development Kit)</strong>, que inclui o compilador, bibliotecas e o runtime.</p>
+
+<ol>
+  <li>
+    <p><strong>Instale o .NET SDK</strong>:</p>
+
+    <ul>
+      <li>Faça o download da versão mais recente (ou de uma versão LTS - Long-Term Support) do .NET SDK no <a href="https://dotnet.microsoft.com/download">site oficial da Microsoft</a>.</li>
+      <li>Execute o instalador, que já configurará o <code class="language-plaintext highlighter-rouge">Path</code> do sistema automaticamente.</li>
+      <li>Para verificar a instalação, abra um novo terminal e digite <code class="language-plaintext highlighter-rouge">dotnet --version</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Escolha uma IDE (Ambiente de Desenvolvimento Integrado)</strong>:
+O material original focava no Visual Studio 2019, mas vamos abordar as opções mais modernas.</p>
+
+    <h3 id="opção-1-visual-studio-community-recomendado">Opção 1: Visual Studio Community (Recomendado)</h3>
+
+    <ul>
+      <li>Baixe o <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio Community</a> (versão gratuita para estudantes e desenvolvedores individuais).</li>
+      <li>Durante a instalação, na aba “Workloads”, selecione a carga de trabalho <strong>“.NET desktop development”</strong> para garantir que todas as ferramentas para C# sejam instaladas.</li>
+    </ul>
+
+    <h3 id="opção-2-visual-studio-code">Opção 2: Visual Studio Code</h3>
+
+    <ul>
+      <li>Instale o <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+      <li>Na aba de extensões, instale o pacote <strong>“C# Dev Kit”</strong> da Microsoft. Ele fornece um ambiente leve e poderoso para o desenvolvimento .NET.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="-seu-primeiro-programa-em-c">🚀 Seu Primeiro Programa em C#</h3>
+
+<p>A estrutura de um programa C# é organizada em <code class="language-plaintext highlighter-rouge">namespaces</code> e <code class="language-plaintext highlighter-rouge">classes</code>.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Importa o namespace System, que contém funcionalidades essenciais como o Console.</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="c1">// Namespace é usado para organizar o código e evitar conflitos de nomes.</span>
+<span class="k">namespace</span> <span class="nn">CursoCSharp</span>
+<span class="p">{</span>
+    <span class="c1">// A classe é um contêiner para dados e métodos.</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="c1">// O método Main é o ponto de entrada de qualquer aplicação C#.</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Imprime uma linha de texto no console.</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Ola, Universo C#!"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Nota sobre C# Moderno</strong>: Versões recentes do C# introduziram “top-level statements”, que permitem escrever código simples diretamente em um arquivo, sem a necessidade de declarar explicitamente a classe <code class="language-plaintext highlighter-rouge">Program</code> e o método <code class="language-plaintext highlighter-rouge">Main</code>. Isso é ótimo para iniciantes e scripts rápidos.</p>
+
+<h2 id="-tipos-de-dados-e-variáveis">📊 Tipos de Dados e Variáveis</h2>
+
+<p>Os tipos de dados em C# são robustos e bem definidos.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Significado</th>
+      <th style="text-align: left">Tipo em C#</th>
+      <th style="text-align: left">Valor Padrão</th>
+      <th style="text-align: left">Observação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Número Inteiro</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">Tipo padrão para inteiros de 32 bits. Para números maiores, use <code class="language-plaintext highlighter-rouge">long</code> (64 bits).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Número de Ponto Flutuante</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td style="text-align: left">0.0</td>
+      <td style="text-align: left">Tipo padrão para números reais com precisão dupla.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Um Único Caractere</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">'\0'</code></td>
+      <td style="text-align: left">Armazena um caractere Unicode, sempre entre <strong>aspas simples</strong>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Texto</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">string</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">null</code></td>
+      <td style="text-align: left">Um tipo por referência para sequências de caracteres, declarado com <strong>aspas duplas</strong>.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Valor Lógico</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bool</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td style="text-align: left">Aceita apenas os valores <code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-declaração-e-atribuição-de-variáveis">📝 Declaração e Atribuição de Variáveis</h2>
+
+<p>A declaração e atribuição de variáveis em C# é direta. Para formatação de texto, C# se destaca com a <strong>interpolação de strings</strong>, que é uma forma mais limpa e legível de construir strings com variáveis.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Globalization</span><span class="p">;</span> <span class="c1">// Necessário para usar o CultureInfo.</span>
+
+<span class="k">namespace</span> <span class="nn">CursoCSharp</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Declaração e inicialização de variáveis.</span>
+            <span class="kt">int</span> <span class="n">idade</span> <span class="p">=</span> <span class="m">42</span><span class="p">;</span>
+            <span class="kt">double</span> <span class="n">salario</span> <span class="p">=</span> <span class="m">9500.75</span><span class="p">;</span>
+            <span class="kt">double</span> <span class="n">altura</span> <span class="p">=</span> <span class="m">1.78</span><span class="p">;</span>
+            <span class="kt">char</span> <span class="n">genero</span> <span class="p">=</span> <span class="sc">'M'</span><span class="p">;</span>
+            <span class="kt">string</span> <span class="n">nome</span> <span class="p">=</span> <span class="s">"Lucas Almeida"</span><span class="p">;</span>
+
+            <span class="c1">// Usando interpolação de string ($) para uma saída mais limpa.</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"NOME = </span><span class="p">{</span><span class="n">nome</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"IDADE = </span><span class="p">{</span><span class="n">idade</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"GENERO = </span><span class="p">{</span><span class="n">genero</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+
+            <span class="c1">// A formatação de casas decimais é feita com :F2 dentro das chaves.</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"ALTURA = </span><span class="p">{</span><span class="n">altura</span><span class="p">:</span><span class="n">F2</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+
+            <span class="c1">// Para garantir o ponto como separador decimal, usa-se CultureInfo.InvariantCulture.</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"SALARIO = </span><span class="p">{</span><span class="n">salario</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"F2"</span><span class="p">,</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">)}</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-operadores">🔢 Operadores</h2>
+
+<p>Os operadores em C# são os mesmos encontrados em Java, C e C++, seguindo a mesma precedência e significado.</p>
+
+<h3 id="aritméticos">Aritméticos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">+</code></td>
+      <td style="text-align: left">Adição</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">-</code></td>
+      <td style="text-align: left">Subtração</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td style="text-align: left">Multiplicação</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">/</code></td>
+      <td style="text-align: left">Divisão</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">%</code></td>
+      <td style="text-align: left">Resto da divisão (“mod”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="comparativos">Comparativos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td style="text-align: left">Menor que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td style="text-align: left">Maior que</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&lt;=</code></td>
+      <td style="text-align: left">Menor ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&gt;=</code></td>
+      <td style="text-align: left">Maior ou igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">==</code></td>
+      <td style="text-align: left">Igual a</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!=</code></td>
+      <td style="text-align: left">Diferente de</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="lógicos">Lógicos</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: left">Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">&amp;&amp;</code></td>
+      <td style="text-align: left">E</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">||</code></td>
+      <td style="text-align: left">OU</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code></td>
+      <td style="text-align: left">NÃO</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-entrada-de-dados">📥 Entrada de Dados</h2>
+
+<p>Em C#, a entrada de dados pelo console é feita com <code class="language-plaintext highlighter-rouge">Console.ReadLine()</code>. Este método sempre retorna os dados como uma <code class="language-plaintext highlighter-rouge">string</code>. Portanto, é necessário <strong>converter (fazer o parse)</strong> essa string para o tipo de dado desejado.</p>
+
+<ul>
+  <li><strong>Converter para <code class="language-plaintext highlighter-rouge">int</code></strong>: <code class="language-plaintext highlighter-rouge">int.Parse(Console.ReadLine())</code></li>
+  <li><strong>Converter para <code class="language-plaintext highlighter-rouge">double</code></strong>: <code class="language-plaintext highlighter-rouge">double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture)</code></li>
+  <li><strong>Converter para <code class="language-plaintext highlighter-rouge">char</code></strong>: <code class="language-plaintext highlighter-rouge">char.Parse(Console.ReadLine())</code></li>
+</ul>
+
+<p>O uso de <code class="language-plaintext highlighter-rouge">CultureInfo.InvariantCulture</code> ao converter para <code class="language-plaintext highlighter-rouge">double</code> é uma boa prática para garantir que o programa interprete o ponto (<code class="language-plaintext highlighter-rouge">.</code>) como separador decimal, independentemente da configuração regional do sistema operacional.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Globalization</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CursoCSharp</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">nomeCompleto</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">idade</span><span class="p">;</span>
+            <span class="kt">double</span> <span class="n">salario</span><span class="p">;</span>
+            <span class="kt">char</span> <span class="n">genero</span><span class="p">;</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite seu nome completo: "</span><span class="p">);</span>
+            <span class="n">nomeCompleto</span> <span class="p">=</span> <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span> <span class="c1">// Lê a linha inteira como string.</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite sua idade: "</span><span class="p">);</span>
+            <span class="n">idade</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span> <span class="c1">// Lê a string e converte para int.</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite seu salario: "</span><span class="p">);</span>
+            <span class="c1">// Lê a string e converte para double, usando o ponto como separador.</span>
+            <span class="n">salario</span> <span class="p">=</span> <span class="kt">double</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">(),</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite seu genero (F/M): "</span><span class="p">);</span>
+            <span class="n">genero</span> <span class="p">=</span> <span class="kt">char</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span> <span class="c1">// Lê a string e converte para char.</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"
+</span><span class="p">---</span> <span class="n">DADOS</span> <span class="n">REGISTRADOS</span> <span class="p">---</span><span class="s">");
+</span>            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Nome: </span><span class="p">{</span><span class="n">nomeCompleto</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Idade: </span><span class="p">{</span><span class="n">idade</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Salario: </span><span class="p">{</span><span class="n">salario</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"F2"</span><span class="p">,</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">)}</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Genero: </span><span class="p">{</span><span class="n">genero</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-estruturas-de-controle">🔀 Estruturas de Controle</h2>
+
+<h3 id="estrutura-condicional-if-else">Estrutura Condicional (<code class="language-plaintext highlighter-rouge">if-else</code>)</h3>
+
+<p>Permite a execução de código com base em uma ou mais condições.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método Main)</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite a hora atual (0-23): "</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">hora</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">hora</span> <span class="p">&lt;</span> <span class="m">12</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Bom dia!"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">hora</span> <span class="p">&lt;</span> <span class="m">18</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Boa tarde!"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Boa noite!"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="estrutura-de-repetição-while">Estrutura de Repetição <code class="language-plaintext highlighter-rouge">while</code></h3>
+
+<p>Executa um bloco de código repetidamente enquanto uma condição for verdadeira.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método Main)</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite um numero (0 para sair): "</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">numero</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+<span class="kt">int</span> <span class="n">soma</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">numero</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">soma</span> <span class="p">=</span> <span class="n">soma</span> <span class="p">+</span> <span class="n">numero</span><span class="p">;</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Digite outro numero (0 para sair): "</span><span class="p">);</span>
+    <span class="n">numero</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"SOMA FINAL = </span><span class="p">{</span><span class="n">soma</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="estrutura-de-repetição-for">Estrutura de Repetição <code class="language-plaintext highlighter-rouge">for</code></h3>
+
+<p>Ideal para laços com um número de iterações predefinido.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método Main)</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Quantos numeros voce quer somar? "</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">N</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+<span class="kt">int</span> <span class="n">soma</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">$"Digite o valor #</span><span class="p">{</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">}</span><span class="s">: "</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">valor</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+    <span class="n">soma</span> <span class="p">=</span> <span class="n">soma</span> <span class="p">+</span> <span class="n">valor</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"SOMA = </span><span class="p">{</span><span class="n">soma</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="-vetores-e-matrizes">📏 Vetores e Matrizes</h2>
+
+<h3 id="vetores-arrays">Vetores (Arrays)</h3>
+
+<p>Em C#, vetores são coleções de tamanho fixo de um mesmo tipo de dado.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método Main)</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Quantos numeros voce vai digitar? "</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">N</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+
+<span class="c1">// Declaração e instanciação de um vetor de doubles com N posições.</span>
+<span class="kt">double</span><span class="p">[]</span> <span class="n">vetor</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">$"Digite o numero #</span><span class="p">{</span><span class="n">i</span> <span class="p">+</span> <span class="m">1</span><span class="p">}</span><span class="s">: "</span><span class="p">);</span>
+    <span class="n">vetor</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="kt">double</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">(),</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"
+</span><span class="n">NUMEROS</span> <span class="n">DIGITADOS</span><span class="p">:</span><span class="s">");
+</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">vetor</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">ToString</span><span class="p">(</span><span class="s">"F1"</span><span class="p">,</span> <span class="n">CultureInfo</span><span class="p">.</span><span class="n">InvariantCulture</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="matrizes-arrays-bidimensionais">Matrizes (Arrays Bidimensionais)</h3>
+
+<p>C# tem uma sintaxe própria e simplificada para matrizes, usando uma vírgula para separar as dimensões.</p>
+
+<div class="language-csharp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ... (dentro do método Main)</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Quantas linhas tera a matriz? "</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">M</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">"Quantas colunas tera a matriz? "</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">N</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+
+<span class="c1">// Declaração e instanciação de uma matriz M x N.</span>
+<span class="kt">int</span><span class="p">[,]</span> <span class="n">matriz</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="s">$"Elemento [</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="s">,</span><span class="p">{</span><span class="n">j</span><span class="p">}</span><span class="s">]: "</span><span class="p">);</span>
+        <span class="n">matriz</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="p">=</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"
+</span><span class="n">MATRIZ</span> <span class="n">DIGITADA</span><span class="p">:</span><span class="s">");
+</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="n">matriz</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="p">+</span> <span class="s">" "</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">();</span> <span class="c1">// Pula para a próxima linha.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="-depuração-debugging-em-c">🐞 Depuração (Debugging) em C#</h2>
+
+<p>Depurar código C# é uma tarefa facilitada pelas excelentes ferramentas disponíveis no Visual Studio e no VS Code.</p>
+
+<h3 id="debugging-no-visual-studio-e-vs-code">Debugging no Visual Studio e VS Code</h3>
+
+<p>Os atalhos e conceitos são muito semelhantes e padronizados.</p>
+
+<ol>
+  <li><strong>Habilitar/Desabilitar Breakpoint</strong>: Pressione <code class="language-plaintext highlighter-rouge">F9</code> na linha desejada para criar um ponto de parada.</li>
+  <li><strong>Iniciar o Debug</strong>: Pressione <code class="language-plaintext highlighter-rouge">F5</code> para iniciar o programa em modo de depuração. A execução pausará no primeiro breakpoint encontrado.</li>
+  <li><strong>Controlar a Execução</strong>:
+    <ul>
+      <li><strong>Step Over (Passar por cima)</strong>: Pressione <code class="language-plaintext highlighter-rouge">F10</code> para executar a linha atual e parar na próxima.</li>
+      <li><strong>Stop (Parar)</strong>: Pressione <code class="language-plaintext highlighter-rouge">Shift + F5</code> para encerrar a sessão de depuração.</li>
+    </ul>
+  </li>
+  <li><strong>Inspecionar Variáveis</strong>: Na parte inferior da tela, abas como “Locals” (Variáveis Locais) no Visual Studio ou a janela “VARIABLES” no VS Code exibirão os valores atuais das variáveis, permitindo que você os monitore em tempo real.</li>
+</ol>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

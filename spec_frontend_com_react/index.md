@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ⚛️ React: A Biblioteca para Interfaces de Usuário
+title: "⚛️ React: A Biblioteca para Interfaces de Usuário"
 ---
 
 # ⚛️ React: A Biblioteca para Interfaces de Usuário

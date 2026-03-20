@@ -1,0 +1,294 @@
+<h3 id="visão-arquitetural-javafx-e-o-padrão-mvc"><strong>Visão Arquitetural: JavaFX e o Padrão MVC</strong></h3>
+
+<p>O <strong>JavaFX</strong> é o framework moderno para a criação de interfaces gráficas em Java, sendo o sucessor do Swing e AWT. Sua arquitetura é projetada em torno do padrão <strong>Model-View-Controller (MVC)</strong>, uma abordagem que promove a separação de responsabilidades e resulta em um código mais organizado e fácil de manter.</p>
+
+<ul>
+  <li><strong>Model</strong>: Representa os dados da aplicação e a lógica de negócio (ex: classes de entidade como <code class="language-plaintext highlighter-rouge">Produto</code>, <code class="language-plaintext highlighter-rouge">Cliente</code> e serviços que operam sobre eles).</li>
+  <li><strong>View</strong>: É a camada de apresentação visual, com a qual o usuário interage. No JavaFX, as Views são comumente definidas em arquivos <strong>FXML</strong>, um formato XML que descreve a hierarquia dos componentes visuais.</li>
+  <li><strong>Controller</strong>: Atua como o intermediário entre o Model e a View. Ele trata os eventos gerados pelo usuário na View (como cliques de botão) e atualiza o Model ou a View conforme necessário.</li>
+</ul>
+
+<p>A estrutura básica de uma tela JavaFX é o <strong>Stage</strong> (a janela principal), que contém uma <strong>Scene</strong> (a cena, ou o conteúdo da janela). A Scene, por sua vez, é composta por um grafo de <strong>Nodes</strong> (os componentes visuais como botões, caixas de texto, etc.).</p>
+
+<h3 id="estrutura-do-projeto-organização-profissional"><strong>Estrutura do Projeto: Organização Profissional</strong></h3>
+
+<p>Para uma aplicação JavaFX robusta, a organização dos pacotes é fundamental. Uma estrutura recomendada que reflete o padrão MVC seria:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src
+└── com
+    └── yourproject
+        ├── application
+        │   └── Main.java             // Classe de inicialização da aplicação
+        │
+        ├── gui
+        │   ├── MainViewController.java // Controller da tela principal
+        │   └── MainView.fxml         // Arquivo FXML da tela principal
+        │
+        ├── gui
+        │   └── util                  // Pacote para classes utilitárias da GUI
+        │       ├── Alerts.java
+        │       └── Constraints.java
+        │
+        └── model
+            ├── entities              // Classes de domínio (ex: Person.java)
+            │
+            └── services              // Classes de serviço (lógica de negócio)
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-1-configuração-do-ambiente-eclipse"><strong>Fase 1: Configuração do Ambiente (Eclipse)</strong></h3>
+
+<p>Desde o Java 11, o JavaFX não faz mais parte do JDK padrão. A configuração inicial é um passo crucial.</p>
+
+<p><strong>Checklist Detalhado:</strong></p>
+
+<ol>
+  <li><strong>Baixar o JavaFX SDK</strong>: Faça o download do SDK no site da <a href="https://gluonhq.com/products/javafx/">Gluon</a>. Descompacte-o em um local de fácil acesso (ex: <code class="language-plaintext highlighter-rouge">C:\java-libs\javafx-sdk</code>).</li>
+  <li><strong>Baixar o Scene Builder</strong>: Obtenha o instalador do Scene Builder também no site da <a href="https://gluonhq.com/products/scene-builder/">Gluon</a> e instale-o. Ele é a ferramenta visual para editar os arquivos FXML.</li>
+  <li><strong>Instalar o Plugin e(fx)clipse</strong>:
+    <ul>
+      <li>No Eclipse, vá em <code class="language-plaintext highlighter-rouge">Help</code> -&gt; <code class="language-plaintext highlighter-rouge">Install New Software...</code>.</li>
+      <li>Adicione o repositório de release do e(fx)clipse (ex: <code class="language-plaintext highlighter-rouge">http://download.eclipse.org/efxclipse/updates-released/3.4.1/site/</code>).</li>
+      <li>Selecione o plugin <code class="language-plaintext highlighter-rouge">e(fx)clipse</code> e complete a instalação. Reinicie o Eclipse.</li>
+    </ul>
+  </li>
+  <li><strong>Configurar o Scene Builder no Eclipse</strong>:
+    <ul>
+      <li>Vá em <code class="language-plaintext highlighter-rouge">Window</code> -&gt; <code class="language-plaintext highlighter-rouge">Preferences</code> -&gt; <code class="language-plaintext highlighter-rouge">JavaFX</code>.</li>
+      <li>Aponte para o arquivo executável do Scene Builder que você instalou (ex: <code class="language-plaintext highlighter-rouge">C:\Users\SeuUsuario\AppData\Local\SceneBuilder\SceneBuilder.exe</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Criar uma User Library para o JavaFX</strong>:
+    <ul>
+      <li>Vá em <code class="language-plaintext highlighter-rouge">Window</code> -&gt; <code class="language-plaintext highlighter-rouge">Preferences</code> -&gt; <code class="language-plaintext highlighter-rouge">Java</code> -&gt; <code class="language-plaintext highlighter-rouge">Build Path</code> -&gt; <code class="language-plaintext highlighter-rouge">User Libraries</code>.</li>
+      <li>Clique em <code class="language-plaintext highlighter-rouge">New...</code>, dê o nome de <code class="language-plaintext highlighter-rouge">JavaFX</code>.</li>
+      <li>Selecione sua nova biblioteca e clique em <code class="language-plaintext highlighter-rouge">Add External JARs...</code>.</li>
+      <li>Navegue até a pasta <code class="language-plaintext highlighter-rouge">lib</code> do seu SDK do JavaFX e adicione todos os arquivos <code class="language-plaintext highlighter-rouge">.jar</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Criar e Configurar o Projeto JavaFX</strong>:
+    <ul>
+      <li>Crie um novo <code class="language-plaintext highlighter-rouge">JavaFX Project</code> (<code class="language-plaintext highlighter-rouge">File</code> -&gt; <code class="language-plaintext highlighter-rouge">New</code> -&gt; <code class="language-plaintext highlighter-rouge">Other...</code>).</li>
+      <li>Durante a criação, na aba <code class="language-plaintext highlighter-rouge">Libraries</code>, adicione a User Library <code class="language-plaintext highlighter-rouge">JavaFX</code> que você criou. <strong>Não crie</strong> o arquivo <code class="language-plaintext highlighter-rouge">module-info.java</code>.</li>
+      <li><strong>Passo mais importante:</strong> Crie uma <code class="language-plaintext highlighter-rouge">Run Configuration</code> (<code class="language-plaintext highlighter-rouge">Run</code> -&gt; <code class="language-plaintext highlighter-rouge">Run Configurations...</code>). Na aba <code class="language-plaintext highlighter-rouge">Arguments</code>, no campo <code class="language-plaintext highlighter-rouge">VM arguments</code>, adicione a seguinte linha (ajuste o caminho para o seu SDK):
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--module-path "C:\java-libs\javafx-sdk\lib" --add-modules javafx.controls,javafx.fxml
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="fase-2-criando-a-primeira-aplicação-com-fxml"><strong>Fase 2: Criando a Primeira Aplicação com FXML</strong></h3>
+
+<p>Vamos carregar nossa primeira tela, definida em um arquivo FXML.</p>
+
+<p><strong>1. Arquivo <code class="language-plaintext highlighter-rouge">MainView.fxml</code></strong>
+Crie este arquivo no pacote <code class="language-plaintext highlighter-rouge">gui</code>. Você pode abri-lo com o Scene Builder para arrastar e soltar componentes, como um <code class="language-plaintext highlighter-rouge">VBox</code> e um <code class="language-plaintext highlighter-rouge">Button</code>.</p>
+
+<p><strong>2. Classe <code class="language-plaintext highlighter-rouge">Main.java</code></strong>
+Esta classe inicia a aplicação e carrega o FXML como a cena principal.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.application;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.application.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.FXMLLoader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Parent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.Scene</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.stage.Stage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">Application</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="nc">Stage</span> <span class="n">primaryStage</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">// Carrega o arquivo FXML da view principal</span>
+            <span class="nc">FXMLLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FXMLLoader</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResource</span><span class="o">(</span><span class="s">"/com/yourproject/gui/MainView.fxml"</span><span class="o">));</span>
+            <span class="nc">Parent</span> <span class="n">root</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="na">load</span><span class="o">();</span>
+
+            <span class="nc">Scene</span> <span class="n">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scene</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+            <span class="n">primaryStage</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">"JavaFX Application"</span><span class="o">);</span>
+            <span class="n">primaryStage</span><span class="o">.</span><span class="na">setScene</span><span class="o">(</span><span class="n">scene</span><span class="o">);</span>
+            <span class="n">primaryStage</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">launch</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-3-implementando-o-controller-e-tratando-eventos"><strong>Fase 3: Implementando o Controller e Tratando Eventos</strong></h3>
+
+<p>Agora, vamos adicionar interatividade à nossa tela. Usaremos um exemplo simples de uma calculadora de soma.</p>
+
+<p><strong>1. <code class="language-plaintext highlighter-rouge">MainView.fxml</code> (editado no Scene Builder)</strong></p>
+
+<ul>
+  <li>Adicione dois <code class="language-plaintext highlighter-rouge">TextField</code> (para os números), um <code class="language-plaintext highlighter-rouge">Button</code> (para somar) e um <code class="language-plaintext highlighter-rouge">Label</code> (para o resultado).</li>
+  <li><strong>Vínculo com o Controller</strong>: Na aba “Controller” do Scene Builder (canto inferior esquerdo), defina a classe do controller: <code class="language-plaintext highlighter-rouge">com.yourproject.gui.MainViewController</code>.</li>
+  <li><strong>Vínculo dos Componentes</strong>:
+    <ul>
+      <li>Selecione o primeiro <code class="language-plaintext highlighter-rouge">TextField</code> e, na aba “Code” (canto superior direito), defina seu <code class="language-plaintext highlighter-rouge">fx:id</code> como <code class="language-plaintext highlighter-rouge">txtNumber1</code>.</li>
+      <li>Faça o mesmo para o segundo <code class="language-plaintext highlighter-rouge">TextField</code> (<code class="language-plaintext highlighter-rouge">txtNumber2</code>), para o <code class="language-plaintext highlighter-rouge">Button</code> (<code class="language-plaintext highlighter-rouge">btSum</code>) e para o <code class="language-plaintext highlighter-rouge">Label</code> (<code class="language-plaintext highlighter-rouge">labelResult</code>).</li>
+      <li>Selecione o <code class="language-plaintext highlighter-rouge">Button</code> e, na propriedade <code class="language-plaintext highlighter-rouge">On Action</code>, digite <code class="language-plaintext highlighter-rouge">#onBtSumAction</code>. Isso vincula o clique do botão ao método de mesmo nome no controller.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>2. Classe <code class="language-plaintext highlighter-rouge">MainViewController.java</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.gui;</span>
+
+<span class="kn">import</span> <span class="nn">com.yourproject.gui.util.Alerts</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.fxml.FXML</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Button</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Label</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.TextField</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Alert.AlertType</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainViewController</span> <span class="o">{</span>
+
+    <span class="c1">// A anotação @FXML injeta as instâncias dos componentes do FXML</span>
+    <span class="nd">@FXML</span>
+    <span class="kd">private</span> <span class="nc">TextField</span> <span class="n">txtNumber1</span><span class="o">;</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">private</span> <span class="nc">TextField</span> <span class="n">txtNumber2</span><span class="o">;</span>
+    
+    <span class="nd">@FXML</span>
+    <span class="kd">private</span> <span class="nc">Label</span> <span class="n">labelResult</span><span class="o">;</span>
+
+    <span class="nd">@FXML</span>
+    <span class="kd">private</span> <span class="nc">Button</span> <span class="n">btSum</span><span class="o">;</span>
+
+    <span class="c1">// Este método será chamado quando o botão for clicado</span>
+    <span class="nd">@FXML</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onBtSumAction</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">double</span> <span class="n">number1</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">txtNumber1</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
+            <span class="kt">double</span> <span class="n">number2</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">txtNumber2</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
+            <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">number1</span> <span class="o">+</span> <span class="n">number2</span><span class="o">;</span>
+            <span class="n">labelResult</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">sum</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="k">catch</span> <span class="o">(</span><span class="nc">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Usa uma classe utilitária para mostrar um alerta de erro</span>
+            <span class="nc">Alerts</span><span class="o">.</span><span class="na">showAlert</span><span class="o">(</span><span class="s">"Error"</span><span class="o">,</span> <span class="s">"Parse error"</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="nc">AlertType</span><span class="o">.</span><span class="na">ERROR</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-4-criando-classes-utilitárias-essenciais"><strong>Fase 4: Criando Classes Utilitárias Essenciais</strong></h3>
+
+<p>Classes de utilidade ajudam a reutilizar código e a manter os controllers mais limpos.</p>
+
+<p><strong>1. Classe <code class="language-plaintext highlighter-rouge">Alerts.java</code></strong>
+Para padronizar a exibição de caixas de diálogo.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.gui.util;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Alert</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javafx.scene.control.Alert.AlertType</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Alerts</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">showAlert</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">,</span> <span class="nc">String</span> <span class="n">header</span><span class="o">,</span> <span class="nc">String</span> <span class="n">content</span><span class="o">,</span> <span class="nc">AlertType</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Alert</span> <span class="n">alert</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Alert</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setHeaderText</span><span class="o">(</span><span class="n">header</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">setContentText</span><span class="o">(</span><span class="n">content</span><span class="o">);</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">showAndWait</span><span class="o">();</span> <span class="c1">// Use showAndWait() para bloquear a execução até o alerta ser fechado</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>2. Classe <code class="language-plaintext highlighter-rouge">Constraints.java</code></strong>
+Para adicionar restrições a campos de texto, como permitir apenas números.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.yourproject.gui.util;</span>
+
+<span class="kn">import</span> <span class="nn">javafx.scene.control.TextField</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Constraints</span> <span class="o">{</span>
+    
+    <span class="c1">// Restringe o TextField para aceitar apenas dígitos inteiros</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setTextFieldInteger</span><span class="o">(</span><span class="nc">TextField</span> <span class="n">txt</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Adiciona um listener que observa mudanças na propriedade de texto</span>
+        <span class="n">txt</span><span class="o">.</span><span class="na">textProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">((</span><span class="n">obs</span><span class="o">,</span> <span class="n">oldValue</span><span class="o">,</span> <span class="n">newValue</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="c1">// Se o novo valor não for nulo e não corresponder à expressão regular para dígitos</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">newValue</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">newValue</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">"\\d*"</span><span class="o">))</span> <span class="o">{</span>
+                <span class="c1">// Reverte para o valor antigo</span>
+                <span class="n">txt</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">oldValue</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Restringe o TextField para aceitar apenas números de ponto flutuante</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setTextFieldDouble</span><span class="o">(</span><span class="nc">TextField</span> <span class="n">txt</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">txt</span><span class="o">.</span><span class="na">textProperty</span><span class="o">().</span><span class="na">addListener</span><span class="o">((</span><span class="n">obs</span><span class="o">,</span> <span class="n">oldValue</span><span class="o">,</span> <span class="n">newValue</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">newValue</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">newValue</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">"\\d*([\\.]\\d*)?"</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">txt</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">oldValue</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Como usar</strong>: No seu <code class="language-plaintext highlighter-rouge">ViewController</code>, você pode implementar a interface <code class="language-plaintext highlighter-rouge">Initializable</code> e usar o método <code class="language-plaintext highlighter-rouge">initialize</code> para aplicar as restrições:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainViewController</span> <span class="kd">implements</span> <span class="nc">Initializable</span> <span class="o">{</span>
+    <span class="c1">// ... @FXML dos componentes</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="no">URL</span> <span class="n">url</span><span class="o">,</span> <span class="nc">ResourceBundle</span> <span class="n">rb</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Constraints</span><span class="o">.</span><span class="na">setTextFieldDouble</span><span class="o">(</span><span class="n">txtNumber1</span><span class="o">);</span>
+        <span class="nc">Constraints</span><span class="o">.</span><span class="na">setTextFieldDouble</span><span class="o">(</span><span class="n">txtNumber2</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// ... resto do código</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-5-trabalhando-com-combobox"><strong>Fase 5: Trabalhando com ComboBox</strong></h3>
+
+<p>O <code class="language-plaintext highlighter-rouge">ComboBox</code> é usado para apresentar uma lista de opções.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// No seu ViewController</span>
+
+<span class="nd">@FXML</span>
+<span class="kd">private</span> <span class="nc">ComboBox</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">comboBoxPerson</span><span class="o">;</span>
+
+<span class="kd">private</span> <span class="nc">ObservableList</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">obsList</span><span class="o">;</span>
+
+<span class="c1">// No método initialize</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="no">URL</span> <span class="n">url</span><span class="o">,</span> <span class="nc">ResourceBundle</span> <span class="n">rb</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"Maria"</span><span class="o">));</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="s">"Alex"</span><span class="o">));</span>
+
+    <span class="c1">// Converte a lista para uma ObservableList, necessária para o ComboBox</span>
+    <span class="n">obsList</span> <span class="o">=</span> <span class="nc">FXCollections</span><span class="o">.</span><span class="na">observableArrayList</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+    <span class="n">comboBoxPerson</span><span class="o">.</span><span class="na">setItems</span><span class="o">(</span><span class="n">obsList</span><span class="o">);</span>
+
+    <span class="c1">// Para obter o item selecionado</span>
+    <span class="c1">// Person person = comboBoxPerson.getSelectionModel().getSelectedItem();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Personalizando a exibição</strong>: Por padrão, o ComboBox exibe o resultado do método <code class="language-plaintext highlighter-rouge">toString()</code> do objeto. Para mostrar um atributo específico (como <code class="language-plaintext highlighter-rouge">person.getName()</code>), customize as células:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Dentro do método initialize</span>
+<span class="nc">Callback</span><span class="o">&lt;</span><span class="nc">ListView</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;,</span> <span class="nc">ListCell</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;&gt;</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">lv</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="nc">ListCell</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">updateItem</span><span class="o">(</span><span class="nc">Person</span> <span class="n">item</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">empty</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">updateItem</span><span class="o">(</span><span class="n">item</span><span class="o">,</span> <span class="n">empty</span><span class="o">);</span>
+        <span class="n">setText</span><span class="o">(</span><span class="n">empty</span> <span class="o">?</span> <span class="s">""</span> <span class="o">:</span> <span class="n">item</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+<span class="n">comboBoxPerson</span><span class="o">.</span><span class="na">setCellFactory</span><span class="o">(</span><span class="n">factory</span><span class="o">);</span>
+<span class="n">comboBoxPerson</span><span class="o">.</span><span class="na">setButtonCell</span><span class="o">(</span><span class="n">factory</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="kc">null</span><span class="o">));</span>
+</code></pre></div></div>
+

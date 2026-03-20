@@ -1,0 +1,329 @@
+<h2 id="-tutorial-completo-instalando-e-configurando-neovim--lunarvim-no-debianubuntu">📝 <strong>Tutorial Completo: Instalando e Configurando Neovim + LunarVim no Debian/Ubuntu</strong></h2>
+
+<p><strong>Inclui Node.js, Python, Rust, configuração de Bash/Zsh e desinstalação completa</strong></p>
+
+<hr />
+
+<h2 id="-1-atualizar-o-sistema">✅ <strong>1. Atualizar o sistema</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt upgrade <span class="nt">-y</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-2-instalar-dependências-básicas">✅ <strong>2. Instalar dependências básicas</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> git curl wget unzip <span class="nb">tar </span>build-essential ripgrep fd-find python3 python3-pip python3-venv
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-3-instalar-o-neovim-escolha-uma-opção">⚙️ <strong>3. Instalar o Neovim (escolha uma opção)</strong></h2>
+
+<h3 id="-opção-1-appimage-recomendado">🔹 <strong>Opção 1: AppImage (recomendado)</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+<span class="nb">chmod </span>u+x nvim.appimage
+<span class="nb">sudo mv </span>nvim.appimage /usr/local/bin/nvim
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-opção-2-ppa-ubuntu">🔹 <strong>Opção 2: PPA (Ubuntu)</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>add-apt-repository ppa:neovim-ppa/stable
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> neovim
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-opção-3-targz-optnvim">🔹 <strong>Opção 3: tar.gz (/opt/nvim)</strong></h3>
+
+<p>👍 Opção para <strong>renomear <code class="language-plaintext highlighter-rouge">/opt/nvim-linux-x86_64</code> para <code class="language-plaintext highlighter-rouge">/opt/nvim</code></strong>, garantindo compatibilidade com o resto do tutorial, que já usa <code class="language-plaintext highlighter-rouge">/opt/nvim</code> como caminho principal.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-LO</span> https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+<span class="nb">sudo tar</span> <span class="nt">-xzf</span> nvim-linux-x86_64.tar.gz <span class="nt">-C</span> /opt
+<span class="nb">sudo mv</span> /opt/nvim-linux-x86_64 /opt/nvim
+</code></pre></div></div>
+
+<p>✅ <strong>Adicionar <code class="language-plaintext highlighter-rouge">/opt/nvim/bin</code> no PATH (<code class="language-plaintext highlighter-rouge">.bashrc</code> e <code class="language-plaintext highlighter-rouge">.zshrc</code>):</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH="/opt/nvim/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export PATH="/opt/nvim/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+<span class="nb">source</span> ~/.bashrc
+<span class="nb">source</span> ~/.zshrc
+</code></pre></div></div>
+
+<p>Verificar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvim <span class="nt">--version</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-4-instalar-nodejs-com-nvm">✅ <strong>4. Instalar Node.js (com NVM)</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+<span class="nb">source</span> ~/.bashrc
+<span class="nb">source</span> ~/.zshrc
+nvm <span class="nb">install</span> <span class="nt">--lts</span>
+nvm use <span class="nt">--lts</span>
+</code></pre></div></div>
+
+<p>Verificar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">-v</span>
+npm <span class="nt">-v</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-5-instalar-python-para-neovim">✅ <strong>5. Instalar Python para Neovim</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> pynvim
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>python3-pynvim
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-6-instalar-rust">✅ <strong>6. Instalar Rust</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--proto</span> <span class="s1">'=https'</span> <span class="nt">--tlsv1</span>.2 <span class="nt">-sSf</span> https://sh.rustup.rs | sh
+<span class="nb">source</span> <span class="nv">$HOME</span>/.cargo/env
+</code></pre></div></div>
+
+<p>✅ <strong>Adicionar <code class="language-plaintext highlighter-rouge">$HOME/.cargo/bin</code> no PATH (se necessário):</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH="$HOME/.cargo/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export PATH="$HOME/.cargo/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+<span class="nb">source</span> ~/.bashrc
+<span class="nb">source</span> ~/.zshrc
+</code></pre></div></div>
+
+<p>Verificar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rustc <span class="nt">--version</span>
+cargo <span class="nt">--version</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-7-instalar-lunarvim">✅ <strong>7. Instalar LunarVim</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LV_BRANCH</span><span class="o">=</span><span class="s1">'release-1.4/neovim-0.9'</span> bash &lt;<span class="o">(</span>curl <span class="nt">-s</span> https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh<span class="o">)</span>
+</code></pre></div></div>
+
+<p>✅ <strong>Adicionar <code class="language-plaintext highlighter-rouge">$HOME/.local/bin</code> no PATH:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export PATH="$HOME/.local/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="s1">'export PATH="$HOME/.local/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+<span class="nb">source</span> ~/.bashrc
+<span class="nb">source</span> ~/.zshrc
+</code></pre></div></div>
+
+<p>Verificar:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lvim <span class="nt">--version</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-8-instalar-nerd-fonts-opcional">✅ <strong>8. Instalar Nerd Fonts (opcional)</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/Downloads
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FiraCode.zip
+unzip FiraCode.zip <span class="nt">-d</span> ~/.fonts
+fc-cache <span class="nt">-fv</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-9-instalar-plugins-extras-opcional">✅ <strong>9. Instalar plugins extras (opcional)</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> black isort flake8
+npm <span class="nb">install</span> <span class="nt">-g</span> eslint prettier typescript typescript-language-server
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="️-10-como-desinstalar-tudo">🗑️ <strong>10. Como desinstalar tudo</strong></h2>
+
+<h3 id="-desinstalar-lunarvim">🔹 <strong>Desinstalar LunarVim</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.local/share/lunarvim/uninstall.sh
+<span class="nb">rm</span> <span class="nt">-rf</span> ~/.config/lvim ~/.local/share/lunarvim ~/.cache/lvim
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-desinstalar-neovim">🔹 <strong>Desinstalar Neovim</strong></h3>
+
+<p>✅ <strong>AppImage:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> /usr/local/bin/nvim
+</code></pre></div></div>
+
+<p>✅ <strong>PPA:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt remove <span class="nt">--purge</span> neovim
+<span class="nb">sudo </span>add-apt-repository <span class="nt">--remove</span> ppa:neovim-ppa/stable
+</code></pre></div></div>
+
+<p>✅ <strong>tar.gz (/opt/nvim):</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> <span class="nt">-rf</span> /opt/nvim
+</code></pre></div></div>
+
+<p>✅ <strong>Remover outros arquivos residuais em <code class="language-plaintext highlighter-rouge">/opt</code>:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> <span class="nt">-rf</span> /opt/nvim-linux-x86_64
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> /opt/nvim
+<span class="nb">sudo rm</span> <span class="nt">-f</span> /opt/nvim-linux-x86_64.appimage
+<span class="nb">sudo rm</span> <span class="nt">-f</span> /opt/nvim-linux-x86_64.tar.gz
+</code></pre></div></div>
+
+<p>✅ <strong>Remover arquivos no diretório home:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-f</span> ~/nvim-linux-x86_64
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> /opt/nvim
+<span class="nb">rm</span> <span class="nt">-f</span> ~/nvim-linux-x86_64.appimage
+<span class="nb">rm</span> <span class="nt">-f</span> ~/nvim-linux-x86_64.tar.gz
+</code></pre></div></div>
+
+<p>✅ <strong>Remover arquivos no diretório Downloads:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-f</span> ~/Downloads/nvim-linux-x86_64
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> /opt/nvim
+<span class="nb">rm</span> <span class="nt">-f</span> ~/Downloads/nvim-linux-x86_64.appimage
+<span class="nb">rm</span> <span class="nt">-f</span> ~/Downloads/nvim-linux-x86_64.tar.gz
+</code></pre></div></div>
+
+<p>✅ <strong>Remover arquivos no diretório <code class="language-plaintext highlighter-rouge">~/opt</code>:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-f</span> ~/opt/nvim-linux-x86_64
+<span class="nb">sudo rm</span> <span class="nt">-rf</span> /opt/nvim
+<span class="nb">rm</span> <span class="nt">-f</span> ~/opt/nvim-linux-x86_64.appimage
+<span class="nb">rm</span> <span class="nt">-f</span> ~/opt/nvim-linux-x86_64.tar.gz
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-remover-path-do-bashrc-e-zshrc">🔹 <strong>Remover PATH do <code class="language-plaintext highlighter-rouge">.bashrc</code> e <code class="language-plaintext highlighter-rouge">.zshrc</code>:</strong></h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\/opt\/nvim\/bin/d'</span> ~/.bashrc
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\/opt\/nvim\/bin/d'</span> ~/.zshrc
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\$HOME\/\.cargo\/bin/d'</span> ~/.bashrc
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\$HOME\/\.cargo\/bin/d'</span> ~/.zshrc
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\$HOME\/\.local\/bin/d'</span> ~/.bashrc
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\$HOME\/\.local\/bin/d'</span> ~/.zshrc
+<span class="nb">source</span> ~/.bashrc
+<span class="nb">source</span> ~/.zshrc
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-11-testar-se-foi-removido">✅ <strong>11. Testar se foi removido</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>which nvim
+which lvim
+</code></pre></div></div>
+
+<p>✅ Se não retornar nada, tudo foi removido com sucesso.</p>
+
+<hr />
+
+<h2 id="-tutorial-revisado-compatível-e-completo">🎉 <strong>Tutorial revisado, compatível e completo!</strong></h2>
+
+<p>O comando <code class="language-plaintext highlighter-rouge">sudo mv /opt/nvim-linux-x86_64 /opt/nvim</code> já garante que o PATH <code class="language-plaintext highlighter-rouge">/opt/nvim/bin</code> funciona corretamente sem alterações extras. Precisa incluir mais alguma configuração automática ou ajuste?</p>
+
+<ul>
+  <li>
+    <p>Download e extração</p>
+  </li>
+  <li>
+    <p>Renomeação para <code class="language-plaintext highlighter-rouge">/opt/nvim</code></p>
+  </li>
+  <li>
+    <p>Configuração do PATH para Bash e Zsh</p>
+  </li>
+  <li>
+    <p>Verificação</p>
+  </li>
+  <li>
+    <p>Comandos de desinstalação</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-desinstalação-caso-necessário">🧹 Desinstalação (caso necessário)</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> <span class="nt">-rf</span> /opt/nvim
+<span class="nb">sudo rm</span> <span class="nt">-f</span> /opt/nvim-linux-x86_64.tar.gz
+<span class="nb">sudo rm</span> <span class="nt">-f</span> /opt/nvim-linux-x86_64
+<span class="nb">sudo rm</span> <span class="nt">-f</span> /opt/nvim-linux-x86_64.appimage
+<span class="nb">rm</span> <span class="nt">-f</span> ~/nvim-linux-x86_64<span class="k">*</span>
+<span class="nb">rm</span> <span class="nt">-f</span> ~/Downloads/nvim-linux-x86_64<span class="k">*</span>
+<span class="nb">rm</span> <span class="nt">-f</span> ~/opt/nvim-linux-x86_64<span class="k">*</span>
+</code></pre></div></div>
+
+<p>Limpar o PATH do <code class="language-plaintext highlighter-rouge">.bashrc</code> e <code class="language-plaintext highlighter-rouge">.zshrc</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\/opt\/nvim\/bin/d'</span> ~/.bashrc
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'/\/opt\/nvim\/bin/d'</span> ~/.zshrc
+<span class="nb">source</span> ~/.bashrc
+<span class="nb">source</span> ~/.zshrc
+</code></pre></div></div>
+
+<hr />
+
+<p>Se quiser, posso também transformar esse tutorial em um script <code class="language-plaintext highlighter-rouge">.sh</code> executável. Deseja isso?</p>
+
+<p>Ótima observação! Esse erro acontece porque <strong>Debian/Ubuntu mais recentes</strong> (como Debian 12, Ubuntu 22.04+) bloqueiam o <code class="language-plaintext highlighter-rouge">pip</code> para instalar pacotes <strong>no sistema global</strong> (para proteger o sistema).</p>
+
+<p>Mas temos <strong>soluções simples</strong>! Vou explicar e sugerir a melhor:</p>
+
+<hr />
+
+<h2 id="--opção-1-recomendada-usar-o---break-system-packages">✅ <strong>🎯 Opção 1 (recomendada): usar o <code class="language-plaintext highlighter-rouge">--break-system-packages</code></strong></h2>
+
+<p>Se você <strong>não se importa em instalar globalmente</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--user</span> <span class="nt">--break-system-packages</span> pynvim
+</code></pre></div></div>
+
+<p>✅ Isso resolve <strong>imediatamente</strong> sem mexer no sistema.</p>
+
+<hr />
+
+<h2 id="--opção-2-criar-um-ambiente-virtual-recomendado-se-quiser-isolar">✅ <strong>🎯 Opção 2: criar um ambiente virtual (recomendado se quiser isolar)</strong></h2>
+
+<p>Mais seguro, evita conflitos com o sistema:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> venv ~/.venvs/lunarvim
+<span class="nb">source</span> ~/.venvs/lunarvim/bin/activate
+pip <span class="nb">install </span>pynvim
+</code></pre></div></div>
+
+<p>Depois adicione o Python do venv ao <code class="language-plaintext highlighter-rouge">PATH</code> ou configure no LunarVim se necessário.</p>
+
+<hr />
+
+<h2 id="--opção-3-instalar-via-apt-versão-empacotada">✅ <strong>🎯 Opção 3: instalar via apt (versão empacotada)</strong></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>python3-pynvim
+</code></pre></div></div>
+
+<p>⚠️ Atenção: pode estar <strong>desatualizado</strong> no repositório da distro.</p>
+
+<hr />
+
+<p>👉 <strong>Minha recomendação rápida</strong>: use <strong>opção 1 (<code class="language-plaintext highlighter-rouge">--break-system-packages</code>)</strong>, funciona direto e sem necessidade de venv se for uso pessoal.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

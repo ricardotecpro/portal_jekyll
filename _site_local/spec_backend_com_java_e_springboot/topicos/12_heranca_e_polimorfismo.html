@@ -1,0 +1,1203 @@
+<h1 id="java-herança-e-polimorfismo">Java: Herança e Polimorfismo</h1>
+
+<h2 id="herança-">Herança 🧬</h2>
+
+<p>Herança é um tipo de associação entre classes que permite que uma classe (subclasse) herde todos os dados (atributos) e comportamentos (métodos) de outra classe (superclasse). Isso promove o reuso de código e estabelece uma relação hierárquica entre as classes.</p>
+
+<h3 id="definições-importantes">Definições Importantes</h3>
+
+<ul>
+  <li><strong>Relação “é-um”</strong>: A herança representa uma relação “é-um”. Por exemplo, um <code class="language-plaintext highlighter-rouge">Carro</code> <em>é um</em> <code class="language-plaintext highlighter-rouge">Veiculo</code>.</li>
+  <li><strong>Generalização/Especialização</strong>: A superclasse é uma generalização, enquanto a subclasse é uma especialização. <code class="language-plaintext highlighter-rouge">Veiculo</code> é genérico; <code class="language-plaintext highlighter-rouge">Carro</code> e <code class="language-plaintext highlighter-rouge">Moto</code> são especializações.</li>
+  <li><strong>Superclasse (Classe Base)</strong>: A classe cujas características são herdadas.</li>
+  <li><strong>Subclasse (Classe Derivada)</strong>: A classe que herda características de outra classe.</li>
+  <li><strong>Herança / Extensão</strong>: A subclasse estende a superclasse.</li>
+  <li><strong>Associação entre Classes</strong>: Herança é uma relação definida entre classes, não entre objetos individuais.</li>
+</ul>
+
+<h3 id="vantagens-da-herança">Vantagens da Herança</h3>
+
+<ul>
+  <li><strong>Reuso de Código</strong>: Atributos e métodos comuns definidos na superclasse não precisam ser reescritos nas subclasses.</li>
+  <li><strong>Polimorfismo</strong>: Permite que objetos de diferentes subclasses sejam tratados como objetos da superclasse, possibilitando comportamentos específicos em tempo de execução. (Mais detalhes sobre polimorfismo adiante).</li>
+</ul>
+
+<h3 id="sintaxe-em-java">Sintaxe em Java</h3>
+
+<p>Para uma classe <code class="language-plaintext highlighter-rouge">A</code> herdar de uma classe <code class="language-plaintext highlighter-rouge">B</code>, utiliza-se a palavra-chave <code class="language-plaintext highlighter-rouge">extends</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">B</span> <span class="o">{</span>
+    <span class="c1">// Atributos e métodos de B</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="no">B</span> <span class="o">{</span>
+    <span class="c1">// A herda os membros de B</span>
+    <span class="c1">// Atributos e métodos adicionais específicos de A</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-prático-contas-bancárias">Exemplo Prático: Contas Bancárias</h3>
+
+<p>Suponha um sistema bancário que possui uma conta comum (<code class="language-plaintext highlighter-rouge">Conta</code>) e uma conta para empresas (<code class="language-plaintext highlighter-rouge">ContaEmpresarial</code>). A conta para empresa possui todos os membros da conta comum, mais um limite de empréstimo e uma operação para realizar empréstimo.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Conta</code></strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Representação conceitual</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">;</span> <span class="c1">// protected para ser acessível por subclasses diretas</span>
+
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numero</span> <span class="o">=</span> <span class="n">numero</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="nc">Double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">quantia</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="nc">Double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">+=</span> <span class="n">quantia</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters para numero e titular</span>
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getNumero</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">numero</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTitular</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">titular</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code></strong></p>
+
+<p>Esta classe herda de <code class="language-plaintext highlighter-rouge">Conta</code> e adiciona funcionalidades específicas.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Representação conceitual</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaEmpresarial</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">limiteEmprestimo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ContaEmpresarial</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">limiteEmprestimo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span> <span class="c1">// Chama o construtor da superclasse</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">limiteEmprestimo</span> <span class="o">=</span> <span class="n">limiteEmprestimo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">realizarEmprestimo</span><span class="o">(</span><span class="nc">Double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&lt;=</span> <span class="n">limiteEmprestimo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">depositar</span><span class="o">(</span><span class="n">quantia</span><span class="o">);</span> <span class="c1">// Reutiliza o método depositar da superclasse</span>
+            <span class="c1">// Ou, se houver taxas no empréstimo que afetam o saldo diretamente:</span>
+            <span class="c1">// saldo += quantia - TAXA_EMPRESTIMO; (se 'saldo' for protected)</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Quantia excede o limite de empréstimo."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getter para limiteEmprestimo</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getLimiteEmprestimo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">limiteEmprestimo</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Com a herança, <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code> reutiliza <code class="language-plaintext highlighter-rouge">numero</code>, <code class="language-plaintext highlighter-rouge">titular</code>, <code class="language-plaintext highlighter-rouge">saldo</code> e os métodos <code class="language-plaintext highlighter-rouge">sacar</code> e <code class="language-plaintext highlighter-rouge">depositar</code> da classe <code class="language-plaintext highlighter-rouge">Conta</code>.</p>
+
+<h3 id="modificador-de-acesso-protected">Modificador de Acesso <code class="language-plaintext highlighter-rouge">protected</code></h3>
+
+<p>O modificador <code class="language-plaintext highlighter-rouge">protected</code> em Java torna um membro (atributo ou método) acessível:</p>
+<ul>
+  <li>Dentro da própria classe.</li>
+  <li>Por outras classes no mesmo pacote.</li>
+  <li>Por subclasses, mesmo que estejam em pacotes diferentes.</li>
+</ul>
+
+<p>No exemplo acima, se <code class="language-plaintext highlighter-rouge">saldo</code> na classe <code class="language-plaintext highlighter-rouge">Conta</code> fosse <code class="language-plaintext highlighter-rouge">private</code>, a classe <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code> não poderia acessá-lo diretamente para realizar o empréstimo (a menos que usasse métodos <code class="language-plaintext highlighter-rouge">public</code> ou <code class="language-plaintext highlighter-rouge">protected</code> da superclasse para alterar o saldo). Torná-lo <code class="language-plaintext highlighter-rouge">protected</code> permite esse acesso direto pela subclasse.</p>
+
+<p><strong>Exemplo de Acesso a <code class="language-plaintext highlighter-rouge">balance</code> (saldo) ao fazer um empréstimo:</strong>
+Se na <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code> quiséssemos adicionar uma taxa ao realizar um empréstimo diretamente no saldo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe ContaEmpresarial</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">realizarEmprestimoComTaxa</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">quantia</span> <span class="o">&lt;=</span> <span class="n">limiteEmprestimo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Supondo que 'saldo' seja 'protected' na classe Conta</span>
+        <span class="c1">// e que a taxa de empréstimo seja de 10.0</span>
+        <span class="n">saldo</span> <span class="o">+=</span> <span class="n">quantia</span> <span class="o">-</span> <span class="mf">10.0</span><span class="o">;</span> <span class="c1">// Acesso direto ao saldo herdado</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Atenção:</strong> Embora o acesso direto a campos <code class="language-plaintext highlighter-rouge">protected</code> seja possível, geralmente é uma prática melhor encapsular o acesso através de métodos <code class="language-plaintext highlighter-rouge">public</code> ou <code class="language-plaintext highlighter-rouge">protected</code> na superclasse, se uma lógica mais complexa for necessária para alterar o estado.</p>
+
+<h2 id="upcasting-e-downcasting-">Upcasting e Downcasting 🔄</h2>
+
+<p>São mecanismos de conversão entre tipos de classes em uma hierarquia de herança.</p>
+
+<h3 id="upcasting">Upcasting</h3>
+
+<ul>
+  <li>É a conversão de um objeto da subclasse para um objeto da superclasse.</li>
+  <li>É sempre seguro e implícito (não requer um <em>cast</em> explícito).</li>
+  <li><strong>Uso comum</strong>: Polimorfismo, onde você pode tratar objetos de subclasses de forma genérica através de uma referência da superclasse.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Upcasting</span>
+<span class="nc">Conta</span> <span class="n">conta1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaEmpresarial</span><span class="o">(</span><span class="mi">1002</span><span class="o">,</span> <span class="s">"Maria"</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">500.0</span><span class="o">);</span>
+<span class="nc">Conta</span> <span class="n">conta2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaPoupanca</span><span class="o">(</span><span class="mi">1003</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.01</span><span class="o">);</span> <span class="c1">// Supondo que ContaPoupanca exista</span>
+</code></pre></div></div>
+<p>Aqui, <code class="language-plaintext highlighter-rouge">conta1</code> é do tipo <code class="language-plaintext highlighter-rouge">Conta</code>, mas aponta para um objeto <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code>. Você só pode chamar métodos definidos em <code class="language-plaintext highlighter-rouge">Conta</code> através de <code class="language-plaintext highlighter-rouge">conta1</code>, a menos que use downcasting.</p>
+
+<h3 id="downcasting">Downcasting</h3>
+
+<ul>
+  <li>É a conversão de um objeto da superclasse (que na verdade aponta para um objeto de uma subclasse) de volta para o tipo da subclasse.</li>
+  <li>Requer um <em>cast</em> explícito e pode gerar uma <code class="language-plaintext highlighter-rouge">ClassCastException</code> em tempo de execução se o objeto não for realmente uma instância da subclasse para a qual está sendo convertido.</li>
+  <li><strong>Palavra-chave <code class="language-plaintext highlighter-rouge">instanceof</code></strong>: Usada para verificar o tipo real do objeto antes de tentar o downcasting, evitando a <code class="language-plaintext highlighter-rouge">ClassCastException</code>.</li>
+  <li><strong>Uso comum</strong>: Quando você precisa acessar membros específicos da subclasse que não existem na superclasse.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Conta</span> <span class="n">contaDoTipoEmpresarial</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaEmpresarial</span><span class="o">(</span><span class="mi">1003</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">200.0</span><span class="o">);</span>
+<span class="nc">Conta</span> <span class="n">contaDoTipoPoupanca</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaPoupanca</span><span class="o">(</span><span class="mi">1004</span><span class="o">,</span> <span class="s">"Anna"</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.01</span><span class="o">);</span>
+
+<span class="c1">// Downcasting</span>
+<span class="c1">// Para acessar o método realizarEmprestimo, específico de ContaEmpresarial</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">contaDoTipoEmpresarial</span> <span class="k">instanceof</span> <span class="nc">ContaEmpresarial</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ContaEmpresarial</span> <span class="n">contaEspecificaEmpresarial</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ContaEmpresarial</span><span class="o">)</span> <span class="n">contaDoTipoEmpresarial</span><span class="o">;</span>
+    <span class="n">contaEspecificaEmpresarial</span><span class="o">.</span><span class="na">realizarEmprestimo</span><span class="o">(</span><span class="mf">100.0</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Empréstimo realizado!"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"O objeto não é uma ContaEmpresarial."</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// Tentativa de downcasting incorreto (para ilustrar o uso de instanceof)</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">contaDoTipoPoupanca</span> <span class="k">instanceof</span> <span class="nc">ContaEmpresarial</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ContaEmpresarial</span> <span class="n">contaErrada</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ContaEmpresarial</span><span class="o">)</span> <span class="n">contaDoTipoPoupanca</span><span class="o">;</span> <span class="c1">// Isso não ocorreria devido ao 'if'</span>
+    <span class="c1">// Se o 'if' não estivesse aqui, uma ClassCastException ocorreria</span>
+<span class="o">}</span>
+
+<span class="c1">// Downcasting correto para ContaPoupanca</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">contaDoTipoPoupanca</span> <span class="k">instanceof</span> <span class="nc">ContaPoupanca</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ContaPoupanca</span> <span class="n">contaEspecificaPoupanca</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ContaPoupanca</span><span class="o">)</span> <span class="n">contaDoTipoPoupanca</span><span class="o">;</span>
+    <span class="n">contaEspecificaPoupanca</span><span class="o">.</span><span class="na">atualizarSaldo</span><span class="o">();</span> <span class="c1">// Supondo um método atualizarSaldo()</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo da poupança atualizado!"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="sobreposição-palavra-super-e-anotação-override-">Sobreposição, Palavra <code class="language-plaintext highlighter-rouge">super</code> e Anotação <code class="language-plaintext highlighter-rouge">@Override</code> 📝</h2>
+
+<h3 id="sobreposição-sobrescrita">Sobreposição (Sobrescrita)</h3>
+
+<ul>
+  <li>É a capacidade de uma subclasse fornecer uma implementação específica para um método que já é definido em sua superclasse.</li>
+  <li>O método na subclasse deve ter a mesma assinatura (nome, tipo de retorno e parâmetros) do método na superclasse.</li>
+  <li><strong>Anotação <code class="language-plaintext highlighter-rouge">@Override</code></strong>:
+    <ul>
+      <li>É fortemente recomendável usar <code class="language-plaintext highlighter-rouge">@Override</code> antes de um método sobrescrito.</li>
+      <li>Facilita a leitura e compreensão do código, indicando explicitamente que o método está sobrescrevendo um método da superclasse.</li>
+      <li>Ajuda o compilador a verificar se a sobrescrita está correta (mesma assinatura). É uma boa prática.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Exemplo: Sobrescrevendo o método <code class="language-plaintext highlighter-rouge">sacar</code></strong></p>
+
+<p>Suponha que a <code class="language-plaintext highlighter-rouge">Conta</code> comum tenha uma taxa de saque de R$ 5.00, mas a <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> não cobra essa taxa.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Conta</code>:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="c1">// ... outros atributos e métodos ...</span>
+    <span class="kd">protected</span> <span class="kt">double</span> <span class="n">saldo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">quantia</span> <span class="o">+</span> <span class="mf">5.0</span><span class="o">;</span> <span class="c1">// Taxa de 5.0 para saque na conta comum</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">ContaPoupanca</code>:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaPoupanca</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="c1">// ... outros atributos e métodos ...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">quantia</span><span class="o">;</span> <span class="c1">// Sem taxa de saque para ContaPoupanca</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="palavra-chave-super">Palavra-chave <code class="language-plaintext highlighter-rouge">super</code></h3>
+
+<p>A palavra-chave <code class="language-plaintext highlighter-rouge">super</code> é usada para se referir a membros da superclasse.</p>
+<ul>
+  <li><strong>Acessar métodos da superclasse</strong>: <code class="language-plaintext highlighter-rouge">super.metodoDaSuperclasse()</code>.</li>
+  <li><strong>Acessar atributos da superclasse</strong>: <code class="language-plaintext highlighter-rouge">super.atributoDaSuperclasse</code> (geralmente menos comum se o atributo for <code class="language-plaintext highlighter-rouge">protected</code>, e impossível se for <code class="language-plaintext highlighter-rouge">private</code>).</li>
+  <li><strong>Chamar construtores da superclasse</strong>: <code class="language-plaintext highlighter-rouge">super(parametros)</code> deve ser a primeira instrução em um construtor da subclasse.</li>
+</ul>
+
+<p><strong>Exemplo: Usando <code class="language-plaintext highlighter-rouge">super</code> no método <code class="language-plaintext highlighter-rouge">sacar</code></strong></p>
+
+<p>Suponha que na <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code>, a regra para saque seja realizar o saque normalmente (como na superclasse <code class="language-plaintext highlighter-rouge">Conta</code>, que já inclui a taxa de R$ 5.00), e depois descontar uma taxa adicional de R$ 2.00.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaEmpresarial</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="c1">// ... outros atributos e métodos ...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="n">quantia</span><span class="o">);</span> <span class="c1">// Chama o método sacar da classe Conta (que já desconta 5.0)</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="mf">2.0</span><span class="o">;</span>         <span class="c1">// Desconta a taxa adicional de 2.0</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="usando-super-em-construtores">Usando <code class="language-plaintext highlighter-rouge">super</code> em Construtores</h3>
+
+<p>Quando uma subclasse é instanciada, o construtor da superclasse também precisa ser chamado. Se você não chamar explicitamente <code class="language-plaintext highlighter-rouge">super()</code> no construtor da subclasse, o Java tentará chamar o construtor padrão (sem argumentos) da superclasse. Se a superclasse não tiver um construtor padrão, ou se você precisar chamar um construtor específico da superclasse, você deve usar <code class="language-plaintext highlighter-rouge">super(parametros)</code>.</p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Conta</code>:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numero</span> <span class="o">=</span> <span class="n">numero</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code>:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaEmpresarial</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">limiteEmprestimo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ContaEmpresarial</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">,</span> <span class="kt">double</span> <span class="n">limiteEmprestimo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">numero</span><span class="o">,</span> <span class="n">titular</span><span class="o">,</span> <span class="n">saldo</span><span class="o">);</span> <span class="c1">// Chama o construtor de Conta</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">limiteEmprestimo</span> <span class="o">=</span> <span class="n">limiteEmprestimo</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="classes-e-métodos-final-">Classes e Métodos <code class="language-plaintext highlighter-rouge">final</code> 🔒</h2>
+
+<p>A palavra-chave <code class="language-plaintext highlighter-rouge">final</code> pode ser usada com classes, métodos e variáveis, cada um com um significado diferente.</p>
+
+<h3 id="classe-final">Classe <code class="language-plaintext highlighter-rouge">final</code></h3>
+
+<ul>
+  <li><strong>Evita que a classe seja herdada</strong>: Uma classe declarada como <code class="language-plaintext highlighter-rouge">final</code> não pode ter subclasses.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">MinhaClasseFinal</span> <span class="o">{</span>
+      <span class="c1">// ...</span>
+  <span class="o">}</span>
+
+  <span class="c1">// class OutraClasse extends MinhaClasseFinal {} // Erro de compilação!</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Exemplo</strong>: Se você quisesse garantir que <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> não pudesse ser estendida por outras classes:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">ContaPoupanca</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+      <span class="c1">// ...</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="método-final">Método <code class="language-plaintext highlighter-rouge">final</code></h3>
+
+<ul>
+  <li><strong>Evita que o método seja sobrescrito</strong>: Um método declarado como <code class="language-plaintext highlighter-rouge">final</code> em uma superclasse não pode ser sobrescrito em nenhuma subclasse.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClasseBase</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">meuMetodoFinal</span><span class="o">()</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Este método não pode ser sobrescrito."</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubClasse</span> <span class="kd">extends</span> <span class="nc">ClasseBase</span> <span class="o">{</span>
+      <span class="c1">// @Override</span>
+      <span class="c1">// public void meuMetodoFinal() {} // Erro de compilação!</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Exemplo</strong>: Se você não quisesse que o método <code class="language-plaintext highlighter-rouge">sacar</code> da <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> fosse modificado por futuras subclasses de <code class="language-plaintext highlighter-rouge">ContaPoupanca</code>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContaPoupanca</span> <span class="kd">extends</span> <span class="nc">Conta</span> <span class="o">{</span>
+      <span class="c1">// ...</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="kt">double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Agora este método não pode ser sobrescrito</span>
+          <span class="n">saldo</span> <span class="o">-=</span> <span class="n">quantia</span><span class="o">;</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="por-que-usar-final">Por que usar <code class="language-plaintext highlighter-rouge">final</code>?</h3>
+
+<ul>
+  <li><strong>Segurança</strong>: Garante que o comportamento de uma classe ou método não seja alterado por subclasses, o que pode ser crucial para manter a consistência e integridade de certas lógicas de negócio. Geralmente, convém acrescentar <code class="language-plaintext highlighter-rouge">final</code> em métodos sobrepostos se não há intenção de permitir futuras sobreposições, pois sobreposições múltiplas podem ser uma porta de entrada para inconsistências.</li>
+  <li><strong>Performance</strong>: Em alguns casos, o compilador/JVM pode fazer otimizações em chamadas a métodos <code class="language-plaintext highlighter-rouge">final</code> (como <em>inlining</em>), pois sabe que a implementação não mudará. Atributos de tipo de uma classe <code class="language-plaintext highlighter-rouge">final</code> também podem ser analisados de forma mais rápida em tempo de execução. O exemplo clássico é a classe <code class="language-plaintext highlighter-rouge">String</code> em Java, que é <code class="language-plaintext highlighter-rouge">final</code>.</li>
+</ul>
+
+<h2 id="introdução-ao-polimorfismo-">Introdução ao Polimorfismo 🎭</h2>
+
+<p>Polimorfismo é um dos pilares da Programação Orientada a Objetos, junto com encapsulamento e herança. A palavra “polimorfismo” significa “muitas formas”.</p>
+
+<p>Em POO, polimorfismo é o recurso que permite que variáveis de um mesmo tipo mais genérico (superclasse) possam apontar para objetos de tipos específicos diferentes (subclasses), e assim, o comportamento do método chamado através dessa variável genérica dependerá do tipo real do objeto para o qual ela aponta.</p>
+
+<p><strong>Exemplo Básico:</strong></p>
+
+<p>Considerando as classes <code class="language-plaintext highlighter-rouge">Conta</code> e <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> (onde <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> sobrescreve o método <code class="language-plaintext highlighter-rouge">sacar</code>):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Conta</span> <span class="n">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Conta</span><span class="o">(</span><span class="mi">1020</span><span class="o">,</span> <span class="s">"Alex"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">);</span>
+<span class="nc">Conta</span> <span class="n">y</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ContaPoupanca</span><span class="o">(</span><span class="mi">1023</span><span class="o">,</span> <span class="s">"Maria"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">0.01</span><span class="o">);</span> <span class="c1">// Upcasting implícito</span>
+
+<span class="n">x</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mf">50.0</span><span class="o">);</span> <span class="c1">// Chama o sacar() de Conta (com taxa de 5.0)</span>
+               <span class="c1">// Saldo de Alex: 1000 - 50 - 5 = 945</span>
+
+<span class="n">y</span><span class="o">.</span><span class="na">sacar</span><span class="o">(</span><span class="mf">50.0</span><span class="o">);</span> <span class="c1">// Chama o sacar() de ContaPoupanca (sem taxa)</span>
+               <span class="c1">// Saldo de Maria: 1000 - 50 = 950</span>
+</code></pre></div></div>
+<p>Mesmo ambas as variáveis <code class="language-plaintext highlighter-rouge">x</code> e <code class="language-plaintext highlighter-rouge">y</code> sendo do tipo <code class="language-plaintext highlighter-rouge">Conta</code>, a chamada ao método <code class="language-plaintext highlighter-rouge">sacar()</code> executa implementações diferentes, dependendo do tipo real do objeto (<code class="language-plaintext highlighter-rouge">Conta</code> ou <code class="language-plaintext highlighter-rouge">ContaPoupanca</code>).</p>
+
+<h3 id="entendendo-o-polimorfismo-em-detalhes">Entendendo o Polimorfismo em Detalhes</h3>
+
+<ul>
+  <li><strong>Ligação Tardia (Late Binding)</strong>: A associação do tipo específico com o tipo genérico (upcasting) e a decisão de qual método específico da subclasse será executado são feitas em tempo de execução.</li>
+  <li><strong>Visão do Compilador</strong>: O compilador verifica se o método chamado existe na classe de referência (a superclasse, no caso de <code class="language-plaintext highlighter-rouge">x</code> e <code class="language-plaintext highlighter-rouge">y</code> serem do tipo <code class="language-plaintext highlighter-rouge">Conta</code>). Ele não sabe, em tempo de compilação, qual implementação específica do método (<code class="language-plaintext highlighter-rouge">Conta.sacar()</code> ou <code class="language-plaintext highlighter-rouge">ContaPoupanca.sacar()</code>) será executada. Ele só sabe que ambas são variáveis do tipo <code class="language-plaintext highlighter-rouge">Conta</code> e que a classe <code class="language-plaintext highlighter-rouge">Conta</code> possui um método <code class="language-plaintext highlighter-rouge">sacar()</code>.</li>
+</ul>
+
+<p><strong>Representação em Memória (Simplificada):</strong></p>
+
+<ul>
+  <li><strong>Stack (Pilha)</strong>: Armazena as variáveis de referência (<code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">y</code>).</li>
+  <li><strong>Heap (Monte)</strong>: Armazena os objetos reais.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">x</code> (na Stack) aponta para um objeto <code class="language-plaintext highlighter-rouge">Conta</code> (no Heap).</li>
+      <li><code class="language-plaintext highlighter-rouge">y</code> (na Stack) aponta para um objeto <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> (no Heap).</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Quando <code class="language-plaintext highlighter-rouge">y.sacar()</code> é chamado, a JVM verifica o tipo real do objeto para o qual <code class="language-plaintext highlighter-rouge">y</code> aponta (que é <code class="language-plaintext highlighter-rouge">ContaPoupanca</code>) e executa o método <code class="language-plaintext highlighter-rouge">sacar()</code> dessa classe.</p>
+
+<h2 id="exercício-resolvido-pagamento-de-funcionários-">Exercício Resolvido: Pagamento de Funcionários 👨‍💼👩‍💼</h2>
+
+<p><strong>Problema:</strong>
+Uma empresa possui funcionários próprios (<code class="language-plaintext highlighter-rouge">Funcionario</code>) e terceirizados (<code class="language-plaintext highlighter-rouge">FuncionarioTerceirizado</code>).</p>
+<ul>
+  <li>Para cada funcionário: nome, horas trabalhadas, valor por hora.</li>
+  <li>Funcionários terceirizados têm uma despesa adicional (<code class="language-plaintext highlighter-rouge">despesaAdicional</code>).</li>
+  <li>Pagamento: <code class="language-plaintext highlighter-rouge">valorPorHora * horasTrabalhadas</code>.</li>
+  <li>Funcionários terceirizados recebem um bônus de 110% da sua <code class="language-plaintext highlighter-rouge">despesaAdicional</code>.
+Fazer um programa para ler os dados de N funcionários, armazená-los em uma lista e, ao final, mostrar nome e pagamento de cada um.</li>
+</ul>
+
+<p><strong>Estrutura das Classes (UML Simplificado):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+---------------------+      +----------------------------+
+| Funcionario         |-----&gt;| FuncionarioTerceirizado    |
++---------------------+      +----------------------------+
+| - nome: String      |      | - despesaAdicional: Double |
+| - horas: Integer    |      +----------------------------+
+| - valorPorHora: Double|    | + calcularPagamento(): Double|
++---------------------+      +----------------------------+
+| + calcularPagamento(): Double|
++---------------------+
+</code></pre></div></div>
+<p>(<code class="language-plaintext highlighter-rouge">FuncionarioTerceirizado</code> herda de <code class="language-plaintext highlighter-rouge">Funcionario</code>)</p>
+
+<p><strong>Exemplo de Código (Conceitual):</strong></p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Funcionario.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">horas</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">valorPorHora</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Funcionario</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">horas</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">valorPorHora</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">horas</span> <span class="o">=</span> <span class="n">horas</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">valorPorHora</span> <span class="o">=</span> <span class="n">valorPorHora</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Outros getters e setters...</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">calcularPagamento</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">horas</span> <span class="o">*</span> <span class="n">valorPorHora</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">FuncionarioTerceirizado.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FuncionarioTerceirizado</span> <span class="kd">extends</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">despesaAdicional</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">FuncionarioTerceirizado</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">horas</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">valorPorHora</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">despesaAdicional</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">horas</span><span class="o">,</span> <span class="n">valorPorHora</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">despesaAdicional</span> <span class="o">=</span> <span class="n">despesaAdicional</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getDespesaAdicional</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">despesaAdicional</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDespesaAdicional</span><span class="o">(</span><span class="nc">Double</span> <span class="n">despesaAdicional</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">despesaAdicional</span> <span class="o">=</span> <span class="n">despesaAdicional</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">calcularPagamento</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// super.calcularPagamento() retorna (horas * valorPorHora)</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">calcularPagamento</span><span class="o">()</span> <span class="o">+</span> <span class="o">(</span><span class="n">despesaAdicional</span> <span class="o">*</span> <span class="mf">1.10</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe Principal <code class="language-plaintext highlighter-rouge">Programa.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.Funcionario</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.FuncionarioTerceirizado</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">listaFuncionarios</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o número de funcionários: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados do funcionário #"</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">":"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"É terceirizado (s/n)? "</span><span class="o">);</span>
+            <span class="kt">char</span> <span class="n">terceirizado</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consumir quebra de linha</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Horas: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">horas</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Valor por hora: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">valorPorHora</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">terceirizado</span> <span class="o">==</span> <span class="sc">'s'</span> <span class="o">||</span> <span class="n">terceirizado</span> <span class="o">==</span> <span class="sc">'S'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Despesa adicional: "</span><span class="o">);</span>
+                <span class="kt">double</span> <span class="n">despesaAdicional</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+                <span class="n">listaFuncionarios</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">FuncionarioTerceirizado</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">horas</span><span class="o">,</span> <span class="n">valorPorHora</span><span class="o">,</span> <span class="n">despesaAdicional</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">listaFuncionarios</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Funcionario</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">horas</span><span class="o">,</span> <span class="n">valorPorHora</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+PAGAMENTOS:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Funcionario</span> <span class="n">func</span> <span class="o">:</span> <span class="n">listaFuncionarios</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">func</span><span class="o">.</span><span class="na">getNome</span><span class="o">()</span> <span class="o">+</span> <span class="s">" - R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">func</span><span class="o">.</span><span class="na">calcularPagamento</span><span class="o">()));</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Como executar (VS Code / IntelliJ IDEA):</strong></p>
+<ol>
+  <li>Certifique-se de ter o JDK (Java Development Kit) instalado.</li>
+  <li>Crie um projeto Java.</li>
+  <li>Crie as pastas de pacotes (<code class="language-plaintext highlighter-rouge">entidades</code>, <code class="language-plaintext highlighter-rouge">aplicacao</code>) dentro do diretório <code class="language-plaintext highlighter-rouge">src</code> do seu projeto.</li>
+  <li>Coloque as classes <code class="language-plaintext highlighter-rouge">Funcionario.java</code> e <code class="language-plaintext highlighter-rouge">FuncionarioTerceirizado.java</code> no pacote <code class="language-plaintext highlighter-rouge">entidades</code>.</li>
+  <li>Coloque a classe <code class="language-plaintext highlighter-rouge">Programa.java</code> no pacote <code class="language-plaintext highlighter-rouge">aplicacao</code>.</li>
+  <li>Abra o arquivo <code class="language-plaintext highlighter-rouge">Programa.java</code> e clique com o botão direito do mouse no editor. Selecione “Run” ou “Run ‘Programa.main()’”.</li>
+</ol>
+
+<h2 id="exercício-de-fixação-etiqueta-de-preços-de-produtos-️">Exercício de Fixação: Etiqueta de Preços de Produtos 🛍️</h2>
+
+<p><strong>Problema:</strong>
+Ler dados de N produtos. Mostrar a etiqueta de preço de cada produto.</p>
+<ul>
+  <li>Todo produto tem nome e preço.</li>
+  <li>Produtos importados (<code class="language-plaintext highlighter-rouge">ProdutoImportado</code>) têm taxa de alfândega (<code class="language-plaintext highlighter-rouge">taxaAlfandega</code>).</li>
+  <li>Produtos usados (<code class="language-plaintext highlighter-rouge">ProdutoUsado</code>) têm data de fabricação (<code class="language-plaintext highlighter-rouge">dataFabricacao</code>).</li>
+  <li>Estes dados específicos devem constar na etiqueta.</li>
+  <li>Para produtos importados, a taxa de alfândega é somada ao preço final.</li>
+</ul>
+
+<p><strong>Estrutura das Classes (UML Simplificado):</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+---------------------+      +---------------------------+
+| Produto             |&lt;-----| ProdutoImportado          |
++---------------------+      +---------------------------+
+| - nome: String      |      | - taxaAlfandega: Double   |
+| - preco: Double     |      +---------------------------+
++---------------------+      | + etiquetaPreco(): String |
+| + etiquetaPreco(): String| | + precoTotal(): Double    |
++---------------------+      +---------------------------+
+        ^
+        |
+        |                +---------------------------+
+        +--------------- | ProdutoUsado              |
+                         +---------------------------+
+                         | - dataFabricacao: Date    |
+                         +---------------------------+
+                         | + etiquetaPreco(): String |
+                         +---------------------------+
+</code></pre></div></div>
+
+<p><strong>Exemplo de Código (Conceitual):</strong></p>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Produto.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="c1">// Setters...</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">etiquetaPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">" R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">ProdutoImportado.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoImportado</span> <span class="kd">extends</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">taxaAlfandega</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ProdutoImportado</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">taxaAlfandega</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">taxaAlfandega</span> <span class="o">=</span> <span class="n">taxaAlfandega</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getTaxaAlfandega</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">taxaAlfandega</span><span class="o">;</span> <span class="o">}</span>
+    <span class="c1">// Setter...</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">precoTotal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">+</span> <span class="n">taxaAlfandega</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">etiquetaPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">+</span> <span class="s">" R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">precoTotal</span><span class="o">())</span>
+               <span class="o">+</span> <span class="s">" (Taxa de Alfândega: R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">taxaAlfandega</span><span class="o">)</span> <span class="o">+</span> <span class="s">")"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">ProdutoUsado.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProdutoUsado</span> <span class="kd">extends</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">dataFabricacao</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ProdutoUsado</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">dataFabricacao</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dataFabricacao</span> <span class="o">=</span> <span class="n">dataFabricacao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getDataFabricacao</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">dataFabricacao</span><span class="o">;</span> <span class="o">}</span>
+    <span class="c1">// Setter...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">etiquetaPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">+</span> <span class="s">" (usado) R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">getPreco</span><span class="o">())</span>
+               <span class="o">+</span> <span class="s">" (Data de fabricação: "</span> <span class="o">+</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataFabricacao</span><span class="o">)</span> <span class="o">+</span> <span class="s">")"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe Principal <code class="language-plaintext highlighter-rouge">Programa.java</code></strong>
+(Semelhante ao exercício anterior, com leitura de dados e instanciação polimórfica)</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.ProdutoImportado</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.ProdutoUsado</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.text.ParseException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ParseException</span> <span class="o">{</span> <span class="c1">// Adicionado throws para SimpleDateFormat</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">listaProdutos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o número de produtos: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados do produto #"</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">":"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Comum, usado ou importado (c/u/i)? "</span><span class="o">);</span>
+            <span class="kt">char</span> <span class="n">tipo</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consumir quebra de linha</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Preço: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">preco</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">tipo</span> <span class="o">==</span> <span class="sc">'i'</span> <span class="o">||</span> <span class="n">tipo</span> <span class="o">==</span> <span class="sc">'I'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Taxa de alfândega: "</span><span class="o">);</span>
+                <span class="kt">double</span> <span class="n">taxaAlfandega</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+                <span class="n">listaProdutos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ProdutoImportado</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">,</span> <span class="n">taxaAlfandega</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">tipo</span> <span class="o">==</span> <span class="sc">'u'</span> <span class="o">||</span> <span class="n">tipo</span> <span class="o">==</span> <span class="sc">'U'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Data de fabricação (DD/MM/AAAA): "</span><span class="o">);</span>
+                <span class="nc">Date</span> <span class="n">dataFabricacao</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+                <span class="n">listaProdutos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ProdutoUsado</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">,</span> <span class="n">dataFabricacao</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">listaProdutos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">preco</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+ETIQUETAS DE PREÇO:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Produto</span> <span class="n">prod</span> <span class="o">:</span> <span class="n">listaProdutos</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">prod</span><span class="o">.</span><span class="na">etiquetaPreco</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="classes-abstratas-️">Classes Abstratas 🏛️</h2>
+
+<ul>
+  <li><strong>Definição</strong>: São classes que não podem ser instanciadas diretamente. Elas servem como modelos (abstrações) para suas subclasses.</li>
+  <li><strong>Herança Total</strong>: São uma forma de garantir a herança total: somente subclasses não abstratas podem ser instanciadas, mas nunca a superclasse abstrata em si.</li>
+  <li><strong>Palavra-chave <code class="language-plaintext highlighter-rouge">abstract</code></strong>: Para declarar uma classe como abstrata, use a palavra-chave <code class="language-plaintext highlighter-rouge">abstract</code>.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">MinhaClasseAbstrata</span> <span class="o">{</span>
+      <span class="c1">// ... pode conter métodos abstratos e concretos</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Notação UML</strong>: O nome da classe abstrata é geralmente escrito em <em>itálico</em>.</li>
+</ul>
+
+<p><strong>Exemplo: Conta Bancária Abstrata</strong></p>
+
+<p>Suponha que em um banco, apenas contas poupança e contas para empresas são permitidas. Não deve existir uma “conta comum” genérica que possa ser instanciada.</p>
+
+<p>Para garantir que instâncias de <code class="language-plaintext highlighter-rouge">Conta</code> não possam ser criadas diretamente, declaramos a classe <code class="language-plaintext highlighter-rouge">Conta</code> como <code class="language-plaintext highlighter-rouge">abstract</code>:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em Conta.java</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Conta</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Conta</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">numero</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titular</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">saldo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numero</span> <span class="o">=</span> <span class="n">numero</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titular</span> <span class="o">=</span> <span class="n">titular</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">saldo</span> <span class="o">=</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sacar</span><span class="o">(</span><span class="nc">Double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">-=</span> <span class="n">quantia</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">depositar</span><span class="o">(</span><span class="nc">Double</span> <span class="n">quantia</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">saldo</span> <span class="o">+=</span> <span class="n">quantia</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSaldo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">saldo</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">// Outros getters e setters</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Agora, você não pode fazer <code class="language-plaintext highlighter-rouge">new Conta(...)</code>. Você só pode instanciar subclasses concretas como <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> ou <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code>.</p>
+
+<h3 id="por-que-usar-classes-abstratas">Por que usar Classes Abstratas?</h3>
+
+<ul>
+  <li><strong>Reuso</strong>: Permitem que você defina atributos e métodos comuns que serão herdados por múltiplas subclasses, evitando duplicação de código.</li>
+  <li><strong>Polimorfismo</strong>: A superclasse abstrata serve como um tipo genérico para tratar de forma uniforme todos os tipos de contas (ou qualquer outra entidade modelada). Por exemplo, você pode ter uma <code class="language-plaintext highlighter-rouge">List&lt;Conta&gt;</code> que armazena objetos <code class="language-plaintext highlighter-rouge">ContaPoupanca</code> e <code class="language-plaintext highlighter-rouge">ContaEmpresarial</code>.
+    <ul>
+      <li><strong>Exemplo de Polimorfismo com Classe Abstrata</strong>:
+        <ul>
+          <li>Totalizar o saldo de todas as contas em uma lista.</li>
+          <li>Depositar R$ 10,00 em todas as contas.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Conta</span><span class="o">&gt;</span> <span class="n">listaDeContas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+  <span class="n">listaDeContas</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaPoupanca</span><span class="o">(</span><span class="mi">101</span><span class="o">,</span> <span class="s">"Ana"</span><span class="o">,</span> <span class="mf">1000.0</span><span class="o">,</span> <span class="mf">0.01</span><span class="o">));</span>
+  <span class="n">listaDeContas</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ContaEmpresarial</span><span class="o">(</span><span class="mi">102</span><span class="o">,</span> <span class="s">"Empresa X"</span><span class="o">,</span> <span class="mf">5000.0</span><span class="o">,</span> <span class="mf">10000.0</span><span class="o">));</span>
+
+  <span class="kt">double</span> <span class="n">saldoTotal</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+  <span class="k">for</span> <span class="o">(</span><span class="nc">Conta</span> <span class="n">c</span> <span class="o">:</span> <span class="n">listaDeContas</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">saldoTotal</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="na">getSaldo</span><span class="o">();</span>
+      <span class="n">c</span><span class="o">.</span><span class="na">depositar</span><span class="o">(</span><span class="mf">10.0</span><span class="o">);</span> <span class="c1">// Polimorfismo em ação</span>
+  <span class="o">}</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Saldo total de todas as contas: "</span> <span class="o">+</span> <span class="n">saldoTotal</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="métodos-abstratos-">Métodos Abstratos 🧩</h2>
+
+<ul>
+  <li><strong>Definição</strong>: São métodos declarados em uma classe abstrata que não possuem implementação (corpo). Eles apenas definem uma assinatura.</li>
+  <li><strong>Obrigatoriedade de Implementação</strong>: As subclasses concretas (não abstratas) são obrigadas a fornecer uma implementação para todos os métodos abstratos herdados da superclasse.</li>
+  <li><strong>Quando usar</strong>: Métodos precisam ser abstratos quando a classe superclasse é genérica demais para fornecer uma implementação significativa, e cada subclasse precisa definir seu próprio comportamento específico para aquele método.</li>
+  <li><strong>Regra</strong>: Se uma classe contém pelo menos um método abstrato, a classe inteira deve ser declarada como <code class="language-plaintext highlighter-rouge">abstract</code>.</li>
+  <li><strong>Palavra-chave <code class="language-plaintext highlighter-rouge">abstract</code></strong>: Usada para declarar um método como abstrato.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">MinhaClasseAbstrata</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">meuMetodoAbstrato</span><span class="o">();</span> <span class="c1">// Sem corpo, termina com ;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MinhaSubclasseConcreta</span> <span class="kd">extends</span> <span class="nc">MinhaClasseAbstrata</span> <span class="o">{</span>
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">meuMetodoAbstrato</span><span class="o">()</span> <span class="o">{</span>
+          <span class="c1">// Implementação obrigatória aqui</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Implementação do método abstrato."</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Notação UML</strong>: Nomes de métodos abstratos são geralmente escritos em <em>itálico</em>.</li>
+</ul>
+
+<h3 id="exemplo-prático-cálculo-de-áreas-de-figuras-geométricas">Exemplo Prático: Cálculo de Áreas de Figuras Geométricas</h3>
+
+<p>Fazer um programa para ler os dados de N figuras (retângulo ou círculo), e depois mostrar as áreas destas figuras.</p>
+
+<p><strong>Estrutura das Classes:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Forma</code> (Shape): Classe abstrata.
+    <ul>
+      <li>Atributo: <code class="language-plaintext highlighter-rouge">cor</code> (enum <code class="language-plaintext highlighter-rouge">Cor</code>).</li>
+      <li>Método abstrato: <code class="language-plaintext highlighter-rouge">calcularArea() : Double</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Retangulo</code> (Rectangle): Subclasse de <code class="language-plaintext highlighter-rouge">Forma</code>.
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">largura</code>, <code class="language-plaintext highlighter-rouge">altura</code>.</li>
+      <li>Implementa <code class="language-plaintext highlighter-rouge">calcularArea()</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Circulo</code> (Circle): Subclasse de <code class="language-plaintext highlighter-rouge">Forma</code>.
+    <ul>
+      <li>Atributo: <code class="language-plaintext highlighter-rouge">raio</code>.</li>
+      <li>Implementa <code class="language-plaintext highlighter-rouge">calcularArea()</code>.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Cor</code> (Color): Enum com valores <code class="language-plaintext highlighter-rouge">PRETO</code>, <code class="language-plaintext highlighter-rouge">AZUL</code>, <code class="language-plaintext highlighter-rouge">VERMELHO</code>.</li>
+</ul>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Cor.java</code> (Enum)</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades.enums</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">Cor</span> <span class="o">{</span>
+    <span class="no">PRETO</span><span class="o">,</span>
+    <span class="no">AZUL</span><span class="o">,</span>
+    <span class="no">VERMELHO</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Forma.java</code> (Abstrata)</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.enums.Cor</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Cor</span> <span class="n">cor</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Forma</span><span class="o">(</span><span class="nc">Cor</span> <span class="n">cor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cor</span> <span class="o">=</span> <span class="n">cor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Cor</span> <span class="nf">getCor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">cor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCor</span><span class="o">(</span><span class="nc">Cor</span> <span class="n">cor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cor</span> <span class="o">=</span> <span class="n">cor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="nc">Double</span> <span class="nf">calcularArea</span><span class="o">();</span> <span class="c1">// Método abstrato</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Retangulo.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.enums.Cor</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Retangulo</span> <span class="kd">extends</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">largura</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">altura</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Retangulo</span><span class="o">(</span><span class="nc">Cor</span> <span class="n">cor</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">largura</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">altura</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">cor</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">largura</span> <span class="o">=</span> <span class="n">largura</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">altura</span> <span class="o">=</span> <span class="n">altura</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters para largura e altura</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">calcularArea</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">largura</span> <span class="o">*</span> <span class="n">altura</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Circulo.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.enums.Cor</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Circulo</span> <span class="kd">extends</span> <span class="nc">Forma</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">raio</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Circulo</span><span class="o">(</span><span class="nc">Cor</span> <span class="n">cor</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">raio</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">cor</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">raio</span> <span class="o">=</span> <span class="n">raio</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getter e Setter para raio</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">calcularArea</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">PI</span> <span class="o">*</span> <span class="n">raio</span> <span class="o">*</span> <span class="n">raio</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe Principal <code class="language-plaintext highlighter-rouge">Programa.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.Circulo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Forma</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.Retangulo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.enums.Cor</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Forma</span><span class="o">&gt;</span> <span class="n">listaFormas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o número de formas: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados da forma #"</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">":"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Retângulo ou Círculo (r/c)? "</span><span class="o">);</span>
+            <span class="kt">char</span> <span class="n">tipoForma</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Cor (PRETO/AZUL/VERMELHO): "</span><span class="o">);</span>
+            <span class="c1">// Leitura da cor e conversão para o enum Cor</span>
+            <span class="nc">Cor</span> <span class="n">cor</span> <span class="o">=</span> <span class="nc">Cor</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">());</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">tipoForma</span> <span class="o">==</span> <span class="sc">'r'</span> <span class="o">||</span> <span class="n">tipoForma</span> <span class="o">==</span> <span class="sc">'R'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Largura: "</span><span class="o">);</span>
+                <span class="kt">double</span> <span class="n">largura</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Altura: "</span><span class="o">);</span>
+                <span class="kt">double</span> <span class="n">altura</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+                <span class="n">listaFormas</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Retangulo</span><span class="o">(</span><span class="n">cor</span><span class="o">,</span> <span class="n">largura</span><span class="o">,</span> <span class="n">altura</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">tipoForma</span> <span class="o">==</span> <span class="sc">'c'</span> <span class="o">||</span> <span class="n">tipoForma</span> <span class="o">==</span> <span class="sc">'C'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Raio: "</span><span class="o">);</span>
+                <span class="kt">double</span> <span class="n">raio</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+                <span class="n">listaFormas</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Circulo</span><span class="o">(</span><span class="n">cor</span><span class="o">,</span> <span class="n">raio</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+ÁREAS DAS FORMAS:"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Forma</span> <span class="n">forma</span> <span class="o">:</span> <span class="n">listaFormas</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">forma</span><span class="o">.</span><span class="na">calcularArea</span><span class="o">()));</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Entrada de Exemplo:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o número de formas: 2
+Dados da forma #1:
+Retângulo ou Círculo (r/c)? r
+Cor (PRETO/AZUL/VERMELHO): PRETO
+Largura: 4.0
+Altura: 5.0
+Dados da forma #2:
+Retângulo ou Círculo (r/c)? c
+Cor (PRETO/AZUL/VERMELHO): VERMELHO
+Raio: 3.0
+</code></pre></div></div>
+<p><strong>Saída Esperada:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ÁREAS DAS FORMAS:
+20.00
+28.27
+</code></pre></div></div>
+
+<h2 id="exercício-de-fixação-cálculo-de-impostos-de-contribuintes-">Exercício de Fixação: Cálculo de Impostos de Contribuintes 💸</h2>
+
+<p><strong>Problema:</strong>
+Ler dados de N contribuintes (pessoa física ou jurídica). Mostrar o valor do imposto pago por cada um e o total de imposto arrecadado.</p>
+<ul>
+  <li><strong>Pessoa Física (<code class="language-plaintext highlighter-rouge">PessoaFisica</code>)</strong>:
+    <ul>
+      <li>Dados: nome, renda anual, gastos com saúde.</li>
+      <li>Imposto:
+        <ul>
+          <li>Renda &lt; R$ 20000.00: 15% da renda.</li>
+          <li>Renda &gt;= R$ 20000.00: 25% da renda.</li>
+          <li>Se teve gastos com saúde, 50% desses gastos são abatidos do imposto.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Pessoa Jurídica (<code class="language-plaintext highlighter-rouge">PessoaJuridica</code>)</strong>:
+    <ul>
+      <li>Dados: nome, renda anual, número de funcionários.</li>
+      <li>Imposto:
+        <ul>
+          <li>&lt;= 10 funcionários: 16% da renda.</li>
+          <li>
+            <blockquote>
+              <p>10 funcionários: 14% da renda.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Estrutura das Classes (UML Simplificado):</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-----------------------+      +---------------------------+
+| Contribuinte (abstrata)|-----&gt;| PessoaFisica             |
++-----------------------+      +---------------------------+
+| - nome: String        |      | - gastosSaude: Double     |
+| - rendaAnual: Double  |      +---------------------------+
++-----------------------+      | + calcularImposto(): Double |
+| + calcularImposto(): Double (abstrato)|
++-----------------------+      +---------------------------+
+        ^
+        |
+        |                      +---------------------------+
+        +--------------------- | PessoaJuridica           |
+                               +---------------------------+
+                               | - numeroFuncionarios: int |
+                               +---------------------------+
+                               | + calcularImposto(): Double |
+                               +---------------------------+
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Contribuinte.java</code> (Abstrata)</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Contribuinte</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">rendaAnual</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Contribuinte</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">rendaAnual</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">rendaAnual</span> <span class="o">=</span> <span class="n">rendaAnual</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getRendaAnual</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">rendaAnual</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Setters...</span>
+
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="nc">Double</span> <span class="nf">calcularImposto</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">PessoaFisica.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PessoaFisica</span> <span class="kd">extends</span> <span class="nc">Contribuinte</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">gastosSaude</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">PessoaFisica</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">rendaAnual</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">gastosSaude</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">rendaAnual</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">gastosSaude</span> <span class="o">=</span> <span class="n">gastosSaude</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getGastosSaude</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">gastosSaude</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Setter...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">calcularImposto</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">impostoBase</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">getRendaAnual</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mf">20000.00</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">impostoBase</span> <span class="o">=</span> <span class="n">getRendaAnual</span><span class="o">()</span> <span class="o">*</span> <span class="mf">0.15</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">impostoBase</span> <span class="o">=</span> <span class="n">getRendaAnual</span><span class="o">()</span> <span class="o">*</span> <span class="mf">0.25</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">gastosSaude</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">impostoBase</span> <span class="o">-=</span> <span class="n">gastosSaude</span> <span class="o">*</span> <span class="mf">0.50</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">impostoBase</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">);</span> <span class="c1">// Imposto não pode ser negativo</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">PessoaJuridica.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PessoaJuridica</span> <span class="kd">extends</span> <span class="nc">Contribuinte</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">numeroFuncionarios</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">PessoaJuridica</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">rendaAnual</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">numeroFuncionarios</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">rendaAnual</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numeroFuncionarios</span> <span class="o">=</span> <span class="n">numeroFuncionarios</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getNumeroFuncionarios</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">numeroFuncionarios</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Setter...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">calcularImposto</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">numeroFuncionarios</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">getRendaAnual</span><span class="o">()</span> <span class="o">*</span> <span class="mf">0.14</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="nf">getRendaAnual</span><span class="o">()</span> <span class="o">*</span> <span class="mf">0.16</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe Principal <code class="language-plaintext highlighter-rouge">Programa.java</code></strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.Contribuinte</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.PessoaFisica</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.PessoaJuridica</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Contribuinte</span><span class="o">&gt;</span> <span class="n">listaContribuintes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o número de contribuintes: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Dados do contribuinte #"</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">":"</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Pessoa física ou jurídica (f/j)? "</span><span class="o">);</span>
+            <span class="kt">char</span> <span class="n">tipoContribuinte</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+            <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Consumir quebra de linha</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Nome: "</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Renda anual: "</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">rendaAnual</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">tipoContribuinte</span> <span class="o">==</span> <span class="sc">'f'</span> <span class="o">||</span> <span class="n">tipoContribuinte</span> <span class="o">==</span> <span class="sc">'F'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Gastos com saúde: "</span><span class="o">);</span>
+                <span class="kt">double</span> <span class="n">gastosSaude</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+                <span class="n">listaContribuintes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">PessoaFisica</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">rendaAnual</span><span class="o">,</span> <span class="n">gastosSaude</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">tipoContribuinte</span> <span class="o">==</span> <span class="sc">'j'</span> <span class="o">||</span> <span class="n">tipoContribuinte</span> <span class="o">==</span> <span class="sc">'J'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Número de funcionários: "</span><span class="o">);</span>
+                <span class="kt">int</span> <span class="n">numFuncionarios</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+                <span class="n">listaContribuintes</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">PessoaJuridica</span><span class="o">(</span><span class="n">nome</span><span class="o">,</span> <span class="n">rendaAnual</span><span class="o">,</span> <span class="n">numFuncionarios</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+IMPOSTOS PAGOS:"</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">totalImpostos</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Contribuinte</span> <span class="n">contr</span> <span class="o">:</span> <span class="n">listaContribuintes</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">double</span> <span class="n">imposto</span> <span class="o">=</span> <span class="n">contr</span><span class="o">.</span><span class="na">calcularImposto</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">contr</span><span class="o">.</span><span class="na">getNome</span><span class="o">()</span> <span class="o">+</span> <span class="s">": R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">imposto</span><span class="o">));</span>
+            <span class="n">totalImpostos</span> <span class="o">+=</span> <span class="n">imposto</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+TOTAL DE IMPOSTOS: R$ "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">totalImpostos</span><span class="o">));</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Entrada de Exemplo:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o número de contribuintes: 3
+Dados do contribuinte #1:
+Pessoa física ou jurídica (f/j)? f
+Nome: Alex
+Renda anual: 50000.00
+Gastos com saúde: 2000.00
+Dados do contribuinte #2:
+Pessoa física ou jurídica (f/j)? j
+Nome: SoftTech
+Renda anual: 400000.00
+Número de funcionários: 25
+Dados do contribuinte #3:
+Pessoa física ou jurídica (f/j)? f
+Nome: Bob
+Renda anual: 120000.00
+Gastos com saúde: 1000.00
+</code></pre></div></div>
+
+<p><strong>Saída Esperada:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IMPOSTOS PAGOS:
+Alex: R$ 11500.00
+SoftTech: R$ 56000.00
+Bob: R$ 29500.00
+
+TOTAL DE IMPOSTOS: R$ 97000.00
+</code></pre></div></div>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

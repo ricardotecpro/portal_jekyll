@@ -1,0 +1,429 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /spec_frontend_com_angular/angular-standalone.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ANGULAR-STANDALONE | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="ANGULAR-STANDALONE" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/spec_frontend_com_angular/angular-standalone.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/spec_frontend_com_angular/angular-standalone.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ANGULAR-STANDALONE" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"ANGULAR-STANDALONE","url":"https://ricardotecpro.github.io/portal_jekyll/spec_frontend_com_angular/angular-standalone.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/spec_frontend_com_angular/" style="margin-left: 0.5rem;">Spec frontend com angular</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Angular standalone</span>
+          
+        
+      </nav>
+
+      <hr />
+
+<h3 id="opção-a-configuração-com-módulos-appmodulets">Opção A: Configuração com Módulos (app.module.ts)</h3>
+
+<p>Se seu projeto utiliza um <code class="language-plaintext highlighter-rouge">app.module.ts</code>, siga estes passos.</p>
+
+<h4 id="1-configure-o-appmodulets">1. Configure o <code class="language-plaintext highlighter-rouge">app.module.ts</code></h4>
+
+<p>Para que nosso serviço possa fazer requisições HTTP e para usarmos formulários, precisamos importar os módulos <code class="language-plaintext highlighter-rouge">HttpClientModule</code> e <code class="language-plaintext highlighter-rouge">FormsModule</code>. Abra <code class="language-plaintext highlighter-rouge">src/app/app.module.ts</code> e modifique-o:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/app/app.module.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/platform-browser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClientModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 1. Importe</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>           <span class="c1">// 2. Importe</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">AppComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./app.component</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TaskListComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/task-list/task-list.component</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">AppComponent</span><span class="p">,</span>
+    <span class="nx">TaskListComponent</span>
+  <span class="p">],</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">BrowserModule</span><span class="p">,</span>
+    <span class="nx">HttpClientModule</span><span class="p">,</span> <span class="c1">// 3. Adicione aos imports</span>
+    <span class="nx">FormsModule</span>       <span class="c1">// 4. Adicione também</span>
+  <span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="2-implemente-o-tarefaservice">2. Implemente o <code class="language-plaintext highlighter-rouge">TarefaService</code></h4>
+
+<p>Abra <code class="language-plaintext highlighter-rouge">src/app/services/tarefa.service.ts</code> e adicione os métodos para realizar as operações CRUD (Create, Read, Update, Delete) na API.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/app/services/tarefa.service.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Observable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Tarefa</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../models/tarefa</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">({</span>
+  <span class="na">providedIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">TarefaService</span> <span class="p">{</span>
+
+  <span class="c1">// URL base da nossa API</span>
+  <span class="k">private</span> <span class="nx">apiUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">http://localhost:8080/api/tarefas</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="c1">// Injetamos o HttpClient para fazer requisições HTTP</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">http</span><span class="p">:</span> <span class="nx">HttpClient</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="c1">// READ: Retorna a lista de tarefas</span>
+  <span class="nf">getTarefas</span><span class="p">():</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="kd">get</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// CREATE: Envia uma nova tarefa para a API</span>
+  <span class="nf">addTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// UPDATE: Atualiza uma tarefa existente</span>
+  <span class="nf">updateTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">tarefa</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">put</span><span class="o">&lt;</span><span class="nx">Tarefa</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">tarefa</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// DELETE: Deleta uma tarefa pelo seu ID</span>
+  <span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">apiUrl</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">id</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="k">delete</span><span class="o">&lt;</span><span class="k">void</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="opção-b-configuração-com-componentes-standalone">Opção B: Configuração com Componentes Standalone</h3>
+
+<p>Se seu projeto não possui um <code class="language-plaintext highlighter-rouge">app.module.ts</code> e usa componentes <code class="language-plaintext highlighter-rouge">standalone: true</code>, a configuração é um pouco diferente.</p>
+
+<h4 id="1-configure-o-acesso-http-a-grande-mudança">1. Configure o Acesso HTTP (A Grande Mudança)</h4>
+
+<p>A configuração de provedores globais é feita no arquivo <code class="language-plaintext highlighter-rouge">src/app/app.config.ts</code>. É aqui que substituímos o <code class="language-plaintext highlighter-rouge">HttpClientModule</code>.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/app/app.config.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ApplicationConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">provideRouter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/router</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">routes</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./app.routes</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">provideHttpClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 1. IMPORTE</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">appConfig</span><span class="p">:</span> <span class="nx">ApplicationConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nf">provideRouter</span><span class="p">(</span><span class="nx">routes</span><span class="p">),</span>
+    <span class="nf">provideHttpClient</span><span class="p">()</span> <span class="c1">// 2. ADICIONE AQUI</span>
+  <span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>O <code class="language-plaintext highlighter-rouge">TarefaService</code> permanece <strong>exatamente o mesmo</strong> da Opção A, pois ele já é “providedIn: ‘root’”.</p>
+</blockquote>
+
+<h4 id="2-integre-o-componente-filho">2. Integre o Componente Filho</h4>
+
+<p>Em uma aplicação standalone, o <code class="language-plaintext highlighter-rouge">AppComponent</code> precisa importar explicitamente os componentes que utiliza. Abra <code class="language-plaintext highlighter-rouge">src/app/app.component.ts</code>:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/app/app.component.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">RouterOutlet</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/router</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TaskListComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/task-list/task-list.component</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 1. IMPORTE</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">RouterOutlet</span><span class="p">,</span>
+    <span class="nx">TaskListComponent</span> <span class="c1">// 2. ADICIONE AOS IMPORTS</span>
+  <span class="p">],</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.css</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">AppComponent</span> <span class="p">{</span>
+  <span class="nx">title</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">lista-tarefas-web</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="etapa-3-implementando-o-componente-tasklistcomponent">Etapa 3: Implementando o Componente <code class="language-plaintext highlighter-rouge">TaskListComponent</code></h2>
+
+<p>Com a estrutura e os serviços configurados, a próxima etapa é dar vida ao nosso componente principal.</p>
+
+<h3 id="1-integrando-o-componente-no-appcomponent">1. Integrando o Componente no <code class="language-plaintext highlighter-rouge">AppComponent</code></h3>
+
+<p>Independente da abordagem (Módulos ou Standalone), o passo final da configuração é garantir que o <code class="language-plaintext highlighter-rouge">app.component.html</code> renderize nosso <code class="language-plaintext highlighter-rouge">TaskListComponent</code>. Abra este arquivo, <strong>apague todo o conteúdo padrão</strong> e adicione apenas a seguinte linha:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;app-task-list&gt;&lt;/app-task-list&gt;</span>
+</code></pre></div></div>
+
+<h3 id="2-a-lógica-do-componente-task-listcomponentts">2. A Lógica do Componente (<code class="language-plaintext highlighter-rouge">task-list.component.ts</code>)</h3>
+
+<p>Abra <code class="language-plaintext highlighter-rouge">src/app/components/task-list/task-list.component.ts</code>. Aqui, vamos injetar o <code class="language-plaintext highlighter-rouge">TarefaService</code>, buscar os dados e definir os métodos que o HTML irá chamar.</p>
+
+<blockquote>
+  <p><strong>Importante:</strong> Em uma aplicação <strong>Standalone</strong>, você deve adicionar <code class="language-plaintext highlighter-rouge">CommonModule</code> e <code class="language-plaintext highlighter-rouge">FormsModule</code> ao array <code class="language-plaintext highlighter-rouge">imports</code> do decorador <code class="language-plaintext highlighter-rouge">@Component</code>, pois eles fornecem as diretivas <code class="language-plaintext highlighter-rouge">*ngFor</code> e <code class="language-plaintext highlighter-rouge">[(ngModel)]</code>.</p>
+</blockquote>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// src/app/components/task-list/task-list.component.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">TarefaService</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../services/tarefa.service</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Tarefa</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../models/tarefa</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">CommonModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Importe para *ngFor, etc.</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>   <span class="c1">// Importe para [(ngModel)]</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-task-list</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">CommonModule</span><span class="p">,</span> <span class="c1">// Adicione aqui</span>
+    <span class="nx">FormsModule</span>   <span class="c1">// E aqui</span>
+  <span class="p">],</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./task-list.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./task-list.component.css</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">TaskListComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+
+  <span class="nl">tarefas</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nl">novaTarefa</span><span class="p">:</span> <span class="nx">Tarefa</span> <span class="o">=</span> <span class="p">{</span> <span class="na">descricao</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">tarefaService</span><span class="p">:</span> <span class="nx">TarefaService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nf">ngOnInit</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nf">carregarTarefas</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nf">carregarTarefas</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">getTarefas</span><span class="p">().</span><span class="nf">subscribe</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nf">adicionarTarefa</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">novaTarefa</span><span class="p">.</span><span class="nx">descricao</span><span class="p">.</span><span class="nf">trim</span><span class="p">()</span> <span class="o">===</span> <span class="dl">''</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">addTarefa</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">novaTarefa</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">(</span><span class="nx">tarefaAdicionada</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">tarefaAdicionada</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">novaTarefa</span> <span class="o">=</span> <span class="p">{</span> <span class="na">descricao</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span> <span class="na">concluida</span><span class="p">:</span> <span class="kc">false</span> <span class="p">};</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nf">atualizarStatus</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">:</span> <span class="nx">Tarefa</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">updateTarefa</span><span class="p">(</span><span class="nx">tarefa</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nf">deletarTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">:</span> <span class="kr">number</span> <span class="o">|</span> <span class="kc">undefined</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">id</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">tarefaService</span><span class="p">.</span><span class="nf">deleteTarefa</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nf">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tarefas</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">t</span> <span class="o">=&gt;</span> <span class="nx">t</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="nx">id</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="3-a-aparência-do-componente-task-listcomponenthtml">3. A Aparência do Componente (<code class="language-plaintext highlighter-rouge">task-list.component.html</code>)</h3>
+
+<p>Abra <code class="language-plaintext highlighter-rouge">src/app/components/task-list/task-list.component.html</code> e substitua seu conteúdo pelo HTML que irá renderizar nosso formulário e a lista de tarefas.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Minha Lista de Tarefas<span class="nt">&lt;/h1&gt;</span>
+
+  <span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"form-add"</span> <span class="na">(ngSubmit)=</span><span class="s">"adicionarTarefa()"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span>
+      <span class="na">type=</span><span class="s">"text"</span>
+      <span class="na">placeholder=</span><span class="s">"O que precisa ser feito?"</span>
+      <span class="na">[(ngModel)]=</span><span class="s">"novaTarefa.descricao"</span>
+      <span class="na">name=</span><span class="s">"descricao"</span>
+      <span class="na">required</span>
+    <span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/form&gt;</span>
+
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"task-list"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let tarefa of tarefas"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span>
+        <span class="na">type=</span><span class="s">"checkbox"</span>
+        <span class="na">[(ngModel)]=</span><span class="s">"tarefa.concluida"</span>
+        <span class="na">(change)=</span><span class="s">"atualizarStatus(tarefa)"</span>
+      <span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">[ngClass]=</span><span class="s">"{'completed': tarefa.concluida}"</span><span class="nt">&gt;</span>
+        
+      <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"delete-btn"</span> <span class="na">(click)=</span><span class="s">"deletarTarefa(tarefa.id)"</span><span class="nt">&gt;</span>×<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h3 id="4-o-estilo-do-componente-task-listcomponentcss">4. O Estilo do Componente (<code class="language-plaintext highlighter-rouge">task-list.component.css</code>)</h3>
+
+<p>Por fim, adicione um pouco de CSS em <code class="language-plaintext highlighter-rouge">src/app/components/task-list/task-list.component.css</code> para deixar a aplicação mais agradável.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.container</span> <span class="p">{</span>
+  <span class="nl">max-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">2rem</span> <span class="nb">auto</span><span class="p">;</span>
+  <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.form-add</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1.5rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.form-add</span> <span class="nt">input</span> <span class="p">{</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0.8rem</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#ccc</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span> <span class="m">0</span> <span class="m">0</span> <span class="m">4px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.form-add</span> <span class="nt">button</span> <span class="p">{</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0.8rem</span> <span class="m">1.2rem</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#007bff</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">white</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">0</span> <span class="m">4px</span> <span class="m">4px</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.task-list</span> <span class="p">{</span>
+  <span class="nl">list-style</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.task-list</span> <span class="nt">li</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">flex</span><span class="p">;</span>
+  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0.8rem</span><span class="p">;</span>
+  <span class="nl">border-bottom</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="nx">#eee</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.task-list</span> <span class="nt">li</span><span class="nd">:last-child</span> <span class="p">{</span>
+  <span class="nl">border-bottom</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.task-list</span> <span class="nt">li</span> <span class="nt">span</span> <span class="p">{</span>
+  <span class="nl">flex-grow</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+  <span class="nl">margin-left</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.task-list</span> <span class="nt">li</span> <span class="nt">span</span><span class="nc">.completed</span> <span class="p">{</span>
+  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">line-through</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">#888</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.delete-btn</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="nb">transparent</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="nx">#ff4d4d</span><span class="p">;</span>
+  <span class="nl">cursor</span><span class="p">:</span> <span class="nb">pointer</span><span class="p">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1.2rem</span><span class="p">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="etapa-4-rodando-a-aplicação-completa">Etapa 4: Rodando a Aplicação Completa!</h2>
+
+<p>Chegou a hora de ver tudo funcionando junto.</p>
+
+<ol>
+  <li><strong>Garanta que sua API Spring Boot esteja rodando.</strong></li>
+  <li>Abra um terminal na pasta do projeto Angular (<code class="language-plaintext highlighter-rouge">lista-tarefas-web</code>) e execute:</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng serve <span class="nt">--open</span>
+</code></pre></div></div>
+
+<p>Seu navegador abrirá em <code class="language-plaintext highlighter-rouge">http://localhost:4200</code> e você poderá interagir com sua aplicação de lista de tarefas!</p>
+
+<hr />
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

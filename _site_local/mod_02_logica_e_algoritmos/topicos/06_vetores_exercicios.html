@@ -1,0 +1,714 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_02_logica_e_algoritmos/topicos/06_vetores_exercicios.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>🔄 Exercícios Resolvidos com Estruturas Repetitivas em Java | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="🔄 Exercícios Resolvidos com Estruturas Repetitivas em Java" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/06_vetores_exercicios.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/06_vetores_exercicios.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="🔄 Exercícios Resolvidos com Estruturas Repetitivas em Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"🔄 Exercícios Resolvidos com Estruturas Repetitivas em Java","url":"https://ricardotecpro.github.io/portal_jekyll/mod_02_logica_e_algoritmos/topicos/06_vetores_exercicios.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/" style="margin-left: 0.5rem;">Mod 02 logica e algoritmos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_02_logica_e_algoritmos/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / 🔄 exercícios resolvidos com estruturas repetitivas em java</span>
+          
+        
+      </nav>
+
+      <h1 id="-exercícios-resolvidos-com-estruturas-repetitivas-em-java">🔄 Exercícios Resolvidos com Estruturas Repetitivas em Java</h1>
+
+<p>Este documento apresenta uma coleção de problemas e suas respectivas soluções em Java, focando no uso das estruturas de repetição <code class="language-plaintext highlighter-rouge">while</code> e <code class="language-plaintext highlighter-rouge">for</code>. Cada exercício foi adaptado de desafios de programação para reforçar a lógica e a aplicação prática desses conceitos.</p>
+
+<blockquote>
+  <p><strong>Atenção:</strong> Nos exemplos de execução, os dados em <strong>vermelho</strong> representam os valores digitados pelo usuário no console.</p>
+</blockquote>
+
+<h2 id="parte-1-estrutura-while">Parte 1: Estrutura <code class="language-plaintext highlighter-rouge">while</code></h2>
+
+<p>A estrutura <code class="language-plaintext highlighter-rouge">while</code> é ideal para situações em que não sabemos de antemão quantas vezes um bloco de código precisa ser repetido. A repetição continua enquanto uma determinada condição for verdadeira.</p>
+
+<h3 id="1-problema-crescente">1. Problema “crescente”</h3>
+
+<p><strong>Descrição:</strong> Leia uma quantidade indeterminada de duplas de valores inteiros X e Y. Escreva para cada dupla uma mensagem que indique se os valores foram digitados em ordem crescente ou decrescente. O programa termina quando os dois valores digitados forem iguais.</p>
+
+<h4 id="solução-em-java">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crescente</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite dois números:"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"CRESCENTE!"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"DECRESCENTE!"</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite outros dois números:"</span><span class="o">);</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite dois números:
+5
+4
+DECRESCENTE!
+Digite outros dois números:
+3
+8
+CRESCENTE!
+Digite outros dois números:
+2
+2
+</code></pre></div></div>
+
+<h3 id="2-problema-media_idades">2. Problema “media_idades”</h3>
+
+<p><strong>Descrição:</strong> Faça um programa para ler um número indeterminado de idades. O programa para quando uma idade negativa é digitada (este valor não entra no cálculo). Calcule e imprima a idade média do grupo. Se a primeira idade digitada for negativa, mostre a mensagem “IMPOSSIVEL CALCULAR”.</p>
+
+<h4 id="solução-em-java-1">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MediaIdades</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite as idades:"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">idade</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        
+        <span class="k">if</span> <span class="o">(</span><span class="n">idade</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"IMPOSSIVEL CALCULAR"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">idade</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">soma</span> <span class="o">+=</span> <span class="n">idade</span><span class="o">;</span>
+                <span class="n">count</span><span class="o">++;</span>
+                <span class="n">idade</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="kt">double</span> <span class="n">media</span> <span class="o">=</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="n">soma</span> <span class="o">/</span> <span class="n">count</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"MEDIA = %.2f
+"</span><span class="o">,</span> <span class="n">media</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-1">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite as idades:
+31
+27
+46
+-5
+MEDIA = 34.67
+</code></pre></div></div>
+
+<h3 id="3-problema-senha_fixa">3. Problema “senha_fixa”</h3>
+
+<p><strong>Descrição:</strong> Escreva um programa que repita a leitura de uma senha até que ela seja válida. A senha correta é <strong>2002</strong>. Para cada tentativa incorreta, informe “Senha Invalida! Tente novamente:”. Quando a senha estiver correta, mostre “Acesso Permitido” e encerre o programa.</p>
+
+<h4 id="solução-em-java-2">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SenhaFixa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite a senha: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">senha</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">senha</span> <span class="o">!=</span> <span class="mi">2002</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Senha Invalida! Tente novamente: "</span><span class="o">);</span>
+            <span class="n">senha</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Acesso Permitido"</span><span class="o">);</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-2">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite a senha: 2312
+Senha Invalida! Tente novamente: 2010
+Senha Invalida! Tente novamente: 2002
+Acesso Permitido
+</code></pre></div></div>
+
+<h3 id="4-problema-quadrante">4. Problema “quadrante”</h3>
+
+<p><strong>Descrição:</strong> Escreva um programa para ler as coordenadas (X,Y) de uma quantidade indeterminada de pontos. Para cada ponto, escreva o quadrante ao qual ele pertence (Q1, Q2, Q3 ou Q4). O algoritmo será encerrado quando uma das coordenadas for NULA.</p>
+
+<h4 id="solução-em-java-3">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Quadrante</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite os valores das coordenadas X e Y:"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"QUADRANTE Q1"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"QUADRANTE Q2"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"QUADRANTE Q3"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"QUADRANTE Q4"</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite os valores das coordenadas X e Y:"</span><span class="o">);</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-3">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite os valores das coordenadas X e Y:
+2
+2
+QUADRANTE Q1
+Digite os valores das coordenadas X e Y:
+3
+-2
+QUADRANTE Q4
+Digite os valores das coordenadas X e Y:
+-8
+-1
+QUADRANTE Q3
+Digite os valores das coordenadas X e Y:
+-7
+1
+QUADRANTE Q2
+Digite os valores das coordenadas X e Y:
+0
+2
+</code></pre></div></div>
+
+<h3 id="5-problema-combustivel">5. Problema “combustivel”</h3>
+
+<p><strong>Descrição:</strong> Um posto de combustíveis deseja saber a preferência de seus clientes. Leia o tipo de combustível abastecido (1.Álcool, 2.Gasolina, 3.Diesel, 4.Fim). Caso o usuário informe um código inválido, peça um novo código até que seja válido. O programa encerra quando o código for 4, mostrando a mensagem “MUITO OBRIGADO” e as quantidades de cada combustível.</p>
+
+<h4 id="solução-em-java-4">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Combustivel</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        
+        <span class="kt">int</span> <span class="n">alcool</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">gasolina</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">diesel</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Informe um código (1, 2, 3) ou 4 para parar: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">codigo</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">codigo</span> <span class="o">!=</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">switch</span> <span class="o">(</span><span class="n">codigo</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+                    <span class="n">alcool</span><span class="o">++;</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+                    <span class="n">gasolina</span><span class="o">++;</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+                    <span class="n">diesel</span><span class="o">++;</span>
+                    <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Informe um código (1, 2, 3) ou 4 para parar: "</span><span class="o">);</span>
+            <span class="n">codigo</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"MUITO OBRIGADO"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Alcool: "</span> <span class="o">+</span> <span class="n">alcool</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Gasolina: "</span> <span class="o">+</span> <span class="n">gasolina</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Diesel: "</span> <span class="o">+</span> <span class="n">diesel</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-4">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Informe um código (1, 2, 3) ou 4 para parar: 8
+Informe um código (1, 2, 3) ou 4 para parar: 1
+Informe um código (1, 2, 3) ou 4 para parar: 7
+Informe um código (1, 2, 3) ou 4 para parar: 2
+Informe um código (1, 2, 3) ou 4 para parar: 2
+Informe um código (1, 2, 3) ou 4 para parar: 4
+MUITO OBRIGADO
+Alcool: 1
+Gasolina: 2
+Diesel: 0
+</code></pre></div></div>
+
+<h2 id="parte-2-estrutura-for">Parte 2: Estrutura <code class="language-plaintext highlighter-rouge">for</code></h2>
+
+<p>A estrutura <code class="language-plaintext highlighter-rouge">for</code> é ideal para situações em que sabemos exatamente quantas vezes um bloco de código deve ser repetido, como ao percorrer um vetor ou executar uma tarefa um número fixo de vezes.</p>
+
+<h3 id="1-problema-tabuada">1. Problema “tabuada”</h3>
+
+<p><strong>Descrição:</strong> Ler um número inteiro N e mostrar na tela a tabuada de N de 1 a 10.</p>
+
+<h4 id="solução-em-java-5">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tabuada</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Deseja a tabuada para qual valor? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">resultado</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%d x %d = %d
+"</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">resultado</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-5">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deseja a tabuada para qual valor? 4
+4 x 1 = 4
+4 x 2 = 8
+4 x 3 = 12
+4 x 4 = 16
+4 x 5 = 20
+4 x 6 = 24
+4 x 7 = 28
+4 x 8 = 32
+4 x 9 = 36
+4 x 10 = 40
+</code></pre></div></div>
+
+<h3 id="2-problema-soma_impares">2. Problema “soma_impares”</h3>
+
+<p><strong>Descrição:</strong> Leia 2 valores inteiros X e Y em qualquer ordem. Calcule e mostre a soma dos números ímpares <em>entre</em> eles.</p>
+
+<h4 id="solução-em-java-6">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SomaImpares</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Digite dois números:"</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        
+        <span class="c1">// Garante que x seja o menor e y o maior</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">troca</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">troca</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">y</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">soma</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"SOMA DOS IMPARES = "</span> <span class="o">+</span> <span class="n">soma</span><span class="o">);</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-6">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite dois numeros:
+6
+-5
+SOMA DOS IMPARES = 5
+</code></pre></div></div>
+
+<h3 id="3-problema-dentro_fora">3. Problema “dentro_fora”</h3>
+
+<p><strong>Descrição:</strong> Leia um valor inteiro N, que indica a quantidade de valores inteiros X que serão lidos a seguir. Mostre quantos desses valores X estão dentro do intervalo [10, 20] e quantos estão fora.</p>
+
+<h4 id="solução-em-java-7">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DentroFora</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos números você vai digitar? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        
+        <span class="kt">int</span> <span class="n">dentro</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">fora</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite um número: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">10</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">dentro</span><span class="o">++;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">fora</span><span class="o">++;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dentro</span> <span class="o">+</span> <span class="s">" DENTRO"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">fora</span> <span class="o">+</span> <span class="s">" FORA"</span><span class="o">);</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-7">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos números você vai digitar? 5
+Digite um número: 14
+Digite um número: 35
+Digite um número: 10
+Digite um número: 131
+Digite um número: 8
+2 DENTRO
+3 FORA
+</code></pre></div></div>
+
+<h3 id="4-problema-divisao">4. Problema “divisao”</h3>
+
+<p><strong>Descrição:</strong> Escreva um algoritmo que leia dois números e imprima o resultado da divisão do primeiro pelo segundo. Caso não seja possível (divisão por zero), mostre a mensagem “DIVISAO IMPOSSIVEL”. O programa deve fazer isso N vezes, conforme um número de casos informado inicialmente.</p>
+
+<h4 id="solução-em-java-8">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Divisao</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos casos você vai digitar? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o numerador: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">numerador</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Entre com o denominador: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">denominador</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">denominador</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"DIVISAO IMPOSSIVEL"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="kt">double</span> <span class="n">resultado</span> <span class="o">=</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="n">numerador</span> <span class="o">/</span> <span class="n">denominador</span><span class="o">;</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"DIVISAO = %.2f
+"</span><span class="o">,</span> <span class="n">resultado</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-8">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos casos você vai digitar? 3
+Entre com o numerador: 3
+Entre com o denominador: -2
+DIVISAO = -1.50
+Entre com o numerador: -8
+Entre com o denominador: 0
+DIVISAO IMPOSSIVEL
+Entre com o numerador: 0
+Entre com o denominador: 8
+DIVISAO = 0.00
+</code></pre></div></div>
+
+<h3 id="5-problema-fatorial">5. Problema “fatorial”</h3>
+
+<p><strong>Descrição:</strong> Fazer um programa para ler um número natural N (valor máximo: 15) e depois calcular e mostrar o fatorial de N.</p>
+
+<h4 id="solução-em-java-9">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Fatorial</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o valor de N: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        
+        <span class="kt">long</span> <span class="n">fatorial</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// Usar long para suportar fatoriais maiores</span>
+
+        <span class="c1">// Fatorial de 0 é 1 por definição</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">fatorial</span> <span class="o">*=</span> <span class="n">i</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"FATORIAL = "</span> <span class="o">+</span> <span class="n">fatorial</span><span class="o">);</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-9">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o valor de N: 6
+FATORIAL = 720
+</code></pre></div></div>
+
+<h3 id="6-problema-experiencias">6. Problema “experiencias”</h3>
+
+<p><strong>Descrição:</strong> Maria, estudante de medicina, precisa organizar os dados de experimentos de um laboratório. Ela quer saber o total de cobaias utilizadas e o percentual de cada tipo (sapos, ratos, coelhos). O programa deve ler um inteiro N (número de experimentos). Cada experimento tem a quantidade de cobaias e o tipo (‘C’, ‘R’ ou ‘S’). Ao final, deve apresentar um relatório completo.</p>
+
+<h4 id="solução-em-java-10">Solução em Java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">exercicios</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Experiencias</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantos casos de teste serão digitados? "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+
+        <span class="kt">int</span> <span class="n">totalCoelhos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">totalRatos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">totalSapos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quantidade de cobaias: "</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">quantidade</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Tipo de cobaia (C, R, S): "</span><span class="o">);</span>
+            <span class="kt">char</span> <span class="n">tipo</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+            <span class="k">switch</span> <span class="o">(</span><span class="nc">Character</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">(</span><span class="n">tipo</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">case</span> <span class="sc">'C'</span><span class="o">:</span>
+                    <span class="n">totalCoelhos</span> <span class="o">+=</span> <span class="n">quantidade</span><span class="o">;</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'R'</span><span class="o">:</span>
+                    <span class="n">totalRatos</span> <span class="o">+=</span> <span class="n">quantidade</span><span class="o">;</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="sc">'S'</span><span class="o">:</span>
+                    <span class="n">totalSapos</span> <span class="o">+=</span> <span class="n">quantidade</span><span class="o">;</span>
+                    <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">totalCobaias</span> <span class="o">=</span> <span class="n">totalCoelhos</span> <span class="o">+</span> <span class="n">totalRatos</span> <span class="o">+</span> <span class="n">totalSapos</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">percentualCoelhos</span> <span class="o">=</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">totalCoelhos</span> <span class="o">/</span> <span class="n">totalCobaias</span><span class="o">)</span> <span class="o">*</span> <span class="mf">100.0</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">percentualRatos</span> <span class="o">=</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">totalRatos</span> <span class="o">/</span> <span class="n">totalCobaias</span><span class="o">)</span> <span class="o">*</span> <span class="mf">100.0</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">percentualSapos</span> <span class="o">=</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">totalSapos</span> <span class="o">/</span> <span class="n">totalCobaias</span><span class="o">)</span> <span class="o">*</span> <span class="mf">100.0</span><span class="o">;</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+RELATÓRIO FINAL:"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total: "</span> <span class="o">+</span> <span class="n">totalCobaias</span> <span class="o">+</span> <span class="s">" cobaias"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total de coelhos: "</span> <span class="o">+</span> <span class="n">totalCoelhos</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total de ratos: "</span> <span class="o">+</span> <span class="n">totalRatos</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total de sapos: "</span> <span class="o">+</span> <span class="n">totalSapos</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Percentual de coelhos: %.2f%%
+"</span><span class="o">,</span> <span class="n">percentualCoelhos</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Percentual de ratos: %.2f%%
+"</span><span class="o">,</span> <span class="n">percentualRatos</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Percentual de sapos: %.2f%%
+"</span><span class="o">,</span> <span class="n">percentualSapos</span><span class="o">);</span>
+        
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="exemplo-de-execução-10">Exemplo de Execução</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Quantos casos de teste serão digitados? 10
+Quantidade de cobaias: 10
+Tipo de cobaia (C, R, S): C
+Quantidade de cobaias: 6
+Tipo de cobaia (C, R, S): R
+Quantidade de cobaias: 15
+Tipo de cobaia (C, R, S): S
+Quantidade de cobaias: 5
+Tipo de cobaia (C, R, S): C
+Quantidade de cobaias: 14
+Tipo de cobaia (C, R, S): R
+Quantidade de cobaias: 9
+Tipo de cobaia (C, R, S): C
+Quantidade de cobaias: 6
+Tipo de cobaia (C, R, S): R
+Quantidade de cobaias: 8
+Tipo de cobaia (C, R, S): S
+Quantidade de cobaias: 5
+Tipo de cobaia (C, R, S): C
+Quantidade de cobaias: 14
+Tipo de cobaia (C, R, S): R
+
+RELATÓRIO FINAL:
+Total: 92 cobaias
+Total de coelhos: 29
+Total de ratos: 40
+Total de sapos: 23
+Percentual de coelhos: 31.52%
+Percentual de ratos: 43.48%
+Percentual de sapos: 25.00%
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

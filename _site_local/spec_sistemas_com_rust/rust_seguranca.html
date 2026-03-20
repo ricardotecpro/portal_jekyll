@@ -1,0 +1,332 @@
+<h1 id="rust-">Rust 🦀:</h1>
+
+<h2 id="sistemas-seguros-e-performáticos">Sistemas Seguros e Performáticos</h2>
+
+<p><strong>Bem-vindo(a) à sua jornada definitiva para dominar o Rust!</strong> 🚀</p>
+
+<p>Este curso foi meticulosamente planejado para transformar você, mesmo sem nenhum conhecimento prévio, em um(a) desenvolvedor(a) Rust proficiente. Vamos explorar desde a sintaxe mais básica até os conceitos avançados que fazem do Rust a linguagem mais amada pelos desenvolvedores, famosa por sua segurança, performance e concorrência sem medo.</p>
+
+<p>Prepare-se para construir software robusto e eficiente!</p>
+
+<h3 id="módulo-1-a-fundação---seus-primeiros-passos-com-rust-"><strong>Módulo 1: A Fundação - Seus Primeiros Passos com Rust 🌍</strong></h3>
+
+<p>Neste módulo, preparamos o terreno. Você instalará tudo o que precisa e escreverá seu primeiro programa em Rust, entendendo o que o torna tão especial.</p>
+
+<h4 id="aula-1-por-que-rust-e-configuração-do-ambiente-️"><strong>Aula 1: Por que Rust? E Configuração do Ambiente 🛠️</strong></h4>
+
+<ul>
+  <li><strong>O que é Rust?</strong> Uma visão geral da linguagem, sua filosofia e seus principais casos de uso (sistemas embarcados, CLI, WebAssembly, APIs de alta performance).</li>
+  <li><strong>A Promessa do Rust:</strong> Segurança de memória sem coletor de lixo (garbage collector) e “concorrência sem medo”.</li>
+  <li><strong>Instalando o Rust (Windows e Linux):</strong>
+    <ul>
+      <li>O processo unificado com <code class="language-plaintext highlighter-rouge">rustup</code>, o gerenciador de toolchains do Rust. Executaremos o comando:
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--proto</span> <span class="s1">'=https'</span> <span class="nt">--tlsv1</span>.2 <span class="nt">-sSf</span> https://sh.rustup.rs | sh
+</code></pre></div>        </div>
+      </li>
+      <li>Verificando a instalação (<code class="language-plaintext highlighter-rouge">rustc --version</code>, <code class="language-plaintext highlighter-rouge">cargo --version</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Configurando o Editor de Código:</strong>
+    <ul>
+      <li>Instalação e configuração do Visual Studio Code (VS Code).</li>
+      <li>Instalando a extensão essencial <code class="language-plaintext highlighter-rouge">rust-analyzer</code> para autocompletar, análise de código em tempo real e muito mais.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="aula-2-olá-mundo-e-o-poder-do-cargo-"><strong>Aula 2: “Olá, Mundo!” e o Poder do Cargo 📦</strong></h4>
+
+<ul>
+  <li><strong>Cargo, o Melhor Amigo do Rustacean:</strong>
+    <ul>
+      <li>O que é o Cargo? (Gerenciador de pacotes e sistema de build).</li>
+      <li>Criando seu primeiro projeto: <code class="language-plaintext highlighter-rouge">cargo new ola_rust</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Anatomia de um Projeto Rust:</strong>
+    <ul>
+      <li>Entendendo o arquivo <code class="language-plaintext highlighter-rouge">Cargo.toml</code> (o manifesto do projeto).</li>
+      <li>Explorando a pasta <code class="language-plaintext highlighter-rouge">src</code> e o arquivo <code class="language-plaintext highlighter-rouge">main.rs</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Seu Primeiro Código:</strong>
+    <ul>
+      <li>Escrevendo o clássico “Olá, Mundo!” com a macro <code class="language-plaintext highlighter-rouge">println!</code>:
+        <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Olá, Mundo Rust! 🦀"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Compilando e Executando:</strong>
+    <ul>
+      <li>A magia do <code class="language-plaintext highlighter-rouge">cargo run</code>.</li>
+      <li>A diferença entre <code class="language-plaintext highlighter-rouge">cargo check</code>, <code class="language-plaintext highlighter-rouge">cargo build</code> e <code class="language-plaintext highlighter-rouge">cargo run</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-2-fundamentos-da-linguagem---os-blocos-de-construção-"><strong>Módulo 2: Fundamentos da Linguagem - Os Blocos de Construção 🧱</strong></h3>
+
+<p>Agora que o ambiente está pronto, vamos mergulhar nos conceitos fundamentais da sintaxe e da semântica do Rust.</p>
+
+<h4 id="aula-3-variáveis-mutabilidade-e-tipos-de-dados-primitivos"><strong>Aula 3: Variáveis, Mutabilidade e Tipos de Dados Primitivos</strong></h4>
+
+<ul>
+  <li><strong>Variáveis com <code class="language-plaintext highlighter-rouge">let</code>:</strong> A imutabilidade por padrão.</li>
+  <li><strong>Mutabilidade com <code class="language-plaintext highlighter-rouge">mut</code>:</strong> Quando e por que permitir que uma variável mude.</li>
+  <li><strong>Shadowing (Sombreamento):</strong> Reutilizando nomes de variáveis de forma segura.</li>
+  <li><strong>Constantes (<code class="language-plaintext highlighter-rouge">const</code>):</strong> Valores que nunca mudam.</li>
+  <li><strong>Tipos de Dados Escalares:</strong>
+    <ul>
+      <li>Inteiros (com sinal <code class="language-plaintext highlighter-rouge">i8...i128</code>, sem sinal <code class="language-plaintext highlighter-rouge">u8...u128</code>).</li>
+      <li>Ponto Flutuante (<code class="language-plaintext highlighter-rouge">f32</code>, <code class="language-plaintext highlighter-rouge">f64</code>).</li>
+      <li>Booleanos (<code class="language-plaintext highlighter-rouge">bool</code>).</li>
+      <li>Caracteres (<code class="language-plaintext highlighter-rouge">char</code>).</li>
+    </ul>
+  </li>
+  <li>Exemplo prático: Programa simples que calcula a área de um retângulo. 📐</li>
+</ul>
+
+<h4 id="aula-4-funções-e-controle-de-fluxo"><strong>Aula 4: Funções e Controle de Fluxo</strong></h4>
+
+<ul>
+  <li><strong>Definindo Funções:</strong> A palavra-chave <code class="language-plaintext highlighter-rouge">fn</code>.</li>
+  <li><strong>Parâmetros e Argumentos:</strong> Passando dados para funções.</li>
+  <li><strong>Retornando Valores:</strong> A sintaxe de retorno e expressões (a ausência de <code class="language-plaintext highlighter-rouge">;</code>).</li>
+  <li><strong>Controle de Fluxo com <code class="language-plaintext highlighter-rouge">if/else</code>:</strong> Tomando decisões no seu código.</li>
+  <li><strong>Laços de Repetição:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">loop</code>: O laço infinito.</li>
+      <li><code class="language-plaintext highlighter-rouge">while</code>: Repetindo enquanto uma condição for verdadeira.</li>
+      <li><code class="language-plaintext highlighter-rouge">for</code>: O laço mais comum e idiomático em Rust para iterar sobre coleções.</li>
+    </ul>
+  </li>
+  <li>Exemplo prático: Gerador da sequência de Fibonacci. 🔢</li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-3-o-coração-do-rust---ownership-e-empréstimos-️"><strong>Módulo 3: O Coração do Rust - Ownership e Empréstimos ❤️‍🩹</strong></h3>
+
+<p>Este é o módulo mais importante. Entender estes conceitos é a chave para se tornar um programador Rust eficaz.</p>
+
+<h4 id="aula-5-ownership-posse---o-conceito-central-️"><strong>Aula 5: Ownership (Posse) - O Conceito Central ©️</strong></h4>
+
+<ul>
+  <li><strong>As Três Regras da Posse:</strong>
+    <ol>
+      <li>Cada valor em Rust tem um “dono” (owner).</li>
+      <li>Só pode haver um dono por vez.</li>
+      <li>Quando o dono sai do escopo, o valor é “descartado” (dropped).</li>
+    </ol>
+  </li>
+  <li><strong>O que é o Escopo?</strong></li>
+  <li><strong>O tipo <code class="language-plaintext highlighter-rouge">String</code>:</strong> Um exemplo perfeito para entender a posse na <em>heap</em>.</li>
+  <li><strong>Movendo a Posse (Move):</strong> O que acontece quando você atribui uma variável a outra ou a passa para uma função.</li>
+  <li><strong>Clonando Dados (<code class="language-plaintext highlighter-rouge">.clone()</code>):</strong> Quando você realmente precisa de uma cópia.</li>
+  <li>Exemplo prático: Demonstração de erros de compilação clássicos ao tentar usar um valor após ele ter sido movido.</li>
+</ul>
+
+<h4 id="aula-6-borrowing-empréstimo-e-referências-"><strong>Aula 6: Borrowing (Empréstimo) e Referências 🤝</strong></h4>
+
+<ul>
+  <li><strong>O problema:</strong> Como usar um valor sem tomar posse dele?</li>
+  <li><strong>Referências (<code class="language-plaintext highlighter-rouge">&amp;</code>):</strong> Criando um “empréstimo” de um valor.</li>
+  <li><strong>Referências Imutáveis (<code class="language-plaintext highlighter-rouge">&amp;T</code>):</strong> Você pode ter várias, mas não pode alterar o dado.</li>
+  <li><strong>Referências Mutáveis (<code class="language-plaintext highlighter-rouge">&amp;mut T</code>):</strong> Você só pode ter UMA por vez em um determinado escopo, e não pode haver referências imutáveis ao mesmo tempo.</li>
+  <li><strong>A Garantia do Compilador:</strong> Como essas regras previnem <em>data races</em> (condições de corrida) em tempo de compilação.</li>
+  <li><strong>Referências “Dangling” (Penduradas):</strong> O erro que o Rust torna impossível.</li>
+  <li>Exemplo prático: Refatorar o programa da Aula 5 para usar referências e evitar a movimentação de posse.</li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-4-estruturando-dados-e-comportamentos-️"><strong>Módulo 4: Estruturando Dados e Comportamentos 🏛️</strong></h3>
+
+<p>Vamos aprender a criar nossos próprios tipos de dados e a organizar nosso código de forma lógica e expressiva.</p>
+
+<h4 id="aula-7-structs---criando-tipos-de-dados-personalizados"><strong>Aula 7: Structs - Criando Tipos de Dados Personalizados</strong></h4>
+
+<ul>
+  <li><strong>Definindo e Instanciando Structs:</strong> Agrupando dados relacionados.</li>
+  <li><strong>Sintaxe de Atualização de Structs.</strong></li>
+  <li><strong>Tuple Structs:</strong> Quando os nomes dos campos não são importantes.</li>
+  <li><strong>Adicionando Comportamento com Métodos (<code class="language-plaintext highlighter-rouge">impl</code>):</strong>
+    <ul>
+      <li>Métodos que tomam <code class="language-plaintext highlighter-rouge">&amp;self</code>, <code class="language-plaintext highlighter-rouge">&amp;mut self</code> ou <code class="language-plaintext highlighter-rouge">self</code>.</li>
+      <li>Funções Associadas (como “métodos estáticos”).</li>
+    </ul>
+  </li>
+  <li>Exemplo prático: Modelar um <code class="language-plaintext highlighter-rouge">Usuario</code> com nome, email e status, e adicionar um método para formatar suas informações. 👤</li>
+</ul>
+
+<h4 id="aula-8-enums-e-o-poder-do-match"><strong>Aula 8: Enums e o Poder do <code class="language-plaintext highlighter-rouge">match</code></strong></h4>
+
+<ul>
+  <li><strong>Enums (Enumerações):</strong> Definindo um tipo que pode ser um de vários valores possíveis.</li>
+  <li><strong>Anexando Dados a Variantes de Enum.</strong></li>
+  <li><strong>O <code class="language-plaintext highlighter-rouge">Option&lt;T&gt;</code> Enum:</strong> O fim dos valores nulos (<code class="language-plaintext highlighter-rouge">null</code>)! Lidando com a possível ausência de um valor de forma segura (<code class="language-plaintext highlighter-rouge">Some(T)</code> ou <code class="language-plaintext highlighter-rouge">None</code>).</li>
+  <li><strong>Controle de Fluxo com <code class="language-plaintext highlighter-rouge">match</code>:</strong> O “switch” superpoderoso do Rust que força a verificação de todos os casos possíveis (exaustividade).</li>
+  <li><strong>Padrões que Ligam a Valores.</strong></li>
+  <li><strong>A sintaxe <code class="language-plaintext highlighter-rouge">if let</code>:</strong> Uma forma concisa de lidar com um único padrão de <code class="language-plaintext highlighter-rouge">match</code>.</li>
+  <li>Exemplo prático: Modelar o status de uma requisição web (<code class="language-plaintext highlighter-rouge">Carregando</code>, <code class="language-plaintext highlighter-rouge">Sucesso(String)</code>, <code class="language-plaintext highlighter-rouge">Erro(u16)</code>) e processá-la com <code class="language-plaintext highlighter-rouge">match</code>. 🌐</li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-5-gerenciamento-de-projetos-e-coleções-"><strong>Módulo 5: Gerenciamento de Projetos e Coleções 📚</strong></h3>
+
+<p>Agora que você tem os fundamentos, vamos aprender a organizar projetos maiores e a usar as estruturas de dados mais comuns.</p>
+
+<h4 id="aula-9-organizando-projetos-com-módulos"><strong>Aula 9: Organizando Projetos com Módulos</strong></h4>
+
+<ul>
+  <li><strong>O Sistema de Módulos:</strong> Como o Rust gerencia a organização do código.</li>
+  <li><strong>Palavras-chave <code class="language-plaintext highlighter-rouge">mod</code> e <code class="language-plaintext highlighter-rouge">use</code>:</strong> Definindo módulos e trazendo caminhos para o escopo.</li>
+  <li><strong>Separando Módulos em Arquivos e Pastas Diferentes.</strong></li>
+  <li><strong>Visibilidade:</strong> O uso de <code class="language-plaintext highlighter-rouge">pub</code> para criar uma API pública para seu módulo.</li>
+  <li>Exemplo prático: Reestruturar um projeto maior em uma biblioteca (<code class="language-plaintext highlighter-rouge">lib.rs</code>) e um binário (<code class="language-plaintext highlighter-rouge">main.rs</code>).</li>
+</ul>
+
+<h4 id="aula-10-coleções-comuns"><strong>Aula 10: Coleções Comuns</strong></h4>
+
+<ul>
+  <li><strong>Vetores (<code class="language-plaintext highlighter-rouge">Vec&lt;T&gt;</code>):</strong> Uma lista de valores de tamanho dinâmico na heap.</li>
+  <li><strong>Strings (<code class="language-plaintext highlighter-rouge">String</code>):</strong> Aprofundando no tipo string, codificação UTF-8 e manipulação.</li>
+  <li><strong>Hash Maps (<code class="language-plaintext highlighter-rouge">HashMap&lt;K, V&gt;</code>):</strong> Armazenando dados no formato chave-valor.</li>
+  <li><strong>Iterando sobre Coleções.</strong></li>
+  <li>Exemplo prático: Programa que conta a frequência de palavras em um texto usando um <code class="language-plaintext highlighter-rouge">HashMap</code>. 📊</li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-6-tratamento-de-erros-genéricos-e-traits-️"><strong>Módulo 6: Tratamento de Erros, Genéricos e Traits 🛡️</strong></h3>
+
+<p>Vamos explorar os padrões idiomáticos do Rust para lidar com erros e escrever código flexível e reutilizável.</p>
+
+<h4 id="aula-11-tratamento-de-erros-robusto"><strong>Aula 11: Tratamento de Erros Robusto</strong></h4>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">panic!</code> vs <code class="language-plaintext highlighter-rouge">Result</code>:</strong> Erros irrecuperáveis vs. erros recuperáveis.</li>
+  <li><strong>O Enum <code class="language-plaintext highlighter-rouge">Result&lt;T, E&gt;</code>:</strong> O padrão para funções que podem falhar.</li>
+  <li><strong>Propagando Erros:</strong> O operador <code class="language-plaintext highlighter-rouge">?</code> para um código de tratamento de erros limpo e conciso.</li>
+  <li><strong>Quando usar <code class="language-plaintext highlighter-rouge">unwrap()</code> e <code class="language-plaintext highlighter-rouge">expect()</code>:</strong> A importância de usá-los com sabedoria.</li>
+  <li>Exemplo prático: Criar uma função que lê um arquivo e retorna um <code class="language-plaintext highlighter-rouge">Result</code>, tratando possíveis erros como “arquivo não encontrado”. 📂</li>
+</ul>
+
+<h4 id="aula-12-tipos-genéricos-e-traits"><strong>Aula 12: Tipos Genéricos e Traits</strong></h4>
+
+<ul>
+  <li><strong>Tipos Genéricos (<code class="language-plaintext highlighter-rouge">&lt;T&gt;</code>):</strong> Escrevendo código que opera sobre múltiplos tipos de dados. Em funções, structs e enums.</li>
+  <li><strong>Traits: Definindo Comportamentos Compartilhados:</strong> Semelhante a interfaces em outras linguagens.</li>
+  <li><strong>Implementando um Trait em um Tipo.</strong></li>
+  <li><strong>Trait Bounds:</strong> Restringindo tipos genéricos para que eles tenham um determinado comportamento.</li>
+  <li><strong>Derivando Traits úteis (<code class="language-plaintext highlighter-rouge">Debug</code>, <code class="language-plaintext highlighter-rouge">Clone</code>, <code class="language-plaintext highlighter-rouge">Copy</code>, etc.).</strong></li>
+  <li>Exemplo prático: Criar um trait <code class="language-plaintext highlighter-rouge">Resumo</code> com um método <code class="language-plaintext highlighter-rouge">resumir()</code> e implementá-lo para diferentes structs (<code class="language-plaintext highlighter-rouge">Noticia</code>, <code class="language-plaintext highlighter-rouge">Tweet</code>). 📝</li>
+</ul>
+
+<h4 id="aula-13-lifetimes-tempos-de-vida-em-detalhe-"><strong>Aula 13: Lifetimes (Tempos de Vida) em Detalhe ⏳</strong></h4>
+
+<ul>
+  <li><strong>Revisitando o Problema:</strong> Garantindo que referências não sobrevivam aos dados aos quais apontam (evitando <em>dangling references</em>).</li>
+  <li><strong>Anotações de Lifetime Genéricas em Funções.</strong></li>
+  <li><strong>As Regras de Elisão de Lifetime:</strong> Por que não precisamos escrever lifetimes na maioria das vezes.</li>
+  <li><strong>Lifetimes em Definições de Structs.</strong></li>
+  <li><strong>O Lifetime Estático (<code class="language-plaintext highlighter-rouge">'static</code>).</strong></li>
+  <li>Exemplo prático: Escrever uma função que retorna a maior de duas fatias de string (<code class="language-plaintext highlighter-rouge">&amp;str</code>), exigindo anotações de lifetime explícitas.</li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-7-tópicos-avançados-e-concorrência-"><strong>Módulo 7: Tópicos Avançados e Concorrência 🚀</strong></h3>
+
+<p>Prepare-se para desbloquear todo o poder do Rust com recursos avançados.</p>
+
+<h4 id="aula-14-concorrência-sem-medo-fearless-concurrency"><strong>Aula 14: Concorrência sem Medo (Fearless Concurrency)</strong></h4>
+
+<ul>
+  <li><strong>Threads:</strong> Criando e executando código em paralelo.</li>
+  <li><strong>Passagem de Mensagens com Canais (Channels):</strong> Uma forma segura de comunicar entre threads.</li>
+  <li><strong>Estado Compartilhado e Mutexes:</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">Mutex&lt;T&gt;</code>:</strong> Garantindo que apenas uma thread acesse os dados por vez.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">Arc&lt;T&gt;</code> (Atomic Reference Counting):</strong> Permitindo que múltiplos donos compartilhem um valor de forma segura entre threads.</li>
+    </ul>
+  </li>
+  <li><strong>A Mágica da Sincronização:</strong> Como os traits <code class="language-plaintext highlighter-rouge">Send</code> e <code class="language-plaintext highlighter-rouge">Sync</code> garantem a segurança em tempo de compilação.</li>
+  <li>Exemplo prático: Um programa que baixa e processa múltiplas URLs em paralelo usando threads e canais. ⚡</li>
+</ul>
+
+<h4 id="aula-15-automação-de-testes-e-documentação"><strong>Aula 15: Automação de Testes e Documentação</strong></h4>
+
+<ul>
+  <li><strong>Escrevendo Testes em Rust:</strong>
+    <ul>
+      <li>Testes unitários, testes de integração.</li>
+      <li>A macro <code class="language-plaintext highlighter-rouge">#[test]</code> e o comando <code class="language-plaintext highlighter-rouge">cargo test</code>.</li>
+      <li>A macro <code class="language-plaintext highlighter-rouge">assert!</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Documentação que Funciona:</strong>
+    <ul>
+      <li>Escrevendo comentários de documentação (<code class="language-plaintext highlighter-rouge">///</code>).</li>
+      <li>Incluindo exemplos de código nos seus documentos.</li>
+      <li>Gerando um site de documentação profissional com <code class="language-plaintext highlighter-rouge">cargo doc --open</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="aula-16-closures-iteradores-e-ponteiros-inteligentes"><strong>Aula 16: Closures, Iteradores e Ponteiros Inteligentes</strong></h4>
+
+<ul>
+  <li><strong>Closures:</strong> Funções anônimas que podem capturar seu ambiente.</li>
+  <li><strong>Iteradores:</strong> Aprofundando no trait <code class="language-plaintext highlighter-rouge">Iterator</code> e seus métodos poderosos (<code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">filter</code>, <code class="language-plaintext highlighter-rouge">fold</code>, etc.).</li>
+  <li><strong>Ponteiros Inteligentes (Smart Pointers):</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Box&lt;T&gt;</code>: Para alocar dados na heap.</li>
+      <li><code class="language-plaintext highlighter-rouge">Rc&lt;T&gt;</code> (Reference Counting): Múltiplos donos em um único thread.</li>
+      <li><code class="language-plaintext highlighter-rouge">RefCell&lt;T&gt;</code> e o padrão de “empréstimo interno”.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-8-projeto-final---construindo-uma-aplicação-real-"><strong>Módulo 8: Projeto Final - Construindo uma Aplicação Real 🏆</strong></h3>
+
+<p>Vamos aplicar tudo o que aprendemos para construir um projeto do mundo real do início ao fim.</p>
+
+<h4 id="projeto-ferramenta-de-linha-de-comando-cli-para-gerenciamento-de-tarefas"><strong>Projeto: Ferramenta de Linha de Comando (CLI) para Gerenciamento de Tarefas</strong></h4>
+
+<ul>
+  <li><strong>Objetivo:</strong> Criar uma CLI completa chamada <code class="language-plaintext highlighter-rouge">tarefas</code> para adicionar, listar, concluir e remover itens de uma lista de afazeres.</li>
+  <li><strong>Funcionalidades:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">tarefas adicionar "Comprar leite"</code></li>
+      <li><code class="language-plaintext highlighter-rouge">tarefas listar</code></li>
+      <li><code class="language-plaintext highlighter-rouge">tarefas concluir 1</code></li>
+      <li><code class="language-plaintext highlighter-rouge">tarefas remover 1</code></li>
+    </ul>
+  </li>
+  <li><strong>Conceitos Aplicados:</strong>
+    <ul>
+      <li>Uso do crate <code class="language-plaintext highlighter-rouge">clap</code> para parsear argumentos da linha de comando.</li>
+      <li>Uso do crate <code class="language-plaintext highlighter-rouge">serde</code> e <code class="language-plaintext highlighter-rouge">serde_json</code> para salvar e carregar as tarefas em um arquivo JSON.</li>
+      <li>Estruturação do código com <code class="language-plaintext highlighter-rouge">structs</code> e <code class="language-plaintext highlighter-rouge">enums</code> para modelar as tarefas.</li>
+      <li>Tratamento de erros robusto com <code class="language-plaintext highlighter-rouge">Result</code>.</li>
+      <li>Organização em módulos.</li>
+      <li>Escrita de testes para garantir a corretude da lógica.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ao final deste curso, você não apenas entenderá a sintaxe do Rust, mas também pensará como um “Rustacean”, escrevendo código seguro, performático e elegante. Parabéns por iniciar esta jornada! 🎉</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

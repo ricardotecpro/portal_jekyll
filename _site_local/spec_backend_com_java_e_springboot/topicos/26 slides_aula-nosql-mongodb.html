@@ -1,0 +1,205 @@
+<h3 id="visão-arquitetural-por-que-nosql-superando-os-limites-do-relacional"><strong>Visão Arquitetural: Por Que NoSQL? Superando os Limites do Relacional</strong></h3>
+
+<p>Por décadas, o modelo relacional (SQL) dominou o mundo dos bancos de dados. No entanto, ele apresenta dois desafios significativos para aplicações modernas:</p>
+
+<ol>
+  <li><strong>Incompatibilidade de Impedância Objeto-Relacional</strong>: Em programação orientada a objetos, trabalhamos com objetos complexos e interligados. Um banco de dados relacional nos força a “desmontar” esses objetos em múltiplas tabelas normalizadas. Para recuperar um único objeto de negócio, como uma “Confirmação de Pedido”, muitas vezes precisamos executar consultas com múltiplos e complexos <code class="language-plaintext highlighter-rouge">JOIN</code>s, o que é ineficiente e aumenta a complexidade do código.</li>
+  <li><strong>Escalabilidade</strong>: Bancos de dados relacionais são tradicionalmente projetados para <strong>escalar verticalmente</strong> (comprar um servidor mais potente), o que é caro e tem limites. Aplicações web modernas, com milhões de usuários, exigem <strong>escalabilidade horizontal</strong> (distribuir a carga em um cluster de servidores mais simples), algo que o modelo relacional não suporta nativamente com eficiência.</li>
+</ol>
+
+<p><strong>A Solução NoSQL: O Paradigma de Agregados</strong></p>
+
+<p>Bancos de dados NoSQL, especialmente os <strong>orientados a documentos</strong> como o MongoDB, foram criados para resolver esses problemas. A ideia central é o conceito de <strong>Agregado</strong>: um conjunto de objetos relacionados que são tratados como uma única unidade.</p>
+
+<p>Em vez de dividir uma “Confirmação de Pedido” em tabelas de <code class="language-plaintext highlighter-rouge">pedidos</code>, <code class="language-plaintext highlighter-rouge">clientes</code>, <code class="language-plaintext highlighter-rouge">itens</code>, etc., nós a armazenamos como um único <strong>documento</strong>. Este documento (geralmente em formato BSON/JSON) contém todos os dados relevantes, aninhados em uma estrutura que espelha o objeto em nosso código.</p>
+
+<p>Essa abordagem resolve os dois problemas:</p>
+
+<ul>
+  <li><strong>Elimina a incompatibilidade de impedância</strong>: O formato do dado no banco é quase idêntico ao do objeto na aplicação.</li>
+  <li><strong>Facilita a escalabilidade horizontal</strong>: O agregado é uma unidade natural para distribuição e replicação em um cluster, permitindo que o banco de dados cresça de forma quase ilimitada.</li>
+</ul>
+
+<h3 id="estrutura-do-projeto-camadas-lógicas-com-spring-boot-e-mongodb"><strong>Estrutura do Projeto: Camadas Lógicas com Spring Boot e MongoDB</strong></h3>
+
+<p>A arquitetura de nossa aplicação será a mesma estrutura de camadas robusta que usamos para projetos relacionais, provando a flexibilidade do Spring Framework.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>com.workshopmongo
+├── config/                  // Configuração e instanciação inicial do banco de dados
+├── domain/                  // Entidades mapeadas para as coleções do MongoDB (User, Post)
+├── dto/                     // Data Transfer Objects para controlar os dados da API
+├── repository/              // Interfaces do Spring Data MongoDB (MongoRepository)
+├── services/                // Camada de serviço com a lógica de negócio
+│   └── exception/           // Exceções customizadas
+└── resources/               // Controladores REST (endpoints da API)
+    └── exception/           // Manipulador de exceções global
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fase-1-configuração-do-ambiente-e-do-projeto"><strong>Fase 1: Configuração do Ambiente e do Projeto</strong></h3>
+
+<ol>
+  <li>
+    <p><strong>Instalação do MongoDB</strong>: Baixe e instale o MongoDB Community Server e, opcionalmente, o Mongo Compass (uma GUI para visualizar e gerenciar o banco). Inicie o servidor MongoDB com o comando <code class="language-plaintext highlighter-rouge">mongod</code> em um terminal.</p>
+  </li>
+  <li>
+    <p><strong>Criação do Projeto Spring Boot</strong>: Use o <a href="https://start.spring.io/">Spring Initializr</a> com as dependências <code class="language-plaintext highlighter-rouge">Spring Web</code> e <code class="language-plaintext highlighter-rouge">Spring Data MongoDB</code>.</p>
+  </li>
+  <li>
+    <p><strong>Configuração da Conexão</strong>: No arquivo <code class="language-plaintext highlighter-rouge">src/main/resources/application.properties</code>, adicione a string de conexão.</p>
+
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Conecta ao MongoDB local no banco de dados 'workshop_mongo'.
+# Se o banco não existir, ele será criado na primeira operação.
+</span><span class="py">spring.data.mongodb.uri</span><span class="p">=</span><span class="s">mongodb://localhost:27017/workshop_mongo</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="fase-2-implementando-o-crud-de-usuários-com-o-padrão-dto"><strong>Fase 2: Implementando o CRUD de Usuários com o Padrão DTO</strong></h3>
+
+<p>Vamos criar os endpoints para usuários, usando DTOs (Data Transfer Objects) para um design de API limpo e seguro.</p>
+
+<ol>
+  <li>
+    <p><strong>Entidade <code class="language-plaintext highlighter-rouge">User.java</code></strong>: A anotação <code class="language-plaintext highlighter-rouge">@Document</code> do Spring Data MongoDB substitui a <code class="language-plaintext highlighter-rouge">@Entity</code> do JPA.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.workshopmongo.domain;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.data.annotation.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.mongodb.core.mapping.Document</span><span class="o">;</span>
+
+<span class="nd">@Document</span><span class="o">(</span><span class="n">collection</span><span class="o">=</span><span class="s">"user"</span><span class="o">)</span> <span class="c1">// Mapeia para a coleção 'user' no MongoDB</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span> <span class="c1">// No MongoDB, o ID é tipicamente uma String</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+    <span class="c1">// Construtores, Getters, Setters, etc.</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Repositório <code class="language-plaintext highlighter-rouge">UserRepository.java</code></strong>: <code class="language-plaintext highlighter-rouge">MongoRepository</code> é o equivalente do <code class="language-plaintext highlighter-rouge">JpaRepository</code> para MongoDB.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.workshopmongo.repository;</span>
+
+<span class="kn">import</span> <span class="nn">com.workshopmongo.domain.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.mongodb.repository.MongoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">MongoRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="o">{</span> <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">UserDTO.java</code></strong>: Um objeto para trafegar dados entre as camadas e a API.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package com.workshopmongo.dto;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDTO</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserDTO</span><span class="o">(</span><span class="nc">User</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="na">getEmail</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="c1">// Construtor padrão, Getters/Setters...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">UserService.java</code> e <code class="language-plaintext highlighter-rouge">UserResource.java</code></strong>: A implementação das camadas de serviço e recurso segue o mesmo padrão do projeto com JPA, demonstrando a consistência do Spring. O serviço usa o repositório para buscar os dados, e o recurso chama o serviço, convertendo as entidades para DTOs antes de retornar a resposta HTTP.</p>
+  </li>
+</ol>
+
+<h3 id="fase-3-modelando-relacionamentos---o-dilema-do-design-nosql"><strong>Fase 3: Modelando Relacionamentos - O Dilema do Design NoSQL</strong></h3>
+
+<p>Aqui está a decisão de design mais crítica ao trabalhar com MongoDB: <strong>aninhar (embed) ou referenciar?</strong></p>
+
+<h4 id="abordagem-1-objetos-aninhados-embedded"><strong>Abordagem 1: Objetos Aninhados (Embedded)</strong></h4>
+
+<p>Vamos modelar um <code class="language-plaintext highlighter-rouge">Post</code> que contém os dados de seu autor e seus comentários.</p>
+
+<ul>
+  <li><strong>Design</strong>: A classe <code class="language-plaintext highlighter-rouge">Post</code> terá um atributo do tipo <code class="language-plaintext highlighter-rouge">AuthorDTO</code> e uma <code class="language-plaintext highlighter-rouge">List&lt;CommentDTO&gt;</code>. <code class="language-plaintext highlighter-rouge">AuthorDTO</code> e <code class="language-plaintext highlighter-rouge">CommentDTO</code> são classes simples (POJOs), não entidades <code class="language-plaintext highlighter-rouge">@Document</code>.</li>
+  <li><strong>Vantagem</strong>: <strong>Performance de Leitura Máxima</strong>. Ao buscar um post, todos os dados relacionados (autor, comentários) vêm em uma única operação de banco de dados. Ideal para dados que são quase sempre consumidos juntos.</li>
+  <li><strong>Implementação <code class="language-plaintext highlighter-rouge">Post.java</code></strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Document</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Post</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">date</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">body</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">AuthorDTO</span> <span class="n">author</span><span class="o">;</span> <span class="c1">// Objeto aninhado</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">CommentDTO</span><span class="o">&gt;</span> <span class="n">comments</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">// Lista de objetos aninhados</span>
+    <span class="c1">//...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="abordagem-2-referências-dbref"><strong>Abordagem 2: Referências (<code class="language-plaintext highlighter-rouge">@DBRef</code>)</strong></h4>
+
+<p>Agora, vamos modelar o relacionamento do <code class="language-plaintext highlighter-rouge">User</code> com seus <code class="language-plaintext highlighter-rouge">Post</code>s. Aninhar todos os posts dentro do documento do usuário seria inviável. Em vez disso, armazenamos referências.</p>
+
+<ul>
+  <li><strong>Design</strong>: A classe <code class="language-plaintext highlighter-rouge">User</code> terá uma <code class="language-plaintext highlighter-rouge">List&lt;Post&gt;</code>, anotada com <code class="language-plaintext highlighter-rouge">@DBRef</code>. No banco, o MongoDB armazenará apenas os IDs dos posts, não os documentos completos.</li>
+  <li><strong>Vantagem</strong>: <strong>Evita Duplicação e Consistência de Dados</strong>. Se um post for atualizado, a mudança é refletida em todos os lugares, pois há apenas uma cópia dele.</li>
+  <li><strong>Implementação <code class="language-plaintext highlighter-rouge">User.java</code></strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Document</span><span class="o">(</span><span class="n">collection</span><span class="o">=</span><span class="s">"user"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="c1">// ... outros campos ...</span>
+        
+    <span class="c1">// Armazena uma lista de referências aos documentos da coleção Post.</span>
+    <span class="c1">// lazy = true é uma otimização para que os posts só sejam carregados quando explicitamente acessados.</span>
+    <span class="nd">@DBRef</span><span class="o">(</span><span class="n">lazy</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">&gt;</span> <span class="n">posts</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Endpoint para buscar os posts de um usuário:</strong>
+O Spring Data cuidará de resolver essas referências para nós quando acessarmos a lista.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em UserResource.java</span>
+<span class="nd">@GetMapping</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="s">"/{id}/posts"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">&gt;&gt;</span> <span class="nf">findPosts</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">User</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">getPosts</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="fase-4-consultas-avançadas-no-mongodb"><strong>Fase 4: Consultas Avançadas no MongoDB</strong></h3>
+
+<p>O Spring Data MongoDB facilita a criação de consultas complexas.</p>
+
+<ol>
+  <li>
+    <p><strong>Query Methods</strong>: Crie consultas simplesmente declarando a assinatura do método no repositório. O Spring “entende” o nome do método e cria a query.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em PostRepository.java</span>
+<span class="c1">// Encontra posts cujo título contenha a string 'text', ignorando caixa alta/baixa.</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">&gt;</span> <span class="nf">findByTitleContainingIgnoreCase</span><span class="o">(</span><span class="nc">String</span> <span class="n">text</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">@Query</code></strong>: Para lógicas mais complexas, use a anotação <code class="language-plaintext highlighter-rouge">@Query</code> com a sintaxe de consulta do MongoDB (JSON-like).</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Em PostRepository.java</span>
+<span class="c1">// Busca por 'text' no título OU no corpo OU nos comentários, dentro de um intervalo de datas.</span>
+<span class="c1">// ?0, ?1, ?2 referem-se aos parâmetros do método: text, minDate, maxDate.</span>
+<span class="c1">// '$regex': 'i' =&gt; case-insensitive search</span>
+<span class="nd">@Query</span><span class="o">(</span><span class="s">"{ $and: [ { date: {$gte: ?1} }, { date: { $lte: ?2} } , { $or: [ { 'title': { $regex: ?0, $options: 'i' } }, { 'body': { $regex: ?0, $options: 'i' } }, { 'comments.text': { $regex: ?0, $options: 'i' } } ] } ] }"</span><span class="o">)</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Post</span><span class="o">&gt;</span> <span class="nf">fullSearch</span><span class="o">(</span><span class="nc">String</span> <span class="n">text</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">minDate</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">maxDate</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Este guia demonstra como o MongoDB, combinado com o Spring Boot, oferece uma plataforma poderosa e produtiva para construir APIs modernas, ao mesmo tempo que nos força a pensar cuidadosamente sobre como modelar nossos dados para obter o melhor equilíbrio entre performance e consistência.</p>

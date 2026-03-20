@@ -1,0 +1,489 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_13_devops_e_cloud/topicos/docker/docker01.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Manual Introdutório de Docker | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Manual Introdutório de Docker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_13_devops_e_cloud/topicos/docker/docker01.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_13_devops_e_cloud/topicos/docker/docker01.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Manual Introdutório de Docker" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Manual Introdutório de Docker","url":"https://ricardotecpro.github.io/portal_jekyll/mod_13_devops_e_cloud/topicos/docker/docker01.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_13_devops_e_cloud/" style="margin-left: 0.5rem;">Mod 13 devops e cloud</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_13_devops_e_cloud/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_13_devops_e_cloud/topicos/docker/" style="margin-left: 0.5rem;">Docker</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Manual introdutório de docker</span>
+          
+        
+      </nav>
+
+      <h1 id="manual-introdutório-de-docker">Manual Introdutório de Docker</h1>
+
+<hr />
+
+<h2 id="sumário">Sumário</h2>
+
+<ol>
+  <li>
+    <p>O que é Docker?</p>
+  </li>
+  <li>
+    <p>Vantagens do Docker</p>
+  </li>
+  <li>
+    <p>Instalação do Docker</p>
+
+    <ul>
+      <li>
+        <p>Windows</p>
+      </li>
+      <li>
+        <p>macOS</p>
+      </li>
+      <li>
+        <p>Linux</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Primeiros Passos com Docker</p>
+
+    <ul>
+      <li>Comandos básicos</li>
+    </ul>
+  </li>
+  <li>
+    <p>Dockerfile: Conceitos e Exemplo</p>
+  </li>
+  <li>
+    <p>Docker Compose: Conceitos e Exemplo</p>
+  </li>
+  <li>
+    <p>Configuração de Ambientes com Docker</p>
+
+    <ul>
+      <li>
+        <p>Java</p>
+      </li>
+      <li>
+        <p>Python</p>
+      </li>
+      <li>
+        <p>JavaScript (Node.js)</p>
+      </li>
+      <li>
+        <p>MySQL</p>
+      </li>
+      <li>
+        <p>PostgreSQL</p>
+      </li>
+      <li>
+        <p>Nginx</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Como manter dados permanentes (Persistência de Dados)</p>
+  </li>
+  <li>
+    <p>Boas práticas</p>
+  </li>
+  <li>
+    <p>Referências</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="1-o-que-é-docker">1. O que é Docker?</h2>
+
+<p>Docker é uma plataforma que permite empacotar aplicações e suas dependências em <strong>containers</strong>, garantindo que funcionem de forma consistente em diferentes ambientes.</p>
+
+<p><img src="https://docs.docker.com/images/Container_vs_VM.png" alt="Conceito de container vs. VM" /></p>
+
+<hr />
+
+<h2 id="2-vantagens-do-docker">2. Vantagens do Docker</h2>
+
+<ul>
+  <li>
+    <p>Portabilidade</p>
+  </li>
+  <li>
+    <p>Isolamento de ambiente</p>
+  </li>
+  <li>
+    <p>Agilidade no desenvolvimento</p>
+  </li>
+  <li>
+    <p>Facilidade de versionamento e distribuição</p>
+  </li>
+  <li>
+    <p>Compatível com DevOps e CI/CD</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="3-instalação-do-docker">3. Instalação do Docker</h2>
+
+<h3 id="windows">Windows</h3>
+
+<ol>
+  <li>
+    <p>Baixe o <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a></p>
+  </li>
+  <li>
+    <p>Execute o instalador e siga os passos</p>
+  </li>
+  <li>
+    <p>Verifique se a <strong>virtualização</strong> está habilitada na BIOS</p>
+  </li>
+  <li>
+    <p>Após a instalação, reinicie o computador</p>
+  </li>
+  <li>
+    <p>Teste no terminal (PowerShell ou CMD):</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker <span class="nt">--version</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="macos">macOS</h3>
+
+<ol>
+  <li>
+    <p>Baixe o Docker Desktop para macOS <a href="https://www.docker.com/products/docker-desktop/">aqui</a></p>
+  </li>
+  <li>
+    <p>Instale o app arrastando-o para a pasta Aplicativos</p>
+  </li>
+  <li>
+    <p>Teste no terminal:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker <span class="nt">--version</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="linux-ubuntudebian">Linux (Ubuntu/Debian)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>docker.io <span class="nt">-y</span>
+<span class="nb">sudo </span>systemctl start docker
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker
+<span class="nb">sudo </span>usermod <span class="nt">-aG</span> docker <span class="nv">$USER</span>
+docker <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Após isso, reinicie o sistema ou faça logout/login.</p>
+
+<hr />
+
+<h2 id="4-primeiros-passos-com-docker">4. Primeiros Passos com Docker</h2>
+
+<p>Comandos básicos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run hello-world             <span class="c"># Teste inicial</span>
+docker ps                          <span class="c"># Contêners em execução</span>
+docker ps <span class="nt">-a</span>                       <span class="c"># Todos os contêners</span>
+docker images                      <span class="c"># Imagens disponíveis</span>
+docker pull nome_da_imagem        <span class="c"># Baixar imagem</span>
+docker stop id_ou_nome             <span class="c"># Parar contêiner</span>
+docker <span class="nb">rm </span>id_ou_nome               <span class="c"># Remover contêiner</span>
+docker rmi nome_da_imagem         <span class="c"># Remover imagem</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-dockerfile-conceito-e-exemplo">5. Dockerfile: Conceito e Exemplo</h2>
+
+<p>Um <strong>Dockerfile</strong> é um script que define como construir uma imagem personalizada.</p>
+
+<h3 id="exemplo-python">Exemplo (Python)</h3>
+
+<div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> python:3.10-slim</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> ../modulo_08_ambiente_desenvolvimento/nosql .</span>
+<span class="k">RUN </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="k">CMD</span><span class="s"> ["python", "app.py"]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-docker-compose">6. Docker Compose</h2>
+
+<p>O <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> permite orquestrar vários containers.</p>
+
+<h3 id="exemplo">Exemplo</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.8"</span>
+<span class="na">services</span><span class="pi">:</span>
+   <span class="na">web</span><span class="pi">:</span>
+      <span class="na">build</span><span class="pi">:</span> <span class="s">../..</span>
+      <span class="na">ports</span><span class="pi">:</span>
+         <span class="pi">-</span> <span class="s2">"</span><span class="s">5000:5000"</span>
+   <span class="na">db</span><span class="pi">:</span>
+      <span class="na">image</span><span class="pi">:</span> <span class="s">mysql:8</span>
+      <span class="na">environment</span><span class="pi">:</span>
+         <span class="na">MYSQL_ROOT_PASSWORD</span><span class="pi">:</span> <span class="s">senha</span>
+         <span class="na">MYSQL_DATABASE</span><span class="pi">:</span> <span class="s">minha_app</span>
+</code></pre></div></div>
+
+<p>Execute com:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose up
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-configuração-de-linguagens-e-serviços">7. Configuração de Linguagens e Serviços</h2>
+
+<h3 id="java">Java</h3>
+
+<div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> openjdk:17</span>
+<span class="k">COPY</span><span class="s"> . /app</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">RUN </span>javac Main.java
+<span class="k">CMD</span><span class="s"> ["java", "Main"]</span>
+</code></pre></div></div>
+
+<h3 id="python">Python</h3>
+
+<div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> python:3.11</span>
+<span class="k">COPY</span><span class="s"> . /app</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">RUN </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="k">CMD</span><span class="s"> ["python", "app.py"]</span>
+</code></pre></div></div>
+
+<h3 id="nodejs-javascript">Node.js (JavaScript)</h3>
+
+<div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> node:18</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+<span class="k">RUN </span>npm <span class="nb">install</span>
+<span class="k">CMD</span><span class="s"> ["npm", "start"]</span>
+</code></pre></div></div>
+
+<h3 id="mysql">MySQL</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">mysql</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mysql:8</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">MYSQL_ROOT_PASSWORD</span><span class="pi">:</span> <span class="s">root</span>
+      <span class="na">MYSQL_DATABASE</span><span class="pi">:</span> <span class="s">escola</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">3306:3306"</span>
+</code></pre></div></div>
+
+<h3 id="postgresql">PostgreSQL</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:16</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">senha</span>
+      <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">projeto</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+</code></pre></div></div>
+
+<h3 id="nginx">Nginx</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">nginx</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">nginx:latest</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">80:80"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./site:/usr/share/nginx/html</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8-como-manter-dados-permanentes-persistência-de-dados">8. Como manter dados permanentes (Persistência de Dados)</h2>
+
+<p>Por padrão, quando um container é removido ou reiniciado, seus dados internos são perdidos. Para evitar isso, usamos <strong>volumes</strong> e <strong>bind mounts</strong>.</p>
+
+<h3 id="81-volumes">8.1 Volumes</h3>
+
+<p>Volumes são armazenados no diretório do Docker (<code class="language-plaintext highlighter-rouge">/var/lib/docker/volumes/</code>) e são gerenciados pelo Docker.</p>
+
+<h4 id="criando-um-volume">Criando um volume:</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker volume create meus_dados
+</code></pre></div></div>
+
+<h4 id="usando-em-um-container">Usando em um container:</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">--name</span> mysql-persistente <span class="se">\</span>
+  <span class="nt">-e</span> <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>senha <span class="se">\</span>
+  <span class="nt">-v</span> meus_dados:/var/lib/mysql <span class="se">\</span>
+  mysql:8
+</code></pre></div></div>
+
+<p>Esse volume mantém os dados do banco mesmo se o container for removido.</p>
+
+<h3 id="82-bind-mounts">8.2 Bind Mounts</h3>
+
+<p>Bind mounts conectam uma pasta do seu sistema diretamente ao container.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-v</span> /home/usuario/appdata:/app/data myapp
+</code></pre></div></div>
+
+<p>Tudo que for salvo em <code class="language-plaintext highlighter-rouge">/app/data</code> dentro do container será armazenado em <code class="language-plaintext highlighter-rouge">/home/usuario/appdata</code> no host.</p>
+
+<h3 id="83-exemplo-no-docker-compose-com-volume">8.3 Exemplo no Docker Compose (com volume)</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.8"</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:16</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">senha</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">dados_postgres:/var/lib/postgresql/data</span>
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">dados_postgres</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>⚠️ <strong>Dica:</strong> Nunca armazene dados importantes apenas dentro do container sem montar um volume ou bind mount!</p>
+</blockquote>
+
+<hr />
+
+<h2 id="9-boas-práticas">9. Boas Práticas</h2>
+
+<ul>
+  <li>
+    <p>Use <code class="language-plaintext highlighter-rouge">.dockerignore</code> para ignorar arquivos desnecessários</p>
+  </li>
+  <li>
+    <p>Sempre fixe versões nas imagens</p>
+  </li>
+  <li>
+    <p>Use volumes para persistência de dados</p>
+  </li>
+  <li>
+    <p>Teste comandos manualmente antes de automatizar</p>
+  </li>
+  <li>
+    <p>Mantenha os containers leves</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="10-referências">10. Referências</h2>
+
+<ul>
+  <li>
+    <p><a href="https://docs.docker.com/">Documentação Oficial do Docker</a></p>
+  </li>
+  <li>
+    <p><a href="https://hub.docker.com/">DockerHub</a></p>
+  </li>
+  <li>
+    <h2 id="tutoriais-da-comunidade-no-github-e-medium">Tutoriais da comunidade no GitHub e Medium</h2>
+  </li>
+</ul>
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

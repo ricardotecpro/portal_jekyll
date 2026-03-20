@@ -1,0 +1,366 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/topicos/springboot_angular/aula_07_aula_spring_angular.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Todo List - API REST com Angular e Spring Boot | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Todo List - API REST com Angular e Spring Boot" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/springboot_angular/aula_07_aula_spring_angular.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/springboot_angular/aula_07_aula_spring_angular.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Todo List - API REST com Angular e Spring Boot" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"Todo List - API REST com Angular e Spring Boot","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/topicos/springboot_angular/aula_07_aula_spring_angular.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/topicos/springboot_angular/" style="margin-left: 0.5rem;">Springboot angular</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Todo list   api rest com angular e spring boot</span>
+          
+        
+      </nav>
+
+      <h1 id="todo-list---api-rest-com-angular-e-spring-boot">Todo List - API REST com Angular e Spring Boot</h1>
+
+<h2 id="introdução">Introdução</h2>
+
+<p>Este projeto é um sistema de lista de tarefas (<strong>Todo List</strong>) no estilo <strong>Kanban</strong>, onde o usuário pode adicionar tarefas, movê-las entre colunas (“A Fazer” e “Executadas”) e removê-las. A aplicação é composta por um <strong>backend</strong> em <strong>Spring Boot</strong> e um <strong>frontend</strong> em <strong>Angular</strong>.</p>
+
+<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
+
+<ul>
+  <li><strong>Backend:</strong> Java 21, Spring Boot, Spring Data JPA, MySQL (ou H2 para testes)</li>
+  <li><strong>Frontend:</strong> Angular, TypeScript, Bootstrap</li>
+  <li><strong>Ferramentas:</strong> Docker, Postman (para testes), Node.js, npm</li>
+</ul>
+
+<hr />
+
+<h2 id="estrutura-de-arquivos">Estrutura de Arquivos</h2>
+
+<h3 id="backend-spring-boot">Backend (Spring Boot)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>backend/
+│── src/
+│   ├── main/
+│   │   ├── java/com/example/listatarefas/
+│   │   │   ├── model/Task.java
+│   │   │   ├── repository/TaskRepository.java
+│   │   │   ├── controller/TaskController.java
+│   │   ├── resources/
+│   │   │   ├── application.properties
+│   ├── test/
+│── pom.xml
+│── README.md
+</code></pre></div></div>
+
+<h3 id="frontend-angular">Frontend (Angular)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>frontend/
+│── src/
+│   ├── app/
+│   │   ├── task-board/
+│   │   │   ├── task-board.component.ts
+│   │   │   ├── task-board.component.html
+│   │   ├── services/task.service.ts
+│   ├── assets/
+│   ├── index.html
+│── angular.json
+│── package.json
+│── README.md
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="1-configurando-o-backend-spring-boot">1. Configurando o Backend (Spring Boot)</h2>
+
+<h3 id="criando-o-projeto-spring-boot">Criando o projeto Spring Boot</h3>
+
+<ol>
+  <li>Acesse <a href="https://start.spring.io/">Spring Initializr</a></li>
+  <li>Configure as dependências:
+    <ul>
+      <li>Spring Web</li>
+      <li>Spring Data JPA</li>
+      <li>MySQL Driver</li>
+      <li>H2 Database (para testes locais)</li>
+    </ul>
+  </li>
+  <li>Baixe o projeto e abra no IntelliJ ou VS Code.</li>
+</ol>
+
+<h3 id="configurando-o-applicationproperties">Configurando o <code class="language-plaintext highlighter-rouge">application.properties</code></h3>
+
+<p>No diretório <code class="language-plaintext highlighter-rouge">src/main/resources</code>, configure o arquivo <code class="language-plaintext highlighter-rouge">application.properties</code>:</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Banco de dados para desenvolvimento
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:mysql://localhost:3306/listatarefas</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">root</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span><span class="s">root</span>
+<span class="py">spring.jpa.hibernate.ddl-auto</span><span class="p">=</span><span class="s">update</span>
+<span class="py">spring.jpa.show-sql</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Banco de dados para testes
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+</code></pre></div></div>
+
+<h3 id="criando-a-entidade-task">Criando a Entidade <code class="language-plaintext highlighter-rouge">Task</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tasks"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Task</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">completed</span><span class="o">;</span>
+    
+    <span class="c1">// Getters e Setters</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="criando-o-repositório-taskrepository">Criando o Repositório <code class="language-plaintext highlighter-rouge">TaskRepository</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TaskRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="criando-o-controlador-taskcontroller">Criando o Controlador <code class="language-plaintext highlighter-rouge">TaskController</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/tasks"</span><span class="o">)</span>
+<span class="nd">@CrossOrigin</span><span class="o">(</span><span class="s">"*"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TaskController</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">TaskRepository</span> <span class="n">repository</span><span class="o">;</span>
+    
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">&gt;</span> <span class="nf">getAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">Task</span> <span class="nf">create</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Task</span> <span class="n">task</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@PutMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Task</span> <span class="nf">update</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@RequestBody</span> <span class="nc">Task</span> <span class="n">task</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">repository</span><span class="o">.</span><span class="na">deleteById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="testando-a-api-no-navegadorpostman">Testando a API no Navegador/Postman</h3>
+
+<ol>
+  <li>
+    <p><strong>Rodar a aplicação</strong></p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mvn spring-boot:run
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Testar no navegador</strong></p>
+    <ul>
+      <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/tasks</code> para listar as tarefas.</li>
+      <li>Use o Postman para testar <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PUT</code> e <code class="language-plaintext highlighter-rouge">DELETE</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="2-configurando-o-frontend-angular">2. Configurando o Frontend (Angular)</h2>
+
+<h3 id="criando-o-projeto-angular">Criando o projeto Angular</h3>
+
+<ol>
+  <li>
+    <p>Instale o Angular CLI (caso ainda não tenha):</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> npm <span class="nb">install</span> <span class="nt">-g</span> @angular/cli
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Crie um novo projeto:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ng new listatarefas-frontend
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Entre no diretório do projeto:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd </span>listatarefas-frontend
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="instalando-dependências">Instalando dependências</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>bootstrap
+npm <span class="nb">install</span> @angular/common @angular/forms @angular/router @angular/http
+</code></pre></div></div>
+
+<h3 id="criando-o-componente-taskboard">Criando o Componente <code class="language-plaintext highlighter-rouge">TaskBoard</code></h3>
+
+<ol>
+  <li>
+    <p>Gere o componente:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ng generate component TaskBoard
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edite <code class="language-plaintext highlighter-rouge">task-board.component.html</code>:</p>
+  </li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Todo List<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">[(ngModel)]=</span><span class="s">"newTask"</span> <span class="na">placeholder=</span><span class="s">"Nova tarefa"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">(click)=</span><span class="s">"addTask()"</span><span class="nt">&gt;</span>Adicionar<span class="nt">&lt;/button&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"tasks"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h3&gt;</span>A Fazer<span class="nt">&lt;/h3&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+      <span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let task of tasks"</span> <span class="na">(click)=</span><span class="s">"toggleTask(task)"</span><span class="nt">&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-rodando-e-testando-a-aplicação">3. Rodando e Testando a Aplicação</h2>
+
+<ol>
+  <li>
+    <p><strong>Subir o backend:</strong></p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mvn spring-boot:run
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Subir o frontend:</strong></p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ng serve <span class="nt">--open</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Acessar no navegador:</strong></p>
+    <ul>
+      <li>Frontend: <code class="language-plaintext highlighter-rouge">http://localhost:4200</code></li>
+      <li>Backend: <code class="language-plaintext highlighter-rouge">http://localhost:8080/api/tasks</code></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="conclusão">Conclusão</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

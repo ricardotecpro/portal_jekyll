@@ -1,0 +1,94 @@
+<h1 id="-módulo-2-frontend-com-react">🎓 Módulo 2: Frontend com React</h1>
+
+<p><strong>Objetivo</strong>: Construir uma interface moderna para interagir com nossa API.</p>
+
+<hr />
+
+<h2 id="1-o-que-é-react">1. O que é React?</h2>
+<p>React é uma biblioteca JavaScript para criar interfaces de usuário baseadas em <strong>Componentes</strong>. Um botão, um formulário, um cabeçalho… tudo é um componente reutilizável.</p>
+
+<hr />
+
+<h2 id="2-criando-o-projeto">2. Criando o Projeto</h2>
+
+<p>Vamos usar o <strong>Vite</strong>, uma ferramenta ultra-rápida para criar projetos React.</p>
+
+<ol>
+  <li>No terminal, na raiz do projeto:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm create vite@latest frontend <span class="nt">--</span> <span class="nt">--template</span> react
+<span class="nb">cd </span>frontend
+npm <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Instale as bibliotecas extras:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>axios react-router-dom
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="3-configurando-a-api">3. Configurando a API</h2>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">src/services/api.js</code>. Isso centraliza as chamadas ao Backend.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+    <span class="na">baseURL</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:8080/api</span><span class="dl">'</span>
+<span class="p">});</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">api</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-criando-um-componente">4. Criando um Componente</h2>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">src/components/TaskList.jsx</code>.</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useEffect</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">api</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../services/api</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">TaskList</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">tasks</span><span class="p">,</span> <span class="nx">setTasks</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">([]);</span>
+
+    <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">api</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tarefas</span><span class="dl">'</span><span class="p">).</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nf">setTasks</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">},</span> <span class="p">[]);</span>
+
+    <span class="k">return </span><span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Minhas Tarefas<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+                <span class="si">{</span><span class="nx">tasks</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">task</span> <span class="o">=&gt;</span> <span class="p">(</span>
+                    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">task</span><span class="p">.</span><span class="nx">titulo</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">))</span><span class="si">}</span>
+            <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">TaskList</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><em>Explicação: <code class="language-plaintext highlighter-rouge">useEffect</code> busca os dados quando a tela carrega. <code class="language-plaintext highlighter-rouge">useState</code> guarda os dados na memória do componente.</em></p>
+
+<hr />
+
+<h2 id="-pare-e-teste">🛑 Pare e Teste</h2>
+
+<ol>
+  <li>Adicione <code class="language-plaintext highlighter-rouge">&lt;TaskList /&gt;</code> no seu <code class="language-plaintext highlighter-rouge">App.jsx</code>.</li>
+  <li>Rode o frontend: <code class="language-plaintext highlighter-rouge">npm run dev</code>.</li>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:5173</code>.</li>
+  <li>Se o Backend estiver rodando, você verá as tarefas cadastradas!</li>
+</ol>
+
+<hr />
+
+<h2 id="-desafio">🏆 Desafio</h2>
+<p>Crie um formulário para adicionar novas tarefas usando <code class="language-plaintext highlighter-rouge">api.post('/tarefas', novaTarefa)</code>.</p>
+

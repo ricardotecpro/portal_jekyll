@@ -1,0 +1,1144 @@
+<h1 id="-java-enumerações-e-composição">☕ Java: Enumerações e Composição</h1>
+
+<p>Este material aborda os conceitos de enumerações e composição em Java, fundamentais para a criação de código mais organizado, legível e robusto.</p>
+
+<h2 id="-enumerações-enums">📜 Enumerações (Enums)</h2>
+
+<p>Enumerações, ou <code class="language-plaintext highlighter-rouge">enum</code> em Java, são um tipo especial que permite definir um conjunto de constantes nomeadas e relacionadas de forma literal. Elas trazem maior semântica e legibilidade ao código, além de serem auxiliadas pelo compilador para garantir a segurança de tipos.</p>
+
+<h3 id="-checklist">✅ Checklist</h3>
+<ul>
+  <li>Definição e discussão</li>
+  <li>Exemplo: estados de um pedido</li>
+  <li>Conversão de <code class="language-plaintext highlighter-rouge">String</code> para <code class="language-plaintext highlighter-rouge">enum</code></li>
+  <li>Representação UML</li>
+</ul>
+
+<h3 id="-o-que-são-enumerações">🎯 O que são Enumerações?</h3>
+<ul>
+  <li>É um tipo especial que serve para especificar de forma literal um conjunto de constantes relacionadas.</li>
+  <li>Palavra-chave em Java: <code class="language-plaintext highlighter-rouge">enum</code>.</li>
+  <li><strong>Vantagem</strong>: Melhor semântica, código mais legível e auxiliado pelo compilador. Isso significa que o compilador pode verificar se você está usando os valores corretos, evitando erros comuns que ocorreriam com o uso de constantes <code class="language-plaintext highlighter-rouge">String</code> ou <code class="language-plaintext highlighter-rouge">int</code>.</li>
+</ul>
+
+<p><strong>Exemplo Prático Simples:</strong>
+Imagine que você precisa representar os dias da semana. Em vez de usar inteiros (0 para Domingo, 1 para Segunda, etc.) ou Strings (“DOMINGO”, “SEGUNDA”), você pode usar um <code class="language-plaintext highlighter-rouge">enum</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.exemplo.enums</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">DiaDaSemana</span> <span class="o">{</span>
+    <span class="no">DOMINGO</span><span class="o">,</span>
+    <span class="no">SEGUNDA</span><span class="o">,</span>
+    <span class="no">TERCA</span><span class="o">,</span>
+    <span class="no">QUARTA</span><span class="o">,</span>
+    <span class="no">QUINTA</span><span class="o">,</span>
+    <span class="no">SEXTA</span><span class="o">,</span>
+    <span class="no">SABADO</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Usar <code class="language-plaintext highlighter-rouge">DiaDaSemana.SEGUNDA</code> é muito mais claro e seguro do que usar o número <code class="language-plaintext highlighter-rouge">1</code> ou a string <code class="language-plaintext highlighter-rouge">"SEGUNDA"</code>.</p>
+
+<h3 id="-ciclo-de-vida-de-um-pedido-exemplo-com-enum">🔄 Ciclo de Vida de um Pedido: Exemplo com Enum</h3>
+<p>Um exemplo clássico é o status de um pedido em um sistema de e-commerce.</p>
+
+<p><strong>Estados Possíveis:</strong></p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">PENDING_PAYMENT</code> (Pagamento Pendente)</li>
+  <li><code class="language-plaintext highlighter-rouge">PROCESSING</code> (Processando)</li>
+  <li><code class="language-plaintext highlighter-rouge">SHIPPED</code> (Enviado)</li>
+  <li><code class="language-plaintext highlighter-rouge">DELIVERED</code> (Entregue)</li>
+</ol>
+
+<p><strong>Representação em Diagrama de Atividades UML:</strong></p>
+
+<pre><code class="language-mermaid">graph TD
+    A[Início] --&gt; B(PendingPayment);
+    B -- billing --&gt; C(Processing);
+    C -- dispatch --&gt; D(Shipped);
+    D -- deliver --&gt; E(Delivered);
+    E --&gt; F[Fim];
+</code></pre>
+
+<p><strong>Código Java para <code class="language-plaintext highlighter-rouge">OrderStatus</code> (Status do Pedido):</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades.enums</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">StatusPedido</span> <span class="o">{</span>
+    <span class="no">PAGAMENTO_PENDENTE</span><span class="o">,</span>
+    <span class="no">PROCESSANDO</span><span class="o">,</span>
+    <span class="no">ENVIADO</span><span class="o">,</span>
+    <span class="no">ENTREGUE</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Pedido</code> utilizando o <code class="language-plaintext highlighter-rouge">enum StatusPedido</code>:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.enums.StatusPedido</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pedido</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">instante</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">StatusPedido</span> <span class="n">status</span><span class="o">;</span>
+
+    <span class="c1">// Construtores, getters e setters omitidos para brevidade</span>
+
+    <span class="kd">public</span> <span class="nf">Pedido</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">instante</span><span class="o">,</span> <span class="nc">StatusPedido</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">instante</span> <span class="o">=</span> <span class="n">instante</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">status</span> <span class="o">=</span> <span class="n">status</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getInstante</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">instante</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setInstante</span><span class="o">(</span><span class="nc">Date</span> <span class="n">instante</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">instante</span> <span class="o">=</span> <span class="n">instante</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">StatusPedido</span> <span class="nf">getStatus</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">status</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStatus</span><span class="o">(</span><span class="nc">StatusPedido</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">status</span> <span class="o">=</span> <span class="n">status</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Pedido [id="</span> <span class="o">+</span> <span class="n">id</span> <span class="o">+</span> <span class="s">", instante="</span> <span class="o">+</span> <span class="n">instante</span> <span class="o">+</span> <span class="s">", status="</span> <span class="o">+</span> <span class="n">status</span> <span class="o">+</span> <span class="s">"]"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="conversão-de-string-para-enum">Conversão de String para Enum</h3>
+<p>É comum receber o valor de um enum como uma string (por exemplo, de uma entrada do usuário ou de uma API). Java permite converter uma <code class="language-plaintext highlighter-rouge">String</code> para um <code class="language-plaintext highlighter-rouge">enum</code> usando o método estático <code class="language-plaintext highlighter-rouge">valueOf()</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Atribuição direta</span>
+<span class="nc">StatusPedido</span> <span class="n">os1</span> <span class="o">=</span> <span class="nc">StatusPedido</span><span class="o">.</span><span class="na">ENTREGUE</span><span class="o">;</span>
+
+<span class="c1">// Convertendo de String para enum</span>
+<span class="c1">// A String deve corresponder exatamente a um dos valores do enum</span>
+<span class="nc">StatusPedido</span> <span class="n">os2</span> <span class="o">=</span> <span class="nc">StatusPedido</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">"ENTREGUE"</span><span class="o">);</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">os1</span><span class="o">);</span> <span class="c1">// Saída: ENTREGUE</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">os2</span><span class="o">);</span> <span class="c1">// Saída: ENTREGUE</span>
+</code></pre></div></div>
+<p><strong>Atenção:</strong> Se a <code class="language-plaintext highlighter-rouge">String</code> passada para <code class="language-plaintext highlighter-rouge">valueOf()</code> não corresponder a nenhuma constante do <code class="language-plaintext highlighter-rouge">enum</code>, uma exceção <code class="language-plaintext highlighter-rouge">IllegalArgumentException</code> será lançada.</p>
+
+<h3 id="uml-notação-para-enums">UML Notação para Enums</h3>
+<p>Em UML, enums são frequentemente representados com o estereótipo <code class="language-plaintext highlighter-rouge">&lt;&lt;enum&gt;&gt;</code>.</p>
+
+<p><strong>Exemplo de Notação UML para <code class="language-plaintext highlighter-rouge">StatusPedido</code>:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;&lt;enum&gt;&gt;
+StatusPedido
+--------------------
+PAGAMENTO_PENDENTE
+PROCESSANDO
+ENVIADO
+ENTREGUE
+</code></pre></div></div>
+<p>Ou, de forma mais detalhada, mostrando que são constantes:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;&lt;enum&gt;&gt;
+OrderStatus
+--------------------
+&lt;&lt;enum constant&gt;&gt; PENDING_PAYMENT
+&lt;&lt;enum constant&gt;&gt; PROCESSING
+&lt;&lt;enum constant&gt;&gt; SHIPPED
+&lt;&lt;enum constant&gt;&gt; DELIVERED
+</code></pre></div></div>
+<p>Cada constante dentro de um enum é, na verdade, uma instância do próprio enum.</p>
+
+<h2 id="️-design-de-classes-e-composição">🏛️ Design de Classes e Composição</h2>
+
+<h3 id="-vamos-falar-um-pouco-de-design">🎨 Vamos Falar um Pouco de Design</h3>
+<p>Em um sistema orientado a objetos, “tudo” é objeto. Para uma melhor organização, flexibilidade, reuso e delegação de responsabilidades, as classes são categorizadas.</p>
+
+<h3 id="️-categorias-de-classes">🏷️ Categorias de Classes</h3>
+<p>Algumas categorias comuns incluem:</p>
+<ul>
+  <li><strong>Views (Telas)</strong>: Responsáveis pela interface com o usuário.</li>
+  <li><strong>Controllers (Controladores)</strong>: Fazem a mediação entre as Views e o restante da aplicação (Models/Services).</li>
+  <li><strong>Services (Serviços)</strong>: Contêm a lógica de negócio da aplicação.</li>
+  <li><strong>Repositories (Repositórios)</strong>: Responsáveis pelo acesso e persistência de dados (comunicação com o banco de dados).</li>
+  <li><strong>Entities (Entidades)</strong>: Representam os objetos de domínio do negócio (ex: <code class="language-plaintext highlighter-rouge">Pedido</code>, <code class="language-plaintext highlighter-rouge">Cliente</code>, <code class="language-plaintext highlighter-rouge">Produto</code>).</li>
+</ul>
+
+<p>A seguir, alguns diagramas UML ilustram como essas categorias podem se relacionar, focando em Entidades e Serviços.</p>
+
+<p><strong>Diagrama de Entidades:</strong>
+Este diagrama mostra as classes de domínio e seus relacionamentos. Por exemplo:</p>
+<ul>
+  <li>Um <code class="language-plaintext highlighter-rouge">Pedido</code> possui um <code class="language-plaintext highlighter-rouge">Cliente</code>.</li>
+  <li>Um <code class="language-plaintext highlighter-rouge">Pedido</code> é composto por vários <code class="language-plaintext highlighter-rouge">ItemPedido</code>.</li>
+  <li>Cada <code class="language-plaintext highlighter-rouge">ItemPedido</code> está associado a um <code class="language-plaintext highlighter-rouge">Produto</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">StatusPedido</code> é um enum usado pela classe <code class="language-plaintext highlighter-rouge">Pedido</code>.</li>
+</ul>
+
+<p><em>Descrição do Diagrama de Entidades (baseado nas imagens do PDF):</em></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Order</code> (Pedido)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">moment</code> (Data), <code class="language-plaintext highlighter-rouge">status</code> (OrderStatus)</li>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">addItem</code>, <code class="language-plaintext highlighter-rouge">removeItem</code>, <code class="language-plaintext highlighter-rouge">total</code></li>
+      <li>Relacionamentos:
+        <ul>
+          <li>Tem um <code class="language-plaintext highlighter-rouge">Client</code> (Cliente) (1 para 1)</li>
+          <li>Tem vários <code class="language-plaintext highlighter-rouge">OrderItem</code> (Itens do Pedido) (1 para muitos, composição)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Client</code> (Cliente)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">name</code> (String), <code class="language-plaintext highlighter-rouge">email</code> (String), <code class="language-plaintext highlighter-rouge">birthDate</code> (Data)</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OrderItem</code> (ItemPedido)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">quantity</code> (Integer), <code class="language-plaintext highlighter-rouge">price</code> (Double)</li>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">subTotal</code></li>
+      <li>Relacionamentos:
+        <ul>
+          <li>Tem um <code class="language-plaintext highlighter-rouge">Product</code> (Produto) (1 para 1)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Product</code> (Produto)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">name</code> (String), <code class="language-plaintext highlighter-rouge">price</code> (Double)</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OrderStatus</code> (StatusPedido) <code class="language-plaintext highlighter-rouge">&lt;&lt;enum&gt;&gt;</code></strong>
+    <ul>
+      <li>Valores: <code class="language-plaintext highlighter-rouge">PENDING_PAYMENT</code>, <code class="language-plaintext highlighter-rouge">PROCESSING</code>, <code class="language-plaintext highlighter-rouge">SHIPPED</code>, <code class="language-plaintext highlighter-rouge">DELIVERED</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Diagrama de Serviços:</strong>
+Este diagrama mostra como os serviços podem interagir com repositórios e outros serviços.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">OrderService</code> (Serviço de Pedido) pode usar um <code class="language-plaintext highlighter-rouge">OrderRepository</code> (Repositório de Pedido).</li>
+  <li><code class="language-plaintext highlighter-rouge">AuthService</code> (Serviço de Autenticação) pode usar um <code class="language-plaintext highlighter-rouge">EmailService</code> (Serviço de Email).</li>
+</ul>
+
+<p><em>Descrição do Diagrama de Serviços (baseado nas imagens do PDF):</em></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">OrderService</code> (ServiçoDePedido)</strong>
+    <ul>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">saveOrder</code>, <code class="language-plaintext highlighter-rouge">search</code></li>
+      <li>Depende de: <code class="language-plaintext highlighter-rouge">OrderRepository</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OrderRepository</code> (RepositórioDePedido)</strong> (Pode ser uma interface implementando <code class="language-plaintext highlighter-rouge">CrudRepository</code>)
+    <ul>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">findByDate</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">CrudRepository&lt;T, ID&gt;</code> (Interface)</strong>
+    <ul>
+      <li>Métodos genéricos: <code class="language-plaintext highlighter-rouge">save</code>, <code class="language-plaintext highlighter-rouge">delete</code>, <code class="language-plaintext highlighter-rouge">findById</code>, <code class="language-plaintext highlighter-rouge">findAll</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">AuthService</code> (ServiçoDeAutenticação)</strong>
+    <ul>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">getToken</code>, <code class="language-plaintext highlighter-rouge">refreshToken</code>, <code class="language-plaintext highlighter-rouge">sendNewPassword</code></li>
+      <li>Depende de: <code class="language-plaintext highlighter-rouge">EmailService</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">EmailService</code> (ServiçoDeEmail)</strong>
+    <ul>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">sendEmail</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="-composição">🧩 Composição</h3>
+<p>Composição é um tipo de associação fundamental em Orientação a Objetos que permite que um objeto “contenha” outro, estabelecendo uma relação de “tem-um” ou “tem-vários”.</p>
+
+<ul>
+  <li><strong>Relação “tem-um” ou “tem-vários”</strong>:
+    <ul>
+      <li>“Tem-um”: Um objeto <code class="language-plaintext highlighter-rouge">Carro</code> <em>tem-um</em> <code class="language-plaintext highlighter-rouge">Motor</code>.</li>
+      <li>“Tem-vários”: Um objeto <code class="language-plaintext highlighter-rouge">Pedido</code> <em>tem-vários</em> <code class="language-plaintext highlighter-rouge">ItemPedido</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Vantagens</strong>:
+    <ul>
+      <li><strong>Organização</strong>: Divisão clara de responsabilidades.</li>
+      <li><strong>Coesão</strong>: Classes com responsabilidades bem definidas são mais coesas.</li>
+      <li><strong>Flexibilidade</strong>: Facilita a alteração e evolução do sistema.</li>
+      <li><strong>Reuso</strong>: Permite reutilizar classes menores e mais especializadas.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Nota sobre UML:</strong> Embora o símbolo UML para composição (todo-parte) seja um diamante preto preenchido (agregação é um diamante vazio), no contexto apresentado, “composição” refere-se a qualquer associação do tipo “tem-um” e “tem-vários” onde um objeto é parte de outro ou gerenciado por outro.</p>
+
+<p><strong>Exemplo prático de Composição:</strong>
+Uma <code class="language-plaintext highlighter-rouge">Universidade</code> é composta por vários <code class="language-plaintext highlighter-rouge">Departamento</code>s. Se a <code class="language-plaintext highlighter-rouge">Universidade</code> deixar de existir, os <code class="language-plaintext highlighter-rouge">Departamento</code>s também deixam.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.exemplo.composicao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+
+<span class="c1">// Classe Parte</span>
+<span class="kd">class</span> <span class="nc">Motor</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">tipo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Motor</span><span class="o">(</span><span class="nc">String</span> <span class="n">tipo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">tipo</span> <span class="o">=</span> <span class="n">tipo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ligar</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Motor "</span> <span class="o">+</span> <span class="n">tipo</span> <span class="o">+</span> <span class="s">" ligado."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTipo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">tipo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Classe Todo</span>
+<span class="kd">class</span> <span class="nc">Carro</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">modelo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Motor</span> <span class="n">motor</span><span class="o">;</span> <span class="c1">// Relação "tem-um" (Composição)</span>
+
+    <span class="kd">public</span> <span class="nf">Carro</span><span class="o">(</span><span class="nc">String</span> <span class="n">modelo</span><span class="o">,</span> <span class="nc">String</span> <span class="n">tipoMotor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">modelo</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">motor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Motor</span><span class="o">(</span><span class="n">tipoMotor</span><span class="o">);</span> <span class="c1">// Motor é criado junto com Carro</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ligarCarro</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">modelo</span> <span class="o">+</span> <span class="s">": "</span><span class="o">);</span>
+        <span class="n">motor</span><span class="o">.</span><span class="na">ligar</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getModelo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">modelo</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Motor</span> <span class="nf">getMotor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">motor</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// Classe Pedido (Todo) e ItemPedido (Parte)</span>
+<span class="kd">class</span> <span class="nc">ItemPedido</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">produtoNome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">precoUnitario</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ItemPedido</span><span class="o">(</span><span class="nc">String</span> <span class="n">produtoNome</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">,</span> <span class="kt">double</span> <span class="n">precoUnitario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">produtoNome</span> <span class="o">=</span> <span class="n">produtoNome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">precoUnitario</span> <span class="o">=</span> <span class="n">precoUnitario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularSubtotal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">quantidade</span> <span class="o">*</span> <span class="n">precoUnitario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">produtoNome</span> <span class="o">+</span> <span class="s">", Qtd: "</span> <span class="o">+</span> <span class="n">quantidade</span> <span class="o">+</span> <span class="s">", Subtotal: R$"</span> <span class="o">+</span> <span class="n">calcularSubtotal</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">PedidoComposicao</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">numero</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ItemPedido</span><span class="o">&gt;</span> <span class="n">itens</span><span class="o">;</span> <span class="c1">// Relação "tem-vários" (Composição)</span>
+
+    <span class="kd">public</span> <span class="nf">PedidoComposicao</span><span class="o">(</span><span class="kt">int</span> <span class="n">numero</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">numero</span> <span class="o">=</span> <span class="n">numero</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">itens</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">// Lista de itens é criada com o Pedido</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarItem</span><span class="o">(</span><span class="nc">String</span> <span class="n">produtoNome</span><span class="o">,</span> <span class="kt">int</span> <span class="n">quantidade</span><span class="o">,</span> <span class="kt">double</span> <span class="n">precoUnitario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">itens</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">ItemPedido</span><span class="o">(</span><span class="n">produtoNome</span><span class="o">,</span> <span class="n">quantidade</span><span class="o">,</span> <span class="n">precoUnitario</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">mostrarDetalhes</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Pedido Nº: "</span> <span class="o">+</span> <span class="n">numero</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">ItemPedido</span> <span class="n">item</span> <span class="o">:</span> <span class="n">itens</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"- "</span> <span class="o">+</span> <span class="n">item</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TesteComposicao</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Exemplo "tem-um"</span>
+        <span class="nc">Carro</span> <span class="n">meuCarro</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Carro</span><span class="o">(</span><span class="s">"Sedan XPTO"</span><span class="o">,</span> <span class="s">"V6"</span><span class="o">);</span>
+        <span class="n">meuCarro</span><span class="o">.</span><span class="na">ligarCarro</span><span class="o">();</span> <span class="c1">// Saída: Sedan XPTO: Motor V6 ligado.</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+--- Exemplo 'tem-vários' ---"</span><span class="o">);</span>
+        <span class="c1">// Exemplo "tem-vários"</span>
+        <span class="nc">PedidoComposicao</span> <span class="n">meuPedido</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PedidoComposicao</span><span class="o">(</span><span class="mi">101</span><span class="o">);</span>
+        <span class="n">meuPedido</span><span class="o">.</span><span class="na">adicionarItem</span><span class="o">(</span><span class="s">"Caneta"</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mf">2.50</span><span class="o">);</span>
+        <span class="n">meuPedido</span><span class="o">.</span><span class="na">adicionarItem</span><span class="o">(</span><span class="s">"Caderno"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mf">15.00</span><span class="o">);</span>
+        <span class="n">meuPedido</span><span class="o">.</span><span class="na">mostrarDetalhes</span><span class="o">();</span>
+        <span class="cm">/*
+        Saída:
+        Pedido Nº: 101
+        - Caneta, Qtd: 5, Subtotal: R$12.5
+        - Caderno, Qtd: 2, Subtotal: R$30.0
+        */</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>No exemplo <code class="language-plaintext highlighter-rouge">Carro</code> e <code class="language-plaintext highlighter-rouge">Motor</code>, o <code class="language-plaintext highlighter-rouge">Motor</code> é uma parte essencial do <code class="language-plaintext highlighter-rouge">Carro</code>. Se o <code class="language-plaintext highlighter-rouge">Carro</code> for destruído, o <code class="language-plaintext highlighter-rouge">Motor</code> associado a ele geralmente também deixa de ter significado isolado (forte acoplamento).
+No exemplo <code class="language-plaintext highlighter-rouge">PedidoComposicao</code> e <code class="language-plaintext highlighter-rouge">ItemPedido</code>, os <code class="language-plaintext highlighter-rouge">ItemPedido</code>s só existem no contexto de um <code class="language-plaintext highlighter-rouge">PedidoComposicao</code>.</p>
+
+<h2 id="️-exercícios-resolvidos-e-propostos">🛠️ Exercícios Resolvidos e Propostos</h2>
+
+<h3 id="-exercício-resolvido-1-trabalhador-e-contratos">🧑‍💼 Exercício Resolvido 1: Trabalhador e Contratos</h3>
+
+<p><strong>Objetivo:</strong> Ler os dados de um trabalhador com N contratos (N fornecido pelo usuário). Depois, solicitar do usuário um mês e mostrar qual foi o salário do funcionário nesse mês.</p>
+
+<p><strong>Diagrama de Classes UML:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Worker</code> (Trabalhador)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">name</code> (String), <code class="language-plaintext highlighter-rouge">level</code> (WorkerLevel), <code class="language-plaintext highlighter-rouge">baseSalary</code> (Double)</li>
+      <li>Relacionamento: Tem um <code class="language-plaintext highlighter-rouge">Department</code> (Departamento)</li>
+      <li>Relacionamento: Tem vários <code class="language-plaintext highlighter-rouge">HourContract</code> (ContratosPorHora) (Composição)</li>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">addContract</code>, <code class="language-plaintext highlighter-rouge">removeContract</code>, <code class="language-plaintext highlighter-rouge">income</code> (calcularRenda)</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Department</code> (Departamento)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">name</code> (String)</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">HourContract</code> (ContratoPorHora)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">date</code> (Data), <code class="language-plaintext highlighter-rouge">valuePerHour</code> (Double), <code class="language-plaintext highlighter-rouge">hours</code> (Integer)</li>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">totalValue</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">WorkerLevel</code> (NivelTrabalhador) <code class="language-plaintext highlighter-rouge">&lt;&lt;enum&gt;&gt;</code></strong>
+    <ul>
+      <li>Valores: <code class="language-plaintext highlighter-rouge">JUNIOR</code>, <code class="language-plaintext highlighter-rouge">MID_LEVEL</code>, <code class="language-plaintext highlighter-rouge">SENIOR</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Exemplo de Interação (Console):</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o nome do departamento: Design
+Digite os dados do trabalhador:
+Nome: Alex
+Nível: MID_LEVEL
+Salário base: 1200.00
+Quantos contratos para este trabalhador? 3
+
+Digite os dados do contrato #1:
+Data (DD/MM/YYYY): 20/08/2018
+Valor por hora: 50.00
+Duração (horas): 20
+
+Digite os dados do contrato #2:
+Data (DD/MM/YYYY): 13/06/2018
+Valor por hora: 30.00
+Duração (horas): 18
+
+Digite os dados do contrato #3:
+Data (DD/MM/YYYY): 25/08/2018
+Valor por hora: 80.00
+Duração (horas): 10
+
+Digite o mês e ano para calcular o ganho (MM/YYYY): 08/2018
+Nome: Alex
+Departamento: Design
+Ganhos para 08/2018: 3000.00
+</code></pre></div></div>
+
+<p><strong>Estrutura de Objetos em Memória (Exemplo):</strong></p>
+<ul>
+  <li><strong>Objeto <code class="language-plaintext highlighter-rouge">Trabalhador</code></strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">nome</code> = “Alex”</li>
+      <li><code class="language-plaintext highlighter-rouge">nivel</code> = <code class="language-plaintext highlighter-rouge">NivelTrabalhador.MID_LEVEL</code></li>
+      <li><code class="language-plaintext highlighter-rouge">salarioBase</code> = 1200.00</li>
+      <li><code class="language-plaintext highlighter-rouge">departamento</code> (Objeto <code class="language-plaintext highlighter-rouge">Departamento</code>):
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">nome</code> = “Design”</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">contratos</code> (Lista de <code class="language-plaintext highlighter-rouge">ContratoPorHora</code>):
+        <ul>
+          <li>Objeto <code class="language-plaintext highlighter-rouge">ContratoPorHora</code> 1: <code class="language-plaintext highlighter-rouge">data</code>=20/08/2018, <code class="language-plaintext highlighter-rouge">valorPorHora</code>=50.00, <code class="language-plaintext highlighter-rouge">horas</code>=20</li>
+          <li>Objeto <code class="language-plaintext highlighter-rouge">ContratoPorHora</code> 2: <code class="language-plaintext highlighter-rouge">data</code>=13/06/2018, <code class="language-plaintext highlighter-rouge">valorPorHora</code>=30.00, <code class="language-plaintext highlighter-rouge">horas</code>=18</li>
+          <li>Objeto <code class="language-plaintext highlighter-rouge">ContratoPorHora</code> 3: <code class="language-plaintext highlighter-rouge">data</code>=25/08/2018, <code class="language-plaintext highlighter-rouge">valorPorHora</code>=80.00, <code class="language-plaintext highlighter-rouge">horas</code>=10</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Implementação em Java (Esqueleto das classes traduzidas):</strong></p>
+
+<p><strong>NivelTrabalhador.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades.enums</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">NivelTrabalhador</span> <span class="o">{</span>
+    <span class="no">JUNIOR</span><span class="o">,</span>
+    <span class="no">MID_LEVEL</span><span class="o">,</span> <span class="c1">// Ou NIVEL_MEDIO</span>
+    <span class="no">SENIOR</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Departamento.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Departamento</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Departamento</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Departamento</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>ContratoPorHora.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContratoPorHora</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">data</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">valorPorHora</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">horas</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ContratoPorHora</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">ContratoPorHora</span><span class="o">(</span><span class="nc">Date</span> <span class="n">data</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">valorPorHora</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">horas</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">valorPorHora</span> <span class="o">=</span> <span class="n">valorPorHora</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">horas</span> <span class="o">=</span> <span class="n">horas</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getData</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">data</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setData</span><span class="o">(</span><span class="nc">Date</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getValorPorHora</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">valorPorHora</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValorPorHora</span><span class="o">(</span><span class="nc">Double</span> <span class="n">valorPorHora</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">valorPorHora</span> <span class="o">=</span> <span class="n">valorPorHora</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getHoras</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">horas</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHoras</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">horas</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">horas</span> <span class="o">=</span> <span class="n">horas</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">valorTotal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">valorPorHora</span> <span class="o">*</span> <span class="n">horas</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Trabalhador.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Calendar</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.enums.NivelTrabalhador</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Trabalhador</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">NivelTrabalhador</span> <span class="n">nivel</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">salarioBase</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">Departamento</span> <span class="n">departamento</span><span class="o">;</span> <span class="c1">// Associação "tem-um"</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ContratoPorHora</span><span class="o">&gt;</span> <span class="n">contratos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">// Associação "tem-vários" (Composição)</span>
+
+    <span class="kd">public</span> <span class="nf">Trabalhador</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Trabalhador</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">NivelTrabalhador</span> <span class="n">nivel</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">salarioBase</span><span class="o">,</span> <span class="nc">Departamento</span> <span class="n">departamento</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nivel</span> <span class="o">=</span> <span class="n">nivel</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">salarioBase</span> <span class="o">=</span> <span class="n">salarioBase</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">departamento</span> <span class="o">=</span> <span class="n">departamento</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">NivelTrabalhador</span> <span class="nf">getNivel</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nivel</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNivel</span><span class="o">(</span><span class="nc">NivelTrabalhador</span> <span class="n">nivel</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nivel</span> <span class="o">=</span> <span class="n">nivel</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSalarioBase</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">salarioBase</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalarioBase</span><span class="o">(</span><span class="nc">Double</span> <span class="n">salarioBase</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">salarioBase</span> <span class="o">=</span> <span class="n">salarioBase</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Departamento</span> <span class="nf">getDepartamento</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">departamento</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDepartamento</span><span class="o">(</span><span class="nc">Departamento</span> <span class="n">departamento</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">departamento</span> <span class="o">=</span> <span class="n">departamento</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ContratoPorHora</span><span class="o">&gt;</span> <span class="nf">getContratos</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">contratos</span><span class="o">;</span> <span class="o">}</span>
+    <span class="c1">// Não adicionar setContratos para manter a integridade da lista gerenciada internamente</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarContrato</span><span class="o">(</span><span class="nc">ContratoPorHora</span> <span class="n">contrato</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">contratos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">contrato</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removerContrato</span><span class="o">(</span><span class="nc">ContratoPorHora</span> <span class="n">contrato</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">contratos</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">contrato</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">calcularRenda</span><span class="o">(</span><span class="kt">int</span> <span class="n">ano</span><span class="o">,</span> <span class="kt">int</span> <span class="n">mes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="n">salarioBase</span><span class="o">;</span>
+        <span class="nc">Calendar</span> <span class="n">cal</span> <span class="o">=</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">ContratoPorHora</span> <span class="n">c</span> <span class="o">:</span> <span class="n">contratos</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">cal</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getData</span><span class="o">());</span>
+            <span class="kt">int</span> <span class="n">c_ano</span> <span class="o">=</span> <span class="n">cal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">c_mes</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">cal</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">MONTH</span><span class="o">);</span> <span class="c1">// Mês no Calendar é 0-indexed</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">ano</span> <span class="o">==</span> <span class="n">c_ano</span> <span class="o">&amp;&amp;</span> <span class="n">mes</span> <span class="o">==</span> <span class="n">c_mes</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">soma</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="na">valorTotal</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">soma</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Para executar no VS Code ou IntelliJ IDEA:</strong></p>
+<ol>
+  <li>Crie um projeto Java.</li>
+  <li>Crie as pastas de pacotes (ex: <code class="language-plaintext highlighter-rouge">src/entidades</code>, <code class="language-plaintext highlighter-rouge">src/entidades/enums</code>, <code class="language-plaintext highlighter-rouge">src/aplicacao</code>).</li>
+  <li>Coloque cada classe no arquivo <code class="language-plaintext highlighter-rouge">.java</code> correspondente dentro de sua respectiva pasta de pacote.</li>
+  <li>Crie uma classe <code class="language-plaintext highlighter-rouge">Programa</code> (ou <code class="language-plaintext highlighter-rouge">Main</code>) com o método <code class="language-plaintext highlighter-rouge">main</code> para interagir com o usuário e testar a lógica.</li>
+</ol>
+
+<h3 id="️-exercício-resolvido-2-posts-e-comentários-demonstração-com-stringbuilder">✍️ Exercício Resolvido 2: Posts e Comentários (Demonstração com <code class="language-plaintext highlighter-rouge">StringBuilder</code>)</h3>
+
+<p><strong>Objetivo:</strong> Instanciar manualmente (hard code) objetos <code class="language-plaintext highlighter-rouge">Post</code> e <code class="language-plaintext highlighter-rouge">Comment</code> e mostrá-los na tela do terminal, conforme exemplo. Este exercício é ótimo para praticar a composição e a formatação de strings, onde <code class="language-plaintext highlighter-rouge">StringBuilder</code> pode ser muito útil para eficiência.</p>
+
+<p><strong>Diagrama de Classes UML:</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Post</code></strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">moment</code> (Data), <code class="language-plaintext highlighter-rouge">title</code> (String), <code class="language-plaintext highlighter-rouge">content</code> (String), <code class="language-plaintext highlighter-rouge">likes</code> (Integer)</li>
+      <li>Relacionamento: Tem vários <code class="language-plaintext highlighter-rouge">Comment</code> (Comentários) (Composição)</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Comment</code> (Comentário)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">text</code> (String)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Estrutura dos Objetos e Saída Esperada:</strong></p>
+
+<p><strong>Post 1:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">instante</code>: 21/06/2018 13:05:44</li>
+  <li><code class="language-plaintext highlighter-rouge">titulo</code>: “Viajando para a Nova Zelândia”</li>
+  <li><code class="language-plaintext highlighter-rouge">conteudo</code>: “Estou indo visitar este país maravilhoso!”</li>
+  <li><code class="language-plaintext highlighter-rouge">curtidas</code>: 12</li>
+  <li>Comentários:
+    <ul>
+      <li>“Tenha uma boa viagem”</li>
+      <li>“Uau, que demais!”</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Post 2:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">instante</code>: 28/07/2018 23:14:19</li>
+  <li><code class="language-plaintext highlighter-rouge">titulo</code>: “Boa noite galera”</li>
+  <li><code class="language-plaintext highlighter-rouge">conteudo</code>: “Até amanhã”</li>
+  <li><code class="language-plaintext highlighter-rouge">curtidas</code>: 5</li>
+  <li>Comentários:
+    <ul>
+      <li>“Boa noite”</li>
+      <li>“Que a Força esteja com você”</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Saída no Console:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Viajando para a Nova Zelândia
+12 Curtidas - 21/06/2018 13:05:44
+Estou indo visitar este país maravilhoso!
+Comentários:
+Tenha uma boa viagem
+Uau, que demais!
+
+Boa noite galera
+5 Curtidas - 28/07/2018 23:14:19
+Até amanhã
+Comentários:
+Boa noite
+Que a Força esteja com você
+</code></pre></div></div>
+
+<p><strong>Implementação em Java (Esqueleto das classes traduzidas):</strong></p>
+
+<p><strong>Comentario.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Comentario</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">texto</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Comentario</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Comentario</span><span class="o">(</span><span class="nc">String</span> <span class="n">texto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">texto</span> <span class="o">=</span> <span class="n">texto</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTexto</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">texto</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTexto</span><span class="o">(</span><span class="nc">String</span> <span class="n">texto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">texto</span> <span class="o">=</span> <span class="n">texto</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Post.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Post</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy HH:mm:ss"</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">instante</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">conteudo</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">curtidas</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Comentario</span><span class="o">&gt;</span> <span class="n">comentarios</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">// Composição</span>
+
+    <span class="kd">public</span> <span class="nf">Post</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Post</span><span class="o">(</span><span class="nc">Date</span> <span class="n">instante</span><span class="o">,</span> <span class="nc">String</span> <span class="n">titulo</span><span class="o">,</span> <span class="nc">String</span> <span class="n">conteudo</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">curtidas</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">instante</span> <span class="o">=</span> <span class="n">instante</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">titulo</span> <span class="o">=</span> <span class="n">titulo</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">conteudo</span> <span class="o">=</span> <span class="n">conteudo</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">curtidas</span> <span class="o">=</span> <span class="n">curtidas</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters (com algumas modificações para a lista)</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getInstante</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">instante</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setInstante</span><span class="o">(</span><span class="nc">Date</span> <span class="n">instante</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">instante</span> <span class="o">=</span> <span class="n">instante</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getTitulo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">titulo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitulo</span><span class="o">(</span><span class="nc">String</span> <span class="n">titulo</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">titulo</span> <span class="o">=</span> <span class="n">titulo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getConteudo</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">conteudo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setConteudo</span><span class="o">(</span><span class="nc">String</span> <span class="n">conteudo</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">conteudo</span> <span class="o">=</span> <span class="n">conteudo</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getCurtidas</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">curtidas</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCurtidas</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">curtidas</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">curtidas</span> <span class="o">=</span> <span class="n">curtidas</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Comentario</span><span class="o">&gt;</span> <span class="nf">getComentarios</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">comentarios</span><span class="o">;</span> <span class="o">}</span>
+    <span class="c1">// Não ter setComentarios(), gerenciar via adicionar/remover</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarComentario</span><span class="o">(</span><span class="nc">Comentario</span> <span class="n">comentario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">comentarios</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">comentario</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removerComentario</span><span class="o">(</span><span class="nc">Comentario</span> <span class="n">comentario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">comentarios</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">comentario</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">titulo</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">curtidas</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">" Curtidas - "</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">instante</span><span class="o">)).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">conteudo</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Comentários:
+"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Comentario</span> <span class="n">c</span> <span class="o">:</span> <span class="n">comentarios</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getTexto</span><span class="o">()).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Uso do <code class="language-plaintext highlighter-rouge">StringBuilder</code>:</strong>
+O método <code class="language-plaintext highlighter-rouge">toString()</code> da classe <code class="language-plaintext highlighter-rouge">Post</code> é um excelente candidato para usar <code class="language-plaintext highlighter-rouge">StringBuilder</code>. Ao concatenar múltiplas Strings dentro de um loop ou em várias etapas, <code class="language-plaintext highlighter-rouge">StringBuilder</code> é mais eficiente do que usar o operador <code class="language-plaintext highlighter-rouge">+</code>, pois evita a criação de múltiplos objetos String intermediários.</p>
+
+<h3 id="-exercício-de-fixação-sistema-de-pedidos">📝 Exercício de Fixação: Sistema de Pedidos</h3>
+
+<p><strong>Objetivo:</strong> Ler os dados de um pedido com N itens (N fornecido pelo usuário). Depois, mostrar um sumário do pedido. O instante do pedido deve ser o instante atual do sistema (<code class="language-plaintext highlighter-rouge">new Date()</code>).</p>
+
+<p><strong>Diagrama de Classes UML (Reutilizando e adaptando o anterior):</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Order</code> (Pedido)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">moment</code> (Data), <code class="language-plaintext highlighter-rouge">status</code> (OrderStatus)</li>
+      <li>Relacionamentos:
+        <ul>
+          <li>Tem um <code class="language-plaintext highlighter-rouge">Client</code> (Cliente)</li>
+          <li>Tem vários <code class="language-plaintext highlighter-rouge">OrderItem</code> (ItensPedido) (Composição)</li>
+        </ul>
+      </li>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">addItem</code>, <code class="language-plaintext highlighter-rouge">removeItem</code>, <code class="language-plaintext highlighter-rouge">total</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Client</code> (Cliente)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">name</code> (String), <code class="language-plaintext highlighter-rouge">email</code> (String), <code class="language-plaintext highlighter-rouge">birthDate</code> (Data)</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OrderItem</code> (ItemPedido)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">quantity</code> (Integer), <code class="language-plaintext highlighter-rouge">price</code> (Double) (preço do produto no momento da compra)</li>
+      <li>Relacionamento: Tem um <code class="language-plaintext highlighter-rouge">Product</code> (Produto)</li>
+      <li>Métodos: <code class="language-plaintext highlighter-rouge">subTotal</code></li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Product</code> (Produto)</strong>
+    <ul>
+      <li>Atributos: <code class="language-plaintext highlighter-rouge">name</code> (String), <code class="language-plaintext highlighter-rouge">price</code> (Double) (preço atual do produto)</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">OrderStatus</code> (StatusPedido) <code class="language-plaintext highlighter-rouge">&lt;&lt;enum&gt;&gt;</code></strong> (Já definido anteriormente)
+    <ul>
+      <li>Valores: <code class="language-plaintext highlighter-rouge">PAGAMENTO_PENDENTE</code>, <code class="language-plaintext highlighter-rouge">PROCESSANDO</code>, <code class="language-plaintext highlighter-rouge">ENVIADO</code>, <code class="language-plaintext highlighter-rouge">ENTREGUE</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Exemplo de Interação (Console):</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite os dados do cliente:
+Nome: Alex Green
+Email: alex@gmail.com
+Data de Nascimento (DD/MM/YYYY): 15/03/1985
+
+Digite os dados do pedido:
+Status: PROCESSANDO
+Quantos itens para este pedido? 2
+
+Digite os dados do item #1:
+Nome do produto: TV
+Preço do produto: 1000.00
+Quantidade: 1
+
+Digite os dados do item #2:
+Nome do produto: Mouse
+Preço do produto: 40.00
+Quantidade: 2
+
+RESUMO DO PEDIDO:
+Momento do pedido: 20/04/2018 11:25:09 (Será a data/hora atual)
+Status do pedido: PROCESSANDO
+Cliente: Alex Green (15/03/1985) - alex@gmail.com
+Itens do pedido:
+TV, R$1000.00, Quantidade: 1, Subtotal: R$1000.00
+Mouse, R$40.00, Quantidade: 2, Subtotal: R$80.00
+Preço total: R$1080.00
+</code></pre></div></div>
+
+<p><strong>Objetos em Memória (Exemplo da estrutura):</strong></p>
+<ul>
+  <li><strong>Objeto <code class="language-plaintext highlighter-rouge">Pedido</code></strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">instante</code>: (data/hora atual)</li>
+      <li><code class="language-plaintext highlighter-rouge">status</code>: <code class="language-plaintext highlighter-rouge">StatusPedido.PROCESSANDO</code></li>
+      <li><code class="language-plaintext highlighter-rouge">cliente</code> (Objeto <code class="language-plaintext highlighter-rouge">Cliente</code>):
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">nome</code>: “Alex Green”</li>
+          <li><code class="language-plaintext highlighter-rouge">email</code>: “alex@gmail.com”</li>
+          <li><code class="language-plaintext highlighter-rouge">dataNascimento</code>: 15/03/1985</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">itens</code> (Lista de <code class="language-plaintext highlighter-rouge">ItemPedido</code>):
+        <ul>
+          <li><strong>Objeto <code class="language-plaintext highlighter-rouge">ItemPedido</code> 1</strong>:
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">quantidade</code>: 1</li>
+              <li><code class="language-plaintext highlighter-rouge">preco</code>: 1000.00 (preço da TV no momento da compra)</li>
+              <li><code class="language-plaintext highlighter-rouge">produto</code> (Objeto <code class="language-plaintext highlighter-rouge">Produto</code>):
+                <ul>
+                  <li><code class="language-plaintext highlighter-rouge">nome</code>: “TV”</li>
+                  <li><code class="language-plaintext highlighter-rouge">preco</code>: 1000.00 (preço atual da TV, poderia ser diferente do preço no item)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Objeto <code class="language-plaintext highlighter-rouge">ItemPedido</code> 2</strong>:
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">quantidade</code>: 2</li>
+              <li><code class="language-plaintext highlighter-rouge">preco</code>: 40.00 (preço do Mouse no momento da compra)</li>
+              <li><code class="language-plaintext highlighter-rouge">produto</code> (Objeto <code class="language-plaintext highlighter-rouge">Produto</code>):
+                <ul>
+                  <li><code class="language-plaintext highlighter-rouge">nome</code>: “Mouse”</li>
+                  <li><code class="language-plaintext highlighter-rouge">preco</code>: 40.00 (preço atual do Mouse)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Implementação em Java (Esqueleto das classes traduzidas):</strong></p>
+
+<p><strong>Cliente.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cliente</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">dataNascimento</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Cliente</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Cliente</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">,</span> <span class="nc">Date</span> <span class="n">dataNascimento</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dataNascimento</span> <span class="o">=</span> <span class="n">dataNascimento</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getEmail</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">email</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getDataNascimento</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">dataNascimento</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDataNascimento</span><span class="o">(</span><span class="nc">Date</span> <span class="n">dataNascimento</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">dataNascimento</span> <span class="o">=</span> <span class="n">dataNascimento</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">" ("</span> <span class="o">+</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">dataNascimento</span><span class="o">)</span> <span class="o">+</span> <span class="s">") - "</span> <span class="o">+</span> <span class="n">email</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Produto.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>ItemPedido.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemPedido</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span> <span class="c1">// Preço do produto no momento da inclusão no pedido</span>
+
+    <span class="kd">private</span> <span class="nc">Produto</span> <span class="n">produto</span><span class="o">;</span> <span class="c1">// Composição - ItemPedido tem um Produto</span>
+
+    <span class="kd">public</span> <span class="nf">ItemPedido</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">ItemPedido</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">quantidade</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">,</span> <span class="nc">Produto</span> <span class="n">produto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">produto</span> <span class="o">=</span> <span class="n">produto</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters</span>
+    <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getQuantidade</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">quantidade</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setQuantidade</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">quantidade</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Produto</span> <span class="nf">getProduto</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">produto</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setProduto</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">produto</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">produto</span> <span class="o">=</span> <span class="n">produto</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">subTotal</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">quantidade</span> <span class="o">*</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getProduto</span><span class="o">().</span><span class="na">getNome</span><span class="o">()</span>
+                <span class="o">+</span> <span class="s">", R$"</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">)</span>
+                <span class="o">+</span> <span class="s">", Quantidade: "</span>
+                <span class="o">+</span> <span class="n">quantidade</span>
+                <span class="o">+</span> <span class="s">", Subtotal: R$"</span>
+                <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">subTotal</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Pedido.java</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.text.SimpleDateFormat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">entidades.enums.StatusPedido</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pedido</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleDateFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy HH:mm:ss"</span><span class="o">);</span>
+
+    <span class="kd">private</span> <span class="nc">Date</span> <span class="n">instante</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">StatusPedido</span> <span class="n">status</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">Cliente</span> <span class="n">cliente</span><span class="o">;</span> <span class="c1">// Composição</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ItemPedido</span><span class="o">&gt;</span> <span class="n">itens</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> <span class="c1">// Composição</span>
+
+    <span class="kd">public</span> <span class="nf">Pedido</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Pedido</span><span class="o">(</span><span class="nc">Date</span> <span class="n">instante</span><span class="o">,</span> <span class="nc">StatusPedido</span> <span class="n">status</span><span class="o">,</span> <span class="nc">Cliente</span> <span class="n">cliente</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">instante</span> <span class="o">=</span> <span class="n">instante</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">status</span> <span class="o">=</span> <span class="n">status</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cliente</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Getters e Setters (com cuidado para a lista)</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getInstante</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">instante</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setInstante</span><span class="o">(</span><span class="nc">Date</span> <span class="n">instante</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">instante</span> <span class="o">=</span> <span class="n">instante</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">StatusPedido</span> <span class="nf">getStatus</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">status</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStatus</span><span class="o">(</span><span class="nc">StatusPedido</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">status</span> <span class="o">=</span> <span class="n">status</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Cliente</span> <span class="nf">getCliente</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">cliente</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCliente</span><span class="o">(</span><span class="nc">Cliente</span> <span class="n">cliente</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">cliente</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">ItemPedido</span><span class="o">&gt;</span> <span class="nf">getItens</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">itens</span><span class="o">;</span> <span class="o">}</span>
+    <span class="c1">// Não adicionar setItens</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">adicionarItem</span><span class="o">(</span><span class="nc">ItemPedido</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">itens</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removerItem</span><span class="o">(</span><span class="nc">ItemPedido</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">itens</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">total</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">ItemPedido</span> <span class="n">item</span> <span class="o">:</span> <span class="n">itens</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">soma</span> <span class="o">+=</span> <span class="n">item</span><span class="o">.</span><span class="na">subTotal</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">soma</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Momento do pedido: "</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">instante</span><span class="o">)).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Status do pedido: "</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">status</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Cliente: "</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">cliente</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span> <span class="c1">// Utiliza o toString() de Cliente</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Itens do pedido:
+"</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">ItemPedido</span> <span class="n">item</span> <span class="o">:</span> <span class="n">itens</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">item</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"
+"</span><span class="o">);</span> <span class="c1">// Utiliza o toString() de ItemPedido</span>
+        <span class="o">}</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Preço total: R$"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">total</span><span class="o">()));</span>
+        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Configuração em VS Code ou IntelliJ IDEA:</strong></p>
+<ol>
+  <li>Crie um novo projeto Java.</li>
+  <li>Organize as classes em pacotes (ex: <code class="language-plaintext highlighter-rouge">entidades</code>, <code class="language-plaintext highlighter-rouge">entidades.enums</code>, <code class="language-plaintext highlighter-rouge">aplicacao</code>).
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">entidades/Cliente.java</code></li>
+      <li><code class="language-plaintext highlighter-rouge">entidades/Produto.java</code></li>
+      <li><code class="language-plaintext highlighter-rouge">entidades/ItemPedido.java</code></li>
+      <li><code class="language-plaintext highlighter-rouge">entidades/Pedido.java</code></li>
+      <li><code class="language-plaintext highlighter-rouge">entidades/enums/StatusPedido.java</code> (reutilize a definição anterior)</li>
+    </ul>
+  </li>
+  <li>Na pasta <code class="language-plaintext highlighter-rouge">aplicacao</code>, crie a classe principal (ex: <code class="language-plaintext highlighter-rouge">ProgramaPedido.java</code>) com o método <code class="language-plaintext highlighter-rouge">main</code>.</li>
+  <li>No método <code class="language-plaintext highlighter-rouge">main</code>, implemente a lógica para:
+    <ul>
+      <li>Ler os dados do cliente.</li>
+      <li>Ler os dados do pedido (status).</li>
+      <li>Perguntar quantos itens serão adicionados.</li>
+      <li>Em um loop, ler os dados de cada item (nome do produto, preço do produto, quantidade).</li>
+      <li>Criar os objetos <code class="language-plaintext highlighter-rouge">Produto</code>, <code class="language-plaintext highlighter-rouge">ItemPedido</code>, <code class="language-plaintext highlighter-rouge">Cliente</code> e <code class="language-plaintext highlighter-rouge">Pedido</code>.</li>
+      <li>Associar os objetos (adicionar itens ao pedido, associar cliente ao pedido).</li>
+      <li>Instanciar o pedido com <code class="language-plaintext highlighter-rouge">new Date()</code> para o momento.</li>
+      <li>Imprimir o resumo do pedido usando o método <code class="language-plaintext highlighter-rouge">toString()</code> da classe <code class="language-plaintext highlighter-rouge">Pedido</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Este exercício reforça os conceitos de enumeração, composição, entrada de dados, formatação de saída e a estruturação de um pequeno sistema orientado a objetos.</p>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

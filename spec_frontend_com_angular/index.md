@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 🅰️ Angular: O Framework Completo para Aplicações Web
+title: "🅰️ Angular: O Framework Completo para Aplicações Web"
 ---
 
 # 🅰️ Angular: O Framework Completo para Aplicações Web

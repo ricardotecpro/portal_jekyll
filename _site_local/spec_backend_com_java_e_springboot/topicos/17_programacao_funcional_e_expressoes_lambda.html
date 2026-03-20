@@ -1,0 +1,942 @@
+<h1 id="-java-programação-funcional-e-expressões-lambda">☕ Java: Programação Funcional e Expressões Lambda</h1>
+
+<h2 id="-uma-experiência-com-comparator">🎯 Uma Experiência com Comparator</h2>
+
+<p>Vamos explorar como a programação funcional e as expressões lambda podem simplificar e tornar mais flexível o trabalho com coleções em Java, usando <code class="language-plaintext highlighter-rouge">Comparator</code> como um exemplo inicial.</p>
+
+<h3 id="problema-com-comparação-tradicional">Problema com Comparação Tradicional</h3>
+
+<p>Suponha uma classe <code class="language-plaintext highlighter-rouge">Produto</code> com atributos <code class="language-plaintext highlighter-rouge">nome</code> e <code class="language-plaintext highlighter-rouge">preco</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Modelo da classe Produto</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Produto</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getPreco</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPreco</span><span class="o">(</span><span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Produto{"</span> <span class="o">+</span>
+               <span class="s">"nome='"</span> <span class="o">+</span> <span class="n">nome</span> <span class="o">+</span> <span class="sc">'\''</span> <span class="o">+</span>
+               <span class="s">", preco="</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">preco</span><span class="o">)</span> <span class="o">+</span>
+               <span class="sc">'}'</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Se quisermos ordenar uma lista de produtos, uma abordagem comum seria fazer a classe <code class="language-plaintext highlighter-rouge">Produto</code> implementar a interface <code class="language-plaintext highlighter-rouge">Comparable&lt;Produto&gt;</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Exemplo de Produto implementando Comparable</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+
+    <span class="c1">// Construtor e getters/setters omitidos para brevidade</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">outro</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">preco</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">outro</span><span class="o">.</span><span class="na">getPreco</span><span class="o">());</span> <span class="c1">// Compara por preço</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>No entanto, essa abordagem tem uma desvantagem: a classe <code class="language-plaintext highlighter-rouge">Produto</code> não fica “fechada para alteração”. Se o critério de comparação mudar (por exemplo, quisermos ordenar por nome em vez de preço), precisaríamos alterar a classe <code class="language-plaintext highlighter-rouge">Produto</code>. Isso viola o Princípio Aberto/Fechado (Open/Closed Principle) da programação orientada a objetos, que afirma que entidades de software devem ser abertas para extensão, mas fechadas para modificação.</p>
+
+<h3 id="a-solução-com-comparator-e-listsort">A Solução com <code class="language-plaintext highlighter-rouge">Comparator</code> e <code class="language-plaintext highlighter-rouge">List.sort</code></h3>
+
+<p>Podemos usar o método <code class="language-plaintext highlighter-rouge">sort</code> da interface <code class="language-plaintext highlighter-rouge">List</code>, que aceita um <code class="language-plaintext highlighter-rouge">Comparator</code> como argumento. Isso nos permite definir diferentes critérios de ordenação sem modificar a classe <code class="language-plaintext highlighter-rouge">Produto</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Interface List possui o método:</span>
+<span class="c1">// default void sort(Comparator&lt;? super E&gt; c)</span>
+</code></pre></div></div>
+
+<p>Um <code class="language-plaintext highlighter-rouge">Comparator</code> é uma interface que define um método <code class="language-plaintext highlighter-rouge">compare(obj1, obj2)</code>, permitindo a criação de lógicas de comparação personalizadas e externas à classe dos objetos sendo comparados.</p>
+
+<h3 id="abordagens-para-implementar-comparator-">Abordagens para Implementar <code class="language-plaintext highlighter-rouge">Comparator</code> 🔍</h3>
+
+<p>Existem várias maneiras de fornecer uma implementação de <code class="language-plaintext highlighter-rouge">Comparator</code>:</p>
+
+<ol>
+  <li><strong>Objeto de classe separada</strong>: Criar uma classe que implementa <code class="language-plaintext highlighter-rouge">Comparator</code>.</li>
+  <li><strong>Objeto de classe anônima</strong>: Definir e instanciar uma classe sem nome diretamente.</li>
+  <li><strong>Objeto de expressão lambda com chaves</strong>: Usar uma expressão lambda com um bloco de código.</li>
+  <li><strong>Objeto de expressão lambda sem chaves</strong>: Usar uma expressão lambda concisa para uma única instrução.</li>
+  <li><strong>Expressão lambda “direto no argumento”</strong>: Passar a expressão lambda diretamente como argumento do método <code class="language-plaintext highlighter-rouge">sort</code>.</li>
+</ol>
+
+<h2 id="paradigm-shifts-programação-funcional-">Paradigm Shifts: Programação Funcional 🚀</h2>
+
+<p>A programação funcional é um paradigma de programação que trata a computação como a avaliação de funções matemáticas. É baseada no formalismo matemático <strong>Cálculo Lambda</strong>, desenvolvido por Alonzo Church nos anos 1930.</p>
+
+<h3 id="paradigmas-de-programação-comuns">Paradigmas de Programação Comuns:</h3>
+
+<ul>
+  <li><strong>Imperativo</strong>: Descreve a computação em termos de declarações que mudam o estado de um programa (ex: C, Pascal, Fortran).</li>
+  <li><strong>Orientado a Objetos</strong>: Baseado no conceito de “objetos”, que podem conter dados na forma de campos (atributos) e código na forma de procedimentos (métodos) (ex: Java &lt; 8, C++).</li>
+  <li><strong>Funcional</strong>: Trata funções como cidadãos de primeira classe, enfatiza a imutabilidade e evita efeitos colaterais (ex: Haskell, Clojure).</li>
+  <li><strong>Lógico</strong>: Baseado na lógica formal (ex: Prolog).</li>
+  <li><strong>Multiparadigma</strong>: Suporta mais de um paradigma de programação (ex: Java 8+, JavaScript, Python, C#).</li>
+</ul>
+
+<h3 id="comparativo-programação-imperativa-vs-funcional">Comparativo: Programação Imperativa vs. Funcional</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Característica</th>
+      <th style="text-align: left">Programação Imperativa</th>
+      <th style="text-align: left">Programação Funcional</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Como se descreve algo a ser computado</td>
+      <td style="text-align: left">Comandos (“como” - imperativa)</td>
+      <td style="text-align: left">Expressões (“o quê” - declarativa)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Funções possuem transparência referencial</td>
+      <td style="text-align: left">Fraco</td>
+      <td style="text-align: left">Forte</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Objetos imutáveis</td>
+      <td style="text-align: left">Raro</td>
+      <td style="text-align: left">Comum</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Funções são objetos de primeira ordem</td>
+      <td style="text-align: left">Não</td>
+      <td style="text-align: left">Sim</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Expressividade / código conciso</td>
+      <td style="text-align: left">Baixa</td>
+      <td style="text-align: left">Alta</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Tipagem dinâmica / inferência de tipos</td>
+      <td style="text-align: left">Raro</td>
+      <td style="text-align: left">Comum</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Execução tardia (lazy)</td>
+      <td style="text-align: left">Raro</td>
+      <td style="text-align: left">Comum</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="-transparência-referencial">✨ Transparência Referencial</h3>
+
+<p>Uma função possui <strong>transparência referencial</strong> se seu resultado for sempre o mesmo para os mesmos dados de entrada, sem causar efeitos colaterais observáveis.</p>
+<ul>
+  <li><strong>Benefícios</strong>: Simplicidade e previsibilidade. Código com transparência referencial é mais fácil de testar, depurar e paralelizar.</li>
+</ul>
+
+<p><strong>Exemplo de função que NÃO é referencialmente transparente:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">valorGlobal</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="c1">// Variável global que pode mudar o comportamento da função</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">vetor</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">};</span>
+        <span class="n">alterarValoresImpares</span><span class="o">(</span><span class="n">vetor</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">vetor</span><span class="o">));</span> <span class="c1">// Saída depende do valorGlobal</span>
+
+        <span class="n">valorGlobal</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">// Alterando o estado externo</span>
+        <span class="n">alterarValoresImpares</span><span class="o">(</span><span class="n">vetor</span><span class="o">);</span> <span class="c1">// Chamada subsequente pode produzir resultado diferente para a mesma entrada inicial de vetor</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">vetor</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Esta função modifica o array de entrada e depende de uma variável global</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">alterarValoresImpares</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numeros</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numeros</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">numeros</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">numeros</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+=</span> <span class="n">valorGlobal</span><span class="o">;</span> <span class="c1">// Efeito colateral: modifica o array e usa valorGlobal</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Neste exemplo, <code class="language-plaintext highlighter-rouge">alterarValoresImpares</code> não é referencialmente transparente porque:</p>
+<ol>
+  <li>Modifica o array <code class="language-plaintext highlighter-rouge">numeros</code> passado como argumento (efeito colateral).</li>
+  <li>Seu comportamento depende de <code class="language-plaintext highlighter-rouge">valorGlobal</code>, que é externo à função e pode mudar.</li>
+</ol>
+
+<h3 id="-funções-como-objetos-de-primeira-ordem-primeira-classe">🥇 Funções como Objetos de Primeira Ordem (Primeira Classe)</h3>
+
+<p>Isso significa que funções podem ser:</p>
+<ul>
+  <li>Passadas como argumentos para outras funções.</li>
+  <li>Retornadas como resultado de outras funções.</li>
+  <li>Atribuídas a variáveis.</li>
+</ul>
+
+<p><strong>Exemplo com “Method References”</strong>:
+O operador <code class="language-plaintext highlighter-rouge">::</code> (dois pontos duplos) é usado para “method references”, uma forma concisa de expressão lambda para chamar um método existente.</p>
+
+<p>Sintaxe: <code class="language-plaintext highlighter-rouge">Classe::metodoEstatico</code> ou <code class="language-plaintext highlighter-rouge">objeto::metodoDeInstancia</code> ou <code class="language-plaintext highlighter-rouge">Classe::metodoDeInstancia</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Programa</span> <span class="o">{</span>
+
+    <span class="c1">// Método estático que compara dois produtos pelo preço</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compararProdutos</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">p1</span><span class="o">,</span> <span class="nc">Produto</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">getPreco</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p2</span><span class="o">.</span><span class="na">getPreco</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">,</span> <span class="mf">1200.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">450.00</span><span class="o">));</span>
+
+        <span class="c1">// Usando method reference para passar a função de comparação</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="nl">Programa:</span><span class="o">:</span><span class="n">compararProdutos</span><span class="o">);</span>
+
+        <span class="c1">// Usando method reference para imprimir cada produto</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-tipagem-dinâmica--inferência-de-tipos">📝 Tipagem Dinâmica / Inferência de Tipos</h3>
+
+<p>Em expressões lambda, muitas vezes o compilador Java pode inferir os tipos dos parâmetros, tornando o código mais conciso.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AplicacaoPrincipal</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">,</span> <span class="mf">1200.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">450.00</span><span class="o">));</span>
+
+        <span class="c1">// O compilador infere que p1 e p2 são do tipo Produto</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">sort</span><span class="o">((</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="na">getPreco</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p2</span><span class="o">.</span><span class="na">getPreco</span><span class="o">()));</span>
+
+        <span class="n">lista</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="-expressividade--código-conciso">📏 Expressividade / Código Conciso</h3>
+
+<p>A programação funcional e as expressões lambda permitem escrever código mais expressivo e enxuto.</p>
+
+<p><strong>Exemplo: Somar elementos de uma lista</strong></p>
+
+<p><strong>Abordagem imperativa:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numeros</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+<span class="nc">Integer</span> <span class="n">somaImperativa</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="nc">Integer</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numeros</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">somaImperativa</span> <span class="o">+=</span> <span class="n">x</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Soma Imperativa: "</span> <span class="o">+</span> <span class="n">somaImperativa</span><span class="o">);</span> <span class="c1">// Soma Imperativa: 15</span>
+</code></pre></div></div>
+
+<p><strong>Abordagem funcional com Streams:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numerosFunc</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
+<span class="c1">// Integer::sum é um method reference para o método estático sum da classe Integer</span>
+<span class="nc">Integer</span> <span class="n">somaFuncional</span> <span class="o">=</span> <span class="n">numerosFunc</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="nl">Integer:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Soma Funcional: "</span> <span class="o">+</span> <span class="n">somaFuncional</span><span class="o">);</span> <span class="c1">// Soma Funcional: 15</span>
+</code></pre></div></div>
+
+<h2 id="-o-que-são-expressões-lambda">💡 O que são “Expressões Lambda”?</h2>
+
+<p>Em programação funcional, uma <strong>expressão lambda</strong> corresponde a uma <strong>função anônima de primeira classe</strong>.</p>
+<ul>
+  <li><strong>Anônima</strong>: Não possui um nome declarado como um método tradicional.</li>
+  <li><strong>Função</strong>: Define um comportamento, recebe parâmetros e pode retornar um valor.</li>
+  <li><strong>Primeira Classe</strong>: Pode ser tratada como qualquer outro valor (passada como argumento, retornada, atribuída a variáveis).</li>
+</ul>
+
+<p><strong>Sintaxe básica</strong>: <code class="language-plaintext highlighter-rouge">(parâmetros) -&gt; expressão</code> ou <code class="language-plaintext highlighter-rouge">(parâmetros) -&gt; { bloco de código }</code></p>
+
+<p><strong>Exemplo de uso em <code class="language-plaintext highlighter-rouge">list.sort()</code></strong>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaLambda</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compararProdutos</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">p1</span><span class="o">,</span> <span class="nc">Produto</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">getPreco</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p2</span><span class="o">.</span><span class="na">getPreco</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Notebook"</span><span class="o">,</span> <span class="mf">1200.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">450.00</span><span class="o">));</span>
+
+        <span class="c1">// Usando method reference</span>
+        <span class="c1">// lista.sort(ProgramaLambda::compararProdutos);</span>
+
+        <span class="c1">// Usando expressão lambda diretamente</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">sort</span><span class="o">((</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">p1</span><span class="o">.</span><span class="na">getPreco</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p2</span><span class="o">.</span><span class="na">getPreco</span><span class="o">()));</span>
+
+        <span class="n">lista</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-interface-funcional">🧩 Interface Funcional</h2>
+
+<p>Uma <strong>interface funcional</strong> é uma interface que possui <strong>um único método abstrato</strong>. Suas implementações podem ser tratadas como expressões lambda, method references ou classes anônimas. A anotação <code class="language-plaintext highlighter-rouge">@FunctionalInterface</code> pode ser usada para garantir que a interface atenda a esse critério em tempo de compilação, embora não seja obrigatória.</p>
+
+<p><strong>Exemplo com <code class="language-plaintext highlighter-rouge">Comparator</code></strong>:
+A interface <code class="language-plaintext highlighter-rouge">java.util.Comparator</code> é uma interface funcional (embora tenha outros métodos <code class="language-plaintext highlighter-rouge">default</code> e <code class="language-plaintext highlighter-rouge">static</code>, ela tem apenas um método abstrato, <code class="language-plaintext highlighter-rouge">compare</code>).</p>
+
+<p><strong>Implementação tradicional com classe separada</strong>:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente</span>
+
+<span class="c1">// Classe separada que implementa Comparator</span>
+<span class="kd">class</span> <span class="nc">MeuComparadorDeProdutos</span> <span class="kd">implements</span> <span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="nc">Produto</span> <span class="n">p1</span><span class="o">,</span> <span class="nc">Produto</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">getNome</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">().</span><span class="na">compareTo</span><span class="o">(</span><span class="n">p2</span><span class="o">.</span><span class="na">getNome</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// No método main ou onde for usar:</span>
+<span class="c1">// list.sort(new MeuComparadorDeProdutos());</span>
+</code></pre></div></div>
+
+<p>Com expressões lambda, a criação de uma classe separada ou anônima se torna mais concisa:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Usando classe anônima (pré-Java 8)</span>
+<span class="cm">/*
+lista.sort(new Comparator&lt;Produto&gt;() {
+    @Override
+    public int compare(Produto p1, Produto p2) {
+        return p1.getNome().toUpperCase().compareTo(p2.getNome().toUpperCase());
+    }
+});
+*/</span>
+
+<span class="c1">// Usando expressão lambda (Java 8+)</span>
+<span class="c1">// lista.sort((p1, p2) -&gt; p1.getNome().toUpperCase().compareTo(p2.getNome().toUpperCase()));</span>
+</code></pre></div></div>
+
+<h3 id="algumas-outras-interfaces-funcionais-comuns-do-pacote-javautilfunction">Algumas Outras Interfaces Funcionais Comuns do Pacote <code class="language-plaintext highlighter-rouge">java.util.function</code></h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Predicate&lt;T&gt;</code></strong>:
+    <ul>
+      <li>Método: <code class="language-plaintext highlighter-rouge">boolean test(T t)</code></li>
+      <li>Uso: Avalia uma condição sobre um objeto <code class="language-plaintext highlighter-rouge">T</code> e retorna <code class="language-plaintext highlighter-rouge">true</code> ou <code class="language-plaintext highlighter-rouge">false</code>. Comum em filtragens.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code></strong>:
+    <ul>
+      <li>Método: <code class="language-plaintext highlighter-rouge">R apply(T t)</code></li>
+      <li>Uso: Recebe um objeto do tipo <code class="language-plaintext highlighter-rouge">T</code> como entrada e retorna um objeto do tipo <code class="language-plaintext highlighter-rouge">R</code>. Usada para transformações de dados (mapeamento).</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Consumer&lt;T&gt;</code></strong>:
+    <ul>
+      <li>Método: <code class="language-plaintext highlighter-rouge">void accept(T t)</code></li>
+      <li>Uso: Realiza uma operação em um objeto do tipo <code class="language-plaintext highlighter-rouge">T</code> sem retornar nada. Espera-se que possa gerar efeitos colaterais (ex: imprimir, modificar um objeto).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="exemplo-com-predicate-e-removeif-️">Exemplo com <code class="language-plaintext highlighter-rouge">Predicate</code> e <code class="language-plaintext highlighter-rouge">removeIf</code> 🗑️</h3>
+
+<p><strong>Problema</strong>: Remover de uma lista de produtos aqueles cujo preço mínimo seja 100.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.Predicate</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploPredicate</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Mouse"</span><span class="o">,</span> <span class="mf">50.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">350.50</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"HD Case"</span><span class="o">,</span> <span class="mf">80.90</span><span class="o">));</span>
+
+        <span class="c1">// Definindo o critério de remoção com uma expressão lambda</span>
+        <span class="c1">// Remove produtos se o preço for menor que 100</span>
+        <span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">criterioPreco</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getPreco</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mf">100.0</span><span class="o">;</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">removeIf</span><span class="o">(</span><span class="n">criterioPreco</span><span class="o">);</span>
+
+        <span class="c1">// Ou, diretamente no argumento:</span>
+        <span class="c1">// lista.removeIf(p -&gt; p.getPreco() &lt; 100.0);</span>
+
+        <span class="n">lista</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+        <span class="c1">// Saída esperada:</span>
+        <span class="c1">// Produto{nome='TV', preco=900.00}</span>
+        <span class="c1">// Produto{nome='Tablet', preco=350.50}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Versões de implementação para <code class="language-plaintext highlighter-rouge">removeIf</code> (que espera um <code class="language-plaintext highlighter-rouge">Predicate</code>)</strong>:</p>
+<ol>
+  <li><strong>Implementação da interface</strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// class ProdutoComPrecoMinimo implements Predicate&lt;Produto&gt; {</span>
+<span class="c1">//     @Override</span>
+<span class="c1">//     public boolean test(Produto p) {</span>
+<span class="c1">//         return p.getPreco() &gt;= 100.0; // Manter se &gt;= 100, então remover se &lt; 100</span>
+<span class="c1">//     }</span>
+<span class="c1">// }</span>
+<span class="c1">// lista.removeIf(p -&gt; !new ProdutoComPrecoMinimo().test(p)); // Lógica invertida para removeIf</span>
+<span class="c1">// ou</span>
+<span class="c1">// lista.removeIf(p -&gt; p.getPreco() &lt; 100.0);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Reference method com método estático</strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// class CriteriosProduto {</span>
+<span class="c1">//     public static boolean temPrecoAbaixoDe100(Produto p) {</span>
+<span class="c1">//         return p.getPreco() &lt; 100.0;</span>
+<span class="c1">//     }</span>
+<span class="c1">// }</span>
+<span class="c1">// lista.removeIf(CriteriosProduto::temPrecoAbaixoDe100);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Reference method com método não estático</strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// class VerificadorDePreco {</span>
+<span class="c1">//     private double precoMinimo;</span>
+<span class="c1">//     public VerificadorDePreco(double precoMinimo) { this.precoMinimo = precoMinimo; }</span>
+<span class="c1">//     public boolean abaixoDoMinimo(Produto p) { return p.getPreco() &lt; this.precoMinimo; }</span>
+<span class="c1">// }</span>
+<span class="c1">// VerificadorDePreco verificador = new VerificadorDePreco(100.0);</span>
+<span class="c1">// lista.removeIf(verificador::abaixoDoMinimo);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Expressão lambda declarada</strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Predicate&lt;Produto&gt; abaixoDe100 = p -&gt; p.getPreco() &lt; 100.0;</span>
+<span class="c1">// lista.removeIf(abaixoDe100);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Expressão lambda inline</strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// lista.removeIf(p -&gt; p.getPreco() &lt; 100.0); // Como no exemplo principal</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="exemplo-com-consumer-e-foreach-️">Exemplo com <code class="language-plaintext highlighter-rouge">Consumer</code> e <code class="language-plaintext highlighter-rouge">forEach</code> 🗣️</h3>
+
+<p><strong>Problema</strong>: Aumentar o preço dos produtos em uma lista em 10%.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.Consumer</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente e com setPreco</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploConsumer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"TV"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Mouse"</span><span class="o">,</span> <span class="mf">50.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">350.50</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"HD Case"</span><span class="o">,</span> <span class="mf">80.90</span><span class="o">));</span>
+
+        <span class="c1">// Definindo a ação com uma expressão lambda</span>
+        <span class="c1">// Aumenta o preço em 10%</span>
+        <span class="nc">Consumer</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">aumentarPreco</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">setPreco</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getPreco</span><span class="o">()</span> <span class="o">*</span> <span class="mf">1.1</span><span class="o">);</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">aumentarPreco</span><span class="o">);</span>
+
+        <span class="c1">// Ou, diretamente no argumento:</span>
+        <span class="c1">// lista.forEach(p -&gt; p.setPreco(p.getPreco() * 1.1));</span>
+
+        <span class="n">lista</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+        <span class="c1">// Saída esperada (preços aumentados):</span>
+        <span class="c1">// Produto{nome='TV', preco=990.00}</span>
+        <span class="c1">// Produto{nome='Mouse', preco=55.00}</span>
+        <span class="c1">// Produto{nome='Tablet', preco=385.55}</span>
+        <span class="c1">// Produto{nome='HD Case', preco=88.99}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="exemplo-com-function-e-map-via-streams-">Exemplo com <code class="language-plaintext highlighter-rouge">Function</code> e <code class="language-plaintext highlighter-rouge">map</code> (via Streams) 🔄</h3>
+
+<p><strong>Problema</strong>: A partir de uma lista de produtos, gerar uma nova lista contendo apenas os nomes dos produtos em caixa alta.</p>
+
+<p>A interface <code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code> tem o método <code class="language-plaintext highlighter-rouge">R apply(T t)</code>. Ela é usada para transformar um objeto de tipo <code class="language-plaintext highlighter-rouge">T</code> em um objeto de tipo <code class="language-plaintext highlighter-rouge">R</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.Function</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploFunction</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">listaProdutos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">listaProdutos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tv"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">));</span>
+        <span class="n">listaProdutos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Mouse"</span><span class="o">,</span> <span class="mf">50.00</span><span class="o">));</span>
+        <span class="n">listaProdutos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">350.50</span><span class="o">));</span>
+        <span class="n">listaProdutos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"HD Case"</span><span class="o">,</span> <span class="mf">80.90</span><span class="o">));</span>
+
+        <span class="c1">// Definindo a função de transformação com uma expressão lambda</span>
+        <span class="c1">// Transforma um Produto em seu nome em maiúsculas (String)</span>
+        <span class="nc">Function</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">obterNomeMaiusculo</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getNome</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">();</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">nomesMaiusculos</span> <span class="o">=</span> <span class="n">listaProdutos</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                             <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">obterNomeMaiusculo</span><span class="o">)</span>
+                                             <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+
+        <span class="c1">// Ou, diretamente no argumento de map:</span>
+        <span class="c1">// List&lt;String&gt; nomesMaiusculos = listaProdutos.stream()</span>
+        <span class="c1">//                                      .map(p -&gt; p.getNome().toUpperCase())</span>
+        <span class="c1">//                                      .collect(Collectors.toList());</span>
+
+        <span class="n">nomesMaiusculos</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+        <span class="c1">// Saída esperada:</span>
+        <span class="c1">// TV</span>
+        <span class="c1">// MOUSE</span>
+        <span class="c1">// TABLET</span>
+        <span class="c1">// HD CASE</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Nota sobre a função <code class="language-plaintext highlighter-rouge">map</code> (de Streams)</strong>:</p>
+<ul>
+  <li>A função <code class="language-plaintext highlighter-rouge">map</code> (não confunda com a estrutura de dados <code class="language-plaintext highlighter-rouge">Map</code>) é uma operação intermediária de <code class="language-plaintext highlighter-rouge">Stream</code> que aplica uma função a todos os elementos de uma stream, produzindo uma nova stream com os resultados.</li>
+  <li><strong>Conversões comuns com Streams</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">List</code> para <code class="language-plaintext highlighter-rouge">Stream</code>: <code class="language-plaintext highlighter-rouge">lista.stream()</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Stream</code> para <code class="language-plaintext highlighter-rouge">List</code>: <code class="language-plaintext highlighter-rouge">stream.collect(Collectors.toList())</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="️-criando-funções-que-recebem-funções-como-argumento">🛠️ Criando Funções que Recebem Funções como Argumento</h2>
+
+<p>Vimos exemplos como <code class="language-plaintext highlighter-rouge">removeIf(Predicate)</code>, <code class="language-plaintext highlighter-rouge">forEach(Consumer)</code> e <code class="language-plaintext highlighter-rouge">stream().map(Function)</code>. Podemos criar nossos próprios métodos que aceitam interfaces funcionais como parâmetros, permitindo um comportamento personalizável.</p>
+
+<p><strong>Problema</strong>: Calcular a soma dos preços somente dos produtos cujo nome começa com “T”.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.function.Predicate</span><span class="o">;</span>
+
+<span class="c1">// Classe Produto definida anteriormente</span>
+
+<span class="kd">class</span> <span class="nc">ServicoProduto</span> <span class="o">{</span>
+    <span class="c1">// Método que recebe uma lista e uma condição (Predicate)</span>
+    <span class="c1">// e retorna a soma dos preços dos produtos que atendem à condição.</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">somaFiltrada</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">lista</span><span class="o">,</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">criterio</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">double</span> <span class="n">soma</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Produto</span> <span class="n">p</span> <span class="o">:</span> <span class="n">lista</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">criterio</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">p</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Usa o Predicate para testar a condição</span>
+                <span class="n">soma</span> <span class="o">+=</span> <span class="n">p</span><span class="o">.</span><span class="na">getPreco</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">soma</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExemploFuncaoComoArgumento</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tv"</span><span class="o">,</span> <span class="mf">900.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Mouse"</span><span class="o">,</span> <span class="mf">50.00</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"Tablet"</span><span class="o">,</span> <span class="mf">350.50</span><span class="o">));</span>
+        <span class="n">lista</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="s">"HD Case"</span><span class="o">,</span> <span class="mf">80.90</span><span class="o">));</span>
+
+        <span class="nc">ServicoProduto</span> <span class="n">servico</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServicoProduto</span><span class="o">();</span>
+
+        <span class="c1">// Passando a condição como uma expressão lambda</span>
+        <span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">comecaComT</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getNome</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'T'</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">somaProdutosComT</span> <span class="o">=</span> <span class="n">servico</span><span class="o">.</span><span class="na">somaFiltrada</span><span class="o">(</span><span class="n">lista</span><span class="o">,</span> <span class="n">comecaComT</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Soma dos produtos cujo nome começa com 'T': %.2f%n"</span><span class="o">,</span> <span class="n">somaProdutosComT</span><span class="o">);</span> <span class="c1">// Esperado: 1250.50 (900.00 + 350.50)</span>
+
+        <span class="c1">// Poderia ser direto também:</span>
+        <span class="c1">// double somaProdutosComT = servico.somaFiltrada(lista, p -&gt; p.getNome().charAt(0) == 'T');</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-streams-api">🌊 Streams API</h2>
+
+<p>Uma <strong>Stream</strong> é uma sequência de elementos advinda de uma fonte de dados (como coleções, arrays, recursos de E/S ou funções geradoras) que oferece suporte a <strong>operações agregadas</strong>.</p>
+
+<h3 id="características-das-streams">Características das Streams:</h3>
+
+<ul>
+  <li><strong>Declarativa</strong>: A iteração é interna, escondida do programador. Você especifica “o que” fazer, não “como” fazer.</li>
+  <li><strong>Parallel-friendly</strong>: Operações em streams idealmente não têm efeitos colaterais e operam sobre dados imutáveis, o que facilita a paralelização (ex: <code class="language-plaintext highlighter-rouge">parallelStream()</code>).</li>
+  <li><strong>Sem efeitos colaterais (idealmente)</strong>: As operações intermediárias não modificam a fonte de dados original; elas produzem novas streams.</li>
+  <li><strong>Sob demanda (lazy evaluation)</strong>: Operações intermediárias só são executadas quando uma operação terminal é invocada.</li>
+  <li><strong>Acesso sequencial</strong>: Elementos são processados em sequência (não há acesso por índice como em listas).</li>
+  <li><strong>Single-use</strong>: Uma stream só pode ser “usada” (consumida por uma operação terminal) uma vez. Se precisar processá-la novamente, uma nova stream deve ser criada a partir da fonte de dados.</li>
+  <li><strong>Pipeline</strong>: Operações em streams retornam novas streams. Isso permite criar uma cadeia de operações (um fluxo de processamento).</li>
+</ul>
+
+<h3 id="️-operações-intermediárias-e-terminais">⚙️ Operações Intermediárias e Terminais</h3>
+
+<p>Um <strong>pipeline</strong> de stream é composto por:</p>
+<ol>
+  <li>Uma fonte de dados (ex: <code class="language-plaintext highlighter-rouge">List.stream()</code>).</li>
+  <li>Zero ou mais <strong>operações intermediárias</strong>.</li>
+  <li>Uma <strong>operação terminal</strong>.</li>
+</ol>
+
+<ul>
+  <li><strong>Operação Intermediária</strong>:
+    <ul>
+      <li>Produz uma nova stream (encadeamento).</li>
+      <li>É <em>lazy</em>: só executa quando uma operação terminal é invocada.</li>
+      <li>Exemplos: <code class="language-plaintext highlighter-rouge">filter(Predicate)</code>, <code class="language-plaintext highlighter-rouge">map(Function)</code>, <code class="language-plaintext highlighter-rouge">flatMap(Function)</code>, <code class="language-plaintext highlighter-rouge">peek(Consumer)</code>, <code class="language-plaintext highlighter-rouge">distinct()</code>, <code class="language-plaintext highlighter-rouge">sorted()</code>, <code class="language-plaintext highlighter-rouge">sorted(Comparator)</code>, <code class="language-plaintext highlighter-rouge">skip(long)</code>, <code class="language-plaintext highlighter-rouge">limit(long)</code> (esta última é <em>short-circuiting</em>).</li>
+    </ul>
+  </li>
+  <li><strong>Operação Terminal</strong>:
+    <ul>
+      <li>Produz um resultado não-stream (um valor, uma coleção, ou nenhum valor no caso de <code class="language-plaintext highlighter-rouge">forEach</code>).</li>
+      <li>Determina o fim do processamento da stream e dispara a execução das operações intermediárias.</li>
+      <li>Exemplos: <code class="language-plaintext highlighter-rouge">forEach(Consumer)</code>, <code class="language-plaintext highlighter-rouge">forEachOrdered(Consumer)</code>, <code class="language-plaintext highlighter-rouge">toArray()</code>, <code class="language-plaintext highlighter-rouge">reduce()</code>, <code class="language-plaintext highlighter-rouge">collect(Collector)</code>, <code class="language-plaintext highlighter-rouge">min(Comparator)</code>, <code class="language-plaintext highlighter-rouge">max(Comparator)</code>, <code class="language-plaintext highlighter-rouge">count()</code>, <code class="language-plaintext highlighter-rouge">anyMatch(Predicate)</code> (<em>short-circuiting</em>), <code class="language-plaintext highlighter-rouge">allMatch(Predicate)</code> (<em>short-circuiting</em>), <code class="language-plaintext highlighter-rouge">noneMatch(Predicate)</code> (<em>short-circuiting</em>), <code class="language-plaintext highlighter-rouge">findFirst()</code> (<em>short-circuiting</em>), <code class="language-plaintext highlighter-rouge">findAny()</code> (<em>short-circuiting</em>).</li>
+      <li>Operações <em>short-circuiting</em> podem terminar o processamento antes de percorrer todos os elementos da stream se o resultado já puder ser determinado.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="como-criar-uma-stream-️">Como Criar uma Stream 🏞️</h3>
+
+<ol>
+  <li><strong>A partir de uma Coleção</strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">minhaLista</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"a"</span><span class="o">,</span> <span class="s">"b"</span><span class="o">,</span> <span class="s">"c"</span><span class="o">);</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">streamDaLista</span> <span class="o">=</span> <span class="n">minhaLista</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span> <span class="c1">// Sequencial</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">streamParalela</span> <span class="o">=</span> <span class="n">minhaLista</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">();</span> <span class="c1">// Paralela</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Usando <code class="language-plaintext highlighter-rouge">Stream.of()</code></strong>:
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">streamDeElementos</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"Maria"</span><span class="o">,</span> <span class="s">"Alex"</span><span class="o">,</span> <span class="s">"Bob"</span><span class="o">);</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">streamDeInteiros</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Usando <code class="language-plaintext highlighter-rouge">Stream.ofNullable()</code> (Java 9+)</strong>: Cria uma stream com um único elemento se não for nulo, ou uma stream vazia se for nulo.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">nome</span> <span class="o">=</span> <span class="n">podeSerNulo</span><span class="o">();</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">streamDeNome</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">nome</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Usando <code class="language-plaintext highlighter-rouge">Stream.iterate()</code></strong>: Cria uma stream infinita (ou potencialmente infinita) a partir de um valor inicial e uma função para gerar o próximo elemento. Geralmente usada com <code class="language-plaintext highlighter-rouge">limit()</code>.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Stream de números pares começando em 0: 0, 2, 4, 6, ...</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numerosPares</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">);</span>
+<span class="c1">// Para usar, é preciso limitar:</span>
+<span class="c1">// List&lt;Integer&gt; primeirosDezPares = numerosPares.limit(10).collect(Collectors.toList());</span>
+<span class="c1">// System.out.println(primeirosDezPares); // [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</span>
+</code></pre></div>    </div>
+    <p><strong>Exemplo: Sequência de Fibonacci</strong> (pares de números <code class="language-plaintext highlighter-rouge">[atual, proximo]</code>)</p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Gera a sequência de Fibonacci: 0, 1, 1, 2, 3, 5, ...</span>
+<span class="c1">// Stream&lt;Long&gt; fibonacci = Stream.iterate(new long[]{0L, 1L}, p -&gt; new long[]{p[1], p[0] + p[1]})</span>
+<span class="c1">//                              .map(p -&gt; p[0]); // Pega o primeiro elemento do par</span>
+<span class="c1">// List&lt;Long&gt; primeirosDezFibonacci = fibonacci.limit(10).collect(Collectors.toList());</span>
+<span class="c1">// System.out.println(primeirosDezFibonacci); // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Usando <code class="language-plaintext highlighter-rouge">Stream.generate(Supplier&lt;T&gt;)</code></strong>: Cria uma stream infinita onde cada elemento é gerado por um <code class="language-plaintext highlighter-rouge">Supplier</code>.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Stream&lt;Double&gt; numerosAleatorios = Stream.generate(Math::random);</span>
+<span class="c1">// numerosAleatorios.limit(5).forEach(System.out::println);</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="exemplo-de-pipeline-de-stream-️️">Exemplo de Pipeline de Stream 🏞️➡️💧</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Stream</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoPipeline</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">lista</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">7</span><span class="o">);</span>
+
+        <span class="c1">// 1. Criar stream, map (op. intermediária) e toArray (op. terminal)</span>
+        <span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">st1</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Stream mapeada (toArray): "</span> <span class="o">+</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">st1</span><span class="o">.</span><span class="na">toArray</span><span class="o">()));</span> <span class="c1">// [30, 40, 50, 100, 70]</span>
+
+        <span class="c1">// 2. Reduce (op. terminal) para somar os elementos</span>
+        <span class="c1">// A stream original 'lista.stream()' é consumida aqui novamente, pois st1 já foi consumida por toArray()</span>
+        <span class="kt">int</span> <span class="n">soma</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">);</span> <span class="c1">// 0 é o valor identidade</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Soma (reduce): "</span> <span class="o">+</span> <span class="n">soma</span><span class="o">);</span> <span class="c1">// 29</span>
+
+        <span class="c1">// 3. Pipeline: filter (intermediária), map (intermediária), collect (terminal)</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">novaLista</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                     <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>   <span class="c1">// Filtra apenas os pares: [4, 10]</span>
+                                     <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">10</span><span class="o">)</span>          <span class="c1">// Multiplica por 10: [40, 100]</span>
+                                     <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span> <span class="c1">// Coleta em uma nova lista</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Nova lista (filter, map, collect): "</span> <span class="o">+</span> <span class="n">novaLista</span><span class="o">);</span> <span class="c1">// [40, 100]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="-exercício-resolvido-análise-de-produtos-de-um-csv">🧩 Exercício Resolvido: Análise de Produtos de um CSV</h2>
+
+<p><strong>Problema</strong>: Fazer um programa para ler um conjunto de produtos a partir de um arquivo em formato <code class="language-plaintext highlighter-rouge">.csv</code> (suponha que exista pelo menos um produto). Em seguida, mostrar o preço médio dos produtos. Depois, mostrar os nomes, em ordem decrescente, dos produtos que possuem preço inferior ao preço médio.</p>
+
+<p><strong>Arquivo de entrada (ex: <code class="language-plaintext highlighter-rouge">produtos.csv</code>):</strong></p>
+<pre><code class="language-csv">Tv,900.00
+Mouse,50.00
+Tablet,350.50
+HD Case,80.90
+Computer,850.00
+Monitor,290.00
+</code></pre>
+
+<p><strong>Classe <code class="language-plaintext highlighter-rouge">Produto</code> (reutilizada):</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package entidades; // Exemplo de pacote</span>
+<span class="c1">// public class Produto { ... } // Já definida anteriormente</span>
+</code></pre></div></div>
+
+<p><strong>Código Principal:</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.Produto</span><span class="o">;</span> <span class="c1">// Supondo que Produto está em entidades</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaCsvProdutos</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o caminho completo do arquivo: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">caminhoArquivo</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Ex: /caminho/para/produtos.csv ou C:\\temp\\produtos.csv</span>
+
+        <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">caminhoArquivo</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">produtos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+            <span class="nc">String</span> <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">linha</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">String</span><span class="o">[]</span> <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">","</span><span class="o">);</span>
+                <span class="n">produtos</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="n">campos</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">campos</span><span class="o">[</span><span class="mi">1</span><span class="o">])));</span>
+                <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="c1">// Calcular o preço médio</span>
+            <span class="kt">double</span> <span class="n">precoMedio</span> <span class="o">=</span> <span class="n">produtos</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                   <span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="nl">Produto:</span><span class="o">:</span><span class="n">getPreco</span><span class="o">)</span> <span class="c1">// Converte para DoubleStream para ter o 'average()'</span>
+                                   <span class="o">.</span><span class="na">average</span><span class="o">()</span>
+                                   <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="mf">0.0</span><span class="o">);</span> <span class="c1">// Caso a lista esteja vazia</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Preço médio: %.2f%n"</span><span class="o">,</span> <span class="n">precoMedio</span><span class="o">);</span>
+
+            <span class="c1">// Nomes dos produtos com preço inferior à média, em ordem decrescente de nome</span>
+            <span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">comparadorNomeDesc</span> <span class="o">=</span> <span class="nc">Comparator</span><span class="o">.</span><span class="na">reverseOrder</span><span class="o">();</span> <span class="c1">// Ou (s1, s2) -&gt; s2.compareTo(s1)</span>
+
+            <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">nomesAbaixoDaMedia</span> <span class="o">=</span> <span class="n">produtos</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                                 <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getPreco</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">precoMedio</span><span class="o">)</span>
+                                                 <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Produto:</span><span class="o">:</span><span class="n">getNome</span><span class="o">)</span>
+                                                 <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comparadorNomeDesc</span><span class="o">)</span> <span class="c1">// Ordena os nomes em ordem decrescente</span>
+                                                 <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Produtos com preço abaixo da média (ordenados por nome decrescente):"</span><span class="o">);</span>
+            <span class="n">nomesAbaixoDaMedia</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Execução Esperada (com o CSV de exemplo):</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o caminho completo do arquivo: [caminho/para/produtos.csv]
+Preço médio: 420.23
+Produtos com preço abaixo da média (ordenados por nome decrescente):
+Tablet
+Mouse
+Monitor
+HD Case
+</code></pre></div></div>
+
+<h2 id="️-exercício-de-fixação-análise-de-funcionários">🏋️ Exercício de Fixação: Análise de Funcionários</h2>
+
+<p><strong>Problema</strong>: Fazer um programa para ler os dados (nome, email e salário) de funcionários a partir de um arquivo em formato <code class="language-plaintext highlighter-rouge">.csv</code>. Em seguida:</p>
+<ol>
+  <li>Mostrar, em ordem alfabética, o email dos funcionários cujo salário seja superior a um dado valor fornecido pelo usuário.</li>
+  <li>Mostrar também a soma dos salários dos funcionários cujo nome começa com a letra ‘M’.</li>
+</ol>
+
+<p><strong>Modelo da classe <code class="language-plaintext highlighter-rouge">Funcionario</code></strong>:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">entidades</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Funcionario</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">nome</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">salario</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Funcionario</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">salario</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">salario</span> <span class="o">=</span> <span class="n">salario</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getNome</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNome</span><span class="o">(</span><span class="nc">String</span> <span class="n">nome</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">nome</span> <span class="o">=</span> <span class="n">nome</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getEmail</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">email</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="nc">Double</span> <span class="nf">getSalario</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">salario</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalario</span><span class="o">(</span><span class="nc">Double</span> <span class="n">salario</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">salario</span> <span class="o">=</span> <span class="n">salario</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">nome</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="n">email</span> <span class="o">+</span> <span class="s">", "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">salario</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Arquivo de entrada (ex: <code class="language-plaintext highlighter-rouge">funcionarios.csv</code>):</strong></p>
+<pre><code class="language-csv">Maria,maria@gmail.com,3200.00
+Alex,alex@gmail.com,1900.00
+Marco,marco@gmail.com,1700.00
+Bob,bob@gmail.com,3500.00
+Anna,anna@gmail.com,2800.00
+</code></pre>
+
+<p><strong>Código Principal (esqueleto para desenvolvimento):</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">aplicacao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">entidades.Funcionario</span><span class="o">;</span> <span class="c1">// Supondo que Funcionario está em entidades</span>
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProgramaCsvFuncionarios</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Locale</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="nc">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+        <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o caminho completo do arquivo: "</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">caminhoArquivo</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span> <span class="c1">// Ex: /caminho/para/funcionarios.csv</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o salário base para filtro: "</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">salarioBase</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
+
+        <span class="k">try</span> <span class="o">(</span><span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="n">caminhoArquivo</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Funcionario</span><span class="o">&gt;</span> <span class="n">funcionarios</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+            <span class="nc">String</span> <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">linha</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">String</span><span class="o">[]</span> <span class="n">campos</span> <span class="o">=</span> <span class="n">linha</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">","</span><span class="o">);</span>
+                <span class="n">funcionarios</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Funcionario</span><span class="o">(</span><span class="n">campos</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">campos</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="n">campos</span><span class="o">[</span><span class="mi">2</span><span class="o">])));</span>
+                <span class="n">linha</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 1. Emails dos funcionários com salário superior ao salarioBase, em ordem alfabética</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Email das pessoas cujo salário é maior que "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">salarioBase</span><span class="o">)</span> <span class="o">+</span> <span class="s">":"</span><span class="o">);</span>
+            <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">emailsFiltrados</span> <span class="o">=</span> <span class="n">funcionarios</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                               <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">getSalario</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">salarioBase</span><span class="o">)</span>
+                                               <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Funcionario:</span><span class="o">:</span><span class="n">getEmail</span><span class="o">)</span>
+                                               <span class="o">.</span><span class="na">sorted</span><span class="o">()</span> <span class="c1">// Ordem alfabética natural para Strings</span>
+                                               <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+            <span class="n">emailsFiltrados</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+
+            <span class="c1">// 2. Soma dos salários dos funcionários cujo nome começa com 'M'</span>
+            <span class="kt">double</span> <span class="n">somaSalariosM</span> <span class="o">=</span> <span class="n">funcionarios</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                       <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">getNome</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"M"</span><span class="o">))</span>
+                                       <span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="nl">Funcionario:</span><span class="o">:</span><span class="n">getSalario</span><span class="o">)</span>
+                                       <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"
+Soma do salário das pessoas cujo nome começa com 'M': "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%.2f"</span><span class="o">,</span> <span class="n">somaSalariosM</span><span class="o">));</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro de leitura do arquivo: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Formato de linha inválido no CSV."</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Erro: Formato numérico inválido para salário no CSV."</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><strong>Execução Esperada (com o CSV de exemplo e salário base 2000.00):</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Digite o caminho completo do arquivo: [caminho/para/funcionarios.csv]
+Digite o salário base para filtro: 2000.00
+
+Email das pessoas cujo salário é maior que 2000.00:
+anna@gmail.com
+bob@gmail.com
+maria@gmail.com
+
+Soma do salário das pessoas cujo nome começa com 'M': 4900.00
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>Nota sobre IDEs (VS Code, IntelliJ IDEA):</strong>
+Todos os exemplos de código Java apresentados são padrão e podem ser compilados e executados em qualquer ambiente de desenvolvimento Java moderno, como <strong>Visual Studio Code (com o Java Extension Pack)</strong> ou <strong>IntelliJ IDEA (Community ou Ultimate Edition)</strong>. Não há recursos específicos do Eclipse utilizados. Para executar:</p>
+<ol>
+  <li>Certifique-se de ter o JDK (Java Development Kit) instalado.</li>
+  <li>Crie um projeto Java na sua IDE de preferência.</li>
+  <li>Crie as classes (<code class="language-plaintext highlighter-rouge">Produto.java</code>, <code class="language-plaintext highlighter-rouge">Funcionario.java</code>, etc.) nos pacotes apropriados (se especificado).</li>
+  <li>Copie e cole o código nas respectivas classes.</li>
+  <li>Para os exemplos que leem arquivos CSV, crie os arquivos de dados (<code class="language-plaintext highlighter-rouge">.csv</code>) e forneça o caminho correto quando solicitado pelo programa.</li>
+  <li>Execute a classe principal que contém o método <code class="language-plaintext highlighter-rouge">main</code>.</li>
+</ol>
+
+<hr />
+<h2>📚</h2>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

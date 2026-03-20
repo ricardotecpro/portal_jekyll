@@ -1,0 +1,565 @@
+<h2 id="guia-do-projeto-teste-de-carga-visual-java-21-gatling-grafana">Guia do Projeto: Teste de Carga Visual (Java 21, Gatling, Grafana)</h2>
+
+<h3 id="método-1-interface-web-startspringio">Método 1: Interface Web (start.spring.io)</h3>
+
+<ol>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">https://start.spring.io</code></li>
+  <li>Configure o “Project Metadata” (Metadados do Projeto):
+    <ul>
+      <li><strong>Project</strong>: <code class="language-plaintext highlighter-rouge">Maven</code></li>
+      <li><strong>Language</strong>: <code class="language-plaintext highlighter-rouge">Java</code></li>
+      <li><strong>Spring Boot</strong>: <code class="language-plaintext highlighter-rouge">3.3.0</code> (ou a versão estável mais recente que suporte Java 21)</li>
+      <li><strong>Group</strong>: <code class="language-plaintext highlighter-rouge">com.example</code></li>
+      <li><strong>Artifact</strong>: <code class="language-plaintext highlighter-rouge">servico-a</code> (repita o processo com <code class="language-plaintext highlighter-rouge">servico-b</code> para o outro módulo)</li>
+      <li><strong>Name</strong>: <code class="language-plaintext highlighter-rouge">servico-a</code></li>
+      <li><strong>Packaging</strong>: <code class="language-plaintext highlighter-rouge">Jar</code></li>
+      <li><strong>Java</strong>: <code class="language-plaintext highlighter-rouge">21</code></li>
+    </ul>
+  </li>
+  <li>Adicione as Dependências (clique em <strong>“ADD DEPENDENCIES…“</strong>):
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code>: (Para criar controladores REST)</li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Boot Actuator</code>: (Para expor endpoints de gerenciamento, como <code class="language-plaintext highlighter-rouge">/health</code> e <code class="language-plaintext highlighter-rouge">/metrics</code>)</li>
+      <li><code class="language-plaintext highlighter-rouge">Prometheus</code>: (Para formatar as métricas do Actuator para o Prometheus)</li>
+    </ul>
+  </li>
+  <li>Clique em <strong>“GENERATE”</strong>.</li>
+  <li>Extraia o arquivo <code class="language-plaintext highlighter-rouge">.zip</code> baixado. Esta é a estrutura base do seu projeto.</li>
+</ol>
+
+<hr />
+
+<h3 id="método-2-linha-de-comando-curl">Método 2: Linha de Comando (cURL)</h3>
+
+<p>Este método é ideal para automação e evita a interface gráfica.</p>
+
+<h4 id="para-o-servico-a">Para o <code class="language-plaintext highlighter-rouge">servico-a</code></h4>
+
+<p>Execute o seguinte comando no seu terminal. Ele baixa e descompacta o projeto.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Baixa o .zip</span>
+curl https://start.spring.io/starter.zip <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nb">type</span><span class="o">=</span>maven-project <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">language</span><span class="o">=</span>java <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">platformVersion</span><span class="o">=</span>3.3.0 <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">javaVersion</span><span class="o">=</span>21 <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">groupId</span><span class="o">=</span>com.example <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">artifactId</span><span class="o">=</span>servico-a <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span>servico-a <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">packaging</span><span class="o">=</span>jar <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">dependencies</span><span class="o">=</span>web,actuator,prometheus <span class="se">\</span>
+    <span class="nt">-o</span> servico-a.zip
+
+<span class="c"># Descompacta</span>
+unzip servico-a.zip <span class="nt">-d</span> servico-a
+<span class="nb">rm </span>servico-a.zip
+</code></pre></div></div>
+
+<h4 id="para-o-servico-b">Para o <code class="language-plaintext highlighter-rouge">servico-b</code></h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Baixa o .zip</span>
+curl https://start.spring.io/starter.zip <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nb">type</span><span class="o">=</span>maven-project <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">language</span><span class="o">=</span>java <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">platformVersion</span><span class="o">=</span>3.3.0 <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">javaVersion</span><span class="o">=</span>21 <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">groupId</span><span class="o">=</span>com.example <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">artifactId</span><span class="o">=</span>servico-b <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">name</span><span class="o">=</span>servico-b <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">packaging</span><span class="o">=</span>jar <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">dependencies</span><span class="o">=</span>web,actuator,prometheus <span class="se">\</span>
+    <span class="nt">-o</span> servico-b.zip
+
+<span class="c"># Descompacta</span>
+unzip servico-b.zip <span class="nt">-d</span> servico-b
+<span class="nb">rm </span>servico-b.zip
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="método-3-dentro-da-ide">Método 3: Dentro da IDE</h3>
+
+<h4 id="intellij-idea-ultimate-edition">IntelliJ IDEA (Ultimate Edition)</h4>
+
+<ol>
+  <li>Vá em <code class="language-plaintext highlighter-rouge">File</code> &gt; <code class="language-plaintext highlighter-rouge">New</code> &gt; <code class="language-plaintext highlighter-rouge">Project...</code>.</li>
+  <li>Selecione <code class="language-plaintext highlighter-rouge">Spring Initializr</code> no painel esquerdo.</li>
+  <li>Preencha os metadados:
+    <ul>
+      <li><strong>Name</strong>: <code class="language-plaintext highlighter-rouge">servico-a</code></li>
+      <li><strong>Location</strong>: (Escolha o diretório pai)</li>
+      <li><strong>Language</strong>: <code class="language-plaintext highlighter-rouge">Java</code></li>
+      <li><strong>Type</strong>: <code class="language-plaintext highlighter-rouge">Maven</code></li>
+      <li><strong>Group</strong>: <code class="language-plaintext highlighter-rouge">com.example</code></li>
+      <li><strong>Package name</strong>: <code class="language-plaintext highlighter-rouge">com.example.servicoa</code></li>
+      <li><strong>Java Version</strong>: <code class="language-plaintext highlighter-rouge">SDK 21</code></li>
+    </ul>
+  </li>
+  <li>Clique em <code class="language-plaintext highlighter-rouge">Next</code>.</li>
+  <li>Na tela de dependências, selecione a versão do Spring Boot (ex: 3.3.0) e procure por:
+    <ul>
+      <li><strong>Web</strong>: <code class="language-plaintext highlighter-rouge">Spring Web</code></li>
+      <li><strong>Ops</strong>: <code class="language-plaintext highlighter-rouge">Spring Boot Actuator</code></li>
+      <li><strong>Observability</strong>: <code class="language-plaintext highlighter-rouge">Prometheus</code></li>
+    </ul>
+  </li>
+  <li>Clique em <code class="language-plaintext highlighter-rouge">Create</code>.</li>
+</ol>
+
+<h4 id="visual-studio-code-com-o-spring-initializr-java-support-do-extension-pack-for-java">Visual Studio Code (com o “Spring Initializr Java Support” do Extension Pack for Java)</h4>
+
+<ol>
+  <li>Abra a paleta de comandos: <code class="language-plaintext highlighter-rouge">Ctrl+Shift+P</code> (Windows/Linux) ou <code class="language-plaintext highlighter-rouge">Cmd+Shift+P</code> (macOS).</li>
+  <li>Digite e selecione <code class="language-plaintext highlighter-rouge">Spring Initializr: Create a Maven Project...</code>.</li>
+  <li>Selecione a versão do Spring Boot (ex: <code class="language-plaintext highlighter-rouge">3.3.0</code>).</li>
+  <li>Selecione a linguagem: <code class="language-plaintext highlighter-rouge">Java</code>.</li>
+  <li>Digite o Group ID: <code class="language-plaintext highlighter-rouge">com.example</code>.</li>
+  <li>Digite o Artifact ID: <code class="language-plaintext highlighter-rouge">servico-a</code>.</li>
+  <li>Selecione o tipo de empacotamento: <code class="language-plaintext highlighter-rouge">Jar</code>.</li>
+  <li>Selecione a versão do Java: <code class="language-plaintext highlighter-rouge">21</code>.</li>
+  <li>Procure e marque as dependências (pressione <code class="language-plaintext highlighter-rouge">Enter</code> após selecionar):
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Spring Web</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Spring Boot Actuator</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Prometheus</code></li>
+    </ul>
+  </li>
+  <li>Escolha o local para gerar o projeto.</li>
+</ol>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>projeto-teste-carga/
+├── .gitignore
+├── docker-compose.yml       &lt;-- (Módulo 2: Orquestrador do Prometheus e Grafana)
+├── prometheus.yml           &lt;-- (Módulo 2: Configuração de scrape do Prometheus)
+|
+├── servico-a/               &lt;-- (Módulo 1: Spring Boot API de Pedidos)
+│   ├── .mvn/
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml              &lt;-- (Dependências: Web, Actuator, Prometheus)
+│   └── src/
+│       ├── main/
+│       │   ├── java/
+│       │   │   └── com/
+│       │   │       └── example/
+│       │   │           └── servicoa/
+│       │   │               ├── PedidoController.java
+│       │   │               └── ServicoAApplication.java
+│       │   └── resources/
+│       │       └── application.properties  &lt;-- (server.port=8081)
+│       └── test/
+│           └── ...
+│
+├── servico-b/               &lt;-- (Módulo 1: Spring Boot API de Estoque)
+│   ├── .mvn/
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml              &lt;-- (Dependências: Web, Actuator, Prometheus)
+│   └── src/
+│       ├── main/
+│       │   ├── java/
+│       │   │   └── com/
+│       │   │       └── example/
+│       │   │           └── servicob/
+│       │   │               ├── EstoqueController.java
+│       │   │               └── ServicoBApplication.java
+│       │   └── resources/
+│       │       └── application.properties  &lt;-- (server.port=8082)
+│       └── test/
+│           └── ...
+│
+└── gatling-teste/           &lt;-- (Módulo 3: Projeto de Teste de Carga)
+    ├── .mvn/
+    ├── mvnw
+    ├── mvnw.cmd
+    ├── pom.xml              &lt;-- (Dependências do Gatling, ex: gatling-maven-plugin)
+    └── src/
+        └── test/
+            ├── resources/
+            │   └── gatling.conf  &lt;-- (Configurações opcionais do Gatling)
+            └── scala/
+                └── simulations/
+                    └── CargaApiSimulation.scala  &lt;-- (Script do teste de carga)
+</code></pre></div></div>
+
+<hr />
+
+<p>Este guia detalha a criação de um ambiente para testes de carga visuais em tempo real, monitorando a latência e a taxa de transferência entre dois microsserviços Spring Boot 21.</p>
+
+<h3 id="1-arquitetura-alvo">1. Arquitetura Alvo</h3>
+
+<p>Utilizaremos uma arquitetura desacoplada para simular um cenário real. O Gatling ataca o <code class="language-plaintext highlighter-rouge">servico-a</code>, que por sua vez depende do <code class="language-plaintext highlighter-rouge">servico-b</code>. O Prometheus coleta métricas de ambos os serviços, e o Grafana exibe o dashboard.</p>
+
+<pre><code class="language-mermaid">flowchart TD
+    subgraph "Ferramentas"
+        Gatling(Gatling Engine)
+        Grafana(Grafana Dashboard)
+        Prometheus(Prometheus Scraper)
+    end
+
+    subgraph "Backend (Java 21 / Spring Boot)"
+        SvcA[Serviço A: Pedidos &lt;br&gt; (Porta: 8081)]
+        SvcB[Serviço B: Estoque &lt;br&gt; (Porta: 8082)]
+    end
+
+    Gatling -- 1. Carga HTTP (Usuários Virtuais) --&gt; SvcA
+    SvcA -- 2. Chamada REST interna --&gt; SvcB
+    
+    Prometheus -- 3. Scrape (métricas) --&gt; SvcA
+    Prometheus -- 3. Scrape (métricas) --&gt; SvcB
+    Grafana -- 4. Query (PromQL) --&gt; Prometheus
+</code></pre>
+
+<hr />
+
+<h3 id="2-módulo-1-microsserviços-alvo-spring-boot-21">2. Módulo 1: Microsserviços Alvo (Spring Boot 21)</h3>
+
+<p>Criaremos dois serviços. Ambos devem ter as mesmas dependências do Micrometer para expor métricas ao Prometheus.</p>
+
+<h4 id="21-dependências-maven-pomxml">2.1. Dependências Maven (pom.xml)</h4>
+
+<p>Adicione a todos os serviços:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;java.version&gt;</span>21<span class="nt">&lt;/java.version&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+
+<span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>io.micrometer<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>micrometer-registry-prometheus<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<h4 id="22-configuração-applicationproperties">2.2. Configuração (application.properties)</h4>
+
+<p><strong>Serviço B (Estoque): <code class="language-plaintext highlighter-rouge">servico-b/src/main/resources/application.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Porta do Serviço B
+</span><span class="py">server.port</span><span class="p">=</span><span class="s">8082</span>
+<span class="c"># Nome da Aplicação (para métricas)
+</span><span class="py">spring.application.name</span><span class="p">=</span><span class="s">servico-b</span>
+
+<span class="c"># Ativa Virtual Threads (Java 21+)
+</span><span class="py">spring.threads.virtual.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Expor o endpoint /actuator/prometheus
+</span><span class="py">management.endpoints.web.exposure.include</span><span class="p">=</span><span class="s">prometheus,health</span>
+<span class="py">management.endpoint.health.show-details</span><span class="p">=</span><span class="s">always</span>
+</code></pre></div></div>
+
+<p><strong>Serviço A (Pedidos): <code class="language-plaintext highlighter-rouge">servico-a/src/main/resources/application.properties</code></strong></p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Porta do Serviço A
+</span><span class="py">server.port</span><span class="p">=</span><span class="s">8081</span>
+<span class="c"># Nome da Aplicação (para métricas)
+</span><span class="py">spring.application.name</span><span class="p">=</span><span class="s">servico-a</span>
+
+<span class="c"># Ativa Virtual Threads (Java 21+)
+</span><span class="py">spring.threads.virtual.enabled</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Expor o endpoint /actuator/prometheus
+</span><span class="py">management.endpoints.web.exposure.include</span><span class="p">=</span><span class="s">prometheus,health</span>
+<span class="py">management.endpoint.health.show-details</span><span class="p">=</span><span class="s">always</span>
+
+<span class="c"># URL do serviço dependente
+</span><span class="py">app.servico-b.url</span><span class="p">=</span><span class="s">http://localhost:8082</span>
+</code></pre></div></div>
+
+<h4 id="23-código-serviço-b-estoque">2.3. Código: Serviço B (Estoque)</h4>
+
+<p>Simula uma operação custosa (ex: consulta em banco de dados) com um atraso.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// servico-b/src/main/java/com/example/servicob/EstoqueController.java</span>
+<span class="kn">package</span> <span class="nn">com.example.servicob</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PathVariable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.ThreadLocalRandom</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EstoqueController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/estoque/{produtoId}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getEstoque</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">String</span> <span class="n">produtoId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">// Simula latência variável (ex: I/O de banco)</span>
+            <span class="kt">long</span> <span class="n">delay</span> <span class="o">=</span> <span class="nc">ThreadLocalRandom</span><span class="o">.</span><span class="na">current</span><span class="o">().</span><span class="na">nextLong</span><span class="o">(</span><span class="mi">50</span><span class="o">,</span> <span class="mi">200</span><span class="o">);</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">delay</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="s">"Produto "</span> <span class="o">+</span> <span class="n">produtoId</span> <span class="o">+</span> <span class="s">": 10 unidades"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="24-código-serviço-a-pedidos">2.4. Código: Serviço A (Pedidos)</h4>
+
+<p>Chama o Serviço B usando <code class="language-plaintext highlighter-rouge">RestTemplate</code> (ou <code class="language-plaintext highlighter-rouge">WebClient</code>).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// servico-a/src/main/java/com/example/servicoa/PedidoController.java</span>
+<span class="kn">package</span> <span class="nn">com.example.servicoa</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Value</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.web.client.RestTemplateBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.client.RestTemplate</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PedidoController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">RestTemplate</span> <span class="n">restTemplate</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">servicoBUrl</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">PedidoController</span><span class="o">(</span><span class="nc">RestTemplateBuilder</span> <span class="n">builder</span><span class="o">,</span> <span class="nd">@Value</span><span class="o">(</span><span class="s">"${app.servico-b.url}"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">servicoBUrl</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">restTemplate</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">servicoBUrl</span> <span class="o">=</span> <span class="n">servicoBUrl</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Endpoint principal que será testado pelo Gatling</span>
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/fazer-pedido"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">fazerPedido</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Simula a busca por um produto aleatório</span>
+        <span class="kt">int</span> <span class="n">produtoId</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">().</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        
+        <span class="c1">// Chama o Serviço B</span>
+        <span class="nc">String</span> <span class="n">estoqueInfo</span> <span class="o">=</span> <span class="n">restTemplate</span><span class="o">.</span><span class="na">getForObject</span><span class="o">(</span>
+                <span class="n">servicoBUrl</span> <span class="o">+</span> <span class="s">"/estoque/"</span> <span class="o">+</span> <span class="n">produtoId</span><span class="o">,</span>
+                <span class="nc">String</span><span class="o">.</span><span class="na">class</span>
+        <span class="o">);</span>
+
+        <span class="k">return</span> <span class="s">"Pedido criado. Info: "</span> <span class="o">+</span> <span class="n">estoqueInfo</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-módulo-2-pilha-de-observabilidade-docker">3. Módulo 2: Pilha de Observabilidade (Docker)</h3>
+
+<p>Usaremos Docker Compose para subir o Prometheus e o Grafana.</p>
+
+<h4 id="31-configuração-prometheus-prometheusyml">3.1. Configuração Prometheus (<code class="language-plaintext highlighter-rouge">prometheus.yml</code>)</h4>
+
+<p>Crie este arquivo na raiz do projeto. Ele instrui o Prometheus a “raspar” (scrape) as métricas dos endpoints <code class="language-plaintext highlighter-rouge">/actuator/prometheus</code> dos nossos serviços.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># prometheus.yml</span>
+<span class="na">global</span><span class="pi">:</span>
+  <span class="na">scrape_interval</span><span class="pi">:</span> <span class="s">10s</span> <span class="c1"># Intervalo de coleta</span>
+
+<span class="na">scrape_configs</span><span class="pi">:</span>
+  <span class="c1"># Coleta métricas do Serviço A (Pedidos)</span>
+  <span class="pi">-</span> <span class="na">job_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">servico-a'</span>
+    <span class="na">metrics_path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/actuator/prometheus'</span>
+    <span class="na">static_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">targets</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">host.docker.internal:8081'</span><span class="pi">]</span> <span class="c1"># 'host.docker.internal' permite ao Docker acessar o host local</span>
+
+  <span class="c1"># Coleta métricas do Serviço B (Estoque)</span>
+  <span class="pi">-</span> <span class="na">job_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">servico-b'</span>
+    <span class="na">metrics_path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/actuator/prometheus'</span>
+    <span class="na">static_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">targets</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">host.docker.internal:8082'</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<h4 id="32-docker-compose-docker-composeyml">3.2. Docker Compose (<code class="language-plaintext highlighter-rouge">docker-compose.yml</code>)</h4>
+
+<p>Este arquivo orquestra a pilha de monitoramento.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># docker-compose.yml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">prometheus</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">prom/prometheus:latest</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">prometheus</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">9090:9090"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./prometheus.yml:/etc/prometheus/prometheus.yml</span>
+    <span class="c1"># Permite que o container acesse os serviços no host</span>
+    <span class="na">extra_hosts</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">host.docker.internal:host-gateway"</span> 
+
+  <span class="na">grafana</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">grafana/grafana-oss:latest</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">grafana</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">3000:3000"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">prometheus</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="c1"># Define o usuário/senha padrão</span>
+      <span class="pi">-</span> <span class="s">GF_SECURITY_ADMIN_USER=admin</span>
+      <span class="pi">-</span> <span class="s">GF_SECURITY_ADMIN_PASSWORD=admin</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-módulo-3-teste-de-carga-gatling">4. Módulo 3: Teste de Carga (Gatling)</h3>
+
+<h4 id="41-estrutura-do-projeto-gatling">4.1. Estrutura do Projeto Gatling</h4>
+
+<p>Gatling usa Scala. A estrutura de pastas deve ser:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gatling-teste/
+  src/
+    test/
+      scala/
+        simulations/
+          CargaApiSimulation.scala  &lt;-- Nosso script de teste
+</code></pre></div></div>
+
+<h4 id="42-script-de-simulação-gatling">4.2. Script de Simulação (Gatling)</h4>
+
+<p>Este script simula 100 usuários acessando o endpoint <code class="language-plaintext highlighter-rouge">/fazer-pedido</code> simultaneamente por 30 segundos.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CargaApiSimulation.scala</span>
+<span class="k">package</span> <span class="nn">simulations</span>
+
+<span class="k">import</span> <span class="nn">io.gatling.core.Predef._</span>
+<span class="k">import</span> <span class="nn">io.gatling.http.Predef._</span>
+<span class="k">import</span> <span class="nn">scala.concurrent.duration._</span>
+
+<span class="k">class</span> <span class="nc">CargaApiSimulation</span> <span class="k">extends</span> <span class="nc">Simulation</span> <span class="o">{</span>
+
+  <span class="c1">// 1. Configuração do Protocolo HTTP</span>
+  <span class="k">val</span> <span class="nv">httpProtocol</span> <span class="k">=</span> <span class="n">http</span>
+    <span class="o">.</span><span class="py">baseUrl</span><span class="o">(</span><span class="s">"http://localhost:8081"</span><span class="o">)</span> <span class="c1">// URL base do Serviço A</span>
+    <span class="o">.</span><span class="py">acceptHeader</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">)</span>
+    <span class="o">.</span><span class="py">userAgentHeader</span><span class="o">(</span><span class="s">"Gatling Load Test"</span><span class="o">)</span>
+
+  <span class="c1">// 2. Definição do Cenário</span>
+  <span class="k">val</span> <span class="nv">scn</span> <span class="k">=</span> <span class="nf">scenario</span><span class="o">(</span><span class="s">"Cenário de Carga API Pedidos"</span><span class="o">)</span>
+    <span class="o">.</span><span class="py">exec</span><span class="o">(</span>
+      <span class="nf">http</span><span class="o">(</span><span class="s">"Req: Fazer Pedido"</span><span class="o">)</span>
+        <span class="o">.</span><span class="py">get</span><span class="o">(</span><span class="s">"/fazer-pedido"</span><span class="o">)</span>
+        <span class="o">.</span><span class="py">check</span><span class="o">(</span><span class="nv">status</span><span class="o">.</span><span class="py">is</span><span class="o">(</span><span class="mi">200</span><span class="o">))</span> <span class="c1">// Verifica se a resposta é HTTP 200</span>
+    <span class="o">)</span>
+
+  <span class="c1">// 3. Configuração da Carga (Injeção de Usuários)</span>
+  <span class="nf">setUp</span><span class="o">(</span>
+    <span class="nv">scn</span><span class="o">.</span><span class="py">inject</span><span class="o">(</span>
+      <span class="c1">// rampUsersPerSec(10).to(100).during(10.seconds), // Rampa de subida</span>
+      <span class="c1">// nothingFor(5.seconds), // Pausa</span>
+      <span class="nf">constantUsersPerSec</span><span class="o">(</span><span class="mi">100</span><span class="o">).</span><span class="py">during</span><span class="o">(</span><span class="mf">30.</span><span class="n">seconds</span><span class="o">)</span> <span class="c1">// Carga constante</span>
+    <span class="o">)</span>
+  <span class="o">).</span><span class="py">protocols</span><span class="o">(</span><span class="n">httpProtocol</span><span class="o">)</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-módulo-4-execução-e-análise-visual">5. Módulo 4: Execução e Análise Visual</h3>
+
+<h4 id="51-passo-1-iniciar-os-serviços-java">5.1. Passo 1: Iniciar os Serviços Java</h4>
+
+<p>Inicie ambos os serviços Spring Boot (em terminais separados ou pela IDE):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal 1: Iniciar Serviço B (Estoque)</span>
+<span class="nb">cd </span>servico-b/
+./mvnw spring-boot:run
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal 2: Iniciar Serviço A (Pedidos)</span>
+<span class="nb">cd </span>servico-a/
+./mvnw spring-boot:run
+</code></pre></div></div>
+
+<p><em>Verificação:</em> Acesse <code class="language-plaintext highlighter-rouge">http://localhost:8081/actuator/prometheus</code> e <code class="language-plaintext highlighter-rouge">http://localhost:8082/actuator/prometheus</code>. Você deve ver as métricas.</p>
+
+<h4 id="52-passo-2-iniciar-a-pilha-de-monitoramento">5.2. Passo 2: Iniciar a Pilha de Monitoramento</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal 3: Iniciar Prometheus e Grafana</span>
+docker-compose up
+</code></pre></div></div>
+
+<p><em>Verificação:</em></p>
+
+<ul>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:9090</code> (Prometheus).</li>
+  <li>Acesse <code class="language-plaintext highlighter-rouge">http://localhost:3000</code> (Grafana). Login: <code class="language-plaintext highlighter-rouge">admin</code>/<code class="language-plaintext highlighter-rouge">admin</code>.</li>
+</ul>
+
+<h4 id="53-passo-3-configurar-o-grafana">5.3. Passo 3: Configurar o Grafana</h4>
+
+<ol>
+  <li>Acesse o Grafana (<code class="language-plaintext highlighter-rouge">http://localhost:3000</code>).</li>
+  <li>Vá para <strong>Connections</strong> -&gt; <strong>Data sources</strong> -&gt; <strong>Add new data source</strong>.</li>
+  <li>Selecione <strong>Prometheus</strong>.</li>
+  <li>No campo “Prometheus server URL”, insira: <code class="language-plaintext highlighter-rouge">http://prometheus:9090</code> (Grafana e Prometheus estão na mesma rede Docker).</li>
+  <li>Clique em <strong>Save &amp; Test</strong>.</li>
+</ol>
+
+<h4 id="54-passo-4-criar-o-dashboard-de-análise">5.4. Passo 4: Criar o Dashboard de Análise</h4>
+
+<ol>
+  <li>Vá em <strong>Dashboards</strong> -&gt; <strong>New</strong> -&gt; <strong>New Dashboard</strong>.</li>
+  <li>Clique em <strong>Add visualization</strong>.</li>
+  <li>Selecione o Data Source <strong>Prometheus</strong>.</li>
+</ol>
+
+<p><strong>Painel 1: Taxa de Requisições (RPS) no Serviço A</strong></p>
+
+<p>Use a query PromQL para medir a taxa de requisições HTTP no <code class="language-plaintext highlighter-rouge">servico-a</code>.</p>
+
+<pre><code class="language-promql">// Mede a taxa de requisições por segundo (RPS) no endpoint /fazer-pedido
+rate(http_server_requests_seconds_count{job="servico-a", uri="/fazer-pedido"}[1m])
+</code></pre>
+
+<p><strong>Painel 2: Latência P95 (Serviço A vs Serviço B)</strong></p>
+
+<p>Use esta query para ver a latência (percentil 95) das chamadas.</p>
+
+<pre><code class="language-promql">// Latência P95 do endpoint /fazer-pedido (visão do Svc A)
+histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket{job="servico-a", uri="/fazer-pedido"}[1m])) by (le))
+
+// Latência P95 da chamada interna (visão do Svc B)
+histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket{job="servico-b", uri="/estoque/{produtoId}"}[1m])) by (le))
+</code></pre>
+
+<p><strong>Painel 3: Requisições com Erro (HTTP 5xx)</strong></p>
+
+<pre><code class="language-promql">// Taxa de erros 5xx no Serviço A
+rate(http_server_requests_seconds_count{job="servico-a", status=~"5.*"}[1m])
+</code></pre>
+
+<h4 id="55-passo-5-executar-o-gatling-e-observar">5.5. Passo 5: Executar o Gatling e Observar</h4>
+
+<ol>
+  <li>Execute o Gatling (usando o Maven ou o script <code class="language-plaintext highlighter-rouge">gatling.sh</code>).</li>
+</ol>
+
+<!-- end list -->
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Terminal 4: Executar o Teste</span>
+<span class="nb">cd </span>gatling-teste/
+<span class="c"># Se estiver usando o plugin Maven do Gatling</span>
+./mvnw gatling:test <span class="nt">-Dgatling</span>.simulationClass<span class="o">=</span>simulations.CargaApiSimulation
+</code></pre></div></div>
+
+<ol>
+  <li>Enquanto o Gatling executa, observe o dashboard do Grafana (<code class="language-plaintext highlighter-rouge">http://localhost:3000</code>). Você verá os gráficos de RPS subindo, a latência aumentando e, eventualmente, erros (se o sistema não suportar a carga).</li>
+</ol>
+

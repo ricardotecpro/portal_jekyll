@@ -1,0 +1,72 @@
+<h1 id="-módulo-4-devops-e-deploy">🎓 Módulo 4: DevOps e Deploy</h1>
+
+<p><strong>Objetivo</strong>: Empacotar nossa aplicação para rodar em qualquer lugar usando Docker.</p>
+
+<hr />
+
+<h2 id="1-o-que-é-docker">1. O que é Docker?</h2>
+<p>Docker cria “containers”. Imagine uma lancheira que tem tudo que seu app precisa (Java, Node, código). Você pode levar essa lancheira para qualquer computador e ela vai “abrir” e funcionar igual.</p>
+
+<hr />
+
+<h2 id="2-dockerfile-do-backend">2. Dockerfile do Backend</h2>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">backend/Dockerfile</code>:</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Etapa 1: Construção</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">maven:3.9.6-eclipse-temurin-21</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+<span class="k">RUN </span>mvn clean package <span class="nt">-DskipTests</span>
+
+<span class="c"># Etapa 2: Execução</span>
+<span class="k">FROM</span><span class="s"> eclipse-temurin:21-jre</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> --from=build /app/target/*.jar app.jar</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-docker-compose">3. Docker Compose</h2>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> na raiz do projeto para subir tudo junto (Banco + Backend).</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.8'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">liston_db</span>
+      <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">postgres</span>
+      <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">password</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+
+  <span class="na">backend</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">./backend</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:8080"</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">SPRING_DATASOURCE_URL</span><span class="pi">:</span> <span class="s">jdbc:postgresql://db:5432/liston_db</span>
+      <span class="na">SPRING_PROFILES_ACTIVE</span><span class="pi">:</span> <span class="s">prod</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">db</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-pare-e-teste">🛑 Pare e Teste</h2>
+
+<ol>
+  <li>Certifique-se de ter o Docker instalado.</li>
+  <li>Na raiz: <code class="language-plaintext highlighter-rouge">docker-compose up --build</code>.</li>
+  <li>O Docker vai baixar o Postgres, compilar seu Java e rodar tudo. Mágico! ✨</li>
+</ol>
+
+<hr />
+
+<h2 id="-desafio-final">🏆 Desafio Final</h2>
+<p>Pesquise como fazer o deploy desse container em serviços gratuitos como <strong>Render</strong> ou <strong>Railway</strong>.</p>
+

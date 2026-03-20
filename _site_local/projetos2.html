@@ -1,0 +1,424 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /projetos2.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>PROJETOS2 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="PROJETOS2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/projetos2.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/projetos2.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PROJETOS2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"PROJETOS2","url":"https://ricardotecpro.github.io/portal_jekyll/projetos2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Projetos2</span>
+          
+        
+      </nav>
+
+      <h1 id="listas-de-tarefas-v50">Listas de Tarefas v5.0</h1>
+
+<h3 id="desenvolvimento-full-stackcom-java-construindo-um-to-do-list"><strong>Desenvolvimento Full-Stackcom Java: Construindo um To-Do List</strong></h3>
+
+<p><strong>Objetivo Geral:</strong> Ao final do curso, o aluno será capaz de projetar, desenvolver e integrar uma aplicação completa seguindo o padrão arquitetural MVC. Ele dominará a criação de um backend RESTful com Spring Boot, o consumo dessa API por um cliente web moderno com Angular e por um cliente desktop nativo com JavaFX.</p>
+
+<p><strong>Pré-requisitos:</strong></p>
+
+<ul>
+  <li>Lógica de programação.</li>
+  <li>Conhecimentos básicos de Orientação a Objetos (Classes, Objetos, Herança, Polimorfismo).</li>
+  <li>Conhecimentos básicos de Java.</li>
+  <li>Noções de HTML, CSS e JavaScript são um diferencial, mas não estritamente necessárias.</li>
+</ul>
+
+<p><strong>Diagrama da Arquitetura Final:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+------------------+      +---------------------+      +-----------------+
+|                  |      |                     |      |                 |
+|  Frontend Web    |      |   Backend (API)     |      | Frontend Desktop|
+|    (Angular)     |      |    (Spring Boot)    |      |     (JavaFX)    |
+|                  |      |                     |      |                 |
++--------+---------+      +----------+----------+      +--------+--------+
+         |                           |                           |
+         +---------------------------+---------------------------+
+                             |
+                       Comunicação via
+                         HTTP (JSON)
+                             |
+                  +----------+----------+
+                  |                     |
+                  |     Banco de Dados  |
+                  |       (H2)    |
+                  |                     |
+                  +---------------------+
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="módulo-0-fundamentos-e-configuração-do-ambiente"><strong>Módulo 0: Fundamentos e Configuração do Ambiente</strong></h3>
+
+<p><strong>Objetivo:</strong> Nivelar a turma nos conceitos chave e garantir que todos tenham o ambiente de desenvolvimento pronto.</p>
+
+<ul>
+  <li>
+    <p><strong>Aula 1: A Arquitetura da Nossa Aplicação</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong>
+        <ul>
+          <li><strong>CRUD:</strong> O que significa Create, Read, Update, Delete? Usar analogias (agenda de contatos, posts em redes sociais).</li>
+          <li><strong>API REST:</strong> O que é uma API? O conceito de “garçom” que busca e entrega dados. Verbos HTTP (<code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PUT</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>) e seus significados no CRUD. Formato de dados <strong>JSON</strong>.</li>
+          <li><strong>Padrão MVC (Model-View-Controller):</strong> A importância de separar responsabilidades.
+            <ul>
+              <li><strong>Model:</strong> A representação dos dados (ex: uma “Tarefa”).</li>
+              <li><strong>View:</strong> A camada de apresentação (a tela que o usuário vê).</li>
+              <li><strong>Controller:</strong> O cérebro que recebe as interações do usuário, aciona o Model e atualiza a View.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Prática:</strong> Desenhar o diagrama da arquitetura no quadro/slide.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 2: Preparando as Ferramentas</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Ecossistema de desenvolvimento Java e Web.</li>
+      <li><strong>Prática:</strong> Guia de instalação passo a passo:
+        <ul>
+          <li><strong>JDK (Java Development Kit):</strong> Versão 17 ou superior.</li>
+          <li><strong>IDE (Ambiente de Desenvolvimento Integrado):</strong> IntelliJ IDEA Community ou VS Code com extensões Java.</li>
+          <li><strong>Maven ou Gradle:</strong> Gerenciador de dependências do Java.</li>
+          <li><strong>Node.js e npm:</strong> Para o ambiente Angular.</li>
+          <li><strong>Angular CLI:</strong> <code class="language-plaintext highlighter-rouge">npm install -g @angular/cli</code></li>
+          <li><strong>Postman/Insomnia:</strong> Ferramenta para testar a API REST.</li>
+          <li><strong>Scene Builder:</strong> Ferramenta visual para criar as telas em JavaFX.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-1-construindo-o-coração-da-aplicação---backend-com-spring-boot"><strong>Módulo 1: Construindo o Coração da Aplicação - Backend com Spring Boot</strong></h3>
+
+<p><strong>Objetivo:</strong> Criar a API REST completa que servirá como base para os clientes web e desktop.</p>
+
+<ul>
+  <li>
+    <p><strong>Aula 3: “Hello, World!” com Spring Boot</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Inversão de Controle e Injeção de Dependências. Estrutura de um projeto Spring Boot.</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Usar o <strong>Spring Initializr</strong> (start.spring.io) para criar o projeto.</li>
+          <li>Dependências: <code class="language-plaintext highlighter-rouge">Spring Web</code>, <code class="language-plaintext highlighter-rouge">Spring Data JPA</code>, <code class="language-plaintext highlighter-rouge">H2 Database</code> (banco de dados em memória, para simplificar), <code class="language-plaintext highlighter-rouge">Lombok</code> (para reduzir código boilerplate).</li>
+          <li>Criar um <code class="language-plaintext highlighter-rouge">RestController</code> simples que retorna uma saudação.</li>
+          <li>Executar o projeto e acessar a rota no navegador.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 4: A Camada Model e Repository (M do MVC)</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Mapeamento Objeto-Relacional (ORM) com JPA. Entidades e Repositórios.</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Criar a classe <code class="language-plaintext highlighter-rouge">Tarefa.java</code>.</li>
+          <li>Anotá-la com <code class="language-plaintext highlighter-rouge">@Entity</code> para que o JPA a reconheça como uma tabela no banco.</li>
+          <li>Definir os atributos: <code class="language-plaintext highlighter-rouge">id</code> (<code class="language-plaintext highlighter-rouge">@Id</code>, <code class="language-plaintext highlighter-rouge">@GeneratedValue</code>), <code class="language-plaintext highlighter-rouge">descricao</code> (<code class="language-plaintext highlighter-rouge">String</code>), <code class="language-plaintext highlighter-rouge">concluida</code> (<code class="language-plaintext highlighter-rouge">boolean</code>).</li>
+          <li>Criar a interface <code class="language-plaintext highlighter-rouge">TarefaRepository.java</code> que estende <code class="language-plaintext highlighter-rouge">JpaRepository&lt;Tarefa, Long&gt;</code>.</li>
+          <li>Explicar que o Spring Data JPA criará magicamente os métodos CRUD para nós (find, save, delete, etc.). <strong>Este é o nosso Model, a camada de acesso e representação dos dados.</strong></li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 5: A Camada Controller e Service (C do MVC)</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Separação entre a camada de API (Controller) e a camada de Regras de Negócio (Service).</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Criar a classe <code class="language-plaintext highlighter-rouge">TarefaService.java</code>. Injetar o <code class="language-plaintext highlighter-rouge">TarefaRepository</code> e criar métodos para <code class="language-plaintext highlighter-rouge">listarTodas()</code>, <code class="language-plaintext highlighter-rouge">criar()</code>, <code class="language-plaintext highlighter-rouge">atualizar()</code>, <code class="language-plaintext highlighter-rouge">deletar()</code>. Aqui pode ir a lógica de negócio (ex: não permitir descrição vazia).</li>
+          <li>Criar a classe <code class="language-plaintext highlighter-rouge">TarefaController.java</code> com a anotação <code class="language-plaintext highlighter-rouge">@RestController</code>.</li>
+          <li>Injetar o <code class="language-plaintext highlighter-rouge">TarefaService</code>.</li>
+          <li>Mapear os endpoints da API para os métodos do Service:
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">@GetMapping("/tarefas")</code> -&gt; <code class="language-plaintext highlighter-rouge">listarTodas()</code></li>
+              <li><code class="language-plaintext highlighter-rouge">@PostMapping("/tarefas")</code> -&gt; <code class="language-plaintext highlighter-rouge">criar()</code></li>
+              <li><code class="language-plaintext highlighter-rouge">@PutMapping("/tarefas/{id}")</code> -&gt; <code class="language-plaintext highlighter-rouge">atualizar()</code></li>
+              <li><code class="language-plaintext highlighter-rouge">@DeleteMapping("/tarefas/{id}")</code> -&gt; <code class="language-plaintext highlighter-rouge">deletar()</code></li>
+              <li><code class="language-plaintext highlighter-rouge">@GetMapping("/tarefas/{id}")</code> -&gt; <code class="language-plaintext highlighter-rouge">buscarPorId()</code></li>
+            </ul>
+          </li>
+          <li><strong>Reforçar:</strong> O <code class="language-plaintext highlighter-rouge">TarefaController</code> é o <strong>Controller</strong> do nosso backend. Ele orquestra as requisições.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 6: Testando e Validando a API</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> A importância de testar a API de forma isolada.</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Usar o Postman/Insomnia para fazer requisições a todos os endpoints criados.</li>
+          <li><strong>CREATE:</strong> Fazer um <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">/tarefas</code> com um JSON no corpo: <code class="language-plaintext highlighter-rouge">{ "descricao": "Aprender Spring Boot" }</code>.</li>
+          <li><strong>READ:</strong> Fazer um <code class="language-plaintext highlighter-rouge">GET</code> para <code class="language-plaintext highlighter-rouge">/tarefas</code> e ver a lista. Fazer um <code class="language-plaintext highlighter-rouge">GET</code> para <code class="language-plaintext highlighter-rouge">/tarefas/1</code>.</li>
+          <li><strong>UPDATE:</strong> Fazer um <code class="language-plaintext highlighter-rouge">PUT</code> para <code class="language-plaintext highlighter-rouge">/tarefas/1</code> com o corpo: <code class="language-plaintext highlighter-rouge">{ "descricao": "Aprender muito Spring Boot", "concluida": true }</code>.</li>
+          <li><strong>DELETE:</strong> Fazer um <code class="language-plaintext highlighter-rouge">DELETE</code> para <code class="language-plaintext highlighter-rouge">/tarefas/1</code>.</li>
+          <li>Resolver o problema de CORS adicionando a anotação <code class="language-plaintext highlighter-rouge">@CrossOrigin</code> no Controller para permitir que o frontend (em outra porta) acesse a API.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-2-a-interface-web-com-angular"><strong>Módulo 2: A Interface Web com Angular</strong></h3>
+
+<p><strong>Objetivo:</strong> Construir uma interface web reativa que consome a API Spring Boot.</p>
+
+<ul>
+  <li>
+    <p><strong>Aula 7: Estrutura do Projeto Angular</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Single Page Application (SPA), Componentes, Services, Módulos.</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Criar o projeto com <code class="language-plaintext highlighter-rouge">ng new todo-list-web</code>.</li>
+          <li>Analisar a estrutura de pastas (<code class="language-plaintext highlighter-rouge">src/app</code>).</li>
+          <li>Gerar os componentes e serviços necessários via Angular CLI:
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">ng generate component task-list</code></li>
+              <li><code class="language-plaintext highlighter-rouge">ng generate service services/task</code></li>
+              <li><code class="language-plaintext highlighter-rouge">ng generate interface models/task</code></li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 8: Conectando Angular ao Backend</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> <code class="language-plaintext highlighter-rouge">HttpClient</code> para requisições HTTP, <code class="language-plaintext highlighter-rouge">Observable</code> para programação assíncrona.</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Definir a interface <code class="language-plaintext highlighter-rouge">task.ts</code> para espelhar o modelo <code class="language-plaintext highlighter-rouge">Tarefa.java</code>.</li>
+          <li>No <code class="language-plaintext highlighter-rouge">task.service.ts</code>, injetar o <code class="language-plaintext highlighter-rouge">HttpClient</code>.</li>
+          <li>Criar métodos no serviço para cada operação CRUD, que chamarão a nossa API Spring Boot (ex: <code class="language-plaintext highlighter-rouge">getTasks(): Observable&lt;Task[]&gt;</code>, <code class="language-plaintext highlighter-rouge">addTask(task: Task): Observable&lt;Task&gt;</code>).</li>
+          <li>Importar o <code class="language-plaintext highlighter-rouge">HttpClientModule</code> no <code class="language-plaintext highlighter-rouge">app.module.ts</code>.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 9: Construindo a View e o Controller (Component)</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Data Binding (<code class="language-plaintext highlighter-rouge">[]</code>, <code class="language-plaintext highlighter-rouge">()</code>, <code class="language-plaintext highlighter-rouge">[()]</code>), Diretivas (<code class="language-plaintext highlighter-rouge">*ngFor</code>, <code class="language-plaintext highlighter-rouge">*ngIf</code>).</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>No <code class="language-plaintext highlighter-rouge">task-list.component.ts</code> (nosso <strong>Controller</strong> do frontend):
+            <ul>
+              <li>Injetar o <code class="language-plaintext highlighter-rouge">TaskService</code>.</li>
+              <li>Criar métodos para carregar, adicionar, remover e atualizar tarefas, que chamarão os métodos do serviço.</li>
+              <li>Manter um array de tarefas como estado do componente.</li>
+            </ul>
+          </li>
+          <li>No <code class="language-plaintext highlighter-rouge">task-list.component.html</code> (nossa <strong>View</strong>):
+            <ul>
+              <li>Criar um formulário com um campo de input para a nova tarefa. Usar <code class="language-plaintext highlighter-rouge">[(ngModel)]</code> para fazer o two-way data binding.</li>
+              <li>Criar um botão “Adicionar” que chama o método de adicionar do componente.</li>
+              <li>Usar a diretiva <code class="language-plaintext highlighter-rouge">*ngFor</code> para iterar sobre o array de tarefas e exibir cada uma em uma lista.</li>
+              <li>Em cada item da lista, adicionar botões “Deletar” e um checkbox para “Concluir”, que chamarão os respectivos métodos no componente, passando o ID da tarefa.</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-3-a-interface-desktop-com-javafx"><strong>Módulo 3: A Interface Desktop com JavaFX</strong></h3>
+
+<p><strong>Objetivo:</strong> Provar a flexibilidade da API REST, criando um segundo cliente, desta vez para desktop, com JavaFX.</p>
+
+<ul>
+  <li>
+    <p><strong>Aula 10: Configurando o Projeto JavaFX</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Plataforma JavaFX, FXML para separação de UI e lógica.</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Criar um novo projeto Maven/Gradle.</li>
+          <li>Adicionar as dependências do JavaFX.</li>
+          <li>Introduzir o Scene Builder para desenhar a interface.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 11: Desenhando a View com FXML e Scene Builder</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Componentes de UI do JavaFX (<code class="language-plaintext highlighter-rouge">TableView</code>, <code class="language-plaintext highlighter-rouge">TextField</code>, <code class="language-plaintext highlighter-rouge">Button</code>).</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Usar o Scene Builder para criar a interface <code class="language-plaintext highlighter-rouge">main-view.fxml</code>.</li>
+          <li>Arrastar e soltar um <code class="language-plaintext highlighter-rouge">TableView</code> para listar as tarefas, um <code class="language-plaintext highlighter-rouge">TextField</code> para a nova tarefa e botões para “Adicionar”, “Atualizar” e “Deletar”.</li>
+          <li>No painel do Scene Builder, associar o FXML a uma classe <code class="language-plaintext highlighter-rouge">Controller</code> (ex: <code class="language-plaintext highlighter-rouge">MainViewController.java</code>).</li>
+          <li>Atribuir <code class="language-plaintext highlighter-rouge">fx:id</code> aos componentes que precisarão ser manipulados no código (a tabela, o campo de texto).</li>
+          <li>Definir os métodos <code class="language-plaintext highlighter-rouge">onAction</code> para os botões (ex: <code class="language-plaintext highlighter-rouge">onAdicionarButtonClick</code>). <strong>Este arquivo FXML é a nossa View.</strong></li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 12: O Controller JavaFX e a Comunicação com a API</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> <code class="language-plaintext highlighter-rouge">HttpClient</code> do Java para consumir a API REST. Deserialização de JSON para Objetos Java com a biblioteca Jackson.</li>
+      <li><strong>Prática:</strong>
+        <ol>
+          <li>Criar a classe <code class="language-plaintext highlighter-rouge">MainViewController.java</code> (nosso <strong>Controller</strong> do desktop).</li>
+          <li>Usar a anotação <code class="language-plaintext highlighter-rouge">@FXML</code> para injetar os componentes da View (o <code class="language-plaintext highlighter-rouge">TableView</code>, etc.).</li>
+          <li>Criar uma classe de serviço, <code class="language-plaintext highlighter-rouge">ApiConsumerService.java</code>, responsável por toda a comunicação com a API Spring Boot.
+            <ul>
+              <li>Este serviço usará o <code class="language-plaintext highlighter-rouge">java.net.http.HttpClient</code> para fazer as requisições GET, POST, PUT, DELETE.</li>
+              <li>Usará a biblioteca Jackson para converter o JSON da resposta em objetos <code class="language-plaintext highlighter-rouge">Tarefa.java</code> (reaproveitar a mesma classe do backend é uma boa prática aqui).</li>
+            </ul>
+          </li>
+          <li>No <code class="language-plaintext highlighter-rouge">MainViewController</code>, injetar o <code class="language-plaintext highlighter-rouge">ApiConsumerService</code>.</li>
+          <li>Implementar os métodos <code class="language-plaintext highlighter-rouge">onAction</code> dos botões. Eles chamarão o serviço para interagir com a API e, em seguida, atualizarão a <code class="language-plaintext highlighter-rouge">TableView</code>.</li>
+          <li><strong>Ponto importante:</strong> Atualizações da UI a partir de threads secundárias (como a de rede) devem usar <code class="language-plaintext highlighter-rouge">Platform.runLater()</code>.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="módulo-4-conclusão-e-próximos-passos"><strong>Módulo 4: Conclusão e Próximos Passos</strong></h3>
+
+<ul>
+  <li>
+    <p><strong>Aula 13: Revisão Geral e Boas Práticas</strong></p>
+
+    <ul>
+      <li>Revisar o fluxo completo: Interação na View (Angular/JavaFX) -&gt; Chamada ao Controller (Component/JavaFX Controller) -&gt; Chamada ao Service (Angular/API Consumer) -&gt; Requisição HTTP -&gt; Controller do Backend (Spring) -&gt; Service do Backend -&gt; Repository -&gt; Banco de Dados.</li>
+      <li>Discutir melhorias: tratamento de erros, validação de dados (<code class="language-plaintext highlighter-rouge">@Valid</code> no Spring), feedback visual para o usuário (loading, mensagens de sucesso/erro).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Aula 14: Para Onde Ir Agora?</strong></p>
+
+    <ul>
+      <li><strong>Conceitos:</strong> Autenticação e Autorização com Spring Security e JWT.</li>
+      <li><strong>Prática:</strong> Breve demonstração de como proteger a API.</li>
+      <li><strong>Tópicos Futuros:</strong>
+        <ul>
+          <li>Deployment: Empacotar a aplicação em um JAR, usar Docker.</li>
+          <li>Bancos de dados mais robustos (PostgreSQL, MySQL).</li>
+          <li>Testes unitários e de integração.</li>
+          <li>CI/CD (Integração Contínua/Entrega Contínua).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

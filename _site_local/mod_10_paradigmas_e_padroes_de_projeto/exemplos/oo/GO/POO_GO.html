@@ -1,0 +1,298 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/GO/POO_GO.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>POO GO | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="POO GO" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/GO/POO_GO.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/GO/POO_GO.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="POO GO" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"POO GO","url":"https://ricardotecpro.github.io/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/GO/POO_GO.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/" style="margin-left: 0.5rem;">Mod 10 paradigmas e padroes de projeto</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/" style="margin-left: 0.5rem;">Exemplos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/" style="margin-left: 0.5rem;">Oo</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_10_paradigmas_e_padroes_de_projeto/exemplos/oo/GO/" style="margin-left: 0.5rem;">Go</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Poo go</span>
+          
+        
+      </nav>
+
+      <p>Em <strong>Go (Golang)</strong>, a Programação Orientada a Objetos (<strong>POO</strong>) é diferente de linguagens como Java ou Python, pois <strong>Go não possui classes</strong>. No entanto, podemos usar <strong>structs, métodos e interfaces</strong> para implementar os conceitos de POO, como encapsulamento, herança e polimorfismo.</p>
+
+<hr />
+
+<h2 id="1️⃣-definindo-uma-classe-com-struct-e-métodos"><strong>1️⃣ Definindo uma “Classe” com Struct e Métodos</strong></h2>
+<p>Em Go, usamos <strong>structs</strong> para representar objetos e <strong>métodos</strong> para definir comportamentos.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="c">// Definição da struct Pessoa (equivalente a uma classe)</span>
+<span class="k">type</span> <span class="n">Pessoa</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Nome</span>  <span class="kt">string</span>
+    <span class="n">Idade</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">// Método para obter o nome</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">Pessoa</span><span class="p">)</span> <span class="n">GetNome</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">Nome</span>
+<span class="p">}</span>
+
+<span class="c">// Método para modificar o nome</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span><span class="n">Pessoa</span><span class="p">)</span> <span class="n">SetNome</span><span class="p">(</span><span class="n">nome</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">Nome</span> <span class="o">=</span> <span class="n">nome</span>
+<span class="p">}</span>
+
+<span class="c">// Método para obter a idade</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">Pessoa</span><span class="p">)</span> <span class="n">GetIdade</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">Idade</span>
+<span class="p">}</span>
+
+<span class="c">// Método para modificar a idade</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span><span class="n">Pessoa</span><span class="p">)</span> <span class="n">SetIdade</span><span class="p">(</span><span class="n">idade</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">Idade</span> <span class="o">=</span> <span class="n">idade</span>
+<span class="p">}</span>
+
+<span class="c">// Método para exibir os dados da pessoa</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">Pessoa</span><span class="p">)</span> <span class="n">Apresentar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Olá, meu nome é %s e tenho %d anos.
+"</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Nome</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Idade</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c">// Criando um objeto da struct Pessoa</span>
+    <span class="n">pessoa</span> <span class="o">:=</span> <span class="n">Pessoa</span><span class="p">{</span><span class="n">Nome</span><span class="o">:</span> <span class="s">"João"</span><span class="p">,</span> <span class="n">Idade</span><span class="o">:</span> <span class="m">25</span><span class="p">}</span>
+
+    <span class="n">pessoa</span><span class="o">.</span><span class="n">Apresentar</span><span class="p">()</span> <span class="c">// Olá, meu nome é João e tenho 25 anos.</span>
+
+    <span class="n">pessoa</span><span class="o">.</span><span class="n">SetIdade</span><span class="p">(</span><span class="m">30</span><span class="p">)</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"Nova idade:"</span><span class="p">,</span> <span class="n">pessoa</span><span class="o">.</span><span class="n">GetIdade</span><span class="p">())</span> <span class="c">// Nova idade: 30</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="-explicação">✅ <strong>Explicação:</strong></h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Pessoa</code> é uma <strong>struct</strong> que representa um objeto.</li>
+  <li>Métodos como <code class="language-plaintext highlighter-rouge">GetNome</code> e <code class="language-plaintext highlighter-rouge">SetIdade</code> são usados para acessar e modificar os dados.</li>
+  <li>O <code class="language-plaintext highlighter-rouge">*Pessoa</code> indica um <strong>ponteiro</strong>, permitindo modificar os atributos diretamente.</li>
+  <li>No <code class="language-plaintext highlighter-rouge">main()</code>, criamos uma instância de <code class="language-plaintext highlighter-rouge">Pessoa</code>, alteramos valores e chamamos métodos.</li>
+</ul>
+
+<hr />
+
+<h2 id="2️⃣-simulando-herança-com-composição"><strong>2️⃣ Simulando Herança com Composição</strong></h2>
+<p>Go não suporta <strong>herança</strong> diretamente, mas podemos usar <strong>composição</strong> para reutilizar código.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="c">// Struct Pessoa (classe base)</span>
+<span class="k">type</span> <span class="n">Pessoa</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Nome</span>  <span class="kt">string</span>
+    <span class="n">Idade</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">// Método da struct Pessoa</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">Pessoa</span><span class="p">)</span> <span class="n">Apresentar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Meu nome é %s e tenho %d anos.
+"</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Nome</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Idade</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// Struct Aluno que contém um campo do tipo Pessoa</span>
+<span class="k">type</span> <span class="n">Aluno</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Pessoa</span>   <span class="c">// Composição (Aluno "herda" de Pessoa)</span>
+    <span class="n">Curso</span>    <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c">// Método específico de Aluno</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">a</span> <span class="n">Aluno</span><span class="p">)</span> <span class="n">Estudar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"%s está estudando %s.
+"</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">Nome</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">Curso</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">aluno</span> <span class="o">:=</span> <span class="n">Aluno</span><span class="p">{</span>
+        <span class="n">Pessoa</span><span class="o">:</span> <span class="n">Pessoa</span><span class="p">{</span><span class="n">Nome</span><span class="o">:</span> <span class="s">"Ana"</span><span class="p">,</span> <span class="n">Idade</span><span class="o">:</span> <span class="m">22</span><span class="p">},</span>
+        <span class="n">Curso</span><span class="o">:</span>  <span class="s">"Engenharia"</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">aluno</span><span class="o">.</span><span class="n">Apresentar</span><span class="p">()</span> <span class="c">// Meu nome é Ana e tenho 22 anos.</span>
+    <span class="n">aluno</span><span class="o">.</span><span class="n">Estudar</span><span class="p">()</span>    <span class="c">// Ana está estudando Engenharia.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="-explicação-1">✅ <strong>Explicação:</strong></h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Aluno</code> <strong>“herda”</strong> de <code class="language-plaintext highlighter-rouge">Pessoa</code> por <strong>composição</strong>.</li>
+  <li>O método <code class="language-plaintext highlighter-rouge">Apresentar()</code> de <code class="language-plaintext highlighter-rouge">Pessoa</code> pode ser chamado em <code class="language-plaintext highlighter-rouge">Aluno</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Aluno</code> também tem seu próprio método <code class="language-plaintext highlighter-rouge">Estudar()</code>.</li>
+</ul>
+
+<hr />
+
+<h2 id="3️⃣-polimorfismo-com-interfaces"><strong>3️⃣ Polimorfismo com Interfaces</strong></h2>
+<p>Go usa <strong>interfaces</strong> para implementar polimorfismo.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="c">// Definição da interface</span>
+<span class="k">type</span> <span class="n">SerHumano</span> <span class="k">interface</span> <span class="p">{</span>
+    <span class="n">Apresentar</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c">// Struct Pessoa</span>
+<span class="k">type</span> <span class="n">Pessoa</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Nome</span>  <span class="kt">string</span>
+    <span class="n">Idade</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="c">// Implementando a interface SerHumano</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">p</span> <span class="n">Pessoa</span><span class="p">)</span> <span class="n">Apresentar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Sou %s e tenho %d anos.
+"</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Nome</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">Idade</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// Struct Aluno</span>
+<span class="k">type</span> <span class="n">Aluno</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">Pessoa</span>
+    <span class="n">Curso</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c">// Implementando a interface SerHumano para Aluno</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">a</span> <span class="n">Aluno</span><span class="p">)</span> <span class="n">Apresentar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Sou %s, tenho %d anos e estudo %s.
+"</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">Nome</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">Idade</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">Curso</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// Função que aceita qualquer SerHumano</span>
+<span class="k">func</span> <span class="n">ApresentarPessoa</span><span class="p">(</span><span class="n">s</span> <span class="n">SerHumano</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">Apresentar</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">pessoa</span> <span class="o">:=</span> <span class="n">Pessoa</span><span class="p">{</span><span class="n">Nome</span><span class="o">:</span> <span class="s">"Carlos"</span><span class="p">,</span> <span class="n">Idade</span><span class="o">:</span> <span class="m">40</span><span class="p">}</span>
+    <span class="n">aluno</span> <span class="o">:=</span> <span class="n">Aluno</span><span class="p">{</span><span class="n">Pessoa</span><span class="o">:</span> <span class="n">Pessoa</span><span class="p">{</span><span class="n">Nome</span><span class="o">:</span> <span class="s">"Mariana"</span><span class="p">,</span> <span class="n">Idade</span><span class="o">:</span> <span class="m">20</span><span class="p">},</span> <span class="n">Curso</span><span class="o">:</span> <span class="s">"Medicina"</span><span class="p">}</span>
+
+    <span class="n">ApresentarPessoa</span><span class="p">(</span><span class="n">pessoa</span><span class="p">)</span> <span class="c">// Sou Carlos e tenho 40 anos.</span>
+    <span class="n">ApresentarPessoa</span><span class="p">(</span><span class="n">aluno</span><span class="p">)</span>  <span class="c">// Sou Mariana, tenho 20 anos e estudo Medicina.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="-explicação-2">✅ <strong>Explicação:</strong></h3>
+<ul>
+  <li>Criamos a interface <code class="language-plaintext highlighter-rouge">SerHumano</code> com o método <code class="language-plaintext highlighter-rouge">Apresentar()</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Pessoa</code> e <code class="language-plaintext highlighter-rouge">Aluno</code> implementam essa interface.</li>
+  <li>A função <code class="language-plaintext highlighter-rouge">ApresentarPessoa()</code> aceita <strong>qualquer struct que implemente <code class="language-plaintext highlighter-rouge">SerHumano</code></strong>, demonstrando polimorfismo.</li>
+</ul>
+
+<hr />
+
+<h2 id="conclusão"><strong>Conclusão</strong></h2>
+<p>Em <strong>Go</strong>, POO é baseada em <strong>structs</strong>, <strong>métodos</strong> e <strong>interfaces</strong>:
+✅ <strong>Encapsulamento</strong> → Usamos métodos para acessar/modificar campos.<br />
+✅ <strong>Herança</strong> → Usamos <strong>composição</strong> (uma struct dentro de outra).<br />
+✅ <strong>Polimorfismo</strong> → Usamos <strong>interfaces</strong>.</p>
+
+<p>Go é <strong>simples e eficiente</strong>, evitando abstrações complexas. Se precisar de mais detalhes, me avise! 🚀</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

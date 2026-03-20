@@ -1,0 +1,97 @@
+<h1 id="-módulo-3-mobile-com-react-native">🎓 Módulo 3: Mobile com React Native</h1>
+
+<p><strong>Objetivo</strong>: Levar nossa aplicação para o celular usando o mesmo conhecimento de React.</p>
+
+<hr />
+
+<h2 id="1-o-que-é-react-native">1. O que é React Native?</h2>
+<p>É uma forma de criar apps nativos (Android e iOS) usando JavaScript e React. Em vez de <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> e <code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code>, usamos <code class="language-plaintext highlighter-rouge">&lt;View&gt;</code> e <code class="language-plaintext highlighter-rouge">&lt;Text&gt;</code>.</p>
+
+<hr />
+
+<h2 id="2-criando-o-projeto-com-expo">2. Criando o Projeto com Expo</h2>
+
+<p>O <strong>Expo</strong> facilita muito a configuração.</p>
+
+<ol>
+  <li>Na raiz do projeto:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx create-expo-app mobile <span class="nt">--template</span> blank
+<span class="nb">cd </span>mobile
+npm <span class="nb">install </span>axios
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="3-adaptando-a-api">3. Adaptando a API</h2>
+
+<p>Crie <code class="language-plaintext highlighter-rouge">src/services/api.js</code>.
+⚠️ <strong>Atenção</strong>: O emulador Android não entende <code class="language-plaintext highlighter-rouge">localhost</code>. Use <code class="language-plaintext highlighter-rouge">10.0.2.2</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+    <span class="na">baseURL</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://10.0.2.2:8080/api</span><span class="dl">'</span>
+<span class="p">});</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">api</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-criando-a-tela">4. Criando a Tela</h2>
+
+<p>Edite o <code class="language-plaintext highlighter-rouge">App.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useEffect</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">StyleSheet</span><span class="p">,</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span><span class="p">,</span> <span class="nx">FlatList</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-native</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">api</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./src/services/api</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">tasks</span><span class="p">,</span> <span class="nx">setTasks</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">([]);</span>
+
+  <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">api</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/tarefas</span><span class="dl">'</span><span class="p">)</span>
+       <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nf">setTasks</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+       <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Minhas</span> <span class="nx">Tarefas</span> <span class="nx">Mobile</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">FlatList</span>
+        <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">tasks</span><span class="p">}</span>
+        <span class="nx">keyExtractor</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nf">toString</span><span class="p">()}</span>
+        <span class="nx">renderItem</span><span class="o">=</span><span class="p">{({</span> <span class="nx">item</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">card</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Text</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">titulo</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/Text</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>        <span class="p">)}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/View</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="nx">StyleSheet</span><span class="p">.</span><span class="nf">create</span><span class="p">({</span>
+  <span class="na">container</span><span class="p">:</span> <span class="p">{</span> <span class="na">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">padding</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">marginTop</span><span class="p">:</span> <span class="mi">30</span> <span class="p">},</span>
+  <span class="na">title</span><span class="p">:</span> <span class="p">{</span> <span class="na">fontSize</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span> <span class="na">fontWeight</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bold</span><span class="dl">'</span><span class="p">,</span> <span class="na">marginBottom</span><span class="p">:</span> <span class="mi">20</span> <span class="p">},</span>
+  <span class="na">card</span><span class="p">:</span> <span class="p">{</span> <span class="na">padding</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#ddd</span><span class="dl">'</span><span class="p">,</span> <span class="na">marginBottom</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">borderRadius</span><span class="p">:</span> <span class="mi">8</span> <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-pare-e-teste">🛑 Pare e Teste</h2>
+
+<ol>
+  <li>Rode o backend.</li>
+  <li>Rode o mobile: <code class="language-plaintext highlighter-rouge">npx expo start</code>.</li>
+  <li>Pressione <code class="language-plaintext highlighter-rouge">a</code> para abrir no Emulador Android.</li>
+</ol>
+
+<hr />
+
+<h2 id="-desafio">🏆 Desafio</h2>
+<p>Adicione um botão flutuante (+) para criar novas tarefas.</p>
+

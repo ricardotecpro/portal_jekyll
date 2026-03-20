@@ -1,0 +1,257 @@
+<h1 id="módulo-back-end-modelo-de-domínio-e-orm-️">Módulo Back-end: Modelo de Domínio e ORM 🗄️</h1>
+
+<p>Este capítulo foca na criação de um modelo de domínio robusto e em como mapeá-lo para um banco de dados relacional usando uma ferramenta de Mapeamento Objeto-Relacional (ORM), um passo essencial no desenvolvimento back-end.</p>
+
+<h2 id="pré-requisitos-de-estudo-">Pré-requisitos de Estudo 📚</h2>
+
+<p>Para um melhor aproveitamento, é recomendável revisar alguns conceitos-chave. Os materiais a seguir servem como um excelente ponto de partida:</p>
+
+<ul>
+  <li><strong>Álgebra Relacional e SQL</strong>: Uma revisão para relembrar as operações fundamentais de bancos de dados com SQL.</li>
+  <li><strong>Java com JDBC</strong>: É importante entender como o acesso a banco de dados funciona na prática sem o uso de frameworks ORM, utilizando apenas Java puro e JDBC.</li>
+  <li><strong>Introdução a ORM com JPA/Hibernate</strong>: Um nivelamento teórico e prático sobre o que é ORM e a especificação JPA, que é a base para o Spring Data JPA.</li>
+</ul>
+
+<h2 id="modelo-de-domínio-dscommerce-">Modelo de Domínio: DSCommerce 🛒</h2>
+
+<p>Para ilustrar os conceitos, vamos utilizar o modelo de um sistema de e-commerce fictício, o DSCommerce. O diagrama abaixo representa as principais entidades e seus relacionamentos.</p>
+
+<p>A seguir, uma descrição das entidades (classes) e seus atributos, já traduzidos para o português:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Usuario</code></strong>: Representa o cliente do sistema.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">nome</code>, <code class="language-plaintext highlighter-rouge">email</code>, <code class="language-plaintext highlighter-rouge">telefone</code>, <code class="language-plaintext highlighter-rouge">dataNascimento</code>, <code class="language-plaintext highlighter-rouge">senha</code>, <code class="language-plaintext highlighter-rouge">papeis</code> (roles).</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Produto</code></strong>: O item à venda.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">nome</code>, <code class="language-plaintext highlighter-rouge">descricao</code>, <code class="language-plaintext highlighter-rouge">preco</code>, <code class="language-plaintext highlighter-rouge">imgUrl</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Categoria</code></strong>: Usada para agrupar produtos.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">nome</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Pedido</code></strong>: O pedido de compra feito por um <code class="language-plaintext highlighter-rouge">Usuario</code>.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">instante</code> (momento do pedido), <code class="language-plaintext highlighter-rouge">status</code>.</li>
+      <li>Relaciona-se com um <code class="language-plaintext highlighter-rouge">Usuario</code> (cliente).</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">StatusPedido</code> (Enum)</strong>: Representa os possíveis status de um pedido.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">AGUARDANDO_PAGAMENTO</code>, <code class="language-plaintext highlighter-rouge">PAGO</code>, <code class="language-plaintext highlighter-rouge">ENVIADO</code>, <code class="language-plaintext highlighter-rouge">ENTREGUE</code>, <code class="language-plaintext highlighter-rouge">CANCELADO</code>.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">ItemPedido</code></strong>: É a classe de associação que representa a relação muitos-para-muitos entre <code class="language-plaintext highlighter-rouge">Pedido</code> e <code class="language-plaintext highlighter-rouge">Produto</code>, pois ela contém atributos próprios.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">quantidade</code>, <code class="language-plaintext highlighter-rouge">preco</code> (preço do produto no momento da compra).</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Pagamento</code></strong>: Detalhes do pagamento associado a um <code class="language-plaintext highlighter-rouge">Pedido</code>.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">momento</code> (momento do pagamento).</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="configuração-do-banco-de-dados-h2-️">Configuração do Banco de Dados (H2) ⚙️</h2>
+
+<p>Para o ambiente de desenvolvimento e testes, utilizaremos o banco de dados em memória H2. Abaixo estão as configurações necessárias no arquivo <code class="language-plaintext highlighter-rouge">application.properties</code> de um projeto Spring Boot.</p>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ativa o perfil 'test', ideal para desenvolvimento e testes
+</span><span class="py">spring.profiles.active</span><span class="p">=</span><span class="s">test</span>
+
+<span class="c"># Dados de conexão com o banco H2 em memória
+</span><span class="py">spring.datasource.url</span><span class="p">=</span><span class="s">jdbc:h2:mem:testdb</span>
+<span class="py">spring.datasource.driverClassName</span><span class="p">=</span><span class="s">org.h2.Driver</span>
+<span class="py">spring.datasource.username</span><span class="p">=</span><span class="s">sa</span>
+<span class="py">spring.datasource.password</span><span class="p">=</span>
+
+<span class="c"># Habilita o console web do H2 para fácil visualização do banco
+</span><span class="py">spring.h2.console.enabled</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.h2.console.path</span><span class="p">=</span><span class="s">/h2-console</span>
+
+<span class="c"># Configurações do JPA/Hibernate
+</span><span class="py">spring.jpa.database-platform</span><span class="p">=</span><span class="s">org.hibernate.dialect.H2Dialect</span>
+<span class="py">spring.jpa.defer-datasource-initialization</span><span class="p">=</span><span class="s">true</span>
+
+<span class="c"># Mostra no console o SQL gerado pelo Hibernate (útil para debug)
+</span><span class="py">spring.jpa.show-sql</span><span class="p">=</span><span class="s">true</span>
+<span class="py">spring.jpa.properties.hibernate.format_sql</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<h3 id="recomendação-para-tipos-de-data-e-hora-️">Recomendação para Tipos de Data e Hora ⏱️</h3>
+
+<p>Ao trabalhar com o tipo <code class="language-plaintext highlighter-rouge">Instant</code> do Java, que representa um marco temporal no padrão UTC, é recomendado mapeá-lo para um tipo de coluna no banco que não armazene fuso horário, garantindo consistência.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Garante que o campo será criado como TIMESTAMP no banco, sem time zone</span>
+<span class="nd">@Column</span><span class="o">(</span><span class="n">columnDefinition</span> <span class="o">=</span> <span class="s">"TIMESTAMP WITHOUT TIME ZONE"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">Instant</span> <span class="n">momento</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h2 id="mapeamento-dos-relacionamentos-com-jpa-">Mapeamento dos Relacionamentos com JPA 🔗</h2>
+
+<p>A seguir, vemos como traduzir os relacionamentos do nosso diagrama de classes para código Java usando anotações da especificação JPA.</p>
+
+<h3 id="relacionamento-muitos-para-um-pedido---usuário">Relacionamento Muitos-para-Um (Pedido -&gt; Usuário)</h3>
+
+<p>Um <code class="language-plaintext highlighter-rouge">Usuário</code> pode ter muitos <code class="language-plaintext highlighter-rouge">Pedidos</code>, mas um <code class="language-plaintext highlighter-rouge">Pedido</code> pertence a um único <code class="language-plaintext highlighter-rouge">Usuário</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Pedido</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pedido</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="nd">@ManyToOne</span> <span class="c1">// Anotação para 'muitos-para-um'</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"cliente_id"</span><span class="o">)</span> <span class="c1">// Define a chave estrangeira na tabela de pedidos</span>
+    <span class="kd">private</span> <span class="nc">Usuario</span> <span class="n">cliente</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Usuario (lado "um")</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Usuario</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// 'mappedBy' indica que o mapeamento já foi feito pelo campo 'cliente' na classe Pedido</span>
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"cliente"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Pedido</span><span class="o">&gt;</span> <span class="n">pedidos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="relacionamento-um-para-um-pagamento---pedido">Relacionamento Um-para-Um (Pagamento -&gt; Pedido)</h3>
+
+<p>Um <code class="language-plaintext highlighter-rouge">Pedido</code> tem um (<code class="language-plaintext highlighter-rouge">ou zero</code>) <code class="language-plaintext highlighter-rouge">Pagamento</code>. O mapeamento é bidirecional.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Pedido</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pedido</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// cascade = CascadeType.ALL: todas as operações (salvar, deletar, etc.)</span>
+    <span class="c1">// feitas no Pedido serão replicadas para o Pagamento associado.</span>
+    <span class="nd">@OneToOne</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"pedido"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Pagamento</span> <span class="n">pagamento</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Pagamento</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pagamento</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="nd">@OneToOne</span>
+    <span class="nd">@MapsId</span> <span class="c1">// Usa a chave primária do Pedido como chave primária do Pagamento</span>
+    <span class="kd">private</span> <span class="nc">Pedido</span> <span class="n">pedido</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="relacionamento-muitos-para-muitos-produto---categoria">Relacionamento Muitos-para-Muitos (Produto &lt;-&gt; Categoria)</h3>
+
+<p>Um <code class="language-plaintext highlighter-rouge">Produto</code> pode estar em várias <code class="language-plaintext highlighter-rouge">Categorias</code>, e uma <code class="language-plaintext highlighter-rouge">Categoria</code> pode conter vários <code class="language-plaintext highlighter-rouge">Produtos</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Produto (lado dono do relacionamento)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="nd">@ManyToMany</span>
+    <span class="c1">// Define a tabela de junção (associativa) que ligará produtos e categorias</span>
+    <span class="nd">@JoinTable</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tb_produto_categoria"</span><span class="o">,</span>
+        <span class="n">joinColumns</span> <span class="o">=</span> <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"produto_id"</span><span class="o">),</span>
+        <span class="n">inverseJoinColumns</span> <span class="o">=</span> <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"categoria_id"</span><span class="o">))</span>
+    <span class="kd">private</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Categoria</span><span class="o">&gt;</span> <span class="n">categorias</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Categoria</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Categoria</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// 'mappedBy' informa que o mapeamento já foi feito em Produto</span>
+    <span class="nd">@ManyToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"categorias"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="n">produtos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="muitos-para-muitos-com-atributos-pedido---produto">Muitos-para-Muitos com Atributos (Pedido &lt;-&gt; Produto)</h3>
+
+<p>A relação entre <code class="language-plaintext highlighter-rouge">Pedido</code> e <code class="language-plaintext highlighter-rouge">Produto</code> precisa de uma classe de associação (<code class="language-plaintext highlighter-rouge">ItemPedido</code>) porque o relacionamento em si possui dados: <code class="language-plaintext highlighter-rouge">quantidade</code> e <code class="language-plaintext highlighter-rouge">preco</code>.</p>
+
+<p><strong>1. Chave Primária Composta (<code class="language-plaintext highlighter-rouge">ItemPedidoPK</code>)</strong>
+Primeiro, criamos uma classe para a chave primária composta, que será embutida na classe de associação.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Embeddable</span> <span class="c1">// Indica que esta classe pode ser embutida em outra entidade</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemPedidoPK</span> <span class="o">{</span>
+
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"pedido_id"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Pedido</span> <span class="n">pedido</span><span class="o">;</span>
+
+    <span class="nd">@ManyToOne</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"produto_id"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Produto</span> <span class="n">produto</span><span class="o">;</span>
+
+    <span class="c1">// getters e setters</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>2. Entidade de Associação (<code class="language-plaintext highlighter-rouge">ItemPedido</code>)</strong>
+Esta entidade usa a chave composta e adiciona os outros atributos.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"tb_item_pedido"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemPedido</span> <span class="o">{</span>
+
+    <span class="nd">@EmbeddedId</span> <span class="c1">// Usa a classe ItemPedidoPK como chave primária</span>
+    <span class="kd">private</span> <span class="nc">ItemPedidoPK</span> <span class="n">id</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ItemPedidoPK</span><span class="o">();</span>
+
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">quantidade</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">;</span>
+    
+    <span class="c1">// Construtores, getters e setters</span>
+    <span class="kd">public</span> <span class="nf">ItemPedido</span><span class="o">()</span> <span class="o">{}</span>
+
+    <span class="kd">public</span> <span class="nf">ItemPedido</span><span class="o">(</span><span class="nc">Pedido</span> <span class="n">pedido</span><span class="o">,</span> <span class="nc">Produto</span> <span class="n">produto</span><span class="o">,</span> <span class="nc">Integer</span> <span class="n">quantidade</span><span class="o">,</span> <span class="nc">Double</span> <span class="n">preco</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">id</span><span class="o">.</span><span class="na">setPedido</span><span class="o">(</span><span class="n">pedido</span><span class="o">);</span>
+        <span class="n">id</span><span class="o">.</span><span class="na">setProduto</span><span class="o">(</span><span class="n">produto</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">quantidade</span> <span class="o">=</span> <span class="n">quantidade</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">preco</span> <span class="o">=</span> <span class="n">preco</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">Pedido</span> <span class="nf">getPedido</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">.</span><span class="na">getPedido</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>3. Mapeamento nas Entidades Principais</strong>
+Finalmente, as entidades <code class="language-plaintext highlighter-rouge">Pedido</code> e <code class="language-plaintext highlighter-rouge">Produto</code> são mapeadas para a coleção de <code class="language-plaintext highlighter-rouge">ItemPedido</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Pedido</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pedido</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"id.pedido"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">ItemPedido</span><span class="o">&gt;</span> <span class="n">itens</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Produto</span><span class="o">&gt;</span> <span class="nf">getProdutos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">itens</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="na">getProduto</span><span class="o">()).</span><span class="na">toList</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Na classe Produto</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Produto</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"id.produto"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">ItemPedido</span><span class="o">&gt;</span> <span class="n">itens</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Pedido</span><span class="o">&gt;</span> <span class="nf">getPedidos</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">itens</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="na">getPedido</span><span class="o">()).</span><span class="na">toList</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="populando-o-banco-de-dados-seeding-">Populando o Banco de Dados (Seeding) 🌱</h2>
+
+<p>Para que a aplicação inicie com dados pré-cadastrados (útil para testes e demonstrações), podemos usar a técnica de <em>database seeding</em>.</p>
+
+<p>Com o Spring Boot, basta criar um arquivo chamado <code class="language-plaintext highlighter-rouge">import.sql</code> na pasta <code class="language-plaintext highlighter-rouge">src/main/resources</code>. O Spring o executará automaticamente na inicialização. É recomendado usar um comando <code class="language-plaintext highlighter-rouge">INSERT</code> para cada registro a ser inserido.</p>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

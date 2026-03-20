@@ -1,0 +1,139 @@
+<h1 id="-projeto-todo-list-api-rest-com-angular-e-spring-boot-no-padrão-mvc">🏗 <strong>Projeto Todo List: API REST com Angular e Spring Boot no Padrão MVC</strong></h1>
+
+<hr />
+
+<h1 id="-o-que-é-uma-api-rest">📌 <strong>O que é uma API REST?</strong></h1>
+
+<p>Uma <strong>API REST (Representational State Transfer)</strong> é um conjunto de regras que permite que aplicações se comuniquem pela internet usando o protocolo <strong>HTTP</strong>. No nosso projeto, o <strong>backend em Spring Boot</strong> expõe endpoints REST para que o <strong>frontend em Angular</strong> possa interagir com os dados das tarefas.</p>
+
+<h3 id="️-características-principais-de-uma-api-rest"><strong>⚙️ Características principais de uma API REST:</strong></h3>
+
+<p>✔ <strong>Stateless (Sem estado):</strong> Cada requisição enviada pelo cliente deve conter todas as informações necessárias para ser processada pelo servidor.<br />
+✔ <strong>Métodos HTTP bem definidos:</strong> A API utiliza verbos HTTP para definir a ação que será realizada.<br />
+✔ <strong>Uso de JSON:</strong> Os dados são trocados no formato <strong>JSON</strong>, que é leve e fácil de manipular.<br />
+✔ <strong>URL bem definidas:</strong> Segue um padrão para facilitar a comunicação e manutenção.</p>
+
+<hr />
+
+<h1 id="-principais-métodos-http-usados-na-api-rest">🔄 <strong>Principais Métodos HTTP usados na API REST</strong></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Método HTTP</strong></th>
+      <th><strong>Descrição</strong></th>
+      <th><strong>Exemplo na API</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GET</code></td>
+      <td>Obtém dados do servidor</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/tasks</code> (Lista todas as tarefas)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">POST</code></td>
+      <td>Cria um novo recurso</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/tasks</code> (Adiciona uma nova tarefa)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">PUT</code></td>
+      <td>Atualiza um recurso existente</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/tasks/1</code> (Edita a tarefa com ID 1)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DELETE</code></td>
+      <td>Remove um recurso</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/tasks/1</code> (Deleta a tarefa com ID 1)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="-códigos-de-resposta-http">🔢 <strong>Códigos de Resposta HTTP</strong></h1>
+
+<p>Sempre que realizamos uma requisição HTTP, o servidor responde com um <strong>código de status</strong>, indicando o resultado da operação.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Código</strong></th>
+      <th><strong>Significado</strong></th>
+      <th><strong>Explicação</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">200 OK</code></td>
+      <td>Sucesso</td>
+      <td>A requisição foi processada corretamente.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">201 Created</code></td>
+      <td>Recurso Criado</td>
+      <td>Um novo recurso foi adicionado com sucesso.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">204 No Content</code></td>
+      <td>Sem Conteúdo</td>
+      <td>Ação foi bem-sucedida, mas sem retorno de dados.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">400 Bad Request</code></td>
+      <td>Requisição Inválida</td>
+      <td>Alguma informação está incorreta.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">404 Not Found</code></td>
+      <td>Não Encontrado</td>
+      <td>O recurso solicitado não existe.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">500 Internal Server Error</code></td>
+      <td>Erro no Servidor</td>
+      <td>Algo deu errado no servidor.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="-exemplo-de-comunicação-entre-frontend-e-backend">🎯 <strong>Exemplo de Comunicação entre Frontend e Backend</strong></h1>
+
+<h2 id="1️⃣-frontend-angular-faz-requisição-para-o-backend"><strong>1️⃣ Frontend Angular Faz Requisição para o Backend</strong></h2>
+
+<p>O serviço Angular (<code class="language-plaintext highlighter-rouge">task.service.ts</code>) envia uma requisição <strong>GET</strong> para buscar todas as tarefas:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="kd">get</span><span class="o">&lt;</span><span class="nx">Task</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:8080/api/tasks</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">response</span><span class="p">));</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2️⃣-backend-processa-e-responde"><strong>2️⃣ Backend Processa e Responde</strong></h2>
+
+<p>O <strong>Spring Boot</strong> recebe a requisição, busca os dados no banco e retorna um JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w"> </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Estudar API REST"</span><span class="p">,</span><span class="w"> </span><span class="nl">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w"> </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Criar projeto Angular"</span><span class="p">,</span><span class="w"> </span><span class="nl">"completed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>O código que trata essa requisição no <strong>backend</strong>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@GetMapping</span>
+<span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Task</span><span class="o">&gt;</span> <span class="nf">getAll</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">repository</span><span class="o">.</span><span class="na">findAll</span><span class="o">();</span> <span class="c1">// Retorna todas as tarefas</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Agora, sua aplicação segue <strong>boas práticas REST</strong> e está estruturada corretamente no padrão <strong>MVC</strong>! 🚀</p>
+
+<hr />
+
+<h3 id="-ricardotecprogithubio">🚀 <a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+

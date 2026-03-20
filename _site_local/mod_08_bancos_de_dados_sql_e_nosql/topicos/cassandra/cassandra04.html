@@ -1,0 +1,559 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra04.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CASSANDRA04 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="CASSANDRA04" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra04.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra04.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CASSANDRA04" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"CASSANDRA04","url":"https://ricardotecpro.github.io/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/cassandra04.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/" style="margin-left: 0.5rem;">Mod 08 bancos de dados sql e nosql</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/" style="margin-left: 0.5rem;">Topicos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/mod_08_bancos_de_dados_sql_e_nosql/topicos/cassandra/" style="margin-left: 0.5rem;">Cassandra</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Cassandra04</span>
+          
+        
+      </nav>
+
+      <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gh"># Atividade 4 Final 📜</span>
+
+<span class="gu">## Descrição da Atividade 📝</span>
+
+Executar as tarefas a seguir, criando um documento com os comandos e prints de tela de cada um.
+<span class="p">
+1.</span>  Crie um novo BD com uma keyspace qualquer no DataStax Astra Cassandra.
+<span class="p">2.</span>  Crie pelo menos 3 tabelas, que contenham uma chave primária.
+<span class="p">3.</span>  Crie um índice secundário em qualquer coluna para cada tabela.
+<span class="p">4.</span>  Inclua pelo menos 5 linhas (registros) em cada tabela.
+<span class="p">5.</span>  Liste todas as linhas (registros) criadas em cada tabela.
+<span class="p">6.</span>  Conte as linhas (registros) de cada tabela.
+<span class="p">7.</span>  Faça pelo menos 3 buscas diferentes em cada tabela.
+<span class="p">8.</span>  Altere pelo menos duas linhas (registros) em cada tabela.
+<span class="p">9.</span>  Liste as linhas (registros) mostrando as alterações feitas.
+<span class="p">10.</span> Apague pelo menos um registro de cada tabela.
+<span class="p">11.</span> Liste novamente as linhas (registros) de cada tabela, indicando que ocorreram as exclusões.
+<span class="p">
+---
+</span>
+<span class="gu">### 1) Criar Keyspace 🔑</span>
+
+<span class="p">```</span><span class="nl">sql
+</span><span class="k">CREATE</span> <span class="n">KEYSPACE</span> <span class="n">minhakeyspaceCetec3</span>
+<span class="k">WITH</span> <span class="n">replication</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">'class'</span><span class="p">:</span> <span class="s1">'SimpleStrategy'</span><span class="p">,</span>
+  <span class="s1">'replication_factor'</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+
+<span class="n">USE</span> <span class="n">minhakeyspaceCetec3</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="2-criar-tabelas-️">2) Criar Tabelas 🏗️</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">alunos</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="n">UUID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">idade</span> <span class="nb">INT</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">professores</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="n">UUID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">especialidade</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">unidade</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="n">UUID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">nome</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">cidade</span> <span class="nb">TEXT</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="3-criar-índices-secundários-">3) Criar Índices Secundários 🔍</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">INDEX</span> <span class="k">ON</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">email</span><span class="p">);</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="k">ON</span> <span class="n">professores</span> <span class="p">(</span><span class="n">especialidade</span><span class="p">);</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="k">ON</span> <span class="n">unidade</span> <span class="p">(</span><span class="n">cidade</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="4-inserir-registros-">4) Inserir Registros ➕</h3>
+
+<p><strong>Alunos:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Ana'</span><span class="p">,</span> <span class="s1">'ana@cetec.edu'</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Bruno'</span><span class="p">,</span> <span class="s1">'bruno@cetec.edu'</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Carlos'</span><span class="p">,</span> <span class="s1">'carlos@cetec.edu'</span><span class="p">,</span> <span class="mi">19</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Diana'</span><span class="p">,</span> <span class="s1">'diana@cetec.edu'</span><span class="p">,</span> <span class="mi">23</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">alunos</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">idade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Eduardo'</span><span class="p">,</span> <span class="s1">'eduardo@cetec.edu'</span><span class="p">,</span> <span class="mi">21</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Professores:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">professores</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">especialidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Prof. João'</span><span class="p">,</span> <span class="s1">'Matemática'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">professores</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">especialidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Prof. Luana'</span><span class="p">,</span> <span class="s1">'Fisica'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">professores</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">especialidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Prof. Marcos'</span><span class="p">,</span> <span class="s1">'Química'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">professores</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">especialidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Prof. Paula'</span><span class="p">,</span> <span class="s1">'Biologia'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">professores</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">especialidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Prof. Rafael'</span><span class="p">,</span> <span class="s1">'História'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Unidades:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">unidade</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">cidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Unidade Central'</span><span class="p">,</span> <span class="s1">'Lins'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">unidade</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">cidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Unidade Norte'</span><span class="p">,</span> <span class="s1">'Bauru'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">unidade</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">cidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Unidade Sul'</span><span class="p">,</span> <span class="s1">'Marília'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">unidade</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">cidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Unidade Leste'</span><span class="p">,</span> <span class="s1">'Botucatu'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">unidade</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">nome</span><span class="p">,</span> <span class="n">cidade</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="n">uuid</span><span class="p">(),</span> <span class="s1">'Unidade Oeste'</span><span class="p">,</span> <span class="s1">'Assis'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="5-listar-registros-">5) Listar Registros 📋</h3>
+
+<p><strong>Alunos:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">alunos</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>email</th>
+      <th>idade</th>
+      <th>nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>616792c1-8460-444e-9ee4-21cdebfb7993</td>
+      <td>bruno@cetec.edu</td>
+      <td>22</td>
+      <td>Bruno</td>
+    </tr>
+    <tr>
+      <td>ef8612b4-93c1-4405-bd99-046580820710</td>
+      <td>eduardo@cetec.edu</td>
+      <td>21</td>
+      <td>Eduardo</td>
+    </tr>
+    <tr>
+      <td>8eab1eb0-3d79-4fd8-b852-ec3ba1fec2d1</td>
+      <td>carlos@cetec.edu</td>
+      <td>19</td>
+      <td>Carlos</td>
+    </tr>
+    <tr>
+      <td>50a0b613-7f95-43ca-905c-8c1c68c1389c</td>
+      <td>ana@cetec.edu</td>
+      <td>20</td>
+      <td>Ana</td>
+    </tr>
+    <tr>
+      <td>bc975dfe-cf5f-45f7-9de2-e4f331502a8e</td>
+      <td>diana@cetec.edu</td>
+      <td>23</td>
+      <td>Diana</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Professores:</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">professores</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>especialidade</th>
+      <th>nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>de252ed3-06df-40e4-8535-0c06f911bd24</td>
+      <td>Biologia</td>
+      <td>Prof. Paula</td>
+    </tr>
+    <tr>
+      <td>801f6be5-d41b-4e13-abc5-b6a35a250069</td>
+      <td>História</td>
+      <td>Prof. Rafael</td>
+    </tr>
+    <tr>
+      <td>e9a3031f-f012-437f-83c6-162c04816ec7</td>
+      <td>Matemática</td>
+      <td>Prof. João</td>
+    </tr>
+    <tr>
+      <td>8fc26bff-2c65-43ea-94a5-51c7d21d6b65</td>
+      <td>Física</td>
+      <td>Prof. Luana</td>
+    </tr>
+    <tr>
+      <td>68c4daad-5dc3-4014-816b-42062da29c32</td>
+      <td>Química</td>
+      <td>Prof. Marcos</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="6-contar-registros-">6) Contar Registros 🔢</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">alunos</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">professores</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">unidade</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Para todas as tabelas, o resultado foi:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> count
+-------
+     5
+
+(1 rows)
+</code></pre></div></div>
+
+<h3 id="7-buscar-registros-">7) Buscar Registros 🔎</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">alunos</span> <span class="k">WHERE</span> <span class="n">email</span> <span class="o">=</span> <span class="s1">'ana@cetec.edu'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">professores</span> <span class="k">WHERE</span> <span class="n">especialidade</span> <span class="o">=</span> <span class="s1">'Fisica'</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">unidade</span> <span class="k">WHERE</span> <span class="n">cidade</span> <span class="o">=</span> <span class="s1">'Lins'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="8-alterar-registros-">8) Alterar Registros 🔄</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Alterando idade de Bruno para 25</span>
+<span class="k">UPDATE</span> <span class="n">alunos</span> <span class="k">SET</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">25</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">616792</span><span class="n">c1</span><span class="o">-</span><span class="mi">84</span><span class="n">b0</span><span class="o">-</span><span class="mi">444</span><span class="n">e</span><span class="o">-</span><span class="mi">9</span><span class="n">ee4</span><span class="o">-</span><span class="mi">21</span><span class="n">cdebfb7993</span><span class="p">;</span>
+
+<span class="c1">-- Alterando idade de Carlos para 18</span>
+<span class="k">UPDATE</span> <span class="n">alunos</span> <span class="k">SET</span> <span class="n">idade</span> <span class="o">=</span> <span class="mi">18</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">8</span><span class="n">eab1eb0</span><span class="o">-</span><span class="mi">3</span><span class="n">d79</span><span class="o">-</span><span class="mi">4</span><span class="n">fd8</span><span class="o">-</span><span class="n">b852</span><span class="o">-</span><span class="n">ec3ba1fec2d1</span><span class="p">;</span>
+
+<span class="c1">-- Alterando especialidade da Prof. Luana</span>
+<span class="k">UPDATE</span> <span class="n">professores</span> <span class="k">SET</span> <span class="n">especialidade</span> <span class="o">=</span> <span class="s1">'Fisica Avançada'</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">8</span><span class="n">fc26bff</span><span class="o">-</span><span class="mi">2</span><span class="n">c65</span><span class="o">-</span><span class="mi">43</span><span class="n">ea</span><span class="o">-</span><span class="mi">94</span><span class="n">a5</span><span class="o">-</span><span class="mi">51</span><span class="n">c7d21d6b65</span><span class="p">;</span>
+
+<span class="c1">-- Alterando especialidade do Prof. Marcos</span>
+<span class="k">UPDATE</span> <span class="n">professores</span> <span class="k">SET</span> <span class="n">especialidade</span> <span class="o">=</span> <span class="s1">'Química Orgânica'</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">68</span><span class="n">c4daad</span><span class="o">-</span><span class="mi">5</span><span class="n">dc3</span><span class="o">-</span><span class="mi">4014</span><span class="o">-</span><span class="mi">816</span><span class="n">b</span><span class="o">-</span><span class="mi">42062</span><span class="n">da29c32</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="9-listar-alterações-">9) Listar Alterações ✨</h3>
+
+<p><strong>Alunos (idades de Bruno e Carlos alteradas):</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">alunos</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>email</th>
+      <th>idade</th>
+      <th>nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>616792c1-84b8-444e-9ee4-21cdebfb7993</td>
+      <td>bruno@cetec.edu</td>
+      <td><strong>25</strong></td>
+      <td>Bruno</td>
+    </tr>
+    <tr>
+      <td>ef8612b4-93c1-4405-bd99-046580a2d710</td>
+      <td>eduardo@cetec.edu</td>
+      <td>21</td>
+      <td>Eduardo</td>
+    </tr>
+    <tr>
+      <td>8eab1eb0-3d79-4fd8-b852-ec3ba1fec2d1</td>
+      <td>carlos@cetec.edu</td>
+      <td><strong>18</strong></td>
+      <td>Carlos</td>
+    </tr>
+    <tr>
+      <td>50a0b613-7f95-43ca-905c-8c1c68c1389c</td>
+      <td>ana@cetec.edu</td>
+      <td>20</td>
+      <td>Ana</td>
+    </tr>
+    <tr>
+      <td>bc975dfe-cf5f-45f7-9de2-e4f331502a8e</td>
+      <td>diana@cetec.edu</td>
+      <td>23</td>
+      <td>Diana</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Professores (especialidades alteradas):</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">professores</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>especialidade</th>
+      <th>nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>de252ed3-06df-40e4-8535-0c06f911bd24</td>
+      <td>Biologia</td>
+      <td>Prof. Paula</td>
+    </tr>
+    <tr>
+      <td>801f6be5-d41b-4e13-abc5-b6a35a250069</td>
+      <td>História</td>
+      <td>Prof. Rafael</td>
+    </tr>
+    <tr>
+      <td>e9a3031f-f012-437f-83c6-162c04816ec7</td>
+      <td>Matemática</td>
+      <td>Prof. João</td>
+    </tr>
+    <tr>
+      <td>8fc26bff-2c65-43ea-94a5-51c7d21d6b65</td>
+      <td><strong>Física Avançada</strong></td>
+      <td>Prof. Luana</td>
+    </tr>
+    <tr>
+      <td>68c4daad-5dc3-4014-816b-42062da29c32</td>
+      <td><strong>Química Orgânica</strong></td>
+      <td>Prof. Marcos</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="10-apagar-registros-️">10) Apagar Registros 🗑️</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Apagando o registro de Bruno (usando o id da listagem anterior)</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">alunos</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">616792</span><span class="n">c1</span><span class="o">-</span><span class="mi">84</span><span class="n">b0</span><span class="o">-</span><span class="mi">444</span><span class="n">e</span><span class="o">-</span><span class="mi">9</span><span class="n">ee4</span><span class="o">-</span><span class="mi">21</span><span class="n">cdebfb7993</span><span class="p">;</span>
+
+<span class="c1">-- Apagando o registro do Prof. Rafael</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">professores</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">801</span><span class="n">f6be5</span><span class="o">-</span><span class="n">d41b</span><span class="o">-</span><span class="mi">4</span><span class="n">e13</span><span class="o">-</span><span class="n">abc5</span><span class="o">-</span><span class="n">b6a35a2500b9</span><span class="p">;</span>
+
+<span class="c1">-- Apagando o registro da Unidade Leste</span>
+<span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">unidade</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="n">a0c2ea99</span><span class="o">-</span><span class="mi">3</span><span class="n">d09</span><span class="o">-</span><span class="mi">480</span><span class="n">f</span><span class="o">-</span><span class="mi">8</span><span class="n">f6f</span><span class="o">-</span><span class="n">c94143ca505f</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="11-listar-após-exclusões-">11) Listar Após Exclusões 📉</h3>
+
+<p><strong>Alunos (4 registros restantes):</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">alunos</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>email</th>
+      <th>idade</th>
+      <th>nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ef8612b4-93c1-4406-bd99-046580a2d710</td>
+      <td>eduardo@cetec.edu</td>
+      <td>21</td>
+      <td>Eduardo</td>
+    </tr>
+    <tr>
+      <td>8eab1eb0-3079-4fd8-b852-ec3ba1fec2d1</td>
+      <td>carlos@cetec.edu</td>
+      <td>18</td>
+      <td>Carlos</td>
+    </tr>
+    <tr>
+      <td>50a0b613-7f95-43ca-905c-8c1c68c1389c</td>
+      <td>ana@cetec.edu</td>
+      <td>20</td>
+      <td>Ana</td>
+    </tr>
+    <tr>
+      <td>bc975dfe-cf5f-45f7-9de2-e4f331502a8e</td>
+      <td>diana@cetec.edu</td>
+      <td>23</td>
+      <td>Diana</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Professores (4 registros restantes):</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">professores</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>especialidade</th>
+      <th>nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>de252ed3-06df-40e4-8535-0c06f911bd24</td>
+      <td>Biologia</td>
+      <td>Prof. Paula</td>
+    </tr>
+    <tr>
+      <td>e9a3031f-f012-437f-83c6-162c04816ec7</td>
+      <td>Matemática</td>
+      <td>Prof. João</td>
+    </tr>
+    <tr>
+      <td>8fc26bff-2c65-43ea-94a5-51c7d21d6b65</td>
+      <td>Física Avançada</td>
+      <td>Prof. Luana</td>
+    </tr>
+    <tr>
+      <td>68c4daad-5dc3-4014-816b-42062da29c32</td>
+      <td>Química Orgânica</td>
+      <td>Prof. Marcos</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Unidades (4 registros restantes):</strong></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">unidade</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>cidade</th>
+      <th>nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>cb953940-6cf5-4320-b5e7-78443d88fac1</td>
+      <td>Lençóis Paulista</td>
+      <td>Unidade Sul</td>
+    </tr>
+    <tr>
+      <td>26946074-839f-434c-9a8a-6c19d788f149</td>
+      <td>Bauru</td>
+      <td>Unidade Norte</td>
+    </tr>
+    <tr>
+      <td>2df175d2-b31d-407b-887f-e46fc8357eae</td>
+      <td>Ourinhos</td>
+      <td>Unidade Oeste</td>
+    </tr>
+    <tr>
+      <td>ea8a08c5-a129-425c-93e9-4048d48964ec</td>
+      <td>Lins</td>
+      <td>Unidade Central</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<hr />
+
+<h3 id="ricardotecprogithubio"><a href="https://ricardotecpro.github.io/">ricardotecpro.github.io</a></h3>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>

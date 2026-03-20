@@ -1,0 +1,390 @@
+<!-- DEBUG: LAYOUT APPLIED - URL: /proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo06.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MODULO06 | 🥞 Projetos Full Stack</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="MODULO06" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<meta property="og:description" content="Navegando por Todas as Camadas de Desenvolvimento" />
+<link rel="canonical" href="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo06.html" />
+<meta property="og:url" content="https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo06.html" />
+<meta property="og:site_name" content="🥞 Projetos Full Stack" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MODULO06" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Navegando por Todas as Camadas de Desenvolvimento","headline":"MODULO06","url":"https://ricardotecpro.github.io/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/modulo06.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/portal_jekyll/assets/css/style.css?v=">
+    <!-- Suporte para Math (MathJax) -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- Suporte para Mermaid Diagrams -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Transforma blocos de código Jekyll (pre code.language-mermaid) em divs para o Mermaid
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+    codeBlocks.forEach(codeBlock => {
+      const parent = codeBlock.parentElement;
+      const mermaidDiv = document.createElement('div');
+      mermaidDiv.className = 'mermaid';
+      mermaidDiv.textContent = codeBlock.textContent;
+      parent.replaceWith(mermaidDiv);
+    });
+    // Inicializa o Mermaid após a transformação
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  });
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">🥞 Projetos Full Stack</h1>
+      <h2 class="project-tagline">Navegando por Todas as Camadas de Desenvolvimento</h2>
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="margin-bottom: 2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.5rem; font-size: 0.9rem;">
+        <a href="/portal_jekyll/">Página Inicial</a>
+        
+        
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/" style="margin-left: 0.5rem;">Proj aplicacao full stack</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/" style="margin-left: 0.5rem;">Projetos</a>
+          
+        
+          
+            
+            <span style="margin-left: 0.5rem;"> / </span>
+            <a href="/portal_jekyll/proj_aplicacao_full_stack/projetos/gestaodeestoques_01/" style="margin-left: 0.5rem;">Gestaodeestoques 01</a>
+          
+        
+          
+            <span style="color: #666; margin-left: 0.5rem;"> / Modulo06</span>
+          
+        
+      </nav>
+
+      <p>Este guia fornecerá todos os conceitos e códigos completos para que os alunos aprendam a criar testes automatizados para a aplicação, uma habilidade indispensável no mercado de trabalho.</p>
+
+<h1 id="-guia-didático-definitivo-gestão-de-estoques-com-spring-boot">💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot</h1>
+
+<hr />
+
+<h2 id="módulo-6--garantia-de-qualidade-com-testes">Módulo 6: ✅ Garantia de Qualidade com Testes</h2>
+
+<p><strong>Objetivo:</strong> Ensinar o aluno a validar a própria lógica de negócio e os endpoints da API de forma automatizada. Ao final deste módulo, o aluno terá uma suíte de testes que serve como uma “rede de segurança”, permitindo que futuras alterações no código sejam feitas com confiança.</p>
+
+<hr />
+
+<h3 id="-aula-61-fundamentos-de-testes-junit-5-e-o-conceito-de-mocks-com-mockito">### Aula 6.1: Fundamentos de Testes (JUnit 5 e o conceito de Mocks com Mockito)</h3>
+
+<p><strong>Conceito-Chave: Por que testar?</strong>
+Testes automatizados são programas que verificam se outras partes do nosso programa se comportam como esperado. Eles são cruciais porque:</p>
+
+<ol>
+  <li><strong>Garantem a Qualidade:</strong> Provam que seu código faz o que deveria fazer.</li>
+  <li><strong>Previnem Regressões:</strong> Impedem que uma nova funcionalidade quebre algo que já funcionava.</li>
+  <li><strong>Facilitam a Refatoração:</strong> Permitem que você melhore seu código com a segurança de que não quebrou nada.</li>
+  <li><strong>Documentam o Código:</strong> Um bom teste descreve exatamente o que um método deve fazer.</li>
+</ol>
+
+<p><strong>As Ferramentas do Ofício:</strong></p>
+
+<ul>
+  <li><strong>JUnit 5:</strong> É o framework padrão para escrever e executar testes em Java. Usamos anotações como <code class="language-plaintext highlighter-rouge">@Test</code> para marcar um método como um caso de teste.</li>
+  <li><strong>Mockito:</strong> É uma biblioteca para criar “Mocks”, ou seja, objetos falsos que simulam o comportamento de dependências reais.</li>
+</ul>
+
+<p><strong>Conceito-Chave: Mocks e a Importância do Isolamento</strong>
+Ao realizar um <strong>Teste Unitário</strong>, queremos testar <strong>uma única classe</strong> de forma isolada. Por exemplo, ao testar <code class="language-plaintext highlighter-rouge">ProdutoServiceImpl</code>, não queremos depender do <code class="language-plaintext highlighter-rouge">ProdutoRepository</code> real, nem do banco de dados. Por quê? Porque se o teste falhar, queremos saber que a falha está em <code class="language-plaintext highlighter-rouge">ProdutoServiceImpl</code>, e não no banco de dados.</p>
+
+<p>É aqui que o Mockito entra. Criamos um <code class="language-plaintext highlighter-rouge">ProdutoRepository</code> “fake” (um mock) e instruímos ele a se comportar exatamente como precisamos para o nosso teste.</p>
+
+<ul>
+  <li><strong>Analogia:</strong> Para testar um piloto de avião (<code class="language-plaintext highlighter-rouge">Service</code>), você o coloca em um simulador de voo (<code class="language-plaintext highlighter-rouge">Mock do Repository</code>). Você não precisa de um avião de verdade para saber se o piloto sabe operar os controles.</li>
+</ul>
+
+<p><strong>A Estrutura de um Bom Teste: Arrange, Act, Assert (ou Given, When, Then)</strong></p>
+
+<ol>
+  <li><strong>Arrange (Arranjar / Given):</strong> Prepare o cenário. Crie os objetos, configure o comportamento dos seus mocks.</li>
+  <li><strong>Act (Agir / When):</strong> Execute o método que você quer testar.</li>
+  <li><strong>Assert (Afirmar / Then):</strong> Verifique se o resultado foi o esperado.</li>
+</ol>
+
+<hr />
+
+<h3 id="-aula-62-testes-unitários-para-a-camada-de-serviço-produtoserviceimpltest">### Aula 6.2: Testes Unitários para a Camada de Serviço (<code class="language-plaintext highlighter-rouge">ProdutoServiceImplTest</code>)</h3>
+
+<p>A camada de serviço contém nossa lógica de negócio mais crítica, então é o lugar perfeito para começar a testar.</p>
+
+<p><strong>Ação:</strong> Na pasta de testes (<code class="language-plaintext highlighter-rouge">src/test/java/...</code>), crie a classe <code class="language-plaintext highlighter-rouge">ProdutoServiceImplTest</code>.</p>
+
+<h4 id="código-serviceimplprodutoserviceimpltestjava-arquivo-completo">Código: <code class="language-plaintext highlighter-rouge">service/impl/ProdutoServiceImplTest.java</code> (Arquivo Completo)</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.service.impl</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoFormDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.exception.ResourceNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.mapper.ProdutoMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Categoria</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Fornecedor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.model.Produto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.repository.CategoriaRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.repository.FornecedorRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.repository.ProdutoRepository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.DisplayName</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.mockito.InjectMocks</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.mockito.Mock</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.mockito.junit.jupiter.MockitoExtension</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Optional</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Assertions</span><span class="o">.*;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">mockito</span><span class="o">.</span><span class="na">ArgumentMatchers</span><span class="o">.</span><span class="na">any</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">mockito</span><span class="o">.</span><span class="na">Mockito</span><span class="o">.*;</span>
+
+<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">MockitoExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="c1">// Habilita o Mockito para JUnit 5</span>
+<span class="kd">class</span> <span class="nc">ProdutoServiceImplTest</span> <span class="o">{</span>
+
+    <span class="nd">@Mock</span> <span class="c1">// 1. Cria um "simulador" para o ProdutoRepository</span>
+    <span class="kd">private</span> <span class="nc">ProdutoRepository</span> <span class="n">produtoRepository</span><span class="o">;</span>
+    <span class="nd">@Mock</span>
+    <span class="kd">private</span> <span class="nc">CategoriaRepository</span> <span class="n">categoriaRepository</span><span class="o">;</span>
+    <span class="nd">@Mock</span>
+    <span class="kd">private</span> <span class="nc">FornecedorRepository</span> <span class="n">fornecedorRepository</span><span class="o">;</span>
+    <span class="nd">@Mock</span>
+    <span class="kd">private</span> <span class="nc">ProdutoMapper</span> <span class="n">produtoMapper</span><span class="o">;</span>
+
+    <span class="nd">@InjectMocks</span> <span class="c1">// 2. Cria uma instância real do ProdutoServiceImpl, injetando os simuladores (mocks) acima</span>
+    <span class="kd">private</span> <span class="nc">ProdutoServiceImpl</span> <span class="n">produtoService</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Deve retornar um ProdutoDTO quando o ID existe"</span><span class="o">)</span>
+    <span class="kt">void</span> <span class="nf">findById_shouldReturnProductDTO_whenIdExists</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Arrange (Given)</span>
+        <span class="kt">int</span> <span class="n">productId</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="nc">Produto</span> <span class="n">produto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Produto</span><span class="o">(</span><span class="n">productId</span><span class="o">,</span> <span class="s">"Notebook"</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="nc">BigDecimal</span><span class="o">.</span><span class="na">TEN</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="nc">Categoria</span> <span class="n">categoria</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Categoria</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"Eletrônicos"</span><span class="o">);</span>
+        <span class="nc">Fornecedor</span> <span class="n">fornecedor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Fornecedor</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"Fornecedor X"</span><span class="o">,</span> <span class="s">"11.111.111/0001-11"</span><span class="o">);</span>
+        <span class="nc">ProdutoDTO</span> <span class="n">expectedDto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProdutoDTO</span><span class="o">(</span><span class="n">productId</span><span class="o">,</span> <span class="s">"Notebook"</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="nc">BigDecimal</span><span class="o">.</span><span class="na">TEN</span><span class="o">,</span> <span class="s">"Eletrônicos"</span><span class="o">,</span> <span class="s">"Fornecedor X"</span><span class="o">);</span>
+
+        <span class="c1">// "Quando o repository.findById for chamado com o ID 1, então retorne nosso produto de teste"</span>
+        <span class="n">when</span><span class="o">(</span><span class="n">produtoRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">productId</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">produto</span><span class="o">));</span>
+        <span class="c1">// Configura o comportamento dos outros mocks que são chamados internamente</span>
+        <span class="n">when</span><span class="o">(</span><span class="n">categoriaRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">anyInt</span><span class="o">())).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">categoria</span><span class="o">));</span>
+        <span class="n">when</span><span class="o">(</span><span class="n">fornecedorRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">anyInt</span><span class="o">())).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">fornecedor</span><span class="o">));</span>
+        <span class="n">when</span><span class="o">(</span><span class="n">produtoMapper</span><span class="o">.</span><span class="na">toDTO</span><span class="o">(</span><span class="n">any</span><span class="o">(),</span> <span class="n">any</span><span class="o">(),</span> <span class="n">any</span><span class="o">())).</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">expectedDto</span><span class="o">);</span>
+
+        <span class="c1">// Act (When)</span>
+        <span class="nc">ProdutoDTO</span> <span class="n">result</span> <span class="o">=</span> <span class="n">produtoService</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">productId</span><span class="o">);</span>
+
+        <span class="c1">// Assert (Then)</span>
+        <span class="n">assertNotNull</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedDto</span><span class="o">.</span><span class="na">id</span><span class="o">(),</span> <span class="n">result</span><span class="o">.</span><span class="na">id</span><span class="o">());</span>
+        <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedDto</span><span class="o">.</span><span class="na">nome</span><span class="o">(),</span> <span class="n">result</span><span class="o">.</span><span class="na">nome</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Deve lançar ResourceNotFoundException quando o ID não existe"</span><span class="o">)</span>
+    <span class="kt">void</span> <span class="nf">findById_shouldThrowResourceNotFoundException_whenIdDoesNotExist</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Arrange (Given)</span>
+        <span class="kt">int</span> <span class="n">productId</span> <span class="o">=</span> <span class="mi">99</span><span class="o">;</span>
+        <span class="c1">// "Quando o repository.findById for chamado com o ID 99, então retorne um Optional vazio"</span>
+        <span class="n">when</span><span class="o">(</span><span class="n">produtoRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">productId</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="nc">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">());</span>
+
+        <span class="c1">// Act &amp; Assert (When &amp; Then)</span>
+        <span class="c1">// Verifica se a execução do método findById lança a exceção esperada</span>
+        <span class="n">assertThrows</span><span class="o">(</span><span class="nc">ResourceNotFoundException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">produtoService</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">productId</span><span class="o">);</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"Deve chamar o método delete do repositório quando o produto existe"</span><span class="o">)</span>
+    <span class="kt">void</span> <span class="nf">delete_shouldCallRepositoryDelete_whenProductExists</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Arrange (Given)</span>
+        <span class="kt">int</span> <span class="n">productId</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="n">when</span><span class="o">(</span><span class="n">produtoRepository</span><span class="o">.</span><span class="na">existsById</span><span class="o">(</span><span class="n">productId</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="c1">// doNothing() é usado para métodos que não retornam nada (void)</span>
+        <span class="n">doNothing</span><span class="o">().</span><span class="na">when</span><span class="o">(</span><span class="n">produtoRepository</span><span class="o">).</span><span class="na">deleteById</span><span class="o">(</span><span class="n">productId</span><span class="o">);</span>
+
+        <span class="c1">// Act (When)</span>
+        <span class="n">produtoService</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">productId</span><span class="o">);</span>
+
+        <span class="c1">// Assert (Then)</span>
+        <span class="c1">// Verifica se o método deleteById do repositório foi chamado exatamente uma vez com o ID correto</span>
+        <span class="n">verify</span><span class="o">(</span><span class="n">produtoRepository</span><span class="o">,</span> <span class="n">times</span><span class="o">(</span><span class="mi">1</span><span class="o">)).</span><span class="na">deleteById</span><span class="o">(</span><span class="n">productId</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="-aula-63-avançado-testes-de-integração-para-a-camada-de-controller-webmvctest">### Aula 6.3: (Avançado) Testes de Integração para a Camada de Controller (<code class="language-plaintext highlighter-rouge">@WebMvcTest</code>)</h3>
+
+<p><strong>Conceito-Chave:</strong> <strong>Testes de Integração</strong> verificam como diferentes partes do sistema funcionam juntas. Com <code class="language-plaintext highlighter-rouge">@WebMvcTest</code>, o Spring Boot carrega apenas a camada web (<code class="language-plaintext highlighter-rouge">Controller</code>, <code class="language-plaintext highlighter-rouge">ExceptionHandler</code>, serializadores JSON), sem carregar a camada de serviço ou de banco de dados. Isso nos permite testar se nossos endpoints estão configurados corretamente, se a segurança está sendo aplicada e se o JSON está sendo gerado como esperado.</p>
+
+<p><strong>Ação:</strong> Na pasta de testes, crie a classe <code class="language-plaintext highlighter-rouge">ProdutoControllerTest</code>.</p>
+
+<h4 id="código-controllerprodutocontrollertestjava-arquivo-completo">Código: <code class="language-plaintext highlighter-rouge">controller/ProdutoControllerTest.java</code> (Arquivo Completo)</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">br.com.aula.gestaodeestoques.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.config.security.JwtAuthenticationFilter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.dto.ProdutoDTO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.exception.ResourceNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">br.com.aula.gestaodeestoques.service.ProdutoService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.DisplayName</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.test.mock.mockito.MockBean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.MediaType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.test.context.support.WithMockUser</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.MockMvc</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.math.BigDecimal</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">mockito</span><span class="o">.</span><span class="na">BDDMockito</span><span class="o">.</span><span class="na">given</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">get</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">delete</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">result</span><span class="o">.</span><span class="na">MockMvcResultMatchers</span><span class="o">.</span><span class="na">jsonPath</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">servlet</span><span class="o">.</span><span class="na">result</span><span class="o">.</span><span class="na">MockMvcResultMatchers</span><span class="o">.</span><span class="na">status</span><span class="o">;</span>
+
+<span class="nd">@WebMvcTest</span><span class="o">(</span><span class="nc">ProdutoController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="c1">// Carrega apenas o contexto web para o ProdutoController</span>
+<span class="kd">class</span> <span class="nc">ProdutoControllerTest</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span> <span class="c1">// Objeto para simular requisições HTTP</span>
+
+    <span class="nd">@MockBean</span> <span class="c1">// Cria um mock do serviço, pois o @WebMvcTest não carrega a camada de serviço</span>
+    <span class="kd">private</span> <span class="nc">ProdutoService</span> <span class="n">produtoService</span><span class="o">;</span>
+    
+    <span class="c1">// O filtro JWT precisa ser mockado também, pois ele faz parte da camada web</span>
+    <span class="nd">@MockBean</span>
+    <span class="kd">private</span> <span class="nc">JwtAuthenticationFilter</span> <span class="n">jwtAuthenticationFilter</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"GET /api/produtos deve retornar lista de produtos e status 200"</span><span class="o">)</span>
+    <span class="nd">@WithMockUser</span> <span class="c1">// Simula um usuário autenticado (necessário porque todos os endpoints são protegidos)</span>
+    <span class="kt">void</span> <span class="nf">findAll_shouldReturnListOfProducts_andStatus200</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// Arrange</span>
+        <span class="nc">ProdutoDTO</span> <span class="n">produtoDTO</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProdutoDTO</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"Teclado"</span><span class="o">,</span> <span class="mi">50</span><span class="o">,</span> <span class="nc">BigDecimal</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="mi">150</span><span class="o">),</span> <span class="s">"Periféricos"</span><span class="o">,</span> <span class="s">"Fornecedor Y"</span><span class="o">);</span>
+        <span class="n">given</span><span class="o">(</span><span class="n">produtoService</span><span class="o">.</span><span class="na">findAll</span><span class="o">()).</span><span class="na">willReturn</span><span class="o">(</span><span class="nc">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="n">produtoDTO</span><span class="o">));</span>
+
+        <span class="c1">// Act &amp; Assert</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/api/produtos"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="nc">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">jsonPath</span><span class="o">(</span><span class="s">"$[0].nome"</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="s">"Teclado"</span><span class="o">));</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"GET /api/produtos/{id} deve retornar 404 quando produto não existe"</span><span class="o">)</span>
+    <span class="nd">@WithMockUser</span>
+    <span class="kt">void</span> <span class="nf">findById_shouldReturn404_whenProductNotFound</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// Arrange</span>
+        <span class="kt">int</span> <span class="n">productId</span> <span class="o">=</span> <span class="mi">99</span><span class="o">;</span>
+        <span class="n">given</span><span class="o">(</span><span class="n">produtoService</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">productId</span><span class="o">)).</span><span class="na">willThrow</span><span class="o">(</span><span class="k">new</span> <span class="nc">ResourceNotFoundException</span><span class="o">(</span><span class="s">"Produto não encontrado"</span><span class="o">));</span>
+
+        <span class="c1">// Act &amp; Assert</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">"/api/produtos/{id}"</span><span class="o">,</span> <span class="n">productId</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isNotFound</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"DELETE /api/produtos/{id} deve retornar 403 Forbidden para usuário sem papel de ADMIN"</span><span class="o">)</span>
+    <span class="nd">@WithMockUser</span><span class="o">(</span><span class="n">roles</span> <span class="o">=</span> <span class="s">"USER"</span><span class="o">)</span> <span class="c1">// Simula um usuário logado com o papel "USER"</span>
+    <span class="kt">void</span> <span class="nf">delete_shouldReturn403Forbidden_whenUserIsNotAdmin</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// Arrange</span>
+        <span class="kt">int</span> <span class="n">productId</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="c1">// Não precisamos configurar o mock do service, pois a segurança deve barrar a requisição antes de chegar lá</span>
+
+        <span class="c1">// Act &amp; Assert</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">delete</span><span class="o">(</span><span class="s">"/api/produtos/{id}"</span><span class="o">,</span> <span class="n">productId</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isForbidden</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">"DELETE /api/produtos/{id} deve retornar 204 No Content para usuário ADMIN"</span><span class="o">)</span>
+    <span class="nd">@WithMockUser</span><span class="o">(</span><span class="n">roles</span> <span class="o">=</span> <span class="s">"ADMIN"</span><span class="o">)</span> <span class="c1">// Simula um usuário logado com o papel "ADMIN"</span>
+    <span class="kt">void</span> <span class="nf">delete_shouldReturn204NoContent_whenUserIsAdmin</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// Arrange</span>
+        <span class="kt">int</span> <span class="n">productId</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="c1">// doNothing() porque o método delete do service retorna void</span>
+        <span class="n">doNothing</span><span class="o">().</span><span class="na">when</span><span class="o">(</span><span class="n">produtoService</span><span class="o">).</span><span class="na">delete</span><span class="o">(</span><span class="n">productId</span><span class="o">);</span>
+        
+        <span class="c1">// Act &amp; Assert</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">delete</span><span class="o">(</span><span class="s">"/api/produtos/{id}"</span><span class="o">,</span> <span class="n">productId</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isNoContent</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="conclusão-do-módulo-6-e-próximos-passos">Conclusão do Módulo 6 e Próximos Passos</h3>
+
+<p><strong>Parabéns!</strong> Você adicionou uma camada de profissionalismo e segurança ao seu projeto. Com uma suíte de testes automatizados, você agora pode:</p>
+
+<ul>
+  <li><strong>Refatorar com confiança:</strong> Mude a implementação interna de um serviço e execute os testes para garantir que o comportamento externo não mudou.</li>
+  <li><strong>Validar a segurança:</strong> Provar que suas regras de autorização (<code class="language-plaintext highlighter-rouge">@PreAuthorize</code>) estão funcionando como esperado.</li>
+  <li><strong>Acelerar o desenvolvimento:</strong> Testes automatizados são muito mais rápidos e confiáveis do-que testes manuais repetitivos via Postman.</li>
+</ul>
+
+<p>Nossa API está completa, segura, documentada e, mais importante, <strong>testada</strong>. Ela é um produto de backend de nível profissional.</p>
+
+<p>No <strong>próximos módulos</strong>, vamos explorar como essa API robusta pode ser consumida por um <strong>frontend SPA</strong> e como podemos empacotá-la para <strong>deployment com Docker</strong>.</p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">Índice atualizado em 20/03/2026.</span>
+      </footer>
+    </main>
+  </body>
+</html>
