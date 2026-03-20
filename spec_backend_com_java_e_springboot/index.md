@@ -80,13 +80,5 @@ A combinação de **Java** e **Spring Boot** é imbatível quando o assunto é c
 
 🔧 Se você ainda não explorou essas tecnologias, é um ótimo momento para começar! E se já as conhece, sabe que elas continuam sendo algumas das melhores opções para construção de sistemas de alto desempenho e flexibilidade.
 
----
 
-## ✉️ Contatos
-
-* **[Contatos](https://ricardotecpro.github.io/contatos.html)**: Contatos / Contacts
-
----
-
-### 📌 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

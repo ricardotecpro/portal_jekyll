@@ -141,11 +141,6 @@ Não há um caminho único, mas uma trilha comum e eficaz é:
 
 ---
 
-## ✉️ Contatos
 
-* **[Contatos](https://ricardotecpro.github.io/contatos.html)**: Contatos / Contacts
 
----
-
-### 📌 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

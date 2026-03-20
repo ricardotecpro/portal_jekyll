@@ -134,13 +134,5 @@ Não há um caminho único, mas uma trilha comum e eficaz é:
 6.  **Explore o Básico de DevOps**: Aprenda Git profundamente. Em seguida, aprenda o básico de Docker para empacotar seu projeto. Finalmente, faça o deploy de uma aplicação para um serviço de nuvem (como Vercel, Heroku ou AWS).
 7.  **Nunca Pare de Aprender**: A jornada é contínua.
 
----
 
-## ✉️ Contatos
-
-* **[Contatos](https://ricardotecpro.github.io/contatos.html)**: Contatos / Contacts
-
----
-
-### 📌 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

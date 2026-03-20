@@ -170,13 +170,5 @@ Este repositório contém uma coleção de artigos que aprofundam os conceitos a
 *   **[Guia Avançado: Padrões, Testes e Tópicos Complementares](./padroes-projeto/padroes_de_projeto2.md)**: Expande os conceitos com seções sobre testes, banco de dados e tópicos avançados como CI/CD e Cloud.
 *   **[Foco em SOLID e Spring MVC](./padroes-projeto/design_patterns_solid_spring_mvc.md)**: Como aplicar os princípios SOLID e o padrão Strategy em conjunto com o Spring MVC.
 
----
 
-## ✉️ Contatos
-
-* **[Contatos](https://ricardotecpro.github.io/contatos.html)**: Contatos / Contacts
-
----
-
-### 📌 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 
