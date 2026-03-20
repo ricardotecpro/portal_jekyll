@@ -1,0 +1,24 @@
+@startuml
+package application {
+    class Program {
+        +void run()
+    }
+}
+
+package entities {
+    class Triangle {
+        +double a
+        +double b
+        +double c
+        +double area()
+    }
+}
+
+class Main {
+    +static void main(String[] args)
+}
+
+Main --> Program : "runs"
+Program --> Triangle : "uses"
+
+@enduml

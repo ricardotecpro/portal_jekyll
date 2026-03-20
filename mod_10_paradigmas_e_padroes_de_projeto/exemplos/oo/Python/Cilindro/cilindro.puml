@@ -1,0 +1,36 @@
+@startuml
+
+package "entidades" {
+    class Cilindro {
+        - raio: float
+        - altura: float
+        + __init__(diametro: float, altura: float)
+        + calcular_volume() : float
+        + calcular_area_superficial() : float
+        + mostrar_dados() : None
+    }
+}
+
+package "aplicacao" {
+    class Programa {
+        + capturar_dados_cilindro() : Cilindro
+    }
+}
+
+package "testes" {
+    class TestCilindro {
+        + test_calcular_volume() : None
+        + test_calcular_area_superficial() : None
+        + test_valores_invalidos() : None
+    }
+}
+
+class Main {
+    + main() : None
+}
+
+Programa --> Cilindro
+Main --> Programa
+TestCilindro ..|> Cilindro
+
+@enduml

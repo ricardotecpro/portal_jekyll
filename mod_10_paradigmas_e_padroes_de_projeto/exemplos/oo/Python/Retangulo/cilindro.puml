@@ -1,0 +1,27 @@
+@startuml
+
+' Definindo a classe Retangulo
+class Retangulo {
+    - largura: float
+    - altura: float
+    + __init__(largura: float, altura: float)
+    + calcular_area(): float
+}
+
+' Definindo a classe Program
+class Program {
+    + run(): void
+}
+
+' Definindo a classe Main (representando o arquivo main.py)
+class Main {
+    + __main__(): void
+}
+
+' Relação de uso: Program utiliza Retangulo
+Program -|> Retangulo : utiliza
+
+' Relação de execução: Main executa Program
+Main -> Program : executa
+
+@enduml

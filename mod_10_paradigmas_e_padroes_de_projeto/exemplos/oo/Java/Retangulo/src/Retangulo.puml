@@ -1,0 +1,24 @@
+@startuml
+
+package entities {
+    class Retangulo {
+        - double largura
+        - double comprimento
+        + double calcularArea()
+    }
+}
+
+package application {
+    class Program {
+        + main(args: String[]): void
+    }
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+Main --> Program : chama
+Program --> Retangulo : utiliza
+
+@enduml

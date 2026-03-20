@@ -1,0 +1,288 @@
+Para montar uma aula sobre Programação Orientada a Objetos (POO) com Java, podemos estruturar a aula de forma didática e bem explicativa. Vamos passar pelos conceitos essenciais de POO e ilustrá-los com exemplos de código passo a passo.
+
+---
+
+### **Aula: Introdução à Programação Orientada a Objetos com Java**
+
+### **Objetivo da Aula:**
+Entender os principais conceitos da POO e como implementá-los em Java. Ao final da aula, o aluno será capaz de criar classes, objetos, usar herança, polimorfismo, encapsulamento e abstração.
+
+---
+
+### **1. O que é POO (Programação Orientada a Objetos)?**
+
+A Programação Orientada a Objetos é um paradigma de programação que usa objetos e suas interações para modelar o mundo real. A POO organiza o código de forma modular e reutilizável, dividindo o programa em "objetos", que representam entidades do mundo real.
+
+**Principais conceitos de POO:**
+
+- **Classe:** Definição de um objeto.
+- **Objeto:** Instância de uma classe.
+- **Encapsulamento:** Proteger os dados e só permitir o acesso por métodos.
+- **Herança:** Criar uma nova classe a partir de uma classe existente.
+- **Polimorfismo:** Permitir que objetos de diferentes classes sejam tratados de forma semelhante.
+- **Abstração:** Simplificar as interações com objetos, escondendo os detalhes.
+
+---
+
+### **2. Criando uma Classe e Objetos**
+
+**Classe**: Um molde ou plano para criar objetos.
+
+**Objeto**: Uma instância de uma classe.
+
+Vamos começar criando uma classe `Carro`.
+
+#### Exemplo de código: Criando uma classe `Carro`
+
+```java
+// Definindo a classe Carro
+public class Carro {
+    // Atributos (ou propriedades) da classe Carro
+    String modelo;
+    String cor;
+    int ano;
+
+    // Método (ou comportamento) da classe Carro
+    void ligar() {
+        System.out.println("O carro está ligado!");
+    }
+
+    void acelerar() {
+        System.out.println("O carro está acelerando.");
+    }
+
+    void parar() {
+        System.out.println("O carro parou.");
+    }
+}
+```
+
+#### Explicação:
+
+- **Atributos**: `modelo`, `cor` e `ano` são as características do carro.
+- **Métodos**: `ligar()`, `acelerar()` e `parar()` representam as ações que um carro pode executar.
+
+Agora, vamos criar um **objeto** da classe `Carro` na classe `Main` e utilizar os métodos e atributos definidos.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Criando um objeto 'meuCarro' da classe Carro
+        Carro meuCarro = new Carro();
+
+        // Atribuindo valores aos atributos
+        meuCarro.modelo = "Fusca";
+        meuCarro.cor = "Azul";
+        meuCarro.ano = 1970;
+
+        // Chamando os métodos do objeto
+        System.out.println("Modelo do carro: " + meuCarro.modelo);
+        meuCarro.ligar();
+        meuCarro.acelerar();
+        meuCarro.parar();
+    }
+}
+```
+
+#### O que acontece aqui:
+- Criamos um objeto `meuCarro` da classe `Carro`.
+- Atribuímos valores aos atributos `modelo`, `cor` e `ano`.
+- Chamamos os métodos `ligar()`, `acelerar()` e `parar()` para simular as ações de um carro.
+
+---
+
+### **3. Encapsulamento: Protegendo os Dados**
+
+O encapsulamento visa proteger os dados de uma classe, permitindo o acesso a eles apenas por meio de métodos.
+
+#### Exemplo de encapsulamento:
+
+```java
+public class Carro {
+    // Atributos privados (protegidos)
+    private String modelo;
+    private String cor;
+    private int ano;
+
+    // Métodos públicos para acessar e modificar os atributos
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    // Métodos da classe
+    void ligar() {
+        System.out.println("O carro está ligado!");
+    }
+
+    void acelerar() {
+        System.out.println("O carro está acelerando.");
+    }
+
+    void parar() {
+        System.out.println("O carro parou.");
+    }
+}
+```
+
+#### Explicação:
+
+- **Atributos privados**: Agora os atributos `modelo`, `cor` e `ano` são privados.
+- **Métodos getters e setters**: Criamos métodos públicos para acessar e modificar esses atributos.
+
+---
+
+### **4. Herança: Reutilizando Código**
+
+A herança permite que uma classe herde atributos e métodos de outra classe.
+
+#### Exemplo de herança:
+
+```java
+// Classe base
+public class Veiculo {
+    String modelo;
+    String cor;
+
+    void ligar() {
+        System.out.println("O veículo está ligado.");
+    }
+}
+
+// Classe derivada
+public class Carro extends Veiculo {
+    int ano;
+
+    void acelerar() {
+        System.out.println("O carro está acelerando.");
+    }
+}
+```
+
+#### Explicação:
+- **Veiculo** é a classe base.
+- **Carro** é a classe derivada, que herda os atributos e métodos de `Veiculo`.
+
+Agora, podemos criar um objeto de `Carro` que possui os métodos e atributos de `Veiculo`.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Carro meuCarro = new Carro();
+        meuCarro.modelo = "Fusca";
+        meuCarro.cor = "Azul";
+        meuCarro.ano = 1970;
+
+        meuCarro.ligar();  // Método herdado
+        meuCarro.acelerar();  // Método da classe Carro
+    }
+}
+```
+
+---
+
+### **5. Polimorfismo: Comportamento Variado**
+
+Polimorfismo permite que métodos tenham comportamentos diferentes dependendo do objeto que os chama.
+
+#### Exemplo de polimorfismo:
+
+```java
+// Classe base
+public class Animal {
+    void fazerSom() {
+        System.out.println("O animal faz um som.");
+    }
+}
+
+// Classe derivada
+public class Cachorro extends Animal {
+    @Override
+    void fazerSom() {
+        System.out.println("O cachorro late.");
+    }
+}
+
+// Classe derivada
+public class Gato extends Animal {
+    @Override
+    void fazerSom() {
+        System.out.println("O gato mia.");
+    }
+}
+```
+
+Agora, podemos criar um método para demonstrar o polimorfismo.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        Animal cachorro = new Cachorro();
+        Animal gato = new Gato();
+
+        animal.fazerSom();  // Chama o método da classe Animal
+        cachorro.fazerSom();  // Chama o método da classe Cachorro
+        gato.fazerSom();  // Chama o método da classe Gato
+    }
+}
+```
+
+#### Explicação:
+- Usamos o **polimorfismo** para permitir que objetos de tipos diferentes (`Cachorro`, `Gato` e `Animal`) chamem o mesmo método `fazerSom()`, mas com comportamentos diferentes.
+
+---
+
+### **6. Abstração: Escondendo Detalhes**
+
+A abstração permite que você defina interfaces ou classes abstratas para fornecer uma interface comum sem se preocupar com a implementação detalhada.
+
+#### Exemplo de abstração com interface:
+
+```java
+interface Veiculo {
+    void acelerar();
+    void parar();
+}
+
+class Carro implements Veiculo {
+    public void acelerar() {
+        System.out.println("O carro está acelerando.");
+    }
+
+    public void parar() {
+        System.out.println("O carro parou.");
+    }
+}
+```
+
+---
+
+### **Conclusão**
+
+Com esses exemplos, você aprendeu os conceitos fundamentais de POO em Java, como **classes**, **objetos**, **encapsulamento**, **herança**, **polimorfismo** e **abstração**. Esses conceitos são a base para a criação de programas modulares e reutilizáveis.
+
+---
+
+Agora você pode realizar atividades práticas com mais exemplos, modificando os códigos para entender melhor os conceitos.
+
+Se tiver dúvidas ou quiser mais detalhes em algum ponto, só avisar! 😊

@@ -10,7 +10,7 @@ Em uma analogia com um restaurante, o desenvolvedor Full Stack seria o chef de c
 
 # ⚒️ Projetos
 
-* **[Projetos](./projetos/)**: Projetos: Estudo de Casos
+* **[Projetos](./proj_aplicacao_full_stack/)**: Projetos: Estudo de Casos
 
 ---
 
