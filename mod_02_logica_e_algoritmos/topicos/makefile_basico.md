@@ -1,3 +1,8 @@
+---
+layout: default
+title: Makefile C/C++: Compilando Projetos Profissionalmente
+---
+
 # Makefile C/C++: Compilando Projetos Profissionalmente
 
 Usar `Makefile` é o jeito profissional de compilar projetos em C (e outras linguagens).
@@ -103,4 +108,5 @@ Agora dentro do Vim:
 Montar um Makefile mais avançado
 
 Tipo separando arquivos `.h` e `.c` em pastas diferentes (src/, include/)
+
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: MELHORIAS-FUTURAS
+---
+
 Remover o `/web` estava incompleto, pois temos o cliente JavaFX.
 
 ** Remover o `/web` quebraria tudo, pois seu App Web e seu App Desktop entrariam em conflito, ambos tentando usar a mesma URL `/tarefas`.
@@ -116,4 +121,5 @@ Seu app web deve falar com o `TarefaWebController`. Portanto, **PRECISAMOS** adi
 3.  **Corrija** seu `TarefaApiService.java` (JavaFX) para apontar para a API correta: `http://localhost:8080/api/v1/tarefas`.
 
 Seguindo estes 3 passos, você terá uma arquitetura limpa e robusta onde todos os seus clientes (Web e Desktop) funcionarão corretamente sem conflitos.
+
 

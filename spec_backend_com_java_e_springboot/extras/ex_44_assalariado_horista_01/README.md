@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 
 # EXERCÍCIO DE FIXAÇÃO p.68  
 ## Herança  
@@ -94,7 +99,8 @@ public class Principal {
         System.out.println("== Funcionário Assalariado ==");
         f1.exibirDados();
 
-        System.out.println("\n== Funcionário Horista ==");
+        System.out.println("
+== Funcionário Horista ==");
         f2.exibirDados();
     }
 }
@@ -108,5 +114,6 @@ public class Principal {
 * `Assalariado` implementa esse método retornando o salário fixo.
 * `Horista` calcula o salário com base nas horas trabalhadas e no valor por hora.
 * A classe `Principal` instancia e testa os dois tipos de funcionários.
+
 
 

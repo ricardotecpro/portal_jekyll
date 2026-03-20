@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO00
+---
+
 Abaixo está a estrutura completa do nosso projeto **"Gestão de Estoques"**, detalhada com comentários que explicam o propósito de cada diretório e arquivo principal.
 
 -----
@@ -122,3 +127,4 @@ Esta estrutura não é aleatória; ela segue o princípio da **Separação de Re
   - **`Dockerfile` e `docker-compose.yml`**: Ferramentas de DevOps. Definem como nossa aplicação será "empacotada" em um container e como ela irá rodar junto com outros serviços (como um banco de dados) em qualquer ambiente.
 
 Esta estrutura clara e bem definida é a marca de um projeto profissional, tornando-o mais fácil de entender, manter e escalar no futuro.
+

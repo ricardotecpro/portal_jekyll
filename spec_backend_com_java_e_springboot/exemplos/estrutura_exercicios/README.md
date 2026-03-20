@@ -1,3 +1,8 @@
+---
+layout: default
+title: [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+---
+
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 
 # EXEMPLO
@@ -38,3 +43,4 @@ lista-exercicios-01/
 │       └── Produto.java
 │       └── Estoque.java
 ```
+

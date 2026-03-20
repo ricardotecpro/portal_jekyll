@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💻 Módulo 2: Frontend (Web) - Componentização e Clareza
+---
+
 # 💻 Módulo 2: Frontend (Web) - Componentização e Clareza
 
 **Objetivo:** Refatorar a UI para uma experiência CRUD mais tradicional e clara (botões explícitos) e organizar melhor o estado do componente.

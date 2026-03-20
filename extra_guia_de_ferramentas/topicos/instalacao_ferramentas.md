@@ -1,3 +1,8 @@
+---
+layout: default
+title: Capítulo: Instalação das Ferramentas de Linguagens 🛠️
+---
+
 ## Capítulo: Instalação das Ferramentas de Linguagens 🛠️
 
 ### Compilador GCC (MinGW para Windows) ⚙️
@@ -39,14 +44,18 @@ Fimalgoritmo
 #include <stdio.h> // Biblioteca padrão de entrada/saída
 
 int main() { // Função principal onde a execução do programa começa
-  printf("Ola mundo!\n"); // Função para imprimir texto no console. \n é um caractere de nova linha.
+  printf("Ola mundo!
+"); // Função para imprimir texto no console. 
+ é um caractere de nova linha.
   return 0; // Indica que o programa terminou com sucesso
 }
 ```
 **Explicação:**
 * `#include <stdio.h>`: Inclui a biblioteca padrão de entrada e saída, que contém funções como `printf`.
 * `int main()`: É a função principal onde a execução do programa começa. Todo programa C deve ter uma função `main`.
-* `printf("Ola mundo!\n");`: Chama a função `printf` para exibir a string "Ola mundo!" seguida por uma nova linha (`\n`) no console.
+* `printf("Ola mundo!
+");`: Chama a função `printf` para exibir a string "Ola mundo!" seguida por uma nova linha (`
+`) no console.
 * `return 0;`: Indica ao sistema operacional que o programa foi concluído com sucesso.
 
 ### Primeiro Programa em C++
@@ -517,3 +526,4 @@ A instalação e configuração das ferramentas de desenvolvimento são passos f
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

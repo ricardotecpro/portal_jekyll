@@ -1,3 +1,8 @@
+---
+layout: default
+title: Como remover do seu repositório arquivos que já foram "commitados"
+---
+
 # Como remover do seu repositório arquivos que já foram "commitados" 
 
 Mas que agora estão no `.gitignore`, não basta apenas criar o arquivo de ignore. O Git continuará rastreando os arquivos que ele já conhece.
@@ -82,3 +87,4 @@ Resumindo, a abordagem **automática (Método 1)** é a mais segura e completa p
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

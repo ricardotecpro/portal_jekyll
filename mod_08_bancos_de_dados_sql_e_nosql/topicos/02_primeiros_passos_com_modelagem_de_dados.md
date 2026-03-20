@@ -1,3 +1,8 @@
+---
+layout: default
+title: O Universo dos Bancos de Dados: Uma Visão Abrangente 🌌
+---
+
 ## O Universo dos Bancos de Dados: Uma Visão Abrangente 🌌
 
 Um banco de dados é uma coleção organizada e eletronicamente armazenada de informações, projetada para ser facilmente acessada, gerenciada e atualizada. Longe de serem meras planilhas, os bancos de dados são a espinha dorsal de quase todos os sistemas modernos, desde aplicações de negócios que precisam responder a perguntas críticas — como "quais são os produtos mais vendidos?" 📈 ou "como está o estoque?" 📦 — até redes sociais e sistemas de reserva de viagens.
@@ -73,3 +78,4 @@ Existem diversas áreas de atuação em bancos de dados, que podem ser divididas
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

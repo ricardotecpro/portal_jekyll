@@ -1,3 +1,8 @@
+---
+layout: default
+title: Relatório de Testes Automatizados
+---
+
 # Relatório de Testes Automatizados
 
 ## Resumo Executivo
@@ -109,3 +114,4 @@ A suite de testes garante que:
 - ✅ Assets (imagens, CSS, JS) estão presentes
 - ✅ Estrutura de slides está correta
 - ⚠️ Testes de UI requerem servidor HTTP estável
+

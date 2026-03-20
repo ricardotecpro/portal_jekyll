@@ -1,3 +1,8 @@
+---
+layout: default
+title: ✅ GitHub Pages
+---
+
 # ✅ GitHub Pages
 
 Para habilitar o GitHub Pages nas configurações do seu repositório e transformar seus arquivos Markdown (ou outro conteúdo web estático) em um site, siga estes passos:
@@ -108,3 +113,4 @@ Seguindo esses passos, seu material de estudo estará online e acessível atrav�
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

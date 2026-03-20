@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧪 Testes de Software: Garantindo a Qualidade e a Confiança
+---
+
 # 🧪 Testes de Software: Garantindo a Qualidade e a Confiança
 
 **Testes de Software** são um processo de verificação e validação para garantir que um sistema de software atenda aos requisitos técnicos e de negócio, funcionando conforme o esperado e livre de defeitos. É uma disciplina fundamental na engenharia de software, crucial para entregar produtos de alta qualidade.
@@ -159,3 +164,4 @@ Cenário: Login com credenciais válidas
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

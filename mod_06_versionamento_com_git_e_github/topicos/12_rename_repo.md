@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📝 Etapa 1: Renomear o Repositório no GitHub
+---
+
 ### 📝 Etapa 1: Renomear o Repositório no GitHub
 
   * **Siga exatamente os mesmos passos da resposta anterior.** Vá para a página do seu repositório \> `Settings` \> e renomeie o repositório no campo "Repository name". O protocolo (SSH ou HTTPS) não interfere nesta etapa.
@@ -62,3 +67,4 @@ E é isso\! O processo manual é robusto e funciona perfeitamente com SSH. A ún
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

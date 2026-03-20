@@ -1,3 +1,8 @@
+---
+layout: default
+title: WebSockets e REST
+---
+
 # WebSockets e REST 
 
 ## São duas abordagens diferentes para comunicação entre cliente e servidor na web. Aqui estão as principais diferenças entre eles:
@@ -54,3 +59,4 @@ Cada um tem seu lugar dependendo do caso de uso.
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

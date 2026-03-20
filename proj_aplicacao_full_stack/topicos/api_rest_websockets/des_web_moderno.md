@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Desenvolvimento Web Moderno: HTTP, WebSockets, SPA, HTMX e Infraestrutura de Rede**
+---
+
 ## **Desenvolvimento Web Moderno: HTTP, WebSockets, SPA, HTMX e Infraestrutura de Rede**
 
 O desenvolvimento web não depende apenas de frameworks modernos como **SPA, WebSockets e HTMX**, mas também de uma **infraestrutura robusta** que garante a comunicação eficiente na internet. Vamos explorar **HTTP, TCP/IP, portas, DNS, DHCP, CDN, IPv4 e IPv6**, além da quantidade de endereços que podem ser gerados.
@@ -143,3 +148,4 @@ A comunicação na internet depende de várias tecnologias, desde **HTTP e TCP/I
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

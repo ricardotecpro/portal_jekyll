@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java e Orientação a Objetos
+---
+
 # ☕ Java e Orientação a Objetos
 ## 📐 Exercícios de Fixação: 08 Exercícios em Java: Memória Vetores e Listas
 
@@ -57,7 +62,8 @@ public class ProgramaNegativos {
             vetor[i] = sc.nextInt();
         }
 
-        System.out.println("\nNUMEROS NEGATIVOS:");
+        System.out.println("
+NUMEROS NEGATIVOS:");
 
         // Loop para verificar e imprimir os números negativos
         for (int i = 0; i < vetor.length; i++) {
@@ -146,13 +152,17 @@ public class ProgramaSomaVetor {
 
         double media = soma / vetor.length; // Calcula a média
 
-        System.out.print("\nVALORES = ");
+        System.out.print("
+VALORES = ");
         for (int i = 0; i < vetor.length; i++) {
             System.out.printf("%.1f ", vetor[i]);
         }
 
-        System.out.printf("\nSOMA = %.2f\n", soma);
-        System.out.printf("MEDIA = %.2f\n", media);
+        System.out.printf("
+SOMA = %.2f
+", soma);
+        System.out.printf("MEDIA = %.2f
+", media);
 
         sc.close();
     }
@@ -222,7 +232,8 @@ public class ProgramaAlturas {
         double[] alturas = new double[n];
 
         for (int i = 0; i < n; i++) {
-            System.out.printf("Dados da %da pessoa:\n", i + 1);
+            System.out.printf("Dados da %da pessoa:
+", i + 1);
             System.out.print("Nome: ");
             sc.nextLine(); // Limpa o buffer do scanner
             nomes[i] = sc.nextLine();
@@ -239,7 +250,9 @@ public class ProgramaAlturas {
         }
         double alturaMedia = somaAlturas / n;
 
-        System.out.printf("\nAltura média: %.2f\n", alturaMedia);
+        System.out.printf("
+Altura média: %.2f
+", alturaMedia);
 
         // Cálculo da porcentagem de menores de 16 anos
         int contMenores = 0;
@@ -249,7 +262,8 @@ public class ProgramaAlturas {
             }
         }
         double percentualMenores = ((double)contMenores / n) * 100.0;
-        System.out.printf("Pessoas com menos de 16 anos: %.1f%%\n", percentualMenores);
+        System.out.printf("Pessoas com menos de 16 anos: %.1f%%
+", percentualMenores);
 
         // Imprime o nome dos menores de 16 anos
         for (int i = 0; i < n; i++) {
@@ -313,7 +327,8 @@ public class ProgramaNumerosPares {
             vetor[i] = sc.nextInt();
         }
 
-        System.out.println("\nNUMEROS PARES:");
+        System.out.println("
+NUMEROS PARES:");
 
         int quantidadePares = 0;
         for (int i = 0; i < n; i++) {
@@ -323,7 +338,10 @@ public class ProgramaNumerosPares {
             }
         }
 
-        System.out.printf("\n\nQUANTIDADE DE PARES = %d\n", quantidadePares);
+        System.out.printf("
+
+QUANTIDADE DE PARES = %d
+", quantidadePares);
         sc.close();
     }
 }
@@ -390,8 +408,11 @@ public class ProgramaMaiorPosicao {
             }
         }
 
-        System.out.printf("\nMAIOR VALOR = %.1f\n", maiorValor);
-        System.out.printf("POSICAO DO MAIOR VALOR = %d\n", posicaoMaior);
+        System.out.printf("
+MAIOR VALOR = %.1f
+", maiorValor);
+        System.out.printf("POSICAO DO MAIOR VALOR = %d
+", posicaoMaior);
 
         sc.close();
     }

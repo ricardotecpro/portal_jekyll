@@ -1,3 +1,8 @@
+---
+layout: default
+title: O Modelo Lógico Relacional
+---
+
 ## O Modelo Lógico Relacional 
 
 É um modelo de dados de nível de design, proposto por Edgar F. Codd em 1970, que se tornou a base para a maioria dos bancos de dados modernos.
@@ -49,3 +54,4 @@ O processo de transformar um Modelo Conceitual (MC) em um Modelo Relacional (MR)
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

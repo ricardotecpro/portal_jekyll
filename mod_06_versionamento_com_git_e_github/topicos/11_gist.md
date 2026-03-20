@@ -1,3 +1,8 @@
+---
+layout: default
+title: Gist do GitHub: Como Usar e Onde Funciona
+---
+
 # Gist do GitHub: Como Usar e Onde Funciona
 
 Códigos do **Gist do GitHub** podem ser incluídos em diversos locais, desde que suportem **HTML e JavaScript**. Aqui estão algumas opções comuns:
@@ -145,3 +150,4 @@ Se precisar incorporar códigos em sites sem suporte a `<script>`, o ideal é us
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

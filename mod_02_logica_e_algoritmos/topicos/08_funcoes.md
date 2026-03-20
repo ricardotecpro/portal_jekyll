@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📦 Funções (Métodos) em Programação
+---
+
 # 📦 Funções (Métodos) em Programação
 
 Funções, que em Java e em outras linguagens orientadas a objetos são mais comumente chamadas de **métodos**, são um dos pilares da programação estruturada. Elas nos permitem organizar e reutilizar código, tornando nossos programas mais modulares, legíveis e fáceis de manter.
@@ -131,11 +136,15 @@ public class RelatorioFinanceiro {
      */
     public static void mostrarRelatorio(String nome, double total, double entrada) {
         double restante = total - entrada;
-        System.out.println("\n--- RELATÓRIO ---");
+        System.out.println("
+--- RELATÓRIO ---");
         System.out.println("NOME: " + nome);
-        System.out.printf("VALOR TOTAL: R$ %.2f\n", total);
-        System.out.printf("VALOR DE ENTRADA: R$ %.2f\n", entrada);
-        System.out.printf("VALOR PARCELADO: R$ %.2f\n", restante);
+        System.out.printf("VALOR TOTAL: R$ %.2f
+", total);
+        System.out.printf("VALOR DE ENTRADA: R$ %.2f
+", entrada);
+        System.out.printf("VALOR PARCELADO: R$ %.2f
+", restante);
         System.out.println("-----------------");
     }
 
@@ -178,8 +187,10 @@ public static void main(String[] args) {
     // Medidas do triângulo Y
     double areaY = areaTriangulo(7.50, 4.50, 4.02);
 
-    System.out.printf("Área de X = %.4f\n", areaX);
-    System.out.printf("Área de Y = %.4f\n", areaY);
+    System.out.printf("Área de X = %.4f
+", areaX);
+    System.out.printf("Área de Y = %.4f
+", areaY);
 }
 ```
 
@@ -232,3 +243,4 @@ public static void main(String[] args) {
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

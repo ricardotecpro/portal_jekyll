@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Backend Poliglota: Dominando a Web com Java (Spring Boot) e Python (FastAPI)**
+---
+
 ### **Backend Poliglota: Dominando a Web com Java (Spring Boot) e Python (FastAPI)**
 
 **Público-Alvo:**
@@ -109,3 +114,4 @@ O curso será dividido em seções. Primeiro, os fundamentos universais. Depois,
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

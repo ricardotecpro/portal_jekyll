@@ -1,3 +1,8 @@
+---
+layout: default
+title: Automatizar esse processo de Rename
+---
+
 # Automatizar esse processo de Rename
 
 pode economizar tempo e evitar erros, especialmente se você faz isso com frequência. Abaixo está um **script em PowerShell** que:
@@ -58,3 +63,4 @@ git remote -v
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

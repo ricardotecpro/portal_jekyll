@@ -1,3 +1,8 @@
+---
+layout: default
+title: Módulo 0 — Ambientação
+---
+
 # Módulo 0 — Ambientação
 
 Organize seu ambiente de trabalho antes de começar.
@@ -18,3 +23,4 @@ Organize seu ambiente de trabalho antes de começar.
 - Git
 - Terminal (Windows ou Linux)
 - Docker
+

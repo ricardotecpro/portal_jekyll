@@ -1,3 +1,8 @@
+---
+layout: default
+title: SOLID, Inversão de Controle e Injeção de Dependência
+---
+
 # SOLID, Inversão de Controle e Injeção de Dependência
 
 
@@ -276,3 +281,4 @@ Esses conceitos são essenciais para criar **aplicações escaláveis, flexívei
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

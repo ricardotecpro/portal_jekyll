@@ -1,3 +1,8 @@
+---
+layout: default
+title: ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
+---
+
 # ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
 >  Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end
 
@@ -37,3 +42,4 @@ Dentro do módulo, `this` é `undefined` e não uma referência para `window`. M
 Boa prática: para componentes, use a exportação padrão. Use named exports apenas em casos em que se aplique, tais como bibliotecas e utilitários.
 
 É possível ver o carregamento dos módulos na aba Network do navegador. O carregamento é assíncrono, mas a ordem de execução é mantida.
+

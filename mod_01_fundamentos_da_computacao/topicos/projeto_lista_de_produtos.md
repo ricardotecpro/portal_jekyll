@@ -1,3 +1,8 @@
+---
+layout: default
+title: Tutorial Atualizado: Configurando Spring Boot e Angular
+---
+
 # Tutorial Atualizado: Configurando Spring Boot e Angular
 
 Configuração de um projeto **Spring Boot (backend)** e **Angular (frontend)** para consumir uma API REST com suporte a CORS e banco de dados H2/MySQL. Além disso, forneceremos um arquivo `docker-compose.yml` para facilitar a execução do projeto.
@@ -252,3 +257,4 @@ Agora o Angular, o Spring Boot, o MySQL e o Nginx estão configurados corretamen
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

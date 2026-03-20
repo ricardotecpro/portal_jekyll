@@ -1,3 +1,8 @@
+---
+layout: default
+title: Primeiro jogo gráfico em Java: o **Jogo da Memória**.
+---
+
 # Primeiro jogo gráfico em Java: o **Jogo da Memória**.
 
 Vamos arregaçar as mangas e construir juntos, passo a passo, o seu primeiro jogo gráfico em Java: o **Jogo da Memória**.
@@ -360,7 +365,8 @@ public class JogoDaMemoria extends JFrame implements ActionListener {
     private void finalizarJogo() {
         // Mostra uma caixa de diálogo
         int resposta = JOptionPane.showConfirmDialog(this, 
-                "Parabéns! Você encontrou todos os pares!\nDeseja jogar novamente?", 
+                "Parabéns! Você encontrou todos os pares!
+Deseja jogar novamente?", 
                 "Fim de Jogo", 
                 JOptionPane.YES_NO_OPTION); // Botões de Sim ou Não
 
@@ -598,7 +604,8 @@ public class JogoDaMemoria extends JFrame implements ActionListener {
     private void finalizarJogo() {
         // Mostra uma caixa de diálogo (JOptionPane)
         int resposta = JOptionPane.showConfirmDialog(this, 
-                "Parabéns! Você encontrou todos os pares!\nDeseja jogar novamente?", 
+                "Parabéns! Você encontrou todos os pares!
+Deseja jogar novamente?", 
                 "Fim de Jogo", 
                 JOptionPane.YES_NO_OPTION);
 
@@ -834,7 +841,8 @@ public class JogoDaMemoria extends JFrame implements ActionListener {
     private void finalizarJogo() {
         // Mostra uma caixa de diálogo (JOptionPane)
         int resposta = JOptionPane.showConfirmDialog(this,
-                "Parabéns! Você encontrou todos os pares!\nDeseja jogar novamente?",
+                "Parabéns! Você encontrou todos os pares!
+Deseja jogar novamente?",
                 "Fim de Jogo",
                 JOptionPane.YES_NO_OPTION);
 
@@ -898,3 +906,4 @@ Como professor, eu sempre deixo alguns desafios para os alunos curiosos:
 
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

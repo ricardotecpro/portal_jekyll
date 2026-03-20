@@ -1,3 +1,8 @@
+---
+layout: default
+title: ✅ Estrutura .antigravity Criada com Sucesso
+---
+
 # ✅ Estrutura .antigravity Criada com Sucesso
 
 Todos os artefatos do Antigravity foram copiados para o diretório do projeto!
@@ -395,3 +400,4 @@ git push origin main
 ---
 
 **Pronto para uso em qualquer lugar! 🚀**
+

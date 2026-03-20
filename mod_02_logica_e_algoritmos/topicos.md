@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lógica de Programação e Algoritmos 📚
+---
+
 # Lógica de Programação e Algoritmos 📚
 
 O curso está estruturado para levar você do básico da lógica de programação até a implementação em várias linguagens populares.
@@ -74,3 +79,4 @@ O curso segue uma trilha de aprendizado clara, dividida em dois módulos princip
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

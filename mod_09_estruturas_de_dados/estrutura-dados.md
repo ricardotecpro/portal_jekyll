@@ -1,3 +1,8 @@
+---
+layout: default
+title: Estruturas de Dados 🎯
+---
+
 ### Estruturas de Dados 🎯
 
 Este capítulo inicial tem como objetivos esclarecer a diferença entre a disciplina de "Lógica de Programação e Algoritmos" e o estudo aprofundado de "Estruturas de Dados e Algoritmos", além de nivelar conhecimentos essenciais sobre objetos, funções, memória e leitura de JSON com Python e Java.
@@ -64,3 +69,4 @@ CUDA - Transformada Rápida de Fourier.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

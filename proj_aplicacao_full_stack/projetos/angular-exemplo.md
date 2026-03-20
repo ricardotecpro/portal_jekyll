@@ -1,3 +1,8 @@
+---
+layout: default
+title: Construindo o Frontend com Angular
+---
+
 # Construindo o Frontend com Angular
 
 Após criar a API, o próximo passo é desenvolver a interface web que irá interagir com ela.  
@@ -351,3 +356,4 @@ Verifique se todos os métodos CRUD foram implementados no serviço `TarefaServi
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

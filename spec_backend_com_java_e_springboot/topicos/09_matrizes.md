@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java: Matrizes
+---
+
 # ☕ Java: Matrizes
 
 Este material aborda o conceito de matrizes em Java, incluindo sua declaração, instanciação, manipulação e o uso da propriedade `length`.
@@ -149,7 +154,8 @@ public class ProgramaMatriz {
             }
         }
 
-        System.out.println("\nDiagonal principal:");
+        System.out.println("
+Diagonal principal:");
         for (int i = 0; i < n; i++) {
             System.out.print(matriz[i][i] + " ");
         }
@@ -246,3 +252,4 @@ Memória
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

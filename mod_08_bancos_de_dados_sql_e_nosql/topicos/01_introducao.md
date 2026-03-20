@@ -1,3 +1,8 @@
+---
+layout: default
+title: O Universo dos Bancos de Dados: Uma Visão Abrangente 🌌
+---
+
 # O Universo dos Bancos de Dados: Uma Visão Abrangente 🌌
 
 Um banco de dados é um sistema projetado para organizar e armazenar dados, resolvendo problemas cruciais para os negócios, como a gestão de grandes volumes de informações, velocidade de acesso, consistência e segurança. As empresas precisam de respostas fundamentadas em dados para perguntas importantes, como "quais são os produtos mais vendidos?" ou "como está o estoque?", e planilhas muitas vezes não são suficientes para essa tarefa.
@@ -47,3 +52,4 @@ Existem diversas áreas de atuação em bancos de dados, que podem ser divididas
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

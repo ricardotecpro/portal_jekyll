@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Arquivo 2: `modulo-02-servidores-web.md`**
+---
+
 ### **Arquivo 2: `modulo-02-servidores-web.md`**
 
 # 🚀 Módulo 2: O Coração da Aplicação - Servidores Web
@@ -21,13 +26,15 @@ sequenceDiagram
 
     Client->>Server: GET /pagina.html HTTP/1.1
     Note over Server: Requisição recebida
-    Server-->>Client: HTTP/1.1 200 OK\n<html>...</html>
+    Server-->>Client: HTTP/1.1 200 OK
+<html>...</html>
     Note over Client: Resposta recebida e renderizada
 
     Client->>Server: GET /api/dados HTTP/1.1
     Server->>App: Processar requisição para /api/dados
     App-->>Server: Dados em JSON
-    Server-->>Client: HTTP/1.1 200 OK\n{"id": 1, "nome": "Produto"}
+    Server-->>Client: HTTP/1.1 200 OK
+{"id": 1, "nome": "Produto"}
 ````
 
   - **Conteúdo Estático:** Arquivos que não mudam (HTML, CSS, JS, imagens). Servidos diretamente pelo servidor web.
@@ -114,4 +121,5 @@ server {
     }
 }
 ```
+
 

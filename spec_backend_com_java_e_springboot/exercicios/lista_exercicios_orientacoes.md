@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Exercícios POO
+---
+
 # Lista de Exercícios POO
 
 ---
@@ -50,3 +55,4 @@ Todos os códigos de exemplo podem ser executados facilmente nas IDEs mais popul
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

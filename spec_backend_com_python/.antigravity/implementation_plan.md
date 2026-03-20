@@ -1,3 +1,8 @@
+---
+layout: default
+title: Refatoração de Quizzes, Slides e Redesign da Home
+---
+
 # Refatoração de Quizzes, Slides e Redesign da Home
 
 ## Problemas Identificados
@@ -294,3 +299,4 @@ hide:
 4. Executar Fase 3 (Index)
 5. Executar Fase 4 (Testes)
 6. Documentar no walkthrough
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **1. Introdução ao Spring Boot**
+---
+
 ## **1. Introdução ao Spring Boot**
 
 O **Spring Boot** é uma extensão do framework **Spring** que simplifica a configuração e o desenvolvimento de aplicações Java. Ele permite criar **aplicações autônomas e prontas para produção** com um mínimo de configuração manual.
@@ -203,3 +208,4 @@ Spring Boot é uma excelente ferramenta para criar aplicações Java de forma r�
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: GIT-BRANCH-PASSO-A-PASSO
+---
+
 Passo a Passo para Criar uma Nova Branch
 
 Passo 1: Sincronize seu Repositório LocalAntes de criar qualquer nova branch, certifique-se de que sua branch principal (geralmente main ou develop) está atualizada com a versão mais recente do repositório remoto.
@@ -46,6 +51,7 @@ Assim que você criar a branch, é uma boa prática publicá-la no repositório 
 
 
 git push -u origin hotfix/add-h2-and-task-table
+
 
 
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem Go (Golang) 🐹
+---
+
 # Linguagem Go (Golang) 🐹
 
 Bem-vindo ao guia da linguagem Go, uma linguagem de programação de código aberto criada pelo Google. O Go foi projetado para ser simples, eficiente, legível e altamente performático, com um foco especial em programação concorrente (execução de múltiplas tarefas simultaneamente). É amplamente utilizado na construção de microsserviços, ferramentas de linha de comando, processamento de dados e infraestrutura de backend.
@@ -91,10 +96,14 @@ func main() {
 	isRemoto := true
 
 	// Usando Printf para formatação controlada
-	fmt.Printf("NOME = %s\n", nome)
-	fmt.Printf("IDADE = %d\n", idade)
-	fmt.Printf("SALARIO = %.2f\n", salario)
-	fmt.Printf("TRABALHO REMOTO? = %t\n", isRemoto)
+	fmt.Printf("NOME = %s
+", nome)
+	fmt.Printf("IDADE = %d
+", idade)
+	fmt.Printf("SALARIO = %.2f
+", salario)
+	fmt.Printf("TRABALHO REMOTO? = %t
+", isRemoto)
 }
 ```
 
@@ -151,21 +160,28 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Print("Digite seu nome completo: ")
-	nome, _ := reader.ReadString('\n') // Lê até a quebra de linha
+	nome, _ := reader.ReadString('
+') // Lê até a quebra de linha
 	nome = strings.TrimSpace(nome)     // Remove espaços em branco e a quebra de linha
 
 	fmt.Print("Digite sua idade: ")
-	idadeStr, _ := reader.ReadString('\n')
+	idadeStr, _ := reader.ReadString('
+')
 	idade, _ := strconv.Atoi(strings.TrimSpace(idadeStr)) // Converte string para int
 
 	fmt.Print("Digite seu salario: ")
-	salarioStr, _ := reader.ReadString('\n')
+	salarioStr, _ := reader.ReadString('
+')
 	salario, _ := strconv.ParseFloat(strings.TrimSpace(salarioStr), 64) // Converte para float64
 
-	fmt.Println("\n--- DADOS REGISTRADOS ---")
-	fmt.Printf("Nome: %s\n", nome)
-	fmt.Printf("Idade: %d\n", idade)
-	fmt.Printf("Salario: %.2f\n", salario)
+	fmt.Println("
+--- DADOS REGISTRADOS ---")
+	fmt.Printf("Nome: %s
+", nome)
+	fmt.Printf("Idade: %d
+", idade)
+	fmt.Printf("Salario: %.2f
+", salario)
 }
 ```
 
@@ -199,7 +215,8 @@ soma := 0
 for i := 0; i < 5; i++ {
 	soma += i
 }
-fmt.Printf("Soma (estilo C): %d\n", soma)
+fmt.Printf("Soma (estilo C): %d
+", soma)
 ```
 
 **2. Laço `for` no estilo `while`:**
@@ -207,7 +224,8 @@ fmt.Printf("Soma (estilo C): %d\n", soma)
 ```go
 n := 5
 for n > 0 {
-	fmt.Printf("n = %d\n", n)
+	fmt.Printf("n = %d
+", n)
 	n--
 }
 ```
@@ -217,7 +235,8 @@ for n > 0 {
 ```go
 nomes := []string{"Ana", "Carlos", "Beatriz"}
 for indice, nome := range nomes {
-	fmt.Printf("Indice: %d, Nome: %s\n", indice, nome)
+	fmt.Printf("Indice: %d, Nome: %s
+", indice, nome)
 }
 ```
 
@@ -248,9 +267,11 @@ func main() {
 		fmt.Scanln(&vetor[i])
 	}
 
-	fmt.Println("\nNUMEROS DIGITADOS:")
+	fmt.Println("
+NUMEROS DIGITADOS:")
 	for _, numero := range vetor { // _ ignora o índice
-		fmt.Printf("%.1f\n", numero)
+		fmt.Printf("%.1f
+", numero)
 	}
 }
 ```
@@ -289,3 +310,4 @@ A depuração em Go é feita com a ferramenta **Delve**, que se integra perfeita
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

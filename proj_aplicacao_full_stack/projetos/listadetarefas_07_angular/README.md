@@ -1,3 +1,8 @@
+---
+layout: default
+title: Guia Didático: Projeto Lista de Tarefas (Full Stack)
+---
+
 # Guia Didático: Projeto Lista de Tarefas (Full Stack)
 
 Este guia foi elaborado para professores e alunos iniciantes em computação. Ele apresenta o desenvolvimento de uma aplicação web completa (Full Stack) utilizando tecnologias modernas e amplamente adotadas no mercado: **Spring Boot (Java)** para o Backend e **Angular** para o Frontend.
@@ -154,3 +159,4 @@ O Spring Boot (`@Autowired`) e o Angular (Construtor) gerenciam automaticamente 
 ---
 
 **Bom aprendizado!** 🚀
+

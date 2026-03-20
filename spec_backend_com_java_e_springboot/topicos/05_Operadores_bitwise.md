@@ -1,3 +1,8 @@
+---
+layout: default
+title: Operadores Bitwise em Java: Manipulando Bits Como um Profissional 💡
+---
+
 # Operadores Bitwise em Java: Manipulando Bits Como um Profissional 💡
 
 Em Java, os operadores *bitwise* (ou "bit a bit") são ferramentas de baixo nível que permitem a manipulação direta dos `0`s e `1`s que formam os números inteiros (`int`, `long`, `byte`, etc.).
@@ -200,3 +205,4 @@ Para compilar e rodar estes exemplos, certifique-se de ter o **JDK (Java Develop
 5.  Clique na seta verde (▶️) ao lado do método `main` para executar.
 
 ---
+

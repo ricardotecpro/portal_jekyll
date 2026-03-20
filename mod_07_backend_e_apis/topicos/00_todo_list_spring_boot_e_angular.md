@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Todo-List com Spring Boot**
+---
+
 # **Todo-List com Spring Boot**
 
 Este tutorial guiará você passo a passo na criação de um **quadro de tarefas** (todo-list) com **Spring Boot** e **Angular**, seguindo uma estrutura organizada em **backend** e **frontend**.
@@ -100,3 +105,4 @@ package org.brothers.listatarefas.controller;  import org.brothers.listatarefas.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

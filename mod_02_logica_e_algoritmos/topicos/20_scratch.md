@@ -1,3 +1,8 @@
+---
+layout: default
+title: **📚 Curso de Scratch para Logística/Administração**:
+---
+
 # **📚 Curso de Scratch para Logística/Administração**:
 
 * 📌 **Emojis** para facilitar leitura e deixar mais leve.
@@ -195,3 +200,4 @@ Quer que eu já gere esse pacote completo?
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

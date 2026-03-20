@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem C 📖
+---
+
 # Linguagem C 📖
 
 Este guia é um material de apoio completo para quem está começando na linguagem C, especialmente para estudantes que já possuem uma base em lógica de programação.
@@ -34,7 +39,8 @@ Vamos criar um programa clássico que exibe uma mensagem na tela.
 #include <stdio.h>
 
 int main() {
-    printf("Ola, Universo C!\n");
+    printf("Ola, Universo C!
+");
 
     return 0;
 }
@@ -44,7 +50,9 @@ int main() {
 
 * `#include <stdio.h>`: Importa a biblioteca padrão de entrada e saída de dados (`Standard Input/Output`), que nos dá acesso a funções como `printf`.
 * `int main()`: É a função principal, o ponto de partida de todo programa em C.
-* `printf("Ola, Universo C!\n");`: A função `printf` é usada para "imprimir" texto no console. O `\n` é um caractere especial que significa "nova linha".
+* `printf("Ola, Universo C!
+");`: A função `printf` é usada para "imprimir" texto no console. O `
+` é um caractere especial que significa "nova linha".
 * `return 0;`: Indica que o programa foi executado com sucesso e terminou sem erros.
 
 ## 📊 Tipos de Dados e Variáveis
@@ -84,11 +92,16 @@ int main() {
     strcpy(nome, "Ana Souza"); // Função para copiar um texto para uma variável string
 
     // Saída de dados
-    printf("IDADE = %d\n", idade);
-    printf("SALARIO = %.2f\n", salario); // %.2f formata para 2 casas decimais
-    printf("ALTURA = %.2f\n", altura);
-    printf("GENERO = %c\n", genero);
-    printf("NOME = %s\n", nome);
+    printf("IDADE = %d
+", idade);
+    printf("SALARIO = %.2f
+", salario); // %.2f formata para 2 casas decimais
+    printf("ALTURA = %.2f
+", altura);
+    printf("GENERO = %c
+", genero);
+    printf("NOME = %s
+", nome);
 
     return 0;
 }
@@ -167,7 +180,8 @@ int main() {
     char genero = 'F';
 
     // Imprimindo uma frase formatada
-    printf("A funcionaria %s, do sexo %c, tem %d anos e recebe R$ %.2f.\n", nome, genero, idade, salario);
+    printf("A funcionaria %s, do sexo %c, tem %d anos e recebe R$ %.2f.
+", nome, genero, idade, salario);
 
     return 0;
 }
@@ -195,7 +209,8 @@ int main() {
 
     resultado = a / b;
 
-    printf("Resultado: %d\n", resultado); // Saída será 3, a parte decimal é perdida
+    printf("Resultado: %d
+", resultado); // Saída será 3, a parte decimal é perdida
 
     return 0;
 }
@@ -220,7 +235,8 @@ int main() {
 
     resultado = (double) a / b; // Casting de 'a' para double antes da divisão
 
-    printf("Resultado: %.2f\n", resultado); // Saída será 3.33
+    printf("Resultado: %.2f
+", resultado); // Saída será 3.33
 
     return 0;
 }
@@ -238,7 +254,9 @@ Para ler dados digitados pelo usuário, usamos a função `scanf`. Ela utiliza o
 
 **O Desafio do Buffer de Entrada**
 
-Um problema comum em C é o "lixo" deixado no buffer de entrada (uma área de memória temporária). Quando você lê um número com `scanf("%d", &idade);`, o número é lido, mas a tecla `Enter` (`\n`) que você pressionou continua no buffer. Se a próxima leitura for de um caractere ou de um texto, ela pode capturar esse `\n` indesejado.
+Um problema comum em C é o "lixo" deixado no buffer de entrada (uma área de memória temporária). Quando você lê um número com `scanf("%d", &idade);`, o número é lido, mas a tecla `Enter` (`
+`) que você pressionou continua no buffer. Se a próxima leitura for de um caractere ou de um texto, ela pode capturar esse `
+` indesejado.
 
 **Solução: Funções de Limpeza**
 Para evitar problemas, podemos criar uma função para limpar o buffer antes de ler um texto ou um caractere que venha depois de uma leitura de número.
@@ -250,13 +268,15 @@ Para evitar problemas, podemos criar uma função para limpar o buffer antes de 
 // Função para limpar o buffer de entrada
 void limpar_entrada() {
     char c;
-    while ((c = getchar()) != '\n' && c != EOF) {}
+    while ((c = getchar()) != '
+' && c != EOF) {}
 }
 
 // Função para ler texto de forma segura
 void ler_texto(char *buffer, int length) {
     fgets(buffer, length, stdin);
-    strtok(buffer, "\n"); // Remove a quebra de linha que o fgets captura
+    strtok(buffer, "
+"); // Remove a quebra de linha que o fgets captura
 }
 
 int main() {
@@ -280,11 +300,17 @@ int main() {
     printf("Digite seu salario: ");
     scanf("%lf", &salario);
 
-    printf("\n--- DADOS CADASTRADOS ---\n");
-    printf("Nome: %s\n", nome);
-    printf("Idade: %d\n", idade);
-    printf("Genero: %c\n", genero);
-    printf("Salario: %.2f\n", salario);
+    printf("
+--- DADOS CADASTRADOS ---
+");
+    printf("Nome: %s
+", nome);
+    printf("Idade: %d
+", idade);
+    printf("Genero: %c
+", genero);
+    printf("Salario: %.2f
+", salario);
 
     return 0;
 }
@@ -304,13 +330,16 @@ int main() {
     scanf("%d", &hora);
 
     if (hora < 12) {
-        printf("Bom dia!\n");
+        printf("Bom dia!
+");
     }
     else if (hora < 18) {
-        printf("Boa tarde!\n");
+        printf("Boa tarde!
+");
     }
     else {
-        printf("Boa noite!\n");
+        printf("Boa noite!
+");
     }
 
     return 0;
@@ -338,7 +367,8 @@ int main() {
         scanf("%d", &numero);
     }
 
-    printf("SOMA FINAL = %d\n", soma);
+    printf("SOMA FINAL = %d
+", soma);
 
     return 0;
 }
@@ -364,7 +394,8 @@ int main() {
         soma += valor; // Forma abreviada de soma = soma + valor
     }
 
-    printf("SOMA FINAL = %d\n", soma);
+    printf("SOMA FINAL = %d
+", soma);
 
     return 0;
 }
@@ -379,7 +410,8 @@ Similar ao `while`, mas garante que o bloco de código seja executado **pelo men
 
 void limpar_entrada() {
     char c;
-    while ((c = getchar()) != '\n' && c != EOF) {}
+    while ((c = getchar()) != '
+' && c != EOF) {}
 }
 
 int main() {
@@ -392,7 +424,8 @@ int main() {
         
         F = C * 9.0 / 5.0 + 32.0;
         
-        printf("Equivalente em Fahrenheit: %.1f\n", F);
+        printf("Equivalente em Fahrenheit: %.1f
+", F);
         
         printf("Deseja repetir (s/n)? ");
         limpar_entrada();
@@ -424,9 +457,12 @@ int main() {
         scanf("%lf", &numeros[i]);
     }
 
-    printf("\nNUMEROS DIGITADOS:\n");
+    printf("
+NUMEROS DIGITADOS:
+");
     for (i = 0; i < N; i++) {
-        printf("%.1f\n", numeros[i]);
+        printf("%.1f
+", numeros[i]);
     }
 
     return 0;
@@ -457,12 +493,15 @@ int main() {
         }
     }
 
-    printf("\nMATRIZ DIGITADA:\n");
+    printf("
+MATRIZ DIGITADA:
+");
     for (i = 0; i < M; i++) {
         for (j = 0; j < N; j++) {
             printf("%d ", matriz[i][j]);
         }
-        printf("\n"); // Pula para a próxima linha
+        printf("
+"); // Pula para a próxima linha
     }
 
     return 0;
@@ -487,3 +526,4 @@ Debugging é o processo de encontrar e corrigir erros no seu código. O VS Code 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

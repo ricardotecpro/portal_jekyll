@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO07
+---
+
 Neste guia, vamos focar nos conceitos fundamentais de uma **Single Page Application (SPA)**, construindo uma interface de usuário do zero com **JavaScript puro ("vanilla")**. Esta abordagem, embora mais verbosa que usar um framework como React ou Vue, é a melhor forma de aprender os mecanismos que operam por baixo do capô.
 
 # 💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot
@@ -396,3 +401,4 @@ appContent.addEventListener('click', async (event) => {
 Este conhecimento é a base para o uso de frameworks modernos como **React, Vue e Angular**, que resolvem muitos desses problemas (roteamento, renderização, gerenciamento de estado) de forma mais eficiente e escalável.
 
 No **próximo e último módulo**, aprenderemos a empacotar nossa aplicação backend com **Docker**, preparando-a para o deploy em qualquer ambiente.
+

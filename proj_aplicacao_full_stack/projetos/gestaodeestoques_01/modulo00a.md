@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💎 Gestão de Estoques
+---
+
 # 💎 Gestão de Estoques
 
 ---
@@ -85,3 +90,4 @@ Aqui está o detalhamento de como os 8 módulos podem ser organizados para maxim
 | **8** | Deployment e Containerização com Docker              | Containers, Dockerfile, `docker-compose`              | Aplicação empacotada e pronta para ser executada em qualquer lugar. | Fim do Curso             |
 
 Esta estrutura de **8 módulos** garante uma progressão lógica, abordando teoria e prática em doses equilibradas, o que é ideal para um ambiente de sala de aula.
+

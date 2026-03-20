@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Biblioteca de Jogos
+---
+
 # 🚀 Biblioteca de Jogos
 
 v1.1
@@ -1709,3 +1714,4 @@ Se tudo deu certo, o servidor aparecerá na barra lateral esquerda. Agora você 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

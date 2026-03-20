@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Sistema de Cadastro de Alunos em JavaScript (POO)**
+---
+
 # **Sistema de Cadastro de Alunos em JavaScript (POO)**
 
 Sistema de cadastro de alunos** usando **JavaScript** com orientação a objetos. Essa versão pode ser executada diretamente no navegador ou no Node.js.
@@ -225,7 +230,8 @@ class Aluno {
   }
 
   exibirInformacoes() {
-    console.log("\n=== DADOS DO ALUNO ===");
+    console.log("
+=== DADOS DO ALUNO ===");
     console.log("Nome:", this.nome);
     console.log("Idade:", this.idade);
     console.log("Matrícula:", this.matricula);
@@ -296,3 +302,4 @@ node index.js
 |Organização em arquivos|Separação em `src/`|
 
 ---
+

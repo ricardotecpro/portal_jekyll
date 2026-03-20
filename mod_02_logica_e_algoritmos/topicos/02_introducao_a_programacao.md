@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 Introdução à Programação
+---
+
 # 🎓 Introdução à Programação
 
 Este guia aborda os conceitos fundamentais da programação, desde a definição de um algoritmo até as ferramentas necessárias para criar seu primeiro programa.
@@ -97,7 +102,8 @@ int main() {
 
     media = (nota1 + nota2) / 2.0;
 
-    printf("A média do(a) aluno(a) %s é: %.2f\n", nome, media);
+    printf("A média do(a) aluno(a) %s é: %.2f
+", nome, media);
 
     return 0;
 }
@@ -128,7 +134,8 @@ public class Programa {
 
         media = (nota1 + nota2) / 2.0;
 
-        System.out.printf("A média do(a) aluno(a) %s é: %.2f\n", nome, media);
+        System.out.printf("A média do(a) aluno(a) %s é: %.2f
+", nome, media);
 
         sc.close();
     }
@@ -305,7 +312,8 @@ programa
 		media = (nota1 + nota2) / 2
 		
 		// Saída: exibe o resultado formatado
-		escreva("\nA média do(a) aluno(a) ", nome, " é: ", media)
+		escreva("
+A média do(a) aluno(a) ", nome, " é: ", media)
 	}
 }
 ```
@@ -317,8 +325,10 @@ programa
 3.  **Declaração de Variáveis:** As variáveis são declaradas no início da função onde serão usadas, não em um bloco `var` separado.
 4.  **Tipos de Dados:** O tipo `caractere` do VisualG corresponde ao tipo `cadeia` no Portugol Studio. O tipo `real` é o mesmo.
 5.  **Atribuição:** O operador para atribuir um valor a uma variável é o sinal de igual (`=`), e não a seta (`<-`).
-6.  **Comandos de Escrita:** O comando `escreval` do VisualG é equivalente ao `escreva` do Portugol Studio. Ambos pulam uma linha ao final da escrita. O `\n` foi adicionado na última linha para dar um espaçamento extra antes da mensagem final, tornando a saída mais legível.
+6.  **Comandos de Escrita:** O comando `escreval` do VisualG é equivalente ao `escreva` do Portugol Studio. Ambos pulam uma linha ao final da escrita. O `
+` foi adicionado na última linha para dar um espaçamento extra antes da mensagem final, tornando a saída mais legível.
 
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

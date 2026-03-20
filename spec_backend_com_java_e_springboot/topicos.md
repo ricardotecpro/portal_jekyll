@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📘 Java
+---
+
 # 📘 Java
 
 Este repositório contém o material utilizado nas aulas do curso de Java. Os conteúdos estão organizados por tópicos, exemplos, exercícios e desafios.
@@ -38,3 +43,4 @@ Este repositório contém o material utilizado nas aulas do curso de Java. Os co
 ## ✉️ Contatos
 
 * **[Contatos](/ricardotecpro.github.io/contatos.md)**: Contatos / Contacts
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Sistemas Operacionais
+---
+
 # Sistemas Operacionais
 
 Os sistemas operacionais (SO) são responsáveis por gerenciar o hardware e o software de um dispositivo, proporcionando uma interface entre o usuário e a máquina. Ao longo da história da computação, diversos sistemas operacionais foram desenvolvidos, cada um com características específicas para atender diferentes necessidades. A seguir, destacamos os principais:
@@ -82,3 +87,4 @@ Cada sistema operacional possui vantagens e desvantagens dependendo do contexto 
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

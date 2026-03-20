@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🔄 Exercícios Resolvidos com Estruturas Repetitivas em Java
+---
+
 # 🔄 Exercícios Resolvidos com Estruturas Repetitivas em Java
 
 Este documento apresenta uma coleção de problemas e suas respectivas soluções em Java, focando no uso das estruturas de repetição `while` e `for`. Cada exercício foi adaptado de desafios de programação para reforçar a lógica e a aplicação prática desses conceitos.
@@ -91,7 +96,8 @@ public class MediaIdades {
                 idade = sc.nextInt();
             }
             double media = (double) soma / count;
-            System.out.printf("MEDIA = %.2f\n", media);
+            System.out.printf("MEDIA = %.2f
+", media);
         }
         sc.close();
     }
@@ -300,7 +306,8 @@ public class Tabuada {
 
         for (int i = 1; i <= 10; i++) {
             int resultado = n * i;
-            System.out.printf("%d x %d = %d\n", n, i, resultado);
+            System.out.printf("%d x %d = %d
+", n, i, resultado);
         }
         sc.close();
     }
@@ -456,7 +463,8 @@ public class Divisao {
                 System.out.println("DIVISAO IMPOSSIVEL");
             } else {
                 double resultado = (double) numerador / denominador;
-                System.out.printf("DIVISAO = %.2f\n", resultado);
+                System.out.printf("DIVISAO = %.2f
+", resultado);
             }
         }
         sc.close();
@@ -567,14 +575,18 @@ public class Experiencias {
         double percentualRatos = ((double) totalRatos / totalCobaias) * 100.0;
         double percentualSapos = ((double) totalSapos / totalCobaias) * 100.0;
 
-        System.out.println("\nRELATÓRIO FINAL:");
+        System.out.println("
+RELATÓRIO FINAL:");
         System.out.println("Total: " + totalCobaias + " cobaias");
         System.out.println("Total de coelhos: " + totalCoelhos);
         System.out.println("Total de ratos: " + totalRatos);
         System.out.println("Total de sapos: " + totalSapos);
-        System.out.printf("Percentual de coelhos: %.2f%%\n", percentualCoelhos);
-        System.out.printf("Percentual de ratos: %.2f%%\n", percentualRatos);
-        System.out.printf("Percentual de sapos: %.2f%%\n", percentualSapos);
+        System.out.printf("Percentual de coelhos: %.2f%%
+", percentualCoelhos);
+        System.out.printf("Percentual de ratos: %.2f%%
+", percentualRatos);
+        System.out.printf("Percentual de sapos: %.2f%%
+", percentualSapos);
         
         sc.close();
     }
@@ -619,4 +631,5 @@ Percentual de sapos: 25.00%
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

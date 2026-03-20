@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Projeto Lista de Tarefas" (To-Do List)
+---
+
 # 🚀 Projeto Lista de Tarefas" (To-Do List)
  v1.1
 
@@ -440,4 +445,5 @@ mvn spring-boot:run
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

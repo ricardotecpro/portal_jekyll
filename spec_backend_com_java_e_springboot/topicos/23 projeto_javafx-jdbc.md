@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Visão Arquitetural: Integrando JavaFX, Camada de Serviço e DAO**
+---
+
 ### **Visão Arquitetural: Integrando JavaFX, Camada de Serviço e DAO**
 
 Este projeto representa uma aplicação desktop completa, integrando uma interface gráfica moderna com um banco de dados relacional. A arquitetura é projetada em camadas para garantir baixo acoplamento e alta coesão, facilitando a manutenção e a escalabilidade.

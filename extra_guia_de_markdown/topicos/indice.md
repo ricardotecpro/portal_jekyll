@@ -1,3 +1,8 @@
+---
+layout: default
+title: Markdown 📚💻
+---
+
 # Markdown 📚💻
 
 Bem-vindo ao módulo de Git, GitHub e Markdown do curso de computação\! 
@@ -31,3 +36,4 @@ No campo da Análise de Sistemas, a comunicação clara e a documentação preci
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

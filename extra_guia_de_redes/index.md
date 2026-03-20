@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🌐 Redes de Computadores: Conectando o Mundo Digital
+---
+
 # 🌐 Redes de Computadores: Conectando o Mundo Digital
 
 **Redes de Computadores** são um conjunto de dois ou mais dispositivos (como computadores, servidores, celulares e impressoras) interconectados com o objetivo de compartilhar recursos, trocar dados e permitir a comunicação. Em sua essência, as redes são a infraestrutura que possibilita a existência da internet, dos e-mails, dos serviços de streaming e de praticamente toda a tecnologia digital que usamos hoje.
@@ -91,3 +96,4 @@ O campo das redes está em constante evolução para atender às novas demandas 
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Linguagens de Marcação**
+---
+
 # **Linguagens de Marcação**  
 
 As **linguagens de marcação** são utilizadas para estruturar, formatar e representar dados. Elas não possuem lógica de programação, sendo usadas principalmente para exibição de conteúdo ou armazenamento de informações.  
@@ -114,3 +119,4 @@ email: joao@email.com
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: POO GO
+---
+
 Em **Go (Golang)**, a Programação Orientada a Objetos (**POO**) é diferente de linguagens como Java ou Python, pois **Go não possui classes**. No entanto, podemos usar **structs, métodos e interfaces** para implementar os conceitos de POO, como encapsulamento, herança e polimorfismo.  
 
 ---
@@ -38,7 +43,8 @@ func (p *Pessoa) SetIdade(idade int) {
 
 // Método para exibir os dados da pessoa
 func (p Pessoa) Apresentar() {
-    fmt.Printf("Olá, meu nome é %s e tenho %d anos.\n", p.Nome, p.Idade)
+    fmt.Printf("Olá, meu nome é %s e tenho %d anos.
+", p.Nome, p.Idade)
 }
 
 func main() {
@@ -76,7 +82,8 @@ type Pessoa struct {
 
 // Método da struct Pessoa
 func (p Pessoa) Apresentar() {
-    fmt.Printf("Meu nome é %s e tenho %d anos.\n", p.Nome, p.Idade)
+    fmt.Printf("Meu nome é %s e tenho %d anos.
+", p.Nome, p.Idade)
 }
 
 // Struct Aluno que contém um campo do tipo Pessoa
@@ -87,7 +94,8 @@ type Aluno struct {
 
 // Método específico de Aluno
 func (a Aluno) Estudar() {
-    fmt.Printf("%s está estudando %s.\n", a.Nome, a.Curso)
+    fmt.Printf("%s está estudando %s.
+", a.Nome, a.Curso)
 }
 
 func main() {
@@ -129,7 +137,8 @@ type Pessoa struct {
 
 // Implementando a interface SerHumano
 func (p Pessoa) Apresentar() {
-    fmt.Printf("Sou %s e tenho %d anos.\n", p.Nome, p.Idade)
+    fmt.Printf("Sou %s e tenho %d anos.
+", p.Nome, p.Idade)
 }
 
 // Struct Aluno
@@ -140,7 +149,8 @@ type Aluno struct {
 
 // Implementando a interface SerHumano para Aluno
 func (a Aluno) Apresentar() {
-    fmt.Printf("Sou %s, tenho %d anos e estudo %s.\n", a.Nome, a.Idade, a.Curso)
+    fmt.Printf("Sou %s, tenho %d anos e estudo %s.
+", a.Nome, a.Idade, a.Curso)
 }
 
 // Função que aceita qualquer SerHumano

@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java: Estrutura Condicional
+---
+
 # ☕ Java: Estrutura Condicional
 
 Este documento aborda as estruturas condicionais em Java, um conceito fundamental para controlar o fluxo de execução de um programa.
@@ -484,3 +489,4 @@ Entender o escopo é crucial para evitar erros e escrever código Java correto e
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

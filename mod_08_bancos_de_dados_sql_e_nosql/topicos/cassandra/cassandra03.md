@@ -1,3 +1,8 @@
+---
+layout: default
+title: CASSANDRA03
+---
+
 ````markdown
 # Atividade 3: Evidências do Tutorial 📜
 
@@ -102,3 +107,4 @@ WHERE id = a6e8dc1c-b2ab-439d-86ed-be04f83436f5;
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

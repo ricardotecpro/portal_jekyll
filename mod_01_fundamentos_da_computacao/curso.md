@@ -1,3 +1,8 @@
+---
+layout: default
+title: Apresentação da disciplina de linguagem de programação 💻
+---
+
 # Apresentação da disciplina de linguagem de programação 💻
 
 ![Disquete](assets/disquete.gif)
@@ -163,3 +168,4 @@ Para dúvidas ou mais informações, entre em contato pelo e-mail:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

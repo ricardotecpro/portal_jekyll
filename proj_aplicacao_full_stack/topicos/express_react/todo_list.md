@@ -1,3 +1,8 @@
+---
+layout: default
+title: API REST de lista de tarefas (listatarefas) com frontend em React e backend em Node.js
+---
+
 # API REST de lista de tarefas (listatarefas) com frontend em React e backend em Node.js
 
 ### Aqui estão os frameworks recomendados:
@@ -50,3 +55,4 @@ Sim, é totalmente possível! Você pode usar bibliotecas como:
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

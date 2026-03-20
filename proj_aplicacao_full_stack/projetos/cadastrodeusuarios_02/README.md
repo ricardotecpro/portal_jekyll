@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 Etapa 1: Criando o Projeto
 Vamos começar do zero usando o Spring Initializr, a ferramenta oficial para criar projetos Spring.
 
@@ -1004,5 +1009,6 @@ Agora, ao clicar no botão de escudo, um pop-up aparecerá permitindo que você 
     </script>
 </body>
 </html>
+
 
 

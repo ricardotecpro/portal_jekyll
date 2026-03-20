@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Exercícios POO 09
+---
+
 # Lista de Exercícios POO 09
 
 ---
@@ -235,3 +240,4 @@ MATRIZ ALTERADA:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

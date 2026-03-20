@@ -1,3 +1,8 @@
+---
+layout: default
+title: Módulo Back-end: API REST, Camadas, CRUD, Exceções e Validações ⚙️
+---
+
 # Módulo Back-end: API REST, Camadas, CRUD, Exceções e Validações ⚙️
 
 Este capítulo aborda os pilares da construção de um back-end moderno: a criação de uma API REST, a organização do código em camadas, a implementação das operações básicas de um CRUD e o tratamento de exceções e validações de forma profissional.
@@ -159,4 +164,5 @@ Para utilizá-lo em um projeto Maven com Spring Boot, as seguintes dependências
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

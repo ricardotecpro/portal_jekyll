@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 Módulo 4: DevOps e Deploy
+---
+
 # 🎓 Módulo 4: DevOps e Deploy
 
 **Objetivo**: Empacotar nossa aplicação para rodar em qualquer lugar usando Docker.
@@ -69,3 +74,4 @@ services:
 
 ## 🏆 Desafio Final
 Pesquise como fazer o deploy desse container em serviços gratuitos como **Render** ou **Railway**.
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Recursos Visuais
+---
+
 # Recursos Visuais
 
 Esta página demonstra o uso de recursos visuais avançados na documentação.
@@ -86,3 +91,4 @@ graph TD
     C --> E[Fim]
     D --> E
 ```
+

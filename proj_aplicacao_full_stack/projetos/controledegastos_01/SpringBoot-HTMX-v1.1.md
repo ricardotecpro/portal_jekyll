@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Construindo e Implantando o "Controle de Gastos" com Spring Boot e htmx
+---
+
 # 🚀 Construindo e Implantando o "Controle de Gastos" com Spring Boot e htmx
 v1.1
 
@@ -954,3 +959,4 @@ public class TarefaController {
 * **htmx** permite **atualizações parciais** no **cliente** sem precisar recarregar toda a página.
 
 ---
+

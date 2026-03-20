@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO02
+---
+
 Nesta fase crucial, vamos construir o "cérebro" da nossa aplicação. Deixaremos de apenas armazenar dados para começar a aplicar regras de negócio e a organizar nosso código de forma profissional, seguindo os princípios que definem um software de alta qualidade.
 
 # 💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot
@@ -356,4 +361,5 @@ public class ProdutoServiceImpl implements ProdutoService {
 A aplicação ainda não tem uma "cara" ou uma "porta de entrada", mas sua inteligência central está completa.
 
 No **próximo módulo**, vamos finalmente expor essa lógica para o mundo exterior, construindo os **endpoints da nossa API REST** na camada de Controller.
+
 

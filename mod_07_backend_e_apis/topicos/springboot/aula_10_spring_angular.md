@@ -1,3 +1,8 @@
+---
+layout: default
+title: Todo List - API REST com Angular e Spring Boot
+---
+
 # Todo List - API REST com Angular e Spring Boot
 
 ## Introdução
@@ -91,4 +96,5 @@ Agora a aplicação está configurada para rodar apenas com o banco H2 e já inc
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

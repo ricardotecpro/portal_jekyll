@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java: Estruturas Repetitivas
+---
+
 # ☕ Java: Estruturas Repetitivas
 
 Este material aborda as estruturas de repetição em Java, essenciais para executar blocos de código múltiplas vezes. Veremos como depurar seu código e as aplicações das estruturas `while`, `for` e `do-while`.
@@ -190,7 +195,8 @@ public class TesteMesaWhile1 {
             y = y + x;
             x = x - 1;
         }
-        System.out.println("\nValor final de y: " + y); // Para vermos o resultado de y
+        System.out.println("
+Valor final de y: " + y); // Para vermos o resultado de y
     }
 }
 ```
@@ -853,3 +859,4 @@ Este exemplo demonstra bem o uso do `do-while`: a conversão da temperatura e a 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🏗 **Projeto Todo List: API REST com Angular e Spring Boot no Padrão MVC**
+---
+
 # 🏗 **Projeto Todo List: API REST com Angular e Spring Boot no Padrão MVC**
 
 ---
@@ -81,4 +86,5 @@ Agora, sua aplicação segue **boas práticas REST** e está estruturada correta
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

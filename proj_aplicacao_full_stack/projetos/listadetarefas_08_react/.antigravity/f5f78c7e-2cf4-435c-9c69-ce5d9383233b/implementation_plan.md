@@ -1,3 +1,8 @@
+---
+layout: default
+title: Project Discovery Analysis Plan
+---
+
 # Project Discovery Analysis Plan
 
 ## Goal Description
@@ -31,3 +36,4 @@ Refine the analysis to associate Antigravity conversations with projects in `C:\
 ### Manual Verification
 - Run the script and check the output for the total count.
 - Verify if previously unassociated conversations (like the "Lista de Tarefas" ones) are now associated.
+

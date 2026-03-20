@@ -1,3 +1,8 @@
+---
+layout: default
+title: HOSPEDAGEMDB-BACK-FRONT
+---
+
 
 postgre
 
@@ -20,4 +25,5 @@ https://dev.to/code42cate/5-awesome-railway-alternatives-3702
 
 
 https://www.digitalocean.com/products/app-platform
+
 

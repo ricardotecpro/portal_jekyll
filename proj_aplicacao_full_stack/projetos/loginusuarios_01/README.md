@@ -1,3 +1,8 @@
+---
+layout: default
+title: CRUD de Utilizadores com Spring Boot, Thymeleaf e Perfis de Acesso
+---
+
 # CRUD de Utilizadores com Spring Boot, Thymeleaf e Perfis de Acesso
 
 Este documento detalha a construção de uma aplicação web monolítica completa para registo, autenticação e gestão de utilizadores, com distinção entre perfis de Administrador e Utilizador comum.
@@ -618,4 +623,5 @@ public class SecurityConfig {
 ```
 
 ---
+
 

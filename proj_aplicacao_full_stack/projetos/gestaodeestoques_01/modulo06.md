@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO06
+---
+
 Este guia fornecerá todos os conceitos e códigos completos para que os alunos aprendam a criar testes automatizados para a aplicação, uma habilidade indispensável no mercado de trabalho.
 
 # 💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot
@@ -268,3 +273,4 @@ class ProdutoControllerTest {
 Nossa API está completa, segura, documentada e, mais importante, **testada**. Ela é um produto de backend de nível profissional.
 
 No **próximos módulos**, vamos explorar como essa API robusta pode ser consumida por um **frontend SPA** e como podemos empacotá-la para **deployment com Docker**.
+

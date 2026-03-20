@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧩 Exercícios
+---
+
 # 🧩 Exercícios
 
 * **[Lista de Exercícios 00 - 0rientações](exercicios/lista_exercicios_orientacoes.md)**
@@ -12,3 +17,4 @@
 * **[Lista de Exercícios 14 - Arquivos](exercicios/lista_exercicios_14_arquivos.md)**
 
 ---
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: CLI
+---
+
 # CLI
 
 ```
@@ -64,3 +69,4 @@ E siga os passos (ele vai abrir o navegador para autenticar sua conta).
 ---
 
 📌 Pergunto: você prefere que eu monte um **roteiro completo usando apenas o PowerShell** (instalação via `winget` + login nas duas contas + troca entre elas), para já deixar pronto no seu Windows?
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧩 Paradigmas e Padrões: Estruturando o Pensamento e a Solução
+---
+
 # 🧩 Paradigmas e Padrões: Estruturando o Pensamento e a Solução
 
 No mundo da engenharia de software, **Paradigmas de Programação** e **Padrões de Projeto** são conceitos fundamentais que ajudam a estruturar o código, resolver problemas comuns e facilitar a comunicação entre desenvolvedores. Embora relacionados, eles operam em níveis de abstração muito diferentes.
@@ -174,3 +179,4 @@ Este repositório contém uma coleção de artigos que aprofundam os conceitos a
 ---
 
 ### 📌 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Exercícios POO
+---
+
 # Lista de Exercícios POO
 
 ---
@@ -138,3 +143,4 @@
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

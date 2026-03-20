@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📝 **Tutorial Completo: Instalando e Configurando Neovim + LunarVim no Debian/Ubuntu**
+---
+
 ## 📝 **Tutorial Completo: Instalando e Configurando Neovim + LunarVim no Debian/Ubuntu**
 
 **Inclui Node.js, Python, Rust, configuração de Bash/Zsh e desinstalação completa**
@@ -360,3 +365,4 @@ sudo apt install python3-pynvim
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

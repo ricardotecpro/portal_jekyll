@@ -1,3 +1,8 @@
+---
+layout: default
+title: Project Index
+---
+
 # Project Index
 
 ## Design Patterns (`padroes-projeto`)
@@ -10,3 +15,4 @@
 - [Introduction](./topicos/introduction.md)
 - [Best Practices](./topicos/best-practices.md)
 - [Advanced Concepts](./topicos/advanced-concepts.md)
+

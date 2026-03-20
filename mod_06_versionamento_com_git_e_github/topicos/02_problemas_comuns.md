@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🛠️ Git e Github: Resolvendo Problemas Comuns
+---
+
 #  🛠️ Git e Github: Resolvendo Problemas Comuns
 
 Este guia aborda soluções para problemas comuns encontrados ao usar Git e GitHub, com base nos slides fornecidos.
@@ -428,3 +433,4 @@ Este guia cobre algumas das situações mais comuns que você pode encontrar ao 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

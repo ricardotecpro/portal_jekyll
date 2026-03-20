@@ -1,3 +1,8 @@
+---
+layout: default
+title: Desenvolvimento Web Moderno:
+---
+
 ## Desenvolvimento Web Moderno: 
 ### HTTP, TCP/IP, WebSockets, SPA, HTMX, IPv4/IPv6 e Infraestrutura de Rede com Exemplos Práticos
 
@@ -251,3 +256,4 @@ Com esses exemplos práticos, você pode testar e entender melhor conceitos esse
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

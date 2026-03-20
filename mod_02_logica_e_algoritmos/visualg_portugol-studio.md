@@ -1,3 +1,8 @@
+---
+layout: default
+title: 👨‍🏫 VisualG e Portugol: O Primeiro Passo na Lógica de Programação
+---
+
 # 👨‍🏫 VisualG e Portugol: O Primeiro Passo na Lógica de Programação
 
 O **VisualG** é um software educacional amplamente utilizado no Brasil e em outros países de língua portuguesa como uma ferramenta para o ensino e aprendizado de **lógica de programação** e **algoritmos**. Ele funciona como um editor e interpretador para uma linguagem de pseudocódigo chamada **Portugol**.
@@ -198,7 +203,8 @@ programa
 
 		resultado = calcular(n1, n2, operacao)
 
-		escreva("\nO resultado é: ", resultado)
+		escreva("
+O resultado é: ", resultado)
 	}
 
 	funcao real calcular(real num1, real num2, caracter op)
@@ -256,7 +262,9 @@ A tabela abaixo apresenta uma comparação lado a lado dos principais comandos e
 | :--- | :--- | :--- | :--- |
 | **Estrutura do Programa** | `pascal<br>algoritmo "NomeDoAlgoritmo"<br>var<br>   // Variáveis<br>inicio<br>   // Comandos<br>fimalgoritmo<br>` | `c<br>programa {<br>  funcao inicio() {<br>    // Comandos<br>  }<br>}<br>` | A estrutura do Studio é mais similar à de linguagens como C, Java e JavaScript, com uma função `inicio` agindo como a `main`. |
 | **Declaração de Variáveis** | `pascal<br>// Todas declaradas no bloco 'var'<br>var<br>   nome: caractere<br>   idade: inteiro<br>   salario: real<br>` | `c<br>// Podem ser declaradas em qualquer<br>// lugar antes do primeiro uso<br>cadeia nome<br>inteiro idade<br>real salario<br>` | Studio é mais flexível. O tipo `caractere` do VisualG (para strings) é chamado de `cadeia` no Studio. |
-| **Saída de Dados** | `escreva("Texto")`\<br\>`escreval("Texto e pula linha")` | `escreva("Texto")` | Para pular linha no Studio, usa-se o caractere de escape `\n`. Ex: `escreva("Texto\n")`. |
+| **Saída de Dados** | `escreva("Texto")`\<br\>`escreval("Texto e pula linha")` | `escreva("Texto")` | Para pular linha no Studio, usa-se o caractere de escape `
+`. Ex: `escreva("Texto
+")`. |
 | **Entrada de Dados** | `leia(variavel)` | `leia(variavel)` | Praticamente idênticos. |
 | **Atribuição de Valor** | `variavel <- valor` | `variavel = valor` | O Studio adota o `=` como padrão, mais comum em linguagens modernas. O `<-` também é aceito por compatibilidade. |
 | **Comentários** | `// Comentário de uma linha` | `// Comentário de uma linha`\<br\>`/* Comentário de<br>   múltiplas linhas */` | O Studio oferece suporte a comentários de múltiplas linhas, assim como em C/Java/CSS. |
@@ -272,3 +280,4 @@ A tabela abaixo apresenta uma comparação lado a lado dos principais comandos e
 | **Uso de Bibliotecas** | Não possui | `inclua Biblioteca Grafico`\<br\>`inclua Biblioteca Matematica` | Recurso exclusivo do Portugol Studio que expande enormemente suas capacidades, permitindo a criação de jogos simples, desenhos e uso de funções matemáticas avançadas. |
 
 ---
+

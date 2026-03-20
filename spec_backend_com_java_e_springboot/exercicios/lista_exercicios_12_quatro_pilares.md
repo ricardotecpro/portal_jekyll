@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 **Aula Completa: Os 4 Pilares da POO em Java para Iniciantes**
+---
+
 ## 🎓 **Aula Completa: Os 4 Pilares da POO em Java para Iniciantes**
 
 Esta aula foi pensada para guiar você, passo a passo, pelos conceitos que formam a base da programação moderna.
@@ -459,13 +464,17 @@ classDiagram
 
             System.out.println("Aluno: " + aluno1.getNome());
 
-            System.out.println("\n--- Tentativa 1: Notas inválidas ---");
+            System.out.println("
+--- Tentativa 1: Notas inválidas ---");
             aluno1.setNotas(8.5, 9.0, 11.0, 7.0); // Nota 11.0 é inválida
-            System.out.printf("Média final: %.2f\n", aluno1.getMediaFinal());
+            System.out.printf("Média final: %.2f
+", aluno1.getMediaFinal());
 
-            System.out.println("\n--- Tentativa 2: Notas válidas ---");
+            System.out.println("
+--- Tentativa 2: Notas válidas ---");
             aluno1.setNotas(8.5, 9.0, 7.5, 10.0);
-            System.out.printf("Média final: %.2f\n", aluno1.getMediaFinal());
+            System.out.printf("Média final: %.2f
+", aluno1.getMediaFinal());
         }
     }
     ```
@@ -825,7 +834,8 @@ classDiagram
                 // com base no objeto real (Gerente, Programador ou Vendedor).
                 String cargo = f.getClass().getSimpleName(); // Pega o nome da classe
                 double salario = f.calcularSalario();
-                System.out.printf("Cargo: %s - Salário: R$ %.2f\n", cargo, salario);
+                System.out.printf("Cargo: %s - Salário: R$ %.2f
+", cargo, salario);
             }
         }
     }
@@ -834,3 +844,4 @@ classDiagram
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

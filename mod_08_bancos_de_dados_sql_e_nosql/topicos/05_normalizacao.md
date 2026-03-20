@@ -1,3 +1,8 @@
+---
+layout: default
+title: 05 NORMALIZACAO
+---
+
 A Normalização ✨ é um processo formal e passo a passo para adequar as tabelas de um banco de dados a um conjunto de regras, conhecidas como **Formas Normais**. O objetivo é simplificar a estrutura das tabelas para criar um esquema de banco de dados bem projetado.
 
 A principal importância da normalização é evitar problemas críticos como:
@@ -54,3 +59,4 @@ A 3FN visa eliminar dependências transitivas.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

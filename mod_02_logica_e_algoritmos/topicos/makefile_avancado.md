@@ -1,3 +1,8 @@
+---
+layout: default
+title: Makefile Profissional em C
+---
+
 # Makefile Profissional em C
 
 ## Ordem
@@ -61,7 +66,8 @@ int main() {
 #include "funcoes.h"
 
 void ola() {
-    printf("Olá, Ricardo!\n");
+    printf("Olá, Ricardo!
+");
 }
 ```
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: AVD HOME
+---
+
 ANDROID_AVD_HOME
 %USERPROFILE%\.android\avd
 
@@ -46,3 +51,4 @@ SDK do Android
 %USERPROFILE%\AppData\Local\Android\SDK
 
 https://developer.android.com/studio/intro/studio-config?hl=pt-br
+

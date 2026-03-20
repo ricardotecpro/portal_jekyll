@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📊 Estruturas de Dados: Organizando a Informação
+---
+
 # 📊 Estruturas de Dados: Organizando a Informação
 
 **Estruturas de Dados** são formas específicas de organizar, armazenar e gerenciar dados em um computador para que possam ser utilizados de maneira eficiente. Elas não são uma linguagem de programação ou um framework, mas sim um conceito fundamental da Ciência da Computação que pode ser implementado em qualquer linguagem.
@@ -141,3 +146,4 @@ Faça a si mesmo estas perguntas sobre o seu problema:
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

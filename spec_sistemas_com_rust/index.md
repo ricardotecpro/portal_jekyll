@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🦀 Rust: Performance, Segurança e Concorrência
+---
+
 # 🦀 Rust: Performance, Segurança e Concorrência
 
 Rust é uma linguagem de programação de sistemas moderna, de código aberto, focada em três objetivos principais: **segurança**, **velocidade** e **concorrência**. Criada pela Mozilla Research, ela foi projetada para resolver problemas que atormentam o desenvolvimento de software de baixo nível há décadas, especialmente os relacionados à segurança de memória, sem a necessidade de um *garbage collector* (coletor de lixo).
@@ -138,3 +143,4 @@ fn main() {
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

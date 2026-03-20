@@ -1,3 +1,8 @@
+---
+layout: default
+title: Python: Do Básico ao Avançado 🐍
+---
+
 # Python: Do Básico ao Avançado 🐍
 
 Esta trilha foi desenhada para guiar você desde a instalação do Python até as boas práticas de desenvolvimento usadas por profissionais, cobrindo o gerenciamento de ambientes, dependências e o uso de ferramentas interativas.
@@ -178,4 +183,5 @@ Parabéns por completar a aula de Python Avançado! Continue sua jornada:
 - 💪 **Praticar**: [Exercícios](../exercicios/index.md)
 - 🎯 **Aplicar**: [Projetos](../projetos/index.md)
 - 📖 **Revisar**: [Python Básico](python_basico.md)
+
 

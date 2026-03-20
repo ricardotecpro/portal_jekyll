@@ -1,3 +1,8 @@
+---
+layout: default
+title: ⚙️ Módulo 1: Backend (API) - Aderindo aos Princípios SOLID
+---
+
 # ⚙️ Módulo 1: Backend (API) - Aderindo aos Princípios SOLID
 
 **Objetivo:** Refatorar a API para ser mais robusta e desacoplada, utilizando DTOs, tratamento de exceções centralizado e validação de entrada.
@@ -175,4 +180,5 @@ public class RestExceptionHandler {
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

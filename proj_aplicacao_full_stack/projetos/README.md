@@ -1,3 +1,8 @@
+---
+layout: default
+title: Projetos - Aplicações
+---
+
 ## Projetos - Aplicações
 
 
@@ -71,3 +76,4 @@
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

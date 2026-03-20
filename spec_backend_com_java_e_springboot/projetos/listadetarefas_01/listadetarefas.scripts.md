@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Guia de Execução: Do VS Code para o Mundo
+---
+
 ## 🚀 Guia de Execução: Do VS Code para o Mundo
 v3.1
 ### 1\. O Pré-requisito: A "Caixa de Ferramentas" do Java
@@ -89,4 +94,5 @@ A janela do seu aplicativo JavaFX deverá abrir e, como a API está no ar, ela c
       * Clique em **Run**.
 
 ---
+
 

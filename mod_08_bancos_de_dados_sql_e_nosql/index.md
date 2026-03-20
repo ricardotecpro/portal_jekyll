@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💾 Bancos de Dados: SQL e NoSQL
+---
+
 # 💾 Bancos de Dados: SQL e NoSQL
 
 Um **banco de dados** é um sistema organizado para armazenar, gerenciar e recuperar informações (dados) de forma eficiente e segura. Ele é o "cérebro" da maioria das aplicações, responsável por persistir os dados para que não se percam quando a aplicação é desligada.
@@ -111,3 +116,4 @@ Não existe um "vencedor" entre SQL e NoSQL. A escolha correta depende inteirame
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Exercícios POO
+---
+
 # Lista de Exercícios POO
 
 ---
@@ -303,3 +308,4 @@ Fazer um programa para ler uma duração de tempo em segundos, daí imprimir na 
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
   
+

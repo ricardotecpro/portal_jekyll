@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🐱 GitHub (Plataforma de Hospedagem e Colaboração)
+---
+
 ## 🐱 GitHub (Plataforma de Hospedagem e Colaboração)
 
 ### O que é Github?
@@ -66,3 +71,4 @@ Se o projeto já existe no Github e você quer baixá-lo:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

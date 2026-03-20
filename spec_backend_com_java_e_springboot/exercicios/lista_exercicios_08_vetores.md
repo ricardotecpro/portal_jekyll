@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Exercícios POO 08
+---
+
 # Lista de Exercícios POO 08
 
 ---
@@ -330,3 +335,4 @@ O programa também deve determinar e escrever o valor total de compra e de venda
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

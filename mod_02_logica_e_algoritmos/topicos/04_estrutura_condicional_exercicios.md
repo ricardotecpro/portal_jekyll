@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧠 Capítulo: Estrutura Condicional - Exercícios
+---
+
 # 🧠 Capítulo: Estrutura Condicional - Exercícios
 
 Estes exercícios foram projetados para praticar o uso de estruturas condicionais (`se-então-senão`). Cada problema requer uma lógica de decisão para produzir a saída correta com base nos dados de entrada.
@@ -317,3 +322,4 @@ Eixo Y
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

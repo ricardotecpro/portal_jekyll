@@ -1,3 +1,8 @@
+---
+layout: default
+title: Instanciação e Alocação Dinâmica de Memória: Stack vs Heap
+---
+
 # Instanciação e Alocação Dinâmica de Memória: Stack vs Heap
 
 A **instanciação** em programação refere-se ao processo de criação de uma instância (ou objeto) de uma classe ou estrutura de dados em tempo de execução. A alocação dinâmica de memória, por sua vez, envolve a alocação de memória durante a execução do programa, permitindo que o tamanho e a quantidade de memória necessária possam ser definidos em tempo de execução. Esse processo ocorre principalmente nas **memórias stack** e **heap**.
@@ -66,3 +71,4 @@ Essa distinção é importante, especialmente em linguagens como C e C++, onde o
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Ambientes de Linha de Comando! 🖥️
+---
+
 # 🚀 Ambientes de Linha de Comando! 🖥️
 
 ## 🤔 O Que Você Vai Aprender Neste Curso?
@@ -341,5 +346,6 @@ Estamos animados para embarcar nesta jornada com você! Prepare-se para transfor
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 
 

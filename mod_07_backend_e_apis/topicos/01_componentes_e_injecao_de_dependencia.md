@@ -1,3 +1,8 @@
+---
+layout: default
+title: Módulo Back-end: Componentes e Injeção de Dependência 🧩
+---
+
 # Módulo Back-end: Componentes e Injeção de Dependência 🧩
 
 Este material aborda os conceitos fundamentais de componentização de software e injeção de dependência, pilares para o desenvolvimento de sistemas modernos, flexíveis e de fácil manutenção.
@@ -155,4 +160,5 @@ Essa abordagem permite que o desenvolvedor foque no que realmente importa: as re
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

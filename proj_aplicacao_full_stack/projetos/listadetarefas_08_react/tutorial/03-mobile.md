@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 Módulo 3: Mobile com React Native
+---
+
 # 🎓 Módulo 3: Mobile com React Native
 
 **Objetivo**: Levar nossa aplicação para o celular usando o mesmo conhecimento de React.
@@ -92,3 +97,4 @@ const styles = StyleSheet.create({
 
 ## 🏆 Desafio
 Adicione um botão flutuante (+) para criar novas tarefas.
+

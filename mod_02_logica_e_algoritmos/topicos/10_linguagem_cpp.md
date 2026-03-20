@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem C++ 💻
+---
+
 # Linguagem C++ 💻
 
 Bem-vindo ao guia de C++, uma evolução da linguagem C com recursos poderosos como orientação a objetos, strings nativas e um sistema de entrada e saída mais robusto. Este material é ideal para quem já tem noções de lógica e busca dominar os fundamentos do C++.
@@ -175,9 +180,11 @@ Para receber dados do usuário, usamos o objeto `cin` com o operador de extraç�
 O `cin >>` lê a entrada até encontrar um espaço em branco. Para ler uma linha inteira de texto (com espaços), usamos a função `getline(cin, variavel_string);`.
 
 **Limpando o Buffer de Entrada**
-Assim como em C, ler um número com `cin >>` deixa uma quebra de linha (`\n`) no buffer. Isso pode atrapalhar uma chamada subsequente a `getline`. Para resolver isso, limpamos o buffer.
+Assim como em C, ler um número com `cin >>` deixa uma quebra de linha (`
+`) no buffer. Isso pode atrapalhar uma chamada subsequente a `getline`. Para resolver isso, limpamos o buffer.
 
-  * `cin.ignore(INT_MAX, '\n');`: Ignora todos os caracteres no buffer até encontrar e descartar a próxima quebra de linha.
+  * `cin.ignore(INT_MAX, '
+');`: Ignora todos os caracteres no buffer até encontrar e descartar a próxima quebra de linha.
 
 <!-- end list -->
 
@@ -198,14 +205,17 @@ int main() {
     cin >> idade;
 
     cout << "Digite seu nome completo: ";
-    cin.ignore(INT_MAX, '\n'); // Limpeza de buffer obrigatória aqui!
+    cin.ignore(INT_MAX, '
+'); // Limpeza de buffer obrigatória aqui!
     getline(cin, nome);
 
     cout << "Digite seu salario: ";
     cin >> salario;
 
     cout << fixed << setprecision(2);
-    cout << "\n--- DADOS DIGITADOS ---\n";
+    cout << "
+--- DADOS DIGITADOS ---
+";
     cout << "Nome: " << nome << endl;
     cout << "Idade: " << idade << " anos" << endl;
     cout << "Salario: R$ " << salario << endl;
@@ -357,7 +367,9 @@ int main() {
     }
 
     cout << fixed << setprecision(1);
-    cout << "\nNUMEROS DIGITADOS:\n";
+    cout << "
+NUMEROS DIGITADOS:
+";
     for (int i = 0; i < N; i++) {
         cout << vet[i] << endl;
     }
@@ -393,7 +405,9 @@ int main() {
         }
     }
 
-    cout << "\nMATRIZ DIGITADA:\n";
+    cout << "
+MATRIZ DIGITADA:
+";
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j++) {
             cout << mat[i][j] << " ";
@@ -419,3 +433,4 @@ O processo de depuração em C++ no VS Code é idêntico ao de C.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

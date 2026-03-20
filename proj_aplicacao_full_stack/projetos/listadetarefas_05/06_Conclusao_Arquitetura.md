@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🏛️ Módulo 6: Análise Arquitetural e Próximos Passos
+---
+
 # 🏛️ Módulo 6: Análise Arquitetural e Próximos Passos
 
 ### ### 📈 O Que Foi Melhorado?
@@ -26,4 +31,5 @@
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

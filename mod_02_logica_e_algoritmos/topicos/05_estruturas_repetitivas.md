@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🔄 Capítulo: Estruturas Repetitivas
+---
+
 # 🔄 Capítulo: Estruturas Repetitivas
 
 As estruturas repetitivas, também conhecidas como laços ou *loops*, são um pilar da programação. Elas permitem que um bloco de comandos seja executado várias vezes, seja por um número definido de vezes ou enquanto uma determinada condição for atendida. Vamos explorar as três estruturas principais: "enquanto", "para" e "repita-até".
@@ -200,3 +205,4 @@ fimalgoritmo
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

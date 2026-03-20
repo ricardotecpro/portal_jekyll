@@ -1,3 +1,8 @@
+---
+layout: default
+title: ✅ Criar o repositório especial do GitHub
+---
+
 # ✅ Criar o repositório especial do GitHub
 
 Crie um repositório com o **mesmo nome do seu usuário** no GitHub. Exemplo:
@@ -101,3 +106,4 @@ Assim que o push for feito, o conteúdo do `README.md` será exibido no **seu pe
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

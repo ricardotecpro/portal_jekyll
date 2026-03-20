@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Visão Arquitetural: JavaFX e o Padrão MVC**
+---
+
 ### **Visão Arquitetural: JavaFX e o Padrão MVC**
 
 O **JavaFX** é o framework moderno para a criação de interfaces gráficas em Java, sendo o sucessor do Swing e AWT. Sua arquitetura é projetada em torno do padrão **Model-View-Controller (MVC)**, uma abordagem que promove a separação de responsabilidades e resulta em um código mais organizado e fácil de manter.
@@ -278,3 +283,4 @@ Callback<ListView<Person>, ListCell<Person>> factory = lv -> new ListCell<Person
 comboBoxPerson.setCellFactory(factory);
 comboBoxPerson.setButtonCell(factory.call(null));
 ```
+

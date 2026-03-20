@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📄 O Que é Markdown?
+---
+
 # 📄 O Que é Markdown?
 
 Markdown é uma **linguagem de marcação leve** que permite formatar texto simples de forma fácil e legível. Ele é convertido para HTML (ou outros formatos) para visualização. Sua simplicidade e portabilidade o tornam ideal para diversas aplicações, especialmente em ambientes de desenvolvimento e análise.
@@ -155,3 +160,4 @@ Dominar o Markdown é uma habilidade valiosa para qualquer Analista de Sistemas.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

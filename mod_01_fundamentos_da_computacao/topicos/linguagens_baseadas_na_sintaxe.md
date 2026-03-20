@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Classificação das Linguagens de Programação**
+---
+
 # **Classificação das Linguagens de Programação**  
 
 As linguagens de programação podem ser classificadas por sua sintaxe, paradigma e finalidade. Aqui estão os principais grupos:
@@ -15,7 +20,8 @@ Essas linguagens delimitam blocos de código com `{}` e geralmente finalizam com
 ```c
 #include <stdio.h>
 int main() {
-    printf("Hello, World!\n");
+    printf("Hello, World!
+");
     return 0;
 }
 ```
@@ -105,7 +111,8 @@ echo "Hello, World!";
 ```objc
 #import <stdio.h>
 int main() {
-    printf("Hello, World!\n");
+    printf("Hello, World!
+");
     return 0;
 }
 ```
@@ -117,7 +124,8 @@ puts "Hello, World!"
 
 ✔ **Perl**  
 ```perl
-print "Hello, World!\n";
+print "Hello, World!
+";
 ```
 
 ---
@@ -305,3 +313,4 @@ O programador define **o que** deve ser feito, e não **como** fazer.
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🐦 Linguagem Dart
+---
+
 ## 🐦 Linguagem Dart
 
 **Dart** é uma linguagem de programação moderna, flexível e otimizada, desenvolvida pelo Google. É a linguagem utilizada pelo framework Flutter.
@@ -142,3 +147,4 @@ print(pontuacoes['Rafael']); // Imprime 100
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

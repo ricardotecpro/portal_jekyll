@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Construindo, Implantando e Dominando o "Controle de Gastos"
+---
+
 # 🚀 Construindo, Implantando e Dominando o "Controle de Gastos"
 v1.3
 Bem-vindo ao guia definitivo para criar a aplicação **Controle de Gastos**. Esta versão foi aprimorada com base em experiências práticas de build e deploy, garantindo um processo mais robusto e educativo. Vamos construir uma aplicação Spring Boot com uma interface dinâmica usando htmx e implantá-la na nuvem de forma profissional com Docker.
@@ -451,3 +456,4 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 ### ✅ Conclusão
 
 Parabéns\! Você finalizou o guia completo, construindo e implantando uma aplicação robusta e moderna. O projeto agora conta com um CRUD completo e um processo de deploy profissional e à prova de falhas usando Docker.
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Tutorial: Como Criar e Gerenciar um Keyspace e Tabela no Cassandra usando Docker**
+---
+
 ### **Tutorial: Como Criar e Gerenciar um Keyspace e Tabela no Cassandra usando Docker**
 
 ---
@@ -167,3 +172,4 @@ Com esses passos, você aprendeu a:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

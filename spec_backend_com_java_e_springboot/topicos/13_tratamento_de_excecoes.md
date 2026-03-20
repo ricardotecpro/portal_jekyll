@@ -1,3 +1,8 @@
+---
+layout: default
+title: Tratamento de Exceções em Java ☕
+---
+
 # Tratamento de Exceções em Java ☕
 
 Este capítulo aborda o tratamento de exceções em Java, um mecanismo fundamental para lidar com erros e situações inesperadas durante a execução de um programa.
@@ -477,7 +482,8 @@ public class ProgramaReserva {
             Reserva reserva = new Reserva(numero, dataEntrada, dataSaida);
             System.out.println(reserva);
 
-            System.out.println("\nEntre com os dados para atualizar a reserva:");
+            System.out.println("
+Entre com os dados para atualizar a reserva:");
             System.out.print("Nova data de entrada (dd/MM/yyyy): ");
             dataEntrada = sdf.parse(sc.next());
             System.out.print("Nova data de saída (dd/MM/yyyy): ");
@@ -707,7 +713,8 @@ public class ProgramaConta {
             Conta conta = new Conta(numero, titular, saldoInicial, limiteSaque);
             System.out.println(conta);
 
-            System.out.print("\nEntre com a quantia para saque: ");
+            System.out.print("
+Entre com a quantia para saque: ");
             double quantiaSaque = sc.nextDouble();
 
             conta.sacar(quantiaSaque); // Este método pode lançar ExcecaoConta
@@ -779,3 +786,4 @@ Este resumo e os exemplos fornecem uma base sólida para entender e aplicar o tr
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

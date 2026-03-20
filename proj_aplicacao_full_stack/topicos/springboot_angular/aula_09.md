@@ -1,3 +1,8 @@
+---
+layout: default
+title: **📌 Criando um Sistema de Lista de Tarefas (Todo List) com Angular e Spring Boot**
+---
+
 # **📌 Criando um Sistema de Lista de Tarefas (Todo List) com Angular e Spring Boot**
 
 Este tutorial irá guiá-lo na criação de uma **aplicação web de lista de tarefas** (**Todo List**) utilizando **Spring Boot** no backend e **Angular** no frontend. O sistema permitirá que o usuário:
@@ -278,3 +283,4 @@ Agora temos um **sistema de tarefas funcional**! 🚀
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

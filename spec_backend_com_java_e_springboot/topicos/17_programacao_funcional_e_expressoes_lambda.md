@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java: Programação Funcional e Expressões Lambda
+---
+
 # ☕ Java: Programação Funcional e Expressões Lambda
 
 ## 🎯 Uma Experiência com Comparator
@@ -825,7 +830,8 @@ public class ProgramaCsvFuncionarios {
             }
 
             // 1. Emails dos funcionários com salário superior ao salarioBase, em ordem alfabética
-            System.out.println("\nEmail das pessoas cujo salário é maior que " + String.format("%.2f", salarioBase) + ":");
+            System.out.println("
+Email das pessoas cujo salário é maior que " + String.format("%.2f", salarioBase) + ":");
             List<String> emailsFiltrados = funcionarios.stream()
                                                .filter(f -> f.getSalario() > salarioBase)
                                                .map(Funcionario::getEmail)
@@ -838,7 +844,8 @@ public class ProgramaCsvFuncionarios {
                                        .filter(f -> f.getNome().toUpperCase().startsWith("M"))
                                        .mapToDouble(Funcionario::getSalario)
                                        .sum();
-            System.out.println("\nSoma do salário das pessoas cujo nome começa com 'M': " + String.format("%.2f", somaSalariosM));
+            System.out.println("
+Soma do salário das pessoas cujo nome começa com 'M': " + String.format("%.2f", somaSalariosM));
 
         } catch (IOException e) {
             System.out.println("Erro de leitura do arquivo: " + e.getMessage());
@@ -883,3 +890,4 @@ Todos os exemplos de código Java apresentados são padrão e podem ser compilad
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

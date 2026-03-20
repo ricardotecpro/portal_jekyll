@@ -1,3 +1,8 @@
+---
+layout: default
+title: Módulo 18: Pilares do Software de Qualidade
+---
+
 # Módulo 18: Pilares do Software de Qualidade
 
 ## Introdução ao Módulo
@@ -164,3 +169,4 @@ São diretrizes que ajudam a criar um código mais limpo, modular e de fácil ma
     * Funções pequenas e focadas.
     * Comentários que explicam o "porquê", não o "o quê".
     * Formatação consistente.
+

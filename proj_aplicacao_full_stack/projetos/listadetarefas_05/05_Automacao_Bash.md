@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Parte 6: Automação com Bash para Linux (v4.3)**
+---
+
 ### **Parte 6: Automação com Bash para Linux (v4.3)**
 
 Para oferecer uma experiência de desenvolvimento consistente em diferentes sistemas operacionais, esta seção fornece a versão para Linux (Ubuntu) do painel de controle, utilizando um script Bash (`.sh`). O script replica todas as funcionalidades da versão PowerShell, permitindo um gerenciamento completo do ambiente de desenvolvimento no terminal Linux.
@@ -160,7 +165,8 @@ function select_emulator() {
         return
     fi
 
-    echo -e "\nEmuladores disponíveis:"
+    echo -e "
+Emuladores disponíveis:"
     for i in "${!AVAILABLE_EMULATORS[@]}"; do
         indicator=""
         if [[ "${AVAILABLE_EMULATORS[$i]}" == "$EMULATOR_NAME" ]]; then
@@ -169,7 +175,8 @@ function select_emulator() {
         echo "  $(($i + 1)). ${AVAILABLE_EMULATORS[$i]}$indicator"
     done
     
-    read -rp $'\nDigite o número do emulador que deseja usar e pressione Enter (ou Enter para cancelar): ' choice
+    read -rp $'
+Digite o número do emulador que deseja usar e pressione Enter (ou Enter para cancelar): ' choice
     if [[ -z "$choice" ]]; then return; fi
 
     if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le ${#AVAILABLE_EMULATORS[@]} ]; then
@@ -202,12 +209,14 @@ function wait_for_adb_device() {
     SECONDS=0
     while (( SECONDS < timeout )); do
         if [[ $(get_service_status 'emulator') == "RUNNING" ]]; then
-            echo -e "\n${GREEN}Dispositivo detectado.${NC}"; sleep 1; return 0
+            echo -e "
+${GREEN}Dispositivo detectado.${NC}"; sleep 1; return 0
         fi
         echo -n "."
         sleep 2
     done
-    echo -e "\n${RED}Tempo esgotado!${NC}"; return 1
+    echo -e "
+${RED}Tempo esgotado!${NC}"; return 1
 }
 
 function ensure_build_artifact() {
@@ -242,7 +251,8 @@ function start_service() {
         fi
     fi
 
-    echo -e "\n${YELLOW}Tentando iniciar serviço: $service_name...${NC}"
+    echo -e "
+${YELLOW}Tentando iniciar serviço: $service_name...${NC}"
     case "$service_name" in
         'api')
             ensure_build_artifact "$API_JAR" "$API_PATH" || return 1
@@ -282,7 +292,8 @@ function start_service() {
 }
 
 function stop_service() {
-    echo -e "\n${YELLOW}Parando serviço: $1...${NC}"
+    echo -e "
+${YELLOW}Parando serviço: $1...${NC}"
     case "$1" in
         'api') lsof -t -i:8080 | xargs -r kill -9 ;;
         'web') lsof -t -i:4200 | xargs -r kill -9 ;;
@@ -300,11 +311,15 @@ function stop_service() {
 function clean_project() {
     clear
     echo -e "${YELLOW}--- LIMPANDO CACHES E BUILDS ---${NC}"
-    echo -e "\n${CYAN}Limpando API...${NC}"; (cd "$API_PATH" && ./mvnw clean)
-    echo -e "\n${CYAN}Limpando Desktop...${NC}"; (cd "$DESKTOP_PATH" && ./mvnw clean)
-    echo -e "\n${CYAN}Limpando Web...${NC}"
+    echo -e "
+${CYAN}Limpando API...${NC}"; (cd "$API_PATH" && ./mvnw clean)
+    echo -e "
+${CYAN}Limpando Desktop...${NC}"; (cd "$DESKTOP_PATH" && ./mvnw clean)
+    echo -e "
+${CYAN}Limpando Web...${NC}"
     rm -rf "$WEB_PATH/.angular" "$WEB_PATH/dist"
-    echo -e "\n${GREEN}--- LIMPEZA CONCLUÍDA ---${NC}"
+    echo -e "
+${GREEN}--- LIMPEZA CONCLUÍDA ---${NC}"
     read -rp "Pressione Enter..."
 }
 
@@ -324,7 +339,8 @@ function invoke_adb_tool() {
             echo "Verificando túneis:"; "$PLATFORM_TOOLS_PATH/adb" reverse --list
             ;;
     esac
-    read -rp $'\nPressione Enter para voltar ao menu'
+    read -rp $'
+Pressione Enter para voltar ao menu'
 }
 
 #==============================================================================
@@ -346,14 +362,17 @@ function show_menu() {
         "App Mobile" "$( [[ $(get_service_status 'emulator') == "RUNNING" ]] && get_service_status 'android' || echo "OFFLINE" )"
     )
 
-    echo -e "\n${WHITE}STATUS ATUAL:${NC}"
+    echo -e "
+${WHITE}STATUS ATUAL:${NC}"
     for ((i=0; i<${#statuses[@]}; i+=2)); do
         local color="$RED"
         [[ "${statuses[i+1]}" == "RUNNING" ]] && color="$GREEN"
-        printf "  %-30s %b%s%b\n" "${statuses[i]}" "$color" "${statuses[i+1]}" "$NC"
+        printf "  %-30s %b%s%b
+" "${statuses[i]}" "$color" "${statuses[i+1]}" "$NC"
     done
     
-    echo -e "\n${YELLOW}--- OPÇÕES ---${NC}"
+    echo -e "
+${YELLOW}--- OPÇÕES ---${NC}"
     echo " ${WHITE}GERAL                     SERVIÇOS INDIVIDUAIS${NC}"
     echo "  ${YELLOW}9)${NC} Iniciar TUDO          ${YELLOW}1)${NC} Iniciar API          ${YELLOW}5)${NC} Iniciar Desktop"
     echo "  ${YELLOW}10)${NC} Parar TUDO             ${YELLOW}2)${NC} Parar API            ${YELLOW}6)${NC} Parar Desktop"
@@ -392,7 +411,9 @@ while true; do
             start_service 'emulator' || { read -rp "Falha ao iniciar Emulador."; continue; }
             start_service 'api' || { read -rp "Falha ao iniciar API."; continue; }
             start_service 'web'; start_service 'desktop'; start_service 'android'
-            read -rp $'\n--- SEQUÊNCIA CONCLUÍDA ---\nPressione Enter...'
+            read -rp $'
+--- SEQUÊNCIA CONCLUÍDA ---
+Pressione Enter...'
             ;;
         '10')
             stop_service 'android'; stop_service 'desktop'; stop_service 'web'; stop_service 'api'
@@ -421,3 +442,4 @@ done
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

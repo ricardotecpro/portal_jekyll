@@ -1,3 +1,8 @@
+---
+layout: default
+title: Análise da Tarefa
+---
+
 ### Análise da Tarefa
 
 O objetivo é criar uma réplica do jogo "Genius" (Simon) em Java 21, com foco em uma arquitetura limpa e práticas modernas de desenvolvimento. Como nenhum código foi fornecido, construiremos a solução do zero, seguindo uma abordagem didática.
@@ -763,3 +768,4 @@ https://s3.amazonaws.com/freecodecamp/simonSound1.mp3
 
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

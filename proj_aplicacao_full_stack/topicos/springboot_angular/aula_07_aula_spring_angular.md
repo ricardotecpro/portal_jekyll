@@ -1,3 +1,8 @@
+---
+layout: default
+title: Todo List - API REST com Angular e Spring Boot
+---
+
 # Todo List - API REST com Angular e Spring Boot
 
 ## Introdução
@@ -236,3 +241,4 @@ npm install @angular/common @angular/forms @angular/router @angular/http
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

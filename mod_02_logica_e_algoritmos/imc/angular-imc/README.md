@@ -1,3 +1,8 @@
+---
+layout: default
+title: Calculadora de IMC com Angular
+---
+
 # Calculadora de IMC com Angular
 
 Este projeto foi desenvolvido como parte de uma matéria da faculdade e tem como objetivo calcular o Índice de Massa Corporal (IMC) com base nas informações fornecidas pelo usuário.
@@ -23,3 +28,4 @@ Contribuições não são esperadas para este projeto, pois foi desenvolvido com
 ## Licença
 
 Este projeto não possui uma licença específica.
+

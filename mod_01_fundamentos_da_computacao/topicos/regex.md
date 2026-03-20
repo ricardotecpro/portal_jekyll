@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Expressões Regulares (Regex) em Diversas Linguagens de Programação**
+---
+
 # **Expressões Regulares (Regex) em Diversas Linguagens de Programação**
 
 Lista incluindo **expressões regulares (Regex)**, um recurso poderoso usado em várias linguagens para busca e manipulação de texto.  
@@ -27,8 +32,10 @@ int main() {
     int reti = regcomp(&regex, "hello", 0);
     reti = regexec(&regex, "hello world", 0, NULL, 0);
     
-    if (!reti) printf("Match found!\n");
-    else printf("No match!\n");
+    if (!reti) printf("Match found!
+");
+    else printf("No match!
+");
     
     regfree(&regex);
     return 0;
@@ -149,7 +156,8 @@ if (preg_match("/\d+/", $text, $match)) {
 ```perl
 my $text = "ID 12345";
 if ($text =~ /\d+/) {
-    print "Match found!\n";
+    print "Match found!
+";
 }
 ```
 
@@ -266,3 +274,4 @@ A lista inclui **Regex em várias linguagens**, mostrando como diferentes tecnol
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

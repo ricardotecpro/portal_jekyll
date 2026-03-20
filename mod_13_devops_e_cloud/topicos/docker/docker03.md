@@ -1,3 +1,8 @@
+---
+layout: default
+title: Manual Introdutório de Docker
+---
+
 # Manual Introdutório de Docker
 ---
 
@@ -598,3 +603,4 @@ Acesse em `http://localhost:8080`
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Projeto Lista de Tarefas" (To-Do List)
+---
+
 # 🚀 Projeto Lista de Tarefas" (To-Do List)
 v2.0
 
@@ -417,4 +422,5 @@ export class AppComponent { }
 -----
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

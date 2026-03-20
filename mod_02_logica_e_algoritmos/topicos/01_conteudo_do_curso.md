@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💻 Curso Completo de Algoritmos e Lógica de Programação
+---
+
 # 💻 Curso Completo de Algoritmos e Lógica de Programação
 
 Este documento apresenta a estrutura completa do curso de formação em algoritmos e desenvolvimento de software, abordando desde os conceitos fundamentais até a aplicação prática em diversas linguagens de programação.
@@ -45,3 +50,4 @@ O percurso de aprendizado foi desenhado para garantir uma progressão lógica e 
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Six-Lang: Comparação entre C, Rust, Java, Python, JavaScript e SQL
+---
+
 # Six-Lang: Comparação entre C, Rust, Java, Python, JavaScript e SQL
 
 
@@ -87,3 +92,4 @@ Segue **comparação completa entre as linguagens C, Rust, Java, Python, JavaScr
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

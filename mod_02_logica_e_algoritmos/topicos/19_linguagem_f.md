@@ -1,3 +1,8 @@
+---
+layout: default
+title: **F# – Uma Linguagem Funcional para .NET** 🚀
+---
+
 ### **F# – Uma Linguagem Funcional para .NET** 🚀
 
 **F#** é uma linguagem de programação funcional que roda na plataforma **.NET**, desenvolvida pela Microsoft e pela comunidade **open-source**. Ela combina **programação funcional**, **orientação a objetos** e **programação imperativa**, sendo uma excelente escolha para desenvolvimento robusto, seguro e conciso.
@@ -169,3 +174,4 @@ O **F#** é uma linguagem poderosa e concisa para programação funcional na pla
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
+---
+
 # ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
 >  Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end
 
@@ -46,3 +51,4 @@ const p1 = new Product("Monitor", 800.0, 10);
 
 const p2 = new Product("Mouse", 50.0, 4);
 ```
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
+---
+
 # ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
 >  Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end
 
@@ -36,4 +41,5 @@ Pode ser referenciado por `window.document` ou somente `document`.
 https://developer.mozilla.org/pt-BR/docs/Web/API/Document
 
 https://www.w3schools.com/jsref/dom_obj_document.asp
+
 

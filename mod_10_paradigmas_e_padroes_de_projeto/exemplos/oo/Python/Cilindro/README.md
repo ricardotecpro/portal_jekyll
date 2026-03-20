@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📌 Projeto: Cálculo do Volume de um Cilindro
+---
+
 # 📌 Projeto: Cálculo do Volume de um Cilindro
 
 ## 📖 Sobre o Projeto
@@ -83,3 +88,4 @@ Para rodar os testes, execute:
 ```sh
 python -m unittest discover -s testes
 ```
+

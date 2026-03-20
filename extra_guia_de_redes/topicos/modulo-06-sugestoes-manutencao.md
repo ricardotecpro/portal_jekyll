@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO-06-SUGESTOES-MANUTENCAO
+---
+
 
 ### **Arquivo 6: `sugestoes-manutencao.md`**
 
@@ -38,3 +43,4 @@ Para manter os alunos engajados e oferecer um caminho de aprendizado contínuo, 
 - **Consistência Visual:** Mantenha o padrão de formatação Markdown, emojis e diagramas em todos os módulos para criar uma experiência de aprendizado coesa e agradável.
 
 ---
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Instalando o Cassandra com Docker 🚀**
+---
+
 ### **Instalando o Cassandra com Docker 🚀**
 
 Este tutorial detalha o processo de instalação e configuração de um ambiente Cassandra de nó único usando Docker, ideal para desenvolvimento e estudos.
@@ -131,3 +136,4 @@ Após executar este comando, o prompt mudará para `cqlsh:minhakeyspace>`, indic
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

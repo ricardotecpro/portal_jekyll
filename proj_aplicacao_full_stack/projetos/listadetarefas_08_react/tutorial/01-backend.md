@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 Módulo 1: Backend com Spring Boot
+---
+
 # 🎓 Módulo 1: Backend com Spring Boot
 
 **Objetivo**: Criar uma API RESTful capaz de criar, ler, atualizar e deletar tarefas (CRUD).
@@ -98,3 +103,4 @@ public class TarefaController {
 
 ## 🏆 Desafio
 Implemente os métodos `atualizar` (@PutMapping) e `deletar` (@DeleteMapping) no Controller.
+

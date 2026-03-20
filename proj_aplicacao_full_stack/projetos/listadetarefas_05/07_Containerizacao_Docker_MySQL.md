@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🐳 Módulo 7: Containerização com Docker e MySQL
+---
+
 # 🐳 Módulo 7: Containerização com Docker e MySQL
 
 **Objetivo:** Empacotar nossa API Spring Boot em um container Docker para garantir portabilidade e consistência entre ambientes. Em seguida, usar o Docker Compose para orquestrar a execução da nossa API junto com um banco de dados MySQL persistente, substituindo o H2 em memória.
@@ -168,4 +173,5 @@ volumes:
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

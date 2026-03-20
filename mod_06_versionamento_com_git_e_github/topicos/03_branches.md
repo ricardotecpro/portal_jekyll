@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🌳 Branches e Trabalho em Equipe com Git e GitHub
+---
+
 # 🌳 Branches e Trabalho em Equipe com Git e GitHub
 
 Este guia aborda o uso de branches no Git para desenvolvimento colaborativo e gerenciamento de projetos, além de fluxos de trabalho comuns utilizando o GitHub.
@@ -393,3 +398,4 @@ Este é o ciclo fundamental de contribuição em muitos projetos de software col
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

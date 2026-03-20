@@ -1,3 +1,8 @@
+---
+layout: default
+title: Paradigma Funcional: Entendendo o Básico
+---
+
 # Paradigma Funcional: Entendendo o Básico
 
 O **paradigma funcional** é um modelo de programação baseado em funções matemáticas, onde a computação é tratada como a avaliação de expressões em vez da execução de comandos. Ele enfatiza **imutabilidade**, **funções puras** e **ausência de efeitos colaterais**, tornando o código mais previsível e fácil de testar.
@@ -59,3 +64,4 @@ O paradigma funcional é ideal para aplicações que exigem **concorrência**, *
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

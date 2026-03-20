@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Tarefas - Refatoração Lista de Tarefas 07
+---
+
 # Lista de Tarefas - Refatoração Lista de Tarefas 07
 
 - [x] Exploração Inicial e Planejamento
@@ -17,3 +22,4 @@
     - [x] Implementar Testes Automatizados (Componentes e Serviços) <!-- id: 11 -->
 - [x] Documentação
     - [x] Reescrever `README.md` como guia didático passo a passo para professores/alunos <!-- id: 9 -->
+

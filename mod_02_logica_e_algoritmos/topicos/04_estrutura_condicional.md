@@ -1,3 +1,8 @@
+---
+layout: default
+title: ⚖️ Estrutura Condicional em Programação
+---
+
 # ⚖️ Estrutura Condicional em Programação
 
 Após entendermos como os programas executam comandos em sequência, vamos explorar a **estrutura condicional**. Ela permite que um programa tome decisões, alterando seu fluxo de execução com base em condições específicas. É o que torna os programas "inteligentes" e dinâmicos.
@@ -239,8 +244,10 @@ public class Bhaskara {
             } else {
                 double x1 = (-b + Math.sqrt(delta)) / (2.0 * a);
                 double x2 = (-b - Math.sqrt(delta)) / (2.0 * a);
-                System.out.printf("X1 = %.4f\n", x1);
-                System.out.printf("X2 = %.4f\n", x2);
+                System.out.printf("X1 = %.4f
+", x1);
+                System.out.printf("X2 = %.4f
+", x2);
             }
         }
         sc.close();
@@ -258,3 +265,4 @@ public class Bhaskara {
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

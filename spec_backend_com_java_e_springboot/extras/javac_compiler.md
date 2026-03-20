@@ -1,3 +1,8 @@
+---
+layout: default
+title: Compilador Java com Estrutura de Pacotes
+---
+
 # Compilador Java com Estrutura de Pacotes
 # =============================
 # Este guia mostra como compilar e executar um projeto Java com uma estrutura de pacotes específica, utilizando o comando `javac` e o terminal.
@@ -142,4 +147,5 @@ pause
     
 2. Clique duas vezes no arquivo para rodar, ou execute no terminal (`cmd`).
     
+
 

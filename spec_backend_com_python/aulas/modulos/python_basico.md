@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🐍 Python: A Linguagem Versátil e Poderosa
+---
+
 # 🐍 Python: A Linguagem Versátil e Poderosa
 
 Python é uma linguagem de programação de alto nível, interpretada e de propósito geral, criada por Guido van Rossum e lançada pela primeira vez em 1991. Sua filosofia de design enfatiza a legibilidade do código com uma sintaxe que permite aos desenvolvedores expressar conceitos em menos linhas de código do que seria possível em linguagens como C++ ou Java.
@@ -152,4 +157,5 @@ Parabéns por completar a aula de Python Básico! Continue sua jornada:
 - 🚀 **Avançar**: [Python Avançado](python_avancado.md)
 - 💪 **Praticar**: [Exercícios](../exercicios/index.md)
 - 🎯 **Aplicar**: [Projetos](../projetos/index.md)
+
 

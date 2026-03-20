@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📅 Trabalhando com Datas em Java
+---
+
 # 📅 Trabalhando com Datas em Java
 
 Este material aborda como manipular datas e horas em Java, focando nas classes mais antigas (`Date`, `SimpleDateFormat`, `Calendar`) e introduzindo brevemente o `Instant` do pacote `java.time` (embora as classes mais antigas sejam o foco principal do PDF original).
@@ -271,3 +276,4 @@ O output do programa será exibido no console ou terminal integrado da IDE.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Entrada de dados por Terminal em Python, Java e JavaScript (Node.js)
+---
+
 # Entrada de dados por Terminal em Python, Java e JavaScript (Node.js) 
 
 Receba o número de repetições no terminal,  ao usuário que insira o número de repetições e utilizem esse valor durante a execução.
@@ -22,7 +27,8 @@ rl.question('Quantas repetições? ', (numRepeticoes) => {
 
   // Loop do-while
   do {
-    text += "The number is " + i + "\n";  // Adiciona a frase com o número atual
+    text += "The number is " + i + "
+";  // Adiciona a frase com o número atual
     i++;
   } while (i < numRepeticoes);
 
@@ -60,7 +66,8 @@ i = 0       # Inicializa i com 0
 # Loop do-while em Python (usando while True e uma condição de quebra)
 while True:
     # Adicionar ao texto
-    text += f"The number is {i}\n"  # Adiciona a frase com o número atual
+    text += f"The number is {i}
+"  # Adiciona a frase com o número atual
     i += 1
     if i >= num_repeticoes:
         break
@@ -103,7 +110,8 @@ public class Main {
         // Loop do-while
         do {
             // Adicionar ao texto
-            text += "The number is " + i + "\n";  // Adiciona a frase com o número atual
+            text += "The number is " + i + "
+";  // Adiciona a frase com o número atual
             i++;
         } while (i < numRepeticoes);
 
@@ -136,4 +144,5 @@ O código solicitará o número de repetições ao usuário e exibirá o texto n
 - **Node.js (JavaScript)**: Usa a biblioteca `readline` para interagir com o usuário.
 - **Python**: Utiliza `input()` para capturar o número de repetições.
 - **Java**: Usa `Scanner` para capturar a entrada do usuário.
+
 

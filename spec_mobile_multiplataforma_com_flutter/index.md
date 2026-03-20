@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📱 Desenvolvimento Mobile Multiplataforma
+---
+
 # 📱 Desenvolvimento Mobile Multiplataforma
 
 O desenvolvimento mobile multiplataforma (ou *cross-platform*) é uma abordagem que permite criar aplicativos para múltiplos sistemas operacionais, como iOS e Android, a partir de um **único código-fonte**. Isso contrasta com o desenvolvimento nativo, onde são necessários times e códigos separados (Swift/Objective-C para iOS e Kotlin/Java para Android) para cada plataforma.
@@ -155,3 +160,4 @@ A decisão sobre qual framework usar depende de vários fatores do projeto e da 
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

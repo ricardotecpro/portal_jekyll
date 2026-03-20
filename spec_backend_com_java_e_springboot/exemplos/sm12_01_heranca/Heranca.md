@@ -1,3 +1,8 @@
+---
+layout: default
+title: Herança e Java
+---
+
 # Herança e Java
 
 📘 Conceitos:
@@ -141,7 +146,8 @@ public class Programa {
             conta.sacar(100.0); // comportamento polimórfico
         }
 
-        System.out.println("\nApós saque:");
+        System.out.println("
+Após saque:");
         for (Conta conta : lista) {
             System.out.println(conta);
         }
@@ -237,5 +243,6 @@ Todas as classes possuem o método `sacar()`, mas com comportamentos diferentes:
 Cada classe redefine (sobrescreve) o método de acordo com sua **regra de negócio**. O polimorfismo permite que, mesmo chamando `conta.sacar(...)`, cada tipo de conta aplique a sua própria lógica.
 
 ---
+
 
 

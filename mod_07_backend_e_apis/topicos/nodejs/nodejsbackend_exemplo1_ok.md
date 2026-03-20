@@ -1,3 +1,8 @@
+---
+layout: default
+title: **1. Criar um novo projeto Node.js**
+---
+
 ### **1. Criar um novo projeto Node.js**
 
 1. **Abra o vsCode** e clique em **"File" > "New Project"**.
@@ -129,3 +134,4 @@ Se quiser que o servidor reinicie automaticamente ao modificar o código:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🖥️ Módulo 3: Desktop (JavaFX) - Melhorando a Experiência Nativa
+---
+
 # 🖥️ Módulo 3: Desktop (JavaFX) - Melhorando a Experiência Nativa
 
 **Objetivo:** Aprimorar a UX do cliente desktop para seguir convenções nativas, como o menu de contexto (clique direito), e manter a edição por duplo clique.
@@ -45,4 +50,5 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

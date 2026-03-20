@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java e Orientação a Objetos
+---
+
 # ☕ Java e Orientação a Objetos
 ## 📐 Exercícios de Fixação: 02 Estrutura Sequencial
 

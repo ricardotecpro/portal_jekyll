@@ -1,3 +1,8 @@
+---
+layout: default
+title: ✅ Lista de Tarefas — Desenvolvimento do Jogo **Genius (Simon)** em Java 21
+---
+
 # ✅ Lista de Tarefas — Desenvolvimento do Jogo **Genius (Simon)** em Java 21
 
 ### Sequência Didática Baseada no Guia de Desenvolvimento
@@ -875,3 +880,4 @@ Unit test uses injected Random to guarantee deterministic sequence for assertion
 
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

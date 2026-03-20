@@ -1,3 +1,8 @@
+---
+layout: default
+title: Java: Herança e Polimorfismo
+---
+
 # Java: Herança e Polimorfismo
 
 ## Herança 🧬
@@ -483,7 +488,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nPAGAMENTOS:");
+        System.out.println("
+PAGAMENTOS:");
         for (Funcionario func : listaFuncionarios) {
             System.out.println(func.getNome() + " - R$ " + String.format("%.2f", func.calcularPagamento()));
         }
@@ -660,7 +666,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nETIQUETAS DE PREÇO:");
+        System.out.println("
+ETIQUETAS DE PREÇO:");
         for (Produto prod : listaProdutos) {
             System.out.println(prod.etiquetaPreco());
         }
@@ -904,7 +911,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nÁREAS DAS FORMAS:");
+        System.out.println("
+ÁREAS DAS FORMAS:");
         for (Forma forma : listaFormas) {
             System.out.println(String.format("%.2f", forma.calcularArea()));
         }
@@ -1104,7 +1112,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nIMPOSTOS PAGOS:");
+        System.out.println("
+IMPOSTOS PAGOS:");
         double totalImpostos = 0.0;
         for (Contribuinte contr : listaContribuintes) {
             double imposto = contr.calcularImposto();
@@ -1112,7 +1121,8 @@ public class Programa {
             totalImpostos += imposto;
         }
 
-        System.out.println("\nTOTAL DE IMPOSTOS: R$ " + String.format("%.2f", totalImpostos));
+        System.out.println("
+TOTAL DE IMPOSTOS: R$ " + String.format("%.2f", totalImpostos));
 
         sc.close();
     }
@@ -1155,3 +1165,4 @@ TOTAL DE IMPOSTOS: R$ 97000.00
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

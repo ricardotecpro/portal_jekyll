@@ -1,3 +1,8 @@
+---
+layout: default
+title: Manual Introdutório de Docker
+---
+
 # Manual Introdutório de Docker
 
 **Curso: Análise e Desenvolvimento de Sistemas**  
@@ -410,3 +415,4 @@ Acesse em `http://localhost:5000/tarefas`
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Compilando e Executando Java com Vários Arquivos
+---
+
 # Compilando e Executando Java com Vários Arquivos
 # Este guia mostra como compilar e executar um projeto Java com vários arquivos usando o terminal.
 # =============================
@@ -41,3 +46,4 @@ java Main
 > Isso assume que o método `main` está dentro da classe `Main`.
 
 ---
+

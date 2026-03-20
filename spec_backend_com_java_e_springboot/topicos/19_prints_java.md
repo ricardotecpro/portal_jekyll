@@ -1,3 +1,8 @@
+---
+layout: default
+title: Comandos de Impressão em Java: `print`, `println` e `printf`
+---
+
 # Comandos de Impressão em Java: `print`, `println` e `printf`
 
 
@@ -47,9 +52,11 @@ System.out.printf("Nome: %s, Idade: %d%n", "João", 30);
 
 ---
 
-## 📌 Diferença entre `\n` e `%n` no `printf`
+## 📌 Diferença entre `
+` e `%n` no `printf`
 
-### 🔹 `\n`
+### 🔹 `
+`
 
 - É o **caractere de nova linha** usado em muitos sistemas.
     
@@ -59,7 +66,8 @@ System.out.printf("Nome: %s, Idade: %d%n", "João", 30);
     
 
 ```java
-System.out.printf("Linha 1\nLinha 2");
+System.out.printf("Linha 1
+Linha 2");
 ```
 
 ### 🔹 `%n`
@@ -83,10 +91,13 @@ Sim:
 
 |Sistema|Quebra de linha|
 |---|---|
-|Windows|`\r\n` (carriage return + line feed)|
-|Linux/macOS|`\n` (line feed apenas)|
+|Windows|`\r
+` (carriage return + line feed)|
+|Linux/macOS|`
+` (line feed apenas)|
 
-➡️ **Por isso, o `%n` é preferível ao `\n` em `printf`**, pois ele cuida da quebra de linha correta de forma automática para cada sistema.
+➡️ **Por isso, o `%n` é preferível ao `
+` em `printf`**, pois ele cuida da quebra de linha correta de forma automática para cada sistema.
 
 ---
 
@@ -96,7 +107,8 @@ Sim:
 |---|---|---|---|
 |`print`|❌ Não|❌ Não|✅|
 |`println`|✅ Sim (automática)|❌ Não|✅|
-|`printf("\n")`|✅ Sim|✅ Sim|⚠️ Pode falhar|
+|`printf("
+")`|✅ Sim|✅ Sim|⚠️ Pode falhar|
 |`printf("%n")`|✅ Sim|✅ Sim|✅ Recomendado|
 
 
@@ -178,3 +190,4 @@ Se estiver construindo um sistema real, `printf` é mais comum.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

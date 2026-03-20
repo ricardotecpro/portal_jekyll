@@ -1,3 +1,8 @@
+---
+layout: default
+title: Slides do Curso Python Backend
+---
+
 # Slides do Curso Python Backend
 
 Este diretório contém os slides do curso em formato Marp.
@@ -40,3 +45,4 @@ Os slides usam o tema customizado `python-theme.css` com as cores oficiais do Py
 - 🔵 Azul Python: `#306998`
 - 🟡 Amarelo Python: `#FFD43B`
 - 🟠 Laranja: `#FFA500`
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: ENCAPSULAMENTO
+---
+
 
 ---
 
@@ -150,4 +155,5 @@ product.name = "TV"; // ❌ Erro: name is not accessible
     
 
 ---
+
 

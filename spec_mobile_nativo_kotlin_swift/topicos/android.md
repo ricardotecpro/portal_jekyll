@@ -1,3 +1,8 @@
+---
+layout: default
+title: Desenvolvimento Android
+---
+
 # Desenvolvimento Android
 ## Do Zero ao Profissional com Kotlin e Jetpack Compose
 
@@ -102,3 +107,4 @@ Ao final do curso, o aluno terá construído um aplicativo completo, "Catálogo 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

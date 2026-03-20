@@ -1,3 +1,8 @@
+---
+layout: default
+title: # 📜 A Filosofia DevOps: Mais do que Ferramentas
+---
+
 ## 📜 A Filosofia DevOps: Mais do que Ferramentas
 
 A cultura DevOps é frequentemente resumida pelo acrônimo **CALMS**:
@@ -94,3 +99,4 @@ Em resumo, o DevOps fornece a **cultura e os processos** para a entrega rápida 
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

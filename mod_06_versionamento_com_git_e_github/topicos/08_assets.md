@@ -1,3 +1,8 @@
+---
+layout: default
+title: ✅ Assets
+---
+
 # ✅ Assets
 
 Ambas as abordagens têm suas vantagens e desvantagens, e a "melhor" forma depende do seu caso de uso específico e das suas prioridades. Vamos analisar cada uma:
@@ -67,3 +72,4 @@ Ao decidir, pense em quem vai usar o repositório, como ele será acessado e qua
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

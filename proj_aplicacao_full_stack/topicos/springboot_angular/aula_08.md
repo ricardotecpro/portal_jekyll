@@ -1,3 +1,8 @@
+---
+layout: default
+title: Todo List - API REST com Angular e Spring Boot
+---
+
 # Todo List - API REST com Angular e Spring Boot
 
 ## Introdução
@@ -204,3 +209,4 @@ Agora a aplicação suporta CRUD completo com interface e interação do usuári
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

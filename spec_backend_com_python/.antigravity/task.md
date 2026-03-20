@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Tarefas - Migração MkDocs
+---
+
 # Lista de Tarefas - Migração MkDocs
 
 - [x] Infraestrutura e Configuração <!-- id: 0 -->
@@ -26,3 +31,4 @@
 - [x] Testes Automatizados <!-- id: 24 -->
     - [x] Criar `tests/test_layout.py` com Playwright <!-- id: 25 -->
     - [x] Executar testes via `build.py` e verificar <!-- id: 26 -->
+

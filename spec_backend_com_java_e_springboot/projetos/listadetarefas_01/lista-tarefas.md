@@ -1,3 +1,8 @@
+---
+layout: default
+title: Listas de Tarefas v1.1
+---
+
 # Listas de Tarefas v1.1
 
 
@@ -204,3 +209,4 @@
           * CI/CD (Integração Contínua/Entrega Contínua).
 
 ---
+

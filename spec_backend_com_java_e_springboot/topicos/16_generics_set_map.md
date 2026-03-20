@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java: Generics, Set, Map
+---
+
 # ☕ Java: Generics, Set, Map
 
 Este documento aborda conceitos avançados em Java, incluindo Generics, as coleções Set e Map, e a importância dos métodos `hashCode` e `equals`.
@@ -943,7 +948,8 @@ public class ProgramaMap {
         // username: maria
 
         // Iterando com entrySet (mais eficiente se precisar de chave e valor)
-        System.out.println("\nTODOS OS COOKIES (usando entrySet):");
+        System.out.println("
+TODOS OS COOKIES (usando entrySet):");
         for (Map.Entry<String, String> entrada : cookies.entrySet()) {
             System.out.println(entrada.getKey() + ": " + entrada.getValue());
         }
@@ -1086,3 +1092,4 @@ Lembre-se de que, para exemplos que leem arquivos, você precisará fornecer o c
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Módulo 17: Paradigmas de Programação**
+---
+
 # **Módulo 17: Paradigmas de Programação**
 
 ## Introdução ao Módulo
@@ -144,3 +149,4 @@ const dobradosFuncional = numeros
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

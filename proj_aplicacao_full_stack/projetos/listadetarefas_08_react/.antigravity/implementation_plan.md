@@ -1,3 +1,8 @@
+---
+layout: default
+title: Plano de Implementação
+---
+
 # Plano de Implementação
 
 ## Objetivos
@@ -52,3 +57,4 @@ Refatorar a aplicação "Lista de Tarefas 08", modernizando o backend com Spring
 ### DevOps
 - [ ] Criar **Dockerfile** e **docker-compose.yml**.
 - [ ] Configurar documentação com **Swagger/OpenAPI**.
+

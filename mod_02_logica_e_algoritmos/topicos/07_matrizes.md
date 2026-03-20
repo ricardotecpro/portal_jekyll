@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎛️ Matrizes (Arrays Bidimensionais) em Programação
+---
+
 # 🎛️ Matrizes (Arrays Bidimensionais) em Programação
 
 Dando um passo além dos vetores (arrays de uma dimensão), as **matrizes** nos permitem trabalhar com dados estruturados em duas dimensões, como tabelas, planilhas ou tabuleiros.
@@ -86,7 +91,8 @@ public class LerMatriz {
         }
 
         // Usando laços aninhados para imprimir a matriz
-        System.out.println("\nMATRIZ DIGITADA:");
+        System.out.println("
+MATRIZ DIGITADA:");
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
                 System.out.print(mat[i][j] + " "); // Imprime o elemento e um espaço
@@ -200,7 +206,8 @@ public class SomaLinhasMatriz {
         // Imprimindo o vetor com as somas
         System.out.println("Soma de cada linha:");
         for (int i = 0; i < M; i++) {
-            System.out.printf("Linha %d: %d\n", i, vetorSomas[i]);
+            System.out.printf("Linha %d: %d
+", i, vetorSomas[i]);
         }
     }
 }
@@ -236,3 +243,4 @@ Você pode compilar e executar todos os exemplos de código acima em qualquer um
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🗂️ Git: O Sistema de Controle de Versão Distribuído
+---
+
 # 🗂️ Git: O Sistema de Controle de Versão Distribuído
 
 Git é um sistema de controle de versão distribuído, gratuito e de código aberto, criado por Linus Torvalds em 2005 (o mesmo criador do kernel do Linux). Ele foi projetado para ser rápido, eficiente e para lidar com tudo, desde projetos pequenos até os muito grandes.
@@ -354,3 +359,4 @@ Em resumo, enquanto o GitHub brilha como um ecossistema social e colaborativo, o
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: ⚙️ O Mundo do Backend: A Espinha Dorsal da Tecnologia
+---
+
 # ⚙️ O Mundo do Backend: A Espinha Dorsal da Tecnologia
 
 O termo **Backend** (ou *server-side*) se refere a tudo o que acontece "nos bastidores" de uma aplicação de software. É a parte do sistema que o usuário final não vê e com a qual não interage diretamente, mas que é responsável por fazer tudo funcionar.

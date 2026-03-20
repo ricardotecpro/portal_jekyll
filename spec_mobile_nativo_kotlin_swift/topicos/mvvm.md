@@ -1,3 +1,8 @@
+---
+layout: default
+title: MVVM
+---
+
 📱 Módulo 4: Guia Completo do Cliente Android com Jetpack Compose
 Objetivo: Construir um cliente Android nativo, moderno e robusto, seguindo a arquitetura recomendada pelo Google (MVVM com Repositório) e utilizando as melhores práticas com Jetpack Compose, ViewModel e Material 3.
 

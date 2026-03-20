@@ -1,3 +1,8 @@
+---
+layout: default
+title: Design Patterns, SOLID e Spring MVC
+---
+
 # Design Patterns, SOLID e Spring MVC
 
 
@@ -238,3 +243,4 @@ Adicionar tópicos sobre:
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

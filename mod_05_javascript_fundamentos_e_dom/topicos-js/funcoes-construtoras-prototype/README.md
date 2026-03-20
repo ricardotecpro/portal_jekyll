@@ -1,3 +1,8 @@
+---
+layout: default
+title: ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
+---
+
 # ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
 >  Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end
 
@@ -50,4 +55,5 @@ Maneira prática de se verificar o construtor de um objeto.
 O prototype de um construtor define uma estrutura de membros que são compartilhados pelas instâncias desse construtor. 
 
 https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/Object_prototypes
+
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem Python 🐍
+---
+
 # Linguagem Python 🐍
 
 Bem-vindo ao guia de Python, uma linguagem de programação de alto nível, conhecida por sua sintaxe limpa, legibilidade e vasta gama de aplicações, que vão desde desenvolvimento web e automação de scripts até ciência de dados e inteligência artificial. Sua filosofia incentiva a escrita de código claro e conciso.
@@ -119,7 +124,8 @@ nome_completo = input("Digite seu nome completo: ")
 idade = int(input("Digite sua idade: ")) # Converte a entrada para inteiro.
 salario = float(input("Digite seu salario: ")) # Converte a entrada para float.
 
-print("\n--- DADOS REGISTRADOS ---")
+print("
+--- DADOS REGISTRADOS ---")
 print(f"Nome: {nome_completo}")
 print(f"Idade: {idade}")
 print(f"Salario: {salario:.2f}")
@@ -192,7 +198,8 @@ vetor: [float] = [0.0 for x in range(n)]
 for i in range(0, n):
     vetor[i] = float(input(f"Digite o numero #{i + 1}: "))
 
-print("\nNUMEROS DIGITADOS:")
+print("
+NUMEROS DIGITADOS:")
 for numero in vetor:
     print(f"{numero:.1f}")
 ```
@@ -212,7 +219,8 @@ for i in range(0, m):
     for j in range(0, n):
         matriz[i][j] = int(input(f"Elemento [{i},{j}]: "))
 
-print("\nMATRIZ DIGITADA:")
+print("
+MATRIZ DIGITADA:")
 for i in range(0, m):
     for j in range(0, n):
         print(f"{matriz[i][j]} ", end="")
@@ -238,3 +246,4 @@ Os conceitos e atalhos são muito parecidos.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎨 HTML & CSS: Estrutura e Estilo da Web
+---
+
 # 🎨 HTML & CSS: Estrutura e Estilo da Web
 
 HTML e CSS são as duas linguagens fundamentais que formam a base de praticamente todas as páginas na World Wide Web. Embora trabalhem em conjunto, elas têm responsabilidades completamente distintas, seguindo um princípio crucial de desenvolvimento web: a **separação de responsabilidades**.
@@ -148,3 +153,4 @@ A beleza de começar com HTML e CSS é que você só precisa de duas coisas:
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

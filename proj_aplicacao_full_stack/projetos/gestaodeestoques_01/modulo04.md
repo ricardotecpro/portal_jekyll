@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO04
+---
+
 Este guia fornecerá toda a teoria e os códigos completos para que os alunos implementem um sistema de segurança robusto do zero.
 
 # 💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot
@@ -419,3 +424,4 @@ Agora, você pode usar uma ferramenta como o Postman para:
 3.  Fazer um `GET` em `http://localhost:8080/api/produtos`, adicionando um Header `Authorization` com o valor `Bearer <seu_token_copiado>`.
 
 No **próximo módulo**, vamos tornar nossa API fácil de ser explorada e consumida, implementando a **documentação interativa com OpenAPI/Swagger** e aprimorando nosso **tratamento de erros**.
+

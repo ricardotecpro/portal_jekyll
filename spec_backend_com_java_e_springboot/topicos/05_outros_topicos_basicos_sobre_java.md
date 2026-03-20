@@ -1,3 +1,8 @@
+---
+layout: default
+title: Outros Tópicos Básicos sobre Java ☕
+---
+
 # Outros Tópicos Básicos sobre Java ☕
 
 Este documento aborda conceitos fundamentais em Java, incluindo convenções de nomenclatura, manipulação de strings, uso de funções (métodos) e exemplos práticos.
@@ -186,7 +191,8 @@ public class ExemploSplit {
         System.out.println("Palavra 3: " + palavra3);
         System.out.println("Palavra 4: " + palavra4);
 
-        System.out.println("\nTodas as palavras do vetor:");
+        System.out.println("
+Todas as palavras do vetor:");
         for (String palavra : vetorDePalavras) {
             System.out.println("- " + palavra);
         }
@@ -461,3 +467,4 @@ Lembre-se de que o nome do arquivo `.java` deve corresponder exatamente ao nome 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

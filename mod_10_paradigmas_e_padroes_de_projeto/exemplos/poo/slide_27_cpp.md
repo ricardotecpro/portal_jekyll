@@ -1,3 +1,8 @@
+---
+layout: default
+title: SLIDE 27 CPP
+---
+
 Sistema de cadastro de alunos em **C++ com orientação a objetos (POO)**:
 
 ---
@@ -133,7 +138,9 @@ public:
 
 ```cpp
     void exibirInformacoes() {
-        cout << "\n--- Informações do Aluno ---\n";
+        cout << "
+--- Informações do Aluno ---
+";
         cout << "Nome: " << nome << endl;
         cout << "Idade: " << idade << endl;
         cout << "Matrícula: " << matricula << endl;
@@ -252,7 +259,9 @@ public:
 
     // Método para exibir as informações do aluno
     void exibirInformacoes() {
-        cout << "\n--- Informações do Aluno ---\n";
+        cout << "
+--- Informações do Aluno ---
+";
         cout << "Nome: " << nome << endl;
         cout << "Idade: " << idade << endl;
         cout << "Matrícula: " << matricula << endl;

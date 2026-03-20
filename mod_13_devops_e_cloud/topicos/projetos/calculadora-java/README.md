@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 Aula: Integração de Java, Git/GitHub e Docker no Ciclo de Desenvolvimento
+---
+
 ## 🎓 Aula: Integração de Java, Git/GitHub e Docker no Ciclo de Desenvolvimento
 
 ### 🎯 Objetivos da Aula
@@ -276,4 +281,5 @@ calculadora-java/
    ```
 
 ---
+
 

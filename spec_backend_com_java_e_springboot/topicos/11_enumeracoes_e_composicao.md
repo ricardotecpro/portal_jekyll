@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java: Enumerações e Composição
+---
+
 # ☕ Java: Enumerações e Composição
 
 Este material aborda os conceitos de enumerações e composição em Java, fundamentais para a criação de código mais organizado, legível e robusto.
@@ -334,7 +339,8 @@ public class TesteComposicao {
         Carro meuCarro = new Carro("Sedan XPTO", "V6");
         meuCarro.ligarCarro(); // Saída: Sedan XPTO: Motor V6 ligado.
 
-        System.out.println("\n--- Exemplo 'tem-vários' ---");
+        System.out.println("
+--- Exemplo 'tem-vários' ---");
         // Exemplo "tem-vários"
         PedidoComposicao meuPedido = new PedidoComposicao(101);
         meuPedido.adicionarItem("Caneta", 5, 2.50);
@@ -695,14 +701,19 @@ public class Post {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(titulo).append("\n");
+        sb.append(titulo).append("
+");
         sb.append(curtidas);
         sb.append(" Curtidas - ");
-        sb.append(sdf.format(instante)).append("\n");
-        sb.append(conteudo).append("\n");
-        sb.append("Comentários:\n");
+        sb.append(sdf.format(instante)).append("
+");
+        sb.append(conteudo).append("
+");
+        sb.append("Comentários:
+");
         for (Comentario c : comentarios) {
-            sb.append(c.getTexto()).append("\n");
+            sb.append(c.getTexto()).append("
+");
         }
         return sb.toString();
     }
@@ -952,14 +963,19 @@ public class Pedido {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Momento do pedido: ");
-        sb.append(sdf.format(instante)).append("\n");
+        sb.append(sdf.format(instante)).append("
+");
         sb.append("Status do pedido: ");
-        sb.append(status).append("\n");
+        sb.append(status).append("
+");
         sb.append("Cliente: ");
-        sb.append(cliente).append("\n"); // Utiliza o toString() de Cliente
-        sb.append("Itens do pedido:\n");
+        sb.append(cliente).append("
+"); // Utiliza o toString() de Cliente
+        sb.append("Itens do pedido:
+");
         for (ItemPedido item : itens) {
-            sb.append(item).append("\n"); // Utiliza o toString() de ItemPedido
+            sb.append(item).append("
+"); // Utiliza o toString() de ItemPedido
         }
         sb.append("Preço total: R$");
         sb.append(String.format("%.2f", total()));
@@ -995,3 +1011,4 @@ Este exercício reforça os conceitos de enumeração, composição, entrada de 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

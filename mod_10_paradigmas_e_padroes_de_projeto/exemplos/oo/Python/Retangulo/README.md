@@ -1,3 +1,8 @@
+---
+layout: default
+title: Rectangle Area Comparison
+---
+
 # Rectangle Area Comparison
 
 This project is a Python application that compares the areas of two rectangles. The user inputs the dimensions of the rectangles, and the program calculates and displays their areas, indicating which rectangle has the larger area.

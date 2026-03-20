@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🏛️ Guia Arquitetural: Refatorando o Sistema Full Stack v3
+---
+
 # 🏛️ Guia Arquitetural: Refatorando o Sistema Full Stack v3
 
 ## 🎯 Visão Geral e Objetivos da Refatoração
@@ -47,4 +52,5 @@ Continue para o próximo módulo para começar a refatoração do Backend.
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Projeto Lista de Tarefas" (To-Do List)
+---
+
 # 🚀 Projeto Lista de Tarefas" (To-Do List)
 v3.9
 
@@ -1553,3 +1558,4 @@ java -jar target/listadetarefas-desktop-1.0-SNAPSHOT.jar
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

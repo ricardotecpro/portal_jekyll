@@ -1,3 +1,8 @@
+---
+layout: default
+title: # Cassandra Container Troubleshooting Guide
+---
+
 # # Cassandra Container Troubleshooting Guide
 
 When running a Cassandra container, you might encounter issues that prevent it from starting correctly. This guide will help you troubleshoot a failed Cassandra container step-by-step.
@@ -62,3 +67,4 @@ docker run --name cassandra -p 9042:9042 -v /opt/cassandra:/var/lib/cassandra -d
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

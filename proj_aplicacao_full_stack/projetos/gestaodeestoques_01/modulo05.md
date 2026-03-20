@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO05
+---
+
 Este guia fornecerá todos os conceitos e códigos completos para que os alunos possam criar uma documentação interativa e um sistema de tratamento de erros padronizado, elevando a qualidade da API a um nível profissional.
 
 # 💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot
@@ -275,3 +280,4 @@ public class GlobalExceptionHandler {
 Nossa API está agora em seu estado mais polido. Ela está pronta e esperando por um cliente para consumi-la.
 
 No **próximo módulo**, vamos abordar a **Garantia de Qualidade**, aprendendo a escrever testes automatizados para garantir que toda a lógica de negócio que construímos funciona como esperado e continua funcionando conforme a aplicação evolui.
+

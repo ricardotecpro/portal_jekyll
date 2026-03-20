@@ -1,3 +1,8 @@
+---
+layout: default
+title: ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
+---
+
 # ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
 >  Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end
 
@@ -22,3 +27,4 @@ Se durante a execução da lógica da função `f`, a função `h` for chamada c
 O método `then` de uma promise recebe como argumento uma função, e executa esta função passando o valor P para ela, quando a promise for resolvida.
 
 O método `catch` de uma promise recebe como argumento uma função, e execute esta função passando o valor Q para ela, quando a promise for rejeitada.
+

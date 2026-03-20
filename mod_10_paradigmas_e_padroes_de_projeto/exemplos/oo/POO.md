@@ -1,3 +1,8 @@
+---
+layout: default
+title: Instanciação
+---
+
 ## Instanciação
 
 Instanciação é o processo de criação de uma instância (ou objeto) a partir de uma classe em programação orientada a objetos. Uma classe define a estrutura e o comportamento dos objetos, enquanto a instância é um objeto concreto criado a partir dessa classe.
@@ -110,4 +115,5 @@ fn main() {
     println!("{}", pessoa1.idade); // Saída: 30
 }
 ```
+
 

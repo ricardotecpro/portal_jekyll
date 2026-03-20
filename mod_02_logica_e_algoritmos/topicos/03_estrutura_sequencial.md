@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Estrutura Sequencial em Programação
+---
+
 # 🚀 Estrutura Sequencial em Programação
 
 Este capítulo aborda os conceitos fundamentais da **estrutura sequencial**, a base para a construção de qualquer algoritmo. Nela, os comandos são executados em uma sequência lógica, um após o outro, de cima para baixo.
@@ -159,8 +164,10 @@ char genero = 'M';
 
 // Exibindo os dados na tela
 System.out.println("Produtos:");
-System.out.printf("O produto %s custa R$ %.2f\n", produto1, preco1);
-System.out.printf("O produto %s custa R$ %.2f\n", produto2, preco2);
+System.out.printf("O produto %s custa R$ %.2f
+", produto1, preco1);
+System.out.printf("O produto %s custa R$ %.2f
+", produto2, preco2);
 System.out.println(); // Pula uma linha em branco
 System.out.println("Código = " + codigo);
 System.out.println(); // Pula uma linha em branco
@@ -179,7 +186,8 @@ Código = 1024
 Dados da pessoa: gênero M e idade 25
 ```
 
-> **Nota:** Usamos `System.out.printf()` para formatar os preços com duas casas decimais. `%.2f` é um especificador que formata um número de ponto flutuante (`f`) com duas casas decimais (`.2`), e `\n` quebra a linha.
+> **Nota:** Usamos `System.out.printf()` para formatar os preços com duas casas decimais. `%.2f` é um especificador que formata um número de ponto flutuante (`f`) com duas casas decimais (`.2`), e `
+` quebra a linha.
 
 ## ⌨️ Entrada de Dados
 
@@ -219,7 +227,8 @@ double salario = sc.nextDouble(); // Lê um número double
 System.out.println("DADOS DIGITADOS:");
 System.out.println("Nome: " + nome);
 System.out.println("Idade: " + idade);
-System.out.printf("Salário: R$ %.2f\n", salario);
+System.out.printf("Salário: R$ %.2f
+", salario);
 
 sc.close();
 ```
@@ -295,8 +304,10 @@ public class Terreno {
         double area = largura * comprimento;
         double preco = area * valorMetroQuadrado;
 
-        System.out.printf("Área do terreno = %.2f\n", area);
-        System.out.printf("Preço do terreno = %.2f\n", preco);
+        System.out.printf("Área do terreno = %.2f
+", area);
+        System.out.printf("Preço do terreno = %.2f
+", preco);
 
         sc.close();
     }
@@ -347,9 +358,12 @@ public class Retangulo {
         double perimetro = 2 * (base + altura);
         double diagonal = Math.sqrt(Math.pow(base, 2.0) + Math.pow(altura, 2.0));
 
-        System.out.printf("ÁREA = %.4f\n", area);
-        System.out.printf("PERÍMETRO = %.4f\n", perimetro);
-        System.out.printf("DIAGONAL = %.4f\n", diagonal);
+        System.out.printf("ÁREA = %.4f
+", area);
+        System.out.printf("PERÍMETRO = %.4f
+", perimetro);
+        System.out.printf("DIAGONAL = %.4f
+", diagonal);
 
         sc.close();
     }
@@ -387,3 +401,4 @@ Você pode compilar e executar todos os exemplos de código acima em qualquer um
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

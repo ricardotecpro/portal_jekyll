@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 **Instalação e Configuração do AstroNvim no Debian/Ubuntu**
+---
+
 # 🚀 **Instalação e Configuração do AstroNvim no Debian/Ubuntu**
 
 ## 1️⃣ **Removendo versões antigas do Neovim**
@@ -191,3 +196,4 @@ Agora seu **Neovim com AstroNvim** está totalmente funcional e otimizado para d
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: API de Streams do Java
+---
+
 # API de Streams do Java
 
 Este documento oferece uma série de aulas sobre a API de Streams do Java, introduzida no Java 8. As Streams revolucionaram a forma como coleções de dados são processadas, permitindo um estilo de programação mais funcional, declarativo e expressivo.
@@ -317,4 +322,5 @@ System.out.println(resultado); // [Maçã, Banana, Laranja]
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

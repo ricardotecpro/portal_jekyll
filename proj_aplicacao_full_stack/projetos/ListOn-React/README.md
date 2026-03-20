@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📘 Guia Completo: Projeto "Lista de tarefas – ListOn"
+---
+
 # 📘 Guia Completo: Projeto "Lista de tarefas – ListOn"
 
 Este guia aborda a criação de um sistema completo de lista de tarefas, cobrindo o back-end, um cliente web e um aplicativo mobile.
@@ -916,3 +921,4 @@ Sua aplicação mobile será carregada no seu dispositivo, conectada ao seu back
 - **Back-end:** Você pode fazer o deploy da API Spring Boot no **Render** (que oferece um plano gratuito para PostgreSQL) ou **Heroku**. Lembre-se de mudar o perfil do Spring para `prod`.
 - **Front-end Web:** O app React pode ser "deployado" gratuitamente em segundos na **Vercel** ou **Netlify**.
 - **Front-end Mobile:** Para publicar na Play Store ou App Store, você usará os comandos `eas build` do Expo, seguindo a documentação oficial.
+

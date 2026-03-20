@@ -1,3 +1,8 @@
+---
+layout: default
+title: Guia de Desenvolvimento: Padrões de Projeto, Arquiteturas, Testes, Banco de Dados e Boas Práticas
+---
+
 # Guia de Desenvolvimento: Padrões de Projeto, Arquiteturas, Testes, Banco de Dados e Boas Práticas
 
 ## 1. Outros Padrões de Projeto
@@ -219,3 +224,4 @@ Este guia fornece uma visão geral de padrões de projeto, arquiteturas, testes,
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

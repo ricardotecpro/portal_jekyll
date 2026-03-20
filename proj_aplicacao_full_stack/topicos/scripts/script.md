@@ -1,3 +1,8 @@
+---
+layout: default
+title: SCRIPT
+---
+
 powershell
 
 bash
@@ -5,3 +10,4 @@ bash
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

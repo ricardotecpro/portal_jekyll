@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📱 Módulo 4: Mobile (Android) - Adotando Padrões de UI Modernos (MVVM)
+---
+
 # 📱 Módulo 4: Mobile (Android) - Adotando Padrões de UI Modernos (MVVM)
 
 **Objetivo:** Implementar uma interação CRUD moderna e fluida, utilizando gestos de deslizar (swipe), seguindo o padrão **MVVM** com Jetpack Compose.
@@ -88,4 +93,5 @@ fun TarefaItemSwipeable(
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

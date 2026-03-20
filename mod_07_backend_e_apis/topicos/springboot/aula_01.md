@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Tutorial: Estudo de Spring Boot**
+---
+
 # **Tutorial: Estudo de Spring Boot**
 
 ## **1. O que é Spring Boot?**
@@ -370,3 +375,4 @@ public class Produto {
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: ⚡ JavaScript: A Linguagem da Web
+---
+
 # ⚡ JavaScript: A Linguagem da Web
 
 JavaScript (frequentemente abreviado como JS) é uma linguagem de programação de alto nível, interpretada (ou compilada em tempo real, *just-in-time*), e multi-paradigma. É mais conhecida como a linguagem de script para páginas web, mas também é amplamente utilizada em muitos ambientes fora dos navegadores, como servidores (Node.js) e aplicações mobile.
@@ -170,3 +175,4 @@ btnIncrementar.addEventListener('click', () => {
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

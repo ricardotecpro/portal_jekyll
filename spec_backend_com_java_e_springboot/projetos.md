@@ -1,3 +1,8 @@
+---
+layout: default
+title: ⚒️ Projetos
+---
+
 # ⚒️ Projetos
 
 ## Java Swing
@@ -66,3 +71,4 @@
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

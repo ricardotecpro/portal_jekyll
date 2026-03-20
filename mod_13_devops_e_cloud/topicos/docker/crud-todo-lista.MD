@@ -1,3 +1,8 @@
+---
+layout: default
+title: CRUD-TODO-LISTA
+---
+
 Aqui estão os dois planos de aula detalhados para seu curso de Computação:
 
 ---
@@ -207,3 +212,4 @@ services:
 ---
 
 Se quiser, posso gerar slides ou PDFs desses planos. Deseja isso?
+

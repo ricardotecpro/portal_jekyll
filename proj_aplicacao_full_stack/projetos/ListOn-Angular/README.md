@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 Construir uma aplicação full stack robusta, como o **"ListOn"**, exige uma fundação sólida. Começaremos pelo "coração" do sistema: o **Back-end API com Spring Boot**.
 
 Este guia é modular. Vamos focar 100% em construir, testar e documentar nossa API primeiro. Uma vez que o back-end esteja funcional e servindo dados, construiremos o front-end Angular e o aplicativo Ionic para consumi-lo.
@@ -2336,3 +2341,4 @@ Parabéns\! Você concluiu o ecossistema "ListOn" Full Stack:
 - **Parte 1:** Uma API RESTful robusta com Java e Spring Boot.
 - **Parte 2:** Um Web App SPA moderno com Angular Standalone e Material.
 - **Parte 3:** Um Aplicativo Mobile nativo com Ionic Standalone.
+

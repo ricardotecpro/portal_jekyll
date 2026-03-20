@@ -1,3 +1,8 @@
+---
+layout: default
+title: Desvendando o Padrão IEEE 754: Uma Aula Abrangente sobre Conversores de Ponto Flutuante
+---
+
 ## Desvendando o Padrão IEEE 754: Uma Aula Abrangente sobre Conversores de Ponto Flutuante
 
 **Nível:** Intermediário
@@ -229,3 +234,4 @@ Signed Binary/Decimal Conversion Using the Two's Complement Representation (Sign
 C - Pointer arithmetic (C - Pointer arithmetic - Tutorialspoint)
 
 https://www.h-schmidt.net/FloatConverter/IEEE754.html
+

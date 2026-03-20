@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🛠️ Capítulo: Instalação de Ferramentas de Desenvolvimento
+---
+
 # 🛠️ Capítulo: Instalação de Ferramentas de Desenvolvimento
 
 Este guia apresenta o passo a passo para configurar o ambiente de desenvolvimento para as linguagens C, C++, Python, Java e C\#, com recomendações atualizadas para um fluxo de trabalho moderno e eficiente.
@@ -39,7 +44,8 @@ A maneira mais simples é instalar o MinGW através do instalador de um IDE como
 #include <stdio.h>
 
 int main() {
-   printf("Ola mundo!\n");
+   printf("Ola mundo!
+");
    return 0;
 }
 ```
@@ -159,3 +165,4 @@ namespace ExemploModerno
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

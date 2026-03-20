@@ -1,3 +1,8 @@
+---
+layout: default
+title: Histórico de Sessões do Antigravity
+---
+
 # Histórico de Sessões do Antigravity
 
 Este diretório contém backups históricos dos artefatos do Antigravity.
@@ -56,3 +61,4 @@ Get-ChildItem . -Directory |
 ---
 
 **Nota**: Backups são criados automaticamente antes de mudanças significativas.
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem Rust 🦀
+---
+
 # Linguagem Rust 🦀
 
 Bem-vindo ao guia da linguagem Rust, uma linguagem de programação de sistemas focada em três objetivos principais: **segurança, velocidade e concorrência**. Rust alcança segurança de memória sem a necessidade de um *garbage collector* (coletor de lixo), utilizando um sistema inovador de **propriedade (ownership)** e **empréstimo (borrowing)**. Isso permite que Rust seja tão rápido quanto C/C++, mas com garantias de segurança que previnem classes inteiras de bugs.
@@ -145,7 +150,8 @@ fn main() {
         .parse()
         .expect("Por favor, digite um número!");
 
-    println!("\n--- DADOS REGISTRADOS ---");
+    println!("
+--- DADOS REGISTRADOS ---");
     println!("Nome: {}", nome);
     println!("Idade: {}", idade);
 }
@@ -261,3 +267,4 @@ println!("Elemento (1,1): {}", matriz[1][1]); // Acessa o elemento na segunda li
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

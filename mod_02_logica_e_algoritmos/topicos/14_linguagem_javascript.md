@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem JavaScript 📜
+---
+
 # Linguagem JavaScript 📜
 
 Bem-vindo ao guia de JavaScript (JS), a linguagem de programação que impulsiona a web. Originalmente criada para adicionar interatividade às páginas da internet, hoje o JavaScript é uma linguagem multifuncional que roda em navegadores, servidores (com Node.js), aplicativos mobile e muito mais, sendo uma das tecnologias mais importantes e demandadas do mercado.
@@ -134,7 +139,8 @@ const nome = readline.question("Digite seu nome: ");
 const idade = readline.questionInt("Digite sua idade: ");
 const salario = readline.questionFloat("Digite seu salario: ");
 
-console.log("\n--- DADOS REGISTRADOS ---");
+console.log("
+--- DADOS REGISTRADOS ---");
 console.log(`Nome: ${nome}`);
 console.log(`Idade: ${idade}`);
 console.log(`Salario: ${salario.toFixed(2)}`);
@@ -204,7 +210,8 @@ for (let i = 0; i < n; i++) {
     vetor.push(numero); // .push() adiciona um elemento ao final do array.
 }
 
-console.log("\nNUMEROS DIGITADOS:");
+console.log("
+NUMEROS DIGITADOS:");
 for (let i = 0; i < vetor.length; i++) {
     console.log(vetor[i].toFixed(1));
 }
@@ -227,7 +234,8 @@ for (let i = 0; i < m; i++) {
     }
 }
 
-console.log("\nMATRIZ DIGITADA:");
+console.log("
+MATRIZ DIGITADA:");
 for (let i = 0; i < m; i++) {
     console.log(matriz[i].join(' ')); // .join(' ') une os elementos da linha com um espaço.
 }
@@ -253,3 +261,4 @@ for (let i = 0; i < m; i++) {
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

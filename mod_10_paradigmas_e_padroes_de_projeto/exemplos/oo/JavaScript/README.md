@@ -1,3 +1,8 @@
+---
+layout: default
+title: ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Aula JavaScript Funções Construtoras
+---
+
 # ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Aula JavaScript Funções Construtoras
 
 [curso - Escola de programação](https://curso.com.br)
@@ -42,4 +47,5 @@ Maneira prática de se verificar o construtor de um objeto.
 O prototype de um construtor define uma estrutura de membros que são compartilhados pelas instâncias desse construtor. 
 
 https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/Object_prototypes
+
 

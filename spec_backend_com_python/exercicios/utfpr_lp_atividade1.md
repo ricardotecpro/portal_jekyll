@@ -1,3 +1,8 @@
+---
+layout: default
+title: Coleção de Problemas de Programação em Python
+---
+
 ## Coleção de Problemas de Programação em Python
 
 A seguir, apresentamos uma série de problemas de programação, comuns em plataformas de aprendizado e competição como URI (agora Beecrowd), juntamente com suas soluções em Python, explicações detalhadas e exemplos.
@@ -442,3 +447,4 @@ Esta organização visa apresentar os problemas e suas soluções de forma clara
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

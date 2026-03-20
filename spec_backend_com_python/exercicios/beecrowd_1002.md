@@ -1,3 +1,8 @@
+---
+layout: default
+title: Seis exercícios resolvidos em Python
+---
+
 # Seis exercícios resolvidos em Python
 
 ---
@@ -274,3 +279,4 @@ while (x1, y1, x2, y2) != (0, 0, 0, 0):
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

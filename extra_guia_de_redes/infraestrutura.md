@@ -1,3 +1,8 @@
+---
+layout: default
+title: Curso Intensivo: Infraestrutura Web Moderna para Desenvolvedores
+---
+
 ## Curso Intensivo: Infraestrutura Web Moderna para Desenvolvedores
 
 **Domine os Pilares da Web: De Redes e Servidores à Nuvem e Aplicações Escaláveis**
@@ -140,3 +145,4 @@ Para consolidar todo o conhecimento adquirido, os alunos desenvolverão um proje
 7.  **Segurança:** Configurar um certificado SSL/TLS (Let's Encrypt) para habilitar o HTTPS.
 
 Ao final deste curso, você não será apenas um programador, mas um desenvolvedor com uma visão holística do ecossistema web, preparado para tomar decisões de arquitetura mais inteligentes e construir aplicações que não apenas funcionam, mas que são performáticas, escaláveis e seguras.
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Análise da Tarefa
+---
+
 ### Análise da Tarefa
 
 O objetivo é criar uma réplica do jogo "Genius" (Simon) em Java 21, com foco em uma arquitetura limpa e práticas modernas de desenvolvimento. Como nenhum código foi fornecido, construiremos a solução do zero, seguindo uma abordagem didática.
@@ -1172,5 +1177,6 @@ public class GeniusGameClassic extends JFrame {
     4.  **Testes Unitários:** A lógica do `GameLogic` (se separada) poderia ser facilmente testada unitariamente (JUnit 5) sem depender da GUI, verificando se `checkInput` retorna o resultado correto para uma sequência conhecida.
 
 ---
+
 
 

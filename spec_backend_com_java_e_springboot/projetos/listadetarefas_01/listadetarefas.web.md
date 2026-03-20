@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Projeto Lista de Tarefas" (To-Do List)
+---
+
 # 🚀 Projeto Lista de Tarefas" (To-Do List)
 
 v2.1 - Guia Detalhado da Interface Web Dinâmica
@@ -693,4 +698,5 @@ HTMX funciona trocando pedaços de HTML. Precisamos de um bloco de HTML que repr
 ```
 
 ---
+
 

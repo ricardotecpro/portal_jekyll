@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Bancos de Dados: Do SQL ao NoSQL**
+---
+
 # **Bancos de Dados: Do SQL ao NoSQL**
 
 SQL
@@ -113,3 +118,4 @@ O curso será dividido em seções que constroem o conhecimento de forma progres
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **📌 Formatos Importantes no Desenvolvimento de Software**
+---
+
 # **📌 Formatos Importantes no Desenvolvimento de Software**  
 
 No desenvolvimento de software, diferentes formatos de arquivos são utilizados para **armazenamento de dados, configuração, código-fonte, scripts, logs, documentação e distribuição de software**.  
@@ -28,7 +33,8 @@ Arquivos que contêm **código-fonte** de aplicações em diferentes linguagens 
 
 | **Formato** | **Linguagem** | **Exemplo** |
 |------------|-------------|------------|
-| **.C**   | C | `printf("Hello, World!\n");` |
+| **.C**   | C | `printf("Hello, World!
+");` |
 | **.CPP** | C++ | `std::cout << "Hello, World!" << std::endl;` |
 | **.H**   | C/C++ (Headers) | `int soma(int a, int b);` |
 | **.JAVA** | Java | `System.out.println("Hello, World!");` |
@@ -173,3 +179,4 @@ Os formatos de arquivos desempenham um papel **crucial no desenvolvimento de sof
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

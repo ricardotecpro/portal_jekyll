@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📘 Exercício de Fixação (p.43)
+---
+
 # 📘 Exercício de Fixação (p.43)
 
 ## 💼 Contexto
@@ -193,3 +198,4 @@ public class Main {
 ---
 
 ### 📌 
+

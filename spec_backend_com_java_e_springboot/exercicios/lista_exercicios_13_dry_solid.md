@@ -1,3 +1,8 @@
+---
+layout: default
+title: LISTA EXERCICIOS 13 DRY SOLID
+---
+
 DRY (Don't Repeat Yourself) é um princípio de programação que visa evitar repetições de código. Para calcular a área de diferentes figuras geométricas em Java seguindo o princípio DRY, podemos usar herança, interfaces ou até mesmo uma abordagem com enum ou polimorfismo.
 
 Aqui vai uma implementação orientada a objetos usando interfaces e polimorfismo, que segue o princípio DRY:
@@ -370,3 +375,4 @@ Execute o programa principal:
 java geometria.CalculadoraDeAreas
 
 Incluir um loop para repetir os cálculos até o usuário sair, ou permitir que ele calcule várias áreas em sequência.
+

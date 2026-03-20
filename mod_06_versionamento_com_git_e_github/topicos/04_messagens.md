@@ -1,3 +1,8 @@
+---
+layout: default
+title: ✅ Boas práticas para mensagens de commit
+---
+
 # ✅ Boas práticas para mensagens de commit
 
 ### 1. **Use o tempo verbal imperativo**
@@ -82,3 +87,4 @@ na de tarefas concluídas. Ele inclui botões de editar e deletar.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

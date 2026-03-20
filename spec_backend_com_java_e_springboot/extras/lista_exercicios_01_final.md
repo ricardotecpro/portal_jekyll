@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Exercícios POO
+---
+
 # Lista de Exercícios POO
 
 ---
@@ -134,3 +139,4 @@ Escreva um programa que permita ao usuário:
 ---
 
 ### Fim da Lista de Exercícios
+

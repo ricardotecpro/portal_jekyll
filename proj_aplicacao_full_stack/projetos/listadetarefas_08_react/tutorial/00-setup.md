@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 Módulo 0: Configuração do Ambiente
+---
+
 # 🎓 Módulo 0: Configuração do Ambiente
 
 **Objetivo**: Preparar sua máquina para o desenvolvimento Full Stack com Java, React e React Native.
@@ -56,3 +61,4 @@ Se você quiser salvar seu código no GitHub:
 ## ✅ Checkpoint
 
 Se você digitou `java -version` e `node -v` no terminal e viu as versões instaladas, parabéns! Sua máquina está pronta para o Módulo 1.
+

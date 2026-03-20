@@ -1,3 +1,8 @@
+---
+layout: default
+title: Gitignore
+---
+
 # Gitignore
 
 Arquivo `.gitignore` abrangente, organizado por seções, para todos os tipos de aplicações que você listou. Você pode copiar o conteúdo inteiro para um arquivo chamado `.gitignore` na raiz do seu repositório ou apenas usar as seções relevantes para seu projeto.
@@ -217,3 +222,4 @@ config.local.*
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

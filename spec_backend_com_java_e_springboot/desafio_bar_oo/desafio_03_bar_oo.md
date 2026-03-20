@@ -1,3 +1,8 @@
+---
+layout: default
+title: "DESAFIO Bar OO"
+---
+
 ## "DESAFIO Bar OO"
 
 ---
@@ -140,4 +145,5 @@ Para obter a nota máxima, **todos os critérios abaixo devem ser atendidos**:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

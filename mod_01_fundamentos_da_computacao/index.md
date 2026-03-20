@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🏛️ Fundamentos da Computação: Os Pilares do Mundo Digital
+---
+
 # 🏛️ Fundamentos da Computação: Os Pilares do Mundo Digital
 
 A **Ciência da Computação** é o estudo fundamental da computação, informação e automação. É um campo vasto que vai muito além da simples programação. Como disse o famoso cientista da computação Edsger Dijkstra, "A Ciência da Computação não está mais relacionada a computadores do que a astronomia está a telescópios".
@@ -125,3 +130,4 @@ Vamos ver como esses pilares se conectam quando você executa um comando simples
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

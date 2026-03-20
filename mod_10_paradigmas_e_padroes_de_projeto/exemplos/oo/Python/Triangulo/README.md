@@ -1,3 +1,8 @@
+---
+layout: default
+title: Projeto Triângulo
+---
+
 # Projeto Triângulo
 
 Este projeto em Python calcula e compara a área de dois triângulos com base nas medidas informadas pelo usuário.
@@ -44,4 +49,5 @@ Larger area: Y
 
 ## Autor
 Projeto baseado no exemplo em Java e adaptado para Python.
+
 

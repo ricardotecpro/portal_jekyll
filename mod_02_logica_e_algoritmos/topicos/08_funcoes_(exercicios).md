@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Exercícios Resolvidos com Funções em Java
+---
+
 # ☕ Exercícios Resolvidos com Funções em Java
 
 Este documento apresenta uma série de problemas práticos e suas soluções em Java, com foco na criação e utilização de funções (métodos). Cada exercício foi projetado para reforçar conceitos como modularidade, reutilização de código e a diferença entre funções que retornam valores e procedimentos (`void`).
@@ -37,7 +42,8 @@ public class Temperatura {
 
         double celsius = fahrenheitParaCelsius(fahrenheit);
 
-        System.out.printf("Temperatura em Celsius = %.2f\n", celsius);
+        System.out.printf("Temperatura em Celsius = %.2f
+", celsius);
 
         sc.close();
     }
@@ -92,9 +98,12 @@ public class Retangulo {
         double perimetro = calcularPerimetro(base, altura);
         double diagonal = calcularDiagonal(base, altura);
 
-        System.out.printf("Área = %.2f\n", area);
-        System.out.printf("Perímetro = %.2f\n", perimetro);
-        System.out.printf("Diagonal = %.2f\n", diagonal);
+        System.out.printf("Área = %.2f
+", area);
+        System.out.printf("Perímetro = %.2f
+", perimetro);
+        System.out.printf("Diagonal = %.2f
+", diagonal);
 
         sc.close();
     }
@@ -132,7 +141,8 @@ public class Tabuada {
      */
     public static void mostrarTabuada(int n) {
         for (int i = 1; i <= 10; i++) {
-            System.out.printf("%d x %d = %d\n", n, i, n * i);
+            System.out.printf("%d x %d = %d
+", n, i, n * i);
         }
     }
 
@@ -225,7 +235,8 @@ public class ClassificarImc {
 
         double imc = calcularImc(peso, altura);
         
-        System.out.printf("Resultado do IMC: %.2f\n", imc);
+        System.out.printf("Resultado do IMC: %.2f
+", imc);
         classificar(imc);
 
         sc.close();
@@ -307,7 +318,8 @@ public class SalarioLiquido {
 
         double liquido = calcularSalarioLiquido(salarioBruto);
 
-        System.out.printf("Salário líquido = R$ %.2f\n", liquido);
+        System.out.printf("Salário líquido = R$ %.2f
+", liquido);
 
         sc.close();
     }
@@ -324,3 +336,4 @@ Salário líquido = R$ 3000.00
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: LINUX
+---
+
 **Manual de Introdução ao Linux para Alunos do Curso de Análise de Sistemas**, abordando instalação, configuração, comandos principais e o setup de ambientes com Java, Python, Node.js, MySQL e PostgreSQL:
 
 ---
@@ -149,3 +154,4 @@ sudo snap install code --classic
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

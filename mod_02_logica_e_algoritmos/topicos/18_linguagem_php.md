@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Estrutura Proposta: Curso Prático de PHP - Do Zero à Aplicação Dinâmica**
+---
+
 ### **Estrutura Proposta: Curso Prático de PHP - Do Zero à Aplicação Dinâmica**
 
 **Projeto Guia:** Construção de um "Mural de Recados" interativo.
@@ -408,3 +413,4 @@ Um módulo dedicado para reforçar a importância da segurança.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

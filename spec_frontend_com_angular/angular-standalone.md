@@ -1,3 +1,8 @@
+---
+layout: default
+title: ANGULAR-STANDALONE
+---
+
 
 -----
 
@@ -331,3 +336,4 @@ ng serve --open
 Seu navegador abrirá em `http://localhost:4200` e você poderá interagir com sua aplicação de lista de tarefas\!
 
 -----
+

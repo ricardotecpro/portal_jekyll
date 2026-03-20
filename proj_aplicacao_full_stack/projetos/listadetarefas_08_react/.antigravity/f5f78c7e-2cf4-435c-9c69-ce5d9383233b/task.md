@@ -1,3 +1,8 @@
+---
+layout: default
+title: Project Discovery Analysis
+---
+
 # Project Discovery Analysis
 
 - [x] Run `discover_projects.py` to generate `migration_map.json` <!-- id: 0 -->
@@ -10,3 +15,4 @@
 - [x] Create `migrate_artifacts.py` to move files based on the map <!-- id: 7 -->
 - [x] Run `migrate_artifacts.py` to perform the move <!-- id: 8 -->
 - [ ] Remove created symlinks (User request: move completely) <!-- id: 9 -->
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **História e Evolução do Vi, Vim, Neovim, LunarVim e AstroNvim**
+---
+
 ## **História e Evolução do Vi, Vim, Neovim, LunarVim e AstroNvim**
 
 Os editores de texto **Vi, Vim, Neovim, LunarVim e AstroNvim** fazem parte da evolução de uma linha de editores altamente eficientes para desenvolvedores, especialmente aqueles que trabalham em **Linux** e **Unix**. Vamos explorar a origem e evolução desses editores e qual deles é melhor para programação.
@@ -734,3 +739,4 @@ Se estiver no terminal e quiser voltar para o modo normal:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

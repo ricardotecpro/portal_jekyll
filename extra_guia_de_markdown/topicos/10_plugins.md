@@ -1,3 +1,8 @@
+---
+layout: default
+title: **1. Comparativo de Plugins**
+---
+
 ## **1. Comparativo de Plugins**
 
 Comparação direta dos principais formatos e plugins para criar diagramas UML e outros diagramas **direto em Markdown**, levando em conta **suporte no GitHub**, **facilidade de edição** e **capacidade de gerar diagramas como código**.
@@ -621,3 +626,4 @@ main {
 ---
 
 ### 👍 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📡 Backend e APIs: A Comunicação no Coração do Software
+---
+
 # 📡 Backend e APIs: A Comunicação no Coração do Software
 
 O **Backend** é a parte de uma aplicação que roda no servidor, invisível ao usuário, responsável pela lógica de negócios, acesso a dados e toda a "mágica" que faz um software funcionar. Mas como o **Frontend** (a interface com a qual o usuário interage) conversa com essa poderosa maquinaria? A resposta é através de uma **API (Application Programming Interface)**.
@@ -128,3 +133,4 @@ O backend projeta e constrói a "cozinha", mas é a API que atua como o "garçom
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **🚀 Tutorial: Instalando e Configurando Neovim + LunarVim no Debian**
+---
+
 # **🚀 Tutorial: Instalando e Configurando Neovim + LunarVim no Debian**
 Este guia abrange:  
 ✅ **Instalação do Neovim mais recente**  
@@ -195,3 +200,4 @@ Agora seu **LunarVim** está configurado para funcionar como um **ambiente de de
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

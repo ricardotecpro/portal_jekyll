@@ -1,3 +1,8 @@
+---
+layout: default
+title: EXEMPLOS
+---
+
 
 ## 💡 Exemplos
 
@@ -7,3 +12,4 @@ Em revisão
 
 
 ---
+

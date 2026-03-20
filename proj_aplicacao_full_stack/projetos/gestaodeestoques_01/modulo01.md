@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💎 Guia Didático: Gestão de Estoques com Spring Boot
+---
+
 # 💎 Guia Didático: Gestão de Estoques com Spring Boot
 
 -----
@@ -371,3 +376,4 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 Se você executar a aplicação agora (`GestaodeestoquesApplication.java`) e acessar `http://localhost:8080/h2-console`, você poderá se conectar ao banco (`JDBC URL: jdbc:h2:mem:testdb`, `User Name: sa`) e ver todas as tabelas que criamos, prontas para receber dados.
 
 No **próximo módulo**, vamos dar vida a essa estrutura, criando a **camada de serviço** onde a lógica de negócio da nossa aplicação irá residir.
+

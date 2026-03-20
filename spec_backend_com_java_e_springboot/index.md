@@ -1,3 +1,8 @@
+---
+layout: default
+title: ## ☕ **Java: A Linguagem da Robustez e Portabilidade**
+---
+
 ### ☕ **Java: A Linguagem da Robustez e Portabilidade**
 
 **Java** é uma linguagem de programação de alto nível, orientada a objetos e fortemente tipada, criada por **James Gosling** na **Sun Microsystems** e lançada em 1995. Atualmente mantida pela **Oracle**, Java se destaca pela sua filosofia central de **portabilidade** e **robustez**, o que a tornou uma das linguagens mais populares e duradouras no mundo da tecnologia, especialmente no ambiente corporativo.
@@ -84,3 +89,4 @@ A combinação de **Java** e **Spring Boot** é imbatível quando o assunto é c
 ---
 
 ### 📌 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

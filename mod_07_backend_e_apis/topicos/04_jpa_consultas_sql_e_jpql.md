@@ -1,3 +1,8 @@
+---
+layout: default
+title: Módulo Back-end: JPA, Consultas SQL e JPQL 🐘
+---
+
 # Módulo Back-end: JPA, Consultas SQL e JPQL 🐘
 
 Este capítulo aprofunda o uso da JPA (Jakarta Persistence API), abordando o ciclo de vida das entidades, estratégias para otimizar o acesso a dados e as diferentes formas de se realizar consultas, desde as mais simples até as mais complexas com SQL e JPQL.
@@ -171,3 +176,4 @@ Muitos exercícios utilizam um modelo de dados similar ao diagrama abaixo, que e
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

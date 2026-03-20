@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💻 Exercícios Resolvidos com Matrizes em Java
+---
+
 # 💻 Exercícios Resolvidos com Matrizes em Java
 
 Esta seção apresenta uma série de problemas práticos envolvendo matrizes (arrays bidimensionais), com suas respectivas soluções completas em Java. Cada exercício foca em uma operação comum, como travessia, busca, agregação e manipulação de elementos.
@@ -44,13 +49,16 @@ public class DiagonalNegativos {
         }
 
         // Saída - Diagonal Principal
-        System.out.println("\nDIAGONAL PRINCIPAL:");
+        System.out.println("
+DIAGONAL PRINCIPAL:");
         for (int i = 0; i < n; i++) {
             System.out.print(mat[i][i] + " ");
         }
 
         // Saída - Quantidade de negativos
-        System.out.println("\n\nQUANTIDADE DE NEGATIVOS = " + countNegativos);
+        System.out.println("
+
+QUANTIDADE DE NEGATIVOS = " + countNegativos);
 
         sc.close();
     }
@@ -107,7 +115,8 @@ public class SomaLinhas {
 
         // Leitura da matriz
         for (int i = 0; i < m; i++) {
-            System.out.printf("Digite os elementos da %da. linha:\n", i + 1);
+            System.out.printf("Digite os elementos da %da. linha:
+", i + 1);
             for (int j = 0; j < n; j++) {
                 mat[i][j] = sc.nextDouble();
             }
@@ -123,9 +132,11 @@ public class SomaLinhas {
         }
 
         // Saída - Vetor Gerado
-        System.out.println("\nVETOR GERADO:");
+        System.out.println("
+VETOR GERADO:");
         for (int i = 0; i < m; i++) {
-            System.out.printf("%.1f\n", vetSoma[i]);
+            System.out.printf("%.1f
+", vetSoma[i]);
         }
 
         sc.close();
@@ -184,7 +195,8 @@ public class CadaLinha {
         }
 
         // Encontrando e mostrando o maior elemento de cada linha
-        System.out.println("\nMAIOR ELEMENTO DE CADA LINHA:");
+        System.out.println("
+MAIOR ELEMENTO DE CADA LINHA:");
         for (int i = 0; i < n; i++) {
             int maior = mat[i][0]; // Assume o primeiro como maior
             for (int j = 1; j < n; j++) {
@@ -274,7 +286,8 @@ public class SomaMatrizes {
         }
 
         // Gerando a Matriz C (Soma) e imprimindo
-        System.out.println("\nMATRIZ SOMA:");
+        System.out.println("
+MATRIZ SOMA:");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 matC[i][j] = matA[i][j] + matB[i][j];
@@ -353,7 +366,8 @@ public class AcimaDiagonal {
             }
         }
 
-        System.out.println("\nSOMA DOS ELEMENTOS ACIMA DA DIAGONAL PRINCIPAL = " + soma);
+        System.out.println("
+SOMA DOS ELEMENTOS ACIMA DA DIAGONAL PRINCIPAL = " + soma);
         sc.close();
     }
 }
@@ -424,10 +438,13 @@ public class MatrizGeral {
                 }
             }
         }
-        System.out.printf("\nSOMA DOS POSITIVOS: %.1f\n", somaPositivos);
+        System.out.printf("
+SOMA DOS POSITIVOS: %.1f
+", somaPositivos);
 
         // b) Imprimir linha escolhida
-        System.out.print("\nEscolha uma linha: ");
+        System.out.print("
+Escolha uma linha: ");
         int linhaEscolhida = sc.nextInt();
         System.out.print("LINHA ESCOLHIDA: ");
         for (int j = 0; j < n; j++) {
@@ -436,7 +453,8 @@ public class MatrizGeral {
         System.out.println();
 
         // c) Imprimir coluna escolhida
-        System.out.print("\nEscolha uma coluna: ");
+        System.out.print("
+Escolha uma coluna: ");
         int colunaEscolhida = sc.nextInt();
         System.out.print("COLUNA ESCOLHIDA: ");
         for (int i = 0; i < n; i++) {
@@ -445,7 +463,8 @@ public class MatrizGeral {
         System.out.println();
 
         // d) Imprimir diagonal principal
-        System.out.print("\nDIAGONAL PRINCIPAL: ");
+        System.out.print("
+DIAGONAL PRINCIPAL: ");
         for (int i = 0; i < n; i++) {
             System.out.print(mat[i][i] + " ");
         }
@@ -460,7 +479,8 @@ public class MatrizGeral {
             }
         }
 
-        System.out.println("\nMATRIZ ALTERADA:");
+        System.out.println("
+MATRIZ ALTERADA:");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(mat[i][j] + " ");
@@ -507,3 +527,4 @@ MATRIZ ALTERADA:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

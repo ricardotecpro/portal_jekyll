@@ -1,3 +1,8 @@
+---
+layout: default
+title: ✍️ Markdown: A Linguagem de Marcação Simples
+---
+
 # ✍️ Markdown: A Linguagem de Marcação Simples
 
 Markdown é uma linguagem de marcação leve criada por John Gruber e Aaron Swartz em 2004. Seu objetivo principal é permitir que pessoas escrevam usando um formato de texto plano fácil de ler e escrever, que pode ser convertido de forma inteligente para HTML (e muitos outros formatos) estruturalmente válido.
@@ -214,3 +219,4 @@ Este é um resumo das atividades da semana.
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

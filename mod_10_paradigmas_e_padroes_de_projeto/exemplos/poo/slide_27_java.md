@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📘 Sistema de Cadastro de Alunos em Java (POO)
+---
+
 ## 📘 Sistema de Cadastro de Alunos em Java (POO)
 
 ---
@@ -177,3 +182,4 @@ flowchart TD
     
 
 ---
+

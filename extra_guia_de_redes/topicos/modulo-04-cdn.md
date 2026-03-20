@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Arquivo 4: `modulo-04-cdn.md`**
+---
+
 ### **Arquivo 4: `modulo-04-cdn.md`**
 
 # 🌍 Módulo 4: Entregando Conteúdo em Escala Global - CDNs
@@ -95,3 +100,4 @@ A Cloudflare é uma das mais fáceis para começar.
 E pronto\! Em poucos minutos, seu site estará mais rápido e seguro, com uma infraestrutura global à sua disposição.
 
 ````
+

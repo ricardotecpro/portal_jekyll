@@ -1,3 +1,8 @@
+---
+layout: default
+title: Criando uma API REST Todo-List com Next.js e NestJS
+---
+
 # Criando uma API REST Todo-List com Next.js e NestJS
 
 Este projeto é uma aplicação de lista de tarefas no estilo "quadro" com tarefas "A Fazer" e "Executadas". Utilizaremos **Next.js** para o frontend e **NestJS** para o backend. O banco de dados **SQLite** será usado para testes e homologação, enquanto o **MySQL** será usado para produção.
@@ -228,3 +233,4 @@ O frontend estará disponível em `http://localhost:3001`.
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

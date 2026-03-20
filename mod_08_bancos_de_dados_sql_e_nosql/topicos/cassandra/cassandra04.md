@@ -1,3 +1,8 @@
+---
+layout: default
+title: CASSANDRA04
+---
+
 ````markdown
 # Atividade 4 Final 📜
 
@@ -257,3 +262,4 @@ SELECT * FROM unidade;
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

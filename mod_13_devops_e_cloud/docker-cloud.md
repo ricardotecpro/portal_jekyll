@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🐳 DevOps e Cloud
+---
+
 # 🐳 DevOps e Cloud
 
 ## Fundamentos e práticas essenciais do Docker
@@ -423,3 +428,4 @@ Para criar uma aplicação Java simples e dockerizá-la, siga os passos abaixo:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

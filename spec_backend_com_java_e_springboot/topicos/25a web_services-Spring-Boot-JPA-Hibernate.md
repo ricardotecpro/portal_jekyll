@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Visão Arquitetural: Construindo um Web Service com Camadas Lógicas**
+---
+
 ### **Visão Arquitetural: Construindo um Web Service com Camadas Lógicas**
 
 O objetivo é desenvolver um web service RESTful robusto, seguindo as melhores práticas de design de software. Para isso, adotaremos uma **arquitetura em camadas**, que é fundamental para a organização, manutenibilidade e testabilidade do código.

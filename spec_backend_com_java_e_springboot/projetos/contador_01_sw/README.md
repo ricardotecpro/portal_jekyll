@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Guia Didático: Seu Primeiro App Java Swing (Botão e Contador)
+---
+
 ## 🚀 Guia Didático: Seu Primeiro App Java Swing (Botão e Contador)
 
 Este guia é uma **sequência didática** projetada para estudantes de computação. Vamos criar, do zero, uma janela com um botão e um texto. Cada clique no botão incrementará um número no texto.
@@ -349,3 +354,4 @@ public class ContadorApp extends JFrame implements ActionListener {
 -----
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

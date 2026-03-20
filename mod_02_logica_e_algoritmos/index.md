@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧠 Lógica e Algoritmos: A Essência do Raciocínio Computacional
+---
+
 # 🧠 Lógica e Algoritmos: A Essência do Raciocínio Computacional
 
 No coração de toda a Ciência da Computação e de qualquer programa de software estão dois conceitos inseparáveis: **Lógica** e **Algoritmos**. Eles são os blocos de construção fundamentais do raciocínio computacional, permitindo-nos resolver problemas de forma estruturada e eficiente.
@@ -154,3 +159,4 @@ Essa análise é formalizada usando a **Notação Big O**, que nos permite class
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

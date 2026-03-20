@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🏋️ Exercícios Práticos
+---
+
 # 🏋️ Exercícios Práticos
 
 Bem-vindo à área de prática! Aqui você encontrará listas de exercícios para testar seus conhecimentos e fortalecer sua compreensão sobre Python.
@@ -21,3 +26,4 @@ Bem-vindo à área de prática! Aqui você encontrará listas de exercícios par
 
 !!! question "Dúvidas?"
     Se tiver dúvidas em algum exercício, revise o conteúdo dos módulos ou consulte a [documentação oficial do Python](https://docs.python.org/pt-br/3/).
+

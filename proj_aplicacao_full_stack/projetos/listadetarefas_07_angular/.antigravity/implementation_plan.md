@@ -1,3 +1,8 @@
+---
+layout: default
+title: Plano de Implementação - Refatoração Lista de Tarefas 07
+---
+
 # Plano de Implementação - Refatoração Lista de Tarefas 07
 
 ## Descrição do Objetivo
@@ -71,3 +76,4 @@ Refatorar o projeto existente "Lista de Tarefas 07" para atender aos padrões mo
     - Marcar como concluída.
     - Deletar tarefa.
     - Verificar persistência no banco (H2 console ou reload da página).
+

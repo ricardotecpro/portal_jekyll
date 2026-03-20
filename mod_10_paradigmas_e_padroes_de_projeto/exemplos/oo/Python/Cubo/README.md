@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 Explicação:
 cubo.py: A classe Cubo possui o atributo lado e o método calcular_volume(), que calcula o volume do cubo como lado^3.
 
@@ -52,3 +57,4 @@ cubos/
 │-- main.py                # Classe principal que chama o método main do Program
 
 ```
+

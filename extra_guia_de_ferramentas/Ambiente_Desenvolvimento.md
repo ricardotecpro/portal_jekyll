@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Ambiente de Desenvolvimento 🚀**
+---
+
 # **Ambiente de Desenvolvimento 🚀**
 
 Bem-vindo(a) ao seu guia definitivo para criar um **ambiente de desenvolvimento robusto, organizado e produtivo**.
@@ -188,3 +193,4 @@ Se você concluiu todos os módulos:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Gerenciamento de Contas Bancárias p.49
+---
+
 # Gerenciamento de Contas Bancárias p.49
 
 Este projeto implementa um sistema de gerenciamento de contas bancárias utilizando uma variável global para garantir que cada conta tenha um número único.
@@ -114,7 +119,8 @@ public class Cliente {
         this.cpf = sc.nextLine();
         this.conta = conta;
         conta.setTitular(this); // vincula a conta ao cliente
-        System.out.println("Conta " + conta.getNumero() + " criada para " + nome + "\n");
+        System.out.println("Conta " + conta.getNumero() + " criada para " + nome + "
+");
     }
 
     public String getNome() { return nome; }
@@ -150,9 +156,11 @@ public class Main {
         conta2.depositar(90, cliente2);
         conta2.sacar(30, cliente2);
 
-        System.out.printf("Saldo da conta %d (%s): R$%.2f\n",
+        System.out.printf("Saldo da conta %d (%s): R$%.2f
+",
                 conta1.getNumero(), cliente1.getNome(), conta1.getSaldo());
-        System.out.printf("Saldo da conta %d (%s): R$%.2f\n",
+        System.out.printf("Saldo da conta %d (%s): R$%.2f
+",
                 conta2.getNumero(), cliente2.getNome(), conta2.getSaldo());
 
         sc.close();

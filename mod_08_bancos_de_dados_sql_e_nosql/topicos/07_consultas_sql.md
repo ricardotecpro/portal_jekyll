@@ -1,3 +1,8 @@
+---
+layout: default
+title: A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍
+---
+
 ## A extração de informações de um banco de dados para responder a questões de negócio é realizada por meio de consultas 🔍 
 
 Em SQL, o subconjunto de comandos dedicado a esta tarefa é o `SELECT`, que alguns autores classificam como parte da DQL (Data Query Language).
@@ -66,3 +71,4 @@ SQL oferece uma vasta gama de funções, que podem variar um pouco entre diferen
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

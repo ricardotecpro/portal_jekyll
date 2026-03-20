@@ -1,3 +1,8 @@
+---
+layout: default
+title: Comparativo de Tecnologias para Desenvolvimento Mobile
+---
+
 # Comparativo de Tecnologias para Desenvolvimento Mobile
 
 ---
@@ -39,3 +44,4 @@
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

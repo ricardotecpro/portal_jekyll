@@ -1,3 +1,8 @@
+---
+layout: default
+title: Tecnologias Essenciais para Desenvolvedores em 2025
+---
+
 # Tecnologias Essenciais para Desenvolvedores em 2025
 
 Desenvolvedor moderno, o domínio de certas **tecnologias fundamentais** é essencial — não apenas linguagens de programação, mas também **ferramentas e práticas que sustentam todo o ciclo de desenvolvimento**.
@@ -121,3 +126,4 @@ Se você está começando, recomendo esta ordem:
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

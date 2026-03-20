@@ -1,3 +1,8 @@
+---
+layout: default
+title: Upgrade Progress
+---
+
 # Upgrade Progress
 
   ### ❗ Generate Upgrade Plan

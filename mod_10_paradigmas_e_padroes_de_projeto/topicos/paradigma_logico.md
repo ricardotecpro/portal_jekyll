@@ -1,3 +1,8 @@
+---
+layout: default
+title: Aulas sobre Linguagens de Programação Lógica
+---
+
 # Aulas sobre Linguagens de Programação Lógica
 
 Este documento oferece uma série de aulas sobre o paradigma de programação lógica, uma abordagem fascinante e poderosa que trata a computação como um processo de dedução lógica. Diferente de dar comandos passo a passo (paradigma imperativo), aqui nós descrevemos um universo de fatos e regras e deixamos que o computador "raciocine" para encontrar as respostas.

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🛠️ Guia de Ferramentas Essenciais para Desenvolvedores
+---
+
 # 🛠️ Guia de Ferramentas Essenciais para Desenvolvedores
 
 O universo do desenvolvimento de software é vasto e repleto de ferramentas, cada uma projetada para resolver um problema específico. Navegar por este ecossistema pode ser desafiador. Este guia apresenta as ferramentas e categorias mais importantes que formam a base da "caixa de ferramentas" de um desenvolvedor moderno.
@@ -141,3 +146,4 @@ Ferramentas que fazem a ponte entre a ideia e a implementação visual.
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧠 Quiz: Python Avançado
+---
+
 # 🧠 Quiz: Python Avançado
 
 Teste seus conhecimentos sobre ambientes virtuais e gerenciamento de dependências!
@@ -53,3 +58,4 @@ Parabéns por completar o quiz!
 ---
 
 [:arrow_left: Voltar para Quizzes](index.md)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🐐 Git SCM (Sistema de Controle de Versão)
+---
+
 ## 🐐 Git SCM (Sistema de Controle de Versão)
 
 ### O que é Git?
@@ -142,3 +147,4 @@ O fluxo é:
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

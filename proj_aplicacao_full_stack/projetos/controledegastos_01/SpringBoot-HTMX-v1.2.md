@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Construindo e Implantando o "Controle de Gastos" com Spring Boot e htmx
+---
+
 # 🚀 Construindo e Implantando o "Controle de Gastos" com Spring Boot e htmx
 v1.2
 
@@ -584,3 +589,4 @@ Agora, você poderá acessar sua página Thymeleaf localmente pela URL que desej
 ➡️ **`http://localhost:8080/controle-de-gastos`**
 
 ---
+

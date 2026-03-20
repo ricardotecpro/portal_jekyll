@@ -1,3 +1,8 @@
+---
+layout: default
+title: Paradigma de Programação Imperativo
+---
+
 # Paradigma de Programação Imperativo
 
 Este documento oferece uma série de aulas sobre o paradigma de programação imperativo, um dos mais fundamentais e influentes na história da computação. Entender seus conceitos é crucial para qualquer desenvolvedor, pois ele forma a base para muitas linguagens populares e para a compreensão de como os computadores funcionam em um nível fundamental.
@@ -55,9 +60,11 @@ Para ir além de uma simples lista de instruções, o paradigma imperativo usa t
     ```c
     // Exemplo em C
     if (soma > 25) {
-        printf("A soma é maior que 25.\n");
+        printf("A soma é maior que 25.
+");
     } else {
-        printf("A soma não é maior que 25.\n");
+        printf("A soma não é maior que 25.
+");
     }
     ```
 
@@ -66,7 +73,8 @@ Para ir além de uma simples lista de instruções, o paradigma imperativo usa t
     ```c
     // Exemplo em C
     for (int i = 0; i < 5; i++) {
-        printf("Valor de i: %d\n", i);
+        printf("Valor de i: %d
+", i);
     }
     ```
 
@@ -86,7 +94,8 @@ A **programação procedural** é uma evolução do código imperativo "puro". E
     // Programa principal
     int main() {
         int resultado = calcularSoma(10, 20); // Chama o procedimento
-        printf("O resultado é: %d\n", resultado);
+        printf("O resultado é: %d
+", resultado);
         return 0;
     }
     ```

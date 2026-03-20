@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 Biblioteca de Jogos 02
 
 Crie o projeto no **Spring Initializr** com as seguintes configurações:
@@ -111,3 +116,4 @@ Estúdio / Desenvolvedor → relacionamento de muitos jogos para um estúdio.
 [Projeto Biblioteca de Jogos](https://ricardotecpro.github.io/ads_proj_aplicacao_full_stack/projetos/bibliotecajogos_01/)
 
 ---
+

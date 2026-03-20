@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📝 Guia de Arquitetura e Desenvolvimento: Aplicação de Lista de Tarefas
+---
+
 # 📝 Guia de Arquitetura e Desenvolvimento: Aplicação de Lista de Tarefas
 
 Este documento detalha a arquitetura, a estrutura do projeto e as decisões de design para a aplicação de Lista de Tarefas. O objetivo é servir como uma fonte central de conhecimento para a equipe de desenvolvimento.
@@ -170,3 +175,4 @@ Esta seção descreve o fluxo de criação dos componentes do backend.
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

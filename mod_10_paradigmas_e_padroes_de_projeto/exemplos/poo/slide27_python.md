@@ -1,3 +1,8 @@
+---
+layout: default
+title: # Slide 27: Cadastro de Alunos em Python (POO)
+---
+
 # # Slide 27: Cadastro de Alunos em Python (POO)
 
 Sistema de **cadastro de alunos** para **Python**, mantendo os princípios de **Programação Orientada a Objetos (POO)**.
@@ -121,4 +126,5 @@ stop
     
 
 ---
+
 

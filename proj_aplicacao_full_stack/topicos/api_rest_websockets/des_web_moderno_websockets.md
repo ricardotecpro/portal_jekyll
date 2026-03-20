@@ -1,3 +1,8 @@
+---
+layout: default
+title: DES WEB MODERNO WEBSOCKETS
+---
+
 **Tutorial sequencial e didático** para criar um **Chat em Tempo Real com WebSockets**, usando **Node.js** para o backend e **HTML + JavaScript** para o frontend.
 
 https://gist.github.com/ricardotecpro/f7e2928a73b6434b77d304e752e44773
@@ -227,4 +232,5 @@ Parabéns! 🎉 Você criou um **chat WebSocket** simples usando **Node.js** no 
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Instalando e Configurando AstroVim no Debian/Ubuntu
+---
+
 # 🚀 Instalando e Configurando AstroVim no Debian/Ubuntu
 
 Este tutorial ensina como instalar o **Neovim (v0.10.4)**, configurar o **AstroNvim** e melhorar a aparência para parecer com o **VS Code**.
@@ -372,3 +377,4 @@ Agora você tem um **Neovim poderoso e moderno** com aparência do **VS Code** e
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Arquivo 1: `modulo-01-fundamentos-redes.md`**
+---
+
 ### **Arquivo 1: `modulo-01-fundamentos-redes.md`**
 
 
@@ -123,4 +128,5 @@ Um proxy é um intermediário entre o cliente e o servidor final.
 
 
 ---
+
 

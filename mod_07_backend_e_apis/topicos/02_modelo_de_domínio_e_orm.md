@@ -1,3 +1,8 @@
+---
+layout: default
+title: Módulo Back-end: Modelo de Domínio e ORM 🗄️
+---
+
 # Módulo Back-end: Modelo de Domínio e ORM 🗄️
 
 Este capítulo foca na criação de um modelo de domínio robusto e em como mapeá-lo para um banco de dados relacional usando uma ferramenta de Mapeamento Objeto-Relacional (ORM), um passo essencial no desenvolvimento back-end.
@@ -241,3 +246,4 @@ Com o Spring Boot, basta criar um arquivo chamado `import.sql` na pasta `src/mai
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

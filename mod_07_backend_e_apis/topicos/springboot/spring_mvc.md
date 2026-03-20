@@ -1,3 +1,8 @@
+---
+layout: default
+title: Spring MVC com Angular
+---
+
 # Spring MVC com Angular
 
 Tutorial sobre **MVC (Model-View-Controller)**, que é um padrão de arquitetura muito popular usado em diversas aplicações, incluindo aplicações web. Vamos explicar o conceito de MVC, sua estrutura e como implementá-lo com Spring Boot (back-end) e Angular (front-end).
@@ -315,3 +320,4 @@ Com isso, sua aplicação fica mais modular, fácil de manter e escalável. Voc�
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

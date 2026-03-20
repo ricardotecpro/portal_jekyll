@@ -1,3 +1,8 @@
+---
+layout: default
+title: Guia para o H2
+---
+
 ### Guia para o H2 
 
 Seguido por uma nova seção detalhando como configurar seu projeto Spring Boot para se conectar a um banco de dados MySQL. Por fim, mostrarei a abordagem recomendada para gerenciar ambas as configurações usando **Spring Profiles**.
@@ -205,3 +210,4 @@ Agora, ao iniciar a aplicação, o Spring Boot carregará as configurações de 
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Projeto: Nginx com Balanceamento de Carga e Visualização em Tempo Real
+---
+
 # 🚀 Projeto: Nginx com Balanceamento de Carga e Visualização em Tempo Real
 
 ## 🎯 Objetivo
@@ -342,3 +347,4 @@ Pressione `Ctrl + C` no terminal onde o `docker-compose` está rodando e depois 
 ```bash
 docker-compose down
 ```
+

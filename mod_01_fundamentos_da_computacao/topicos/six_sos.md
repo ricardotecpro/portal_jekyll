@@ -1,3 +1,8 @@
+---
+layout: default
+title: # Comparativo de Sistemas Operacionais
+---
+
 # # Comparativo de Sistemas Operacionais
 
 
@@ -49,3 +54,4 @@
 
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

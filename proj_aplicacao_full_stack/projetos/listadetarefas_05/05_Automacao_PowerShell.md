@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🤖 Módulo 5: Automação com PowerShell (`listadetarefas-painel.ps1`)
+---
+
 # 🤖 Módulo 5: Automação com PowerShell (`listadetarefas-painel.ps1`)
 
 **Objetivo:** Centralizar o gerenciamento do ecossistema com um painel de controle para iniciar e parar todos os serviços de forma rápida e fácil.
@@ -48,4 +53,5 @@ $desktopWindowTitle = "Minha Lista de Tarefas (Desktop)"
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
 

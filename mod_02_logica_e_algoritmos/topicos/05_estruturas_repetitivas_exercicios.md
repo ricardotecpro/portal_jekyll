@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📝 Exercícios de Estruturas Repetitivas
+---
+
 # 📝 Exercícios de Estruturas Repetitivas
 
 ## Parte 1: Estrutura `enquanto` 🔁
@@ -47,7 +52,8 @@ public class Crescente {
             } else {
                 System.out.println("DECRESCENTE!");
             }
-            System.out.println("\nDigite outros dois números:");
+            System.out.println("
+Digite outros dois números:");
             x = entrada.nextInt();
             y = entrada.nextInt();
         }
@@ -109,7 +115,8 @@ public class MediaIdades {
                 idade = entrada.nextInt();
             }
             media = (double) somaIdades / totalPessoas;
-            System.out.printf("MEDIA = %.2f\n", media);
+            System.out.printf("MEDIA = %.2f
+", media);
         }
 
         entrada.close();
@@ -146,11 +153,13 @@ public class SenhaFixa {
         Scanner entrada = new Scanner(System.in);
         int senha;
 
-        System.out.print("Digite a senha: \n");
+        System.out.print("Digite a senha: 
+");
         senha = entrada.nextInt();
 
         while (senha != 2002) {
-            System.out.print("Senha Invalida! Tente novamente:\n");
+            System.out.print("Senha Invalida! Tente novamente:
+");
             senha = entrada.nextInt();
         }
 
@@ -211,7 +220,8 @@ public class Quadrante {
                 System.out.println("QUADRANTE Q4");
             }
             
-            System.out.println("\nDigite os valores das coordenadas X e Y:");
+            System.out.println("
+Digite os valores das coordenadas X e Y:");
             x = entrada.nextInt();
             y = entrada.nextInt();
         }
@@ -265,7 +275,8 @@ public class ValidacaoDeNota {
         }
         
         media = (nota1 + nota2) / 2.0;
-        System.out.printf("MEDIA = %.2f\n", media);
+        System.out.printf("MEDIA = %.2f
+", media);
 
         entrada.close();
     }
@@ -369,7 +380,8 @@ public class Tabuada {
         n = entrada.nextInt();
 
         for (int i = 1; i <= 10; i++) {
-            System.out.printf("%d x %d = %d\n", n, i, n * i);
+            System.out.printf("%d x %d = %d
+", n, i, n * i);
         }
 
         entrada.close();
@@ -632,7 +644,8 @@ public class MediaPonderada {
             double v3 = entrada.nextDouble();
 
             double media = (v1 * 2.0 + v2 * 3.0 + v3 * 5.0) / 10.0;
-            System.out.printf("MEDIA = %.1f\n", media);
+            System.out.printf("MEDIA = %.1f
+", media);
         }
 
         entrada.close();
@@ -684,7 +697,8 @@ public class Divisao {
                 System.out.println("DIVISAO IMPOSSIVEL");
             } else {
                 double divisao = (double) numerador / denominador;
-                System.out.printf("DIVISAO = %.2f\n", divisao);
+                System.out.printf("DIVISAO = %.2f
+", divisao);
             }
         }
 
@@ -800,14 +814,18 @@ public class Experiencias {
         double pRatos = (double) totalRatos / totalCobaias * 100.0;
         double pSapos = (double) totalSapos / totalCobaias * 100.0;
 
-        System.out.println("\nRELATORIO FINAL:");
+        System.out.println("
+RELATORIO FINAL:");
         System.out.println("Total: " + totalCobaias + " cobaias");
         System.out.println("Total de coelhos: " + totalCoelhos);
         System.out.println("Total de ratos: " + totalRatos);
         System.out.println("Total de sapos: " + totalSapos);
-        System.out.printf("Percentual de coelhos: %.2f %%\n", pCoelhos);
-        System.out.printf("Percentual de ratos: %.2f %%\n", pRatos);
-        System.out.printf("Percentual de sapos: %.2f %%\n", pSapos);
+        System.out.printf("Percentual de coelhos: %.2f %%
+", pCoelhos);
+        System.out.printf("Percentual de ratos: %.2f %%
+", pRatos);
+        System.out.printf("Percentual de sapos: %.2f %%
+", pSapos);
         
         entrada.close();
     }
@@ -817,3 +835,4 @@ public class Experiencias {
 -----
 
 ### 🚀 [ricardotecpro.github.io](https://www.google.com/search?q=https://ricardotecpro.github.io/)
+

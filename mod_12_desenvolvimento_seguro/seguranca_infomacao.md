@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🛡️ Segurança da Informação: Protegendo o Mundo Digital
+---
+
 # 🛡️ Segurança da Informação: Protegendo o Mundo Digital
 
 **Segurança da Informação** (InfoSec) é o conjunto de práticas, políticas, tecnologias e processos projetados para proteger informações digitais e não-digitais contra acesso, uso, divulgação, alteração, interrupção ou destruição não autorizados.

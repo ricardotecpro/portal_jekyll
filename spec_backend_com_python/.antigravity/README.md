@@ -1,3 +1,8 @@
+---
+layout: default
+title: Artefatos do Antigravity - Histórico do Projeto
+---
+
 # Artefatos do Antigravity - Histórico do Projeto
 
 Este diretório contém todos os artefatos gerados durante o desenvolvimento do projeto usando o Antigravity (Gemini).
@@ -108,3 +113,4 @@ Se outra pessoa for trabalhar no projeto:
 ---
 
 **Nota**: Este diretório é gerenciado automaticamente pelo Antigravity. Evite editar manualmente a menos que necessário.
+

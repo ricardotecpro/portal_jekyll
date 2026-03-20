@@ -1,3 +1,8 @@
+---
+layout: default
+title: Projeto: Sistema de Xadrez em Java
+---
+
 # Projeto: Sistema de Xadrez em Java
 A base deste projeto é uma **arquitetura em camadas** bem definida, que desacopla as responsabilidades do sistema. Isso é fundamental para a manutenibilidade e evolução do software.
 

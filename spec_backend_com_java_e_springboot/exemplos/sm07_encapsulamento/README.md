@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 
 ---
 
@@ -40,16 +45,19 @@ public class ProgramaPrincipal {
             conta = new ContaBancaria(numero, titular);
         }
 
-        System.out.println("\nDados da conta:");
+        System.out.println("
+Dados da conta:");
         System.out.println(conta);
 
-        System.out.print("\nInforme um valor para depósito: R$ ");
+        System.out.print("
+Informe um valor para depósito: R$ ");
         double valorDeposito = sc.nextDouble();
         conta.depositar(valorDeposito);
         System.out.println("Dados atualizados da conta:");
         System.out.println(conta);
 
-        System.out.print("\nInforme um valor para saque: R$ ");
+        System.out.print("
+Informe um valor para saque: R$ ");
         double valorSaque = sc.nextDouble();
         conta.sacar(valorSaque);
         System.out.println("Dados atualizados da conta:");
@@ -129,3 +137,4 @@ public class ContaBancaria {
 * Uso de `this` para distinguir atributos
 * Método `toString()` para exibir informações formatadas
 * Lógica de saque com taxa
+

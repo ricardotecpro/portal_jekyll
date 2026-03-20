@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🐦 Framework Flutter
+---
+
 ## 🐦 Framework Flutter
 
 **Flutter** é um toolkit de UI (Interface de Usuário) de código aberto, também do Google, que utiliza a linguagem Dart para construir aplicativos compilados de forma nativa para mobile, web, desktop e sistemas embarcados a partir de um único código-base. Em resumo: **Dart é a linguagem, Flutter é o framework** para construir a interface.
@@ -119,3 +124,4 @@ As ferramentas de depuração do Flutter são um de seus pontos mais fortes.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

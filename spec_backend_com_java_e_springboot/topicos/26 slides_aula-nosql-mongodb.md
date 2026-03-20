@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Visão Arquitetural: Por Que NoSQL? Superando os Limites do Relacional**
+---
+
 ### **Visão Arquitetural: Por Que NoSQL? Superando os Limites do Relacional**
 
 Por décadas, o modelo relacional (SQL) dominou o mundo dos bancos de dados. No entanto, ele apresenta dois desafios significativos para aplicações modernas:

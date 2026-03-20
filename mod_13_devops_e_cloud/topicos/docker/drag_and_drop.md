@@ -1,3 +1,8 @@
+---
+layout: default
+title: Aplicação **listatarefas** com **Next.js no frontend** e **NestJS no backend**, usando **Docker** e **MySQL**.
+---
+
 # Aplicação **listatarefas** com **Next.js no frontend** e **NestJS no backend**, usando **Docker** e **MySQL**.
 
 Vou dividir a explicação em etapas lógicas, garantindo que você compreenda cada parte antes de avançar.
@@ -45,7 +50,8 @@ Se esses comandos não retornarem versões, reinstale o [Node.js](https://nodejs
 Tente criar o diretório que está faltando. Execute no PowerShell:
 
 ```powershell
-mkdir C:\Users\rlp\AppData\Roaming\npm
+mkdir C:\Users\rlp\AppData\Roaming
+pm
 ```
 
 Depois, tente novamente:
@@ -472,3 +478,4 @@ DELETE /tasks/:id
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

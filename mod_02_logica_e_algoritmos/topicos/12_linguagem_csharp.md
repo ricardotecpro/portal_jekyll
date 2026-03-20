@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem C\# 💎
+---
+
 # Linguagem C\# 💎
 
 Bem-vindo ao guia de C\# (pronuncia-se "C Sharp"), uma linguagem de programação moderna, orientada a objetos e desenvolvida pela Microsoft. Ela é a principal linguagem da plataforma **.NET**, sendo amplamente utilizada para criar aplicações web, jogos (com a engine Unity), serviços de backend, aplicações desktop e muito mais.
@@ -170,7 +175,8 @@ namespace CursoCSharp
             Console.Write("Digite seu genero (F/M): ");
             genero = char.Parse(Console.ReadLine()); // Lê a string e converte para char.
 
-            Console.WriteLine("\n--- DADOS REGISTRADOS ---");
+            Console.WriteLine("
+--- DADOS REGISTRADOS ---");
             Console.WriteLine($"Nome: {nomeCompleto}");
             Console.WriteLine($"Idade: {idade}");
             Console.WriteLine($"Salario: {salario.ToString("F2", CultureInfo.InvariantCulture)}");
@@ -265,7 +271,8 @@ for (int i = 0; i < N; i++)
     vetor[i] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 }
 
-Console.WriteLine("\nNUMEROS DIGITADOS:");
+Console.WriteLine("
+NUMEROS DIGITADOS:");
 for (int i = 0; i < N; i++)
 {
     Console.WriteLine(vetor[i].ToString("F1", CultureInfo.InvariantCulture));
@@ -295,7 +302,8 @@ for (int i = 0; i < M; i++)
     }
 }
 
-Console.WriteLine("\nMATRIZ DIGITADA:");
+Console.WriteLine("
+MATRIZ DIGITADA:");
 for (int i = 0; i < M; i++)
 {
     for (int j = 0; j < N; j++)
@@ -324,3 +332,4 @@ Os atalhos e conceitos são muito semelhantes e padronizados.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

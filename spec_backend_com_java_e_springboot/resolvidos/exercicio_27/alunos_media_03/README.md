@@ -1,3 +1,8 @@
+---
+layout: default
+title: Sistema de Gerenciamento de Alunos
+---
+
 # Sistema de Gerenciamento de Alunos
 
 ## Descrição

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Visão Arquitetural: O Problema do Mapeamento Objeto-Relacional (ORM)**
+---
+
 ### **Visão Arquitetural: O Problema do Mapeamento Objeto-Relacional (ORM)**
 
 Historicamente, um dos maiores desafios da programação orientada a objetos é a comunicação com bancos de dados relacionais. O paradigma de objetos (classes, atributos, herança) é fundamentalmente diferente do paradigma relacional (tabelas, colunas, chaves estrangeiras).

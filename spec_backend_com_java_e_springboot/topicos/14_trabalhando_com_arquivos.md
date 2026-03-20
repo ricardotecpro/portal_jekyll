@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕️ Java: Trabalhando com Arquivos 📁
+---
+
 # ☕️ Java: Trabalhando com Arquivos 📁
 
 Este capítulo aborda como manipular arquivos em Java, cobrindo leitura, escrita e manipulação de diretórios, utilizando as classes principais do pacote `java.io`.
@@ -246,7 +251,8 @@ public class Programa {
 
         // Listar todos os arquivos dentro da pasta
         File[] arquivos = objetoCaminho.listFiles(File::isFile);
-        System.out.println("\nARQUIVOS ENCONTRADOS:");
+        System.out.println("
+ARQUIVOS ENCONTRADOS:");
         if (arquivos != null) {
             for (File arquivo : arquivos) {
                 System.out.println(arquivo.getName()); // Imprime o nome do arquivo
@@ -257,9 +263,11 @@ public class Programa {
         // File.separator é usado para portabilidade de sistema operacional ('\' no Windows, '/' no Linux/Mac)
         boolean sucesso = new File(caminhoStr + File.separator + "nova_subpasta").mkdir();
         if (sucesso) {
-            System.out.println("\nDiretório 'nova_subpasta' criado com sucesso!");
+            System.out.println("
+Diretório 'nova_subpasta' criado com sucesso!");
         } else {
-            System.out.println("\nFalha ao criar o diretório 'nova_subpasta' (pode já existir ou faltar permissão).");
+            System.out.println("
+Falha ao criar o diretório 'nova_subpasta' (pode já existir ou faltar permissão).");
         }
 
         sc.close();
@@ -395,3 +403,4 @@ Este exercício combina várias das técnicas apresentadas, como leitura de arqu
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

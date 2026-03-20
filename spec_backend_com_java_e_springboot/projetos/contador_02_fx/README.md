@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Guia Didático: Migrando de Swing para JavaFX (Botão e Contador)
+---
+
 ## 🚀 Guia Didático: Migrando de Swing para JavaFX (Botão e Contador)
 
 Esta sequência didática refatora o projeto de contador usando JavaFX, o framework moderno para GUIs em Java. Focaremos nas diferenças arquiteturais e nas práticas recomendadas.
@@ -583,3 +588,4 @@ mvn -DskipTests javafx:run
 
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

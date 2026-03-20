@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🏅 Desenvolvimento Mobile Nativo
+---
+
 # 🏅 Desenvolvimento Mobile Nativo
 
 O desenvolvimento mobile nativo consiste em criar aplicativos especificamente para uma única plataforma, utilizando as linguagens de programação, ferramentas e *frameworks* oficiais fornecidos pelos proprietários dos sistemas operacionais: Apple para iOS e Google для Android.
@@ -130,3 +135,4 @@ Apesar do custo mais elevado, o desenvolvimento nativo é a escolha ideal em cen
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

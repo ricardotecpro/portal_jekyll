@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagem Java ☕
+---
+
 # Linguagem Java ☕
 
 Bem-vindo ao guia da linguagem Java, uma das linguagens de programação mais populares e versáteis do mundo. Famosa por sua filosofia "escreva uma vez, rode em qualquer lugar" (*write once, run anywhere*), o Java é fundamental para o desenvolvimento de aplicações web, mobile (Android), e sistemas de grande escala.
@@ -141,7 +146,8 @@ Para ler dados do teclado em Java, utilizamos a classe `Scanner`, que deve ser i
 4.  **Feche o Scanner**: `sc.close();` para liberar os recursos do sistema.
 
 **Atenção à Quebra de Linha Pendente:**
-Quando você lê um número (`nextInt` ou `nextDouble`), o cursor de leitura para após o número, deixando o "Enter" (`\n`) no buffer de entrada. Se a próxima leitura for um `nextLine()`, ele lerá essa quebra de linha vazia.
+Quando você lê um número (`nextInt` ou `nextDouble`), o cursor de leitura para após o número, deixando o "Enter" (`
+`) no buffer de entrada. Se a próxima leitura for um `nextLine()`, ele lerá essa quebra de linha vazia.
 **Solução**: Consuma a quebra de linha pendente com um `sc.nextLine()` extra antes de ler o texto.
 
 ```java
@@ -173,7 +179,8 @@ public class Programa {
        System.out.print("Digite seu genero (F/M): ");
        genero = sc.next().charAt(0);
 
-       System.out.println("\n--- DADOS REGISTRADOS ---");
+       System.out.println("
+--- DADOS REGISTRADOS ---");
        System.out.println("Nome: " + nomeCompleto);
        System.out.println("Idade: " + idade);
        System.out.println("Salario: " + String.format("%.2f", salario));
@@ -271,7 +278,8 @@ for (int i = 0; i < N; i++) {
     vetor[i] = sc.nextDouble();
 }
 
-System.out.println("\nNUMEROS DIGITADOS:");
+System.out.println("
+NUMEROS DIGITADOS:");
 for (int i = 0; i < N; i++) {
     System.out.println(String.format("%.1f", vetor[i]));
 }
@@ -301,7 +309,8 @@ for (int i = 0; i < M; i++) {
     }
 }
 
-System.out.println("\nMATRIZ DIGITADA:");
+System.out.println("
+MATRIZ DIGITADA:");
 for (int i = 0; i < M; i++) {
     for (int j = 0; j < N; j++) {
         System.out.print(matriz[i][j] + " ");
@@ -331,3 +340,4 @@ Os conceitos são os mesmos, apenas os atalhos podem variar.
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

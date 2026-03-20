@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📝 Capítulo: Estrutura Sequencial - Exercícios (Parte 1)
+---
+
 # 📝 Capítulo: Estrutura Sequencial - Exercícios (Parte 1)
 
 Aqui estão alguns exercícios para praticar a lógica de programação com estruturas sequenciais. Para cada problema, foram criados novos exemplos com dados diferentes para testar e validar seu código.
@@ -267,3 +272,4 @@ Digite a duracao em segundos: 120
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

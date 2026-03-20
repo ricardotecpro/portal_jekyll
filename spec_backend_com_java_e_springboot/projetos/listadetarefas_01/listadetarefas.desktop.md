@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Parte 3: O Frontend Desktop com JavaFX**
+---
+
 ### **Parte 3: O Frontend Desktop com JavaFX**
 
 A aplicação nativa, com layout e funcionalidades consistentes com a versão web.
@@ -687,3 +692,4 @@ Tela da aplicação desktop:
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

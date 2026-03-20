@@ -1,3 +1,8 @@
+---
+layout: default
+title: README
+---
+
 
 ## Cenário p.50
 
@@ -65,7 +70,8 @@ public class ContaBancaria {
             return;
         }
         saldo += valor;
-        System.out.printf("Depósito de R$%.2f na conta %d realizado com sucesso.\n", valor, numero);
+        System.out.printf("Depósito de R$%.2f na conta %d realizado com sucesso.
+", valor, numero);
     }
 
     public void sacar(double valor, Cliente cliente, int numeroInformado) {
@@ -86,7 +92,8 @@ public class ContaBancaria {
             return;
         }
         saldo -= valor;
-        System.out.printf("Saque de R$%.2f da conta %d realizado com sucesso.\n", valor, numero);
+        System.out.printf("Saque de R$%.2f da conta %d realizado com sucesso.
+", valor, numero);
     }
 
     public void extrato(Cliente cliente, int numeroInformado) {
@@ -94,8 +101,10 @@ public class ContaBancaria {
             System.out.println("Extrato negado. Conta não pertence ao cliente.");
             return;
         }
-        System.out.printf("Extrato da conta %d - Titular: %s\n", numero, titular.getNome());
-        System.out.printf("Saldo atual: R$%.2f\n", saldo);
+        System.out.printf("Extrato da conta %d - Titular: %s
+", numero, titular.getNome());
+        System.out.printf("Saldo atual: R$%.2f
+", saldo);
     }
 }
 ```
@@ -119,7 +128,8 @@ public class Cliente {
         this.cpf = sc.nextLine();
         this.conta = conta;
         conta.setTitular(this);
-        System.out.println("Conta " + conta.getNumero() + " criada para " + nome + "\n");
+        System.out.println("Conta " + conta.getNumero() + " criada para " + nome + "
+");
     }
 
     public String getNome() { return nome; }

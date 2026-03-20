@@ -1,3 +1,8 @@
+---
+layout: default
+title: O Modelo Conceitual
+---
+
 ## O Modelo Conceitual
 
 O **Modelo Conceitual** é a primeira e mais importante etapa no processo de design de um banco de dados. Ele representa a visão de mais alto nível dos dados, focando em como os *usuários* e *stakeholders* do negócio percebem as informações, **abstraindo completamente os detalhes** de implementação de software ou hardware.
@@ -57,3 +62,4 @@ Este modelo conceitual é o ponto de partida fundamental. Ele serve como base pa
 
 ---
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🎓 Módulo 2: Frontend com React
+---
+
 # 🎓 Módulo 2: Frontend com React
 
 **Objetivo**: Construir uma interface moderna para interagir com nossa API.
@@ -89,3 +94,4 @@ export default TaskList;
 
 ## 🏆 Desafio
 Crie um formulário para adicionar novas tarefas usando `api.post('/tarefas', novaTarefa)`.
+

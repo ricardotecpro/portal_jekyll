@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📚 Padrões de Projeto, Arquiteturas e Boas Práticas
+---
+
 # 📚 Padrões de Projeto, Arquiteturas e Boas Práticas
 
 ## 🛠️ Padrões de Projeto
@@ -279,3 +284,4 @@ Este guia apresentou conceitos essenciais de padrões de projeto, arquiteturas, 
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

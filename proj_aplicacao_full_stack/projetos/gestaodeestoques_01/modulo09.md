@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💎 Guia Didático: Gestão de Estoques com Spring Boot
+---
+
 # 💎 Guia Didático: Gestão de Estoques com Spring Boot
 
 -----
@@ -341,3 +346,4 @@ appContent.addEventListener('submit', async (event) => {
 2.  Criar uma função `renderEditProdutoForm(id)` que busca os dados de um produto específico com `api.getProdutoById(id)`.
 3.  Preencher o formulário com os dados retornados.
 4.  No `submit` do formulário, chamar a função `api.updateProduto(id, data)`.
+

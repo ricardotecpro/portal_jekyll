@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📚 Guia Completo do Curso de Desenvolvimento de Software
+---
+
 # 📚 Guia Completo do Curso de Desenvolvimento de Software
 
 Bem-vindo ao guia completo do curso de desenvolvimento de software\! Este documento detalha cada módulo do curso, oferecendo uma visão abrangente do conteúdo programático, enriquecido com conceitos complementares e exemplos práticos para facilitar seu aprendizado.
@@ -591,11 +596,13 @@ public class ExemploColecoesLambda {
         // Ou usando List.sort
         listaProdutos.sort((p1, p2) -> p1.getNome().compareTo(p2.getNome()));
 
-        System.out.println("\n--- Lista de Produtos Ordenada por Nome ---");
+        System.out.println("
+--- Lista de Produtos Ordenada por Nome ---");
         listaProdutos.forEach(System.out::println);
 
         // Filtrando produtos com preço abaixo de R$1000.00 e estoque > 20
-        System.out.println("\n--- Produtos com Preço < R$1000.00 e Estoque > 20 ---");
+        System.out.println("
+--- Produtos com Preço < R$1000.00 e Estoque > 20 ---");
         listaProdutos.stream()
                      .filter(p -> p.getPreco() < 1000.00 && p.getEstoque() > 20) // Condição de filtro modificada
                      .forEach(System.out::println);
@@ -604,7 +611,8 @@ public class ExemploColecoesLambda {
         double valorTotalEstoque = listaProdutos.stream()
                                                 .mapToDouble(p -> p.getPreco() * p.getEstoque())
                                                 .sum();
-        System.out.printf("\nValor total do estoque: R$%.2f%n", valorTotalEstoque);
+        System.out.printf("
+Valor total do estoque: R$%.2f%n", valorTotalEstoque);
         // Saída esperada para o valor total do estoque:
         // (7500.90*15) + (280.00*40) + (450.75*25) + (2100.50*10) = 112513.5 + 11200 + 11268.75 + 21005 = 155987.25
     }
@@ -1698,7 +1706,8 @@ public class ContatosAgenda {
         System.out.println("Carlos Andrade foi removido.");
 
         // Iterando sobre os contatos (keySet e for-each)
-        System.out.println("\n--- Lista de Contatos Atualizada ---"); // Título modificado
+        System.out.println("
+--- Lista de Contatos Atualizada ---"); // Título modificado
         for (String nomeContato : agendaTelefonica.keySet()) { // "nomeContato"
             System.out.println("Contato: " + nomeContato + " - Telefone: " + agendaTelefonica.get(nomeContato));
         }
@@ -1707,13 +1716,15 @@ public class ContatosAgenda {
         // Contato: Daniela Borges - Telefone: (11) 96655-4433
 
         // Iterando sobre os valores (values)
-        System.out.println("\n--- Apenas os Números de Telefone ---"); // Título modificado
+        System.out.println("
+--- Apenas os Números de Telefone ---"); // Título modificado
         for(String numero : agendaTelefonica.values()){
             System.out.println(numero);
         }
 
         // Iterando sobre as entradas (entrySet)
-        System.out.println("\n--- Entradas (Nome e Número) ---"); // Título modificado
+        System.out.println("
+--- Entradas (Nome e Número) ---"); // Título modificado
         for(Map.Entry<String, String> entrada : agendaTelefonica.entrySet()){
             System.out.println("Chave: " + entrada.getKey() + ", Valor: " + entrada.getValue());
         }

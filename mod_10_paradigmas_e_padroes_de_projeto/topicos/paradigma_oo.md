@@ -1,3 +1,8 @@
+---
+layout: default
+title: PARADIGMA OO
+---
+
 Com base no material fornecido, realizei uma revisão completa e reescrevi o guia didático, aplicando as melhores práticas de engenharia de software, separação de responsabilidades e adicionando seções essenciais sobre testes e execução em ambientes de desenvolvimento modernos.
 
 -----

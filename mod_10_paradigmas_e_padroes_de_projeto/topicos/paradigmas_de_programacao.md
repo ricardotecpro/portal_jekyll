@@ -1,3 +1,8 @@
+---
+layout: default
+title: Principais famílias de linguagens
+---
+
 # Principais famílias de linguagens
 
 ---
@@ -67,3 +72,4 @@ Existem muitas maneiras de classificar as linguagens de programação, seja pela
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

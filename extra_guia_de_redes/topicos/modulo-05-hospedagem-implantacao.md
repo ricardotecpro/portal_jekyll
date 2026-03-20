@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Arquivo 5: `modulo-05-hospedagem-implantacao.md`**
+---
+
 ### **Arquivo 5: `modulo-05-hospedagem-implantacao.md`**
 
 # ☁️ Módulo 5: Onde Tudo Acontece - Hospedagem e Implantação
@@ -122,3 +127,4 @@ A nuvem oferece um ecossistema de serviços muito mais rico que um simples VPS.
       - **Docker:** Tecnologia para "empacotar" sua aplicação e suas dependências em um contêiner, garantindo que ela rode da mesma forma em qualquer ambiente. Essencial para o desenvolvimento moderno.
 
 -----
+

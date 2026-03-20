@@ -1,3 +1,8 @@
+---
+layout: default
+title: Walkthrough - Refatoração Lista de Tarefas 07
+---
+
 # Walkthrough - Refatoração Lista de Tarefas 07
 
 ## Visão Geral
@@ -41,3 +46,4 @@ A aplicação foi estruturada para rodar com:
 - Implementar persistência real com PostgreSQL (perfil `prod`).
 - Adicionar autenticação com Spring Security (JWT).
 - Melhorar a interface com Angular Material (atualmente usando CSS puro para simplicidade didática).
+

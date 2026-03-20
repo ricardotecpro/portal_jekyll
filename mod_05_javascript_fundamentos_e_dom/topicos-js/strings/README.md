@@ -1,3 +1,8 @@
+---
+layout: default
+title: ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
+---
+
 # ![curso logo](https://raw.githubusercontent.com/curso/bds-assets/main/ds/curso-logo-small.png) Curso Nivelamento JavaScript
 >  Aprenda de forma rápida os principais fundamentos de JavaScript para se preparar para trabalhar com frameworks front end
 
@@ -55,4 +60,5 @@ console.log(`lastIndexOf: ${str.lastIndexOf("i")}`);
 console.log(`subtring: ${str.substring(3, 8)}`);
 console.log(`trim: ${str.trim()}`);
 ```
+
 

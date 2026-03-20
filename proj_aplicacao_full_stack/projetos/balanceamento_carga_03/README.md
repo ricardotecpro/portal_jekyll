@@ -1,3 +1,8 @@
+---
+layout: default
+title: Guia do Projeto: Teste de Carga Visual (Java 21, Gatling, Grafana)
+---
+
 ## Guia do Projeto: Teste de Carga Visual (Java 21, Gatling, Grafana)
 
 
@@ -561,5 +566,6 @@ cd gatling-teste/
 ```
 
 2.  Enquanto o Gatling executa, observe o dashboard do Grafana (`http://localhost:3000`). Você verá os gráficos de RPS subindo, a latência aumentando e, eventualmente, erros (se o sistema não suportar a carga).
+
 
 

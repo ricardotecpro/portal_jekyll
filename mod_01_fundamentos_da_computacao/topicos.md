@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💻 Curso de Computação
+---
+
 # 💻 Curso de Computação
 
 <!--

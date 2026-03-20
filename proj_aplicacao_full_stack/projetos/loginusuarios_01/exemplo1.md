@@ -1,3 +1,8 @@
+---
+layout: default
+title: CRUD - Login de Usuários
+---
+
 # CRUD - Login de Usuários
 
 ---
@@ -377,3 +382,4 @@ public class UserController {
 ```
 
 👉 Agora todos os HTMLs estão com **Bootstrap 5 integrado**, com **layout responsivo, cartões, alertas e tabelas estilizadas**.  
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java e Orientação a Objetos
+---
+
 # ☕ Java e Orientação a Objetos
 ## 📐 Exercícios de Fixação: 04 Exercícios de Estruturas Repetitivas em Java
 
@@ -152,7 +157,8 @@ public class Programa {
         int senhaDigitada = sc.nextInt();
 
         while (senhaDigitada != SENHA_CORRETA) {
-            System.out.print("Senha Invalida! Tente novamente:\n");
+            System.out.print("Senha Invalida! Tente novamente:
+");
             senhaDigitada = sc.nextInt();
         }
 
@@ -633,7 +639,8 @@ public class Programa {
 		double percentualRatos = (double) totalRatos / totalCobaias * 100.0;
 		double percentualSapos = (double) totalSapos / totalCobaias * 100.0;
 		
-		System.out.println("\nRELATORIO FINAL:");
+		System.out.println("
+RELATORIO FINAL:");
 		System.out.println("Total: " + totalCobaias + " cobaias");
 		System.out.println("Total de coelhos: " + totalCoelhos);
 		System.out.println("Total de ratos: " + totalRatos);

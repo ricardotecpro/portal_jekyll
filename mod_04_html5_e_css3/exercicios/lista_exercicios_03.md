@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java e Orientação a Objetos
+---
+
 # ☕ Java e Orientação a Objetos
 ## 📐 Exercícios de Fixação: 03 Exercícios POO
 
@@ -837,3 +842,4 @@ public class Coordenadas {
     }
 }
 ```
+

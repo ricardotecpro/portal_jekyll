@@ -1,3 +1,8 @@
+---
+layout: default
+title: Java: Estrutura Sequencial
+---
+
 # Java: Estrutura Sequencial
 
 Este documento aborda os conceitos fundamentais da estrutura sequencial em Java, incluindo expressões aritméticas, variáveis, tipos primitivos, entrada e saída de dados, processamento e casting, e funções matemáticas.
@@ -593,9 +598,11 @@ O `nextInt()` (ou similar) lê apenas o número, deixando o caractere de quebra 
 **Exemplo do Problema:**
 ```java
 System.out.print("Digite um número: ");
-int numero = sc.nextInt(); // Lê o número, deixa o \n no buffer
+int numero = sc.nextInt(); // Lê o número, deixa o 
+ no buffer
 System.out.print("Digite uma frase: ");
-String frase = sc.nextLine(); // Consome o \n pendente, frase fica vazia
+String frase = sc.nextLine(); // Consome o 
+ pendente, frase fica vazia
 
 System.out.println("Número: " + numero);
 System.out.println("Frase: '" + frase + "'"); // Frase será vazia
@@ -607,7 +614,8 @@ Consuma a quebra de linha pendente com uma chamada extra a `sc.nextLine()` antes
 ```java
 System.out.print("Digite um número: ");
 int numero = sc.nextInt();
-sc.nextLine(); // <-- Linha extra para consumir o \n pendente
+sc.nextLine(); // <-- Linha extra para consumir o 
+ pendente
 System.out.print("Digite uma frase: ");
 String frase = sc.nextLine(); // Agora lê a entrada do usuário corretamente
 
@@ -700,3 +708,4 @@ Para mais informações sobre outras funções matemáticas disponíveis, consul
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

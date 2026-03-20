@@ -1,3 +1,8 @@
+---
+layout: default
+title: Código completo do cadastro de aluno com entrada de dados e cálculo da média, tudo em um **único arquivo `Main.java`**, com a classe `Aluno` incluída dentro do mesmo arquivo:
+---
+
 # Código completo do cadastro de aluno com entrada de dados e cálculo da média, tudo em um **único arquivo `Main.java`**, com a classe `Aluno` incluída dentro do mesmo arquivo:
 
 ```java
@@ -77,7 +82,8 @@ class Aluno {
         System.out.println("Nome: " + nome);
         System.out.println("Idade: " + idade);
         System.out.println("Matrícula: " + matricula);
-        System.out.printf("Média de notas: %.2f\n", calcularMedia());
+        System.out.printf("Média de notas: %.2f
+", calcularMedia());
     }
 }
 ```
@@ -88,4 +94,5 @@ Você pode salvar este código como `Main.java` e compilar normalmente com:
 javac Main.java
 java Main
 ```
+
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Linguagens que utilizam lógica formal para resolver problemas.
+---
+
 # Linguagens que utilizam lógica formal para resolver problemas.
 
 As linguagens de programação podem ser classificadas em **compiladas, interpretadas e híbridas**, dependendo de como o código-fonte é transformado em código executável. Aqui está a divisão:
@@ -91,3 +96,4 @@ Aqui está a classificação correta dessas linguagens em **compiladas, interpre
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

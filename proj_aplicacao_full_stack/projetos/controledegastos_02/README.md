@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Controle de Gastos com Spring Boot e HTMX
+---
+
 # 🚀 Controle de Gastos com Spring Boot e HTMX
 v2.1
 
@@ -762,3 +767,4 @@ Após fazer o `push`, o Render irá automaticamente iniciar um novo build com o 
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

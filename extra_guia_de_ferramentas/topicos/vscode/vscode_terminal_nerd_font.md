@@ -1,3 +1,8 @@
+---
+layout: default
+title: Nerd Fonts no Terminal do VS Code
+---
+
 # Nerd Fonts no Terminal do VS Code
 
 https://dev.to/owl777/how-to-show-nerd-fonts-in-visual-studio-code-15fd
@@ -22,3 +27,4 @@ https://medium.com/@vedantkadam541/beautify-your-windows-terminal-using-nerd-fon
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Projeto Lista de Tarefas" (To-Do List)
+---
+
 # 🚀 Projeto Lista de Tarefas" (To-Do List)
 v4.2
 
@@ -1408,7 +1413,8 @@ fun TarefaScreen(
             }
         } else if (tarefas.isEmpty()) {
             Text(
-                text = "Nenhuma tarefa encontrada.\nAdicione uma nova tarefa!",
+                text = "Nenhuma tarefa encontrada.
+Adicione uma nova tarefa!",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 32.dp),
@@ -1549,3 +1555,4 @@ fun EditTaskDialog(tarefa: Tarefa, onDismiss: () -> Unit, onSave: (String) -> Un
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

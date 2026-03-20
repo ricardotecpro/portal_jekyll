@@ -1,3 +1,8 @@
+---
+layout: default
+title: Jogo **Blackjack (21)**
+---
+
 # Jogo **Blackjack (21)**
 
 Vamos construir um **Blackjack (21)** profissional, com arquitetura MVC (Model-View-Controller).
@@ -688,3 +693,4 @@ Salve como `src/main/resources/styles.css`. Isso substitui a necessidade de HTML
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Rectangle Area Comparison
+---
+
 # Rectangle Area Comparison
 
 This project is a simple Java application that compares the areas of two rectangles. The user is prompted to enter the dimensions (length and width) of two rectangles, and the program calculates and displays the area of each rectangle. It then determines and displays which rectangle has the larger area.

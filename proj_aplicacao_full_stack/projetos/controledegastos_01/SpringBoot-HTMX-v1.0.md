@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Construindo e Implantando o "Controle de Gastos" com Spring Boot e htmx
+---
+
 # 🚀 Construindo e Implantando o "Controle de Gastos" com Spring Boot e htmx
 v1.0
 

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lista de Tarefas
+---
+
 # Lista de Tarefas
 
 - [x] Configuração Inicial
@@ -38,3 +43,4 @@
 - [ ] DevOps
     - [ ] Docker e Docker Compose
     - [ ] Swagger/OpenAPI
+

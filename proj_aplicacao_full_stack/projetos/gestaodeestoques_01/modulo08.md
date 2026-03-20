@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO08
+---
+
 Este guia fornecerá toda a teoria e os códigos completos para que os alunos possam containerizar a aplicação e orquestrá-la com um banco de dados de produção.
 
 # 💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot
@@ -216,3 +221,4 @@ Você não apenas construiu uma aplicação completa, mas também aprendeu a emp
   - **Pronta para Produção:** Com um banco de dados persistente e configuração externalizada.
 
 O conhecimento adquirido ao longo destes 8 módulos forma a base sólida de um engenheiro de software completo. O próximo passo é pegar essa base e continuar construindo sobre ela, explorando novos desafios e tecnologias. O céu é o limite\!
+

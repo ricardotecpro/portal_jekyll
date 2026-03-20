@@ -1,3 +1,8 @@
+---
+layout: default
+title: # Configuração do Spring Boot com H2 e MySQL
+---
+
 # # Configuração do Spring Boot com H2 e MySQL
 
 
@@ -150,3 +155,4 @@ Agora, sua aplicação está configurada corretamente para rodar com **H2 em hom
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Rust 🦀:
+---
+
 # Rust 🦀: 
 
 ## Sistemas Seguros e Performáticos
@@ -247,3 +252,4 @@ Ao final deste curso, você não apenas entenderá a sintaxe do Rust, mas també
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

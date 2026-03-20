@@ -1,3 +1,8 @@
+---
+layout: default
+title: 💎 Gestão de Estoques
+---
+
 # 💎 Gestão de Estoques
 
 ---

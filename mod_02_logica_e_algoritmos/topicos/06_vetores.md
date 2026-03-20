@@ -1,3 +1,8 @@
+---
+layout: default
+title: ➡️ Vetores (Arrays Unidimensionais) em Programação
+---
+
 # ➡️ Vetores (Arrays Unidimensionais) em Programação
 
 Vetores, também conhecidos como **arrays unidimensionais**, são uma das estruturas de dados mais fundamentais na programação. Eles nos permitem armazenar múltiplos valores em uma única variável, de forma organizada e eficiente.
@@ -88,9 +93,11 @@ public class LerVetor {
         }
 
         // Laço para imprimir os elementos do vetor
-        System.out.println("\nNÚMEROS DIGITADOS:");
+        System.out.println("
+NÚMEROS DIGITADOS:");
         for (int i = 0; i < N; i++) {
-            System.out.printf("%.1f\n", vet[i]);
+            System.out.printf("%.1f
+", vet[i]);
         }
 
         sc.close();
@@ -172,8 +179,11 @@ public class AnaliseAlturas {
         double percentualMenores = ((double) contMenores * 100.0) / N;
 
         // Apresentando os resultados
-        System.out.printf("\nAltura média: %.2f\n", alturaMedia);
-        System.out.printf("Pessoas com menos de 16 anos: %.1f%%\n", percentualMenores);
+        System.out.printf("
+Altura média: %.2f
+", alturaMedia);
+        System.out.printf("Pessoas com menos de 16 anos: %.1f%%
+", percentualMenores);
 
         // Imprimindo o nome dos menores de 16
         for (int i = 0; i < N; i++) {
@@ -208,3 +218,4 @@ Você pode compilar e executar todos os exemplos de código acima em qualquer um
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

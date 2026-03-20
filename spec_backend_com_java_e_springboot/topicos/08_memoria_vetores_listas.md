@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java: Memória, Vetores e Listas
+---
+
 # ☕ Java: Memória, Vetores e Listas
 
 ## 🧠 Tipos Referência vs. Tipos Valor
@@ -980,7 +985,8 @@ public class ProgramaPrincipal {
             listaFuncionarios.add(new Funcionario(id, nome, salario));
         }
 
-        System.out.print("\nDigite o id do funcionário que terá aumento salarial: ");
+        System.out.print("
+Digite o id do funcionário que terá aumento salarial: ");
         Integer idAumento = leitor.nextInt();
 
         Funcionario funcParaAumentar = encontrarFuncionarioPorId(listaFuncionarios, idAumento);
@@ -993,7 +999,8 @@ public class ProgramaPrincipal {
             System.out.println("Este id não existe!");
         }
 
-        System.out.println("\nLista de funcionários:");
+        System.out.println("
+Lista de funcionários:");
         for (Funcionario func : listaFuncionarios) {
             System.out.println(func); // Chama o método toString() de Funcionario
         }
@@ -1056,3 +1063,4 @@ Este exercício cobre os principais tópicos abordados: uso de classes (OO), lis
 ---
 
 ### [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

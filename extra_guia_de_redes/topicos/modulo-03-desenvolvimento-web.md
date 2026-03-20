@@ -1,3 +1,8 @@
+---
+layout: default
+title: **Arquivo 3: `modulo-03-desenvolvimento-web.md`**
+---
+
 ### **Arquivo 3: `modulo-03-desenvolvimento-web.md`**
 
 # 💻 Módulo 3: Desenvolvimento de Aplicações Web - Frontend e Backend
@@ -104,3 +109,4 @@ O frontend é responsável por carregar rápido e proporcionar uma experiência 
 ```
 
 ---
+

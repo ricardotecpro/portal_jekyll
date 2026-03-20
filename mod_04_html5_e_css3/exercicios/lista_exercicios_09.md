@@ -1,3 +1,8 @@
+---
+layout: default
+title: ☕ Java e Orientação a Objetos
+---
+
 # ☕ Java e Orientação a Objetos
 ## 📐 Exercícios de Fixação: 09 Exercícios Matrizes em Java
 
@@ -75,7 +80,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nDIAGONAL PRINCIPAL:");
+        System.out.println("
+DIAGONAL PRINCIPAL:");
         for (int i = 0; i < n; i++) {
             System.out.print(matriz[i][i] + " ");
         }
@@ -90,7 +96,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nQUANTIDADE DE NEGATIVOS = " + contagemNegativos);
+        System.out.println("
+QUANTIDADE DE NEGATIVOS = " + contagemNegativos);
 
         sc.close();
     }
@@ -149,7 +156,9 @@ public class Programa {
 
         // Loop para ler os dados e calcular a soma de cada linha
         for (int i = 0; i < m; i++) {
-            System.out.printf("\nDigite os elementos da %da. linha:\n", i + 1);
+            System.out.printf("
+Digite os elementos da %da. linha:
+", i + 1);
             double somaLinha = 0.0;
             for (int j = 0; j < n; j++) {
                 matriz[i][j] = sc.nextDouble();
@@ -158,9 +167,11 @@ public class Programa {
             vetorSomas[i] = somaLinha;
         }
 
-        System.out.println("\nVETOR GERADO:");
+        System.out.println("
+VETOR GERADO:");
         for (int i = 0; i < m; i++) {
-            System.out.printf("%.1f\n", vetorSomas[i]);
+            System.out.printf("%.1f
+", vetorSomas[i]);
         }
 
         sc.close();
@@ -225,7 +236,8 @@ public class Programa {
 			}
 		}
 
-		System.out.println("\nVALORES NEGATIVOS:");
+		System.out.println("
+VALORES NEGATIVOS:");
 		// Loop para verificar e imprimir os negativos
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
@@ -293,7 +305,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nMAIOR ELEMENTO DE CADA LINHA:");
+        System.out.println("
+MAIOR ELEMENTO DE CADA LINHA:");
         // Loop para encontrar o maior elemento de cada linha
         for (int i = 0; i < n; i++) {
             int maiorElemento = matriz[i][0]; // Assume o primeiro como maior
@@ -362,7 +375,8 @@ public class Programa {
         int[][] matrizB = new int[m][n];
         int[][] matrizC = new int[m][n];
 
-        System.out.println("\nDigite os valores da matriz A:");
+        System.out.println("
+Digite os valores da matriz A:");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.printf("Elemento [%d][%d]: ", i, j);
@@ -370,7 +384,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nDigite os valores da matriz B:");
+        System.out.println("
+Digite os valores da matriz B:");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.printf("Elemento [%d][%d]: ", i, j);
@@ -385,7 +400,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nMATRIZ SOMA:");
+        System.out.println("
+MATRIZ SOMA:");
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(matrizC[i][j] + " ");
@@ -458,7 +474,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nSOMA DOS ELEMENTOS ACIMA DA DIAGONAL PRINCIPAL = " + soma);
+        System.out.println("
+SOMA DOS ELEMENTOS ACIMA DA DIAGONAL PRINCIPAL = " + soma);
         sc.close();
     }
 }
@@ -540,10 +557,13 @@ public class Programa {
                 }
             }
         }
-        System.out.printf("\nSOMA DOS POSITIVOS: %.1f\n", somaPositivos);
+        System.out.printf("
+SOMA DOS POSITIVOS: %.1f
+", somaPositivos);
 
         // b) Imprimir linha escolhida
-        System.out.print("\nEscolha uma linha: ");
+        System.out.print("
+Escolha uma linha: ");
         int linhaEscolhida = sc.nextInt();
         System.out.print("LINHA ESCOLHIDA: ");
         for (int j = 0; j < n; j++) {
@@ -552,7 +572,8 @@ public class Programa {
         System.out.println();
 
         // c) Imprimir coluna escolhida
-        System.out.print("\nEscolha uma coluna: ");
+        System.out.print("
+Escolha uma coluna: ");
         int colunaEscolhida = sc.nextInt();
         System.out.print("COLUNA ESCOLHIDA: ");
         for (int i = 0; i < n; i++) {
@@ -561,7 +582,8 @@ public class Programa {
         System.out.println();
 
         // d) Imprimir diagonal principal
-        System.out.print("\nDIAGONAL PRINCIPAL: ");
+        System.out.print("
+DIAGONAL PRINCIPAL: ");
         for (int i = 0; i < n; i++) {
             System.out.printf("%.1f ", matriz[i][i]);
         }
@@ -576,7 +598,8 @@ public class Programa {
             }
         }
 
-        System.out.println("\nMATRIZ ALTERADA:");
+        System.out.println("
+MATRIZ ALTERADA:");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.printf("%.1f ", matriz[i][j]);

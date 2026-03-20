@@ -1,3 +1,8 @@
+---
+layout: default
+title: EXERCÍCIO DE FIXAÇÃO - P.27
+---
+
 # EXERCÍCIO DE FIXAÇÃO - P.27
 
 ## Descrição

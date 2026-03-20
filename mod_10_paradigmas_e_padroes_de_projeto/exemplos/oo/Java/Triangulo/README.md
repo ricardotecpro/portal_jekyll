@@ -1,3 +1,8 @@
+---
+layout: default
+title: Projeto Triângulo
+---
+
 # Projeto Triângulo
 
 Este projeto em Java calcula e compara a área de dois triângulos com base nas medidas informadas pelo usuário.
@@ -48,4 +53,5 @@ Larger area: Y
 
 ## Autor
 Projeto em Java para cálculo de área de triângulos, com base na fórmula de Heron.
+
 

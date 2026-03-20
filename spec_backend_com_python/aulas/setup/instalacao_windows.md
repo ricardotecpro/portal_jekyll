@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🚀 Instalação do Python no Windows
+---
+
 # 🚀 Instalação do Python no Windows
 
 Guia completo para instalar e configurar o Python no Windows, incluindo o Visual Studio Code como ambiente de desenvolvimento.
@@ -168,7 +173,8 @@ if __name__ == "__main__":
     nome = input("Digite seu nome: ")
     mensagem = saudar(nome)
     print(mensagem)
-    print(f"\nVocê está usando Python para programar!")
+    print(f"
+Você está usando Python para programar!")
 ```
 
 ### 4.3 Executando o Programa
@@ -401,3 +407,4 @@ Agora que você tem tudo configurado:
     **Dica Final**: Pratique todos os dias! Mesmo que seja apenas 15 minutos, a consistência é a chave para dominar Python. 🚀
 
 **Pronto para começar?** Volte para as [Aulas](../modulos/python_basico.md) e comece sua jornada! 🐍
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Manual Introdutório de Docker
+---
+
 # Manual Introdutório de Docker
 
 ---
@@ -330,3 +335,4 @@ volumes:
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Projeto Cubos
+---
+
 # Projeto Cubos
 
 Este projeto em Java calcula o volume de dois cubos com base nos lados fornecidos pelo usuário e compara qual cubo tem o maior volume.
@@ -63,3 +68,4 @@ Enter the side length of cubo Y:
 Volume of Cubo X = 27.0
 Volume of Cubo Y = 64.0
 Larger volume: Cubo Y
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧠 Quiz: Python Básico
+---
+
 # 🧠 Quiz: Python Básico
 
 Teste seus conhecimentos sobre os fundamentos do Python!
@@ -53,3 +58,4 @@ Parabéns por completar o quiz!
 ---
 
 [:arrow_left: Voltar para Quizzes](index.md)
+

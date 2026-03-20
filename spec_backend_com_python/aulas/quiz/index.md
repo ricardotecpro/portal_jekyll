@@ -1,3 +1,8 @@
+---
+layout: default
+title: 🧠 Quizzes de Fixação
+---
+
 # 🧠 Quizzes de Fixação
 
 Teste seus conhecimentos com nossos quizzes interativos!
@@ -72,3 +77,4 @@ Após completar os quizzes:
 ---
 
 **Bons estudos! 🚀**
+

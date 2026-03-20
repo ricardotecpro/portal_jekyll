@@ -1,3 +1,8 @@
+---
+layout: default
+title: MODULO03
+---
+
 Este guia fornecerá todos os conceitos e códigos completos para que os alunos possam expor a inteligência do sistema para o mundo exterior de forma padronizada e profissional.
 
 # 💎 Guia Didático Definitivo: Gestão de Estoques com Spring Boot
@@ -245,3 +250,4 @@ Se você executar a aplicação agora, poderá usar uma ferramenta como **Postma
 **O Grande Problema:** Nossa API está totalmente desprotegida. Qualquer pessoa pode deletar todos os produtos\!
 
 No **próximo módulo**, vamos resolver isso. Mergulharemos fundo no Spring Security para "trancar as portas" da nossa API, implementando um sistema de autenticação e autorização robusto e moderno com **JSON Web Tokens (JWT)**.
+

@@ -1,3 +1,8 @@
+---
+layout: default
+title: **O que são Linguagens de Template?**
+---
+
 ## **O que são Linguagens de Template?**
 
 As **linguagens de template** são ferramentas que facilitam a geração dinâmica de HTML (ou outros tipos de arquivos) combinando **código dinâmico** com **estruturas estáticas**. Elas são amplamente usadas em **desenvolvimento web backend e frontend**, permitindo separar a **lógica de programação** da **apresentação**.
@@ -169,3 +174,4 @@ if __name__ == '__main__':
 ---
 
 ### 🚀 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+

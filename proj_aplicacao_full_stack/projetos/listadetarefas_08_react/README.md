@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📝 Lista de Tarefas 08 - Guia Completo Full Stack (Spring Boot + React)
+---
+
 # 📝 Lista de Tarefas 08 - Guia Completo Full Stack (Spring Boot + React)
 
 Bem-vindo ao guia definitivo para desenvolver uma aplicação web moderna utilizando **Spring Boot** no backend e **React** no frontend. Este projeto foi desenhado para ser didático, robusto e seguir as melhores práticas de engenharia de software.
@@ -136,3 +141,4 @@ Sinta-se à vontade para fazer um fork deste projeto e enviar Pull Requests com 
 
 ---
 **Desenvolvido com 💙 por [Seu Nome]**
+

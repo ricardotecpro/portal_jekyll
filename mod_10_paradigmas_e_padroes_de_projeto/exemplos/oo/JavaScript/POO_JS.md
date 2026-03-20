@@ -1,3 +1,8 @@
+---
+layout: default
+title: POO JS
+---
+
 Programar **JavaScript** com **Programação Orientada a Objetos (POO)** envolve o uso de conceitos de objetos e classes para estruturar o código de uma maneira mais modular e reutilizável. A **POO** no JavaScript pode ser implementada utilizando **funções construtoras** ou a sintaxe de **classes** introduzida no ECMAScript 6 (ES6).
 
 Aqui está um guia básico sobre como programar em JavaScript utilizando **POO**:

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 📈 UML: A Linguagem de Modelagem Unificada
+---
+
 # 📈 UML: A Linguagem de Modelagem Unificada
 
 A **UML (Unified Modeling Language)**, ou Linguagem de Modelagem Unificada, é uma linguagem gráfica padronizada para visualizar, especificar, construir e documentar os artefatos de um sistema de software. Em termos simples, a UML é para o software o que as plantas são para a construção de um edifício.
@@ -130,3 +135,4 @@ Você não precisa de softwares caros e complexos para começar a usar UML.
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
+
