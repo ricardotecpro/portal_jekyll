@@ -60,16 +60,16 @@ O ciclo de treinamento (usando uma técnica chamada **Backpropagation**) é o se
 
 ```mermaid
 graph TD;
-    A[1. Entrada de Dados<br/>(ex: imagem de um gato)] --> B{Rede Neural<br/>(com pesos aleatórios)};
-    B -- Processamento (Feedforward) --> C[2. Previsão da Rede<br/>(ex: a rede diz "cachorro")];
+    A["1. Entrada de Dados<br/>(ex: imagem de um gato)"] --> B{Rede Neural<br/>(com pesos aleatórios)};
+    B -- Processamento (Feedforward) --> C["2. Previsão da Rede<br/>(ex: a rede diz """"""""cachorro"""""""")"];
     C --> D{3. Cálculo do Erro<br/>(Função de Custo/Perda)};
-    D -- "O quão errada foi a previsão?" --> E[4. Retropropagação do Erro<br/>(Backpropagation)];
+    D -- "O quão errada foi a previsão?" --> E["4. Retropropagação do Erro<br/>(Backpropagation)"];
     E -- Ajusta os pesos e vieses --> B;
     subgraph "Repetir Milhões de Vezes"
         direction LR
         A ~~~ B ~~~ C ~~~ D ~~~ E
     end
-    B -- Após o Treinamento --> F[✅ Rede Neural Treinada<br/>(pesos otimizados)];
+    B -- Após o Treinamento --> F["✅ Rede Neural Treinada<br/>(pesos otimizados)"];
 
 ```
 
@@ -106,5 +106,4 @@ As redes neurais, especialmente as de Deep Learning, são a força motriz por tr
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

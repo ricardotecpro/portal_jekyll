@@ -96,16 +96,16 @@ O diagrama abaixo contrasta o gerenciamento de memória manual em C com a aborda
 ```mermaid
 graph TD;
     subgraph "Gerenciamento Manual em C"
-        A[Início do Bloco] --> B["malloc()"];
+        A["Início do Bloco] --> B[""""""""malloc()"""""""""];
         B --> C[Uso da Memória];
         C --> D{Ocorre um erro?};
-        D -- Sim --> E[Retorno antecipado -> VAZAMENTO DE MEMÓRIA!];
+        D -- Sim --> E["Retorno antecipado -> VAZAMENTO DE MEMÓRIA!"];
         D -- Não --> F["free()"];
         F --> G[Fim do Bloco];
     end
 
     subgraph "Gerenciamento Automático com RAII em C++"
-        H[Início do Bloco] --> I["Criação de std::unique_ptr"];
+        H["Início do Bloco] --> I[""""""""Criação de std::unique_ptr"""""""""];
         I --> J[Uso do Ponteiro];
         J --> K{Ocorre um erro?};
         K -- Sim --> L[Retorno antecipado];
@@ -158,5 +158,4 @@ C++ é a escolha ideal para aplicações onde a performance e o controle sobre o
     
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

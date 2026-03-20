@@ -40,16 +40,16 @@ O diagrama abaixo ilustra a diferença fundamental entre as arquiteturas nativa 
 graph TD;
     subgraph "Desenvolvimento Nativo"
         direction LR
-        A[Código Swift] --> B[APIs Nativas iOS];
+        A["Código Swift] --> B[""""APIs Nativas iOS"""""];
         B --> C[Tela do iOS];
         
-        D[Código Kotlin/Java] --> E[APIs Nativas Android];
+        D["Código Kotlin/Java"] --> E[APIs Nativas Android];
         E --> F[Tela do Android];
     end
 
     subgraph "Desenvolvimento Multiplataforma"
         direction LR
-        G[Código Único (Dart, JS, etc.)] --> H{Framework (Engine/Bridge)};
+        G["Código Único (Dart, JS, etc.)"] --> H{Framework (Engine/Bridge)};
         H --> I[APIs Nativas iOS];
         H --> J[APIs Nativas Android];
         I --> K[Tela do iOS];
@@ -159,5 +159,4 @@ A decisão sobre qual framework usar depende de vários fatores do projeto e da 
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

@@ -108,7 +108,7 @@ O principal diferencial da abordagem nativa é a comunicação direta entre o c�
 
 ```mermaid
 graph TD;
-    A[App Nativa (Swift ou Kotlin)] --> B[SDK Nativo (iOS ou Android)];
+    A["App Nativa (Swift ou Kotlin)"] --> B["SDK Nativo (iOS ou Android)"];
     B --> C{Sistema Operacional};
     C --> D[Hardware & Sensores];
     subgraph "Camada de Hardware"
@@ -134,5 +134,4 @@ Apesar do custo mais elevado, o desenvolvimento nativo é a escolha ideal em cen
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

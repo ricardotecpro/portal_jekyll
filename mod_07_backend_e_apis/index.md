@@ -132,5 +132,4 @@ O backend projeta e constrói a "cozinha", mas é a API que atua como o "garçom
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

@@ -102,18 +102,18 @@ Historicamente, o PHP é o "P" do famoso **Stack LAMP**, um conjunto de tecnolog
 
 ```mermaid
 graph TD;
-    A[Cliente / Navegador] -- Requisição HTTP --> B[Servidor];
+    A["Cliente / Navegador"] -- Requisição HTTP --> B[Servidor];
     
     subgraph "Servidor"
-        B -- Recebe --> C[Apache (Servidor Web)];
+        B -- Recebe --> C["Apache (Servidor Web)"];
         C -- Passa para --> D{PHP (Interpretador)};
-        D -- Comunica com --> E[MySQL (Banco de Dados)];
+        D -- Comunica com --> E["MySQL (Banco de Dados)"];
         E -- Retorna Dados --> D;
         D -- Gera HTML --> C;
         C -- Resposta HTTP (HTML) --> A;
     end
     
-    F[Linux (Sistema Operacional)] -- Hospeda --> B;
+    F["Linux (Sistema Operacional)"] -- Hospeda --> B;
 ```
 
 -----
@@ -142,5 +142,4 @@ Para começar a desenvolver com PHP hoje, não é mais necessário configurar um
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

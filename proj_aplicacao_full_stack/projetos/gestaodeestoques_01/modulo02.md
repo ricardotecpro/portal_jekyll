@@ -32,7 +32,7 @@ Misturar essas responsabilidades cria um código frágil, difícil de testar e d
 
 ```mermaid
 graph TD
-    A[🌐 Cliente] --> B[🎮 Controller];
+    A["🌐 Cliente] --> B[""""🎮 Controller"""""];
     B --> C[🛠️ Service];
     C --> D[💾 Repository];
 ```

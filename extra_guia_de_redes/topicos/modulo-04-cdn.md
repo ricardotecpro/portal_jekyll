@@ -27,12 +27,12 @@ graph TD
     CDN["PoP da CDN (Tóquio)"]
 
     %% 2. Use os nós declarados para montar os cenários.
-    %% Mantive a sua sintaxe de subgraph com ID, pois é uma boa prática.
-    subgraph semcdn["Sem CDN"]
+    %% Mantive a sua sintaxe de subgraph "com ID, pois é uma boa prática."
+    subgraph "semcdn["""""Sem CDN"]
         Usuario -- "Latência Alta" --> ServidorOrigem
     end
 
-    subgraph comcdn["Com CDN"]
+    subgraph "comcdn["""""Com CDN"]
         Usuario -- "Latência Baixa" --> CDN
         CDN -- "Conteúdo em Cache" --> Usuario
         CDN -- "Se não houver cache" --> ServidorOrigem

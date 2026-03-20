@@ -100,5 +100,4 @@ Mais importante do que qualquer ferramenta, o Desenvolvimento Seguro é uma **mu
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

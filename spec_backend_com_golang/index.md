@@ -185,9 +185,9 @@ O diagrama abaixo ilustra um padrão comum: um *producer* (produtor) que gera da
 ```mermaid
 graph TD;
     A[Main Thread] --> B{Inicia Goroutine};
-    B --> C[Producer (goroutine)];
-    C -- Envia dados --> D[(Channel)];
-    D -- Recebe dados --> E[Consumer (main)];
+    B --> C["Producer (goroutine)"];
+    C -- Envia dados --> D["(Channel)"];
+    D -- Recebe dados --> E["Consumer (main)"];
     E --> F[Processa Dados];
 ```
 
@@ -254,5 +254,4 @@ Go brilha em diversas áreas, incluindo:
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

@@ -339,17 +339,17 @@ Objeto Aluno
 
 flowchart TD
 
-A[Start] --> B[Criar objeto Aluno]
+A["Start] --> B[""""Criar objeto Aluno"""""]
 
 B --> C[Capturar nome, idade, matrícula]
 
-C --> D[Chamar aluno.cadastrarDados()]
+C --> D["Chamar aluno.cadastrarDados()"]
 
 D --> E[Capturar média]
 
-E --> F[Chamar aluno.cadastrarMediaNotas()]
+E --> F["Chamar aluno.cadastrarMediaNotas()"]
 
-F --> G[Chamar aluno.exibirInformacoes()]
+F --> G["Chamar aluno.exibirInformacoes()"]
 
 G --> H[End]
 
@@ -364,7 +364,7 @@ Aqui estão os dois exemplos de fluxograma com a sintaxe corrigida.
 
 ```mermaid
 flowchart TD
-    A[Início] --> B[Capturar nome, idade, matrícula]
+    A["Início] --> B[""""Capturar nome, idade, matrícula"""""]
     B --> C[Criar objeto Aluno]
     C --> D["Chamar aluno.cadastrarDados(nome, idade, matrícula)"]
     D --> E[Capturar média]
@@ -379,7 +379,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Início] --> B[Capturar nome, idade, matrícula]
+    A["Início] --> B[""""Capturar nome, idade, matrícula"""""]
     B --> C["Criar objeto Aluno(nome, idade, matrícula)"]
     C --> D[Capturar média]
     D --> E["Chamar aluno.cadastrarMediaNotas(media)"]

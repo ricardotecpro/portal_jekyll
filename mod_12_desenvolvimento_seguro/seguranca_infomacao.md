@@ -60,7 +60,7 @@ A segurança eficaz raramente depende de uma única solução. A estratégia mai
 
 ```mermaid
 graph TD;
-    subgraph Defesa em Camadas
+    subgraph "Defesa em Camadas"
         direction TB
         A(Dados)
         B(Aplicação)

@@ -139,5 +139,4 @@ Apesar de sua idade, C continua sendo fundamental e insubstituível em muitas á
     
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

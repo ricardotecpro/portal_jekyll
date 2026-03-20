@@ -27,7 +27,7 @@ graph TD
 
     subgraph "⚙️ Serviços (Backend)"
         API["🔌 Backend API (Spring Boot)"]
-        DB[("🗄️ Banco de Dados Em Memória H2")]
+        DB["(""""""""🗄️ Banco de Dados Em Memória H2"""""""")"]
     end
 
     %% Conexões de Dados

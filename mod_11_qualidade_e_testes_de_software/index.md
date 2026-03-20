@@ -25,7 +25,7 @@ A Pirâmide de Testes é um modelo mental que ajuda a estruturar uma estratégia
 
 ```mermaid
 graph TD;
-    subgraph Pirâmide de Testes
+    subgraph "Pirâmide de Testes"
         A(Testes de UI / E2E);
         B(Testes de Integração);
         C(Testes Unitários);
@@ -163,5 +163,4 @@ Cenário: Login com credenciais válidas
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

@@ -95,5 +95,4 @@ O campo das redes está em constante evolução para atender às novas demandas 
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

@@ -110,11 +110,11 @@ O código TypeScript **não é executado diretamente** no navegador ou no Node.j
 
 ```mermaid
 graph TD;
-    A[Seu Código: `app.ts` (com tipos)] --> B{Compilador TypeScript (tsc)};
+    A["Seu Código: `app.ts` (com tipos)"] --> B{Compilador TypeScript (tsc)};
     B -- 1. Verificação de Tipos --> C{Tipos Corretos?};
     C -- Não --> D[❌ Erro de Compilação!];
-    C -- Sim --> E[2. Transpilação (Remove os tipos)];
-    E --> F[Código Gerado: `app.js` (JavaScript puro)];
+    C -- Sim --> E["2. Transpilação (Remove os tipos)"];
+    E --> F["Código Gerado: `app.js` (JavaScript puro)"];
     F --> G[🚀 Executado no Navegador ou Node.js];
 ```
 
@@ -183,5 +183,4 @@ O maior benefício percebido no dia a dia é a **experiência do desenvolvedor (
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

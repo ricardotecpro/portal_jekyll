@@ -31,7 +31,7 @@ Para o problema "lavar roupa suja", um algoritmo simples seria:
 ```mermaid
 graph TD
     A[Início: Roupa Suja] --> B{Colocar na Máquina};
-    B --> C[Adicionar Sabão/Amaciante];
+    B --> C["Adicionar Sabão/Amaciante"];
     C --> D[Encher com Água];
     
     D --> E["Deixar de Molho (20 min)"];

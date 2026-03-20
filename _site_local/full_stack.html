@@ -84,7 +84,7 @@
 <pre><code class="language-mermaid">graph TD;
     A[👤 Usuário] --&gt; B{"Browser (Frontend)"};
     
-    subgraph Frontend
+    subgraph "Frontend"
         direction LR
         B -- Interage com --&gt; HTML;
         B -- Interage com --&gt; CSS;
@@ -93,15 +93,15 @@
 
     B -- Requisição via API (REST/GraphQL) --&gt; C{"Servidor (Backend)"};
     
-    subgraph Backend
+    subgraph "Backend"
         direction LR
         C -- Executa --&gt; Linguagem["Linguagem (Node.js, Python, Go)"];
         Linguagem -- Usa --&gt; Framework["Framework (Express, Django)"];
         Framework -- Processa --&gt; Logica[Lógica de Negócios &amp; Autenticação];
     end
 
-    C -- Consulta/Grava --&gt; D[(💾 Banco de Dados)];
-    subgraph Banco de Dados
+    C -- Consulta/Grava --&gt; D["(💾 Banco de Dados)"];
+    subgraph "Banco de Dados"
         D -- Pode ser --&gt; SQL["SQL (PostgreSQL)"];
         D -- Pode ser --&gt; NoSQL["NoSQL (MongoDB)"];
     end

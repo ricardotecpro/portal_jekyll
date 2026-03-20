@@ -146,7 +146,7 @@ Este diagrama ilustra como os principais blocos de construção de uma aplicaç�
 
 ```mermaid
 graph TD;
-    subgraph Browser
+    subgraph "Browser"
         A[Usuário Interage com a UI] --> B(Template HTML);
     end
 
@@ -201,5 +201,4 @@ Isso compilará a aplicação e a abrirá em seu navegador, geralmente em `http:
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

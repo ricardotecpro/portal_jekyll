@@ -82,7 +82,7 @@ graph TD;
     C -- 1. Middleware de Autenticação<br/>(Verifica se o usuário está logado) --> C;
     C -- 2. Validação dos Dados<br/>(O e-mail é válido?) --> C;
     C -- 3. Lógica de Negócios<br/>(Verifica se o e-mail já existe) --> C;
-    C -- 4. Comando de Atualização --> D[(Banco de Dados)];
+    C -- 4. Comando de Atualização --> D["(Banco de Dados)"];
     D -- Resposta de Sucesso --> C;
     C -- 5. Gera Resposta (JSON) --> B;
     B -- Resposta HTTP (200 OK) --> A;

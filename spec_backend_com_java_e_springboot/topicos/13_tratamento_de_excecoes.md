@@ -29,7 +29,7 @@ A classe base para todas as exceções e erros em Java é `java.lang.Throwable`.
 
 ```mermaid
 graph TD
-    A[Throwable] --> B[Error];
+    A["Throwable] --> B[""""Error"""""];
     A --> C[Exception];
 
     B --> D[OutOfMemoryError];

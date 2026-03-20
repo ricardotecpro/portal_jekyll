@@ -198,8 +198,8 @@ flowchart TD
     end
 
     subgraph "Backend (Java 21 / Spring Boot)"
-        SvcA[Serviço A: Pedidos <br> (Porta: 8081)]
-        SvcB[Serviço B: Estoque <br> (Porta: 8082)]
+        SvcA["Serviço A: Pedidos <br> (Porta: 8081)"]
+        SvcB["Serviço B: Estoque <br> (Porta: 8082)"]
     end
 
     Gatling -- 1. Carga HTTP (Usuários Virtuais) --> SvcA

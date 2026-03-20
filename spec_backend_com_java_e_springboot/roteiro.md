@@ -26,7 +26,7 @@ O fluxo de um programa Java, do código-fonte à execução, envolve duas etapas
 
 ```mermaid
 graph TD;
-    A[Código-Fonte: `MeuPrograma.java`] -- "1. Compilação (javac)" --> B[Bytecode: `MeuPrograma.class`];
+    A["Código-Fonte: `MeuPrograma.java`] -- """""""""""""""""""""""""""1. Compilação (javac)""""""""""""""""""""""""""" --> B[""""Bytecode: `MeuPrograma.class`"""""];
     
     subgraph "2. Execução (java)"
         B --> C{JVM no Windows};

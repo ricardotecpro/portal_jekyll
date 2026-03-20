@@ -152,5 +152,4 @@ A beleza de começar com HTML e CSS é que você só precisa de duas coisas:
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

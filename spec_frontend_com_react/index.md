@@ -150,7 +150,7 @@ Em React, os dados fluem em uma única direção: de cima para baixo (do compone
 
 ```mermaid
 graph TD;
-    A[Componente Pai (com State)] -- Passa `props` --> B[Componente Filho A];
+    A["Componente Pai (com State)"] -- Passa `props` --> B[Componente Filho A];
     A -- Passa `props` --> C[Componente Filho B];
     B --> D{Renderiza UI};
     C --> E{Renderiza UI};
@@ -204,5 +204,4 @@ Isso iniciará um servidor local, geralmente em `http://localhost:5173`, com *ho
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

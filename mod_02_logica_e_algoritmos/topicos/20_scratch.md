@@ -44,7 +44,7 @@ title: **📚 Curso de Scratch para Logística/Administração**:
 
 ```mermaid
 flowchart TD
-    A[Cliente chega] --> B[Mensagem de boas-vindas]
+    A["Cliente chega] --> B[""""Mensagem de boas-vindas"""""]
     B --> C[Oferecer menu de serviços]
     C --> D[Fim]
 ```
@@ -91,7 +91,7 @@ stop
 ```mermaid
 
 flowchart TD
-    A[Cliente entra na fila] --> B[Inicia cronômetro]
+    A["Cliente entra na fila] --> B[""""Inicia cronômetro"""""]
     B --> C{Atendimento disponível?}
     C -->|Sim| D[Atender cliente]
     C -->|Não| E[Esperar]
@@ -176,7 +176,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A[Receber pedido] --> B[Agendar data/hora]
+    A["Receber pedido] --> B[""""Agendar data/hora"""""]
     B --> C[Calcular rota]
     C --> D[Registrar no sistema]
     D --> E[Gerar relatório]

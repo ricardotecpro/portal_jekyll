@@ -134,5 +134,4 @@ Você não precisa de softwares caros e complexos para começar a usar UML.
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

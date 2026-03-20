@@ -35,7 +35,7 @@ graph TD
     end
 
     subgraph "Persistência"
-        D[(🗄️ Banco de Dados H2)]
+        D["(🗄️ Banco de Dados H2)"]
     end
 
     A -- HTTP Requests (JSON) --> C

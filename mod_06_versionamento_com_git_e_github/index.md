@@ -364,5 +364,4 @@ Em resumo, enquanto o GitHub brilha como um ecossistema social e colaborativo, o
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

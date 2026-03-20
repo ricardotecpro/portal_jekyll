@@ -83,7 +83,7 @@ Objeto Aluno
 
 ```mermaid
 flowchart TD
-    A[Start] --> B[Criar objeto Aluno]
+    A["Start] --> B[""""Criar objeto Aluno"""""]
     B --> C[Capturar nome, idade, matrícula]
     C --> D["Chamar aluno.cadastrarDados()"]
     D --> E[Capturar média]
@@ -157,7 +157,7 @@ Você pode usar o mesmo fluxograma que criamos em PlantUML anteriormente para es
 
 ```mermaid
 flowchart TD
-    A[Início] --> B["Criar objeto aluno (new Aluno)"]
+    A["Início] --> B[""""""""Criar objeto aluno (new Aluno)"""""""""]
     B --> C[Capturar nome, idade, matrícula]
     C --> D["Chamar aluno.cadastrarDados()"]
     D --> E[Capturar média]

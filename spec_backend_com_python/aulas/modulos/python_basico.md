@@ -87,7 +87,7 @@ O diagrama abaixo mostra um fluxo de trabalho comum em um projeto de ciência de
 
 ```mermaid
 flowchart LR
-    A[Fonte de Dados] --> B[Script Python]
+    A["Fonte de Dados] --> B[""""Script Python"""""]
     B --> C[Pandas]
     C --> D[NumPy]
     D --> E[Scikit-learn]

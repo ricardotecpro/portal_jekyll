@@ -1211,13 +1211,13 @@ graph TD
         direction LR
         subgraph "Container: App Spring Boot"
             direction TB
-            A[Controller] --> B[Service]
-            B --> C[Repository / JPA]
+            A["Controller] --> B[""""Service"""""]
+            B --> C["Repository / JPA"]
         end
 
         subgraph "Container: Banco de Dados"
             direction TB
-            DB[(PostgreSQL)]
+            DB["(PostgreSQL)"]
         end
 
         subgraph "Container: Gerenciador de DB"

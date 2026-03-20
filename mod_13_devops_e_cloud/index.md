@@ -52,16 +52,16 @@ A nuvem e o DevOps são uma combinação perfeita. A nuvem fornece o ambiente id
 ```mermaid
 graph TD;
     subgraph "Práticas DevOps"
-        A[CI/CD]
-        B[Infraestrutura como Código (IaC)]
+        A["CI/CD"]
+        B["Infraestrutura como Código (IaC)"]
         C[Monitoramento & Feedback]
         D[Colaboração]
     end
 
     subgraph "Habilitadores da Nuvem (AWS, Azure, GCP)"
-        E[Serviços de CI/CD Gerenciados<br/>(AWS CodePipeline, Azure DevOps)]
-        F[APIs para Automação de Infra<br/>(Terraform/CloudFormation)]
-        G[Ferramentas de Observabilidade<br/>(CloudWatch, Azure Monitor)]
+        E["Serviços de CI/CD Gerenciados<br/>(AWS CodePipeline, Azure DevOps)"]
+        F["APIs para Automação de Infra<br/>(Terraform/CloudFormation)"]
+        G["Ferramentas de Observabilidade<br/>(CloudWatch, Azure Monitor)"]
         H[Escalabilidade e Elasticidade Sob Demanda]
         I[Plataformas de Colaboração Globais]
     end
@@ -98,5 +98,4 @@ Em resumo, o DevOps fornece a **cultura e os processos** para a entrega rápida 
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

@@ -56,9 +56,9 @@ O processo de criação de uma interface, desde a ideia até a entrega para os d
 
 ```mermaid
 graph TD;
-    A[💡 Ideia / Requisitos] --> B(Wireframe de Baixa Fidelidade);
-    B -- Adiciona detalhes visuais --> C[🎨 Mockup de Alta Fidelidade (UI Design)];
-    C -- Usa --> D[(🧩 Componentes do Design System)];
+    A["💡 Ideia / Requisitos"] --> B(Wireframe de Baixa Fidelidade);
+    B -- Adiciona detalhes visuais --> C["🎨 Mockup de Alta Fidelidade (UI Design)"];
+    C -- Usa --> D["(🧩 Componentes do Design System)"];
     C -- Conecta telas --> E{🔗 Protótipo Interativo};
     E -- Valida o fluxo --> F[🧪 Teste de Usabilidade];
     F -- Feedback --> C;
@@ -93,5 +93,4 @@ A curva de aprendizado do Figma é amigável, e a ferramenta é muito acessível
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

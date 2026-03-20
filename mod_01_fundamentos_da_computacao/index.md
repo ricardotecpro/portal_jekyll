@@ -84,14 +84,14 @@ A computação moderna só é possível graças a múltiplas camadas de abstraç
 
 ```mermaid
 graph TD;
-    E[Aplicações do Usuário<br/>(Navegador, Jogos, Planilhas)];
-    D[Linguagens de Programação<br/>(Python, Java, C++)];
-    C[Sistema Operacional<br/>(Windows, Linux, macOS)];
-    B[Arquitetura de Hardware<br/>(CPU, Memória RAM)];
-    A[Hardware Físico<br/>(Portas Lógicas, Transistores)];
+    E["Aplicações do Usuário<br/>(Navegador, Jogos, Planilhas)"];
+    D["Linguagens de Programação<br/>(Python, Java, C++)"];
+    C["Sistema Operacional<br/>(Windows, Linux, macOS)"];
+    B["Arquitetura de Hardware<br/>(CPU, Memória RAM)"];
+    A["Hardware Físico<br/>(Portas Lógicas, Transistores)"];
 
     E -- Roda em cima do --> D;
-    D -- É "traduzida" para --> C;
+    D -- "É ""traduzida"" para" --> C;
     C -- Gerencia o --> B;
     B -- É construída com --> A;
 
@@ -126,5 +126,4 @@ Vamos ver como esses pilares se conectam quando você executa um comando simples
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

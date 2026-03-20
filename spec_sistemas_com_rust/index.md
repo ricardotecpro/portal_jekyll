@@ -142,5 +142,4 @@ fn main() {
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

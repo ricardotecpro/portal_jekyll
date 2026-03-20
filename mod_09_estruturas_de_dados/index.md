@@ -110,7 +110,7 @@ A tabela abaixo resume a complexidade de tempo média das operações mais comun
 
 ```mermaid
 graph TD;
-    A[50] --> B[30];
+    A["50] --> B[""""30"""""];
     A --> C[70];
     B --> D[20];
     B --> E[40];
@@ -145,5 +145,4 @@ Faça a si mesmo estas perguntas sobre o seu problema:
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

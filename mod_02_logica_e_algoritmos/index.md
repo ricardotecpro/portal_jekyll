@@ -165,5 +165,4 @@ Essa análise é formalizada usando a **Notação Big O**, que nos permite class
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

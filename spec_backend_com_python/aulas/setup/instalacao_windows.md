@@ -210,7 +210,7 @@ Ambientes virtuais isolam as dependências de cada projeto, evitando conflitos e
 
 ```mermaid
 flowchart LR
-    A[Sistema] --> B[Projeto A venv]
+    A["Sistema] --> B[""""Projeto A venv"""""]
     A --> C[Projeto B venv]
     A --> D[Projeto C venv]
     B --> E[Django 4.0]

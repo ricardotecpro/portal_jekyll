@@ -72,7 +72,7 @@ Este diagrama ilustra como as diferentes camadas se conectam em uma aplicação 
 graph TD;
     A[👤 Usuário] --> B{"Browser (Frontend)"};
     
-    subgraph Frontend
+    subgraph "Frontend"
         direction LR
         B -- Interage com --> HTML;
         B -- Interage com --> CSS;
@@ -81,15 +81,15 @@ graph TD;
 
     B -- Requisição via API (REST/GraphQL) --> C{"Servidor (Backend)"};
     
-    subgraph Backend
+    subgraph "Backend"
         direction LR
         C -- Executa --> Linguagem["Linguagem (Node.js, Python, Go)"];
         Linguagem -- Usa --> Framework["Framework (Express, Django)"];
         Framework -- Processa --> Logica[Lógica de Negócios & Autenticação];
     end
 
-    C -- Consulta/Grava --> D[(💾 Banco de Dados)];
-    subgraph Banco de Dados
+    C -- Consulta/Grava --> D["(💾 Banco de Dados)"];
+    subgraph "Banco de Dados"
         D -- Pode ser --> SQL["SQL (PostgreSQL)"];
         D -- Pode ser --> NoSQL["NoSQL (MongoDB)"];
     end

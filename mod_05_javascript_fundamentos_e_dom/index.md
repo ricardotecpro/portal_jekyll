@@ -94,14 +94,14 @@ O **npm (Node Package Manager)** é o gerenciador de pacotes do Node.js e o maio
 
 ```mermaid
 graph TD;
-    A[Cliente (Navegador)] <--> B[Servidor (Node.js)];
+    A["Cliente (Navegador)"] <--> B["Servidor (Node.js)"];
     
     subgraph "Cliente"
-        C[Front-end em JavaScript<br/>(React, Angular, Vue)]
+        C["Front-end em JavaScript<br/>(React, Angular, Vue)"]
     end
     
     subgraph "Servidor"
-        D[Back-end em JavaScript<br/>(Express.js, NestJS)] --> E[Banco de Dados<br/>(MongoDB, PostgreSQL)];
+        D["Back-end em JavaScript<br/>(Express.js, NestJS)"] --> E["Banco de Dados<br/>(MongoDB, PostgreSQL)"];
     end
 
     A -- Requisição HTTP --> B;
@@ -174,5 +174,4 @@ btnIncrementar.addEventListener('click', () => {
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

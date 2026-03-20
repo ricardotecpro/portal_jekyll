@@ -115,5 +115,4 @@ Não existe um "vencedor" entre SQL e NoSQL. A escolha correta depende inteirame
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 

@@ -145,5 +145,4 @@ Ferramentas que fazem a ponte entre a ideia e a implementação visual.
 
 ---
 
-### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)
 
