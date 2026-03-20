@@ -11,13 +11,13 @@ SQL
 
 ### **Índice do Projeto de Banco de Dados**
 
-  * [Introdução 🗃️](01_introducao.md)
-  * [Primeiros Passos com Modelagem de Dados 🏗️](02_primeiros_passos_com_modelagem_de_dados.md)
-  * [Modelo Conceitual 🧠](./03_modelo_conceitual.md)
-  * [Modelo Lógico Relacional 🔗](04_modelo_logico_relacional.md)
-  * [Normalização de Dados 📦](05_normalizacao.md)
-  * [SQL: DDL e DML ✍️](06_sql_ddl_e_dml.md)
-  * [Consultas SQL 🔍](07_consultas_sql.md)
+  * [Introdução 🗃️](01_introducao.html)
+  * [Primeiros Passos com Modelagem de Dados 🏗️](02_primeiros_passos_com_modelagem_de_dados.html)
+  * [Modelo Conceitual 🧠](./03_modelo_conceitual.html)
+  * [Modelo Lógico Relacional 🔗](04_modelo_logico_relacional.html)
+  * [Normalização de Dados 📦](05_normalizacao.html)
+  * [SQL: DDL e DML ✍️](06_sql_ddl_e_dml.html)
+  * [Consultas SQL 🔍](07_consultas_sql.html)
 
 # NoSQL
 
@@ -26,10 +26,10 @@ SQL
 
 ### **Módulos - Cassandra**
 
-  * [Cassandra - Atividade 1: Instalação 🔵](cassandra01.md)
-  * [Cassandra - Atividade 2: Criação de Tabelas 📝](cassandra02.md)
-  * [Cassandra - Atividade 3: Operações CRUD 🔄](cassandra03.md)
-  * [Cassandra - Atividade 4: Atividade Final 🏆](cassandra04.md)
+  * [Cassandra - Atividade 1: Instalação 🔵](cassandra01.html)
+  * [Cassandra - Atividade 2: Criação de Tabelas 📝](cassandra02.html)
+  * [Cassandra - Atividade 3: Operações CRUD 🔄](cassandra03.html)
+  * [Cassandra - Atividade 4: Atividade Final 🏆](cassandra04.html)
 
 ---
 

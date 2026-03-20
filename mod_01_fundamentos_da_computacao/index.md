@@ -117,9 +117,6 @@ Vamos ver como esses pilares se conectam quando você executa um comando simples
 
 ---
 
-## 📚 Conteúdo Detalhado
-
-* **[Explorar Tópicos](topicos/)**: Lista completa de lições e materiais.
 
 ---
 

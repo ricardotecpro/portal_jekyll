@@ -13,7 +13,7 @@ Sua principal função é rastrear mudanças no código-fonte ao longo do tempo.
 
 ## 🔗 Tópicos
 
-* **[Tópicos](/topicos.md)**: Trilhas de Aprendizagem.
+* **[Tópicos](/topicos.html)**: Trilhas de Aprendizagem.
 
 -----
 

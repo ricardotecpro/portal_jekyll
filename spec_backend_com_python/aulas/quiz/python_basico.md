@@ -51,11 +51,11 @@ Parabéns por completar o quiz!
 
 ### Próximos Passos
 
-- 📖 **Revisar Conteúdo**: Volte para a [aula de Python Básico](../aulas/python_basico.md)
-- 💪 **Praticar**: Faça os [exercícios práticos](../exercicios/index.md)
-- 🚀 **Avançar**: Tente o [Quiz de Python Avançado](python_avancado.md)
+- 📖 **Revisar Conteúdo**: Volte para a [aula de Python Básico](../aulas/python_basico.html)
+- 💪 **Praticar**: Faça os [exercícios práticos](../exercicios/index.html)
+- 🚀 **Avançar**: Tente o [Quiz de Python Avançado](python_avancado.html)
 
 ---
 
-[:arrow_left: Voltar para Quizzes](index.md)
+[:arrow_left: Voltar para Quizzes](index.html)
 

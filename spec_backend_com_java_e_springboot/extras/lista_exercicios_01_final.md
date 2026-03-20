@@ -8,7 +8,7 @@ title: Lista de Exercícios POO
 ---
 
 ### 📌 **Descrição das Atividades**
-[Orientação sobre como desenvolver as atividades](../exercicios/lista_exercicios_orientacoes.md)
+[Orientação sobre como desenvolver as atividades](../exercicios/lista_exercicios_orientacoes.html)
 
 ---
 

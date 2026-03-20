@@ -6,13 +6,13 @@ title: Project Index
 # Project Index
 
 ## Design Patterns (`padroes-projeto`)
-- [Singleton](./padroes-projeto/singleton.md)
-- [Factory](./padroes-projeto/factory.md)
-- [Observer](./padroes-projeto/observer.md)
+- [Singleton](./padroes-projeto/singleton.html)
+- [Factory](./padroes-projeto/factory.html)
+- [Observer](./padroes-projeto/observer.html)
 <!-- Add more as needed -->
 
 ## Topics (`topicos`)
-- [Introduction](./topicos/introduction.md)
-- [Best Practices](./topicos/best-practices.md)
-- [Advanced Concepts](./topicos/advanced-concepts.md)
+- [Introduction](./topicos/introduction.html)
+- [Best Practices](./topicos/best-practices.html)
+- [Advanced Concepts](./topicos/advanced-concepts.html)
 

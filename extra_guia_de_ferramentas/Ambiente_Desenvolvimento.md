@@ -45,12 +45,12 @@ Objetivo: instalar e configurar as principais ferramentas.
 
 **Ferramentas:**
 
-1. **IDE** — [Guia de Instalação e Configuração](./topicos/ides.md)
+1. **IDE** — [Guia de Instalação e Configuração](./topicos/ides.html)
 
    * Visual Studio Code, IntelliJ IDEA ou Eclipse.
    * Extensões recomendadas.
 
-2. **Terminal** — [Comandos Essenciais no Windows e Linux](../modulo_16_devops/terminal_windows_linux.md)
+2. **Terminal** — [Comandos Essenciais no Windows e Linux](../modulo_16_devops/terminal_windows_linux.html)
 
    * `cd`, `ls/dir`, `mkdir`, `rm`, `cp`, `mv`.
    * Permissões de arquivos e execução de scripts.
@@ -127,7 +127,7 @@ Objetivo: entender e aplicar Docker no desenvolvimento.
 
 * Conceito de container.
 * Diferença entre máquinas virtuais e containers.
-* Instalação do Docker — [Guia Completo](../modulo_16_devops/docker.md).
+* Instalação do Docker — [Guia Completo](../modulo_16_devops/docker.html).
 * Comandos básicos:
 
 ```bash

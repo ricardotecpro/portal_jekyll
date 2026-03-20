@@ -55,11 +55,11 @@ title: ⚒️ Projetos
 - Desktop (Java FX)
 
  
-* **[Lista de Tarefa 01 - Backend API](./projetos/listadetarefas_01/listadetarefas.api.md)**
+* **[Lista de Tarefa 01 - Backend API](./projetos/listadetarefas_01/listadetarefas.api.html)**
   
-* **[Lista de Tarefa 01 - Frontend Web](./projetos/listadetarefas_01/listadetarefas.web.md)**
+* **[Lista de Tarefa 01 - Frontend Web](./projetos/listadetarefas_01/listadetarefas.web.html)**
  
-* **[Lista de Tarefa 01 - Scripts](./projetos/listadetarefas_01/listadetarefas.scripts.md)**
+* **[Lista de Tarefa 01 - Scripts](./projetos/listadetarefas_01/listadetarefas.scripts.html)**
 
 ---
 

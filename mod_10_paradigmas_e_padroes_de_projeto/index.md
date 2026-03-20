@@ -157,18 +157,18 @@ Este repositório contém uma coleção de artigos que aprofundam os conceitos a
 
 ### Paradigmas de Programação
 
-*   **[Orientação a Objetos em Java](./topicos/paradigma_oo.md)**: Um tutorial prático sobre os pilares da POO com exemplos em Java.
-*   **[Paradigma Imperativo](./topicos/paradigma_imperativo.md)**: Uma análise do paradigma mais tradicional, suas estruturas e subparadigmas.
-*   **[Paradigma Funcional (Básico)](topicos/paradigma_funcional.md)**: Introdução aos conceitos de imutabilidade, funções puras e alta ordem.
-*   **[Paradigma Funcional (Avançado)](./topicos/paradigma_funcional_2.md)**: Exemplos práticos de recursão, composição e avaliação preguiçosa.
-*   **[Paradigma de Programação Lógica](topicos/paradigma_logico.md)**: Explore a programação baseada em fatos e regras com exemplos em Prolog.
-*   **[Famílias de Linguagens de Programação](./topicos/paradigmas_de_programacao.md)**: Uma classificação das linguagens por paradigma, sintaxe e aplicação.
+*   **[Orientação a Objetos em Java](./topicos/paradigma_oo.html)**: Um tutorial prático sobre os pilares da POO com exemplos em Java.
+*   **[Paradigma Imperativo](./topicos/paradigma_imperativo.html)**: Uma análise do paradigma mais tradicional, suas estruturas e subparadigmas.
+*   **[Paradigma Funcional (Básico)](topicos/paradigma_funcional.html)**: Introdução aos conceitos de imutabilidade, funções puras e alta ordem.
+*   **[Paradigma Funcional (Avançado)](./topicos/paradigma_funcional_2.html)**: Exemplos práticos de recursão, composição e avaliação preguiçosa.
+*   **[Paradigma de Programação Lógica](topicos/paradigma_logico.html)**: Explore a programação baseada em fatos e regras com exemplos em Prolog.
+*   **[Famílias de Linguagens de Programação](./topicos/paradigmas_de_programacao.html)**: Uma classificação das linguagens por paradigma, sintaxe e aplicação.
 
 ### Padrões de Projeto e Arquitetura
 
-*   **[Guia Completo: Padrões, Arquiteturas e Boas Práticas](./padroes-projeto/arquiteturas.md)**: Um guia sobre padrões como Factory, Singleton, Observer, e arquiteturas como Microservices e DDD.
-*   **[Guia Avançado: Padrões, Testes e Tópicos Complementares](./padroes-projeto/padroes_de_projeto2.md)**: Expande os conceitos com seções sobre testes, banco de dados e tópicos avançados como CI/CD e Cloud.
-*   **[Foco em SOLID e Spring MVC](./padroes-projeto/design_patterns_solid_spring_mvc.md)**: Como aplicar os princípios SOLID e o padrão Strategy em conjunto com o Spring MVC.
+*   **[Guia Completo: Padrões, Arquiteturas e Boas Práticas](./padroes-projeto/arquiteturas.html)**: Um guia sobre padrões como Factory, Singleton, Observer, e arquiteturas como Microservices e DDD.
+*   **[Guia Avançado: Padrões, Testes e Tópicos Complementares](./padroes-projeto/padroes_de_projeto2.html)**: Expande os conceitos com seções sobre testes, banco de dados e tópicos avançados como CI/CD e Cloud.
+*   **[Foco em SOLID e Spring MVC](./padroes-projeto/design_patterns_solid_spring_mvc.html)**: Como aplicar os princípios SOLID e o padrão Strategy em conjunto com o Spring MVC.
 
 
 

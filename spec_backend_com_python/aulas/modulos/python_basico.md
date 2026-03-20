@@ -146,7 +146,7 @@ Agora que você aprendeu os fundamentos do Python, que tal testar seus conhecime
 !!! abstract "🧠 Quiz de Fixação"
     Teste seus conhecimentos sobre Python Básico com questões interativas!
 
-    [Fazer Quiz Agora](../../quiz/python_basico.md){ .md-button .md-button--primary }
+    [Fazer Quiz Agora](../../quiz/python_basico.html){ .md-button .md-button--primary }
 
 ---
 
@@ -154,8 +154,8 @@ Agora que você aprendeu os fundamentos do Python, que tal testar seus conhecime
 
 Parabéns por completar a aula de Python Básico! Continue sua jornada:
 
-- 🚀 **Avançar**: [Python Avançado](python_avancado.md)
-- 💪 **Praticar**: [Exercícios](../exercicios/index.md)
-- 🎯 **Aplicar**: [Projetos](../projetos/index.md)
+- 🚀 **Avançar**: [Python Avançado](python_avancado.html)
+- 💪 **Praticar**: [Exercícios](../exercicios/index.html)
+- 🎯 **Aplicar**: [Projetos](../projetos/index.html)
 
 

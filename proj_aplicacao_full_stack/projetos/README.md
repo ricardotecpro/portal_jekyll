@@ -28,16 +28,16 @@ title: Projetos - Aplicações
 
 ---
 
-* [Gestão de Estoques Módulo 00](gestaodeestoques_01/modulo00.md)
-* [Gestão de Estoques Módulo 01](gestaodeestoques_01/modulo01.md)
-* [Gestão de Estoques Módulo 02](gestaodeestoques_01/modulo02.md)
-* [Gestão de Estoques Módulo 03](gestaodeestoques_01/modulo03.md)
-* [Gestão de Estoques Módulo 04](gestaodeestoques_01/modulo04.md)
-* [Gestão de Estoques Módulo 05](gestaodeestoques_01/modulo05.md) 
-* [Gestão de Estoques Módulo 06](gestaodeestoques_01/modulo06.md)
-* [Gestão de Estoques Módulo 07](gestaodeestoques_01/modulo07.md)
-* [Gestão de Estoques Módulo 08](gestaodeestoques_01/modulo08.md)
-* [Gestão de Estoques Módulo 09](gestaodeestoques_01/modulo09.md) 
+* [Gestão de Estoques Módulo 00](gestaodeestoques_01/modulo00.html)
+* [Gestão de Estoques Módulo 01](gestaodeestoques_01/modulo01.html)
+* [Gestão de Estoques Módulo 02](gestaodeestoques_01/modulo02.html)
+* [Gestão de Estoques Módulo 03](gestaodeestoques_01/modulo03.html)
+* [Gestão de Estoques Módulo 04](gestaodeestoques_01/modulo04.html)
+* [Gestão de Estoques Módulo 05](gestaodeestoques_01/modulo05.html) 
+* [Gestão de Estoques Módulo 06](gestaodeestoques_01/modulo06.html)
+* [Gestão de Estoques Módulo 07](gestaodeestoques_01/modulo07.html)
+* [Gestão de Estoques Módulo 08](gestaodeestoques_01/modulo08.html)
+* [Gestão de Estoques Módulo 09](gestaodeestoques_01/modulo09.html) 
 
 ---
 

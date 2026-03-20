@@ -21,7 +21,7 @@ Teste seus conhecimentos com nossos quizzes interativos!
 
     **Tópicos**: Zen do Python, tipagem, pip, sintaxe básica
 
-    [:arrow_right: Fazer Quiz](python_basico.md)
+    [:arrow_right: Fazer Quiz](python_basico.html)
 
 -   :material-rocket-launch: **Python Avançado**
 
@@ -31,7 +31,7 @@ Teste seus conhecimentos com nossos quizzes interativos!
 
     **Tópicos**: virtualenv, requirements.txt, isolamento de projetos
 
-    [:arrow_right: Fazer Quiz](python_avancado.md)
+    [:arrow_right: Fazer Quiz](python_avancado.html)
 
 </div>
 
@@ -56,8 +56,8 @@ Você pode refazer os quizzes quantas vezes quiser para fixar o conhecimento.
 > **Estude Antes de Fazer o Quiz**
 > 
 > Para melhor aproveitamento, leia primeiro o conteúdo da aula correspondente:
-> - [Python Básico](../aulas/python_basico.md)
-> - [Python Avançado](../aulas/python_avancado.md)
+> - [Python Básico](../aulas/python_basico.html)
+> - [Python Avançado](../aulas/python_avancado.html)
 
 > [!NOTE]
 > **Anote Suas Dúvidas**
@@ -70,9 +70,9 @@ Você pode refazer os quizzes quantas vezes quiser para fixar o conhecimento.
 
 Após completar os quizzes:
 
-1. ✅ **Pratique com Exercícios**: Vá para [Exercícios](../exercicios/index.md)
-2. ✅ **Aplique em Projetos**: Confira nossos [Projetos](../projetos/index.md)
-3. ✅ **Revise os Slides**: Acesse os [Slides](../slides/index.md) para revisão rápida
+1. ✅ **Pratique com Exercícios**: Vá para [Exercícios](../exercicios/index.html)
+2. ✅ **Aplique em Projetos**: Confira nossos [Projetos](../projetos/index.html)
+3. ✅ **Revise os Slides**: Acesse os [Slides](../slides/index.html) para revisão rápida
 
 ---
 

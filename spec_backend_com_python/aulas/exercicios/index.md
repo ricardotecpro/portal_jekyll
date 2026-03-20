@@ -12,13 +12,13 @@ Bem-vindo à área de prática! Aqui você encontrará listas de exercícios par
 
 ## 📚 Listas de Exercícios
 
-### [Módulo 1: Python Básico](../modulos/python_basico.md)
+### [Módulo 1: Python Básico](../modulos/python_basico.html)
 
 - [ ] **Variáveis e Tipos de Dados**: Manipulação de strings, inteiros e floats.
 - [ ] **Estruturas de Controle**: `if`, `else`, `for` e `while`.
 - [ ] **Funções**: Criação e chamada de funções simples.
 
-### [Módulo 2: Python Avançado](../modulos/python_avancado.md)
+### [Módulo 2: Python Avançado](../modulos/python_avancado.html)
 
 - [ ] **List Comprehensions**: Escrevendo código mais pythonico.
 - [ ] **Orientação a Objetos**: Classes, objetos e herança.

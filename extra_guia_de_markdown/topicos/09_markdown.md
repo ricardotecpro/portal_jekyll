@@ -148,7 +148,7 @@ Dominar o Markdown é uma habilidade valiosa para qualquer Analista de Sistemas.
 
 ### Recursos Internos (Markdown)
 
-* [Conceitos de Markdown](https://www.google.com/search?q=./markdown.md)
+* [Conceitos de Markdown](https://www.google.com/search?q=./markdown.html)
 
 
 ### Recursos Externos (Markdown)

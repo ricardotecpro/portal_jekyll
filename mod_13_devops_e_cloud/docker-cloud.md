@@ -423,7 +423,7 @@ Docker revolucionou o desenvolvimento de aplicações. Com este manual, você po
 ### Exemplo 1: Dockerizando uma Aplicação Java Simples
 Para criar uma aplicação Java simples e dockerizá-la, siga os passos abaixo:
 
-[Docker Exemplo 1](ricardotecpro.github.io/modulo_08_ambiente_desenvolvimentohttps://ricardotecpro.github.io/modulo_08_ambiente_desenvolvimento/docker/calculadora-java/README.md)
+[Docker Exemplo 1](ricardotecpro.github.io/modulo_08_ambiente_desenvolvimentohttps://ricardotecpro.github.io/modulo_08_ambiente_desenvolvimento/docker/calculadora-java/README.html)
 
 ---
 

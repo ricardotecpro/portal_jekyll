@@ -15,8 +15,8 @@ Esta seção é dedicada ao aprendizado e utilização do Markdown.
 
 -----
 
-* [09 - Markdown](topicos/09_markdown.md)
-* [10 - Plugins](topicos/10_plugins.md)
+* [09 - Markdown](topicos/09_markdown.html)
+* [10 - Plugins](topicos/10_plugins.html)
 
 -----
 

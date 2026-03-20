@@ -156,6 +156,13 @@ Desenvolver um algoritmo que funciona é apenas metade da batalha. A outra metad
 
 Essa análise é formalizada usando a **Notação Big O**, que nos permite classificar e comparar algoritmos para escolher a solução mais performática para um problema. A lógica correta combinada com um algoritmo eficiente é a marca de um software de alta qualidade.
 
+
+---
+
+## 📚 Conteúdo Detalhado
+
+* **[Explorar Tópicos](topicos/)**: Lista completa de lições e materiais.
+
 ---
 
 ### 🔗 [ricardotecpro.github.io](https://ricardotecpro.github.io/)

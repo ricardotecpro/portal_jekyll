@@ -5,8 +5,8 @@ title: Tópicos
 
 # 📚 Tópicos
 
-* [IDES](ides.md)
-* [INSTALACAO FERRAMENTAS](instalacao_ferramentas.md)
+* [IDES](ides.html)
+* [INSTALACAO FERRAMENTAS](instalacao_ferramentas.html)
 
 --- 
- [Voltar](../index.md)
+ [Voltar](../index.html)

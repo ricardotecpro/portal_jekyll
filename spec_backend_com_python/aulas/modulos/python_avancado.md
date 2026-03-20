@@ -180,8 +180,8 @@ Agora que você domina os conceitos avançados, que tal testar seus conhecimento
 
 Parabéns por completar a aula de Python Avançado! Continue sua jornada:
 
-- 💪 **Praticar**: [Exercícios](../exercicios/index.md)
-- 🎯 **Aplicar**: [Projetos](../projetos/index.md)
-- 📖 **Revisar**: [Python Básico](python_basico.md)
+- 💪 **Praticar**: [Exercícios](../exercicios/index.html)
+- 🎯 **Aplicar**: [Projetos](../projetos/index.html)
+- 📖 **Revisar**: [Python Básico](python_basico.html)
 
 

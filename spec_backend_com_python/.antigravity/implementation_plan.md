@@ -37,29 +37,29 @@ docs/
 │   └── python_avancado.md    # Quiz do Python Avançado
 ```
 
-#### [NEW] [docs/quiz/index.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/quiz/index.md)
+#### [NEW] [docs/quiz/index.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/quiz/index.html)
 Página hub com:
 - Lista de quizzes disponíveis
 - Instruções de uso
 - Estatísticas (futuro)
 
-#### [NEW] [docs/quiz/python_basico.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/quiz/python_basico.md)
+#### [NEW] [docs/quiz/python_basico.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/quiz/python_basico.html)
 Quiz extraído de `python_basico.md` com:
 - 3 questões existentes
 - Link de volta para a aula
 - Botão de "Ver Respostas"
 
-#### [NEW] [docs/quiz/python_avancado.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/quiz/python_avancado.md)
+#### [NEW] [docs/quiz/python_avancado.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/quiz/python_avancado.html)
 Quiz extraído de `python_avancado.md` com:
 - 3 questões existentes
 - Link de volta para a aula
 - Botão de "Ver Respostas"
 
-#### [MODIFY] [docs/aulas/python_basico.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/aulas/python_basico.md)
+#### [MODIFY] [docs/aulas/python_basico.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/aulas/python_basico.html)
 - Remover seção de quiz
 - Adicionar link para quiz separado no final
 
-#### [MODIFY] [docs/aulas/python_avancado.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/aulas/python_avancado.md)
+#### [MODIFY] [docs/aulas/python_avancado.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/aulas/python_avancado.html)
 - Remover seção de quiz
 - Adicionar link para quiz separado no final
 
@@ -84,7 +84,7 @@ O plugin `mkdocs-slides` gera um único HTML agregado, não slides individuais.
 
 **Recomendação**: Opção B (mais simples e prático)
 
-#### [MODIFY] [docs/slides/index.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/slides/index.md)
+#### [MODIFY] [docs/slides/index.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/slides/index.html)
 - Adicionar links para seções específicas das aulas
 - Criar "slides" como páginas de resumo
 - Manter estrutura atual mas melhorar conteúdo
@@ -123,7 +123,7 @@ O plugin `mkdocs-slides` gera um único HTML agregado, não slides individuais.
 - Dica de início rápido
 - Links úteis
 
-#### [MODIFY] [docs/index.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/index.md)
+#### [MODIFY] [docs/index.md](file:///c:/Dropbox/Crossover/github.io/ads_spec_backend_com_python/docs/index.html)
 Redesign completo com:
 - Hero section com gradiente
 - Feature highlights

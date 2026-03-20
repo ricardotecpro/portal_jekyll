@@ -107,7 +107,7 @@ Aqui está o passo a passo para habilitar o GitHub Pages nas configurações do 
 
 Seguindo esses passos, seu material de estudo estará online e acessível através do GitHub Pages\!
 
-* [GitHub Pages](https://www.google.com/search?q=./githubpages.md)
+* [GitHub Pages](https://www.google.com/search?q=./githubpages.html)
 * [Temas para GitHub Pages](https://pages.github.com/themes/) 
 
 ---

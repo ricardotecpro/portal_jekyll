@@ -13,22 +13,22 @@ A principal promessa de Java é: **"Escreva uma vez, execute em qualquer lugar."
 
 ## 📂 Tópicos
 
-* **[Tópicos](/topicos.md)**: Trilhas de Aprendizagem.
+* **[Tópicos](/topicos.html)**: Trilhas de Aprendizagem.
 
-* **[Exemplos](/exemplos.md)** Exemplos
+* **[Exemplos](topicos/23%20projeto_javafx-jdbc.html)**: Explore os exemplos práticos.
 
-* **[Exercicios](/exercicios.md)** Exemplos
+* **[Exercicios](/exercicios.html)** Exemplos
  
-* **[Desafios](/desafios.md)** Exemplos
+* **[Desafios](/desafios.html)** Exemplos
  
-* **[Projetos](/projetos.md)** Projetos
+* **[Projetos](/projetos.html)** Projetos
 
 ---
 
 ## 📄 Slides
 
 * **[Slides html](/slides.html)**: Slides
-* **[Slides md](/slides.md)**: Slides
+* **[Slides md](/slides.html)**: Slides
 
 ---
 

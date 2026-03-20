@@ -381,8 +381,8 @@ pip install --user nome-do-pacote
 Agora que você tem tudo configurado:
 
 1. ✅ **Explore a documentação**: [docs.python.org](https://docs.python.org/pt-br/3/)
-2. ✅ **Faça os exercícios**: Acesse a seção [Exercícios](../exercicios/index.md)
-3. ✅ **Pratique projetos**: Veja nossos [Projetos](../projetos/index.md)
+2. ✅ **Faça os exercícios**: Acesse a seção [Exercícios](../exercicios/index.html)
+3. ✅ **Pratique projetos**: Veja nossos [Projetos](../projetos/index.html)
 4. ✅ **Aprenda sobre bibliotecas**: Explore [PyPI](https://pypi.org/)
 
 ---
@@ -406,5 +406,5 @@ Agora que você tem tudo configurado:
 !!! tip "Dica Final"
     **Dica Final**: Pratique todos os dias! Mesmo que seja apenas 15 minutos, a consistência é a chave para dominar Python. 🚀
 
-**Pronto para começar?** Volte para as [Aulas](../modulos/python_basico.md) e comece sua jornada! 🐍
+**Pronto para começar?** Volte para as [Aulas](../modulos/python_basico.html) e comece sua jornada! 🐍
 
