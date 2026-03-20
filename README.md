@@ -20,6 +20,11 @@ Em uma analogia com um restaurante, o desenvolvedor Full Stack seria o chef de c
 
 ---
 
+## testes
+
+* **[teste de inclusão de arquivo](./tests.md)**: mermaid e mathjax
+
+
 ## 📚 As Camadas do Conhecimento Full Stack
 
 Um desenvolvedor Full Stack navega confortavelmente por estas quatro camadas principais:
